@@ -57,6 +57,7 @@ end event
 
 on w_object_inquiry.create
 call super::create
+if IsValid(this.MenuID) then destroy(this.MenuID)
 if this.MenuName = "m_object_inquiry" then this.MenuID = create m_object_inquiry
 end on
 
@@ -177,6 +178,7 @@ end type
 type dw_inquiry from w_inquiry_ancestor`dw_inquiry within w_object_inquiry
 string dataobject = "dw_object_inquiry"
 boolean hsplitscroll = true
+borderstyle borderstyle = StyleRaised!
 end type
 
 event dw_inquiry::clicked;/*  Declare Variables  */

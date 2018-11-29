@@ -237,12 +237,14 @@ integer height = 1056
 boolean hscrollbar = true
 end type
 
-event constructor;SetTransObject ( sqlca )
+event constructor;call super::constructor;SetTransObject ( sqlca )
 
 end event
 
 event retrieverow;
-st_1.Text = "Total Records = " + String ( RowCount ( ) )
+if	mod(row, 1000) = 0 then
+	st_1.Text = "Total Records = " + String ( row )
+end if
 
 if i_b_cancel then 
 	i_b_cancel = false
@@ -251,16 +253,18 @@ end if
 SetPointer(HourGlass!)
 end event
 
-event retrieveend;
+event retrieveend;call super::retrieveend;
+st_1.Text = "Total Records = " + String ( rowcount )
+
 MenuID.dynamic mf_cancel(false)
 SetPointer(Arrow!)
 end event
 
-event retrievestart;
+event retrievestart;call super::retrievestart;
 MenuID.dynamic mf_cancel(true)
 st_1.Text = "Total Records = 0"
 end event
 
-event doubleclicked;SetPointer (HourGlass!)
+event doubleclicked;call super::doubleclicked;SetPointer (HourGlass!)
 end event
 
