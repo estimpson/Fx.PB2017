@@ -171,6 +171,10 @@ End if
 
 end event
 
+event pfc_preopen;call super::pfc_preopen;TableNames[] = {"object"}
+
+end event
+
 type st_1 from w_inquiry_ancestor`st_1 within w_inventory_inquiry
 end type
 

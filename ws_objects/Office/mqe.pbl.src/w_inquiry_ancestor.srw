@@ -34,7 +34,11 @@ string		i_s_original_syntax,&
 		i_s_retrieve_all,&
 		i_s_title,&
 		i_s_primary_column
+
 string		is_default_operator
+
+string TableNames[]
+
 boolean		i_b_cancel
 
 window	DefaultSheet
@@ -53,7 +57,12 @@ int						l_i_pos
 l_s_sqlsyntax = i_s_original_syntax
 
 // Setup parm values and open search window
-f_get_tables_from_select ( dw_inquiry.object.datawindow.table.select, l_str_parm.s_tables )
+if	UpperBound(TableNames) > 0 then
+	l_str_parm.s_tables = TableNames
+else
+	f_get_tables_from_select ( dw_inquiry.object.datawindow.table.select, l_str_parm.s_tables )
+end if
+
 l_str_parm.b_allow_retrieve_all = TRUE
 l_str_parm.primary_column = i_s_primary_column
 l_str_parm.parent_title = this.title

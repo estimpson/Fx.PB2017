@@ -12,6 +12,7 @@ global w_audit_trail_inquiry w_audit_trail_inquiry
 
 on w_audit_trail_inquiry.create
 call super::create
+if IsValid(this.MenuID) then destroy(this.MenuID)
 if this.MenuName = "m_audit_trail_inquiry" then this.MenuID = create m_audit_trail_inquiry
 end on
 
@@ -19,6 +20,10 @@ on w_audit_trail_inquiry.destroy
 call super::destroy
 if IsValid(MenuID) then destroy(MenuID)
 end on
+
+event pfc_preopen;call super::pfc_preopen;TableNames[] = {"audit_trail"}
+
+end event
 
 type st_1 from w_inquiry_ancestor`st_1 within w_audit_trail_inquiry
 end type
