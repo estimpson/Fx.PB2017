@@ -1,0 +1,25 @@
+﻿$PBExportHeader$dw_ei_sales_forecast_test.srd
+$PBExportComments$update 5/14
+release 5;
+datawindow(units=2 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=218 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=10 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=type dbname="order_detail.type" values="Forecast	B/Firm	F/Planned	P/Raw Auth.	R/" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="order_detail.quantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="order_detail.price" )
+ column=(type=decimal(9) updatewhereclause=yes name=compute_0004 dbname="compute_0004" )
+ retrieve="  SELECT order_detail.type,   
+         order_detail.quantity,   
+         order_detail.price,   
+         order_detail.quantity * order_detail.price  
+    FROM order_detail  
+   WHERE order_detail.type = 'F'    
+"  sort="type A " )
+group(level=1 header.height=302 trailer.height=10 by=("type" ) header.color="536870912" trailer.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="4125" y="0" height="208" width="1125" format="[shortdate]"  font.face="Arial" font.height="-12" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Sales Forecast of"border="0" color="33554432" x="1208" y="0" height="208" width="1375"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="FIRM"border="0" color="255" x="2666" y="0" height="208" width="406"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="orders as of"border="0" color="0" x="3125" y="0" height="208" width="947"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header.1 alignment="0" expression="sum(compute_0004 for group 1)"border="0" color="255" x="1208" y="0" height="291" width="3406" format="$#,##0.00;($#,##0.00)"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

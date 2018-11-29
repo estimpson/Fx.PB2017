@@ -1,0 +1,54 @@
+﻿$PBExportHeader$f_highlight.srf
+global type f_highlight from function_object
+end type
+
+forward prototypes
+global function long f_highlight (long ll_previousrow, ref datawindow dwcurrent)
+end prototypes
+
+global function long f_highlight (long ll_previousrow, ref datawindow dwcurrent);/*  Declare Variables  */
+Long	ll_Count
+Long	ll_Row
+
+/*  Initialize Variables  */
+ll_Row = dwCurrent.GetClickedRow ( )
+
+If ll_Row < 1 Then Return ll_PreviousRow
+
+If KeyDown ( keyShift! ) Then
+
+	If f_get_value ( ll_PreviousRow ) < 1 Then ll_PreviousRow = 1 
+
+	If ll_PreviousRow > ll_Row Then
+		For ll_Count = ll_PreviousRow to ll_Row Step -1
+			SelectRow ( dwCurrent, ll_Count, True )
+		Next
+	Else
+		For ll_Count = ll_PreviousRow to ll_Row
+			SelectRow ( dwCurrent, ll_Count, True )
+		Next
+	End if
+
+Elseif KeyDown ( keyControl! ) Then
+
+	If dwCurrent.IsSelected ( ll_Row ) Then
+
+		SelectRow ( dwCurrent, ll_Row, False )
+
+	Else
+
+		SelectRow ( dwCurrent, ll_Row, True )
+
+	End if
+
+Else
+
+	SelectRow ( dwCurrent, 0, False )
+	SelectRow ( dwCurrent, ll_Row, True )
+
+End if
+
+Return ll_Row
+
+end function
+

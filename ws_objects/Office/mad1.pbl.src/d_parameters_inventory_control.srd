@@ -1,0 +1,63 @@
+﻿$PBExportHeader$d_parameters_inventory_control.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=8 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=1544 color="536870912" )
+table(column=(type=char(1) update=yes updatewhereclause=yes name=delete_scrapped_objects dbname="parameters.delete_scrapped_objects" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ipa dbname="parameters.ipa" values="Yes	Y/Yes	N" )
+ column=(type=long update=yes updatewhereclause=yes name=ipa_beginning_sequence dbname="parameters.ipa_beginning_sequence" validation="Number(GetText()) > 0" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=invoice_add dbname="parameters.invoice_add" values="Yes	Y/Yes	N" )
+ column=(type=char(50) updatewhereclause=yes key=yes name=company_name dbname="parameters.company_name" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=verify_packaging dbname="parameters.verify_packaging" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=populate_parts dbname="parameters.populate_parts" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=populate_locations dbname="parameters.populate_locations" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=populate_machines dbname="parameters.populate_machines" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=mandatory_lot_inventory dbname="parameters.mandatory_lot_inventory" values="Yes	Y/Yes	N" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=shipping_label dbname="parameters.shipping_label" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=lot_control_message dbname="parameters.lot_control_message" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=mandatory_qc_notes dbname="parameters.mandatory_qc_notes" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=auto_stage_for_packline dbname="parameters.auto_stage_for_packline" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=clear_after_trans_jc dbname="parameters.clear_after_trans_jc" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=shop_floor_check_lot dbname="parameters.shop_floor_check_lot" values="Yes	Y/Yes	N" )
+ retrieve="SELECT 	parameters.delete_scrapped_objects, 
+			parameters.ipa, 
+			parameters.ipa_beginning_sequence, 
+			parameters.invoice_add, 
+			parameters.company_name, 
+			parameters.verify_packaging, 
+			parameters.populate_parts, 
+			parameters.populate_locations, 
+			parameters.populate_machines, 
+			parameters.mandatory_lot_inventory, 
+			parameters.shipping_label, 
+			parameters.lot_control_message, 
+			parameters.mandatory_qc_notes, 
+			parameters.auto_stage_for_packline, 
+			parameters.clear_after_trans_jc,
+			parameters.shop_floor_check_lot 
+FROM parameters " update="parameters" updatewhere=0 updatekeyinplace=yes )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="914" y="4" height="64" width="256" format="[general]"  name=delete_scrapped_objects  tag="If Yes, then system will delete the object upon changing the status to scrap." checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="0" x="914" y="72" height="64" width="256" format="[general]"  name=invoice_add  tag="If Yes, system will allow user to add any part onto an invoice." checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="0" x="2446" y="20" height="64" width="256" format="[general]"  name=populate_parts checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="0" x="914" y="196" height="64" width="256" format="[general]"  name=verify_packaging checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="0" x="2446" y="132" height="64" width="256" format="[general]"  name=populate_locations checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="0" color="0" x="2446" y="252" height="64" width="256" format="[general]"  name=populate_machines checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=40 border="0" color="0" x="914" y="312" height="60" width="256" format="[general]"  name=mandatory_qc_notes checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="0" tabsequence=100 border="0" color="0" x="2450" y="348" height="64" width="251" format="[general]"  name=clear_after_trans_jc checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="0" tabsequence=50 border="0" color="0" x="914" y="376" height="60" width="256" format="[general]"  name=auto_stage_for_packline checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=16 alignment="0" tabsequence=110 border="0" color="0" x="2450" y="424" height="56" width="251" format="[general]"  name=shop_floor_check_lot checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=90 border="5" color="0" x="91" y="496" height="160" width="2615" format="[general]"  name=lot_control_message edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autovscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1134" y="1380" height="64" width="1399" format="[general]"  name=company_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Delete Scrapped Objects?"border="0" color="0" x="91" y="4" height="52" width="768"  name=delete_scrapped_objects_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Mandatory QC Notes?"border="0" color="0" x="91" y="304" height="52" width="768"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Auto Stage for PackLine?"border="0" color="0" x="91" y="368" height="52" width="768"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Lot Control Message:"border="0" color="0" x="91" y="436" height="52" width="768"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Allow Manual Add of Parts on Invoice?"border="0" color="0" x="91" y="72" height="100" width="768"  name=invoice_add_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Verify Packaging Material at Shipping Dock ?"border="0" color="0" x="91" y="188" height="100" width="768"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Check Lot Number?"border="0" color="0" x="1495" y="424" height="52" width="914"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Clear information after Job Completion?"border="0" color="0" x="1495" y="352" height="52" width="914"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Automatically Populate Part Numbers in Inventory Screens?"border="0" color="0" x="1495" y="4" height="104" width="914"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Automatically Populate Locations in Inventory Screens?"border="0" color="0" x="1495" y="116" height="104" width="914"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Automatically Populate Machines in Inventory Screens?"border="0" color="0" x="1495" y="232" height="104" width="914"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

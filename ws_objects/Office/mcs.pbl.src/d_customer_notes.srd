@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_customer_notes.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=801 color="536870912" )
+table(column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="customer.notes" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=customer dbname="customer.customer" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"customer~" ) COLUMN(NAME=~"customer.notes~") COLUMN(NAME=~"customer.customer~")WHERE(    EXP1 =~"customer.customer~"   OP =~"=~"    EXP2 =~":a_s_customer~" ) ) ARG(NAME = ~"a_s_customer~" TYPE = string) " update="customer" updatewhere=0 updatekeyinplace=yes arguments=(("a_s_customer", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="19" y="16" height="765" width="2149" format="[general]"  name=notes edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

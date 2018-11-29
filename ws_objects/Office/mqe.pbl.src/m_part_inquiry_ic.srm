@@ -1,0 +1,36 @@
+﻿$PBExportHeader$m_part_inquiry_ic.srm
+forward
+global type m_part_inquiry_ic from m_inquiry_ancestor
+end type
+end forward
+
+global type m_part_inquiry_ic from m_inquiry_ancestor
+end type
+global m_part_inquiry_ic m_part_inquiry_ic
+
+on m_part_inquiry_ic.create
+m_part_inquiry_ic=this
+call super::create
+end on
+
+on m_part_inquiry_ic.destroy
+call super::destroy
+end on
+
+on m_addlocationmachine.create
+call super::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_deletelocationmachine.create
+call super::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_-1.create
+call super::create
+this.Visible=false
+end on
+

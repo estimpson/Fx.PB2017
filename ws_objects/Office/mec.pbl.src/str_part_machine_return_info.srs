@@ -1,0 +1,18 @@
+﻿$PBExportHeader$str_part_machine_return_info.srs
+global type str_part_machine_return_info from structure
+	string		part
+	string		machine
+	integer		sequence
+	decimal {6}	mfg_lot_size
+	string		process_id
+	decimal {6}	parts_per_cycle
+	decimal {6}	parts_per_hour
+	string		cycle_unit
+	decimal {6}	cycle_time
+	string		overlap_type
+	decimal {2}	overlap_time
+	string		labor_code
+	string		activity
+	decimal {6}	setup_time
+end type
+

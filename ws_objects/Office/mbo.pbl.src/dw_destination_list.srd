@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dw_destination_list.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=97 color="536870912")
+table(column=(type=char(20) update=yes key=yes name=destination dbname="destination.destination" )
+ column=(type=char(50) update=yes name=name dbname="destination.name" )
+ column=(type=char(10) name=customer dbname="destination.customer" )
+ retrieve="SELECT destination.destination, destination.name, destination.customer FROM destination " update="destination" updatewhere=0 updatekeyinplace=yes  sort="destination A " )
+text(band=header color="8388608" alignment="2" border="0" x="10" y="8" height="61" width="380" text="Destination" name=destination_t  font.face="Arial" font.height="-9" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="8388608" alignment="2" border="0" x="398" y="8" height="61" width="965" text="Name" name=name_t  font.face="Arial" font.height="-9" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="380" x="10" y="8"  name=destination format="[general]" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="965" x="398" y="8"  name=name format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=3 border="0" alignment="0" color="16777215" height="65" tabsequence=10 width="220" x="1372" y="8"  name=customer format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")

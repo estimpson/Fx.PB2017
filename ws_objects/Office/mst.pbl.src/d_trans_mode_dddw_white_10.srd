@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_trans_mode_dddw_white_10.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(2) update=yes updatewhereclause=yes key=yes name=code dbname="trans_mode.code" )
+ column=(type=char(50) updatewhereclause=yes name=description dbname="trans_mode.description" )
+ retrieve="  SELECT trans_mode.code,   
+         trans_mode.description  
+    FROM trans_mode  
+ORDER BY trans_mode.code ASC   
+" update="trans_mode" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Code"border="0" color="0" x="5" y="4" height="64" width="137"  name=code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="5" y="4" height="64" width="288" format="[general]"  name=code edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=0 border="0" color="0" x="302" y="4" height="64" width="1029"  name=description  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

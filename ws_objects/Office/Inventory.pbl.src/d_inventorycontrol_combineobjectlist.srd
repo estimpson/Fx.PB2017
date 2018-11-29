@@ -1,0 +1,73 @@
+﻿$PBExportHeader$d_inventorycontrol_combineobjectlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="InventoryControl_Objects.Serial" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="InventoryControl_Objects.Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=stdquantity dbname="InventoryControl_Objects.StdQuantity" )
+ column=(type=char(2) updatewhereclause=yes name=stdunit dbname="InventoryControl_Objects.StdUnit" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="InventoryControl_Objects.Location" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="InventoryControl_Objects.Plant" )
+ column=(type=char(1) updatewhereclause=yes name=status dbname="InventoryControl_Objects.Status" )
+ column=(type=char(30) updatewhereclause=yes name=userdefinedstatus dbname="InventoryControl_Objects.UserDefinedStatus" )
+ column=(type=char(20) updatewhereclause=no name=packagetype dbname="InventoryControl_Objects.PackageType" )
+ column=(type=decimal(0) updatewhereclause=yes name=palletserial dbname="InventoryControl_Objects.PalletSerial" )
+ column=(type=char(20) updatewhereclause=yes name=lot dbname="InventoryControl_Objects.Lot" )
+ column=(type=char(50) updatewhereclause=yes name=licenseplate dbname="InventoryControl_Objects.LicensePlate" )
+ column=(type=char(1000) updatewhereclause=no name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	ico.Serial
+,	ico.Part
+,	ico.StdQuantity
+,	ico.StdUnit
+,	ico.Location
+,	ico.Plant
+,	ico.Status
+,	ico.UserDefinedStatus
+,	ico.PackageType
+,	ico.PalletSerial
+,	ico.Lot
+,	ico.LicensePlate
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.InventoryControl_Objects ico
+where
+	ico.Serial in (:SerialList)
+" arguments=(("serialList", numberlist)) )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="9" y="8" height="76" width="320" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="338" y="8" height="76" width="393" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quantity" border="6" color="33554432" x="741" y="8" height="76" width="247" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Location" border="6" color="33554432" x="997" y="8" height="76" width="283" html.valueishtml="0"  name=location_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="1289" y="8" height="76" width="283" html.valueishtml="0"  name=plant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="1582" y="8" height="76" width="389" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Package type" border="6" color="33554432" x="1979" y="8" height="76" width="471" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pallet serial" border="6" color="33554432" x="2459" y="8" height="76" width="329" html.valueishtml="0"  name=palletserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Lot" border="6" color="33554432" x="2798" y="8" height="76" width="576" html.valueishtml="0"  name=lot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Licenseplate" border="6" color="33554432" x="3383" y="8" height="76" width="535" html.valueishtml="0"  name=licenseplate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="320" format="[general] " html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="338" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="1" expression="string(StdQuantity, ~"#,##0.0##### ~") + StdUnit"border="0" color="33554432" x="741" y="8" height="76" width="247" format="[GENERAL] " html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="997" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=location visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1289" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=plant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="Status + ' -  ' + UserDefinedStatus"border="0" color="33554432" x="1582" y="8" height="76" width="389" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1979" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=packagetype visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2459" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=palletserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2798" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=lot visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3383" y="8" height="76" width="535" format="[general]" html.valueishtml="0"  name=licenseplate visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+
+sparse(names="part	location	plant	packagetype	compute_2	palletserial	lot")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

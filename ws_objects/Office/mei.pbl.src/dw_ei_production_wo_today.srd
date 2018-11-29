@@ -1,0 +1,47 @@
+﻿$PBExportHeader$dw_ei_production_wo_today.srd
+$PBExportComments$updated on 5/20
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=81 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=81 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="workorder_detail.part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_required dbname="workorder_detail.qty_required" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_completed dbname="workorder_detail.qty_completed" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=balance dbname="workorder_detail.balance" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=scrapped dbname="workorder_detail.scrapped" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=workorder dbname="workorder_detail.workorder" )
+ column=(type=char(10) updatewhereclause=yes name=work_order_machine_no dbname="work_order.machine_no" )
+ column=(type=decimal(6) updatewhereclause=yes name=work_order_runtime dbname="work_order.runtime" )
+ column=(type=datetime updatewhereclause=yes name=work_order_due_date dbname="work_order.due_date" )
+ retrieve="  SELECT workorder_detail.part,   
+         workorder_detail.qty_required,   
+         workorder_detail.qty_completed,   
+         workorder_detail.balance,   
+         workorder_detail.scrapped,   
+         workorder_detail.workorder,   
+         work_order.machine_no,   
+         work_order.runtime,   
+         work_order.due_date  
+    FROM workorder_detail,   
+         work_order  
+   WHERE ( workorder_detail.workorder = work_order.work_order ) and  
+         ( (work_order.sequence = 1 ) )    
+" )
+text(band=header alignment="2" text="Required"border="0" color="0" x="636" y="4" height="65" width="357"  name=qty_required_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Completed"border="0" color="0" x="1002" y="4" height="65" width="403"  name=qty_completed_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Balance"border="0" color="0" x="1413" y="4" height="65" width="311"  name=balance_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Scrapped"border="0" color="0" x="1733" y="4" height="65" width="366"  name=scrapped_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Machine "border="0" color="0" x="2108" y="4" height="65" width="334"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Runtime"border="0" color="0" x="2451" y="4" height="65" width="279"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Due Date"border="0" color="0" x="2739" y="4" height="65" width="412"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="10" y="4" height="65" width="618"  name=part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="4" height="69" width="618" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="0" x="2108" y="4" height="69" width="334" format="[general]"  name=work_order_machine_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="1" tabsequence=70 border="0" color="0" x="2451" y="4" height="69" width="279" format="#,##0"  name=work_order_runtime edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="2" tabsequence=80 border="0" color="0" x="2739" y="4" height="69" width="412" format="[general]"  name=work_order_due_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="636" y="4" height="69" width="357" format="#,##0"  name=qty_required edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="1002" y="4" height="69" width="403" format="#,##0"  name=qty_completed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="0" x="1413" y="4" height="69" width="311" format="#,##0"  name=balance edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="255" x="1733" y="4" height="69" width="366" format="#,##0"  name=scrapped edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

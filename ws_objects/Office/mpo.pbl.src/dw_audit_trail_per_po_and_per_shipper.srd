@@ -1,0 +1,34 @@
+﻿$PBExportHeader$dw_audit_trail_per_po_and_per_shipper.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=number updatewhereclause=no name=serial dbname="serial" )
+ column=(type=number updatewhereclause=no name=qnty dbname="qnty" )
+ column=(type=char(2) updatewhereclause=no name=unit dbname="unit" )
+ column=(type=char(1) updatewhereclause=no name=type dbname="type" )
+ procedure="1 SELECT audit_trail.serial, 
+ audit_trail.quantity, 
+ audit_trail.unit,
+ ( select at1.type 
+	from 	 audit_trail at1
+	where	 at1.date_Stamp = ( select max ( at2.date_stamp ) 
+						 from audit_trail at2 where serial = audit_trail.serial ) and
+			 serial = audit_trail.serial ) type 
+FROM audit_trail 
+WHERE ( audit_trail.po_number = :as_po) 
+AND ( audit_trail.part = :as_part ) 
+AND ( audit_trail.type = 'R' ) 
+ORDER BY  audit_Trail.date_Stamp
+" arguments=(("as_po", string),("as_shipper", string),("as_part", string)) )
+text(band=header alignment="2" text="Serial"border="0" color="0" x="9" y="8" height="64" width="219"  name=serial_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qnty"border="0" color="0" x="238" y="8" height="64" width="219"  name=qnty_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unit"border="0" color="0" x="466" y="8" height="64" width="96"  name=unit_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type"border="0" color="0" x="571" y="8" height="64" width="114"  name=type_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="219" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="238" y="8" height="76" width="219" format="[general]"  name=qnty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="466" y="8" height="76" width="96" format="[general]"  name=unit edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="571" y="8" height="76" width="114" format="[general]"  name=type edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

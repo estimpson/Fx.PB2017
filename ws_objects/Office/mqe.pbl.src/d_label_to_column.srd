@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_label_to_column.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(129) updatewhereclause=yes name=pbc_tnam dbname="pbcatcol.pbc_tnam" )
+ column=(type=char(254) updatewhereclause=yes name=pbc_hdr dbname="pbcatcol.pbc_hdr" )
+ column=(type=char(129) updatewhereclause=yes name=pbc_cnam dbname="pbcatcol.pbc_cnam" )
+ retrieve="SELECT pbcatcol.pbc_tnam, pbcatcol.pbc_hdr, pbcatcol.pbc_cnam FROM pbcatcol WHERE ( pbcatcol.pbc_tnam = :szTable ) AND ( pbcatcol.pbc_hdr = :szLabel ) " arguments=(("szTable", string),("szLabel", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="2190" format="[general]"  name=pbc_tnam edit.limit=129 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Pbc Tnam"border="0" color="0" x="9" y="8" height="52" width="2190"  name=pbc_tnam_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Pbc Hdr"border="0" color="0" x="2208" y="8" height="52" width="2190"  name=pbc_hdr_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Pbc Cnam"border="0" color="0" x="4407" y="8" height="52" width="2190"  name=pbc_cnam_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="2208" y="8" height="76" width="2190" format="[general]"  name=pbc_hdr edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="4407" y="8" height="76" width="2190" format="[general]"  name=pbc_cnam edit.limit=129 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

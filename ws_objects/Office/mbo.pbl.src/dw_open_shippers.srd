@@ -1,0 +1,79 @@
+﻿$PBExportHeader$dw_open_shippers.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="shipper.id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_stamp dbname="shipper.date_stamp" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="shipper.ship_via" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="shipper.status" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="shipper.printed" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=notes dbname="shipper.notes" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=picklist_printed dbname="shipper.picklist_printed" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="shipper.type" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_shipped dbname="shipper.date_shipped" )
+ column=(type=datetime update=yes updatewhereclause=yes name=time_shipped dbname="shipper.time_shipped" )
+ retrieve="  SELECT shipper.id,   
+         shipper.destination,   
+         shipper.date_stamp,   
+         shipper.ship_via,   
+         shipper.status,   
+         shipper.printed,   
+         shipper.notes,   
+         shipper.picklist_printed,   
+         shipper.type,   
+         shipper.date_shipped,   
+         shipper.time_shipped  
+    FROM shipper, customer_service_status  
+   WHERE ( shipper.status = 'O' OR  
+         shipper.status = 'S' ) AND  
+	 isnull(shipper.type,'') <> 'R' and
+         shipper.destination = :szDestination and
+  	 shipper.cs_status = customer_service_status.status_name and
+         customer_service_status.status_type <> 'C'
+ORDER BY shipper.id ASC   
+" update="shipper" updatewhere=0 updatekeyinplace=yes arguments=(("szDestination", string)) )
+rectangle(band=background x="1719" y="16" height="432" width="841" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="5" pen.color="276856960"  background.mode="1" background.color="553648127" )
+rectangle(band=background x="1723" y="20" height="432" width="841" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="5" pen.color="1090519039"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Shipper"border="6" color="33554432" x="9" y="12" height="64" width="229"  name=id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Destination"border="6" color="33554432" x="256" y="12" height="64" width="384"  name=destination_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Date"border="6" color="33554432" x="658" y="12" height="64" width="215"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Ship Via"border="6" color="33554432" x="891" y="12" height="64" width="311"  name=ship_via_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Nt"border="6" color="33554432" x="1221" y="12" height="64" width="73"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Pa"border="6" color="33554432" x="1399" y="12" height="64" width="69"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Pi"border="6" color="33554432" x="1486" y="12" height="64" width="69"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Tp"border="6" color="33554432" x="1573" y="12" height="64" width="69"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="St"border="6" color="33554432" x="1312" y="12" height="64" width="69"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="33554432" x="5" y="4" height="64" width="238" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="251" y="4" height="64" width="393" format="[general]"  name=destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="2" color="33554432" x="654" y="4" height="64" width="224" format="[general]"  name=date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="33554432" x="887" y="4" height="64" width="320" format="[general]"  name=ship_via edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (If( Trim(notes) > ~" ~", ~"noteyes.bmp~", ~"~"))"border="2" color="33554432" x="1216" y="4" height="64" width="78" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (if(printed =~"Y~", ~"printer.bmp~", ~"~")) "border="2" color="33554432" x="1390" y="4" height="64" width="78" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (if( picklist_printed = 'Y', ~"pick.bmp~", ~"~"))"border="2" color="33554432" x="1477" y="4" height="64" width="78" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap ( If(type = ~"O~", ~"OUTSIDE.BMP~", If (type = ~"V~", ~"RTNVEND.BMP~", ~"~" )))"border="2" color="33554432" x="1563" y="4" height="64" width="78" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (if(status=~"S~", ~"logo2.bmp~", ~"~"))"border="2" color="33554432" x="1303" y="4" height="64" width="78" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="325" y1="36" x2="462" y2="36" pen.style="0" pen.width="5" pen.color="1090519039"  background.mode="1" background.color="553648127" )
+line(band=footer x1="425" y1="60" x2="466" y2="32" pen.style="0" pen.width="5" pen.color="276856960"  background.mode="1" background.color="553648127" )
+line(band=footer x1="425" y1="64" x2="466" y2="36" pen.style="0" pen.width="5" pen.color="1090519039"  background.mode="1" background.color="553648127" )
+line(band=footer x1="421" y1="8" x2="462" y2="32" pen.style="0" pen.width="5" pen.color="276856960"  background.mode="1" background.color="553648127" )
+line(band=footer x1="421" y1="12" x2="462" y2="36" pen.style="0" pen.width="5" pen.color="1090519039"  background.mode="1" background.color="553648127" )
+text(band=footer alignment="0" text="Legend"border="0" color="33554432" x="101" y="4" height="64" width="192"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="325" y1="32" x2="462" y2="32" pen.style="0" pen.width="5" pen.color="276856960"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Return To Vendor"border="0" color="33554432" x="1874" y="380" height="60" width="462"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=foreground filename="RTNVEND.BMP" x="1765" y="380" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Legend"border="0" color="33554432" x="1783" y="0" height="64" width="192"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+bitmap(band=foreground filename="noteyes.bmp" x="1760" y="60" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Shipper Staged"border="0" color="33554432" x="1870" y="124" height="60" width="407"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=foreground filename="logo2.bmp" x="1760" y="124" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Pack List Printed"border="0" color="33554432" x="1870" y="188" height="60" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=foreground filename="printer.bmp" x="1760" y="188" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Pick List Printed"border="0" color="33554432" x="1870" y="252" height="60" width="439"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=foreground filename="pick.bmp" x="1760" y="252" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Outside Process Shipper"border="0" color="33554432" x="1870" y="316" height="60" width="663"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=foreground filename="OUTSIDE.BMP" x="1760" y="316" height="56" width="69" border="0" )
+text(band=foreground alignment="0" text="Foot Note"border="0" color="33554432" x="1870" y="60" height="60" width="261"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

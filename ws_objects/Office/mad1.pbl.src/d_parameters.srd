@@ -1,0 +1,49 @@
+﻿$PBExportHeader$d_parameters.srd
+$PBExportComments$*
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1236 color="536870912" )
+table(column=(type=char(50) update=yes updatewhereclause=yes key=yes name=company_name dbname="parameters.company_name" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=address_1 dbname="parameters.address_1" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=address_2 dbname="parameters.address_2" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=address_3 dbname="parameters.address_3" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=company_logo dbname="parameters.company_logo" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=phone_number dbname="parameters.phone_number" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=admin_password dbname="parameters.admin_password" )
+ column=(type=long update=yes updatewhereclause=yes name=euro_enabled dbname="parameters.euro_enabled" values="Yes	0/No	1/" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=base_currency dbname="parameters.base_currency" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=currency_display_symbol dbname="parameters.currency_display_symbol" )
+ retrieve="  SELECT parameters.company_name,   
+         parameters.address_1,   
+         parameters.address_2,   
+         parameters.address_3,   
+         parameters.company_logo,   
+         parameters.phone_number,   
+         parameters.admin_password,   
+         parameters.euro_enabled,
+			parameters.base_currency,
+			parameters.currency_display_symbol 
+    FROM parameters   
+" update="parameters" updatewhere=0 updatekeyinplace=yes )
+text(band=detail alignment="1" text="Logo:"border="0" color="37234728" x="1216" y="4" height="52" width="165"  name=company_logo_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Name:"border="0" color="37234728" x="18" y="84" height="52" width="192"  name=company_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Phone:"border="0" color="37234728" x="18" y="468" height="52" width="206"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Administrative Password:"border="0" color="37234728" x="18" y="580" height="52" width="754"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Euro Enabled in Currency?"border="0" color="37234728" x="18" y="676" height="52" width="791"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="33554432" x="731" y="676" height="60" width="421" format="[general]"  name=euro_enabled radiobuttons.columns=2 radiobuttons.scale=yes radiobuttons.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Base Currency:"border="0" color="37234728" x="18" y="756" height="52" width="457"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Base Currency Display Unit:"border="0" color="37234728" x="18" y="852" height="52" width="841"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="37234728" x="1243" y="88" height="1136" width="1531" format="[general]"  name=company_logo bitmapname=yes edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Address:"border="0" color="37234728" x="18" y="180" height="52" width="261"  name=address_1_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="37234728" x="293" y="92" height="64" width="841" format="[general]"  name=company_name edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="37234728" x="293" y="188" height="64" width="841" format="[general]"  name=address_1 edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="37234728" x="293" y="284" height="64" width="841" format="[general]"  name=address_2 edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="37234728" x="293" y="380" height="64" width="841" format="[general]"  name=address_3 edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="37234728" x="293" y="476" height="64" width="841" format="[general]"  name=phone_number editmask.mask="(###) ###-####  #####" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="37234728" x="933" y="580" height="64" width="201" format="'*****';'*****'"  name=admin_password edit.limit=5 edit.case=upper edit.focusrectangle=no edit.autoselect=no edit.password=yes edit.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="5" color="37234728" x="768" y="756" height="60" width="379" format="[general]"  name=base_currency dddw.name=d_currency_list dddw.displaycolumn=currency_code dddw.datacolumn=currency_code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=90 border="5" color="37234728" x="933" y="852" height="60" width="215" format="[general]"  name=currency_display_symbol edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=footer alignment="1" text="Program Name:"border="0" color="8388608" x="526" y="4" height="64" width="457"  name=show_program_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,112 @@
+﻿$PBExportHeader$d_receiverlinelist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long updatewhereclause=yes key=yes identity=yes name=receiverlineid dbname="ReceiverLines.ReceiverLineID" )
+ column=(type=long updatewhereclause=yes name=receiverid dbname="ReceiverLines.ReceiverID" )
+ column=(type=number updatewhereclause=yes name=lineno dbname="ReceiverLines.LineNo" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="ReceiverLines.PartCode" )
+ column=(type=long updatewhereclause=yes name=ponumber dbname="ReceiverLines.PONumber" )
+ column=(type=long updatewhereclause=yes name=polineno dbname="ReceiverLines.POLineNo" )
+ column=(type=datetime updatewhereclause=yes name=polineduedate dbname="ReceiverLines.POLineDueDate" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="ReceiverLines.PackageType" )
+ column=(type=long updatewhereclause=yes name=remainingboxes dbname="ReceiverLines.RemainingBoxes" )
+ column=(type=long updatewhereclause=yes name=totalboxes dbname="TotalBoxes" )
+ column=(type=decimal(6) updatewhereclause=yes name=stdpackqty dbname="ReceiverLines.StdPackQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalremainingqty dbname="TotalRemainingQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalreceiveqty dbname="TotalReceiveQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalonorderqty dbname="TotalOnOrderQty" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=supplierlotnumber dbname="ReceiverLines.SupplierLotNumber" )
+ column=(type=datetime update=yes updatewhereclause=yes name=arrivaldt dbname="ReceiverLines.ArrivalDT" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	rl.ReceiverLineID
+,	rl.ReceiverID
+,	rl.[LineNo]
+,	rl.PartCode
+,	rl.PONumber
+,	rl.POLineNo
+,	rl.POLineDueDate 	
+,	rl.PackageType
+,	rl.RemainingBoxes
+,	TotalBoxes = count(1)
+,	rl.StdPackQty
+,	TotalRemainingQty = Coalesce(sum(case when ro.Status = 0 then ro.QtyObject end), 0)
+,	TotalReceiveQty = Coalesce(sum(ro.QtyObject), 0)
+,	TotalOnOrderQty = Coalesce(
+	(	select	balance
+		from	dbo.po_detail po_detail
+		where	po_detail.part_number = rl.PartCode and
+			po_detail.po_number = rl.PONumber and
+			po_detail.row_id = rl.POLineNo and
+			po_detail.date_due = rl.POLineDueDate), 0)
+,	SupplierLotNumber
+,	ArrivalDT
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.ReceiverLines rl
+	join dbo.ReceiverHeaders rh
+		on rh.ReceiverID = rl.ReceiverID
+	join dbo.ReceiverObjects ro on rl.ReceiverLineID = ro.ReceiverLineID
+where
+	rh.ReceiverNumber = :ReceiverNumber
+group by
+	rl.ReceiverLineID
+,	rl.ReceiverID
+,	rl.[LineNo]
+,	rl.PartCode
+,	rl.PONumber
+,	rl.POLineNo
+,	rl.POLineDueDate
+,	rl.PackageType
+,	rl.RemainingBoxes
+,	rl.StdPackQty
+,	SupplierLotNumber
+,	ArrivalDT
+order by
+	rl.[LineNo]" update="ReceiverLines" updatewhere=0 updatekeyinplace=no arguments=(("ReceiverNumber", string)) )
+text(band=header alignment="0" text="Line No" border="6" color="33554432" x="119" y="8" height="80" width="247" html.valueishtml="0"  name=lineno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Part Code" border="6" color="33554432" x="375" y="8" height="80" width="366" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="PO Number" border="6" color="33554432" x="750" y="8" height="80" width="283" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="PO Line No" border="6" color="33554432" x="1042" y="8" height="80" width="311" html.valueishtml="0"  name=polineno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="PO Line Due DT" border="6" color="33554432" x="1362" y="8" height="80" width="471" html.valueishtml="0"  name=polineduedate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Package Type" border="6" color="33554432" x="1842" y="8" height="80" width="361" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Remaining" border="6" color="33554432" x="2213" y="8" height="80" width="251" html.valueishtml="0"  name=remainingboxes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Per Box Qty" border="6" color="33554432" x="2473" y="8" height="80" width="329" html.valueishtml="0"  name=stdpackqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Total Receive Qty" border="6" color="33554432" x="2811" y="8" height="80" width="411" html.valueishtml="0"  name=totalreceiveqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Received Qty" border="6" color="33554432" x="3232" y="8" height="80" width="357" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Remaining Qty" border="6" color="33554432" x="3598" y="8" height="80" width="407" html.valueishtml="0"  name=totalremainingqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Total Remaining On Order" border="6" color="33554432" x="4014" y="8" height="80" width="585" html.valueishtml="0"  name=totalonorderqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Supplier Lot Number" border="6" color="33554432" x="4608" y="8" height="80" width="576" html.valueishtml="0"  name=supplierlotnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Arrival DT" border="6" color="33554432" x="5193" y="8" height="80" width="603" html.valueishtml="0"  name=arrivaldt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="101" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="119" y="8" height="76" width="247" format="[general]  " html.valueishtml="0"  name=lineno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="375" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="750" y="8" height="76" width="283" format="[general]  " html.valueishtml="0"  name=ponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1042" y="8" height="76" width="311" format="[general]  " html.valueishtml="0"  name=polineno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1362" y="8" height="76" width="471" format="[shortdate] [time]" html.valueishtml="0"  name=polineduedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=10 border="0" color="33554432" x="1842" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=packagetype visible="1" dddw.name=d_packaging_for_part_white_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=120 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=20 border="0" color="33554432" x="2213" y="8" height="76" width="251" format="#,##0" html.valueishtml="0"  name=remainingboxes visible="1" edit.limit=0 edit.case=any edit.format="###,##0" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=30 border="0" color="33554432" x="2473" y="8" height="76" width="329" format="#,##0.######" html.valueishtml="0"  name=stdpackqty visible="1" edit.limit=0 edit.case=any edit.format="###,###.######" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="4014" y="8" height="76" width="585" format="#,##0.######" html.valueishtml="0"  name=totalonorderqty visible="1" edit.limit=0 edit.case=any edit.format="###,###.######" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=60 border="0" color="33554432" x="4608" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=supplierlotnumber visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=70 border="0" color="33554432" x="5193" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=arrivaldt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=50 border="0" color="33554432" x="3598" y="8" height="76" width="407" format="#,##0.######" html.valueishtml="0"  name=totalremainingqty visible="1" edit.limit=0 edit.case=any edit.format="###,###.######" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=40 border="0" color="33554432" x="2811" y="8" height="76" width="411" format="#,##0.######" html.valueishtml="0"  name=totalreceiveqty visible="1" edit.limit=0 edit.case=any edit.format="###,###.######" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression=" totalreceiveqty -  totalremainingqty "border="0" color="33554432" x="3232" y="8" height="76" width="357" format="#,##0.######" html.valueishtml="0"  name=receivedqty visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,11 @@
+﻿$PBExportHeader$f_get_mst_build.srf
+global type f_get_mst_build from function_object
+end type
+
+forward prototypes
+global function long f_get_mst_build ()
+end prototypes
+
+global function long f_get_mst_build ();Return 12345
+end function
+

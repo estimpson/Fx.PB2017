@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_drop_part_description.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=76 color="536870912" )
+summary(height=12 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part.part" )
+ retrieve="SELECT part.part FROM part ORDER BY part.part ASC " )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="33554432" x="9" y="8" height="80" width="649" format="[general]"  name=part dddw.name=d_dropdown_part_description dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=200 dddw.lines=0 dddw.limit=25 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part"border="6" color="33554432" x="5" y="4" height="64" width="649"  name=number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

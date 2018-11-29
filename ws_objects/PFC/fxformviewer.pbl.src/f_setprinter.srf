@@ -1,0 +1,62 @@
+﻿$PBExportHeader$f_setprinter.srf
+global type f_setprinter from function_object
+end type
+
+forward prototypes
+global function integer f_setprinter (ref n_cst_printer anv_printer, boolean ab_switch)
+end prototypes
+
+global function integer f_setprinter (ref n_cst_printer anv_printer, boolean ab_switch);
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Function: 		f_SetPrinter
+//
+//	Access: 			public
+//
+//	Arguments:	
+//	anv_Printer	User Object of type n_cst_printer that will be created - passed by reference
+//	ab_Switch	True - start (create) the object
+//			False - stop (destroy) the object
+//	
+//	Returns:  	Integer
+//			 1 - Successful operation.
+//			 0 - No action taken.
+//			-1 - An error was encountered.
+//
+//	Description:  Creates/Destroys the Cross Printer object
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Revision History
+//
+//	Version
+//	1.0
+//////////////////////////////////////////////////////////////////////////////
+
+//	Argument and error checking.
+If IsNull ( ab_Switch ) then return -1
+If IsNull ( gnv_App ) or not  IsValid ( gnv_app ) then return -1
+
+if ab_Switch then
+	if IsNull ( anv_Printer ) or not IsValid ( anv_Printer ) then
+		//	Create Printer object based on environment.
+		choose case gnv_app.ienv_object.ostype
+			case windows!
+				anv_Printer = create n_cst_printer_windows
+			case windowsnt!
+				anv_Printer = create n_cst_printer_winnt
+			case else
+				anv_Printer = create n_cst_Printer
+		end choose
+		return 1
+	end if
+else
+	if IsValid ( anv_Printer ) then
+		destroy anv_Printer
+		return 1
+	end if
+end if
+return 0
+
+end function
+

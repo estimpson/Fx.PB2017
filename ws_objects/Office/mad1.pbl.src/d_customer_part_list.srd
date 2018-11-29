@@ -1,0 +1,72 @@
+﻿$PBExportHeader$d_customer_part_list.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="part_customer.customer" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=customer_part dbname="part_customer.customer_part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=customer_standard_pack dbname="part_customer.customer_standard_pack" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="part_customer.part" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=taxable dbname="part_customer.taxable" values="Yes	Y/Yes	N" )
+ column=(type=char(2) updatewhereclause=yes name=standard_unit dbname="part_inventory.standard_unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=standard_pack dbname="part_inventory.standard_pack" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=customer_unit dbname="part_customer.customer_unit" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="part_customer.type" initial="B" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="part_standard.price" )
+ column=(type=char(3) updatewhereclause=yes name=default_currency_unit dbname="customer.default_currency_unit" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=blanket_price dbname="part_customer.blanket_price" )
+ retrieve="select	part_customer.customer,
+	part_customer.customer_part,
+	part_customer.customer_standard_pack,
+	part_customer.part,
+	part_customer.taxable,
+	part_inventory.standard_unit,
+	part_inventory.standard_pack,
+	part_customer.customer_unit,
+	part_customer.type,
+	part_standard.price,
+	customer.default_currency_unit,
+	part_customer.blanket_price
+from	part_customer
+	left join part_inventory on part_customer.part = part_inventory.part
+	left join part_standard on part_standard.part = part_customer.part
+        join customer on part_customer.customer = customer.customer
+where	part_customer.customer = customer.customer and
+	part_customer.part = :szPart
+order by
+	part_customer.customer,
+	part_customer.customer_part
+" arguments=(("szPart", string)) )
+text(band=header alignment="2" text="Customer" border="0" color="0" x="9" y="8" height="52" width="466" html.valueishtml="0"  name=customer_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Std Unit" border="0" color="0" x="485" y="8" height="52" width="224" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Std Pack" border="0" color="0" x="718" y="8" height="52" width="279" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Cust. Unit" border="0" color="0" x="1006" y="8" height="52" width="229" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Blanket Price" border="0" color="0" x="1243" y="8" height="52" width="293" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Taxable?" border="0" color="0" x="1545" y="8" height="52" width="343" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Price" border="0" color="0" x="1897" y="8" height="52" width="334" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Customer Part" border="0" color="0" x="2240" y="8" height="52" width="613" html.valueishtml="0"  name=customer_part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Standard Pack" border="0" color="0" x="2862" y="8" height="52" width="430" html.valueishtml="0"  name=customer_standard_pack_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Default Currency Unit" border="0" color="0" x="3301" y="8" height="52" width="210" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="466" format="[general]" html.valueishtml="0"  name=customer visible="1" dddw.name=d_part_master_customer_dddw dddw.displaycolumn=customer dddw.datacolumn=customer dddw.percentwidth=100 dddw.lines=0 dddw.limit=10 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="485" y="8" height="64" width="224" format="[general]" html.valueishtml="0"  name=standard_unit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="718" y="8" height="64" width="279" format="[general]" html.valueishtml="0"  name=standard_pack visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="1006" y="8" height="64" width="229" format="[general]" html.valueishtml="0"  name=customer_unit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="0" x="1243" y="8" height="64" width="293" format="0.000000" html.valueishtml="0"  name=blanket_price visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1545" y="8" height="64" width="343" format="[general]" html.valueishtml="0"  name=taxable visible="1" checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="1897" y="8" height="64" width="334" format="[general]" html.valueishtml="0"  name=price visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="2240" y="8" height="64" width="613" format="[general]" html.valueishtml="0"  name=customer_part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2862" y="8" height="64" width="430" format="[general]" html.valueishtml="0"  name=customer_standard_pack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="3301" y="8" height="64" width="210" format="[general]" html.valueishtml="0"  name=default_currency_unit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

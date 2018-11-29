@@ -1,0 +1,31 @@
+﻿$PBExportHeader$dw_ei_defect_part_today.srd
+$PBExportComments$updated on 5/22
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=229 color="536870912" )
+summary(height=291 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="defects.part" )
+ column=(type=char(10) updatewhereclause=yes name=machine dbname="defects.machine" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="defects.quantity" )
+ column=(type=datetime updatewhereclause=yes name=defect_date dbname="defects.defect_date" )
+ retrieve="  SELECT defects.part,   
+         defects.machine,   
+         defects.quantity,   
+         defects.defect_date  
+    FROM defects  
+   WHERE defects.defect_date = :ddate    
+" arguments=(("ddate", date))  sort="part A machine A " )
+group(level=1 header.height=10 trailer.height=197 by=("part" , "machine" ) header.color="536870912" trailer.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1833" y="41" height="166" width="625" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2500" y="41" height="166" width="458" format="[general]"  name=defect_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Total Defects Today"border="0" color="0" x="666" y="73" height="166" width="1645"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=summary x1="177" y1="21" x2="2885" y2="21" pen.style="0" pen.width="10" pen.color="255"  background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part No."border="0" color="0" x="177" y="41" height="156" width="468"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=1 alignment="0" tabsequence=32766 border="0" color="0" x="177" y="21" height="156" width="1343" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Machine"border="0" color="0" x="1604" y="83" height="156" width="500"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1604" y="21" height="156" width="687" format="[general]"  name=machine edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty."border="0" color="0" x="2385" y="62" height="156" width="229"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="0" expression="sum(quantity for group 1)"border="0" color="255" x="2385" y="21" height="156" width="625" format="#,##0"  font.face="Arial" font.height="-8" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="sum(quantity for all)"border="0" color="255" x="2385" y="63" height="197" width="625" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

@@ -1,0 +1,18 @@
+﻿$PBExportHeader$dw_list_of_all_blanket_parts_per_dest.srd
+$PBExportComments$List of all blanket parts per destination in order entry
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=1 color="-1")
+summary(height=1 color="-1")
+footer(height=1 color="-1")
+detail(height=1 color="-1")
+table(column=(type=char(25) name=blanket_part dbname="order_header.blanket_part" )
+ column=(type=decimal(0) name=order_no dbname="order_detail.order_no" )
+ column=(type=char(1) name=order_type dbname="order_header.order_type" )
+ retrieve="SELECT DISTINCT order_header.blanket_part, order_header.order_no, order_header.order_type FROM order_header WHERE ( order_header.destination = :szDestination ) AND ( order_header.order_type = 'B' ) AND ( order_header.ship_type = 'N' ) " arguments=(("szDestination", string))  sort="order_no A " )
+text(band=header color="0" alignment="2" border="0" x="10" y="8" height="61" width="330" text="Order No" name=order_no_t  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="0" border="0" x="348" y="8" height="61" width="563" text="Blanket Part" font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+text(band=header color="0" alignment="0" border="0" x="919" y="8" height="61" width="261" text="Order Type" font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=2 border="0" alignment="1" color="0" height="65" tabsequence=32766 width="330" x="10" y="152"  name=order_no format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=10 width="563" x="348" y="152"  name=blanket_part format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=3 border="0" alignment="0" color="0" height="65" tabsequence=20 width="261" x="919" y="152"  name=order_type format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

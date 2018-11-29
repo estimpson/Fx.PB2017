@@ -1,0 +1,32 @@
+﻿$PBExportHeader$splitstring.srf
+global type splitstring from function_object
+end type
+
+forward prototypes
+global function any splitstring (string target, string splitter)
+end prototypes
+
+global function any splitstring (string target, string splitter);
+string	results[]
+
+int i, stringLen, splitterLen, itemBegin = 1, count = 1
+stringLen = len(target)
+splitterLen = len(splitter)
+
+for	i = 1 to stringLen
+	if	i < itemBegin then continue
+	if	mid(target, i, splitterLen) = splitter then
+		results[count] = mid(target, itemBegin, i - itemBegin)
+		count++
+		itemBegin = i + splitterLen
+	end if
+next
+
+if	itemBegin <= stringLen then
+	results[count] = mid(target, itemBegin, stringLen - itemBegin + 1)
+end if
+
+return results
+
+end function
+

@@ -1,0 +1,19 @@
+﻿$PBExportHeader$d_dddw_product_lines.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127"  height.autosize=yes)
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=id dbname="product_line.id" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="product_line.notes" )
+ retrieve="  SELECT product_line.id,   
+         product_line.notes  
+    FROM product_line  
+ORDER BY product_line.id ASC   
+" update="product_line" updatewhere=1 updatekeyinplace=no  sort="id A " )
+text(band=header alignment="2" text="Product Line"border="6" color="37234728" x="9" y="8" height="52" width="462"  name=id_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Description"border="6" color="37234728" x="480" y="8" height="52" width="937"  name=notes_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="8" height="52" width="462" format="[general]"  name=id height.autosize=yes edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="480" y="8" height="52" width="937" format="[general]"  name=notes height.autosize=yes edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

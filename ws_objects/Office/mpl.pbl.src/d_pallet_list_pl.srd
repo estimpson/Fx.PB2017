@@ -1,0 +1,10 @@
+﻿$PBExportHeader$d_pallet_list_pl.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=89 color="536870912" )
+table(column=(type=number update=yes key=yes name=serial dbname="object.serial" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"object~" ) COLUMN(NAME=~"object.serial~")WHERE( EXP1 =~"( object.shipper~" OP =~"=~" EXP2 =~":a_l_shipper~" LOGIC =~"or~" ) WHERE( EXP1 =~"object.origin~" OP =~"=~" EXP2 =~":a_s_origin )~" LOGIC =~"and~" ) WHERE( EXP1 =~"object.type~" OP =~"=~" EXP2 =~"'S'~" ) ) ORDER(NAME=~"object.serial~" ASC=yes ) ARG(NAME = ~"a_l_shipper~" TYPE = number) ARG(NAME = ~"a_s_origin~" TYPE = string) " update="object" updatewhere=1 updatekeyinplace=no arguments=(("a_l_shipper", number),("a_s_origin", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="81" width="874" format="[general]"  name=serial  tag="Serial number " edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

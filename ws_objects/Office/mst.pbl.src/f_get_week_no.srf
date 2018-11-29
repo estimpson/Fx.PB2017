@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_get_week_no.srf
+$PBExportComments$Calculate the week number according to date
+global type f_get_week_no from function_object
+end type
+
+forward prototypes
+global function integer f_get_week_no (date ddate)
+end prototypes
+
+global function integer f_get_week_no (date ddate);// This function will return the week no according to the date
+
+LONG 	l_i_Week, &
+	 	l_i_Days, &
+		l_i_BeginDateNo
+
+DateTime		dFiscalYearBegin
+
+SELECT parameters.fiscal_year_begin  
+  INTO :dFiscalYearBegin  
+  FROM parameters  ;
+
+if sqlca.sqlcode < 0 then
+	messagebox('Error',sqlca.sqlerrtext)
+end if
+ 
+l_i_Days				= DayNumber(date(dFiscalYearBegin))
+
+l_i_Week				= ( (DaysAfter(date(dFiscalYearBegin), dDate) + l_i_Days) / 7) + 1
+
+Return l_i_Week
+
+end function
+

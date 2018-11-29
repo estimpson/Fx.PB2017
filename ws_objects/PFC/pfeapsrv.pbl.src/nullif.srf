@@ -1,0 +1,19 @@
+﻿$PBExportHeader$nullif.srf
+$PBExportComments$This function is like the sql function with the following syntax:~r~n   value/default_value (any)  isnull ( value(any), default_value(any) )
+global type nullif from function_object
+end type
+
+forward prototypes
+global function any nullif (any value, any nullvalue)
+end prototypes
+
+global function any nullif (any value, any nullvalue);
+if	value = nullValue then
+	SetNull(nullValue)
+	return nullValue
+else
+	return value
+end if
+
+end function
+

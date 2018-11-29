@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_order_header_notes_entry.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=425 color="536870912")
+table(column=(type=char(255) update=yes name=notes dbname="order_header.notes" )
+ column=(type=decimal(0) key=yes name=order_no dbname="order_header.order_no" )
+ retrieve="SELECT order_header.notes, order_header.order_no FROM order_header WHERE order_header.order_no = :lOrderNo " update="order_header" updatewhere=0 updatekeyinplace=yes arguments=(("lOrderNo", number)) )
+column(band=detail id=1 border="5" alignment="0" color="0" height="369" tabsequence=10 width="1134" x="19" y="20"  name=notes format="[general]" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="1093" x="1482" y="36"  name=order_no format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

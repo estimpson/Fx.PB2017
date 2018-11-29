@@ -1,0 +1,383 @@
+﻿$PBExportHeader$m_edi.srm
+forward
+global type m_edi from menu
+end type
+type m_file from menu within m_edi
+end type
+type m_setup from menu within m_file
+end type
+type m_raw from menu within m_file
+end type
+type m_manul from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_stop from menu within m_file
+end type
+type m_uop from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_edi
+m_setup m_setup
+m_raw m_raw
+m_manul m_manul
+m_print m_print
+m_save m_save
+m_stop m_stop
+m_uop m_uop
+m_exit m_exit
+end type
+type m_edit from menu within m_edi
+end type
+type m_edit from menu within m_edi
+end type
+type m_window from menu within m_edi
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_edi
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_edi
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_edi
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_edi from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_edi m_edi
+
+on m_edi.create
+m_edi=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_edi.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_edi
+m_setup m_setup
+m_raw m_raw
+m_manul m_manul
+m_print m_print
+m_save m_save
+m_stop m_stop
+m_uop m_uop
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_setup=create m_setup
+this.m_raw=create m_raw
+this.m_manul=create m_manul
+this.m_print=create m_print
+this.m_save=create m_save
+this.m_stop=create m_stop
+this.m_uop=create m_uop
+this.m_exit=create m_exit
+this.Item[]={this.m_setup, &
+this.m_raw, &
+this.m_manul, &
+this.m_print, &
+this.m_save, &
+this.m_stop, &
+this.m_uop, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_setup)
+destroy(this.m_raw)
+destroy(this.m_manul)
+destroy(this.m_print)
+destroy(this.m_save)
+destroy(this.m_stop)
+destroy(this.m_uop)
+destroy(this.m_exit)
+end on
+
+type m_setup from menu within m_file
+end type
+
+on clicked;//w_edi_text_translator.TriggerEvent("edi_overlay_builder")
+OpenSheet(w_edi_overlay_structure_builder, gnv_App.of_GetFrame(), 3, Original!)
+end on
+
+on m_setup.create
+this.Text="Set&Up~tAlt+U"
+this.Microhelp="Setup EDI overlay structure"
+this.ToolBarItemName="DesignMode!"
+this.ToolBarItemText="Setup"
+this.ToolBarItemOrder=10
+this.Shortcut=597
+end on
+
+type m_raw from menu within m_file
+end type
+
+on clicked;
+OpenSheet(w_edi_raw_data_processor, gnv_App.of_GetFrame(), 3, Original!)
+//w_edi_text_translator.TriggerEvent("edi_raw_data_processor")
+end on
+
+on m_raw.create
+this.Text="Raw EDI~tAlt+R"
+this.Microhelp="Process STX raw data"
+this.ToolBarItemName="CheckOut!"
+this.ToolBarItemText="Raw EDI"
+this.ToolBarItemOrder=20
+this.Shortcut=594
+end on
+
+type m_manul from menu within m_file
+end type
+
+on clicked;w_edi_text_translator.TriggerEvent("manual")
+end on
+
+on m_manul.create
+this.Text="&Manual~tAlt+M"
+this.Microhelp="Manul Operation"
+this.ToolBarItemName="MoveMode!"
+this.ToolBarItemText="Manual"
+this.ToolBarItemOrder=25
+this.Shortcut=589
+end on
+
+type m_print from menu within m_file
+end type
+
+on clicked;w_edi_text_translator.TriggerEvent("print_datawindow")
+end on
+
+on m_print.create
+this.Text="&Print~tAlt+P"
+this.Microhelp="Print Data Window"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=30
+this.Shortcut=592
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;w_edi_text_translator.TriggerEvent("save_exception")
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.Microhelp="Save Exception to File"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=40
+this.Shortcut=595
+end on
+
+type m_stop from menu within m_file
+end type
+
+on clicked;w_edi_text_translator.TriggerEvent("stop_translation")
+end on
+
+on m_stop.create
+this.Text="S&top~tAlt+T"
+this.Microhelp="Stop the translation"
+this.ToolBarItemName="RetrieveCancel!"
+this.ToolBarItemText="Stop"
+this.ToolBarItemOrder=50
+this.Shortcut=596
+end on
+
+type m_uop from menu within m_file
+end type
+
+on clicked;w_edi_text_translator.TriggerEvent("unattend_operation")
+end on
+
+on m_uop.create
+this.Text="&UOP~tAlt+U"
+this.Microhelp="Unattended Operation"
+this.ToolBarItemName="AddWatch!"
+this.ToolBarItemText="UOP"
+this.ToolBarItemOrder=60
+this.Shortcut=597
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Close(w_edi_text_translator)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_edi
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_edi
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m__, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on m_tile.create
+this.Text="&Tile~tAlt+T"
+this.Microhelp="Title windows..."
+this.Shortcut=596
+end on
+
+type m_layer from menu within m_window
+end type
+
+on m_layer.create
+this.Text="&Layer~tAlt+L"
+this.Shortcut=588
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on m_cascade.create
+this.Text="&Cascade~tAlt+C"
+this.Shortcut=579
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets(Icons!)
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons~tAlt+I"
+this.Microhelp="Arrange windows..."
+this.Shortcut=585
+end on
+
+type m_help from menu within m_edi
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4505 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

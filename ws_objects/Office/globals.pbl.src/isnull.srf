@@ -1,0 +1,16 @@
+﻿$PBExportHeader$isnull.srf
+$PBExportComments$This function is like the sql function with the following syntax:~r~n   value/default_value (any)  isnull ( value(any), default_value(any) )
+global type isnull from function_object
+end type
+
+forward prototypes
+global function any isnull (any value, any default_value)
+end prototypes
+
+global function any isnull (any value, any default_value);IF isnull ( value ) THEN
+	Return default_value
+ELSE
+	Return value
+END IF
+end function
+

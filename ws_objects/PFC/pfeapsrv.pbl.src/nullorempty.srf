@@ -1,0 +1,21 @@
+﻿$PBExportHeader$nullorempty.srf
+global type nullorempty from function_object
+end type
+
+forward prototypes
+global function boolean nullorempty (string value, boolean ignorespace)
+global function boolean nullorempty (string value)
+end prototypes
+
+global function boolean nullorempty (string value, boolean ignorespace);
+//	Do not edit in designer.
+return IsNull(value) or (ignorespace and trim(value) = "") or value = ""
+
+end function
+
+global function boolean nullorempty (string value);
+//	Do not edit in designer.
+return NullOrEmpty(value, true)
+
+end function
+

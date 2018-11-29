@@ -1,0 +1,15 @@
+﻿$PBExportHeader$generic_audit_trail_parameters.srs
+global type generic_audit_trail_parameters from structure
+    string Tran_type
+    string Tran_from
+    string Tran_to
+    string Vendor
+    string Customer
+    string PO
+    string Shipper
+    string OnHand
+    string Status
+    decimal {6} Price
+    decimal {6} Cost
+end type
+

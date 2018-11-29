@@ -1,0 +1,748 @@
+﻿$PBExportHeader$m_blanket_order.srm
+forward
+global type m_blanket_order from menu
+end type
+type m_file from menu within m_blanket_order
+end type
+type m_insert from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_update from menu within m_file
+end type
+type m_relhistory from menu within m_file
+end type
+type m_edi from menu within m_file
+end type
+type m_editcum from menu within m_file
+end type
+type m_shiphistory from menu within m_file
+end type
+type m_fastcopy from menu within m_file
+end type
+type m_note from menu within m_file
+end type
+type m_promisedate from menu within m_file
+end type
+type m_editkanban from menu within m_file
+end type
+type m_invkanban from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_0 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_blanket_order
+m_insert m_insert
+m_delete m_delete
+m_update m_update
+m_relhistory m_relhistory
+m_edi m_edi
+m_editcum m_editcum
+m_shiphistory m_shiphistory
+m_fastcopy m_fastcopy
+m_note m_note
+m_promisedate m_promisedate
+m_editkanban m_editkanban
+m_invkanban m_invkanban
+m_print m_print
+m_0 m_0
+m_close m_close
+end type
+type m_edit from menu within m_blanket_order
+end type
+type m_window from menu within m_blanket_order
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_blanket_order
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_blanket_order
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_blanket_order
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_blanket_order from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_blanket_order from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_blanket_order m_blanket_order
+
+forward prototypes
+public subroutine wf_reset_screen ()
+end prototypes
+
+public subroutine wf_reset_screen ();If w_blanket_order.dw_3.Visible = True Then
+   m_blanket_order.m_file.m_shiphistory.ToolbarItemText = "Release"
+	m_blanket_order.m_file.m_insert.Enabled = False
+   m_blanket_order.m_file.m_insert.Microhelp = "You must go back to release screen first"
+   m_blanket_order.m_file.m_delete.Enabled = False
+   m_blanket_order.m_file.m_delete.Microhelp = "You must go back to release screen first"
+	m_blanket_order.m_file.m_update.Enabled = False
+   m_blanket_order.m_file.m_update.Microhelp = "You must go back to release screen first"
+Else
+   m_blanket_order.m_file.m_shiphistory.ToolbarItemText = "Shp Hist"
+	m_blanket_order.m_file.m_insert.Enabled = True
+   m_blanket_order.m_file.m_insert.Microhelp = "Add Release"   
+	m_blanket_order.m_file.m_delete.Enabled = True
+   m_blanket_order.m_file.m_delete.Microhelp = "Delete Release" 
+	m_blanket_order.m_file.m_update.Enabled = True
+   m_blanket_order.m_file.m_update.Microhelp = "Update Release" 
+End If
+
+
+
+
+end subroutine
+
+on m_blanket_order.create
+m_blanket_order=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_blanket_order.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_blanket_order
+m_insert m_insert
+m_delete m_delete
+m_update m_update
+m_relhistory m_relhistory
+m_edi m_edi
+m_editcum m_editcum
+m_shiphistory m_shiphistory
+m_fastcopy m_fastcopy
+m_note m_note
+m_promisedate m_promisedate
+m_editkanban m_editkanban
+m_invkanban m_invkanban
+m_print m_print
+m_0 m_0
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_insert=create m_insert
+this.m_delete=create m_delete
+this.m_update=create m_update
+this.m_relhistory=create m_relhistory
+this.m_edi=create m_edi
+this.m_editcum=create m_editcum
+this.m_shiphistory=create m_shiphistory
+this.m_fastcopy=create m_fastcopy
+this.m_note=create m_note
+this.m_promisedate=create m_promisedate
+this.m_editkanban=create m_editkanban
+this.m_invkanban=create m_invkanban
+this.m_print=create m_print
+this.m_0=create m_0
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_insert
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_update
+this.Item[UpperBound(this.Item)+1]=this.m_relhistory
+this.Item[UpperBound(this.Item)+1]=this.m_edi
+this.Item[UpperBound(this.Item)+1]=this.m_editcum
+this.Item[UpperBound(this.Item)+1]=this.m_shiphistory
+this.Item[UpperBound(this.Item)+1]=this.m_fastcopy
+this.Item[UpperBound(this.Item)+1]=this.m_note
+this.Item[UpperBound(this.Item)+1]=this.m_promisedate
+this.Item[UpperBound(this.Item)+1]=this.m_editkanban
+this.Item[UpperBound(this.Item)+1]=this.m_invkanban
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_0
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_insert)
+destroy(this.m_delete)
+destroy(this.m_update)
+destroy(this.m_relhistory)
+destroy(this.m_edi)
+destroy(this.m_editcum)
+destroy(this.m_shiphistory)
+destroy(this.m_fastcopy)
+destroy(this.m_note)
+destroy(this.m_promisedate)
+destroy(this.m_editkanban)
+destroy(this.m_invkanban)
+destroy(this.m_print)
+destroy(this.m_0)
+destroy(this.m_close)
+end on
+
+type m_insert from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("Insert_Release")
+
+end event
+
+on m_insert.create
+call super::create
+this.text = "&Add~tAlt+A"
+this.shortcut = 577
+this.microhelp = "Add release"
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "Insert"
+this.toolbaritemorder = 2
+end on
+
+on m_insert.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("delete_release")
+end event
+
+on m_delete.create
+call super::create
+this.text = "&Delete~tAlt+D"
+this.shortcut = 580
+this.microhelp = "Delete release"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 3
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_update from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_save" )
+end event
+
+on m_update.create
+call super::create
+this.text = "&Save~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Update Release"
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 4
+end on
+
+on m_update.destroy
+call super::destroy
+end on
+
+type m_relhistory from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	OpenWithParm ( w_oe_release_history, w_blanket_order.iOrder )
+Else
+	MessageBox("Warning", "You must enter and save header information before you view release history!", StopSign!)
+End If
+
+end event
+
+on m_relhistory.create
+call super::create
+this.text = "Rel&Graph~tAlt+G"
+this.shortcut = 583
+this.microhelp = "View Release History"
+this.toolbaritemname = "Graph!"
+this.toolbaritemtext = "Rel Graph"
+this.toolbaritemorder = 5
+end on
+
+on m_relhistory.destroy
+call super::destroy
+end on
+
+type m_edi from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_edi_setup")
+Else
+	MessageBox("Warning", "You must enter and save header information before you setup EDI!", StopSign!)
+End If
+
+//OpenWithParm(w_edi_setup, w_blanket_order.iOrder)
+
+
+end event
+
+on m_edi.create
+call super::create
+this.text = "&EDI ~tAlt+E"
+this.shortcut = 581
+this.microhelp = "EDI Related Information Setup"
+this.toolbaritemname = "Custom079!"
+this.toolbaritemtext = "EDI"
+this.toolbaritemorder = 6
+end on
+
+on m_edi.destroy
+call super::destroy
+end on
+
+type m_editcum from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("edit_cum")
+END IF
+end event
+
+on m_editcum.create
+call super::create
+this.text = "Edit &Cum~tAlt+C"
+this.shortcut = 579
+this.microhelp = "Edit Cum..."
+this.toolbaritemname = "EditStops!"
+this.toolbaritemtext = "Edit Cum"
+this.toolbaritemorder = 7
+end on
+
+on m_editcum.destroy
+call super::destroy
+end on
+
+type m_shiphistory from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	If m_shiphistory.ToolbarItemText <> "Release" then //If showing "SHIPPING HISTORY" now
+		m_shiphistory.ToolbarItemText = "Release"
+	Else
+		m_shiphistory.ToolbarItemText = "Shp Hist"
+	End If
+
+	If m_shiphistory.ToolbarItemText = "Release" Then
+		m_insert.Enabled = False
+	   m_insert.Microhelp = "You must go back to release screen first"
+	   m_delete.Enabled = False
+	   m_delete.Microhelp = "You must go back to release screen first"
+		m_file.m_update.Enabled = False
+	   m_update.Microhelp = "You must go back to release screen first"
+	Else
+		m_insert.Enabled = True
+	   m_insert.Microhelp = "Add Release"   
+		m_delete.Enabled = True
+  		m_delete.Microhelp = "Delete Release" 
+		m_update.Enabled = True
+	   m_update.Microhelp = "Update Release" 
+	End If
+
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("show_history")
+Else
+	MessageBox("Warning", "You must enter and save header information before you viewing ship history!", StopSign!)
+End If
+end event
+
+on m_shiphistory.create
+call super::create
+this.text = "ShipHistory~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Show Shipping History"
+this.toolbaritemname = "Export!"
+this.toolbaritemdownname = "Custom027!"
+this.toolbaritemtext = "Shp Hist"
+this.toolbaritemorder = 8
+end on
+
+on m_shiphistory.destroy
+call super::destroy
+end on
+
+type m_fastcopy from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("fastcopy")
+Else
+	MessageBox("Warning", "You must enter and save header information before you copy to other destination!", StopSign!)
+End If
+
+
+end event
+
+on m_fastcopy.create
+call super::create
+this.visible = false
+this.text = "&FastCopy~tAlt+F"
+this.shortcut = 582
+this.microhelp = "Fast copy blanket order"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Copy!"
+this.toolbaritemtext = "FastCopy"
+this.toolbaritemorder = 9
+end on
+
+on m_fastcopy.destroy
+call super::destroy
+end on
+
+type m_note from menu within m_file
+end type
+
+event clicked;If w_blanket_order.iOrder <> -1 Then 
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("edit_note")
+Else
+	MessageBox("Warning", "You must enter and save header information before you attach notes!", StopSign!)
+End If
+end event
+
+on m_note.create
+call super::create
+this.text = "&Note~tAlt+N"
+this.shortcut = 590
+this.microhelp = "Edit Note"
+this.toolbaritemname = "Noteno.bmp"
+this.toolbaritemtext = "Note"
+this.toolbaritemorder = 10
+end on
+
+on m_note.destroy
+call super::destroy
+end on
+
+type m_promisedate from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_promise_date")
+
+end event
+
+on m_promisedate.create
+call super::create
+this.visible = false
+this.text = "&Promise Date~tAlt+P"
+this.shortcut = 592
+this.microhelp = "Show the order promise date"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom023!"
+this.toolbaritemtext = "Promise"
+this.toolbaritemorder = 11
+end on
+
+on m_promisedate.destroy
+call super::destroy
+end on
+
+type m_editkanban from menu within m_file
+end type
+
+event clicked;OpenSheet ( w_edit_kanban, gnv_App.of_GetFrame(), 0, Original! ) 
+gnv_App.of_GetFrame().SetMicroHelp ( "KANBAN Processing" )
+
+end event
+
+on m_editkanban.create
+call super::create
+this.text = "Edit &KANBAN~tAlt+K"
+this.shortcut = 587
+this.microhelp = "View KANBAN data for this order."
+this.toolbaritemname = "blanket.bmp"
+this.toolbaritemtext = "Edit &Kanban"
+this.toolbaritemorder = 11
+end on
+
+on m_editkanban.destroy
+call super::destroy
+end on
+
+type m_invkanban from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_kanban_inv_detail")
+
+end event
+
+on m_invkanban.create
+call super::create
+this.text = "&Inv Kanban~tAlt+I"
+this.shortcut = 585
+this.microhelp = "Kanban Inventory information for the blanket order"
+this.toolbaritemname = "CreateTable5!"
+this.toolbaritemtext = "Inv Kanban"
+this.toolbaritemorder = 12
+end on
+
+on m_invkanban.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_print")
+
+end event
+
+on m_print.create
+call super::create
+this.text = "P&rint"
+this.microhelp = "Print Blanket Order"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 13
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_0 from menu within m_file
+end type
+
+on m_0.create
+call super::create
+this.text = "-"
+end on
+
+on m_0.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "&Close~tCtrl+W"
+this.shortcut = 343
+this.microhelp = "Finished editing blanket order."
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("pfc_close")
+
+end event
+
+type m_edit from menu within m_blanket_order
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_blanket_order
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Open Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Open Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Open Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Windows In Workspace..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_blanket_order
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4501 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays help contents"
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright"
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

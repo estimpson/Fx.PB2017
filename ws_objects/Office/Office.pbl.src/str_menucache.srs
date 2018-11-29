@@ -1,0 +1,14 @@
+﻿$PBExportHeader$str_menucache.srs
+global type str_menucache from structure
+	string		pmcode
+	string		mcode
+	string		mname
+	string		switch
+	string		display
+	string		menuname
+	string		menuicon
+	string		objectname
+	string		objecttype
+	long		treeviewhandle
+end type
+

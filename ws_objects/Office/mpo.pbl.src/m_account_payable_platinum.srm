@@ -1,0 +1,99 @@
+﻿$PBExportHeader$m_account_payable_platinum.srm
+forward
+global type m_account_payable_platinum from m_account_payable
+end type
+type m_batch from menu within m_file
+end type
+type m_file from m_account_payable`m_file
+m_batch m_batch
+end type
+end forward
+
+global type m_account_payable_platinum from m_account_payable
+end type
+global m_account_payable_platinum m_account_payable_platinum
+
+on m_account_payable_platinum.create
+m_account_payable_platinum=this
+call m_account_payable::create
+end on
+
+on m_account_payable_platinum.destroy
+call m_account_payable::destroy
+end on
+
+type m_file from m_account_payable`m_file within m_account_payable_platinum
+m_batch m_batch
+end type
+
+on m_file.create
+call m_account_payable`m_file::create
+this.m_batch=create m_batch
+this.Item[UpperBound(this.item)+1]=this.m_batch
+end on
+
+on m_file.destroy
+destroy(this.m_batch)
+end on
+
+on m_viewall.create
+call m_account_payable`m_viewall::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_viewunmarked.create
+call m_account_payable`m_viewunmarked::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_viewmarked.create
+call m_account_payable`m_viewmarked::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_query.create
+call m_account_payable`m_query::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_markall.create
+call m_account_payable`m_markall::create
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+on m_post::clicked;w_account_payable_interface.TriggerEvent("invoice")
+end on
+
+on m_post.create
+call m_account_payable`m_post::create
+this.Text="&Invoice~tAlt+I"
+this.Microhelp="Invoice selected rows."
+this.ToolBarItemName="ApplicationIcon!"
+this.ToolBarItemText="&Invoice"
+this.Shortcut=585
+end on
+
+on m_exit.create
+call m_account_payable`m_exit::create
+this.ToolBarItemText="E&xit"
+end on
+
+type m_batch from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent ( 'post' )
+end on
+
+on m_batch.create
+this.Text="&Post~tAlt+P"
+this.Microhelp="Post invoiced receipts."
+this.ToolBarItemName="Cascade!"
+this.ToolBarItemText="&Post"
+this.Shortcut=592
+end on
+

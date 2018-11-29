@@ -1,0 +1,191 @@
+﻿$PBExportHeader$d_shipping_viewlistedshippers.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=shippernumber dbname="Shipping_OpenShipperList.ShipperNumber" )
+ column=(type=long updatewhereclause=yes name=legacyshipperid dbname="Shipping_OpenShipperList.LegacyShipperID" )
+ column=(type=char(1) updatewhereclause=yes name=shippertype dbname="Shipping_OpenShipperList.ShipperType" values="RTV	R/Out Proc.	O/Quick	Q/Manual Inv.	M/Transfer	T/Normal	N/" )
+ column=(type=long updatewhereclause=yes name=isstaged dbname="Shipping_OpenShipperList.IsStaged" values="Staged	1/Not-staged	0/" )
+ column=(type=decimal(6) updatewhereclause=yes name=stagedprogress dbname="Shipping_OpenShipperList.StagedProgress" )
+ column=(type=long updatewhereclause=yes name=hasoverstagedline dbname="Shipping_OpenShipperList.HasOverStagedLine" )
+ column=(type=char(25) updatewhereclause=yes name=customercode dbname="Shipping_OpenShipperList.CustomerCode" )
+ column=(type=char(50) updatewhereclause=yes name=customername dbname="Shipping_OpenShipperList.CustomerName" )
+ column=(type=char(20) updatewhereclause=yes name=shiptocode dbname="Shipping_OpenShipperList.ShipToCode" )
+ column=(type=char(50) updatewhereclause=yes name=shiptoname dbname="Shipping_OpenShipperList.ShipToName" )
+ column=(type=long updatewhereclause=yes name=packlistprinted dbname="Shipping_OpenShipperList.PacklistPrinted" values="Not printed	0/Printed	1/" )
+ column=(type=char(254) updatewhereclause=yes name=notes dbname="Shipping_OpenShipperList.Notes" )
+ column=(type=char(30) updatewhereclause=yes name=freighttype dbname="Shipping_OpenShipperList.FreightType" )
+ column=(type=char(20) updatewhereclause=yes name=carrier dbname="Shipping_OpenShipperList.Carrier" )
+ column=(type=char(35) updatewhereclause=yes name=carriername dbname="Shipping_OpenShipperList.CarrierName" )
+ column=(type=char(10) updatewhereclause=yes name=transmode dbname="Shipping_OpenShipperList.TransMode" )
+ column=(type=char(50) updatewhereclause=yes name=transdescription dbname="Shipping_OpenShipperList.TransDescription" )
+ column=(type=char(20) updatewhereclause=yes name=premiumfreightaetcnumber dbname="Shipping_OpenShipperList.PremiumFreightAETCNumber" )
+ column=(type=char(35) updatewhereclause=yes name=pronumber dbname="Shipping_OpenShipperList.PRONumber" )
+ column=(type=char(30) updatewhereclause=yes name=trucknumber dbname="Shipping_OpenShipperList.TruckNumber" )
+ column=(type=char(25) updatewhereclause=yes name=containersealnumber dbname="Shipping_OpenShipperList.ContainerSealNumber" )
+ column=(type=long updatewhereclause=yes name=billofladingnumber dbname="Shipping_OpenShipperList.BillOfLadingNumber" )
+ column=(type=char(15) updatewhereclause=yes name=dockcode dbname="Shipping_OpenShipperList.DockCode" )
+ column=(type=long updatewhereclause=yes name=boxesstaged dbname="Shipping_OpenShipperList.BoxesStaged" )
+ column=(type=long updatewhereclause=yes name=palletsstaged dbname="Shipping_OpenShipperList.PalletsStaged" )
+ column=(type=char(10) updatewhereclause=yes name=shippingplant dbname="Shipping_OpenShipperList.ShippingPlant" )
+ column=(type=decimal(6) updatewhereclause=yes name=grossweight dbname="Shipping_OpenShipperList.GrossWeight" )
+ column=(type=decimal(6) updatewhereclause=yes name=netweight dbname="Shipping_OpenShipperList.NetWeight" )
+ column=(type=decimal(6) updatewhereclause=yes name=tareweight dbname="Shipping_OpenShipperList.TareWeight" )
+ column=(type=char(100) updatewhereclause=yes name=containermessage dbname="Shipping_OpenShipperList.ContainerMessage" )
+ column=(type=char(1) updatewhereclause=yes name=picklistprinted dbname="Shipping_OpenShipperList.PickListPrinted" values="1	Printed/0	Not pringed/" )
+ column=(type=datetime updatewhereclause=yes name=scheduledshipdt dbname="Shipping_OpenShipperList.ScheduledShipDT" )
+ column=(type=char(20) updatewhereclause=yes name=customerstatus dbname="Shipping_OpenShipperList.CustomerStatus" )
+ column=(type=char(20) updatewhereclause=yes name=poolshipto dbname="Shipping_OpenShipperList.PoolShipTo" )
+ column=(type=char(50) updatewhereclause=yes name=poolshiptoname dbname="Shipping_OpenShipperList.PoolShipToName" )
+ column=(type=char(10) updatewhereclause=yes name=poolcarrier dbname="Shipping_OpenShipperList.PoolCarrier" )
+ column=(type=char(35) updatewhereclause=yes name=poolcarriername dbname="Shipping_OpenShipperList.PoolCarrierName" )
+ column=(type=char(5) updatewhereclause=yes name=shippingoperator dbname="Shipping_OpenShipperList.ShippingOperator" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	sosl.ShipperNumber
+,	sosl.LegacyShipperID
+,	sosl.ShipperType
+,	sosl.IsStaged
+,	sosl.StagedProgress
+,	sosl.HasOverStagedLine
+,	sosl.CustomerCode
+,	sosl.CustomerName
+,	sosl.ShipToCode
+,	sosl.ShipToName
+,	sosl.PacklistPrinted
+,	sosl.Notes
+,	sosl.FreightType
+,	sosl.Carrier
+,	sosl.CarrierName
+,	sosl.TransMode
+,	sosl.TransDescription
+,	sosl.PremiumFreightAETCNumber
+,	sosl.PRONumber
+,	sosl.TruckNumber
+,	sosl.ContainerSealNumber
+,	sosl.BillOfLadingNumber
+,	sosl.DockCode
+,	sosl.BoxesStaged
+,	sosl.PalletsStaged
+,	sosl.ShippingPlant
+,	sosl.GrossWeight
+,	sosl.NetWeight
+,	sosl.TareWeight
+,	sosl.ContainerMessage
+,	sosl.PickListPrinted
+,	sosl.ScheduledShipDT
+,	sosl.CustomerStatus
+,	sosl.PoolShipTo
+,	sosl.PoolShipToName
+,	sosl.PoolCarrier
+,	sosl.PoolCarrierName
+,	sosl.ShippingOperator
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.Shipping_OpenShipperList sosl
+where
+	sosl.ShipperNumber in
+		(	select
+				ltrim(fsstr.Value)
+			from
+				dbo.fn_SplitStringToRows(:ShipperList, ',') fsstr
+		)  
+order by
+	sosl.ScheduledShipDT
+,	sosl.CustomerCode
+,	sosl.ShipperNumber
+" arguments=(("ShipperList", string)) )
+text(band=header alignment="0" text="SID" border="6" color="33554432" x="119" y="8" height="80" width="283" html.valueishtml="0"  name=legacyshipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pack list printed" border="6" color="33554432" x="3945" y="8" height="80" width="443" html.valueishtml="0"  name=packlistprinted_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Notes" border="6" color="33554432" x="4471" y="8" height="80" width="855" html.valueishtml="0"  name=notes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Freight type" border="6" color="33554432" x="5335" y="8" height="80" width="850" html.valueishtml="0"  name=freighttype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Carrier" border="6" color="33554432" x="6194" y="8" height="80" width="576" html.valueishtml="0"  name=carrier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Carrier name" border="6" color="33554432" x="6779" y="8" height="80" width="987" html.valueishtml="0"  name=carriername_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Trans. mode" border="6" color="33554432" x="7776" y="8" height="80" width="347" html.valueishtml="0"  name=transmode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Trans. description" border="6" color="33554432" x="8133" y="8" height="80" width="539" html.valueishtml="0"  name=transdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="AETC #" border="6" color="33554432" x="8681" y="8" height="80" width="713" html.valueishtml="0"  name=premiumfreightaetcnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PRO #" border="6" color="33554432" x="9403" y="8" height="80" width="695" html.valueishtml="0"  name=pronumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Truck #" border="6" color="33554432" x="10107" y="8" height="80" width="539" html.valueishtml="0"  name=trucknumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cont. seal #" border="6" color="33554432" x="10656" y="8" height="80" width="713" html.valueishtml="0"  name=containersealnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="BOL #" border="6" color="33554432" x="11378" y="8" height="80" width="480" html.valueishtml="0"  name=billofladingnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Dock code" border="6" color="33554432" x="11867" y="8" height="80" width="439" html.valueishtml="0"  name=dockcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# boxes" border="6" color="33554432" x="12315" y="8" height="80" width="329" html.valueishtml="0"  name=boxesstaged_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# pallet" border="6" color="33554432" x="12654" y="8" height="80" width="343" html.valueishtml="0"  name=palletsstaged_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="13006" y="8" height="80" width="352" html.valueishtml="0"  name=shippingplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Gross weight" border="6" color="33554432" x="13367" y="8" height="80" width="329" html.valueishtml="0"  name=grossweight_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Net weight" border="6" color="33554432" x="13705" y="8" height="80" width="329" html.valueishtml="0"  name=netweight_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Tare weight" border="6" color="33554432" x="14043" y="8" height="80" width="329" html.valueishtml="0"  name=tareweight_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Container message" border="6" color="33554432" x="14382" y="8" height="80" width="617" html.valueishtml="0"  name=containermessage_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Picklist printed" border="6" color="33554432" x="15008" y="8" height="80" width="357" html.valueishtml="0"  name=picklistprinted_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Scheduled ship DT." border="6" color="33554432" x="15374" y="8" height="80" width="603" html.valueishtml="0"  name=scheduledshipdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer status" border="6" color="33554432" x="15986" y="8" height="80" width="576" html.valueishtml="0"  name=customerstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool ship to" border="6" color="33554432" x="16571" y="8" height="80" width="576" html.valueishtml="0"  name=poolshipto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool ship to name" border="6" color="33554432" x="17157" y="8" height="80" width="1399" html.valueishtml="0"  name=poolshiptoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool carrier scac" border="6" color="33554432" x="18565" y="8" height="80" width="302" html.valueishtml="0"  name=poolcarrier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool carrier name" border="6" color="33554432" x="18875" y="8" height="80" width="987" html.valueishtml="0"  name=poolcarriername_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Operator" border="6" color="33554432" x="19872" y="8" height="80" width="448" html.valueishtml="0"  name=shippingoperator_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="485" y="8" height="80" width="352" html.valueishtml="0"  name=shippertype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Staging progress" border="6" color="33554432" x="919" y="8" height="80" width="462" html.valueishtml="0"  name=stagedprogress_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer code" border="6" color="33554432" x="1463" y="8" height="80" width="421" html.valueishtml="0"  name=customercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer name" border="6" color="33554432" x="1893" y="8" height="80" width="741" html.valueishtml="0"  name=customername_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to code" border="6" color="33554432" x="2642" y="8" height="80" width="375" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to name" border="6" color="33554432" x="3026" y="8" height="80" width="837" html.valueishtml="0"  name=shiptoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="119" y="8" height="76" width="283" format="[general]  " html.valueishtml="0"  name=legacyshipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="942~tLong(Describe(~"stagedprogress.X~"))" y="8" height="32" width="123~t stagedprogress * long(Describe(~"stagedprogress.Width~"))"  name=r_stagingprogress visible="1" brush.hatch="6" brush.color="134217741" pen.style="0" pen.width="5" pen.color="1073741824"  background.mode="2" background.color="33554432" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="8" height="76" width="421" format="[general]" html.valueishtml="0"  name=customercode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1893" y="8" height="76" width="741" format="[general]" html.valueishtml="0"  name=customername visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2642" y="8" height="76" width="375" format="[general]" html.valueishtml="0"  name=shiptocode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3026" y="8" height="76" width="837" format="[general]" html.valueishtml="0"  name=shiptoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="33554432" x="3945" y="8" height="76" width="443" format="[general]  " html.valueishtml="0"  name=packlistprinted visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="4471" y="8" height="76" width="855" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="5335" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=freighttype visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="6194" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=carrier visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="6779" y="8" height="76" width="987" format="[general]" html.valueishtml="0"  name=carriername visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="7776" y="8" height="76" width="347" format="[general]" html.valueishtml="0"  name=transmode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="8133" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=transdescription visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="8681" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=premiumfreightaetcnumber visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="9403" y="8" height="76" width="695" format="[general]" html.valueishtml="0"  name=pronumber visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="10107" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=trucknumber visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="10656" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=containersealnumber visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="0" color="33554432" x="11378" y="8" height="76" width="480" format="[general]" html.valueishtml="0"  name=billofladingnumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="11867" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=dockcode visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="33554432" x="12315" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=boxesstaged visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="33554432" x="12654" y="8" height="76" width="343" format="[general]" html.valueishtml="0"  name=palletsstaged visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="13006" y="8" height="76" width="352" format="[general]" html.valueishtml="0"  name=shippingplant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="33554432" x="13367" y="8" height="76" width="329" format="#,###,##0.0#####" html.valueishtml="0"  name=grossweight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="33554432" x="13705" y="8" height="76" width="329" format="#,###,##0.0#####" html.valueishtml="0"  name=netweight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="0" color="33554432" x="14043" y="8" height="76" width="329" format="#,###,##0.0#####" html.valueishtml="0"  name=tareweight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="33554432" x="14382" y="8" height="76" width="617" format="[general]" html.valueishtml="0"  name=containermessage visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="2" tabsequence=32766 border="0" color="33554432" x="15008" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=picklistprinted visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="0" color="33554432" x="15374" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=scheduledshipdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="0" color="33554432" x="15986" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=customerstatus visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="0" tabsequence=32766 border="0" color="33554432" x="16571" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=poolshipto visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="0" color="33554432" x="17157" y="8" height="76" width="1399" format="[general]" html.valueishtml="0"  name=poolshiptoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="0" tabsequence=32766 border="0" color="33554432" x="18565" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=poolcarrier visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="0" color="33554432" x="18875" y="8" height="76" width="987" format="[general]" html.valueishtml="0"  name=poolcarriername visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="33554432" x="19872" y="8" height="76" width="448" format="[general]" html.valueishtml="0"  name=shippingoperator visible="1" edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(~"~")"border="0" color="33554432" x="411" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(if(IsStaged=1, ~"ok-16.bmp~", ~"~"))"border="0" color="33554432" x="846" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(if (hasoverstagedline = 1, ~"RedFlag-16.bmp~", ~"~"))"border="0" color="33554432" x="1390" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(if(packlistprinted=1, ~"ok-16.bmp~", ~"~"))"border="0" color="33554432" x="3872" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(if(notes > ~"~", ~"Document-16.bmp~", ~"~"))"border="0" color="33554432" x="4398" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="485" y="8" height="64" width="352" format="[general]" html.valueishtml="0"  name=shippertype visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="C:\Data\GIT2\PB10\SourceCode\Office\printer-16.bmp" x="3959~tlong(Describe(~"PackListPrinted.X~"))" y="8" height="64" width="73~t64" border="0"  name=p_1 visible="1" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="101" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="919" y="8" height="76" width="462" format="0.00%     " html.valueishtml="0"  name=stagedprogress visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

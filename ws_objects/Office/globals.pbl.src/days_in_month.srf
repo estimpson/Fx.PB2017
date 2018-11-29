@@ -1,0 +1,55 @@
+﻿$PBExportHeader$days_in_month.srf
+$PBExportComments$calculate total days in a specified month
+global type days_in_month from function_object
+end type
+
+forward prototypes
+global function integer days_in_month (integer month, integer year)
+end prototypes
+
+global function integer days_in_month (integer month, integer year);//Most cases are straight forward in that there are a fixed number of 
+//days in 11 of the 12 months.  February is, of course, the problem.
+//In a leap year February has 29 days, otherwise 28.
+
+Int nDaysInMonth
+Boolean bLeapYear
+
+CHOOSE CASE month
+	CASE 1, 3, 5, 7, 8, 10, 12
+		nDaysInMonth = 31
+	CASE 4, 6, 9, 11
+		nDaysInMonth = 30
+	CASE 2
+	//If a year is divisible by 100 without a remainder, then it is
+	//NOT a leap year
+
+//		If Mod(year,100) = 0 then
+//			bLeapYear = False
+
+	//If the year is not divisible by 100, but is by 4 then it is a
+	//leap year
+
+//		ElseIf Mod(year,4) = 0 then 
+		If Mod(year,4) = 0 then 
+			bLeapYear = True
+
+	//If neither case is true then it is not a leap year
+
+		Else 
+			bLeapYear = False
+		End If
+
+	//If it is a leap year, February has 29 days, otherwise 28
+
+		If bLeapYear then
+			nDaysInMonth = 29
+		Else
+			nDaysInMonth = 28
+		End If
+
+END CHOOSE
+
+//Return the number of days in the relevant month
+return nDaysInMonth
+end function
+

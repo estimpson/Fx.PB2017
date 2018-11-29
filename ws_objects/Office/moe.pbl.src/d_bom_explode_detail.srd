@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_bom_explode_detail.srd
+$PBExportComments$for watcom minicop
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=137 color="-1" )
+summary(height=1 color="-1" )
+footer(height=1 color="-1" )
+detail(height=121 color="-1" )
+table(column=(type=char(25) name=part dbname="bill_of_material.part" )
+ column=(type=decimal(6) name=quantity dbname="bill_of_material.quantity" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dba.bill_of_material~" ) COLUMN(NAME=~"dba.bill_of_material.part~") COLUMN(NAME=~"dba.bill_of_material.quantity~")WHERE( EXP1 =~"~~~"dba~~~".~~~"bill_of_material~~~".~~~"parent_part~~~"~" OP =~"=~" EXP2 =~":a_part_number~" ) ) ORDER(NAME=~"dba.bill_of_material.part~" ASC=yes ) ARG(NAME = ~"a_part_number~" TYPE = string) " arguments=(("a_part_number", string)) )
+text(band=header alignment="2" text="Part"border="0" color="0" x="10" y="8" height="69" width="613"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="0" x="631" y="8" height="69" width="421"  name=quantity_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="10" y="24" height="69" width="613" format="[general]"  name=part  tag="the child Part number" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="631" y="24" height="69" width="421" format="[general]"  name=quantity  tag="quantity " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

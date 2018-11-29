@@ -1,0 +1,73 @@
+﻿$PBExportHeader$d_packaging_per_part.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=package_materials_code dbname="package_materials.code" )
+ column=(type=char(25) updatewhereclause=yes name=package_materials_name dbname="package_materials.name" )
+ column=(type=char(1) updatewhereclause=yes name=package_materials_type dbname="package_materials.type" values="Box	B/Pallet	P/" )
+ column=(type=char(1) updatewhereclause=yes name=package_materials_returnable dbname="package_materials.returnable" values="Yes	Y/No	N/" )
+ column=(type=decimal(6) updatewhereclause=yes name=package_materials_weight dbname="package_materials.weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_packaging_quantity dbname="part_packaging.quantity" )
+ column=(type=char(1) updatewhereclause=yes name=part_packaging_manual_tare dbname="part_packaging.manual_tare" values="Yes	Y/Yes	N" )
+ column=(type=char(25) updatewhereclause=yes name=part_packaging_label_format dbname="part_packaging.label_format" )
+ column=(type=char(1) updatewhereclause=yes name=part_packaging_round_to_whole_number dbname="part_packaging.round_to_whole_number" values="Yes	Y/Yes	N" )
+ column=(type=long updatewhereclause=yes name=part_packaging_inactivity_time dbname="part_packaging.inactivity_time" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_packaging_inactivity_amount dbname="part_packaging.inactivity_amount" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_packaging_threshold_lower dbname="part_packaging.threshold_lower" )
+ column=(type=char(1) updatewhereclause=yes name=part_packaging_threshold_lower_type dbname="part_packaging.threshold_lower_type" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_packaging_threshold_upper dbname="part_packaging.threshold_upper" )
+ column=(type=char(1) updatewhereclause=yes name=part_packaging_threshold_upper_type dbname="part_packaging.threshold_upper_type" )
+ column=(type=char(25) updatewhereclause=yes name=part_packaging_serial_type dbname="part_packaging.serial_type" )
+ retrieve="  SELECT  package_materials.code ,
+           package_materials.name ,
+           package_materials.type ,
+           package_materials.returnable ,
+           package_materials.weight ,
+           part_packaging.quantity ,
+           part_packaging.manual_tare ,
+           part_packaging.label_format ,
+           part_packaging.round_to_whole_number ,
+           part_packaging.inactivity_time ,
+           part_packaging.inactivity_amount ,
+           part_packaging.threshold_lower ,    
+           part_packaging.threshold_lower_type ,       
+           part_packaging.threshold_upper ,
+           part_packaging.threshold_upper_type ,
+			  part_packaging.serial_type
+        FROM package_materials ,           part_packaging     
+        WHERE ( package_materials.code = part_packaging.code ) and          ( ( part_packaging.part = :szPart ) ) 
+        ORDER BY package_materials.code          ASC  " arguments=(("szPart", string)) )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="9" y="8" height="52" width="361"  name=part_packaging_quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Code"border="6" color="0" x="379" y="8" height="52" width="320"  name=package_materials_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="709" y="8" height="52" width="320"  name=package_materials_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Return?"border="6" color="0" x="1038" y="8" height="52" width="251"  name=package_materials_returnable_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Weight"border="6" color="0" x="1298" y="8" height="52" width="315"  name=package_materials_weight_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Manual Tare?"border="6" color="0" x="1623" y="8" height="52" width="407"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Label Format"border="6" color="0" x="2039" y="8" height="52" width="498"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Round"border="6" color="0" x="2546" y="8" height="52" width="261"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Inactivity Time"border="6" color="0" x="2816" y="8" height="52" width="462"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Threshold Upper"border="6" color="0" x="3287" y="8" height="52" width="535"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Threshold Lower"border="6" color="0" x="3831" y="8" height="52" width="558"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Inactivity Amount"border="6" color="0" x="4398" y="8" height="52" width="553"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Threshold Lower Type"border="6" color="0" x="4960" y="8" height="52" width="699"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Threshold Upper Type"border="6" color="0" x="5669" y="8" height="52" width="681"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Serial Type"border="6" color="0" x="6359" y="8" height="52" width="535"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="9" y="8" height="64" width="361" format="[general]"  name=part_packaging_quantity editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="379" y="8" height="64" width="320" format="[general]"  name=package_materials_code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="709" y="8" height="64" width="320" format="[general]"  name=package_materials_type ddlb.limit=1 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="1038" y="8" height="64" width="251" format="[general]"  name=package_materials_returnable ddlb.limit=1 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="1298" y="8" height="64" width="315" format="[general]"  name=package_materials_weight editmask.mask="#,###.000000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="5" color="0" x="1623" y="8" height="64" width="407" format="[general]"  name=part_packaging_manual_tare checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="2039" y="8" height="64" width="498" format="[general]"  name=part_packaging_label_format edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="2546" y="8" height="64" width="261" format="[general]"  name=part_packaging_round_to_whole_number checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="2816" y="8" height="64" width="462" format="[general]"  name=part_packaging_inactivity_time edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="5" color="0" x="3287" y="8" height="64" width="535" format="[general]"  name=part_packaging_threshold_upper edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="0" x="3831" y="8" height="64" width="558" format="[general]"  name=part_packaging_threshold_lower edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="0" x="4398" y="8" height="64" width="553" format="[general]"  name=part_packaging_inactivity_amount edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="0" x="4960" y="8" height="64" width="699" format="[general]"  name=part_packaging_threshold_lower_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="5" color="0" x="5669" y="8" height="64" width="681" format="[general]"  name=part_packaging_threshold_upper_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="5" color="0" x="6359" y="8" height="64" width="535" format="[general]"  name=part_packaging_serial_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

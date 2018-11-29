@@ -1,0 +1,46 @@
+﻿$PBExportHeader$f_dw_get_attributes.srf
+$PBExportComments$Return the values of a series of datawindow attributes
+global type f_dw_get_attributes from function_object
+end type
+
+forward prototypes
+global function string f_dw_get_attributes (datawindow dw_arg, string object, string attributes)
+end prototypes
+
+global function string f_dw_get_attributes (datawindow dw_arg, string object, string attributes);////////////////////////////////////////////////////////////////////////
+//
+//		Function:  F_Dw_Get_Attributes
+//		 Purpose:  The following function will return the values of datawindow attributes 
+//					  by passing a comma separated list of attribute names. 
+//					  Returned attributes are separated by "~n' characters
+//					   
+//
+//	     ARGUMENTS:
+//						dw_arg	 datawindow control passed by value
+//						object  string passed by value
+//						attributes a string passed by value
+//
+//      Log:
+//
+//			Who				When				What
+//-----------------------------------------------------------------------
+//			Powersoft 							initial version
+//
+//////////////////////////////////////////////////////////////////////////
+
+string command
+// make up the command string template
+// first remove any extraneous spaces
+attributes = f_global_replace(attributes,' ','')
+// add a comma to the front of the list as we will do our 
+//replacement process using comma's as a guide
+attributes = ',' + attributes
+// now replace all of the commas with the name of the objects we 
+// are getting info for
+command = f_global_replace(attributes,","," "+object+".")
+// Now ask for the value and return them
+return dw_arg.describe(command)		
+
+
+end function
+

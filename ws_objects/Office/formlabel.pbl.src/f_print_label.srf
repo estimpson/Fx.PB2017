@@ -1,0 +1,88 @@
+﻿$PBExportHeader$f_print_label.srf
+global type f_print_label from function_object
+end type
+
+forward prototypes
+global function integer f_print_label (st_generic_structure a_st_parm)
+end prototypes
+
+global function integer f_print_label (st_generic_structure a_st_parm);/* 03-28-2000 KAZ Modified to close window 'l_w_instance' if preview is off and window
+						is still open, preventing multiple open occurrences.  Issue # 13196 */
+
+STRING	l_s_part, &
+			l_s_label, &
+			l_s_type, &
+			l_s_preview, &
+		 	l_s_print_setup
+string	ls_type
+			
+LONG	l_l_serial
+
+w_report_view   l_w_instance
+
+l_l_serial = Long ( a_st_parm.value1 )
+
+SELECT	object.type
+INTO		:ls_type
+FROM		object
+WHERE		object.serial = :l_l_serial ;
+
+IF IsNull ( ls_type, '' ) <> 'S' THEN
+  SELECT	object.part,
+			part_inventory.label_format
+	 INTO	:l_s_part,
+	 		:l_s_label
+    FROM	object, part_inventory
+   WHERE	object.serial = :l_l_serial AND
+			object.part = part_inventory.part  ;
+
+	If SQLCA.SQLCode <> 0 Then
+		MessageBox ( monsys.msg_title, "Invalid label format specified!", StopSign! )
+		Return -1
+	End if
+
+	IF NOT ( a_st_parm.value2 > "" ) THEN
+		a_st_parm.value2	= l_s_part
+	END IF
+
+	IF NOT ( a_st_parm.value12 > "" ) THEN
+		a_st_parm.value12 = l_s_label
+	END IF
+END IF
+
+a_st_parm.value11 = "Label"
+
+/* included this select statement to make sure 
+that the window doesn't open the label as a sheet if preview is off*/
+
+SELECT type,
+		 preview,
+		 print_setup
+INTO	 :l_s_type,
+		 :l_s_preview,
+		 :l_s_print_setup
+FROM	 report_library
+WHERE	 name = :a_st_parm.value12 and
+		 report = :a_st_parm.value11 ;
+
+IF ( (l_s_type = 'W' or l_s_type = 'B') AND l_s_preview <> 'Y' AND l_s_print_setup <> 'Y' ) THEN
+
+	OpenWithParm ( l_w_instance, a_st_parm )	
+	If IsValid ( l_w_instance ) Then Close ( l_w_instance )		// ADD 03-28-2000 KAZ
+	
+ELSE
+	
+	IF IsValid ( gnv_App.of_GetFrame() ) THEN
+		OpenSheetWithParm ( l_w_instance, a_st_parm, gnv_App.of_GetFrame(), 0, Original! )
+	ELSEIF IsValid ( gnv_App.of_GetFrame() ) THEN
+		OpenSheetWithParm ( l_w_instance, a_st_parm, gnv_App.of_GetFrame(), 0, Original! )
+	ELSE
+		OpenWithParm ( l_w_instance, a_st_parm )
+	END IF
+
+END IF
+
+RETURN 0
+
+end function
+

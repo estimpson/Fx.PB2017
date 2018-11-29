@@ -1,0 +1,38 @@
+﻿$PBExportHeader$d_overstage.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=88 color="536870912" )
+summary(height=8 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(15) updatewhereclause=no name=alternative_unit dbname="alternative_unit" )
+ column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=no name=total_qty dbname="total_qty" )
+ column=(type=decimal(6) updatewhereclause=no name=qty_required dbname="qty_required" )
+ column=(type=decimal(6) updatewhereclause=no name=qty_packed dbname="qty_packed" )
+ column=(type=decimal(6) updatewhereclause=no name=alternative_qty dbname="alternative_qty" )
+ procedure="1 SELECT		sd.alternative_unit as alternative_unit,   
+				sd.part_original as part,   
+				(	select	Sum ( o.std_quantity )
+					from		object o
+					where		( o.serial = :al_serial or 
+								o.parent_serial = :al_serial ) and
+								sd.part_original = o.part ) as total_qty,   
+				sd.qty_required as qty_required,   
+				isnull(sd.qty_packed,0) as qty_packed,   
+				isnull(sd.alternative_qty,0) as alternative_qty  
+FROM			shipper_detail sd
+WHERE			sd.shipper = :al_shipper" arguments=(("al_serial", number),("al_shipper", number)) )
+text(band=header alignment="2" text="Qty Required"border="0" color="0" x="9" y="8" height="64" width="347"  name=shipper_detail_qty_required_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Packed"border="0" color="0" x="366" y="8" height="64" width="311"  name=shipper_detail_qty_packed_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Alternative Qty"border="0" color="0" x="686" y="8" height="64" width="384"  name=shipper_detail_alternative_qty_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Alternative Unit"border="0" color="0" x="1079" y="8" height="64" width="393"  name=shipper_detail_alternative_unit_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Object Part"border="0" color="0" x="1481" y="4" height="76" width="663"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Total Qty"border="0" color="0" x="2153" y="4" height="76" width="1152"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="347" format="[general]"  name=qty_required  tag="quantity required " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="366" y="4" height="64" width="311" format="[General]"  name=qty_packed  tag="quantity packed " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="686" y="8" height="64" width="384" format="[general]"  name=alternative_qty  tag="Alternative qty" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="1079" y="8" height="64" width="393" format="[general]"  name=alternative_unit  tag="Alternative unit of measurement for shipping~~r~~ndock" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1481" y="0" height="64" width="663" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2153" y="0" height="64" width="1152" format="[general]"  name=total_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

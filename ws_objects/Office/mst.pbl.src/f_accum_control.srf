@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_accum_control.srf
+$PBExportComments$To check whether the order is controlled by CUM
+global type f_accum_control from function_object
+end type
+
+forward prototypes
+global function boolean f_accum_control (long isalesorder)
+end prototypes
+
+global function boolean f_accum_control (long isalesorder);String szType
+
+  SELECT order_header.artificial_cum  
+    INTO :szType  
+    FROM order_header  
+   WHERE order_header.order_no = :iSalesOrder   ;
+
+szType	= f_get_string_value(szType)
+
+Return (szType = "A")
+
+end function
+

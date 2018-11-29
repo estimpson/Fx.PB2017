@@ -1,0 +1,53 @@
+﻿$PBExportHeader$f_get_staging_info.srf
+global type f_get_staging_info from function_object
+end type
+
+forward prototypes
+global function string f_get_staging_info (long al_Order, string as_Part)
+end prototypes
+
+global function string f_get_staging_info (long al_Order, string as_Part);String   s_Unit, &
+		 	s_UM, &
+		 	s_StageFlag, &
+		 	s_Part, &
+		 	s_PartOriginal, &
+			s_PackageType, &
+			s_OrderType, &
+			s_Customer, &
+		   s_StageMeasure
+
+s_OrderType		= f_get_order_info ( al_Order, "ORDER TYPE" )
+
+IF s_OrderType = "B" THEN
+	s_PackageType = f_get_order_info ( al_Order, "PACKAGE TYPE" )
+	s_UM          = f_get_order_info ( al_Order, "SHIPPING UNIT" )
+ELSEIF s_OrderType = "N" THEN
+
+	SELECT packaging_type,
+			 unit
+	  INTO :s_PackageType,
+			 :s_UM
+	  FROM order_detail
+	 WHERE part_number = :as_Part AND
+			 order_no    = :al_Order	;
+ELSE
+	MessageBox ( "System Error", "Unable to retrieve packaging information!", StopSign!, OK! )
+END IF
+
+SELECT unit,
+		 stage_using_weight
+  INTO :s_Unit,
+		 :s_StageFlag
+  FROM part_packaging
+ WHERE part = :as_Part AND 
+	    code = :s_PackageType	;
+
+IF s_UM = s_Unit AND s_StageFlag = "Y" THEN
+	s_StageMeasure = "Y"
+ELSE
+	s_StageMeasure = "N"
+END IF
+
+Return s_StageMeasure
+end function
+

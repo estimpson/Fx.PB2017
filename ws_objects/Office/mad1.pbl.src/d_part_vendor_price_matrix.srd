@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_part_vendor_price_matrix.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=part_standard_cost_cum dbname="part_standard.cost_cum" validation="number(gettext()) > 0" validationmsg="~"Cost cannot be negetive!~"" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=part_vendor_price_matrix_price dbname="part_vendor_price_matrix.price" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes key=yes name=break_qty dbname="part_vendor_price_matrix.break_qty" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_vendor_price_matrix.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=vendor dbname="part_vendor_price_matrix.vendor" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=alternate_price dbname="part_vendor_price_matrix.alternate_price" validation="Number(gettext()) > 0" validationmsg="~"Cost cannot be negetive!~"" )
+ retrieve="  SELECT part_standard.cost_cum,   
+         part_vendor_price_matrix.price,   
+         part_vendor_price_matrix.break_qty,   
+         part_vendor_price_matrix.part,   
+         part_vendor_price_matrix.vendor,   
+         part_vendor_price_matrix.alternate_price  
+    FROM part_vendor_price_matrix,   
+         part_standard  
+   WHERE ( part_vendor_price_matrix.part = part_standard.part ) and  
+         ( ( part_vendor_price_matrix.part = :szPart ) AND  
+         ( part_vendor_price_matrix.vendor = :szVendor ) )   
+ORDER BY part_vendor_price_matrix.break_qty ASC   
+" update="part_vendor_price_matrix" updatewhere=0 updatekeyinplace=yes arguments=(("szpart", string),("szvendor", string)) )
+text(band=header alignment="2" text="Break Qty"border="6" color="0" x="9" y="8" height="52" width="329"  name=part_vendor_price_matrix_break_qty_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Price"border="6" color="0" x="347" y="8" height="52" width="315"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Std Cost"border="6" color="0" x="672" y="8" height="52" width="288"  name=part_standard_cost_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="GP"border="6" color="0" x="969" y="8" height="52" width="274"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="GP %"border="6" color="0" x="1253" y="8" height="52" width="261"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="1" tabsequence=10 border="0" color="0" x="9" y="4" height="64" width="329" format="[general]"  name=break_qty  tag="Break quantity (?) " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="0" color="0" x="347" y="4" height="64" width="315" format="$#,##0;[RED]($#,##0)"  name=alternate_price editmask.mask="######.000000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="672" y="4" height="64" width="288" format="#,##0.000000"  name=part_standard_cost_cum  tag="Price of the part " editmask.mask="######.000000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" alternate_price  -  part_standard_cost_cum"border="0" color="0" x="969" y="4" height="64" width="274" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="( alternate_price -  part_standard_cost_cum )/  alternate_price "border="0" color="0" x="1253" y="4" height="64" width="261" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1522" y="4" height="64" width="5" format="[general]"  name=vendor  tag="Vendor code " visible="1~t0" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1536" y="4" height="64" width="5" format="[general]"  name=part  tag="Part code " visible="1~t0" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

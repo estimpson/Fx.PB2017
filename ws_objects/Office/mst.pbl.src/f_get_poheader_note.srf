@@ -1,0 +1,18 @@
+﻿$PBExportHeader$f_get_poheader_note.srf
+global type f_get_poheader_note from function_object
+end type
+
+forward prototypes
+global function string f_get_poheader_note (long al_po)
+end prototypes
+
+global function string f_get_poheader_note (long al_po);string ls_notes
+
+select notes
+into   :ls_notes 
+from 	 po_header
+where  po_number = :al_po ;
+
+return ls_notes ;
+end function
+

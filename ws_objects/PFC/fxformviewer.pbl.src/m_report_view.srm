@@ -1,0 +1,920 @@
+﻿$PBExportHeader$m_report_view.srm
+forward
+global type m_report_view from m_ancestor
+end type
+type m_close0 from menu within m_file
+end type
+type m_file from m_ancestor`m_file within m_report_view
+m_close0 m_close0
+end type
+end forward
+
+global type m_report_view from m_ancestor
+end type
+global m_report_view m_report_view
+
+on m_report_view.create
+m_report_view=this
+call super::create
+end on
+
+on m_report_view.destroy
+call super::destroy
+end on
+
+type m_file from m_ancestor`m_file within m_report_view
+m_close0 m_close0
+end type
+
+on m_file.create
+call super::create
+this.m_close0=create m_close0
+this.Item[UpperBound(this.Item)+1]=this.m_close0
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_close0)
+end on
+
+type m_new from m_ancestor`m_new within m_file
+end type
+
+on m_new.create
+call super::create
+this.visible = false
+end on
+
+on m_new.destroy
+call super::destroy
+end on
+
+type m_filedummy1 from m_ancestor`m_filedummy1 within m_file
+end type
+
+on m_filedummy1.create
+call super::create
+end on
+
+on m_filedummy1.destroy
+call super::destroy
+end on
+
+type m_filedummy2 from m_ancestor`m_filedummy2 within m_file
+end type
+
+on m_filedummy2.create
+call super::create
+end on
+
+on m_filedummy2.destroy
+call super::destroy
+end on
+
+type m_open from m_ancestor`m_open within m_file
+end type
+
+on m_open.create
+call super::create
+this.visible = false
+end on
+
+on m_open.destroy
+call super::destroy
+end on
+
+type m_filedummy3 from m_ancestor`m_filedummy3 within m_file
+end type
+
+on m_filedummy3.create
+call super::create
+end on
+
+on m_filedummy3.destroy
+call super::destroy
+end on
+
+type m_filedummy4 from m_ancestor`m_filedummy4 within m_file
+end type
+
+on m_filedummy4.create
+call super::create
+end on
+
+on m_filedummy4.destroy
+call super::destroy
+end on
+
+type m_close from m_ancestor`m_close within m_file
+end type
+
+on m_close.create
+call super::create
+this.visible = false
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m__1 from m_ancestor`m__1 within m_file
+end type
+
+on m__1.create
+call super::create
+end on
+
+on m__1.destroy
+call super::destroy
+end on
+
+type m_save from m_ancestor`m_save within m_file
+end type
+
+on m_save.create
+call super::create
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_filedummy5 from m_ancestor`m_filedummy5 within m_file
+end type
+
+on m_filedummy5.create
+call super::create
+end on
+
+on m_filedummy5.destroy
+call super::destroy
+end on
+
+type m_saveas from m_ancestor`m_saveas within m_file
+end type
+
+on m_saveas.create
+call super::create
+end on
+
+on m_saveas.destroy
+call super::destroy
+end on
+
+type m_saverowsas from m_ancestor`m_saverowsas within m_file
+end type
+
+on m_saverowsas.create
+call super::create
+end on
+
+on m_saverowsas.destroy
+call super::destroy
+end on
+
+type m__2 from m_ancestor`m__2 within m_file
+end type
+
+on m__2.create
+call super::create
+end on
+
+on m__2.destroy
+call super::destroy
+end on
+
+type m_print from m_ancestor`m_print within m_file
+end type
+
+on m_print.create
+call super::create
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_printpreview from m_ancestor`m_printpreview within m_file
+end type
+
+on m_printpreview.create
+call super::create
+end on
+
+on m_printpreview.destroy
+call super::destroy
+end on
+
+type m_previewzoom from m_ancestor`m_previewzoom within m_file
+end type
+
+on m_previewzoom.create
+call super::create
+end on
+
+on m_previewzoom.destroy
+call super::destroy
+end on
+
+type m_printsetup from m_ancestor`m_printsetup within m_file
+end type
+
+on m_printsetup.create
+call super::create
+end on
+
+on m_printsetup.destroy
+call super::destroy
+end on
+
+type m__3 from m_ancestor`m__3 within m_file
+end type
+
+on m__3.create
+call super::create
+end on
+
+on m__3.destroy
+call super::destroy
+end on
+
+type m_filedummy9 from m_ancestor`m_filedummy9 within m_file
+end type
+
+on m_filedummy9.create
+call super::create
+end on
+
+on m_filedummy9.destroy
+call super::destroy
+end on
+
+type m_filedummy10 from m_ancestor`m_filedummy10 within m_file
+end type
+
+on m_filedummy10.create
+call super::create
+end on
+
+on m_filedummy10.destroy
+call super::destroy
+end on
+
+type m__4 from m_ancestor`m__4 within m_file
+end type
+
+on m__4.create
+call super::create
+end on
+
+on m__4.destroy
+call super::destroy
+end on
+
+type m_exit from m_ancestor`m_exit within m_file
+end type
+
+on m_exit.create
+call super::create
+this.visible = false
+this.text = "Exit~tAlt+X"
+this.enabled = false
+this.microhelp = "Finished viewing report..."
+this.toolbaritemvisible = false
+end on
+
+event m_exit::clicked;call super::clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("pfc_close")
+
+end event
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m__5 from m_ancestor`m__5 within m_file
+end type
+
+on m__5.create
+call super::create
+end on
+
+on m__5.destroy
+call super::destroy
+end on
+
+type m_filedummy11 from m_ancestor`m_filedummy11 within m_file
+end type
+
+on m_filedummy11.create
+call super::create
+end on
+
+on m_filedummy11.destroy
+call super::destroy
+end on
+
+type m_filedummy12 from m_ancestor`m_filedummy12 within m_file
+end type
+
+on m_filedummy12.create
+call super::create
+end on
+
+on m_filedummy12.destroy
+call super::destroy
+end on
+
+type m_filedummy13 from m_ancestor`m_filedummy13 within m_file
+end type
+
+on m_filedummy13.create
+call super::create
+end on
+
+on m_filedummy13.destroy
+call super::destroy
+end on
+
+type m_filedummy14 from m_ancestor`m_filedummy14 within m_file
+end type
+
+on m_filedummy14.create
+call super::create
+end on
+
+on m_filedummy14.destroy
+call super::destroy
+end on
+
+type m_filedummy15 from m_ancestor`m_filedummy15 within m_file
+end type
+
+on m_filedummy15.create
+call super::create
+end on
+
+on m_filedummy15.destroy
+call super::destroy
+end on
+
+type m_design from m_ancestor`m_design within m_report_view
+end type
+
+on m_design.create
+call super::create
+end on
+
+on m_design.destroy
+call super::destroy
+end on
+
+type m_designmode from m_ancestor`m_designmode within m_design
+end type
+
+on m_designmode.create
+call super::create
+end on
+
+on m_designmode.destroy
+call super::destroy
+end on
+
+type m__6 from m_ancestor`m__6 within m_design
+end type
+
+on m__6.create
+call super::create
+end on
+
+on m__6.destroy
+call super::destroy
+end on
+
+type m_zoom from m_ancestor`m_zoom within m_design
+end type
+
+on m_zoom.create
+call super::create
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_rows from m_ancestor`m_rows within m_report_view
+end type
+
+on m_rows.create
+call super::create
+end on
+
+on m_rows.destroy
+call super::destroy
+end on
+
+type m_insert from m_ancestor`m_insert within m_rows
+end type
+
+on m_insert.create
+call super::create
+end on
+
+on m_insert.destroy
+call super::destroy
+end on
+
+type m_delete from m_ancestor`m_delete within m_rows
+end type
+
+on m_delete.create
+call super::create
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_update from m_ancestor`m_update within m_rows
+end type
+
+on m_update.create
+call super::create
+end on
+
+on m_update.destroy
+call super::destroy
+end on
+
+type m__7 from m_ancestor`m__7 within m_rows
+end type
+
+on m__7.create
+call super::create
+end on
+
+on m__7.destroy
+call super::destroy
+end on
+
+type m_import from m_ancestor`m_import within m_rows
+end type
+
+on m_import.create
+call super::create
+end on
+
+on m_import.destroy
+call super::destroy
+end on
+
+type m_retrieve from m_ancestor`m_retrieve within m_rows
+end type
+
+on m_retrieve.create
+call super::create
+end on
+
+on m_retrieve.destroy
+call super::destroy
+end on
+
+type m__81 from m_ancestor`m__81 within m_rows
+end type
+
+on m__81.create
+call super::create
+end on
+
+on m__81.destroy
+call super::destroy
+end on
+
+type m_describe from m_ancestor`m_describe within m_rows
+end type
+
+on m_describe.create
+call super::create
+end on
+
+on m_describe.destroy
+call super::destroy
+end on
+
+type m_filter from m_ancestor`m_filter within m_rows
+end type
+
+on m_filter.create
+call super::create
+end on
+
+on m_filter.destroy
+call super::destroy
+end on
+
+type m_sort from m_ancestor`m_sort within m_rows
+end type
+
+on m_sort.create
+call super::create
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_-2 from m_ancestor`m_-2 within m_rows
+end type
+
+on m_-2.create
+call super::create
+end on
+
+on m_-2.destroy
+call super::destroy
+end on
+
+type m_firstpage from m_ancestor`m_firstpage within m_rows
+end type
+
+on m_firstpage.create
+call super::create
+end on
+
+on m_firstpage.destroy
+call super::destroy
+end on
+
+type m_priorpage from m_ancestor`m_priorpage within m_rows
+end type
+
+on m_priorpage.create
+call super::create
+end on
+
+on m_priorpage.destroy
+call super::destroy
+end on
+
+type m_nextpage from m_ancestor`m_nextpage within m_rows
+end type
+
+on m_nextpage.create
+call super::create
+end on
+
+on m_nextpage.destroy
+call super::destroy
+end on
+
+type m_lastpage from m_ancestor`m_lastpage within m_rows
+end type
+
+on m_lastpage.create
+call super::create
+end on
+
+on m_lastpage.destroy
+call super::destroy
+end on
+
+type m_window from m_ancestor`m_window within m_report_view
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_tile from m_ancestor`m_tile within m_window
+end type
+
+on m_tile.create
+call super::create
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_windowdummy1 from m_ancestor`m_windowdummy1 within m_window
+end type
+
+on m_windowdummy1.create
+call super::create
+end on
+
+on m_windowdummy1.destroy
+call super::destroy
+end on
+
+type m_windowdummy2 from m_ancestor`m_windowdummy2 within m_window
+end type
+
+on m_windowdummy2.create
+call super::create
+end on
+
+on m_windowdummy2.destroy
+call super::destroy
+end on
+
+type m_layer from m_ancestor`m_layer within m_window
+end type
+
+on m_layer.create
+call super::create
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_windowdummy3 from m_ancestor`m_windowdummy3 within m_window
+end type
+
+on m_windowdummy3.create
+call super::create
+end on
+
+on m_windowdummy3.destroy
+call super::destroy
+end on
+
+type m_windowdummy4 from m_ancestor`m_windowdummy4 within m_window
+end type
+
+on m_windowdummy4.create
+call super::create
+end on
+
+on m_windowdummy4.destroy
+call super::destroy
+end on
+
+type m_cascade from m_ancestor`m_cascade within m_window
+end type
+
+on m_cascade.create
+call super::create
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__8 from m_ancestor`m__8 within m_window
+end type
+
+on m__8.create
+call super::create
+end on
+
+on m__8.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from m_ancestor`m_arrangeicons within m_window
+end type
+
+on m_arrangeicons.create
+call super::create
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_windowdummy5 from m_ancestor`m_windowdummy5 within m_window
+end type
+
+on m_windowdummy5.create
+call super::create
+end on
+
+on m_windowdummy5.destroy
+call super::destroy
+end on
+
+type m_windowdummy6 from m_ancestor`m_windowdummy6 within m_window
+end type
+
+on m_windowdummy6.create
+call super::create
+end on
+
+on m_windowdummy6.destroy
+call super::destroy
+end on
+
+type m_windowdummy7 from m_ancestor`m_windowdummy7 within m_window
+end type
+
+on m_windowdummy7.create
+call super::create
+end on
+
+on m_windowdummy7.destroy
+call super::destroy
+end on
+
+type m_windowdummy8 from m_ancestor`m_windowdummy8 within m_window
+end type
+
+on m_windowdummy8.create
+call super::create
+end on
+
+on m_windowdummy8.destroy
+call super::destroy
+end on
+
+type m_windowdummy9 from m_ancestor`m_windowdummy9 within m_window
+end type
+
+on m_windowdummy9.create
+call super::create
+end on
+
+on m_windowdummy9.destroy
+call super::destroy
+end on
+
+type m_windowdummy10 from m_ancestor`m_windowdummy10 within m_window
+end type
+
+on m_windowdummy10.create
+call super::create
+end on
+
+on m_windowdummy10.destroy
+call super::destroy
+end on
+
+type m_help from m_ancestor`m_help within m_report_view
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+
+type m_helpdummy1 from m_ancestor`m_helpdummy1 within m_help
+end type
+
+on m_helpdummy1.create
+call super::create
+end on
+
+on m_helpdummy1.destroy
+call super::destroy
+end on
+
+type m_helpdummy2 from m_ancestor`m_helpdummy2 within m_help
+end type
+
+on m_helpdummy2.create
+call super::create
+end on
+
+on m_helpdummy2.destroy
+call super::destroy
+end on
+
+type m_helpdummy3 from m_ancestor`m_helpdummy3 within m_help
+end type
+
+on m_helpdummy3.create
+call super::create
+end on
+
+on m_helpdummy3.destroy
+call super::destroy
+end on
+
+type m_helpdummy4 from m_ancestor`m_helpdummy4 within m_help
+end type
+
+on m_helpdummy4.create
+call super::create
+end on
+
+on m_helpdummy4.destroy
+call super::destroy
+end on
+
+type m_helpdummy5 from m_ancestor`m_helpdummy5 within m_help
+end type
+
+on m_helpdummy5.create
+call super::create
+end on
+
+on m_helpdummy5.destroy
+call super::destroy
+end on
+
+type m_helpdummy6 from m_ancestor`m_helpdummy6 within m_help
+end type
+
+on m_helpdummy6.create
+call super::create
+end on
+
+on m_helpdummy6.destroy
+call super::destroy
+end on
+
+type m_helpdummy7 from m_ancestor`m_helpdummy7 within m_help
+end type
+
+on m_helpdummy7.create
+call super::create
+end on
+
+on m_helpdummy7.destroy
+call super::destroy
+end on
+
+type m__9 from m_ancestor`m__9 within m_help
+end type
+
+on m__9.create
+call super::create
+end on
+
+on m__9.destroy
+call super::destroy
+end on
+
+type m_about from m_ancestor`m_about within m_help
+end type
+
+on m_about.create
+call super::create
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+
+type m_helpdummy8 from m_ancestor`m_helpdummy8 within m_help
+end type
+
+on m_helpdummy8.create
+call super::create
+end on
+
+on m_helpdummy8.destroy
+call super::destroy
+end on
+
+type m_helpdummy9 from m_ancestor`m_helpdummy9 within m_help
+end type
+
+on m_helpdummy9.create
+call super::create
+end on
+
+on m_helpdummy9.destroy
+call super::destroy
+end on
+
+type m_helpdummy10 from m_ancestor`m_helpdummy10 within m_help
+end type
+
+on m_helpdummy10.create
+call super::create
+end on
+
+on m_helpdummy10.destroy
+call super::destroy
+end on
+
+type m_close0 from menu within m_file
+end type
+
+on m_close0.create
+call super::create
+this.text = "Close~tCtrl+W"
+this.shortcut = 343
+this.microhelp = "Finished viewing report..."
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 1
+end on
+
+on m_close0.destroy
+call super::destroy
+end on
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("pfc_close")
+
+end event
+

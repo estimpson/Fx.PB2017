@@ -1,0 +1,87 @@
+﻿$PBExportHeader$f_get_color_value.srf
+global type f_get_color_value from function_object
+end type
+
+forward prototypes
+global function long f_get_color_value (string as_color)
+end prototypes
+
+global function long f_get_color_value (string as_color);INTEGER	li_RED, &
+	li_GREEN, &
+	li_BLUE
+
+CHOOSE CASE Upper ( as_color )
+	CASE "RED"
+		li_RED   = 255
+		li_GREEN = 0
+		li_BLUE  = 0
+	CASE "BLACK"
+		li_RED   = 0
+		li_GREEN = 0
+		li_BLUE  = 0
+	CASE "WHITE"
+		li_RED   = 255
+		li_GREEN = 255
+		li_BLUE  = 255
+	CASE "GRAY"
+		li_RED   = 192
+		li_GREEN = 192
+		li_BLUE  = 192
+	CASE "DARKGRAY"
+		li_RED   = 128
+		li_GREEN = 128
+		li_BLUE  = 128
+	CASE "DARKRED"
+		li_RED   = 128
+		li_GREEN = 0
+		li_BLUE  = 0
+	CASE "GREEN"
+		li_RED   = 0
+		li_GREEN = 255
+		li_BLUE  = 0
+	CASE "DARKGREEN"
+		li_RED   = 0
+		li_GREEN = 128
+		li_BLUE  = 0
+	CASE "BLUE"
+		li_RED   = 0
+		li_GREEN = 0
+		li_BLUE  = 255
+	CASE "DARKBLUE"
+		li_RED   = 0
+		li_GREEN = 0
+		li_BLUE  = 128
+	CASE "MAGENTA"
+		li_RED   = 255
+		li_GREEN = 0
+		li_BLUE  = 255
+	CASE "DARKMAGENTA"
+		li_RED   = 128
+		li_GREEN = 0
+		li_BLUE  = 128
+	CASE "CYAN"
+		li_RED   = 0
+		li_GREEN = 255
+		li_BLUE  = 255
+	CASE "DARKCYAN"
+		li_RED   = 0
+		li_GREEN = 128
+		li_BLUE  = 128
+	CASE "YELLOW"
+		li_RED   = 255
+		li_GREEN = 255
+		li_BLUE  = 0
+	CASE "BROWN"
+		li_RED   = 128
+		li_GREEN = 128
+		li_BLUE  = 0
+	CASE "TRANSPARENT"
+		Return 536870912
+	CASE ELSE
+		Return g_f_get_sys_color ( as_color )
+
+END CHOOSE
+
+Return 65536 * li_BLUE + 256 * li_GREEN + li_RED
+end function
+

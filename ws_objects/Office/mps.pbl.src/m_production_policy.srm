@@ -1,0 +1,283 @@
+﻿$PBExportHeader$m_production_policy.srm
+$PBExportComments$Menu for production policy
+forward
+global type m_production_policy from menu
+end type
+type m_file from menu within m_production_policy
+end type
+type m_save from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_production_policy
+m_save m_save
+m_- m_-
+m_exit m_exit
+end type
+type m_edit from menu within m_production_policy
+end type
+type m_window from menu within m_production_policy
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_production_policy
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_production_policy
+end type
+global type m_production_policy from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_production_policy from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_production_policy m_production_policy
+
+on m_production_policy.create
+m_production_policy=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_production_policy.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_production_policy
+m_save m_save
+m_- m_-
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_save=create m_save
+this.m_-=create m_-
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_-)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("save_change")
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Save change"
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 1
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;Close(gnv_App.of_GetFrame().GetActiveSheet())
+end event
+
+on m_exit.create
+call super::create
+this.text = "Close~tAlt+X"
+this.shortcut = 600
+this.microhelp = "Exit"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Exit"
+this.toolbaritemorder = 15
+this.toolbaritemspace = 1
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_production_policy
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_production_policy
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Tile!)
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Layer!)
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Cascade!)
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Icons!)
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_production_policy
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

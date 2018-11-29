@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_dwproperty_dates.srd
+$PBExportComments$PFC DataWindow Property - dates dataobject
+release 5;
+datawindow(units=0 timer_interval=0 color=80263328 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=57 color="536870912" )
+summary(height=5 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=61 color="536870912" )
+table(column=(type=date updatewhereclause=yes name=date dbname="date" )
+ )
+text(band=header alignment="0" text="Dates"border="0" color="0" x="5" y="4" height="53" width="325"  name=date_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="5" y="4" height="53" width="321" format="[general]"  name=date edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )

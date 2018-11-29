@@ -1,0 +1,612 @@
+﻿$PBExportHeader$m_pbmenu.srm
+forward
+global type m_pbmenu from menu
+end type
+type m_file from menu within m_pbmenu
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_pbmenu
+m_close m_close
+end type
+type m_edit from menu within m_pbmenu
+end type
+type m_calcall from menu within m_edit
+end type
+type m_deleteallshifts from menu within m_edit
+end type
+type m_deletealltasks from menu within m_edit
+end type
+type m_woparts from menu within m_edit
+end type
+type m_edit from menu within m_pbmenu
+m_calcall m_calcall
+m_deleteallshifts m_deleteallshifts
+m_deletealltasks m_deletealltasks
+m_woparts m_woparts
+end type
+type m_task from menu within m_pbmenu
+end type
+type m_deletetask from menu within m_task
+end type
+type m_edittask from menu within m_task
+end type
+type m_task from menu within m_pbmenu
+m_deletetask m_deletetask
+m_edittask m_edittask
+end type
+type m_shift from menu within m_pbmenu
+end type
+type m_deleteshift from menu within m_shift
+end type
+type m_editshift from menu within m_shift
+end type
+type m_shift from menu within m_pbmenu
+m_deleteshift m_deleteshift
+m_editshift m_editshift
+end type
+type m_resource from menu within m_pbmenu
+end type
+type m_createtask from menu within m_resource
+end type
+type m_deletetasks from menu within m_resource
+end type
+type m_calcruntimes from menu within m_resource
+end type
+type m_createshift from menu within m_resource
+end type
+type m_deleteshifts from menu within m_resource
+end type
+type m_resource from menu within m_pbmenu
+m_createtask m_createtask
+m_deletetasks m_deletetasks
+m_calcruntimes m_calcruntimes
+m_createshift m_createshift
+m_deleteshifts m_deleteshifts
+end type
+type m_window from menu within m_pbmenu
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_pbmenu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_pbmenu
+end type
+global type m_pbmenu from menu
+m_file m_file
+m_edit m_edit
+m_task m_task
+m_shift m_shift
+m_resource m_resource
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_pbmenu from menu
+m_file m_file
+m_edit m_edit
+m_task m_task
+m_shift m_shift
+m_resource m_resource
+m_window m_window
+m_help m_help
+end type
+global m_pbmenu m_pbmenu
+
+on m_pbmenu.create
+m_pbmenu=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_task=create m_task
+this.m_shift=create m_shift
+this.m_resource=create m_resource
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_task
+this.Item[UpperBound(this.Item)+1]=this.m_shift
+this.Item[UpperBound(this.Item)+1]=this.m_resource
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_pbmenu.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_task)
+destroy(this.m_shift)
+destroy(this.m_resource)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+event clicked;ParentWindow.TriggerEvent("ue_exit")
+end event
+
+type m_file from menu within m_pbmenu
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_close)
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;Close(ParentWindow)
+end event
+
+type m_edit from menu within m_pbmenu
+m_calcall m_calcall
+m_deleteallshifts m_deleteallshifts
+m_deletealltasks m_deletealltasks
+m_woparts m_woparts
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_calcall=create m_calcall
+this.m_deleteallshifts=create m_deleteallshifts
+this.m_deletealltasks=create m_deletealltasks
+this.m_woparts=create m_woparts
+this.Item[UpperBound(this.Item)+1]=this.m_calcall
+this.Item[UpperBound(this.Item)+1]=this.m_deleteallshifts
+this.Item[UpperBound(this.Item)+1]=this.m_deletealltasks
+this.Item[UpperBound(this.Item)+1]=this.m_woparts
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_calcall)
+destroy(this.m_deleteallshifts)
+destroy(this.m_deletealltasks)
+destroy(this.m_woparts)
+end on
+
+type m_calcall from menu within m_edit
+end type
+
+on m_calcall.create
+call super::create
+this.text = "Calc All"
+this.toolbaritemname = "Continue!"
+this.toolbaritemtext = "Calc All"
+this.toolbaritemorder = 2
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'calcall' )
+
+end event
+
+on m_calcall.destroy
+call super::destroy
+end on
+
+type m_deleteallshifts from menu within m_edit
+end type
+
+on m_deleteallshifts.create
+call super::create
+this.text = "Delete All Shifts"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del All Shifts"
+this.toolbaritemorder = 3
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroyallshifts' )
+end event
+
+on m_deleteallshifts.destroy
+call super::destroy
+end on
+
+type m_deletealltasks from menu within m_edit
+end type
+
+on m_deletealltasks.create
+call super::create
+this.text = "Delete All Tasks"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del All Tasks"
+this.toolbaritemorder = 4
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroyalltasks' )
+end event
+
+on m_deletealltasks.destroy
+call super::destroy
+end on
+
+type m_woparts from menu within m_edit
+end type
+
+event clicked;
+if this.Toolbaritemtext = 'Parts' then 
+	this.Toolbaritemtext = 'WO#'
+	u_dwPlanningBoard.of_SetupDisplay ( 'Y' )
+else
+	this.Toolbaritemtext = 'Parts'
+	u_dwPlanningBoard.of_SetupDisplay ( 'N' )
+end if 	
+
+end event
+
+on m_woparts.create
+call super::create
+this.text = "Parts"
+this.toolbaritemname = "Custom029!"
+this.toolbaritemtext = "Parts"
+this.toolbaritemorder = 5
+end on
+
+on m_woparts.destroy
+call super::destroy
+end on
+
+type m_task from menu within m_pbmenu
+m_deletetask m_deletetask
+m_edittask m_edittask
+end type
+
+on m_task.create
+call super::create
+this.text = "&Task"
+this.m_deletetask=create m_deletetask
+this.m_edittask=create m_edittask
+this.Item[UpperBound(this.Item)+1]=this.m_deletetask
+this.Item[UpperBound(this.Item)+1]=this.m_edittask
+end on
+
+on m_task.destroy
+call super::destroy
+destroy(this.m_deletetask)
+destroy(this.m_edittask)
+end on
+
+type m_deletetask from menu within m_task
+end type
+
+on m_deletetask.create
+call super::create
+this.text = "Delete Task"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroytask' )
+end event
+
+on m_deletetask.destroy
+call super::destroy
+end on
+
+type m_edittask from menu within m_task
+end type
+
+on m_edittask.create
+call super::create
+this.text = "Edit Task"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'edittask' )
+end event
+
+on m_edittask.destroy
+call super::destroy
+end on
+
+type m_shift from menu within m_pbmenu
+m_deleteshift m_deleteshift
+m_editshift m_editshift
+end type
+
+on m_shift.create
+call super::create
+this.text = "&Shift"
+this.m_deleteshift=create m_deleteshift
+this.m_editshift=create m_editshift
+this.Item[UpperBound(this.Item)+1]=this.m_deleteshift
+this.Item[UpperBound(this.Item)+1]=this.m_editshift
+end on
+
+on m_shift.destroy
+call super::destroy
+destroy(this.m_deleteshift)
+destroy(this.m_editshift)
+end on
+
+type m_deleteshift from menu within m_shift
+end type
+
+on m_deleteshift.create
+call super::create
+this.text = "Delete Shift"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroyshift' )
+end event
+
+on m_deleteshift.destroy
+call super::destroy
+end on
+
+type m_editshift from menu within m_shift
+end type
+
+on m_editshift.create
+call super::create
+this.text = "Edit Shift"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'editshift')
+end event
+
+on m_editshift.destroy
+call super::destroy
+end on
+
+type m_resource from menu within m_pbmenu
+m_createtask m_createtask
+m_deletetasks m_deletetasks
+m_calcruntimes m_calcruntimes
+m_createshift m_createshift
+m_deleteshifts m_deleteshifts
+end type
+
+on m_resource.create
+call super::create
+this.text = "&Resource"
+this.m_createtask=create m_createtask
+this.m_deletetasks=create m_deletetasks
+this.m_calcruntimes=create m_calcruntimes
+this.m_createshift=create m_createshift
+this.m_deleteshifts=create m_deleteshifts
+this.Item[UpperBound(this.Item)+1]=this.m_createtask
+this.Item[UpperBound(this.Item)+1]=this.m_deletetasks
+this.Item[UpperBound(this.Item)+1]=this.m_calcruntimes
+this.Item[UpperBound(this.Item)+1]=this.m_createshift
+this.Item[UpperBound(this.Item)+1]=this.m_deleteshifts
+end on
+
+on m_resource.destroy
+call super::destroy
+destroy(this.m_createtask)
+destroy(this.m_deletetasks)
+destroy(this.m_calcruntimes)
+destroy(this.m_createshift)
+destroy(this.m_deleteshifts)
+end on
+
+event clicked;u_dwPlanningBoard.of_PopupMessage ( 'deletetasks')
+end event
+
+type m_createtask from menu within m_resource
+end type
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'createtask' )
+end event
+
+on m_createtask.create
+call super::create
+this.text = "Create Task"
+end on
+
+on m_createtask.destroy
+call super::destroy
+end on
+
+type m_deletetasks from menu within m_resource
+end type
+
+on m_deletetasks.create
+call super::create
+this.text = "Delete Tasks"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroytasks' )
+end event
+
+on m_deletetasks.destroy
+call super::destroy
+end on
+
+type m_calcruntimes from menu within m_resource
+end type
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'calcruntimes' )
+end event
+
+on m_calcruntimes.create
+call super::create
+this.text = "Calc RunTimes"
+end on
+
+on m_calcruntimes.destroy
+call super::destroy
+end on
+
+type m_createshift from menu within m_resource
+end type
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'createshift' )
+end event
+
+on m_createshift.create
+call super::create
+this.text = "Create Shift"
+end on
+
+on m_createshift.destroy
+call super::destroy
+end on
+
+type m_deleteshifts from menu within m_resource
+end type
+
+on m_deleteshifts.create
+call super::create
+this.text = "Delete Shifts"
+end on
+
+event clicked;
+u_dwPlanningBoard.of_PopupMessage ( 'destroyshifts' )
+end event
+
+on m_deleteshifts.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_pbmenu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_pbmenu
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

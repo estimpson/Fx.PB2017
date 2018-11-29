@@ -1,0 +1,575 @@
+﻿$PBExportHeader$m_part_master.srm
+$PBExportComments$*
+forward
+global type m_part_master from menu
+end type
+type m_file from menu within m_part_master
+end type
+type m_unitsofmeasure from menu within m_file
+end type
+type m_sales from menu within m_file
+end type
+type m_purchasing from menu within m_file
+end type
+type m_flowrouter from menu within m_file
+end type
+type m_notes from menu within m_file
+end type
+type m_characteristics from menu within m_file
+end type
+type m_packaging from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_new from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_fastcopy from menu within m_file
+end type
+type m_line12 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_part_master
+m_unitsofmeasure m_unitsofmeasure
+m_sales m_sales
+m_purchasing m_purchasing
+m_flowrouter m_flowrouter
+m_notes m_notes
+m_characteristics m_characteristics
+m_packaging m_packaging
+m_line11 m_line11
+m_new m_new
+m_save m_save
+m_fastcopy m_fastcopy
+m_line12 m_line12
+m_close m_close
+end type
+type m_edit from menu within m_part_master
+end type
+type m_window from menu within m_part_master
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_part_master
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_part_master
+end type
+global type m_part_master from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_part_master from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_part_master m_part_master
+
+type variables
+
+end variables
+
+forward prototypes
+public subroutine wf_reset ()
+end prototypes
+
+public subroutine wf_reset ();If m_part_master.Text <> "Units of Measure" Then
+
+   Close ( w_conversion_part_link )
+
+End If
+
+If m_part_master.Text <> "Characteristics" Then
+
+   Close ( w_part_char )
+
+End If
+
+If m_part_master.Text <> "Notes" Then
+
+   Close ( w_notes )
+
+End If
+
+
+
+end subroutine
+
+on m_part_master.create
+m_part_master=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_part_master.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_part_master
+m_unitsofmeasure m_unitsofmeasure
+m_sales m_sales
+m_purchasing m_purchasing
+m_flowrouter m_flowrouter
+m_notes m_notes
+m_characteristics m_characteristics
+m_packaging m_packaging
+m_line11 m_line11
+m_new m_new
+m_save m_save
+m_fastcopy m_fastcopy
+m_line12 m_line12
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_unitsofmeasure=create m_unitsofmeasure
+this.m_sales=create m_sales
+this.m_purchasing=create m_purchasing
+this.m_flowrouter=create m_flowrouter
+this.m_notes=create m_notes
+this.m_characteristics=create m_characteristics
+this.m_packaging=create m_packaging
+this.m_line11=create m_line11
+this.m_new=create m_new
+this.m_save=create m_save
+this.m_fastcopy=create m_fastcopy
+this.m_line12=create m_line12
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_unitsofmeasure
+this.Item[UpperBound(this.Item)+1]=this.m_sales
+this.Item[UpperBound(this.Item)+1]=this.m_purchasing
+this.Item[UpperBound(this.Item)+1]=this.m_flowrouter
+this.Item[UpperBound(this.Item)+1]=this.m_notes
+this.Item[UpperBound(this.Item)+1]=this.m_characteristics
+this.Item[UpperBound(this.Item)+1]=this.m_packaging
+this.Item[UpperBound(this.Item)+1]=this.m_line11
+this.Item[UpperBound(this.Item)+1]=this.m_new
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_fastcopy
+this.Item[UpperBound(this.Item)+1]=this.m_line12
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_unitsofmeasure)
+destroy(this.m_sales)
+destroy(this.m_purchasing)
+destroy(this.m_flowrouter)
+destroy(this.m_notes)
+destroy(this.m_characteristics)
+destroy(this.m_packaging)
+destroy(this.m_line11)
+destroy(this.m_new)
+destroy(this.m_save)
+destroy(this.m_fastcopy)
+destroy(this.m_line12)
+destroy(this.m_close)
+end on
+
+type m_unitsofmeasure from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("uom")
+end event
+
+on m_unitsofmeasure.create
+call super::create
+this.text = "&Units of Measure"
+this.microhelp = "Configure Units of Measure..."
+this.toolbaritemname = "Application!"
+this.toolbaritemtext = "Units"
+this.toolbaritemorder = 1
+end on
+
+on m_unitsofmeasure.destroy
+call super::destroy
+end on
+
+type m_sales from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("sales")
+end event
+
+on m_sales.create
+call super::create
+this.text = "&Sales"
+this.toolbaritemname = "Custom048!"
+this.toolbaritemtext = "Sales"
+this.toolbaritemorder = 2
+end on
+
+on m_sales.destroy
+call super::destroy
+end on
+
+type m_purchasing from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("purchasing")
+end event
+
+on m_purchasing.create
+call super::create
+this.text = "&Purchasing"
+this.microhelp = "Purchasing"
+this.toolbaritemname = "Custom048!"
+this.toolbaritemtext = "Purchasing"
+this.toolbaritemorder = 3
+end on
+
+on m_purchasing.destroy
+call super::destroy
+end on
+
+type m_flowrouter from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("flowrouter")
+end event
+
+on m_flowrouter.create
+call super::create
+this.text = "&Flow Router"
+this.microhelp = "Flow Router..."
+this.toolbaritemname = "Parameter!"
+this.toolbaritemtext = "Flow Router"
+this.toolbaritemorder = 4
+end on
+
+on m_flowrouter.destroy
+call super::destroy
+end on
+
+type m_notes from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("notes")
+end event
+
+on m_notes.create
+call super::create
+this.text = "&Notes"
+this.microhelp = "Part Notes..."
+this.toolbaritemname = "DataWindow!"
+this.toolbaritemtext = "Notes"
+this.toolbaritemorder = 5
+end on
+
+on m_notes.destroy
+call super::destroy
+end on
+
+type m_characteristics from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("characteristics")
+end event
+
+on m_characteristics.create
+call super::create
+this.text = "C&haracteristics"
+this.microhelp = "Part Characteristics..."
+this.toolbaritemname = "RunReport!"
+this.toolbaritemtext = "Char"
+this.toolbaritemorder = 6
+end on
+
+on m_characteristics.destroy
+call super::destroy
+end on
+
+type m_packaging from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("packaging")
+end event
+
+on m_packaging.create
+call super::create
+this.text = "&Packaging"
+this.microhelp = "Packaging Material..."
+this.toolbaritemname = "UserObject!"
+this.toolbaritemtext = "Package"
+this.toolbaritemorder = 7
+end on
+
+on m_packaging.destroy
+call super::destroy
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+call super::create
+this.text = "-"
+this.toolbaritemtext = "Fast Copy"
+this.toolbaritemorder = 10
+end on
+
+on m_line11.destroy
+call super::destroy
+end on
+
+type m_new from menu within m_file
+end type
+
+on m_new.create
+call super::create
+this.text = "&New"
+this.microhelp = "Reset Screen, Add New Part..."
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "New"
+this.toolbaritemorder = 8
+end on
+
+on m_new.destroy
+call super::destroy
+end on
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("new_part")
+end event
+
+type m_save from menu within m_file
+end type
+
+event clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("save_part")
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save"
+this.microhelp = "Save Contents of Window..."
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 9
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_fastcopy from menu within m_file
+end type
+
+event clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("copy_part")
+end event
+
+on m_fastcopy.create
+call super::create
+this.text = "FastCopy"
+this.toolbaritemname = "Custom092!"
+this.toolbaritemtext = "Fast Copy"
+this.toolbaritemorder = 10
+end on
+
+on m_fastcopy.destroy
+call super::destroy
+end on
+
+type m_line12 from menu within m_file
+end type
+
+on m_line12.create
+call super::create
+this.text = "-"
+end on
+
+on m_line12.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;wf_reset()
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("exit_routine")
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_part_master
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_part_master
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_part_master
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

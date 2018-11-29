@@ -1,0 +1,77 @@
+﻿$PBExportHeader$dw_list_of_releases_sd.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=56 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=date update=yes updatewhereclause=yes name=due_date dbname="order_detail.due_date" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="order_detail.quantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=the_cum dbname="order_detail.the_cum" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=release_no dbname="order_detail.release_no" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="order_detail.type" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=order_no dbname="order_detail.order_no" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=sequence dbname="order_detail.sequence" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=our_cum dbname="order_detail.our_cum" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part_number dbname="order_detail.part_number" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=destination dbname="order_detail.destination" )
+ column=(type=long update=yes updatewhereclause=yes name=row_id dbname="order_detail.row_id" )
+ column=(type=long update=yes updatewhereclause=yes name=flag dbname="order_detail.flag" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=committed_qty dbname="order_detail.committed_qty" )
+ column=(type=long update=yes updatewhereclause=yes name=week_no dbname="order_detail.week_no" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=std_qty dbname="order_detail.std_qty" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ship_type dbname="order_detail.ship_type" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="order_detail.plant" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit dbname="order_detail.unit" )
+ retrieve="  SELECT order_detail.due_date,   
+         order_detail.quantity,   
+         order_detail.the_cum,   
+         order_detail.release_no,   
+         order_detail.type,   
+         order_detail.order_no,   
+         order_detail.sequence,   
+         order_detail.our_cum,   
+         order_detail.part_number,   
+         order_detail.destination,   
+         order_detail.row_id,   
+         order_detail.flag,   
+         order_detail.committed_qty,   
+         order_detail.week_no,   
+         order_detail.std_qty,   
+         order_detail.ship_type,   
+         order_detail.plant,   
+         order_detail.unit  
+    FROM order_detail  
+   WHERE order_detail.order_no = :iOrder    
+ORDER BY order_detail.due_date, order_detail.type
+" update="order_detail" updatewhere=2 updatekeyinplace=yes arguments=(("iOrder", number)) )
+text(band=header alignment="2" text="Due Date"border="0" color="8388608" x="9" y="8" height="44" width="187"  name=due_date_t  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="8388608" x="206" y="8" height="44" width="174"  name=quantity_t  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Tp"border="0" color="8388608" x="745" y="8" height="44" width="46"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Week No"border="0" color="0" x="2043" y="4" height="56" width="238"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Std Qty"border="0" color="0" x="2290" y="4" height="56" width="219"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Ship Type"border="0" color="0" x="2519" y="4" height="56" width="219"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Plant"border="0" color="0" x="2747" y="4" height="56" width="219"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Unit"border="0" color="0" x="2976" y="4" height="56" width="37"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Committed Qty"border="0" color="0" x="3022" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Cum"border="0" color="8388608" x="389" y="8" height="44" width="155"  name=the_cum_t  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release"border="0" color="8388608" x="553" y="8" height="44" width="183"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="48" width="187" format="[general]"  name=due_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="206" y="8" height="48" width="174" format="[general]"  name=quantity editmask.mask="#######" editmask.focusrectangle=no  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="745" y="8" height="48" width="46" format="[general]"  name=type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="16777215" x="800" y="8" height="48" width="160" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=10 border="0" color="33554432" x="969" y="4" height="44" width="169" format="[general]"  name=sequence edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="16777215" x="1147" y="8" height="44" width="155" format="[general]"  name=our_cum edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="16777215" x="1312" y="8" height="44" width="160" format="[general]"  name=part_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="16777215" x="1481" y="8" height="44" width="206" format="[general]"  name=destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="16777215" x="1696" y="0" height="56" width="197" format="[general]"  name=row_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="16777215" x="1902" y="0" height="56" width="133" format="[general]"  name=flag edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="2043" y="0" height="56" width="238" format="[general]"  name=week_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="2290" y="0" height="56" width="219" format="[general]"  name=std_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="2519" y="0" height="56" width="219" format="[general]"  name=ship_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=17 alignment="0" tabsequence=20 border="0" color="0" x="2747" y="0" height="56" width="219" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=18 alignment="0" tabsequence=30 border="0" color="0" x="2976" y="0" height="56" width="37" format="[general]"  name=unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3022" y="0" height="56" width="887" format="[general]"  name=committed_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="389" y="8" height="48" width="155" format="[general]"  name=the_cum editmask.mask="#######" editmask.focusrectangle=no  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="553" y="8" height="48" width="183" format="[general]"  name=release_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

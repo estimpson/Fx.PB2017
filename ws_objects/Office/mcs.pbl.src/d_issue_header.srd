@@ -1,0 +1,85 @@
+﻿$PBExportHeader$d_issue_header.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1368 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=issue_number dbname="issues.issue_number" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=issue dbname="issues.issue" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=status dbname="issues.status" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=solution dbname="issues.solution" )
+ column=(type=datetime update=yes updatewhereclause=yes name=start_date dbname="issues.start_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=stop_date dbname="issues.stop_date" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=category dbname="issues.category" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=sub_category dbname="issues.sub_category" )
+ column=(type=long update=yes updatewhereclause=yes name=priority_level dbname="issues.priority_level" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=product_line dbname="issues.product_line" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=product_code dbname="issues.product_code" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=origin_type dbname="issues.origin_type" values="Customer	C/Employee	E/" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=origin dbname="issues.origin" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=assigned_to dbname="issues.assigned_to" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=authorized_by dbname="issues.authorized_by" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=documentation_change dbname="issues.documentation_change" values="Documentation Change	Y/Documentation Change	N" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=environment dbname="issues.environment" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=entered_by dbname="issues.entered_by" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=product_component dbname="issues.product_component" )
+ column=(type=char(0) updatewhereclause=yes name=environment_message dbname="environment_message" )
+ retrieve="  SELECT issues.issue_number,   
+         issues.issue,   
+         issues.status,   
+         issues.solution,   
+         issues.start_date,   
+         issues.stop_date,   
+         issues.category,   
+         issues.sub_category,   
+         issues.priority_level,   
+         issues.product_line,   
+         issues.product_code,   
+         issues.origin_type,   
+         issues.origin,   
+         issues.assigned_to,   
+         issues.authorized_by,   
+         issues.documentation_change,   
+         issues.environment,
+			issues.entered_by,
+			issues.product_component,
+			'' as environment_message 
+    FROM issues  
+   WHERE issues.issue_number = :al_issue    
+" update="issues" updatewhere=0 updatekeyinplace=yes arguments=(("al_issue", number)) )
+text(band=detail alignment="0" text="Issue Number:"border="0" color="0" x="18" y="4" height="64" width="379"  name=issue_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Origin Type:"border="0" color="0" x="18" y="84" height="64" width="325"  name=origin_type_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Origin:"border="0" color="0" x="18" y="164" height="64" width="178"  name=origin_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Category:"border="0" color="0" x="18" y="244" height="64" width="251"  name=category_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Subcategory:"border="0" color="0" x="18" y="324" height="64" width="370"  name=sub_category_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Entered By:"border="0" color="0" x="18" y="404" height="64" width="347"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="421" y="4" height="64" width="512" format="[general]" protect="0~t1"  name=issue_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="79741120~tif ( priority_level = 1, f_get_color_value ( ~"red~" ), f_get_color_value ( ~"yellow~" ) )" )
+column(band=detail id=12 alignment="0" tabsequence=20 border="5" color="0" x="421" y="84" height="64" width="512" format="[general]"  name=origin_type ddlb.limit=0 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=30 border="5" color="0" x="421" y="164" height="64" width="512" format="[general]"  name=origin dddw.name=d_issues_customer_list dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="5" color="0" x="421" y="244" height="64" width="512" format="[general]"  name=category dddw.name=d_issues_category_list dddw.displaycolumn=category dddw.datacolumn=category dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="5" color="0" x="421" y="324" height="64" width="512" format="[general]" protect="0~tif ( isnull(category),1,if(category>'',0,1))"  name=sub_category dddw.name=d_issues_sub_category_list dddw.displaycolumn=sub_category dddw.datacolumn=sub_category dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=18 alignment="0" tabsequence=60 border="5" color="0" x="421" y="404" height="64" width="512" format="[general]"  name=entered_by dddw.name=d_issues_employee_list dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=70 border="5" color="0" x="1499" y="4" height="64" width="512" format="[general]"  name=product_line dddw.name=d_issues_product_line_list dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=250 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=80 border="5" color="0" x="1499" y="84" height="64" width="512" format="[general]" protect="0~tif ( isnull(product_line),1,if(product_line>'',0,1))"  name=product_code dddw.name=d_issues_product_list dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=250 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=19 alignment="0" tabsequence=90 border="5" color="0" x="1499" y="164" height="64" width="512" format="[general]" protect="0~tif ( isnull(product_code),1,if(product_code>'',0,1))"  name=product_component dddw.name=d_issues_component_list_procedure dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="0" tabsequence=110 border="5" color="0" x="1499" y="324" height="64" width="512" format="[general]"  name=assigned_to dddw.name=d_issues_employee_list dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=120 border="5" color="0" x="1499" y="404" height="64" width="512" format="[general]" protect="0~tif ( isnull(issue_number),if ( isnull (status),0,1),0)"  name=status dddw.name=d_issues_status_list dddw.displaycolumn=status dddw.datacolumn=status dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Component:"border="0" color="0" x="1097" y="164" height="64" width="315"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Product Line:"border="0" color="0" x="1097" y="4" height="64" width="361"  name=product_line_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Product Code:"border="0" color="0" x="1097" y="84" height="64" width="379"  name=product_code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Assigned To:"border="0" color="0" x="1097" y="324" height="64" width="343"  name=assigned_to_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Status:"border="0" color="0" x="1097" y="404" height="64" width="197"  name=status_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Priority Level:"border="0" color="0" x="1097" y="244" height="64" width="366"  name=priority_level_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=100 border="5" color="0" x="1499" y="244" height="64" width="512" format="[general]"  name=priority_level editmask.spin=yes editmask.mask="##" editmask.spinrange="1~~10" editmask.spinincr=1 editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Issue:"border="0" color="0" x="18" y="644" height="64" width="160"  name=issue_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Start Date:"border="0" color="0" x="18" y="484" height="64" width="311"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="421" y="484" height="64" width="512" format="[shortdate] [time]"  name=start_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Stop Date:"border="0" color="0" x="1097" y="484" height="64" width="306"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="5" color="0" x="1499" y="484" height="64" width="512" format="[shortdate] [time]"  name=stop_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=16 alignment="0" tabsequence=130 border="0" color="0" x="274" y="564" height="64" width="768" format="[general]"  name=documentation_change checkbox.text="Documentation Change" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=140 border="5" color="0" x="274" y="644" height="324" width="2405" format="[general]"  name=issue edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="0" tabsequence=160 border="5" color="0" x="274" y="1248" height="108" width="2405" format="[general]" protect="0~tif ( isnull(issue_number),0,1)"  name=environment edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="1168" height="64" width="2011" format="[general]"  name=environment_message edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Solution:"border="0" color="0" x="18" y="992" height="64" width="233"  name=solution_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=150 border="5" color="0" x="274" y="992" height="156" width="2405" format="[general]" protect="0~t1"  name=solution edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

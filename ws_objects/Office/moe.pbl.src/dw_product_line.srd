@@ -1,0 +1,10 @@
+﻿$PBExportHeader$dw_product_line.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=77 color="536870912")
+table(column=(type=char(25) update=yes key=yes name=id dbname="product_line.id" )
+ retrieve="SELECT product_line.id FROM product_line ORDER BY product_line.id ASC " update="product_line" updatewhere=0 updatekeyinplace=yes  sort="id A " )
+column(band=detail id=1 border="0" alignment="0" color="0" height="69" tabsequence=10 width="627" x="1" y="4"  name=id format="[general]" edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

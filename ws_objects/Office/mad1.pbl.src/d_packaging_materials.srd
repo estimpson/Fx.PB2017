@@ -1,0 +1,29 @@
+﻿$PBExportHeader$d_packaging_materials.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=package_materials_code dbname="package_materials.code" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=package_materials_name dbname="package_materials.name" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=package_materials_type dbname="package_materials.type" values="Box	B/Pallet	P/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=package_materials_returnable dbname="package_materials.returnable" values="Yes	Y/No	N/" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=package_materials_weight dbname="package_materials.weight" )
+ retrieve="  SELECT package_materials.code,   
+         package_materials.name,   
+         package_materials.type,   
+         package_materials.returnable,   
+         package_materials.weight  
+    FROM package_materials   
+ ORDER BY package_materials.code
+" update="package_materials" updatewhere=0 updatekeyinplace=yes  sort="package_materials_code A " )
+text(band=header alignment="2" text="Code"border="6" color="0" x="9" y="8" height="52" width="393"  name=package_materials_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="411" y="8" height="52" width="357"  name=package_materials_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Return?"border="6" color="0" x="777" y="8" height="52" width="238"  name=package_materials_returnable_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Weight "border="6" color="0" x="1024" y="8" height="52" width="370"  name=package_materials_weight_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="8" height="64" width="393" format="[general]"  name=package_materials_code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="411" y="8" height="64" width="357" format="[general]"  name=package_materials_type ddlb.limit=1 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="0" x="777" y="8" height="64" width="238" format="[general]"  name=package_materials_returnable ddlb.limit=1 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="1024" y="8" height="64" width="370" format="[general]"  name=package_materials_weight editmask.mask="#,###.000000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,25 @@
+﻿$PBExportHeader$dw_ei_production_part_30.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+summary(height=354 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=260 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=date_stamp dbname="audit_trail.date_stamp" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="audit_trail.type" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="audit_trail.part" )
+ column=(type=number updatewhereclause=yes name=quantity dbname="audit_trail.quantity" )
+ retrieve="  SELECT audit_trail.date_stamp,   
+         audit_trail.type,   
+         audit_trail.part,   
+         audit_trail.quantity  
+    FROM audit_trail  
+   WHERE (audit_trail.type = 'J' )    
+" filter="  date_stamp  >= relativedate( today(), -30 ) "  sort="part A " )
+group(level=1 header.height=0 trailer.height=260 by=("part" ) header.color="536870912" trailer.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="125" y="42" height="166" width="1510" format="[shortdate] [time]"  name=date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1791" y="42" height="166" width="208" format="[general]"  name=type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="2583" y="42" height="166" width="1052" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=3 alignment="0" tabsequence=32766 border="0" color="0" x="114" y="41" height="166" width="1541" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(quantity for group 1)"border="0" color="0" x="1739" y="41" height="197" width="822" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Total Parts Produced"border="0" color="0" x="104" y="115" height="166" width="1385"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(quantity for all)"border="0" color="0" x="1739" y="115" height="197" width="822" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

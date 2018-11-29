@@ -1,0 +1,14 @@
+﻿$PBExportHeader$f_get_random_number.srf
+$PBExportComments$Calculate the random number
+global type f_get_random_number from function_object
+end type
+
+forward prototypes
+global function long f_get_random_number ()
+end prototypes
+
+global function long f_get_random_number ();Randomize(0)
+
+Return Rand(32767)
+end function
+

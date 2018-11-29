@@ -1,0 +1,81 @@
+﻿$PBExportHeader$d_part_qtys_per_plant.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=188 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=plant dbname="object.plant" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="object.location" )
+ column=(type=decimal(6) updatewhereclause=yes name=std_quantity dbname="object.std_quantity" )
+ column=(type=char(1) updatewhereclause=yes name=status dbname="object.status" )
+ column=(type=decimal(6) updatewhereclause=yes name=tot_committed dbname="tot_committed" )
+ procedure="1 select
+	o.plant
+,	o.location
+,	o.std_quantity
+,	o.status
+,	tot_committed =
+		(	select
+				sum(o1.quantity)
+			from
+				object as o1
+			where
+				o1.part = o.part
+				and o1.shipper > 0
+		)
+from
+	dbo.object o
+where
+	o.part = :part
+order by
+	o.plant asc
+,	o.location asc
+" arguments=(("part", string)) )
+group(level=1 header.height=68 trailer.height=76 by=("plant" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=72 trailer.height=0 by=("plant" , "location" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Obsolete" border="6" color="33554432" x="1559" y="8" height="52" width="297" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Location" border="6" color="33554432" x="14" y="8" height="52" width="297" html.valueishtml="0"  name=location_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="On Hand" border="6" color="33554432" x="320" y="8" height="52" width="297" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="On Hold" border="6" color="33554432" x="631" y="8" height="52" width="297" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Scrapped" border="6" color="33554432" x="942" y="8" height="52" width="297" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Rejected" border="6" color="33554432" x="1253" y="8" height="52" width="297" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header.1 alignment="0" text="Plant" border="6" color="33554432" x="9" y="4" height="52" width="297" html.valueishtml="0"  name=plant_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header.1 id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="320" y="4" height="60" width="297" format="[general]" html.valueishtml="0"  name=plant  tag="plant number " visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header.2 id=2 alignment="0" tabsequence=32766 border="2" color="33554432" x="14" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=location  tag="location code" visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="1" expression="sum (approved for 2 )"border="2" color="33554432" x="320" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=c1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="1" expression="sum(on_hold for 2)"border="2" color="33554432" x="626" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=c2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="1" expression="sum(scrapped for 2)"border="2" color="33554432" x="933" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=c3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="1" expression="sum(rejected for 2)"border="2" color="33554432" x="1239" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=c4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header.2 alignment="1" expression="sum(obsolete for 2)"border="2" color="33554432" x="1545" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=c5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="142" y="12" height="64" width="379" format="[general]" html.valueishtml="0"  name=std_quantity  tag="Quantity in standard unit of measurement" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="558" y="12" height="64" width="338" format="[general]" html.valueishtml="0"  name=status  tag="status of the object/part ( clarify) " visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(status='A', if (  std_quantity < 0, 0, std_quantity ), 0 ) "border="0" color="33554432" x="919" y="12" height="64" width="256" format="[general]" html.valueishtml="0"  name=approved visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(status='H',std_quantity,0)"border="0" color="33554432" x="1189" y="12" height="64" width="215" format="[general]" html.valueishtml="0"  name=on_hold visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(status='S',std_quantity,0)"border="0" color="33554432" x="1413" y="12" height="64" width="215" format="[general]" html.valueishtml="0"  name=scrapped visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(status='R',std_quantity,0)"border="0" color="33554432" x="1637" y="12" height="64" width="215" format="[general]" html.valueishtml="0"  name=rejected visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if(status='O',std_quantity,0)"border="0" color="33554432" x="1861" y="12" height="64" width="215" format="[general]" html.valueishtml="0"  name=obsolete visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2075" y="0" height="52" width="992" format="[general]" html.valueishtml="0"  name=tot_committed visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=trailer.1 alignment="0" text="Sub Total" border="2" color="33554432" x="9" y="4" height="64" width="302" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum (  approved for 1 )"border="2" color="33554432" x="320" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=tot_approved visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum (  on_hold  for 1 )"border="2" color="33554432" x="626" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=tot_onhold visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum(scrapped for 1)"border="2" color="33554432" x="933" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=tot_scrapped visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum(rejected for 1)"border="2" color="33554432" x="1239" y="4" height="64" width="302" format="[general]" html.valueishtml="0"  name=tot_rejected visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="1" expression="sum(obsolete for 1)"border="2" color="33554432" x="1545" y="4" height="64" width="329" format="[general]" html.valueishtml="0"  name=tot_obsolete visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=trailer.1 alignment="0" expression="tot_committed"border="0" color="33554432" x="2752" y="4" height="64" width="366" format="[general]" html.valueishtml="0"  name=total_committed visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum (  approved  )"border="0" color="33554432" x="617" y="8" height="76" width="297" format="[general]" html.valueishtml="0"  name=total_approved visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum(on_hold)"border="0" color="33554432" x="919" y="8" height="76" width="256" format="[general]" html.valueishtml="0"  name=total_onhold visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum(scrapped)"border="0" color="33554432" x="1198" y="12" height="76" width="256" format="[general]" html.valueishtml="0"  name=total_scrapped visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum(rejected)"border="0" color="33554432" x="1477" y="12" height="76" width="256" format="[general]" html.valueishtml="0"  name=total_rejected visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=summary alignment="0" expression="sum(obsolete)"border="0" color="33554432" x="1755" y="16" height="76" width="256" format="[general]" html.valueishtml="0"  name=total_obsolete visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

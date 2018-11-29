@@ -1,0 +1,178 @@
+﻿$PBExportHeader$d_dictionarytablecolumns.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(385) updatewhereclause=no key=yes name=tablecolumn dbname="EDictionaryTableColumns.TableColumn" )
+ column=(type=char(132) updatewhereclause=no name=tableschema dbname="EDictionaryTableColumns.TableSchema" )
+ column=(type=char(132) updatewhereclause=no name=tablename dbname="EDictionaryTableColumns.TableName" )
+ column=(type=char(132) updatewhereclause=no name=columnname dbname="EDictionaryTableColumns.ColumnName" )
+ column=(type=long updatewhereclause=yes name=columnid dbname="EDictionaryTableColumns.ColumnID" )
+ column=(type=char(132) update=yes updatewhereclause=no name=fxcolumntype dbname="EDictionaryTableColumns.FXColumnType" )
+ column=(type=long updatewhereclause=yes name=ischild dbname="EDictionaryTableColumns.IsChild" )
+ column=(type=char(132) updatewhereclause=no name=datatype dbname="EDictionaryTableColumns.DataType" )
+ column=(type=decimal(2) updatewhereclause=yes name=primativetype dbname="EDictionaryTableColumns.PrimativeType" )
+ column=(type=char(55) updatewhereclause=no name=gridheadertext dbname="EDictionaryTableColumns.GridHeaderText" )
+ column=(type=char(55) updatewhereclause=no name=formheadertext dbname="EDictionaryTableColumns.FormHeaderText" )
+ column=(type=char(1000) updatewhereclause=no name=tooltipcolumntext dbname="EDictionaryTableColumns.ToolTipColumnText" )
+ column=(type=char(1000) updatewhereclause=no name=tooltipgridheadertext dbname="EDictionaryTableColumns.ToolTipGridHeaderText" )
+ column=(type=number updatewhereclause=yes name=display dbname="EDictionaryTableColumns.Display" )
+ column=(type=long updatewhereclause=yes name=newrowrequired dbname="EDictionaryTableColumns.NewRowRequired" )
+ column=(type=char(1000) updatewhereclause=no name=newrowrequiredexpression dbname="EDictionaryTableColumns.NewRowRequiredExpression" )
+ column=(type=long updatewhereclause=yes name=newroweditable dbname="EDictionaryTableColumns.NewRowEditable" )
+ column=(type=char(1000) updatewhereclause=no name=newroweditableexpression dbname="EDictionaryTableColumns.NewRowEditableExpression" )
+ column=(type=long updatewhereclause=yes name=oldrowrequired dbname="EDictionaryTableColumns.OldRowRequired" )
+ column=(type=char(1000) updatewhereclause=no name=oldrowrequiredexpression dbname="EDictionaryTableColumns.OldRowRequiredExpression" )
+ column=(type=long updatewhereclause=yes name=oldroweditable dbname="EDictionaryTableColumns.OldRowEditable" )
+ column=(type=char(1000) updatewhereclause=no name=oldroweditableexpression dbname="EDictionaryTableColumns.OldRowEditableExpression" )
+ column=(type=long updatewhereclause=yes name=gridformat dbname="EDictionaryTableColumns.GridFormat" )
+ column=(type=long updatewhereclause=yes name=formformat dbname="EDictionaryTableColumns.FormFormat" )
+ column=(type=char(1000) updatewhereclause=no name=userdefinedgridformat dbname="EDictionaryTableColumns.UserDefinedGridFormat" )
+ column=(type=char(1000) updatewhereclause=no name=userdefinedformformat dbname="EDictionaryTableColumns.UserDefinedFormFormat" )
+ column=(type=long updatewhereclause=yes name=defaultgridwidth dbname="EDictionaryTableColumns.DefaultGridWidth" )
+ column=(type=long updatewhereclause=yes name=defaultformwidth dbname="EDictionaryTableColumns.DefaultFormWidth" )
+ column=(type=long updatewhereclause=yes name=stringtypeeditstyle dbname="EDictionaryTableColumns.StringTypeEditStyle" )
+ column=(type=long updatewhereclause=yes name=columnallowsnull dbname="EDictionaryTableColumns.ColumnAllowsNull" )
+ column=(type=long updatewhereclause=yes name=columniscomputed dbname="EDictionaryTableColumns.ColumnIsComputed" )
+ column=(type=long updatewhereclause=yes name=columnisidentity dbname="EDictionaryTableColumns.ColumnIsIdentity" )
+ column=(type=long updatewhereclause=yes name=columnisindexable dbname="EDictionaryTableColumns.ColumnIsIndexable" )
+ column=(type=long updatewhereclause=yes name=columnisrowguidcol dbname="EDictionaryTableColumns.ColumnIsRowGuidCol" )
+ column=(type=long updatewhereclause=yes name=columnprecision dbname="EDictionaryTableColumns.ColumnPrecision" )
+ column=(type=char(133) updatewhereclause=no name=columntype dbname="EDictionaryTableColumns.ColumnType" )
+ column=(type=long updatewhereclause=yes name=columnscale dbname="EDictionaryTableColumns.ColumnScale" )
+ retrieve="select
+	TableColumn
+,	TableSchema
+,	TableName
+,	ColumnName
+,	ColumnID
+,	FXColumnType
+,	IsChild
+,	DataType
+,	PrimativeType
+,	GridHeaderText
+,	FormHeaderText
+,	ToolTipColumnText
+,	ToolTipGridHeaderText
+,	Display
+,	NewRowRequired
+,	NewRowRequiredExpression
+,	NewRowEditable
+,	NewRowEditableExpression
+,	OldRowRequired
+,	OldRowRequiredExpression
+,	OldRowEditable
+,	OldRowEditableExpression
+,	GridFormat
+,	FormFormat
+,	UserDefinedGridFormat
+,	UserDefinedFormFormat
+,	DefaultGridWidth
+,	DefaultFormWidth
+,	StringTypeEditStyle
+,	ColumnAllowsNull
+,	ColumnIsComputed
+,	ColumnIsIdentity
+,	ColumnIsIndexable
+,	ColumnIsRowGuidCol
+,	ColumnPrecision
+,	ColumnType
+,	ColumnScale
+from
+	FT.EDictionaryTableColumns edtc
+where
+	TableSchema = :tableSchema
+	and
+		TableName = :tableName
+order by
+	TableSchema
+,	TableName
+,	ColumnID
+" update="FT.EDictionaryTableColumns" updatewhere=0 updatekeyinplace=no arguments=(("tableSchema", string),("tableName", string)) )
+text(band=header alignment="2" text="Tablecolumn" border="0" color="33554432" x="9" y="8" height="64" width="1102" html.valueishtml="0"  name=tablecolumn_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tableschema" border="0" color="33554432" x="1120" y="8" height="64" width="526" html.valueishtml="0"  name=tableschema_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tablename" border="0" color="33554432" x="1655" y="8" height="64" width="709" html.valueishtml="0"  name=tablename_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnname" border="0" color="33554432" x="2373" y="8" height="64" width="1042" html.valueishtml="0"  name=columnname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnid" border="0" color="33554432" x="3424" y="8" height="64" width="329" html.valueishtml="0"  name=columnid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fxcolumntype" border="0" color="33554432" x="3762" y="8" height="64" width="1664" html.valueishtml="0"  name=fxcolumntype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ischild" border="0" color="33554432" x="5435" y="8" height="64" width="329" html.valueishtml="0"  name=ischild_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Datatype" border="0" color="33554432" x="5774" y="8" height="64" width="1230" html.valueishtml="0"  name=datatype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Primativetype" border="0" color="33554432" x="7013" y="8" height="64" width="352" html.valueishtml="0"  name=primativetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gridheadertext" border="0" color="33554432" x="7374" y="8" height="64" width="809" html.valueishtml="0"  name=gridheadertext_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Formheadertext" border="0" color="33554432" x="8192" y="8" height="64" width="791" html.valueishtml="0"  name=formheadertext_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tooltipcolumntext" border="0" color="33554432" x="8992" y="8" height="64" width="768" html.valueishtml="0"  name=tooltipcolumntext_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tooltipgridheadertext" border="0" color="33554432" x="9769" y="8" height="64" width="763" html.valueishtml="0"  name=tooltipgridheadertext_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Display" border="0" color="33554432" x="10542" y="8" height="64" width="329" html.valueishtml="0"  name=display_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Newrowrequired" border="0" color="33554432" x="10880" y="8" height="64" width="434" html.valueishtml="0"  name=newrowrequired_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Newrowrequiredexpression" border="0" color="33554432" x="11323" y="8" height="64" width="1413" html.valueishtml="0"  name=newrowrequiredexpression_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Newroweditable" border="0" color="33554432" x="12745" y="8" height="64" width="421" html.valueishtml="0"  name=newroweditable_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Newroweditableexpression" border="0" color="33554432" x="13175" y="8" height="64" width="2208" html.valueishtml="0"  name=newroweditableexpression_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Oldrowrequired" border="0" color="33554432" x="15392" y="8" height="64" width="407" html.valueishtml="0"  name=oldrowrequired_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Oldrowrequiredexpression" border="0" color="33554432" x="15808" y="8" height="64" width="5760" html.valueishtml="0"  name=oldrowrequiredexpression_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Oldroweditable" border="0" color="33554432" x="21577" y="8" height="64" width="393" html.valueishtml="0"  name=oldroweditable_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Oldroweditableexpression" border="0" color="33554432" x="21979" y="8" height="64" width="5760" html.valueishtml="0"  name=oldroweditableexpression_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gridformat" border="0" color="33554432" x="27749" y="8" height="64" width="329" html.valueishtml="0"  name=gridformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Formformat" border="0" color="33554432" x="28087" y="8" height="64" width="329" html.valueishtml="0"  name=formformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Userdefinedgridformat" border="0" color="33554432" x="28425" y="8" height="64" width="5760" html.valueishtml="0"  name=userdefinedgridformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Userdefinedformformat" border="0" color="33554432" x="34194" y="8" height="64" width="5760" html.valueishtml="0"  name=userdefinedformformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Defaultgridwidth" border="0" color="33554432" x="39963" y="8" height="64" width="425" html.valueishtml="0"  name=defaultgridwidth_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Defaultformwidth" border="0" color="33554432" x="40398" y="8" height="64" width="448" html.valueishtml="0"  name=defaultformwidth_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Stringtypeeditstyle" border="0" color="33554432" x="40855" y="8" height="64" width="480" html.valueishtml="0"  name=stringtypeeditstyle_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnallowsnull" border="0" color="33554432" x="41344" y="8" height="64" width="453" html.valueishtml="0"  name=columnallowsnull_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columniscomputed" border="0" color="33554432" x="41806" y="8" height="64" width="494" html.valueishtml="0"  name=columniscomputed_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnisidentity" border="0" color="33554432" x="42309" y="8" height="64" width="425" html.valueishtml="0"  name=columnisidentity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnisindexable" border="0" color="33554432" x="42743" y="8" height="64" width="485" html.valueishtml="0"  name=columnisindexable_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnisrowguidcol" border="0" color="33554432" x="43237" y="8" height="64" width="521" html.valueishtml="0"  name=columnisrowguidcol_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnprecision" border="0" color="33554432" x="43767" y="8" height="64" width="430" html.valueishtml="0"  name=columnprecision_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columntype" border="0" color="33554432" x="44206" y="8" height="64" width="3675" html.valueishtml="0"  name=columntype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Columnscale" border="0" color="33554432" x="47890" y="8" height="64" width="329" html.valueishtml="0"  name=columnscale_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="1102" format="[general]" html.valueishtml="0"  name=tablecolumn visible="1" edit.limit=385 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1120" y="8" height="76" width="526" format="[general]" html.valueishtml="0"  name=tableschema visible="1" edit.limit=132 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1655" y="8" height="76" width="709" format="[general]" html.valueishtml="0"  name=tablename visible="1" edit.limit=132 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2373" y="8" height="76" width="1042" format="[general]" html.valueishtml="0"  name=columnname visible="1" edit.limit=132 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="3424" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=columnid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="3762" y="8" height="76" width="1664" format="[general]" html.valueishtml="0"  name=fxcolumntype visible="1" edit.limit=132 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="5435" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=ischild visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="5774" y="8" height="76" width="1230" format="[general]" html.valueishtml="0"  name=datatype visible="1" edit.limit=132 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="7013" y="8" height="76" width="352" format="[general]" html.valueishtml="0"  name=primativetype visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="7374" y="8" height="76" width="809" format="[general]" html.valueishtml="0"  name=gridheadertext visible="1" edit.limit=55 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="8192" y="8" height="76" width="791" format="[general]" html.valueishtml="0"  name=formheadertext visible="1" edit.limit=55 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="8992" y="8" height="76" width="768" format="[general]" html.valueishtml="0"  name=tooltipcolumntext visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="9769" y="8" height="76" width="763" format="[general]" html.valueishtml="0"  name=tooltipgridheadertext visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="10542" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=display visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="10880" y="8" height="76" width="434" format="[general]" html.valueishtml="0"  name=newrowrequired visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="11323" y="8" height="76" width="1413" format="[general]" html.valueishtml="0"  name=newrowrequiredexpression visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="12745" y="8" height="76" width="421" format="[general]" html.valueishtml="0"  name=newroweditable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="13175" y="8" height="76" width="2208" format="[general]" html.valueishtml="0"  name=newroweditableexpression visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="15392" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=oldrowrequired visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="15808" y="8" height="76" width="5760" format="[general]" html.valueishtml="0"  name=oldrowrequiredexpression visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="21577" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=oldroweditable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="21979" y="8" height="76" width="5760" format="[general]" html.valueishtml="0"  name=oldroweditableexpression visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=32766 border="0" color="33554432" x="27749" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=gridformat visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="33554432" x="28087" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=formformat visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="33554432" x="28425" y="8" height="76" width="5760" format="[general]" html.valueishtml="0"  name=userdefinedgridformat visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="34194" y="8" height="76" width="5760" format="[general]" html.valueishtml="0"  name=userdefinedformformat visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="33554432" x="39963" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=defaultgridwidth visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="33554432" x="40398" y="8" height="76" width="448" format="[general]" html.valueishtml="0"  name=defaultformwidth visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="0" color="33554432" x="40855" y="8" height="76" width="480" format="[general]" html.valueishtml="0"  name=stringtypeeditstyle visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="0" color="33554432" x="41344" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=columnallowsnull visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="1" tabsequence=32766 border="0" color="33554432" x="41806" y="8" height="76" width="494" format="[general]" html.valueishtml="0"  name=columniscomputed visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="1" tabsequence=32766 border="0" color="33554432" x="42309" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=columnisidentity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="1" tabsequence=32766 border="0" color="33554432" x="42743" y="8" height="76" width="485" format="[general]" html.valueishtml="0"  name=columnisindexable visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="1" tabsequence=32766 border="0" color="33554432" x="43237" y="8" height="76" width="521" format="[general]" html.valueishtml="0"  name=columnisrowguidcol visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="33554432" x="43767" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=columnprecision visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="0" tabsequence=32766 border="0" color="33554432" x="44206" y="8" height="76" width="3675" format="[general]" html.valueishtml="0"  name=columntype visible="1" edit.limit=133 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="1" tabsequence=32766 border="0" color="33554432" x="47890" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=columnscale visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

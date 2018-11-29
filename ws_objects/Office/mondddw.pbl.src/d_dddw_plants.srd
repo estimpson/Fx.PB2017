@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_dddw_plants.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="553648127"  height.autosize=yes)
+table(column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="destination.name" )
+ column=(type=char(20) update=yes updatewhereclause=yes key=yes name=destination dbname="destination.destination" )
+ retrieve="SELECT destination.name,   
+         destination.destination  
+    FROM destination  
+   WHERE destination.plant > ''   
+ORDER BY destination.name ASC   
+" update="destination" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Plant Code"border="6" color="37234728" x="9" y="8" height="52" width="489"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Plant Name"border="6" color="37234728" x="507" y="8" height="52" width="1070"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="8" height="56" width="489" format="[general]"  name=destination edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="507" y="8" height="56" width="1070" format="[general]"  name=name height.autosize=yes edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

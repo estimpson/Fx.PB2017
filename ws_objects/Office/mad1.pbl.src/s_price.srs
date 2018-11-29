@@ -1,0 +1,6 @@
+﻿$PBExportHeader$s_price.srs
+global type s_price from structure
+    string spart
+    string scategory
+end type
+

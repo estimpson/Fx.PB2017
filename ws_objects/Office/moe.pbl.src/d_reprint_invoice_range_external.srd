@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_reprint_invoice_range_external.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=5 color="536870912")
+footer(height=1 color="536870912")
+detail(height=201 color="536870912")
+table(column=(type=char(10) name=FromInvoice dbname="FromInvoice" )
+ column=(type=char(10) name=ToInvoice dbname="ToInvoice" )
+ )
+column(band=detail id=1 border="5" alignment="0" color="0" height="77" tabsequence=10 width="366" x="220" y="4"  name=frominvoice format="[general]" editmask.mask="#########" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")
+column(band=detail id=2 border="5" alignment="0" color="0" height="77" tabsequence=20 width="366" x="220" y="100"  name=toinvoice format="[general]" editmask.mask="#########" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")
+text(band=detail color="8388608" alignment="1" border="0" x="1" y="4" height="65" width="183" text="From:" name=frominvoice_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=detail color="8388608" alignment="1" border="0" x="74" y="100" height="65" width="110" text="To:" name=toinvoice_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

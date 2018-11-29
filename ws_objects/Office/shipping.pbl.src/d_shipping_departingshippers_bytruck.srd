@@ -1,0 +1,76 @@
+﻿$PBExportHeader$d_shipping_departingshippers_bytruck.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes key=yes name=shippernumber dbname="Shipping_DepartingShipperList.ShipperNumber" )
+ column=(type=char(25) updatewhereclause=yes name=customercode dbname="Shipping_DepartingShipperList.CustomerCode" )
+ column=(type=char(50) updatewhereclause=yes name=customername dbname="Shipping_DepartingShipperList.CustomerName" )
+ column=(type=char(20) updatewhereclause=yes name=shiptocode dbname="Shipping_DepartingShipperList.ShipToCode" )
+ column=(type=char(50) updatewhereclause=yes name=shiptoname dbname="Shipping_DepartingShipperList.ShipToName" )
+ column=(type=char(30) updatewhereclause=yes name=trucknumber dbname="Shipping_DepartingShipperList.TruckNumber" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=pronumber dbname="Shipping_DepartingShipperList.PRONumber" )
+ column=(type=long updatewhereclause=yes name=legacyshipperid dbname="Shipping_DepartingShipperList.LegacyShipperID" )
+ column=(type=long updatewhereclause=yes name=isverified dbname="Shipping_DepartingShipperList.IsVerified" )
+ column=(type=long updatewhereclause=yes name=objectcount dbname="Shipping_DepartingShipperList.ObjectCount" )
+ column=(type=long updatewhereclause=yes name=looseboxcount dbname="Shipping_DepartingShipperList.LooseBoxCount" )
+ column=(type=long updatewhereclause=yes name=palletcount dbname="Shipping_DepartingShipperList.PalletCount" )
+ column=(type=long updatewhereclause=yes name=boxonpalletcount dbname="Shipping_DepartingShipperList.BoxOnPalletCount" )
+ column=(type=long updatewhereclause=yes name=verifiedlooseboxcount dbname="Shipping_DepartingShipperList.VerifiedLooseBoxCount" )
+ column=(type=long updatewhereclause=yes name=verifiedpalletcount dbname="Shipping_DepartingShipperList.VerifiedPalletCount" )
+ column=(type=long updatewhereclause=yes name=verifiedboxonpalletcount dbname="Shipping_DepartingShipperList.VerifiedBoxOnPalletCount" )
+ column=(type=datetime updatewhereclause=yes name=departurebegindt dbname="Shipping_DepartingShipperList.DepartureBeginDT" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	sdsl.ShipperNumber
+,   sdsl.CustomerCode
+,   sdsl.CustomerName
+,   sdsl.ShipToCode
+,   sdsl.ShipToName
+,   sdsl.TruckNumber
+,   sdsl.PRONumber
+,   sdsl.LegacyShipperID
+,   sdsl.IsVerified
+,   sdsl.ObjectCount
+,   sdsl.LooseBoxCount
+,   sdsl.PalletCount
+,   sdsl.BoxOnPalletCount
+,   sdsl.VerifiedLooseBoxCount
+,   sdsl.VerifiedPalletCount
+,   sdsl.VerifiedBoxOnPalletCount
+,   sdsl.DepartureBeginDT
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.Shipping_DepartingShipperList sdsl
+where
+	sdsl.TruckNumber = :TruckNumber
+order by
+	sdsl.ShipperNumber
+
+" update="Shipping_DepartingShipperList" updatewhere=0 updatekeyinplace=yes arguments=(("TruckNumber", string)) )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="448" y="8" height="76" width="334" format="  [general]" html.valueishtml="0"  name=shiptocode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="791" y="8" height="76" width="978" format="[general]" html.valueishtml="0"  name=shiptoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1778" y="8" height="76" width="613" format="  [general]" html.valueishtml="0"  name=trucknumber visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=10 border="0" color="33554432" x="2400" y="8" height="76" width="549" format="[general]" html.valueishtml="0"  name=pronumber visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="110" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=legacyshipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper ID" border="6" color="33554432" x="110" y="8" height="72" width="329" html.valueishtml="0"  name=legacyshipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to code" border="6" color="33554432" x="448" y="8" height="72" width="334" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="name" border="6" color="33554432" x="791" y="8" height="72" width="978" html.valueishtml="0"  name=shiptoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Truck number" border="6" color="33554432" x="1778" y="8" height="72" width="613" html.valueishtml="0"  name=trucknumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PRO number" border="6" color="33554432" x="2400" y="8" height="72" width="549" html.valueishtml="0"  name=pronumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="5" y="8" height="76" width="96" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

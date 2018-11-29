@@ -1,0 +1,168 @@
+﻿$PBExportHeader$m_submenu.srm
+forward
+global type m_submenu from menu
+end type
+type m_file from menu within m_submenu
+end type
+type m_exit from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_cancel from menu within m_file
+end type
+type m_file from menu within m_submenu
+m_exit m_exit
+m_save m_save
+m_cancel m_cancel
+end type
+type m_edit from menu within m_submenu
+end type
+type m_edit from menu within m_submenu
+end type
+type m_window from menu within m_submenu
+end type
+type m_window from menu within m_submenu
+end type
+end forward
+
+global type m_submenu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+end type
+global m_submenu m_submenu
+
+type variables
+String sm_iswindow=''
+end variables
+
+on m_submenu.create
+m_submenu=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window}
+end on
+
+on m_submenu.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+end on
+
+type m_file from menu within m_submenu
+m_exit m_exit
+m_save m_save
+m_cancel m_cancel
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_exit=create m_exit
+this.m_save=create m_save
+this.m_cancel=create m_cancel
+this.Item[]={this.m_exit, &
+this.m_save, &
+this.m_cancel}
+end on
+
+on m_file.destroy
+destroy(this.m_exit)
+destroy(this.m_save)
+destroy(this.m_cancel)
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+this.Text="&Exit~tAlt+E"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=1
+this.Shortcut=581
+end on
+
+event clicked;IF sm_iswindow = 'w_changelaborrate' THEN
+	w_changelaborrate.triggerevent('ue_exit')
+ELSEif sm_iswindow = 'w_changemcnrate' THEN 	
+	w_changemcnrate.triggerevent('ue_exit')
+END IF 	
+
+//IF sg_iswindow = 'w_changelaborrate' THEN
+//	w_changelaborrate.triggerevent('ue_exit')
+//ELSEif sg_iswindow = 'w_changemcnrate' THEN 	
+//	w_changemcnrate.triggerevent('ue_exit')
+//END IF 	
+end event
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.ToolBarItemName="Save!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=2
+this.Shortcut=595
+end on
+
+event clicked;IF sm_iswindow = 'w_changelaborrate' THEN
+	w_changelaborrate.triggerevent('ue_save')
+ELSE
+	w_changemcnrate.triggerevent('ue_save')
+END IF 	
+
+//IF sg_iswindow = 'w_changelaborrate' THEN
+//	w_changelaborrate.triggerevent('ue_save')
+//ELSE
+//	w_changemcnrate.triggerevent('ue_save')
+//END IF 	
+end event
+
+type m_cancel from menu within m_file
+end type
+
+on m_cancel.create
+this.Text="&Cancel~tAlt+C"
+this.ToolBarItemName="Custom080!"
+this.ToolBarItemText="Cancel"
+this.ToolBarItemOrder=3
+this.Shortcut=579
+end on
+
+event clicked;IF sm_iswindow = 'w_changelaborrate' THEN
+	w_changelaborrate.triggerevent('ue_cancel')
+ELSE
+	w_changemcnrate.triggerevent('ue_cancel')	
+END IF 	
+
+//IF sg_iswindow = 'w_changelaborrate' THEN
+//	w_changelaborrate.triggerevent('ue_cancel')
+//ELSE
+//	w_changemcnrate.triggerevent('ue_cancel')	
+//END IF 	
+end event
+
+type m_edit from menu within m_submenu
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_submenu
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+

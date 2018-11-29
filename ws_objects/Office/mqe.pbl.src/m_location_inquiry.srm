@@ -1,0 +1,20 @@
+﻿$PBExportHeader$m_location_inquiry.srm
+$PBExportComments$location inquiry menu
+forward
+global type m_location_inquiry from m_inquiry_ancestor
+end type
+end forward
+
+global type m_location_inquiry from m_inquiry_ancestor
+end type
+global m_location_inquiry m_location_inquiry
+
+on m_location_inquiry.create
+m_location_inquiry=this
+call super::create
+end on
+
+on m_location_inquiry.destroy
+call super::destroy
+end on
+

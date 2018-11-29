@@ -1,0 +1,408 @@
+﻿$PBExportHeader$m_packline.srm
+forward
+global type m_packline from menu
+end type
+type m_file from menu within m_packline
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_packline
+m_exit m_exit
+end type
+type m_edit from menu within m_packline
+end type
+type m_edit from menu within m_packline
+end type
+type m_operation from menu within m_packline
+end type
+type m_pallet from menu within m_operation
+end type
+type m_changedate from menu within m_operation
+end type
+type m_clearscreen from menu within m_operation
+end type
+type m_newpallet from menu within m_operation
+end type
+type m_palletlabel from menu within m_operation
+end type
+type m_sort from menu within m_operation
+end type
+type m_jobcompletion from menu within m_operation
+end type
+type m_scaleinterface from menu within m_operation
+end type
+type m_custom1 from menu within m_operation
+end type
+type m_custom2 from menu within m_operation
+end type
+type m_custom3 from menu within m_operation
+end type
+type m_operation from menu within m_packline
+m_pallet m_pallet
+m_changedate m_changedate
+m_clearscreen m_clearscreen
+m_newpallet m_newpallet
+m_palletlabel m_palletlabel
+m_sort m_sort
+m_jobcompletion m_jobcompletion
+m_scaleinterface m_scaleinterface
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+end type
+type m_window from menu within m_packline
+end type
+type m_window from menu within m_packline
+end type
+type m_help from menu within m_packline
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_packline
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_packline from menu
+m_file m_file
+m_edit m_edit
+m_operation m_operation
+m_window m_window
+m_help m_help
+end type
+global m_packline m_packline
+
+on m_packline.create
+m_packline=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_operation=create m_operation
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_operation, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_packline.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_operation)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_packline
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_exit=create m_exit
+this.Item[]={this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_exit)
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;If MessageBox ( "Exit Packing Line", "Are you sure you want to exit?", Question!, YesNo!, 1 ) = 1 Then
+	Close(ParentWindow)
+End If
+end on
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit the packline system"
+this.ToolBarItemName="exit!"
+this.ToolBarItemText="E&xit"
+end on
+
+type m_edit from menu within m_packline
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_operation from menu within m_packline
+m_pallet m_pallet
+m_changedate m_changedate
+m_clearscreen m_clearscreen
+m_newpallet m_newpallet
+m_palletlabel m_palletlabel
+m_sort m_sort
+m_jobcompletion m_jobcompletion
+m_scaleinterface m_scaleinterface
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+end type
+
+on m_operation.create
+this.Text="&Operation"
+this.m_pallet=create m_pallet
+this.m_changedate=create m_changedate
+this.m_clearscreen=create m_clearscreen
+this.m_newpallet=create m_newpallet
+this.m_palletlabel=create m_palletlabel
+this.m_sort=create m_sort
+this.m_jobcompletion=create m_jobcompletion
+this.m_scaleinterface=create m_scaleinterface
+this.m_custom1=create m_custom1
+this.m_custom2=create m_custom2
+this.m_custom3=create m_custom3
+this.Item[]={this.m_pallet, &
+this.m_changedate, &
+this.m_clearscreen, &
+this.m_newpallet, &
+this.m_palletlabel, &
+this.m_sort, &
+this.m_jobcompletion, &
+this.m_scaleinterface, &
+this.m_custom1, &
+this.m_custom2, &
+this.m_custom3}
+end on
+
+on m_operation.destroy
+destroy(this.m_pallet)
+destroy(this.m_changedate)
+destroy(this.m_clearscreen)
+destroy(this.m_newpallet)
+destroy(this.m_palletlabel)
+destroy(this.m_sort)
+destroy(this.m_jobcompletion)
+destroy(this.m_scaleinterface)
+destroy(this.m_custom1)
+destroy(this.m_custom2)
+destroy(this.m_custom3)
+end on
+
+type m_pallet from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("check_pallet")
+end on
+
+on m_pallet.create
+this.Text="Check &Pallet~tAlt+P"
+this.Microhelp="Check the pallet number for object"
+this.ToolBarItemName="pallet.bmp"
+this.ToolBarItemText="Pallet"
+this.ToolBarItemOrder=10
+this.Shortcut=592
+end on
+
+type m_changedate from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("change_date")
+end on
+
+on m_changedate.create
+this.Text="Change &Date~tAlt+D"
+this.Microhelp="Change view date"
+this.ToolBarItemName="ComputeToday!"
+this.ToolBarItemText="ViewDate"
+this.ToolBarItemOrder=20
+this.Shortcut=580
+end on
+
+type m_clearscreen from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("clear_screen")
+end on
+
+on m_clearscreen.create
+this.Text="Clear &Screen~tAlt+S"
+this.Microhelp="Clear Screen and get eady for packing against inventory"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Clear"
+this.ToolBarItemOrder=30
+this.Shortcut=595
+end on
+
+type m_newpallet from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("new_pallet")
+end on
+
+on m_newpallet.create
+this.Text="&New Pallet~tAlt+N"
+this.Microhelp="Create new pallet"
+this.ToolBarItemName="Custom025!"
+this.ToolBarItemText="New Plt"
+this.ToolBarItemOrder=40
+this.Shortcut=590
+end on
+
+type m_palletlabel from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("print_pallet_label")
+end on
+
+on m_palletlabel.create
+this.Text="Pallet &Label~tAlt+L"
+this.Microhelp="Print pallet label"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Plt Label"
+this.ToolBarItemOrder=50
+this.Shortcut=588
+end on
+
+type m_sort from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("sort_demand")
+end on
+
+on m_sort.create
+this.Text="S&ort~tAlt+O"
+this.Microhelp="Sort the demand screen"
+this.ToolBarItemName="Sort!"
+this.ToolBarItemText="Sort"
+this.ToolBarItemOrder=60
+this.Shortcut=591
+end on
+
+type m_jobcompletion from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent("job_completion")
+end on
+
+on m_jobcompletion.create
+this.Text="&Job Completion~tAlt+J"
+this.Microhelp="Job Completion"
+this.ToolBarItemName="CreateRuntime!"
+this.ToolBarItemText="Complete"
+this.ToolBarItemOrder=70
+this.Shortcut=586
+end on
+
+type m_scaleinterface from menu within m_operation
+end type
+
+on clicked;w_smart_job_completion_version2.TriggerEvent ( "ue_popup_scale" )
+end on
+
+on m_scaleinterface.create
+this.Text="&Scale Interface~tAlt+I"
+this.Microhelp="Use the scale interface"
+this.ToolBarItemName="EditMask!"
+this.ToolBarItemText="Scale"
+this.ToolBarItemOrder=80
+this.Shortcut=585
+end on
+
+type m_custom1 from menu within m_operation
+end type
+
+on m_custom1.create
+this.Text="Custom&1"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=90
+end on
+
+event clicked;f_execute_custom_menu ("monitor.packline1")
+end event
+
+type m_custom2 from menu within m_operation
+end type
+
+on m_custom2.create
+this.Text="Custom&2"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=100
+end on
+
+event clicked;f_execute_custom_menu ("monitor.packline2")
+end event
+
+type m_custom3 from menu within m_operation
+end type
+
+on m_custom3.create
+this.Text="Custom&3"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=110
+end on
+
+event clicked;f_execute_custom_menu ("monitor.packline3")
+end event
+
+type m_window from menu within m_packline
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_packline
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 1001 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

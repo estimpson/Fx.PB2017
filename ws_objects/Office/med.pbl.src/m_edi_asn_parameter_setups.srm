@@ -1,0 +1,169 @@
+﻿$PBExportHeader$m_edi_asn_parameter_setups.srm
+forward
+global type m_edi_asn_parameter_setups from menu
+end type
+type m_m_overlay from menu within m_edi_asn_parameter_setups
+end type
+type m_save from menu within m_m_overlay
+end type
+type m_exit from menu within m_m_overlay
+end type
+type m_m_overlay from menu within m_edi_asn_parameter_setups
+m_save m_save
+m_exit m_exit
+end type
+type m_edit from menu within m_edi_asn_parameter_setups
+end type
+type m_edit from menu within m_edi_asn_parameter_setups
+end type
+type m_windows from menu within m_edi_asn_parameter_setups
+end type
+type m_windows from menu within m_edi_asn_parameter_setups
+end type
+type m_help from menu within m_edi_asn_parameter_setups
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_edi_asn_parameter_setups
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_edi_asn_parameter_setups from menu
+m_m_overlay m_m_overlay
+m_edit m_edit
+m_windows m_windows
+m_help m_help
+end type
+global m_edi_asn_parameter_setups m_edi_asn_parameter_setups
+
+on m_edi_asn_parameter_setups.create
+m_edi_asn_parameter_setups=this
+this.m_m_overlay=create m_m_overlay
+this.m_edit=create m_edit
+this.m_windows=create m_windows
+this.m_help=create m_help
+this.Item[]={this.m_m_overlay, &
+this.m_edit, &
+this.m_windows, &
+this.m_help}
+end on
+
+on m_edi_asn_parameter_setups.destroy
+destroy(this.m_m_overlay)
+destroy(this.m_edit)
+destroy(this.m_windows)
+destroy(this.m_help)
+end on
+
+type m_m_overlay from menu within m_edi_asn_parameter_setups
+m_save m_save
+m_exit m_exit
+end type
+
+on m_m_overlay.create
+this.Text="&File"
+this.m_save=create m_save
+this.m_exit=create m_exit
+this.Item[]={this.m_save, &
+this.m_exit}
+end on
+
+on m_m_overlay.destroy
+destroy(this.m_save)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_m_overlay
+end type
+
+on clicked;w_edi_asn_parameter_setups.TriggerEvent("updt")
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.Microhelp="Save parameter changes"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=30
+this.Shortcut=595
+end on
+
+type m_exit from menu within m_m_overlay
+end type
+
+on clicked;Close (w_edi_asn_parameter_setups)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+E"
+this.Microhelp="Exit the overlay setup"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=581
+end on
+
+type m_edit from menu within m_edi_asn_parameter_setups
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_windows from menu within m_edi_asn_parameter_setups
+end type
+
+on m_windows.create
+this.Text="&Windows"
+end on
+
+on m_windows.destroy
+end on
+
+type m_help from menu within m_edi_asn_parameter_setups
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4507 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

@@ -1,0 +1,26 @@
+﻿$PBExportHeader$d_part_gl_account.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=120 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_gl_account.part" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=tran_type dbname="part_gl_account.tran_type" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=gl_account_no_db dbname="part_gl_account.gl_account_no_db" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=gl_account_no_cr dbname="part_gl_account.gl_account_no_cr" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="part_gl_account.name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_gl_account~" ) COLUMN(NAME=~"part_gl_account.part~") COLUMN(NAME=~"part_gl_account.tran_type~") COLUMN(NAME=~"part_gl_account.gl_account_no_db~") COLUMN(NAME=~"part_gl_account.gl_account_no_cr~") COLUMN(NAME=~"part_gl_account.name~")) " update="part_gl_account" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Natural GL
+Segment (cr)"border="6" color="37234728" x="1989" y="8" height="104" width="471"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Product
+Line"border="6" color="37234728" x="9" y="8" height="104" width="603"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Transaction
+Type"border="6" color="37234728" x="622" y="8" height="104" width="859"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Natural GL
+Segment (db)"border="6" color="37234728" x="1490" y="8" height="104" width="489"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="37234728" x="1989" y="4" height="64" width="471" format="[general]"  name=gl_account_no_cr edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="37234728" x="9" y="4" height="64" width="603" format="[general]"  name=part dddw.name=d_dddw_product_lines dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=250 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="37234728" x="622" y="4" height="64" width="859" format=""  name=tran_type dddw.name=d_gl_tran_type_list dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="37234728" x="1490" y="4" height="64" width="489" format="[general]"  name=gl_account_no_db edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

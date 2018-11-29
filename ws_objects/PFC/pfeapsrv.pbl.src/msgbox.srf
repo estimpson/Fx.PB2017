@@ -1,0 +1,31 @@
+﻿$PBExportHeader$msgbox.srf
+global type msgbox from function_object
+end type
+
+forward prototypes
+global function integer msgbox (string _text)
+global function integer msgbox (string _text, icon _icon)
+global function integer msgbox (string _text, icon _icon, button _button)
+global function integer msgbox (string _text, icon _icon, button _button, integer _default)
+end prototypes
+
+global function integer msgbox (string _text);
+return	msgbox(_text, Information!, OK!, 1)
+
+end function
+
+global function integer msgbox (string _text, icon _icon)
+return	msgbox(_text, _icon, OK!, 1)
+
+end function
+
+global function integer msgbox (string _text, icon _icon, button _button)
+return	msgbox(_text, _icon, _button, 1)
+
+end function
+
+global function integer msgbox (string _text, icon _icon, button _button, integer _default)
+return	MessageBox(gnv_App.iapp_Object.DisplayName, _text, _icon, _button, _default)
+
+end function
+

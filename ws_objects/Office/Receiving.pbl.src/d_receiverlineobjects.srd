@@ -1,0 +1,109 @@
+﻿$PBExportHeader$d_receiverlineobjects.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes identity=yes name=receiverobjectid dbname="ReceiverObjects.ReceiverObjectID" )
+ column=(type=long updatewhereclause=yes name=receiverlineid dbname="ReceiverObjects.ReceiverLineID" )
+ column=(type=number updatewhereclause=yes name=objectno dbname="ObjectNo" )
+ column=(type=decimal(0) updatewhereclause=yes name=status dbname="ReceiverObjects.Status" )
+ column=(type=long updatewhereclause=yes name=ponumber dbname="ReceiverObjects.PONumber" )
+ column=(type=long updatewhereclause=yes name=polineno dbname="ReceiverObjects.POLineNo" )
+ column=(type=datetime updatewhereclause=yes name=polineduedate dbname="ReceiverObjects.POLineDueDate" )
+ column=(type=long updatewhereclause=yes name=serial dbname="ReceiverObjects.Serial" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=partcode dbname="ReceiverObjects.PartCode" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=partdescription dbname="ReceiverObjects.PartDescription" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=engineeringlevel dbname="ReceiverObjects.EngineeringLevel" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyobject dbname="ReceiverObjects.QtyObject" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=packagetype dbname="ReceiverObjects.PackageType" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=location dbname="ReceiverObjects.Location" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="ReceiverObjects.Plant" )
+ column=(type=long update=yes updatewhereclause=yes name=parentserial dbname="ReceiverObjects.ParentSerial" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=draccount dbname="ReceiverObjects.DrAccount" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=craccount dbname="ReceiverObjects.CrAccount" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=lot dbname="ReceiverObjects.Lot" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=note dbname="ReceiverObjects.Note" )
+ column=(type=char(1) updatewhereclause=yes name=qualityalertflag dbname="QualityAlertFlag" )
+ column=(type=char(30) updatewhereclause=yes name=userdefinedstatus dbname="ReceiverObjects.UserDefinedStatus" )
+ column=(type=datetime updatewhereclause=yes name=receivedt dbname="ReceiverObjects.ReceiveDT" )
+ retrieve="
+select
+	ro.ReceiverObjectID
+,	ro.ReceiverLineID
+,	ObjectNo = ro.[LineNo]
+,	ro.Status
+,	ro.PONumber
+,	ro.POLineNo
+,	ro.POLineDueDate
+,	ro.Serial
+,	ro.PartCode
+,	ro.PartDescription
+,	ro.EngineeringLevel
+,	ro.QtyObject
+,	ro.PackageType
+,	ro.Location
+,	ro.Plant
+,	ro.ParentSerial
+,	ro.DrAccount
+,	ro.CrAccount
+,	ro.Lot
+,	ro.Note
+,	QualityAlertFlag = p.quality_alert
+,	ro.UserDefinedStatus
+,	ro.ReceiveDT
+from
+	dbo.ReceiverObjects ro
+	left join dbo.part p
+		on p.part = ro.PartCode
+where
+	ro.ReceiverLineID = :ReceiverLineID
+order by
+	3
+" update="ReceiverObjects" updatewhere=0 updatekeyinplace=no arguments=(("ReceiverLineID", number)) )
+text(band=header alignment="0" text="Object No" border="6" color="33554432" x="9" y="4" height="60" width="247" html.valueishtml="0"  name=objectno_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="265" y="4" height="60" width="347" html.valueishtml="0"  name=status_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="622" y="4" height="60" width="398" html.valueishtml="0"  name=serial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="1029" y="4" height="60" width="366" html.valueishtml="0"  name=partcode_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="1403" y="4" height="60" width="539" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Qty" border="6" color="33554432" x="1952" y="4" height="60" width="197" html.valueishtml="0"  name=qtyobject_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Lot" border="6" color="33554432" x="2158" y="4" height="60" width="494" html.valueishtml="0"  name=lot_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Package Type" border="6" color="33554432" x="2661" y="4" height="60" width="361" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Location" border="6" color="33554432" x="3031" y="4" height="60" width="366" html.valueishtml="0"  name=location_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="3406" y="4" height="60" width="270" html.valueishtml="0"  name=plant_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Pallet" border="6" color="33554432" x="3771" y="4" height="60" width="288" html.valueishtml="0"  name=parentserial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="bitmap(~"pallet.bmp~")"border="0" color="33554432" x="3685" y="4" height="60" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="bitmap(~"noteyesw.bmp~")"border="0" color="33554432" x="4069" y="4" height="60" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Note" border="6" color="33554432" x="4155" y="4" height="60" width="366" html.valueishtml="0"  name=note_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="4617" y="4" height="60" width="681" html.valueishtml="0"  name=userdefinedstatus_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Received DT" border="6" color="33554432" x="5307" y="4" height="60" width="398" html.valueishtml="0"  name=receivedt_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=header alignment="0" expression="bitmap(~"warning_24.bmp~")"border="0" color="33554432" x="4530" y="4" height="60" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="64" width="247" format="[general]  " html.valueishtml="0"  name=objectno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="265" y="0" height="64" width="347" format="[general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="622" y="0" height="64" width="398" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1029" y="0" height="64" width="366" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1403" y="0" height="64" width="539" format="[general]" html.valueishtml="0"  name=partdescription visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="1" tabsequence=10 border="0" color="33554432" x="1952" y="0" height="64" width="197" format="###,##0.######" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=qtyobject visible="1" edit.limit=0 edit.case=any edit.format="###,##0.######" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=19 alignment="0" tabsequence=20 border="0" color="33554432" x="2158" y="0" height="64" width="494" format="[general] " html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=lot visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=30 border="0" color="33554432" x="2661" y="0" height="64" width="361" format="[general]" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=packagetype visible="1" dddw.name=d_packaging_for_part_white_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=120 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=40 border="0" color="33554432" x="3031" y="0" height="64" width="366" format="[general]" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=location visible="1" dddw.name=d_part_master_primary_location_dddw dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=270 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="0" tabsequence=50 border="0" color="33554432" x="3406" y="0" height="64" width="270" format="[general]" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=plant visible="1" dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=600 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="3771" y="0" height="64" width="288" format="[general]" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=parentserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=20 alignment="0" tabsequence=60 border="0" color="33554432" x="4155" y="0" height="64" width="366" format="[general]" html.valueishtml="0" protect="0~tif (serial > 0, 1, 0)"  name=note visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="bitmap(if(Note>~"~", ~"noteyesw.bmp~", ~"~"))"border="0" color="33554432" x="4069" y="0" height="64" width="78" format="[GENERAL]" html.valueishtml="0"  name=noteicon visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=22 alignment="0" tabsequence=70 border="0" color="33554432" x="4617" y="0" height="64" width="681" format="[general]" html.valueishtml="0"  name=userdefinedstatus visible="1" dddw.name=d_receiving_objectstatus dddw.displaycolumn=display_name dddw.datacolumn=display_name dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="5307" y="0" height="64" width="398" format="[shortdate] [time]" html.valueishtml="0"  name=receivedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="bitmap(if(ParentSerial>0, ~"pallet.bmp~", ~"~"))"border="0" color="33554432" x="3685" y="0" height="64" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="bitmap(if(QualityAlertFlag=~"Y~", ~"warning_24.bmp~", ~"~"))"border="0" color="33554432" x="4530" y="0" height="64" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_2  tag="Quality Alert Flag - If showing, object will be received on hold." visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

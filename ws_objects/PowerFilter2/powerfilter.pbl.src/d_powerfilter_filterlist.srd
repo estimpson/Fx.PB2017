@@ -1,0 +1,19 @@
+﻿$PBExportHeader$d_powerfilter_filterlist.srd
+$PBExportComments$parameter list for dropdown datawindow in custom filter window
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=8 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="1073741824" )
+table(column=(type=char(30) updatewhereclause=yes name=filtertype dbname="filtertype" )
+ column=(type=char(30) updatewhereclause=yes name=displaytext dbname="displaytext" )
+ column=(type=number updatewhereclause=yes name=sortorder dbname="sortorder" )
+  sort="sortorder A " )
+data(null null 1, "equals", "equals", 2, "does not equal", "does not equal", 3, "is greater than", "is greater than", 4, "is greater than or equal to", "is greater than or equal to", 5, "is less than", "is less than", 6, "is less than or equal to", "is less than or equal to", 7, "begins with", "begins with", 8, "does not begin with", "does not begin with", 9, "ends with", "ends with", 10, "does not end with", "does not end with", 11, "contains", "contains", 12, "does not contain", "does not contain", 13, ) 
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="52" width="809" format="[general]" html.valueishtml="0"  name=displaytext  tag="//MULTILANG use this displaytext column for local language.  Do not change Filtertype column values." visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

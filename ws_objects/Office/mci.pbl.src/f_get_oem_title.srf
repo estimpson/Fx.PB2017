@@ -1,0 +1,16 @@
+﻿$PBExportHeader$f_get_oem_title.srf
+global type f_get_oem_title from function_object
+end type
+
+forward prototypes
+global function string f_get_oem_title (string as_serial)
+end prototypes
+
+global function string f_get_oem_title (string as_serial);Choose Case as_Serial
+	Case "475038227"
+		Return "Vanguard NT"
+	Case Else
+		Return ""
+End Choose
+end function
+

@@ -1,0 +1,80 @@
+﻿$PBExportHeader$d_reportlibrary_reportedit.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=968 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=reportname dbname="ReportLibrary.ReportName" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=reporttype dbname="ReportLibrary.ReportType" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="ReportLibrary.Type" values="Raw DW	D/Compiled DW	C/Window	W/External	E/" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=objectname dbname="ReportLibrary.ObjectName" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=libraryname dbname="ReportLibrary.LibraryName" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=preview dbname="ReportLibrary.Preview" values="Print Preview ?:	Y/Print Preview ?:	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printsetup dbname="ReportLibrary.PrintSetup" values="Show Printer Selection ?:	Y/Show Printer Selection ?:	N" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=printer dbname="ReportLibrary.Printer" )
+ column=(type=number update=yes updatewhereclause=yes name=copies dbname="ReportLibrary.Copies" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=labelformat dbname="ReportLibrary.LabelFormat" )
+ column=(type=char(250) update=yes updatewhereclause=yes name=labelpath dbname="ReportLibrary.LabelPath" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	rl.ReportName
+,	rl.ReportType
+,	rl.Type
+,	rl.ObjectName
+,	rl.LibraryName
+,	rl.Preview
+,	rl.PrintSetup
+,	rl.Printer
+,	rl.Copies
+,	rl.LabelFormat
+,	rl.LabelPath
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.ReportLibrary rl
+where
+	rl.ReportName = :reportName
+
+" update="ReportLibrary" updatewhere=0 updatekeyinplace=yes arguments=(("reportName", string)) )
+groupbox(band=detail text="Profile"border="5" color="33554432" x="37" y="4" height="384" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Report name:" border="0" color="33554432" x="73" y="100" height="64" width="361" html.valueishtml="0"  name=reportname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Report type:" border="0" color="33554432" x="73" y="292" height="64" width="361" html.valueishtml="0"  name=report_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="73" y="164" height="76" width="914" format="[general]" html.valueishtml="0"  name=reportname visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="475" y="292" height="76" width="914" format="[general]" html.valueishtml="0"  name=reporttype visible="1" dddw.name=d_reportlibrary_reporttypelist dddw.displaycolumn=reporttype dddw.datacolumn=reporttype dddw.percentwidth=216 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+button(band=detail text="" filename="New.bmp" enabled=yes action="0" border="0" color="33554432" x="1317" y="172" height="72" width="82" vtextalign="0" htextalign="0"  name=b_new  tag="New report..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Delete.bmp" enabled=yes action="0" border="0" color="33554432" x="1207" y="172" height="72" width="82" vtextalign="0" htextalign="0"  name=b_delete  tag="Delete report..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Rename.bmp" enabled=yes action="0" border="0" color="33554432" x="1097" y="172" height="72" width="82" vtextalign="0" htextalign="0"  name=b_rename  tag="Rename report..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="CopyEdit.bmp" enabled=yes action="0" border="0" color="33554432" x="987" y="172" height="72" width="82" vtextalign="0" htextalign="0"  name=b_copy  tag="Copy report..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+groupbox(band=detail text="Report Properties"border="5" color="33554432" x="1499" y="4" height="960" width="1390"  name=gb_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=100 border="0" color="33554432" x="1536" y="868" height="76" width="549" format="[general]" html.valueishtml="0"  name=preview visible="1" checkbox.text="Print Preview ?:" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=60 border="0" color="33554432" x="1536" y="100" height="160" width="1317" format="[general]" html.valueishtml="0"  name=type visible="1" radiobuttons.columns=2 radiobuttons.scale=no radiobuttons.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=90 border="0" color="33554432" x="1536" y="740" height="76" width="1243" format="[general]" html.valueishtml="0"  name=labelpath visible="1" edit.limit=250 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Label path:" border="0" color="33554432" x="1536" y="676" height="64" width="347" html.valueishtml="0"  name=labelpath_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=detail text="" filename="fileopen-16.bmp" enabled=yes action="0" border="0" color="33554432" x="2779" y="740" height="72" width="82" vtextalign="0" htextalign="0"  name=b_chooselabelpath  tag="Choose label path..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+groupbox(band=detail text="Printer Properties"border="5" color="33554432" x="37" y="420" height="416" width="1390"  name=gb_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=50 border="0" color="33554432" x="549" y="708" height="64" width="805" format="[general]" html.valueishtml="0"  name=printsetup visible="1" checkbox.text="Show Printer Selection ?:" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Printer name:" border="0" color="33554432" x="73" y="516" height="64" width="361" html.valueishtml="0"  name=printer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Copies:" border="0" color="33554432" x="73" y="708" height="64" width="219" html.valueishtml="0"  name=copies_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="0" color="33554432" x="73" y="580" height="76" width="1317" format="[general]" html.valueishtml="0"  name=printer visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=9 alignment="1" tabsequence=40 border="0" color="33554432" x="293" y="708" height="76" width="183" format="[general]" html.valueishtml="0"  name=copies visible="1" editmask.spin=yes editmask.mask="###,##0" editmask.spinrange="1~~999" editmask.spinincr=1 editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+bitmap(band=detail filename="ok-32.bmp" x="2926" y="36" height="128" width="146" border="0"  name=p_ok  tag="Keep changes..." visible="1" )
+bitmap(band=detail filename="not_ok-32.bmp" x="2926" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel changes..." visible="1" )
+text(band=detail alignment="0" text="Object name:" border="0" color="33554432" x="1536" y="484" height="64" width="357" html.valueishtml="0"  name=objectname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=80 border="0" color="33554432" x="1536" y="548" height="76" width="1243" format="[general]" html.valueishtml="0"  name=objectname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+button(band=detail text="" filename="fileopen-16.bmp" enabled=yes action="0" border="0" color="33554432" x="2779" y="548" height="72" width="82" vtextalign="0" htextalign="0"  name=b_chooseobject  tag="Choose object name..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Library name:" border="0" color="33554432" x="1536" y="292" height="64" width="366" html.valueishtml="0"  name=libraryname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=70 border="0" color="33554432" x="1536" y="356" height="76" width="1243" format="[general]" html.valueishtml="0"  name=libraryname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+button(band=detail text="" filename="fileopen-16.bmp" enabled=yes action="0" border="0" color="33554432" x="2779" y="356" height="72" width="82" vtextalign="0" htextalign="0"  name=b_chooselibrary  tag="Choose library name..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

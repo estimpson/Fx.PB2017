@@ -1,0 +1,67 @@
+﻿$PBExportHeader$f_get_object_info.srf
+$PBExportComments$Retrieve object's information.
+global type f_get_object_info from function_object
+end type
+
+forward prototypes
+global function st_generic_structure f_get_object_info (long al_serial)
+end prototypes
+
+global function st_generic_structure f_get_object_info (long al_serial);/*
+Description	:To retrieve the object information.
+Author		:Jim Wu
+Start Date	:02/21/96
+Modification:
+*/
+
+
+/* Declaration */
+string	ls_part, &
+			ls_um, &
+			ls_package_type
+
+long		ll_suffix, &
+			ll_shipper, &
+			ll_parent_serial
+
+decimal	lc_quantity, &
+			lc_std_quantity
+
+st_generic_structure	lstr_return
+
+/* Initialization */
+
+
+/* Main Process */
+
+  SELECT object.part,   
+         object.quantity,   
+         object.unit_measure,   
+         object.std_quantity,   
+         object.parent_serial,   
+         object.shipper,   
+         object.suffix,
+			object.package_type
+    INTO :ls_part,   
+         :lc_quantity,   
+         :ls_um,   
+         :lc_std_quantity,   
+         :ll_parent_serial,   
+         :ll_shipper,   
+         :ll_suffix, 
+			:ls_package_type
+    FROM object  
+   WHERE object.serial = :al_serial   ;
+
+	lstr_return.value1	= ls_part
+	lstr_return.value2	= string(lc_quantity)
+	lstr_return.value3	= ls_um
+	lstr_return.value4	= string(lc_std_quantity)
+	lstr_return.value5	= string(ll_parent_serial)
+	lstr_return.value6	= string(ll_shipper)
+	lstr_return.value7	= string(ll_suffix)
+	lstr_return.value8	= ls_package_type
+
+return lstr_return
+end function
+

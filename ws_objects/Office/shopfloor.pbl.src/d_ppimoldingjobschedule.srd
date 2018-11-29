@@ -1,0 +1,112 @@
+﻿$PBExportHeader$d_ppimoldingjobschedule.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=sequence dbname="vwJobSchedule.Sequence" )
+ column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="vwJobSchedule.WorkOrderNumber" )
+ column=(type=long updatewhereclause=yes name=status dbname="vwJobSchedule.Status" )
+ column=(type=char(50) updatewhereclause=yes name=toolcode dbname="vwJobSchedule.ToolCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=setuphours dbname="vwJobSchedule.SetupHours" )
+ column=(type=number updatewhereclause=yes name=line dbname="vwJobSchedule.Line" )
+ column=(type=long updatewhereclause=yes name=workorderdetailsequence dbname="vwJobSchedule.WorkOrderDetailSequence" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="vwJobSchedule.PartCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=balance dbname="vwJobSchedule.Balance" )
+ column=(type=decimal(6) updatewhereclause=yes name=partsperhour dbname="vwJobSchedule.PartsPerHour" )
+ column=(type=decimal(17) updatewhereclause=yes name=runtime dbname="vwJobSchedule.RunTime" )
+ column=(type=decimal(6) updatewhereclause=yes name=partspercycle dbname="vwJobSchedule.PartsPerCycle" )
+ column=(type=decimal(17) updatewhereclause=yes name=cyclesremaining dbname="vwJobSchedule.CyclesRemaining" )
+ column=(type=decimal(13) updatewhereclause=yes name=cycletime dbname="vwJobSchedule.CycleSeconds" )
+ column=(type=datetime updatewhereclause=yes name=duedt dbname="vwJobSchedule.DueDT" )
+ column=(type=datetime updatewhereclause=yes name=startdt dbname="vwJobSchedule.StartDT" )
+ column=(type=datetime updatewhereclause=yes name=enddt dbname="vwJobSchedule.EndDT" )
+ column=(type=long updatewhereclause=yes name=orderno dbname="vwJobSchedule.OrderNo" )
+ column=(type=char(20) updatewhereclause=yes name=destinationcode dbname="vwJobSchedule.DestinationCode" )
+ column=(type=char(20) updatewhereclause=yes name=customercode dbname="vwJobSchedule.CustomerCode" )
+ column=(type=char(32766) updatewhereclause=yes name=notes dbname="vwJobSchedule.Notes" )
+ retrieve="
+select
+	Sequence
+,	WorkOrderNumber
+,	Status
+,	ToolCode
+,	SetupHours
+,	Line
+,	WorkOrderDetailSequence
+,	PartCode
+,	Balance
+,	PartsPerHour
+,	RunTime
+,	PartsPerCycle
+,	CyclesRemaining
+,	CycleSeconds
+,	DueDT
+,	StartDT
+,	EndDT
+,	OrderNo
+,	DestinationCode
+,	CustomerCode
+,	Notes
+from
+	dbo.vwJobSchedule vjs
+where
+	MachineCode = :machineCode
+order by
+	Sequence
+" arguments=(("machineCode", string)) )
+text(band=header alignment="2" text="Sequence" border="0" color="33554432" x="247" y="8" height="64" width="274" html.valueishtml="0"  name=sequence_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Work order" border="0" color="33554432" x="530" y="8" height="64" width="329" html.valueishtml="0"  name=workordernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tool code" border="0" color="33554432" x="1207" y="8" height="64" width="923" html.valueishtml="0"  name=toolcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Setup time (h)" border="0" color="33554432" x="2139" y="8" height="64" width="393" html.valueishtml="0"  name=setuphours_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part code" border="0" color="33554432" x="2711" y="8" height="64" width="768" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Balance" border="0" color="33554432" x="3488" y="8" height="64" width="357" html.valueishtml="0"  name=balance_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parts per hr." border="0" color="33554432" x="3854" y="8" height="64" width="338" html.valueishtml="0"  name=partsperhour_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Run time (h)" border="0" color="33554432" x="4201" y="8" height="64" width="347" html.valueishtml="0"  name=runtime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parts per cycle" border="0" color="33554432" x="4558" y="8" height="64" width="416" html.valueishtml="0"  name=partspercycle_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cycles remaining" border="0" color="33554432" x="4983" y="8" height="64" width="480" html.valueishtml="0"  name=cyclesremaining_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cycle time (s)" border="0" color="33554432" x="5472" y="8" height="64" width="393" html.valueishtml="0"  name=cycletime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Due dt." border="0" color="33554432" x="5874" y="8" height="64" width="603" html.valueishtml="0"  name=duedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Start dt." border="0" color="33554432" x="6487" y="8" height="64" width="603" html.valueishtml="0"  name=startdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="End dt." border="0" color="33554432" x="7099" y="8" height="64" width="603" html.valueishtml="0"  name=enddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sales order no." border="0" color="33554432" x="7712" y="8" height="64" width="421" html.valueishtml="0"  name=orderno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Destination code" border="0" color="33554432" x="8142" y="8" height="64" width="576" html.valueishtml="0"  name=destinationcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer code" border="0" color="33554432" x="8727" y="8" height="64" width="576" html.valueishtml="0"  name=customercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes" border="0" color="33554432" x="9312" y="8" height="64" width="1207" html.valueishtml="0"  name=notes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status" border="0" color="33554432" x="869" y="8" height="64" width="329" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Line" border="0" color="33554432" x="2542" y="8" height="64" width="160" html.valueishtml="0"  name=line_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Row" border="0" color="33554432" x="110" y="8" height="64" width="128" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="247" y="8" height="76" width="274" format="[general]  ;'Invalid'  ;'Active'  ;'NULL'  " html.valueishtml="0"  name=sequence visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="530" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=workordernumber visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1207" y="8" height="76" width="923" format="  [general]" html.valueishtml="0"  name=toolcode visible="1" edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2139" y="8" height="76" width="393" format="#,##0.0#####  " html.valueishtml="0"  name=setuphours visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2711" y="8" height="76" width="768" format="  [general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3488" y="8" height="76" width="357" format="#,##0.0#####  " html.valueishtml="0"  name=balance visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3854" y="8" height="76" width="338" format="#,##0.0#####  " html.valueishtml="0"  name=partsperhour visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4201" y="8" height="76" width="347" format="#,##0.0#####  " html.valueishtml="0"  name=runtime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="4558" y="8" height="76" width="416" format="#,##0  " html.valueishtml="0"  name=partspercycle visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="4983" y="8" height="76" width="480" format="#,##0  " html.valueishtml="0"  name=cyclesremaining visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="5472" y="8" height="76" width="393" format="#,##0.0#####  " html.valueishtml="0"  name=cycletime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="5874" y="8" height="76" width="603" format="  [shortdate] [time]" html.valueishtml="0"  name=duedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="6487" y="8" height="76" width="603" format="  [shortdate] [time]" html.valueishtml="0"  name=startdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="7099" y="8" height="76" width="603" format="  [shortdate] [time]" html.valueishtml="0"  name=enddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432" x="7712" y="8" height="76" width="421" format="[general]  " html.valueishtml="0"  name=orderno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="8142" y="8" height="76" width="576" format="  [general]" html.valueishtml="0"  name=destinationcode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="8727" y="8" height="76" width="576" format="  [general]" html.valueishtml="0"  name=customercode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="9312" y="8" height="76" width="1207" format="  [general]" html.valueishtml="0"  name=notes visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="869" y="8" height="76" width="329" format="  [general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="8" height="76" width="91" format="  [GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2542" y="8" height="76" width="160" format="0  " html.valueishtml="0"  name=line visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="getRow()"border="0" color="33554432" x="110" y="8" height="76" width="128" format="0.  " html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,117 @@
+﻿$PBExportHeader$f_block_end_datetime.srf
+$PBExportComments$Calculate the job/schedule end time according to the shop floor calendar of specified machine.
+global type f_block_end_datetime from function_object
+end type
+
+forward prototypes
+global function datetime f_block_end_datetime (string as_machine, date adt_startdate, time at_starttime, decimal ad_runtime)
+end prototypes
+
+global function datetime f_block_end_datetime (string as_machine, date adt_startdate, time at_starttime, decimal ad_runtime);/*
+Description	:To get the job end time according to the machine shop floor
+				 schedule.
+Author		:Jim Wu
+Start Date	:01/23/96
+Modification:
+*/
+
+/* Declaration */
+
+Decimal	ld_UpHours, &
+			ld_HoursLeft
+
+Time		lt_BeginTime, &
+			lt_EndTime
+
+Date		ldt_Date, &
+			ldt_ShiftEndDate
+
+DateTime	ldtt_Result, &
+			ldt_StartDate, &
+			ldt_StartTime, &
+			ldt_BeginTime, &
+			ldt_EndTime, &
+			ldtt_Date, &
+			ldtt_ShiftEndDate
+
+ldt_StartDate = datetime(adt_startdate)
+ldt_StartTime = datetime(adt_startdate, at_starttime)
+
+DECLARE 	curShopCalendar CURSOR FOR  
+ SELECT 	shop_floor_calendar_new.up_hours,   
+        	shop_floor_calendar_new.work_date,   
+        	shop_floor_calendar_new.begin_time,   
+        	shop_floor_calendar_new.end_time,
+			shop_floor_calendar_new.end_date  
+   FROM 	shop_floor_calendar_new  
+  WHERE 	shop_floor_calendar_new.machine = :as_Machine   AND
+			(shop_floor_calendar_new.end_date > :adt_StartDate OR
+			((shop_floor_calendar_new.end_date = :ldt_StartDate AND
+			  shop_floor_calendar_new.end_time > :ldt_StartTime)))
+ORDER BY shop_floor_calendar_new.work_date ASC,   
+         shop_floor_calendar_new.begin_time ASC  ;
+
+Boolean	lb_Found
+
+Integer	li_Hour, &
+			li_Minute, &
+			li_Second
+
+/* Initialization */
+
+lb_Found			= FALSE
+ld_HoursLeft	= ad_RunTime
+
+/* Main Process */
+
+OPEN curShopCalendar;
+
+FETCH curShopCalendar INTO :ld_UpHours, 
+									:ldtt_Date, 
+									:ldt_BeginTime, 
+									:ldt_EndTime,
+									:ldtt_ShiftEndDate;
+
+ldt_Date				= date(ldtt_Date)
+lt_BeginTime		= time(ldt_BeginTime)
+lt_EndTime			= time(ldt_EndTime)
+ldt_ShiftEndDate	= date(ldtt_ShiftEndDate)
+
+ld_UpHours	= f_hours_between(adt_StartDate, at_StartTime, &
+										ldt_ShiftEndDate, lt_EndTime)
+ldt_Date		= adt_StartDate
+lt_BeginTime= at_StartTime
+
+ldtt_Date = datetime(ldt_Date)
+ldt_BeginTime = datetime(ldt_Date, lt_BeginTime)
+
+Do while SQLCA.SQLCode = 0 AND ld_HoursLeft > 0
+	lb_Found	= TRUE
+	If ld_Uphours >= ld_HoursLeft then
+		ldtt_Result	= f_relativedatetime(ldt_Date, lt_BeginTime, ld_HoursLeft)				
+		ld_HoursLeft	= 0
+	Else
+		ld_HoursLeft	= ld_HoursLeft - ld_UpHours
+	End if
+	FETCH curShopCalendar INTO :ld_UpHours, 
+									:ldtt_Date, 
+									:ldt_BeginTime, 
+									:ldt_EndTime,
+									:ldtt_ShiftEndDate;
+
+	ldt_Date				= date(ldtt_Date)
+	lt_BeginTime		= time(ldt_BeginTime)
+	lt_EndTime			= time(ldt_EndTime)
+	ldt_ShiftEndDate	= date(ldtt_ShiftEndDate)
+
+Loop		
+
+CLOSE curShopCalendar;
+
+If lb_Found then
+	Return ldtt_Result
+Else
+	Return f_relativedatetime(adt_StartDate, at_StartTime, ad_RunTime)
+End If
+end function
+

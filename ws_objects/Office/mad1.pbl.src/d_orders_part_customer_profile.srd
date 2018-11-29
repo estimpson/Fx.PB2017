@@ -1,0 +1,94 @@
+﻿$PBExportHeader$d_orders_part_customer_profile.srd
+$PBExportComments$*
+release 10;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part.part" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(2) updatewhereclause=yes name=part_inventory_standard_unit dbname="part_inventory.standard_unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_inventory_standard_pack dbname="part_inventory.standard_pack" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=part_customer_customer_unit dbname="part_customer.customer_unit" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=part_customer_taxable dbname="part_customer.taxable" values="Yes	Y/No	N/" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_standard_price dbname="part_standard.price" initial="0" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=part_customer_customer dbname="part_customer.customer" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="part_customer.type" values="Discount	D/Price Break	B/Category	C/" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part_customer_part dbname="part_customer.part" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=part_customer_customer_part dbname="part_customer.customer_part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=part_customer_customer_standard_pack dbname="part_customer.customer_standard_pack" )
+ column=(type=char(3) updatewhereclause=yes name=customer_default_currency_unit dbname="customer.default_currency_unit" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=part_customer_blanket_price dbname="part_customer.blanket_price" )
+ column=(type=char(1) updatewhereclause=yes name=update_od dbname="update_od" values="Yes	Y/Yes	N" )
+ column=(type=char(1) updatewhereclause=yes name=update_sd dbname="update_sd" values="Yes	Y/Yes	N" )
+ column=(type=char(1) updatewhereclause=yes name=update_inv dbname="update_inv" values="Yes	Y/Yes	N" )
+ retrieve="  SELECT part.part,   
+         part.name,   
+         part_inventory.standard_unit,   
+         part_inventory.standard_pack,   
+         part_customer.customer_unit,   
+         part_customer.taxable,   
+         part_standard.price,   
+			part_customer.customer,
+         part_customer.type,   
+         part_customer.part,
+         part_customer.customer_part,   
+         part_customer.customer_standard_pack,   
+         customer.default_currency_unit,
+			part_customer.blanket_price,
+			'N' as update_od,
+			'N' as update_sd,
+			'N' as update_inv  
+    FROM part,   
+         part_customer,   
+         part_inventory,   
+         part_standard,   
+         customer  
+   WHERE ( part.part = part_customer.part ) and  
+         ( part.part = part_inventory.part ) and  
+         ( part.part = part_standard.part ) and  
+         ( part_customer.customer = customer.customer ) and  
+         ( ( part_customer.customer = :s_Customer ) )    
+" arguments=(("s_Customer", string)) )
+text(band=header alignment="2" text="Part" border="0" color="0" x="9" y="8" height="52" width="201" html.valueishtml="0"  name=part_part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Name" border="0" color="0" x="219" y="8" height="52" width="553" html.valueishtml="0"  name=part_name_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Std Unit" border="0" color="0" x="782" y="8" height="52" width="174" html.valueishtml="0"  name=part_inventory_standard_unit_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Std Pack" border="0" color="0" x="965" y="8" height="52" width="197" html.valueishtml="0"  name=part_inventory_standard_pack_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cust. Unit" border="0" color="0" x="1170" y="8" height="52" width="206" html.valueishtml="0"  name=part_customer_customer_unit_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Taxable" border="0" color="0" x="1705" y="8" height="52" width="165" html.valueishtml="0"  name=part_customer_taxable_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Type" border="0" color="0" x="1879" y="8" height="52" width="247" html.valueishtml="0"  name=part_customer_type_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Customer Part" border="0" color="0" x="2135" y="8" height="52" width="448" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Customer Std Pack" border="0" color="0" x="2592" y="8" height="52" width="517" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Blanket Price" border="0" color="0" x="1385" y="8" height="52" width="311" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Update Open Shipper" border="0" color="0" x="3547" y="8" height="48" width="389" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Update Unprinted Invoice" border="0" color="0" x="3945" y="8" height="52" width="425" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Currency Unit" border="0" color="0" x="4379" y="8" height="52" width="274" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Std Price" border="0" color="0" x="4663" y="8" height="52" width="416" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Update Open Order" border="0" color="0" x="3118" y="8" height="52" width="421" html.valueishtml="0"  name=t_8 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="201" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="219" y="8" height="64" width="553" format="[general]" html.valueishtml="0"  name=part_name visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="782" y="8" height="64" width="174" format="[general]" html.valueishtml="0"  name=part_inventory_standard_unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="965" y="8" height="64" width="197" format="#,##0.00" html.valueishtml="0"  name=part_inventory_standard_pack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=10 border="0" color="0" x="1170" y="8" height="64" width="206" format="[general]" html.valueishtml="0"  name=part_customer_customer_unit visible="1" dddw.name=d_dddw_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=0 dddw.limit=3 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=14 alignment="0" tabsequence=20 border="0" color="0" x="1385" y="8" height="64" width="311" format="$#,##0.00;[RED]($#,##0.00)" html.valueishtml="0"  name=part_customer_blanket_price visible="1" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="0" x="1705" y="8" height="64" width="165" format="[general]" html.valueishtml="0"  name=part_customer_taxable visible="1" ddlb.limit=1 ddlb.allowedit=no ddlb.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="0" color="0" x="1879" y="8" height="64" width="247" format="[general]" html.valueishtml="0"  name=type visible="1" ddlb.limit=1 ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=50 border="0" color="0" x="2135" y="8" height="64" width="448" format="[general]" html.valueishtml="0"  name=part_customer_customer_part visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=12 alignment="0" tabsequence=60 border="0" color="0" x="2592" y="8" height="64" width="517" format="[general]" html.valueishtml="0"  name=part_customer_customer_standard_pack visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="4379" y="8" height="64" width="274" format="[general]" html.valueishtml="0"  name=customer_default_currency_unit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="4663" y="8" height="64" width="416" format="[general]" html.valueishtml="0"  name=part_standard_price visible="1" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=15 alignment="0" tabsequence=70 border="0" color="0" x="3118" y="8" height="64" width="421" format="[general]" html.valueishtml="0"  name=update_od visible="1" checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=16 alignment="0" tabsequence=80 border="0" color="0" x="3547" y="8" height="64" width="389" format="[general]" html.valueishtml="0"  name=update_sd visible="1" checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=17 alignment="0" tabsequence=90 border="0" color="0" x="3945" y="8" height="64" width="425" format="" html.valueishtml="0"  name=update_inv visible="1" checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,119 @@
+﻿$PBExportHeader$d_detail_no_notes.srd
+$PBExportComments$*
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="-1" )
+summary(height=248 color="-1" )
+footer(height=8 color="536870912" )
+detail(height=88 color="-1"  height.autosize=yes)
+table(column=(type=decimal(0) update=yes updatewhereclause=yes name=order_no dbname="order_detail.order_no" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part_number dbname="order_detail.part_number" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=product_name dbname="order_detail.product_name" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="order_detail.quantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="order_detail.alternate_price" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="order_detail.notes" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=sequence dbname="order_detail.sequence" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit dbname="order_detail.unit" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=committed_qty dbname="order_detail.committed_qty" )
+ column=(type=long update=yes updatewhereclause=yes name=row_id dbname="order_detail.row_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=group_no dbname="order_detail.group_no" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=release_no dbname="order_detail.release_no" )
+ column=(type=long update=yes updatewhereclause=yes name=flag dbname="order_detail.flag" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=customer_part dbname="order_detail.customer_part" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ship_type dbname="order_detail.ship_type" )
+ column=(type=long update=yes updatewhereclause=yes name=suffix dbname="order_detail.suffix" )
+ column=(type=decimal(6) updatewhereclause=yes name=compute_0014 dbname="compute_0017" )
+ column=(type=decimal(6) updatewhereclause=yes name=compute_0015 dbname="compute_0018" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=weight dbname="order_detail.weight" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="order_detail.status" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=destination dbname="order_detail.destination" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=cost dbname="order_detail.cost" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="order_detail.plant" )
+ column=(type=long update=yes updatewhereclause=yes name=week_no dbname="order_detail.week_no" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=std_qty dbname="order_detail.std_qty" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="order_detail.type" )
+ column=(type=datetime update=yes updatewhereclause=yes name=due_date dbname="order_detail.due_date" )
+ column=(type=char(1) updatewhereclause=yes name=price_type dbname="compute_0028" )
+ column=(type=char(25) updatewhereclause=yes name=calc_type dbname="compute_0029" )
+ column=(type=long updatewhereclause=yes name=shipper dbname="shipper" )
+ column=(type=long updatewhereclause=yes key=yes identity=yes name=id dbname="order_detail.id" )
+ retrieve="  SELECT order_detail.order_no,   
+         order_detail.part_number,   
+         order_detail.product_name,   
+         order_detail.quantity,   
+         order_detail.alternate_price,   
+         order_detail.notes,   
+         order_detail.sequence,   
+         order_detail.unit,   
+         order_detail.committed_qty,   
+         order_detail.row_id,   
+         order_detail.group_no,   
+         order_detail.release_no,   
+         order_detail.flag,   
+         order_detail.customer_part,   
+         order_detail.ship_type,   
+         order_detail.suffix,   
+         order_detail.quantity * order_detail.alternate_price,   
+         order_detail.shipped * 1,   
+         order_detail.weight,   
+         order_detail.status,   
+         order_detail.destination,   
+         order_detail.cost,   
+         order_detail.plant,   
+         order_detail.week_no,   
+         order_detail.std_qty,   
+         order_detail.type,   
+         order_detail.due_date,   
+         convert(varchar(1),''),   
+         convert(varchar(25),''),
+			( 	select 	min(shipper) 
+				from 		shipper_detail 
+				where 	shipper_detail.order_no = order_detail.order_no and
+							shipper_detail.part_original = order_detail.part_number and
+							isnull ( shipper_detail.suffix, 0 ) = isnull ( order_detail.suffix, 0 ) ) shipper,
+	order_detail.id
+    FROM order_detail  
+   WHERE order_detail.order_no = :al_order_no   
+ORDER BY order_detail.sequence ASC   
+" update="order_detail" updatewhere=0 updatekeyinplace=yes arguments=(("al_order_no", number))  sort="sequence A " )
+text(band=header alignment="2" text="Line"border="2" color="8388608" x="9" y="8" height="56" width="101"  name=sequence_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Part"border="2" color="8388608" x="119" y="8" height="56" width="320"  name=part_number_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Description"border="2" color="8388608" x="448" y="8" height="56" width="430"  name=product_name_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Due Date"border="2" color="8388608" x="887" y="8" height="56" width="224"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Quantity"border="2" color="8388608" x="1120" y="8" height="56" width="192"  name=quantity_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Unit"border="2" color="8388608" x="1321" y="8" height="56" width="105"  name=unit_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Weight"border="2" color="8388608" x="1435" y="8" height="56" width="251"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Price"border="2" color="8388608" x="1696" y="8" height="56" width="224"  name=price_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Extended"border="2" color="8388608" x="1929" y="8" height="56" width="247"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="SQ"border="2" color="8388608" x="2185" y="8" height="56" width="82"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="DS"border="2" color="8388608" x="2277" y="8" height="56" width="82"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="  Notes"border="2" color="8388608" x="2368" y="8" height="56" width="901"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Customer Part"border="2" color="8388608" x="3278" y="8" height="56" width="768"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Shipper"border="2" color="8388608" x="4055" y="8" height="56" width="558"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="1" tabsequence=10 border="2" color="0" x="9" y="12" height="64" width="101" format="[general]" protect="0~tif ( IsRowNew(),if ( quantity > 0, 0, 1 ),1)"  name=sequence edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif ( IsRowNew(),if ( quantity > 0, f_get_color_value ( ~"window~" ), f_get_color_value ( ~"ButtonFace~" ) ),f_get_color_value ( ~"ButtonFace~" ) )" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="0" x="119" y="12" height="64" width="320" format="[general]" protect="0~t1"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="0" x="448" y="12" height="64" width="430" format="[general]" protect="0~t1"  name=product_name edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=20 border="2" color="0" x="887" y="12" height="64" width="224" format="[shortdate]" protect="0~tif (IsRowNew(),0, 1)"  name=due_date editmask.mask="mm/dd/yy" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="2" color="0" x="1120" y="12" height="64" width="192" format="#####0.00" protect="0~tif (IsRowNew(),0, 1)"  name=quantity edit.limit=0 edit.case=any edit.format="###########.00" edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=8 alignment="0" tabsequence=40 border="2" color="0" x="1321" y="12" height="64" width="105" format="[general]" protect="0~tif (IsRowNew(),0, 1)"  name=unit dddw.name=d_unit_list_for_part dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=19 alignment="1" tabsequence=50 border="2" color="0" x="1435" y="12" height="64" width="251" format="#####0.00####" protect="0~tif (IsRowNew(),0, 1)"  name=weight edit.limit=0 edit.case=any edit.format="######.00####" edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=5 alignment="1" tabsequence=60 border="2" color="0" x="1696" y="12" height="64" width="224" format="###,###,###.00####" protect="0~tif (IsRowNew(),0, 1)"  name=price editmask.mask="###,###,###.00####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+compute(band=detail alignment="1" expression="if ( quantity > 0, if ( lower(calc_type) = 'quantity', quantity * price, weight * price), 0 )"border="2" color="0" x="1929" y="12" height="64" width="247" format="###,##0.00"  name=extended_price  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Bitmap ( If ( committed_qty > 0, ~"logo2.bmp~",~"~" ) ) "border="2" color="8388608" x="2185" y="12" height="64" width="82" format="[GENERAL]"  name=scheduled_qty  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Bitmap ( If ( ship_type = 'D', ~"pick.bmp~", ~"~" ) )"border="2" color="8388608" x="2277" y="12" height="64" width="82" format="[GENERAL]"  name=drop_ship  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=70 border="2" color="0" x="2368" y="12" height="64" width="901" format="[general]" protect="0~tif (IsRowNew(),0, 1)"  name=notes height.autosize=yes edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autovscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (IsRowNew(),f_get_color_value ( ~"white~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="2" color="0" x="3278" y="12" height="64" width="768" format="[general]"  name=customer_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="2" color="0" x="4055" y="12" height="64" width="558" format="[general]"  name=shipper edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="2" color="0" x="4622" y="12" height="64" width="174" format="$###,###,##0.00" protect="0~t1"  name=compute_0014 visible="1~t0" editmask.mask="$###,###,##0.00" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(extended_price for all)"border="0" color="0" x="4622" y="20" height="64" width="174" format="$###,##0.00"  name=extended_1 visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(   compute_0015   for all )"border="0" color="0" x="4622" y="20" height="64" width="174" format="$###,##0.00"  name=f_sales_tax_1 visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  extended_price  for all ) + sum(  compute_0015  for all )"border="2" color="0" x="4622" y="460" height="68" width="174" format="$###,##0.00"  name=total_1 visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="Total Wgt"border="0" color="16711680" x="1435" y="12" height="64" width="251" visible="1~t0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="Sub Total:"border="0" color="16711680" x="1696" y="12" height="64" width="224" visible="1~t0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(weight for all)"border="0" color="0" x="1435" y="92" height="68" width="251" format="#####0.00####"  name=tweight visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="Sales Tax:"border="0" color="16711680" x="1696" y="92" height="64" width="224" visible="1~t0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="Total:"border="0" color="16711680" x="1696" y="172" height="64" width="224" visible="1~t0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(extended_price for all)"border="0" color="0" x="1929" y="20" height="68" width="247" format="###,##0.00"  name=extended visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(   compute_0015   for all )"border="0" color="0" x="1929" y="92" height="68" width="247" format="###,##0.00"  name=f_sales_tax visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  extended_price  for all ) + sum(  compute_0015  for all )"border="0" color="0" x="1929" y="172" height="68" width="247" format="###,##0.00"  name=total visible="1~t0"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

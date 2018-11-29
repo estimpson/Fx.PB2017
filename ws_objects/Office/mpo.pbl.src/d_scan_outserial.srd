@@ -1,0 +1,80 @@
+﻿$PBExportHeader$d_scan_outserial.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1912 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=serial dbname="object.serial" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="object.part" )
+ column=(type=char(25) updatewhereclause=yes name=parent_part dbname="parent_part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="object.quantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=net_weight dbname="object.net_weight" )
+ column=(type=char(20) updatewhereclause=yes name=package_type dbname="object.package_type" )
+ column=(type=decimal(6) updatewhereclause=yes name=tare_weight dbname="object.tare_weight" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="object.location" )
+ column=(type=char(20) updatewhereclause=yes name=lot dbname="object.lot" )
+ column=(type=char(50) updatewhereclause=yes name=custom1 dbname="object.custom1" )
+ column=(type=char(50) updatewhereclause=yes name=custom2 dbname="object.custom2" )
+ column=(type=char(50) updatewhereclause=yes name=custom3 dbname="object.custom3" )
+ column=(type=char(50) updatewhereclause=yes name=custom4 dbname="object.custom4" )
+ column=(type=char(50) updatewhereclause=yes name=custom5 dbname="object.custom5" )
+ column=(type=char(2) updatewhereclause=yes name=unit_measure dbname="object.unit_measure" )
+ column=(type=char(15) updatewhereclause=yes name=custom1_t dbname="custom1_t" )
+ column=(type=char(15) updatewhereclause=yes name=custom2_t dbname="custom2_t" )
+ column=(type=char(15) updatewhereclause=yes name=custom3_t dbname="custom3_t" )
+ column=(type=char(15) updatewhereclause=yes name=custom4_t dbname="custom4_t" )
+ column=(type=char(15) updatewhereclause=yes name=custom5_t dbname="custom5_t" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="object.destination" )
+ retrieve="select	serial, 
+		part,
+		convert(varchar(25),'') as parent_part, 
+		quantity, 
+		weight as net_weight, 
+		package_type, 
+		tare_weight, 
+		location, 
+		lot, 
+		custom1, 
+		custom2, 
+		custom3, 
+		custom4, 
+		custom5,
+		unit_measure,
+		isnull ( ( select label from user_definable_module_labels where module = 'RD' and sequence = 1 ), 'custom1:' ) as custom1_t,
+		isnull ( ( select label from user_definable_module_labels where module = 'RD' and sequence = 2 ), 'custom2:' ) as custom2_t,
+		isnull ( ( select label from user_definable_module_labels where module = 'RD' and sequence = 3 ), 'custom3:' ) as custom3_t,
+		isnull ( ( select label from user_definable_module_labels where module = 'RD' and sequence = 4 ), 'custom4:' ) as custom4_t,
+		isnull ( ( select label from user_definable_module_labels where module = 'RD' and sequence = 5 ), 'custom5:' ) as custom5_t,
+		destination
+from 	object 
+where 	serial = :al_serial" update="object" updatewhere=0 updatekeyinplace=no arguments=(("al_serial", number)) )
+text(band=detail alignment="0" text="Serial:"border="0" color="0" x="37" y="20" height="52" width="192"  name=serial_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="475" y="20" height="64" width="695" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Lot:"border="0" color="0" x="1298" y="20" height="52" width="110"  name=lot_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=100 border="5" color="0" x="1627" y="20" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=lot edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Part:"border="0" color="0" x="37" y="116" height="52" width="137"  name=part_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="475" y="116" height="64" width="695" format="[general]"  name=part edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=110 border="5" color="0" x="1627" y="116" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=custom1 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Parent Part:"border="0" color="0" x="37" y="212" height="52" width="347"  name=parent_part_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="475" y="212" height="64" width="695" format="[general]"  name=parent_part dddw.name=d_dddw_parentparts dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=300 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Quantity:"border="0" color="0" x="37" y="308" height="52" width="265"  name=quantity_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="475" y="308" height="64" width="439" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=120 border="5" color="0" x="1627" y="212" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=custom2 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Net Weight:"border="0" color="0" x="37" y="404" height="52" width="347"  name=net_weight_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=60 border="5" color="0" x="475" y="404" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=net_weight edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=12 alignment="0" tabsequence=130 border="5" color="0" x="1627" y="308" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=custom3 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Package Type:"border="0" color="0" x="37" y="500" height="52" width="366"  name=package_type_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=70 border="5" color="0" x="475" y="500" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=package_type dddw.name=d_dddw_part_package_type dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=250 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=140 border="5" color="0" x="1627" y="404" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=custom4 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Tare Weight:"border="0" color="0" x="37" y="596" height="52" width="379"  name=tare_weight_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=80 border="5" color="0" x="475" y="596" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=tare_weight edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=14 alignment="0" tabsequence=150 border="5" color="0" x="1627" y="500" height="64" width="695" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=custom5 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Location:"border="0" color="0" x="37" y="692" height="52" width="270"  name=location_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=90 border="5" color="0" x="475" y="692" height="64" width="695" format="[general]"  name=location dddw.name=d_dddw_location dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="116" height="64" width="311" format="[general]"  name=custom1_t edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="212" height="64" width="311" format="[general]"  name=custom2_t edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="308" height="64" width="311" format="[general]"  name=custom3_t edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="404" height="64" width="311" format="[general]"  name=custom4_t edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="1298" y="500" height="64" width="311" format="[general]"  name=custom5_t edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=15 alignment="0" tabsequence=50 border="0" color="0" x="933" y="308" height="64" width="238" format="[general]" protect="0~tif(part=parent_part,1,0)"  name=unit_measure dddw.name=d_dddw_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

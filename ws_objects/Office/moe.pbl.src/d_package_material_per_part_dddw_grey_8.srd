@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_package_material_per_part_dddw_grey_8.srd
+$PBExportComments$Drop down datawindow for packaging material for specified part
+release 5;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=part_packaging_code dbname="part_packaging.code" )
+ column=(type=char(25) updatewhereclause=yes name=package_materials_name dbname="package_materials.name" )
+ column=(type=char(25) updatewhereclause=yes name=part_packaging_part dbname="part_packaging.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_packaging_quantity dbname="part_packaging.quantity" )
+ retrieve="SELECT part_packaging.code, package_materials.name, part_packaging.part, part_packaging.quantity 
+FROM package_materials, part_packaging 
+WHERE ( package_materials.code = part_packaging.code )  
+union select ' ', ' ', ' ', 0 from package_materials, part_packaging " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="1" y="4" height="65" width="439" format="[general]"  name=part_packaging_code edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="12632256" x="2414" y="4" height="57" width="279" format="[general]"  name=part_packaging_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="439" y="4" height="65" width="659" format="[general]"  name=package_materials_name edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1098" y="4" height="65" width="403" format="[general]"  name=part_packaging_quantity editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )

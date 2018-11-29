@@ -1,0 +1,45 @@
+﻿$PBExportHeader$d_blanketorderreleases.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=spid dbname="SPID" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=activeorderno dbname="ActiveOrderNo" )
+ column=(type=char(30) update=yes updatewhereclause=yes key=yes name=releaseno dbname="ReleaseNo" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=releasedt dbname="ReleaseDT" )
+ column=(type=char(1) update=yes updatewhereclause=yes key=yes name=releasetype dbname="ReleaseType" values="Firm	F/Planning	P/" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyrelease dbname="QtyRelease" )
+ retrieve="
+select
+	bore.SPID
+,	bore.ActiveOrderNo
+,	bore.ReleaseNo
+,	bore.ReleaseDT
+,	bore.ReleaseType
+,	bore.QtyRelease
+from
+	##BlanketOrderReleases_Edit bore
+where
+	bore.SPID = @@SPID
+" update="##BlanketOrderReleases_Edit" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Release no." border="6" color="33554432" x="9" y="12" height="72" width="763" html.valueishtml="0"  name=releaseno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release DT" border="6" color="33554432" x="782" y="12" height="72" width="603" html.valueishtml="0"  name=releasedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type" border="6" color="33554432" x="1394" y="12" height="72" width="334" html.valueishtml="0"  name=releasetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release qty." border="6" color="33554432" x="1737" y="12" height="72" width="357" html.valueishtml="0"  name=qtyrelease_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="763" format="[general]" html.valueishtml="0"  name=releaseno visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=40 border="0" color="33554432" x="1737" y="8" height="76" width="357" format="#,##0.0#####" html.valueishtml="0"  name=qtyrelease visible="1" edit.limit=0 edit.case=any edit.format="0.0###" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="33554432" x="782" y="8" height="76" width="603" format="[shortdate]" html.valueishtml="0"  name=releasedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="33554432" x="1394" y="8" height="76" width="334" format="[general]" html.valueishtml="0"  name=releasetype visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

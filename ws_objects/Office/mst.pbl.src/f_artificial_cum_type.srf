@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_artificial_cum_type.srf
+global type f_artificial_cum_type from function_object
+end type
+
+forward prototypes
+global function integer f_artificial_cum_type (long a_l_order)
+end prototypes
+
+global function integer f_artificial_cum_type (long a_l_order);string	l_s_artificial_cum
+
+SELECT	order_header.artificial_cum  
+INTO 		:l_s_artificial_cum  
+FROM 		order_header  
+WHERE 	order_header.order_no = :a_l_order   ;
+
+if f_get_string_value ( l_s_artificial_cum ) = 'A' then
+	return 1
+else
+	return 0
+end if
+end function
+

@@ -1,0 +1,33 @@
+﻿$PBExportHeader$dw_ei_inventory_value_type_text.srd
+$PBExportComments$updated on 5/22
+release 5;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=89 color="536870912" )
+summary(height=793 color="536870912" )
+footer(height=297 color="536870912" )
+detail(height=1 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=cost dbname="object.cost" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="object.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=object_std_quantity dbname="object.std_quantity" )
+ retrieve="  SELECT object.cost,   
+         object.part,   
+         object.std_quantity  
+    FROM object   
+" )
+compute(band=detail alignment="1" expression=" cost  *  object_std_quantity "border="0" color="33554432" x="481" y="24" height="85" width="517" format="$#,##0.00;[RED]($#,##0.00)"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+bitmap(band=summary filename="Delbox.bmp" x="1349" y="468" height="225" width="284" border="0" )
+bitmap(band=summary filename="Delbox.bmp" x="1111" y="272" height="233" width="275" border="0" )
+bitmap(band=summary filename="Delbox.bmp" x="1020" y="488" height="285" width="339" border="0" )
+bitmap(band=summary filename="Bluebox.bmp" x="1916" y="256" height="197" width="229" border="0" )
+bitmap(band=summary filename="Bluebox.bmp" x="2305" y="72" height="153" width="183" border="0" )
+bitmap(band=summary filename="Bluebox.bmp" x="2199" y="236" height="245" width="279" border="0" )
+bitmap(band=summary filename="Bluebox.bmp" x="2167" y="92" height="113" width="151" border="0" )
+bitmap(band=summary filename="Bluebox.bmp" x="1857" y="4" height="245" width="325" border="0" )
+bitmap(band=summary filename="Box.bmp" x="124" y="408" height="213" width="289" border="0" )
+bitmap(band=summary filename="Box.bmp" x="375" y="372" height="285" width="371" border="0" )
+bitmap(band=summary filename="Box.bmp" x="417" y="236" height="165" width="225" border="0" )
+bitmap(band=summary filename="Box.bmp" x="119" y="212" height="213" width="289" border="0"  name=q )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="782" y="4" height="73" width="298" format="[shortdate]"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Inventory Value as of"border="0" color="33554432" x="74" y="4" height="65" width="613"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=footer alignment="2" text="Total Value"border="0" color="33554432" x="37" y="8" height="153" width="791"  font.face="Arial" font.height="-24" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="1" expression="sum(  cost  *  object_std_quantity  for all )"border="0" color="33554432" x="860" y="8" height="153" width="1674" format="$#,##0.00;[RED]($#,##0.00)"  font.face="Arial" font.height="-24" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )

@@ -1,0 +1,289 @@
+﻿$PBExportHeader$d_pb_resource_list_filter.srd
+release 6;
+datawindow(units=0 timer_interval=1000 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(10) updatewhereclause=no name=resource_name dbname="resource_name" )
+ column=(type=long updatewhereclause=no name=resource_type dbname="resource_type" )
+ column=(type=datetime updatewhereclause=no name=interval1 dbname="interval1" )
+ column=(type=datetime updatewhereclause=no name=interval2 dbname="interval2" )
+ column=(type=datetime updatewhereclause=no name=interval3 dbname="interval3" )
+ column=(type=datetime updatewhereclause=no dbname="interval4" )
+ column=(type=datetime updatewhereclause=no dbname="interval5" )
+ column=(type=datetime updatewhereclause=no name=interval6 dbname="interval6" )
+ column=(type=datetime updatewhereclause=no name=interval7 dbname="interval7" )
+ column=(type=datetime updatewhereclause=no name=interval8 dbname="interval8" )
+ column=(type=datetime updatewhereclause=no name=interval9 dbname="interval9" )
+ column=(type=datetime updatewhereclause=no name=interval10 dbname="interval10" )
+ column=(type=datetime updatewhereclause=no name=interval11 dbname="interval11" )
+ column=(type=datetime updatewhereclause=no name=interval12 dbname="interval12" )
+ column=(type=datetime updatewhereclause=no name=interval13 dbname="interval13" )
+ column=(type=datetime updatewhereclause=no name=interval14 dbname="interval14" )
+ column=(type=datetime updatewhereclause=no name=interval15 dbname="interval15" )
+ column=(type=datetime updatewhereclause=no name=interval16 dbname="interval16" )
+ column=(type=datetime updatewhereclause=no name=interval17 dbname="interval17" )
+ column=(type=datetime updatewhereclause=no name=interval18 dbname="interval18" )
+ column=(type=datetime updatewhereclause=no name=interval19 dbname="interval19" )
+ column=(type=datetime updatewhereclause=no name=interval20 dbname="interval20" )
+ column=(type=datetime updatewhereclause=no name=interval21 dbname="interval21" )
+ column=(type=datetime updatewhereclause=no name=interval22 dbname="interval22" )
+ column=(type=datetime updatewhereclause=no name=begin dbname="begin" )
+ column=(type=char(10) updatewhereclause=no name=interval_type dbname="interval_type" )
+ column=(type=long updatewhereclause=no name=interval dbname="interval" )
+ procedure="1 select	mvw_pb_resource_list.resource_name,
+	mvw_pb_resource_list.resource_type,
+	Convert ( datetime, :begin ) Interval1,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	:interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	:interval, :begin ) end ) Interval2,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 2 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	2 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 2 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	2 * :interval, :begin ) end ) Interval3,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 3 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	3 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 3 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	3 * :interval, :begin ) end ) Interval4,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 4 * :interval, :begin )
+			when	'Hour'
+
+				then	DateAdd ( Hour,	4 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 4 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	4 * :interval, :begin ) end ) Interval5,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 5 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	5 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 5 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	5 * :interval, :begin ) end ) Interval6,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 6 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	6 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 6 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	6 * :interval, :begin ) end ) Interval7,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 7 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	7 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 7 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	7 * :interval, :begin ) end ) Interval8,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 8 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	8 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 8 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	8 * :interval, :begin ) end ) Interval9,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 9 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	9 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 9 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	9 * :interval, :begin ) end ) Interval10,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 10 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	10 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 10 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	10 * :interval, :begin ) end ) Interval11,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 11 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	11 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 11 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	11 * :interval, :begin ) end ) Interval12,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 12 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	12 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 12 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	12 * :interval, :begin ) end ) Interval13,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 13 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	13 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 13 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	13 * :interval, :begin ) end ) Interval14,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 14 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	14 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 14 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	14 * :interval, :begin ) end ) Interval15,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 15 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	15 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 15 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	15 * :interval, :begin ) end ) Interval16,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 16 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	16 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 16 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	16 * :interval, :begin ) end ) Interval17,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 17 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	17 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 17 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	17 * :interval, :begin ) end ) Interval18,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 18 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	18 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 18 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	18 * :interval, :begin ) end ) Interval19,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 19 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	19 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 19 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	19 * :interval, :begin ) end ) Interval20,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 20 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	20 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 20 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	20 * :interval, :begin ) end ) Interval21,
+	(	case	:interval_type
+			when	'Minute'
+				then	DateAdd ( Minute, 21 * :interval, :begin )
+			when	'Hour'
+				then	DateAdd ( Hour,	21 * :interval, :begin )
+			when	'Day'
+				then	DateAdd ( Day, 21 * :interval, :begin )
+			when	'Week'
+				then	DateAdd ( Week,	21 * :interval, :begin ) end ) Interval22,
+	Convert ( datetime, :begin ) ~"begin~",
+	Convert ( varchar (10), :interval_type ) interval_type,
+	:interval interval
+from	mvw_pb_resource_list   
+	join location on location.code = mvw_pb_resource_list.resource_name
+where	location.group_no = :as_group	
+order by resource_name" arguments=(("Begin", datetime),("Interval_type", string),("Interval", number),("as_group", string)) )
+text(band=header alignment="2" text="Resource / Date"border="0" color="0" x="9" y="8" height="52" width="425"  name=resource_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=3 alignment="2" tabsequence=32766 border="6" color="0" x="443" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval1 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=4 alignment="2" tabsequence=32766 border="6" color="0" x="1221" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval2 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=5 alignment="2" tabsequence=32766 border="6" color="0" x="1998" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval3 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=6 alignment="2" tabsequence=32766 border="6" color="0" x="2775" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval4 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=7 alignment="2" tabsequence=32766 border="6" color="0" x="3552" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval5 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=8 alignment="2" tabsequence=32766 border="6" color="0" x="4329" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval6 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=9 alignment="2" tabsequence=32766 border="6" color="0" x="5106" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval7 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=10 alignment="2" tabsequence=32766 border="6" color="0" x="5883" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval8 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=11 alignment="2" tabsequence=32766 border="6" color="0" x="6661" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval9 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=12 alignment="2" tabsequence=32766 border="6" color="0" x="7438" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval10 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=13 alignment="2" tabsequence=32766 border="6" color="0" x="8215" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval11 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=14 alignment="2" tabsequence=32766 border="6" color="0" x="8992" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval12 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=15 alignment="2" tabsequence=32766 border="6" color="0" x="9769" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval13 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=16 alignment="2" tabsequence=32766 border="6" color="0" x="10546" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval14 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=17 alignment="2" tabsequence=32766 border="6" color="0" x="11323" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval15 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=18 alignment="2" tabsequence=32766 border="6" color="0" x="12101" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval16 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=19 alignment="2" tabsequence=32766 border="6" color="0" x="12878" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval17 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=20 alignment="2" tabsequence=32766 border="6" color="0" x="13655" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval18 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=21 alignment="2" tabsequence=32766 border="6" color="0" x="14432" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval19 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=22 alignment="2" tabsequence=32766 border="6" color="0" x="15209" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval20 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=23 alignment="2" tabsequence=32766 border="6" color="0" x="15986" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval21 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=24 alignment="2" tabsequence=32766 border="6" color="0" x="16763" y="8" height="52" width="768" format="[shortdate] [time]~tcase( interval_type when 'Minute' then '[shortdate] [time]' when 'Hour' then '[shortdate] [time]' else '[shortdate]')"  name=interval22 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="78682240" x="1221" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="6" color="0" x="9" y="8" height="76" width="425" format="[general]"  name=resource_name edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="78682240" x="443" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="78682240" x="1998" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="78682240" x="2775" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="78682240" x="3552" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="78682240" x="4329" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="78682240" x="5106" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="78682240" x="5883" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="78682240" x="6661" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="78682240" x="7438" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="78682240" x="8215" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="78682240" x="8992" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="78682240" x="9769" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="78682240" x="10546" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="78682240" x="11323" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="78682240" x="12101" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="78682240" x="12878" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="78682240" x="13655" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="78682240" x="14432" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="78682240" x="15209" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="78682240" x="15986" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="78682240" x="16763" y="8" height="76" width="768" format="[shortdate] [time]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=footer alignment="0" text="text"border="0" color="0" x="1221" y="428" height="76" width="768"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression="Integer ( Describe ( ~"resource_name.Width~" ) )"border="0" color="0" x="347" y="744" height="52" width="329" format="[general]"  name=xoffset visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression=" Integer ( Describe ( ~"interval1.width~" ) )"border="0" color="0" x="142" y="652" height="52" width="178" format="[general]"  name=intervalwidth visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression="Integer ( Describe ( ~"DataWindow.LastRowOnPage~" ) )"border="0" color="0" x="901" y="912" height="52" width="325" format="[general]"  name=yoffsetlast visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression="Integer ( Describe ( ~"DataWindow.FirstRowOnPage~" ) )"border="0" color="0" x="905" y="748" height="52" width="320" format="[general]"  name=yoffset visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression="begin"border="0" color="0" x="165" y="852" height="52" width="613" format="[shortdate] [time]"  name=begindt visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=foreground alignment="0" expression="18 + xoffset + ( IntervalWidth + 8  ) * ( DaysAfter ( Date ( begin ), Today ( ) ) * 24 * 60 * 60 + SecondsAfter ( Time ( begin ), Now ( ) ) ) / ( interval * case ( interval_type when 'Minute' then 60 when 'Hour' then 60 * 60 when 'Day' then 60 * 60 * 24 when 'Week' then 60 * 60 * 24 * 7 ) )"border="0" color="0" x="645" y="504" height="64" width="210" format="[general]"  name=nowx visible="1~t0"  moveable=1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=foreground x1="1806~tnowx" y1="72" x2="1810~tnowx" y2="952~tRowcount ( ) * 96 + 72" pen.style="2" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

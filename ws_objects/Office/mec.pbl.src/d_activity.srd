@@ -1,0 +1,82 @@
+﻿$PBExportHeader$d_activity.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=parent_part dbname="activity_router.parent_part" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=sequence dbname="activity_router.sequence" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=code dbname="activity_router.code" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="activity_router.part" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="activity_router.notes" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=labor dbname="activity_router.labor" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=material dbname="activity_router.material" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=cost_bill dbname="activity_router.cost_bill" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=group_location dbname="activity_router.group_location" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=process dbname="activity_router.process" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=doc1 dbname="activity_router.doc1" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=doc2 dbname="activity_router.doc2" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=doc3 dbname="activity_router.doc3" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=doc4 dbname="activity_router.doc4" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=cost dbname="activity_router.cost" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="activity_router.price" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=cost_price_factor dbname="activity_router.cost_price_factor" )
+ column=(type=datetime update=yes updatewhereclause=yes name=time_stamp dbname="activity_router.time_stamp" )
+ retrieve="  SELECT activity_router.parent_part,   
+         activity_router.sequence,   
+         activity_router.code,   
+         activity_router.part,   
+         activity_router.notes,   
+         activity_router.labor,   
+         activity_router.material,   
+         activity_router.cost_bill,   
+         activity_router.group_location,   
+         activity_router.process,   
+         activity_router.doc1,   
+         activity_router.doc2,   
+         activity_router.doc3,   
+         activity_router.doc4,   
+         activity_router.cost,   
+         activity_router.price,   
+         activity_router.cost_price_factor,   
+         activity_router.time_stamp  
+    FROM activity_router   
+    where activity_router.parent_part = :a_s_part" update="activity_router" updatewhere=1 updatekeyinplace=no arguments=(("a_s_part", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="64" width="512" format="[general]"  name=parent_part  tag="The top level part for the flow router. " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="530" y="4" height="64" width="274" format="[general]"  name=sequence  tag="Sequence for the flow router " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="814" y="4" height="64" width="512" format="[general]"  name=code  tag="Activity code " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1335" y="4" height="64" width="512" format="[general]"  name=part  tag="The part that comes out of the activity/process" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1856" y="4" height="64" width="238" format="[general]"  name=notes  tag="Notes/remarks" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="2103" y="4" height="64" width="146" format="[general]"  name=labor  tag="Labor code" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="0" x="2258" y="4" height="64" width="210" format="[general]"  name=material  tag="Material (x) " edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="0" x="2478" y="4" height="64" width="224" format="[general]"  name=cost_bill  tag="Cost Bill (x) " edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="0" x="2711" y="4" height="64" width="402" format="[general]"  name=group_location  tag="Location/Machine code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="0" x="3122" y="4" height="64" width="251" format="[general]"  name=process  tag="Process code. Binds together more than 1 flow router for concurrent production scheduling into the hard que. " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="0" x="3383" y="4" height="64" width="695" format="[general]"  name=doc1  tag="Doc1-4 till the end  (x)" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=120 border="0" color="0" x="4087" y="4" height="64" width="695" format="[general]"  name=doc2 edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=130 border="0" color="0" x="4791" y="4" height="64" width="695" format="[general]"  name=doc3 edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=140 border="0" color="0" x="5495" y="4" height="64" width="695" format="[general]"  name=doc4 edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=150 border="0" color="0" x="6199" y="4" height="64" width="274" format="[general]"  name=cost  tag="cost " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=160 border="0" color="0" x="6482" y="4" height="64" width="274" format="[general]"  name=price  tag="Price " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=170 border="0" color="0" x="6766" y="4" height="64" width="466" format="[general]"  name=cost_price_factor  tag="cost price factor " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=180 border="0" color="0" x="7241" y="4" height="76" width="603" format="[shortdate] [time]"  name=time_stamp  tag="Time Stamp (at what time it was written) " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parent Part"border="6" color="0" x="9" y="8" height="52" width="512"  name=parent_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Sequence"border="6" color="0" x="530" y="8" height="52" width="274"  name=sequence_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Code"border="6" color="0" x="814" y="8" height="52" width="512"  name=code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="1335" y="8" height="52" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Notes"border="6" color="0" x="1856" y="8" height="52" width="238"  name=notes_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Labor"border="6" color="0" x="2103" y="8" height="52" width="146"  name=labor_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Material"border="6" color="0" x="2258" y="8" height="52" width="210"  name=material_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cost Bill"border="6" color="0" x="2478" y="8" height="52" width="224"  name=cost_bill_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Group Location"border="6" color="0" x="2711" y="8" height="52" width="402"  name=group_location_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Processs"border="6" color="0" x="3122" y="8" height="52" width="251"  name=process_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Doc1"border="6" color="0" x="3383" y="8" height="52" width="695"  name=doc1_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Doc2"border="6" color="0" x="4087" y="8" height="52" width="695"  name=doc2_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Doc3"border="6" color="0" x="4791" y="8" height="52" width="695"  name=doc3_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Doc4"border="6" color="0" x="5495" y="8" height="52" width="695"  name=doc4_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cost"border="6" color="0" x="6199" y="8" height="52" width="274"  name=cost_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Price"border="6" color="0" x="6482" y="8" height="52" width="274"  name=price_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cost Price Factor"border="6" color="0" x="6766" y="8" height="52" width="466"  name=cost_price_factor_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Time Stamp"border="6" color="0" x="7241" y="8" height="52" width="603"  name=time_stamp_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

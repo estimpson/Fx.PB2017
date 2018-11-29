@@ -1,0 +1,218 @@
+﻿$PBExportHeader$d_shipper_detail_new.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=id dbname="shipper.id" )
+ column=(type=char(35) updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_required dbname="qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="qty_packed" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_original dbname="qty_original" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum_shipped dbname="accum_shipped" )
+ column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="order_no" )
+ column=(type=char(20) updatewhereclause=yes name=customer_po dbname="customer_po" )
+ column=(type=char(30) updatewhereclause=yes name=release_no dbname="release_no" )
+ column=(type=datetime updatewhereclause=yes name=release_date dbname="release_date" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="type" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="price" )
+ column=(type=char(50) updatewhereclause=yes name=account_code dbname="account_code" )
+ column=(type=char(10) updatewhereclause=yes name=salesman dbname="salesman" )
+ column=(type=decimal(6) updatewhereclause=yes name=tare_weight dbname="tare_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=gross_weight dbname="gross_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=net_weight dbname="net_weight" )
+ column=(type=datetime updatewhereclause=yes name=date_shipped dbname="date_shipped" )
+ column=(type=char(35) updatewhereclause=yes name=assigned dbname="assigned" )
+ column=(type=char(15) updatewhereclause=yes name=packaging_job dbname="packaging_job" )
+ column=(type=char(254) updatewhereclause=yes name=note dbname="note" )
+ column=(type=char(5) updatewhereclause=yes name=operator dbname="operator" )
+ column=(type=long updatewhereclause=yes name=boxes_staged dbname="boxes_staged" )
+ column=(type=decimal(6) updatewhereclause=yes name=pack_line_qty dbname="pack_line_qty" )
+ column=(type=decimal(6) updatewhereclause=yes name=alternative_qty dbname="alternative_qty" )
+ column=(type=char(2) updatewhereclause=yes name=alternative_unit dbname="alternative_unit" )
+ column=(type=long updatewhereclause=yes name=week_no dbname="week_no" )
+ column=(type=char(1) updatewhereclause=yes name=taxable dbname="taxable" )
+ column=(type=char(1) updatewhereclause=yes name=price_type dbname="price_type" )
+ column=(type=char(25) updatewhereclause=yes name=cross_reference dbname="cross_reference" )
+ column=(type=char(30) updatewhereclause=yes name=customer_part dbname="customer_part" )
+ column=(type=long updatewhereclause=yes name=dropship_po dbname="dropship_po" )
+ column=(type=long updatewhereclause=yes name=dropship_po_row_id dbname="dropship_po_row_id" )
+ column=(type=long updatewhereclause=yes name=dropship_oe_row_id dbname="dropship_oe_row_id" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="order_detail.suffix" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part_name" )
+ column=(type=char(25) updatewhereclause=yes name=part_original dbname="part.part_original" )
+ column=(type=decimal(6) updatewhereclause=yes name=total_cost dbname="total_cost" )
+ column=(type=char(10) updatewhereclause=yes name=group_no dbname="group_no" )
+ column=(type=long updatewhereclause=yes name=dropship_po_serial dbname="dropship_po_serial" )
+ column=(type=long updatewhereclause=yes name=dropship_invoice_serial dbname="dropship_invoice_serial" )
+ column=(type=char(1) updatewhereclause=yes name=stage_using_weight dbname="stage_using_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=alternate_price dbname="alternate_price" )
+ column=(type=char(20) updatewhereclause=yes name=order_detail_packaging_type dbname="order_detail.packaging_type" )
+ retrieve="select	sh.id,
+	Min ( part.part +
+	(	case
+			when od.suffix is null then ''
+			else '-' + Convert ( varchar ( 9 ), od.suffix )
+		end ) ) part,
+	Convert ( numeric (20,6), 0 ) qty_required,
+	Convert ( numeric (20,6), 0 ) qty_packed,
+	Convert ( numeric (20,6), 0 ) qty_original,
+	convert ( numeric (20,6), 0 ) accum_shipped,
+	IsNull ( Min ( od.order_no ), 0 ) order_no,
+	Min ( oh.customer_po ) customer_po,
+	Min ( od.release_no ) release_no,
+	Min ( od.due_date ) release_date,
+	Convert ( char (1), null ) type,
+	Min ( od.price) price,
+	Min ( part.gl_account_code ) account_code,
+	Convert ( char (10), Min ( oh.salesman ) ) salesman,
+	Convert ( numeric (20,6), 0 ) tare_weight,
+	Convert ( numeric (20,6), 0 ) gross_weight,
+	Convert ( numeric (20,6), 0 ) net_weight,
+	Convert ( datetime, null ) date_shipped,
+	Convert ( varchar (35), null ) assigned,
+	Convert ( varchar (15), null ) packaging_job,
+	Convert ( varchar (254), null ) note,
+	Convert ( varchar (5), null ) operator,
+	0 boxes_staged,
+	Convert ( numeric (20,6), 0 ) pack_line_qty,
+	Convert ( numeric (20,6), 0 ) alternative_qty,
+	Min ( od.unit ) alternative_unit,
+	Min ( od.week_no ) week_no,
+	Convert ( char (1), null ) taxable,
+	'P' price_type,
+	Convert ( varchar (25), null ) cross_reference,
+	Min ( od.customer_part ) customer_part,
+	0 dropship_po,
+	0 dropship_po_row_id,
+	0 dropship_oe_row_id,
+	od.suffix suffix,
+	Min ( part.name ) part_name,
+	part.part part_original,
+	Convert ( numeric (20,6), 0 ) total_cost,
+	Convert ( varchar (10), null ) group_no,
+	0 dropship_po_serial,
+	0 dropship_invoice_serial,
+	isnull ( Min ( pp.stage_using_weight ), 'N' ) stage_using_weight,
+	Min ( od.alternate_price ) alternate_price,
+     od.packaging_type
+from	shipper sh
+	left outer join order_header oh on oh.order_no = :OrderNo
+	left outer join order_detail od on od.order_no = :OrderNo and
+		od.part_number = :Part and
+		isnull ( od.suffix, 0 ) = isnull ( :Suffix, 0 ) and
+		od.due_date =
+		(	select	min ( od2.due_date )
+			from	order_detail od2
+			where	od2.order_no = :OrderNo and
+				od2.part_number = :Part and
+				isnull ( od2.suffix, 0 ) = isnull ( :Suffix, 0 ) )
+	join part on part.part = :Part
+	left outer join part_packaging pp on pp.part = :Part and
+		pp.code = od.packaging_type
+where	sh.id = :Shipper
+group by
+	sh.id,
+	oh.order_no,
+	part.part,
+	od.suffix,
+     od.packaging_type
+" arguments=(("OrderNo", number),("Shipper", number),("Part", string),("Suffix", number)) )
+text(band=header alignment="2" text="Id" border="6" color="37234728" x="9" y="8" height="52" width="329" html.valueishtml="0"  name=id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part" border="6" color="37234728" x="347" y="8" height="52" width="1015" html.valueishtml="0"  name=part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Required" border="6" color="37234728" x="1371" y="8" height="52" width="347" html.valueishtml="0"  name=qty_required_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Packed" border="6" color="37234728" x="1728" y="8" height="52" width="329" html.valueishtml="0"  name=qty_packed_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Original" border="6" color="37234728" x="2066" y="8" height="52" width="329" html.valueishtml="0"  name=qty_original_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum Shipped" border="6" color="37234728" x="2405" y="8" height="52" width="421" html.valueishtml="0"  name=accum_shipped_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Order No" border="6" color="37234728" x="2834" y="8" height="52" width="329" html.valueishtml="0"  name=order_no_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer Po" border="6" color="37234728" x="3173" y="8" height="52" width="576" html.valueishtml="0"  name=customer_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release No" border="6" color="37234728" x="3758" y="8" height="52" width="850" html.valueishtml="0"  name=release_no_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release Date" border="6" color="37234728" x="4617" y="8" height="52" width="603" html.valueishtml="0"  name=release_date_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type" border="6" color="37234728" x="5230" y="8" height="52" width="128" html.valueishtml="0"  name=type_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Price" border="6" color="37234728" x="5367" y="8" height="52" width="329" html.valueishtml="0"  name=price_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Account Code" border="6" color="37234728" x="5705" y="8" height="52" width="1399" html.valueishtml="0"  name=account_code_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Salesman" border="6" color="37234728" x="7113" y="8" height="52" width="713" html.valueishtml="0"  name=salesman_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tare Weight" border="6" color="37234728" x="7835" y="8" height="52" width="329" html.valueishtml="0"  name=tare_weight_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Gross Weight" border="6" color="37234728" x="8174" y="8" height="52" width="366" html.valueishtml="0"  name=gross_weight_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Net Weight" border="6" color="37234728" x="8549" y="8" height="52" width="329" html.valueishtml="0"  name=net_weight_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Shipped" border="6" color="37234728" x="8887" y="8" height="52" width="603" html.valueishtml="0"  name=date_shipped_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Assigned" border="6" color="37234728" x="9499" y="8" height="52" width="987" html.valueishtml="0"  name=assigned_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Packaging Job" border="6" color="37234728" x="10496" y="8" height="52" width="439" html.valueishtml="0"  name=packaging_job_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Note" border="6" color="37234728" x="10944" y="8" height="52" width="4389" html.valueishtml="0"  name=note_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Operator" border="6" color="37234728" x="15342" y="8" height="52" width="229" html.valueishtml="0"  name=operator_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Boxes Staged" border="6" color="37234728" x="15579" y="8" height="52" width="375" html.valueishtml="0"  name=boxes_staged_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pack Line Qty" border="6" color="37234728" x="15963" y="8" height="52" width="379" html.valueishtml="0"  name=pack_line_qty_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Alternative Qty" border="6" color="37234728" x="16352" y="8" height="52" width="389" html.valueishtml="0"  name=alternative_qty_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Alternative Unit" border="6" color="37234728" x="16750" y="8" height="52" width="398" html.valueishtml="0"  name=alternative_unit_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Week No" border="6" color="37234728" x="17157" y="8" height="52" width="329" html.valueishtml="0"  name=week_no_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Taxable" border="6" color="37234728" x="17495" y="8" height="52" width="206" html.valueishtml="0"  name=taxable_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Price Type" border="6" color="37234728" x="17710" y="8" height="52" width="283" html.valueishtml="0"  name=price_type_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cross Reference" border="6" color="37234728" x="18002" y="8" height="52" width="713" html.valueishtml="0"  name=cross_reference_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer Part" border="6" color="37234728" x="18725" y="8" height="52" width="850" html.valueishtml="0"  name=customer_part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dropship Po" border="6" color="37234728" x="19584" y="8" height="52" width="329" html.valueishtml="0"  name=dropship_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dropship Po Row Id" border="6" color="37234728" x="19922" y="8" height="52" width="521" html.valueishtml="0"  name=dropship_po_row_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dropship Oe Row Id" border="6" color="37234728" x="20453" y="8" height="52" width="526" html.valueishtml="0"  name=dropship_oe_row_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Suffix" border="6" color="37234728" x="20987" y="8" height="52" width="329" html.valueishtml="0"  name=suffix_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part Name" border="6" color="37234728" x="21326" y="8" height="52" width="2770" html.valueishtml="0"  name=part_name_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part Original" border="6" color="37234728" x="24105" y="8" height="52" width="713" html.valueishtml="0"  name=part_original_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Total Cost" border="6" color="37234728" x="24827" y="8" height="52" width="329" html.valueishtml="0"  name=total_cost_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Group No" border="6" color="37234728" x="25166" y="8" height="52" width="302" html.valueishtml="0"  name=group_no_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dropship Po Serial" border="6" color="37234728" x="25477" y="8" height="52" width="494" html.valueishtml="0"  name=dropship_po_serial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dropship Invoice Serial" border="6" color="37234728" x="25979" y="8" height="52" width="599" html.valueishtml="0"  name=dropship_invoice_serial_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Stage Using Weight" border="6" color="37234728" x="26587" y="8" height="52" width="530" html.valueishtml="0"  name=stage_using_weight_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Alternate Price" border="6" color="37234728" x="27127" y="8" height="52" width="393" html.valueishtml="0"  name=alternate_price_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="37234728" x="9" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="347" y="8" height="52" width="1015" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=36 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="37234728" x="1371" y="8" height="52" width="347" format="[general]" html.valueishtml="0"  name=qty_required visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="37234728" x="1728" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=qty_packed visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="37234728" x="2066" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=qty_original visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="37234728" x="2405" y="8" height="52" width="421" format="[general]" html.valueishtml="0"  name=accum_shipped visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="37234728" x="2834" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=order_no visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="37234728" x="3173" y="8" height="52" width="576" format="[general]" html.valueishtml="0"  name=customer_po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="37234728" x="3758" y="8" height="52" width="850" format="[general]" html.valueishtml="0"  name=release_no visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="37234728" x="4617" y="8" height="52" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=release_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="37234728" x="5230" y="8" height="52" width="128" format="[general]" html.valueishtml="0"  name=type visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="37234728" x="5367" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=price visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="37234728" x="5705" y="8" height="52" width="1399" format="[general]" html.valueishtml="0"  name=account_code visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="37234728" x="7113" y="8" height="52" width="713" format="[general]" html.valueishtml="0"  name=salesman visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="37234728" x="7835" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=tare_weight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="37234728" x="8174" y="8" height="52" width="366" format="[general]" html.valueishtml="0"  name=gross_weight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="37234728" x="8549" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=net_weight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="37234728" x="8887" y="8" height="52" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=date_shipped visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="37234728" x="9499" y="8" height="52" width="987" format="[general]" html.valueishtml="0"  name=assigned visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="37234728" x="10496" y="8" height="52" width="439" format="[general]" html.valueishtml="0"  name=packaging_job visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="37234728" x="10944" y="8" height="52" width="4389" format="[general]" html.valueishtml="0"  name=note visible="1" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="37234728" x="15342" y="8" height="52" width="229" format="[general]" html.valueishtml="0"  name=operator visible="1" edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=32766 border="0" color="37234728" x="15579" y="8" height="52" width="375" format="[general]" html.valueishtml="0"  name=boxes_staged visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="37234728" x="15963" y="8" height="52" width="379" format="[general]" html.valueishtml="0"  name=pack_line_qty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="37234728" x="16352" y="8" height="52" width="389" format="[general]" html.valueishtml="0"  name=alternative_qty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="37234728" x="16750" y="8" height="52" width="398" format="[general]" html.valueishtml="0"  name=alternative_unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="37234728" x="17157" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=week_no visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="37234728" x="17495" y="8" height="52" width="206" format="[general]" html.valueishtml="0"  name=taxable visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="37234728" x="17710" y="8" height="52" width="283" format="[general]" html.valueishtml="0"  name=price_type visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="37234728" x="18002" y="8" height="52" width="713" format="[general]" html.valueishtml="0"  name=cross_reference visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="37234728" x="18725" y="8" height="52" width="850" format="[general]" html.valueishtml="0"  name=customer_part visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="1" tabsequence=32766 border="0" color="37234728" x="19584" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=dropship_po visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="1" tabsequence=32766 border="0" color="37234728" x="19922" y="8" height="52" width="521" format="[general]" html.valueishtml="0"  name=dropship_po_row_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="1" tabsequence=32766 border="0" color="37234728" x="20453" y="8" height="52" width="526" format="[general]" html.valueishtml="0"  name=dropship_oe_row_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="37234728" x="20987" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=suffix visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="0" tabsequence=32766 border="0" color="37234728" x="21326" y="8" height="52" width="2770" format="[general]" html.valueishtml="0"  name=part_name visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="0" color="37234728" x="24105" y="8" height="52" width="713" format="[general]" html.valueishtml="0"  name=part_original visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="1" tabsequence=32766 border="0" color="37234728" x="24827" y="8" height="52" width="329" format="[general]" html.valueishtml="0"  name=total_cost visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="0" color="37234728" x="25166" y="8" height="52" width="302" format="[general]" html.valueishtml="0"  name=group_no visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=40 alignment="1" tabsequence=32766 border="0" color="37234728" x="25477" y="8" height="52" width="494" format="[general]" html.valueishtml="0"  name=dropship_po_serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=41 alignment="1" tabsequence=32766 border="0" color="37234728" x="25979" y="8" height="52" width="599" format="[general]" html.valueishtml="0"  name=dropship_invoice_serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="0" tabsequence=32766 border="0" color="37234728" x="26587" y="8" height="52" width="530" format="[general]" html.valueishtml="0"  name=stage_using_weight visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=43 alignment="1" tabsequence=32766 border="0" color="37234728" x="27127" y="8" height="52" width="393" format="[general]" html.valueishtml="0"  name=alternate_price visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

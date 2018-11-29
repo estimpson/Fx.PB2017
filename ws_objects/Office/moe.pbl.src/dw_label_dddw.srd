@@ -1,0 +1,12 @@
+﻿$PBExportHeader$dw_label_dddw.srd
+$PBExportComments$Label dropdown window
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=char(10) update=yes key=yes name=code dbname="CODE" )
+ retrieve="SELECT code FROM label_library ORDER BY code ASC" update="label_library" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Code"border="0" color="33554432" x="5" y="4" height="65" width="430"  name=code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="5" y="4" height="65" width="435" format="[general]"  name=code edit.limit=12 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

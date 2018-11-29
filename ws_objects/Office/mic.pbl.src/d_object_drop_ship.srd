@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_object_drop_ship.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=serial dbname="object.serial" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=location dbname="object.location" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="object.status" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"object~" ) COLUMN(NAME=~"object.serial~") COLUMN(NAME=~"object.location~") COLUMN(NAME=~"object.status~")WHERE(    EXP1 =~"~~~"object~~~".~~~"serial~~~"~"   OP =~"=~"    EXP2 =~":al_serial~" ) ) ARG(NAME = ~"al_serial~" TYPE = number) " update="object" updatewhere=0 updatekeyinplace=yes arguments=(("al_serial", number)) )
+text(band=header alignment="2" text="Serial"border="0" color="0" x="9" y="8" height="64" width="160"  name=serial_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Location"border="0" color="0" x="178" y="8" height="64" width="238"  name=location_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status"border="0" color="0" x="425" y="8" height="64" width="174"  name=status_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="9" y="8" height="64" width="160" format="[general]"  name=serial  tag="Serial number " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="178" y="8" height="64" width="238" format="[general]"  name=location  tag="location code" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="425" y="8" height="64" width="174" format="[general]"  name=status  tag="status of the object/part ( clarify) " edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

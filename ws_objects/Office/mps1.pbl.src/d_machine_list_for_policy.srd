@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_machine_list_for_policy.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=machine_no dbname="machine.machine_no" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"machine~" ) COLUMN(NAME=~"machine.machine_no~")) ORDER(NAME=~"machine.machine_no~" ASC=yes ) " update="machine" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="0" y="4" height="64" width="677" format="[general]"  name=machine_no edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Machine No"border="0" color="33554432" x="0" y="4" height="64" width="352"  name=machine_no_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

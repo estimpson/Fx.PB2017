@@ -1,0 +1,46 @@
+﻿$PBExportHeader$d_mps_update_qty_assigned.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=qnty dbname="master_prod_sched.qnty" )
+ column=(type=datetime updatewhereclause=yes name=dead_start dbname="master_prod_sched.dead_start" )
+ column=(type=datetime updatewhereclause=yes name=start_time dbname="master_prod_sched.start_time" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_assigned dbname="master_prod_sched.qty_assigned" )
+ column=(type=char(25) updatewhereclause=yes key=yes name=part dbname="master_prod_sched.part" )
+ column=(type=datetime updatewhereclause=yes key=yes name=due dbname="master_prod_sched.due" )
+ column=(type=long updatewhereclause=yes key=yes name=source dbname="master_prod_sched.source" )
+ column=(type=decimal(0) updatewhereclause=yes key=yes name=origin dbname="master_prod_sched.origin" )
+ column=(type=decimal(0) updatewhereclause=yes key=yes name=id dbname="master_prod_sched.id" )
+ retrieve="SELECT master_prod_sched.qnty, 
+master_prod_sched.dead_start, 
+master_prod_sched.start_time, 
+master_prod_sched.qty_assigned, 
+master_prod_sched.part, 
+master_prod_sched.due, 
+master_prod_sched.source, 
+master_prod_sched.origin,
+master_prod_sched.id 
+FROM master_prod_sched 
+WHERE ( master_prod_sched.part = :szPart ) ORDER BY master_prod_sched.dead_start ASC, master_prod_sched.start_time ASC " update="master_prod_sched" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+text(band=header alignment="2" text="Qnty"border="0" color="0" x="9" y="8" height="56" width="329"  name=qnty_t  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Dead Start"border="0" color="0" x="347" y="8" height="56" width="603"  name=dead_start_t  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Start Time"border="0" color="0" x="960" y="8" height="56" width="603"  name=start_time_t  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Qty Assigned"border="0" color="0" x="1573" y="8" height="56" width="361"  name=qty_assigned_t  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Part"border="0" color="0" x="1943" y="8" height="56" width="562"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Due"border="0" color="0" x="2514" y="8" height="56" width="654"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Source"border="0" color="0" x="3177" y="8" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Origin"border="0" color="0" x="4073" y="8" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Id"border="0" color="0" x="4969" y="8" height="56" width="1157"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="56" width="329" format="[general]"  name=qnty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="347" y="8" height="56" width="603" format="[shortdate] [time]"  name=dead_start edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="8" height="56" width="603" format="[shortdate] [time]"  name=start_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1573" y="8" height="56" width="361" format="[general]"  name=qty_assigned edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1943" y="8" height="56" width="562" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2514" y="8" height="56" width="654" format="[shortdate] [time]"  name=due edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="3177" y="8" height="56" width="887" format="[general]"  name=source edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="4073" y="8" height="56" width="887" format="[general]"  name=origin edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=9 alignment="0" tabsequence=0 border="0" color="0" x="4974" y="8" height="56" width="1152"  name=id  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

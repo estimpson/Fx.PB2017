@@ -1,0 +1,11 @@
+﻿$PBExportHeader$s_normal_po.srs
+$PBExportComments$structure used for blanket and normal po  windows
+global type s_normal_po from structure
+	string		part
+	long		po_no
+	date		due
+	long		row_id
+	character		new
+	datetime		scheduled_time
+end type
+

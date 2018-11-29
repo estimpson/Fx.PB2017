@@ -1,0 +1,18 @@
+﻿$PBExportHeader$f_get_row_id.srf
+global type f_get_row_id from function_object
+end type
+
+forward prototypes
+global function long f_get_row_id (decimal al_order)
+end prototypes
+
+global function long f_get_row_id (decimal al_order);long ll_row_id
+
+select count(part) + 1
+into 	:ll_row_id
+from 	master_prod_sched 
+where origin = :al_order ;
+
+return ll_row_id 
+end function
+

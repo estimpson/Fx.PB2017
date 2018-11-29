@@ -1,0 +1,22 @@
+﻿$PBExportHeader$dw_list_of_closed_shippers_white8.srd
+$PBExportComments$List of all closed_shippers
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="shipper.id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_shipped dbname="shipper.date_shipped" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="shipper.status" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"shipper~" ) COLUMN(NAME=~"shipper.id~") COLUMN(NAME=~"shipper.destination~") COLUMN(NAME=~"shipper.date_shipped~") COLUMN(NAME=~"shipper.status~")WHERE(    EXP1 =~"( shipper.status~"   OP =~"=~"    EXP2 =~"'C' ~"    LOGIC =~"or~" ) WHERE(    EXP1 =~"shipper.status~"   OP =~"=~"    EXP2 =~"'Z' )~" ) ) " update="shipper" updatewhere=0 updatekeyinplace=yes  sort="id A " )
+text(band=header alignment="2" text="Shipper"border="0" color="8388608" x="9" y="8" height="56" width="206"  name=id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Dest"border="0" color="8388608" x="224" y="8" height="56" width="210"  name=destination_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date"border="0" color="8388608" x="443" y="8" height="56" width="174"  name=date_shipped_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="56" width="206" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="224" y="8" height="56" width="210" format="[general]"  name=destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="16777215" x="709" y="8" height="56" width="82" format="[general]"  name=status edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="443" y="8" height="56" width="174" format="[general]"  name=date_shipped edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (If(status = ~"Z~", ~"logo2.bmp~", ~"~"))"border="0" color="0" x="626" y="8" height="56" width="73" format="[GENERAL]"  name=flag  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

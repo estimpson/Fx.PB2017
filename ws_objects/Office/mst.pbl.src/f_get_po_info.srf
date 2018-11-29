@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_get_po_info.srf
+$PBExportComments$Retrieve po information
+global type f_get_po_info from function_object
+end type
+
+forward prototypes
+global function string f_get_po_info (long ipo, string szinfoname)
+end prototypes
+
+global function string f_get_po_info (long ipo, string szinfoname);String szInfoValue
+
+CHOOSE CASE szInfoName
+	CASE "VENDOR"
+		SELECT po_header.vendor_code  
+    	INTO  :szInfoValue 
+    	FROM  po_header  
+   	WHERE po_header.po_number = :iPO   ;
+	CASE ELSE
+		szInfoValue	= ""
+END CHOOSE
+
+Return szInfoValue
+
+
+
+
+
+end function
+

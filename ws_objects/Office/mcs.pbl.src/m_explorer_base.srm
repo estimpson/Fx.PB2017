@@ -1,0 +1,47 @@
+﻿$PBExportHeader$m_explorer_base.srm
+forward
+global type m_explorer_base from menu
+end type
+type m_action from menu within m_explorer_base
+end type
+type m_action from menu within m_explorer_base
+end type
+end forward
+
+global type m_explorer_base from menu
+m_action m_action
+end type
+global m_explorer_base m_explorer_base
+
+forward prototypes
+protected function integer item (readonly m_explorer_base a_m_items[])
+end prototypes
+
+protected function integer item (readonly m_explorer_base a_m_items[]);m_action.Item[1] = a_m_items[1]
+
+return 0
+end function
+
+on m_explorer_base.create
+m_explorer_base=this
+this.m_action=create m_action
+this.Item[]={this.m_action}
+end on
+
+on m_explorer_base.destroy
+destroy(this.m_action)
+end on
+
+type m_action from menu within m_explorer_base
+end type
+
+event clicked;ParentWindow.Post Event DYNAMIC ue_clicked_popup ( Text )
+end event
+
+on m_action.create
+this.Text="Action"
+end on
+
+on m_action.destroy
+end on
+

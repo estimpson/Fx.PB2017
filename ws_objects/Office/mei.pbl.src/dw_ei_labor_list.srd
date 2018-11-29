@@ -1,0 +1,32 @@
+﻿$PBExportHeader$dw_ei_labor_list.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="object.part" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=serial dbname="object.serial" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=location dbname="object.location" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_date dbname="object.last_date" initial="today" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_time dbname="object.last_time" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="object.status" )
+ retrieve="  SELECT object.part,   
+         object.serial,   
+         object.location,   
+         object.last_date,   
+         object.last_time,   
+         object.status  
+    FROM object  
+   WHERE ( object.status = 'L' )    
+" update="object" updatewhere=1 updatekeyinplace=no  sort="part A " )
+text(band=header alignment="2" text="Part"border="0" color="0" x="10" y="8" height="65" width="513"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serial"border="0" color="0" x="531" y="8" height="65" width="202"  name=serial_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Location"border="0" color="0" x="741" y="8" height="65" width="284"  name=location_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Last Date"border="0" color="0" x="1034" y="8" height="65" width="257"  name=last_date_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Last Time"border="0" color="0" x="1299" y="8" height="65" width="261"  name=last_time_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="8" height="65" width="513" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="531" y="8" height="65" width="202" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="741" y="8" height="65" width="284" format="[general]"  name=location edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1034" y="8" height="65" width="257" format="[general]"  name=last_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1299" y="8" height="65" width="261" format="[time]"  name=last_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

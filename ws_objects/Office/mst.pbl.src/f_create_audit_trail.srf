@@ -1,0 +1,625 @@
+﻿$PBExportHeader$f_create_audit_trail.srf
+global type f_create_audit_trail from function_object
+end type
+
+forward prototypes
+global function boolean f_create_audit_trail (long iserial, string sztype, string szvalue1, string szvalue2, string szvalue3, string szvalue4, string szvalue5, string szvalue6, string szvalue7, string szvalue8, string szvalue9, string szvalue10)
+end prototypes
+
+global function boolean f_create_audit_trail (long iserial, string sztype, string szvalue1, string szvalue2, string szvalue3, string szvalue4, string szvalue5, string szvalue6, string szvalue7, string szvalue8, string szvalue9, string szvalue10);//	Declarations
+long	ll_ponumber
+Long   	iObjSerial
+Long	iOrder
+Long	iSuffix,&
+	l_l_parent_serial,&
+	l_l_sequence,&
+	l_l_shipper,&
+	l_l_dropship_shipper
+Int	l_i_sequence
+Decimal	nWeight
+Decimal nQuantity
+Decimal nStd_quantity
+Decimal nOnHand
+Decimal nPrice
+Decimal nCost
+Decimal	d_StdCost,&
+	l_dec_tare_weight
+String 	szPart
+String 	szLocation
+String  szFrom
+String  szTo
+String  szUM
+String	szPO
+String	szShipper
+String	szOperator
+String  szActivity
+String  szVendor
+String  szCustomer
+String  szFlag
+String  szStatus
+String  szSalesman
+String  szLot
+String  szWorkOrder
+String  szRemark
+String  szControlNumber
+String  szPlant
+String  szCustom1
+String  szCustom2
+String  szCustom3
+String  szCustom4
+String  szCustom5
+String	szGLAccount
+String	szNote
+String	szPackageType
+String	szGroup
+String	szSalesOrder
+String	szSyntax, szError
+String	szNewSyntax
+String	szRelease
+String	ls_UserDefinedStatus,&
+	ls_engineering_level,&
+	l_s_customer,&
+	l_s_object_type,&
+	l_s_part_name,&
+	l_s_field1,&
+	l_s_field2,&
+	l_s_show_on_shipper,&
+	l_s_workorder,&
+	l_s_kanban_number,&
+	l_s_invoicenumber,&
+	l_s_origin,&
+	l_s_destination,&
+	l_s_dim_qty_str, &
+	l_s_dim_qty_str_other
+Long	l_l_varying_dim_code			
+DateTime	dtDateTime,&
+	l_dt_due_date,&
+	l_dt_start_date
+Date	dDueDate
+DataWindow dw_audit_trail
+Dec	ld_unitweight
+
+//	Initialization
+dtDateTime		= DateTime(today(), now())
+If (szType = 'S') AND ( szValue9 > " " ) then //szValue9 is used as Forced DataTime value
+	dtDateTime	= DateTime(Date(szValue9), Time(szValue9))
+End If
+szStatus		= "A"	
+SetNull(iObjSerial)
+dDueDate		= Today()
+
+//	Get object information
+SELECT	object.serial,   
+	object.part,   
+	object.location,   
+	object.weight,   
+	object.quantity,   
+	object.unit_measure,   
+	object.std_quantity,   
+	object.lot,   
+	object.status,   
+	object.operator,   
+	object.po_number,   
+	object.cost,   
+	object.plant,   
+	object.custom1,   
+	object.custom2,   
+	object.custom3,   
+	object.custom4,   
+	object.custom5,   
+	object.package_type,   
+	object.note,   
+	object.suffix,   
+	object.std_cost,   
+	object.user_defined_status,   
+	object.engineering_level,   
+	object.date_due,
+	object.parent_serial,   
+	object.customer,   
+	object.sequence,   
+	object.shipper,   
+	object.type,   
+	object.name,   
+	object.start_date,   
+	object.field1,   
+	object.field2,   
+	object.show_on_shipper,   
+	object.tare_weight,   
+	object.workorder,   
+	object.kanban_number,
+	object.dimension_qty_string,
+	object.dim_qty_string_other,
+	object.varying_dimension_code,
+	object.origin
+INTO	:iObjSerial,   
+	:szPart,   
+	:szLocation,   
+	:nWeight,   
+	:nQuantity,   
+	:szUM,   
+	:nStd_quantity,  
+	:szLot,
+	:szStatus,	
+	:szOperator,
+	:szPo,
+	:nCost,
+	:szPlant,
+	:szCustom1,
+	:szCustom2,
+	:szCustom3,
+	:szCustom4,
+	:szCustom5,
+	:szPackageType,
+	:szNote,
+	:iSuffix,
+	:d_StdCost,
+	:ls_UserDefinedStatus,
+	:ls_engineering_level,
+	:l_dt_due_date,
+	:l_l_parent_serial,   
+	:l_s_customer,   
+	:l_l_sequence,   
+	:l_l_shipper,   
+	:l_s_object_type,   
+	:l_s_part_name,   
+	:l_dt_start_date,   
+	:l_s_field1,   
+	:l_s_field2,   
+	:l_s_show_on_shipper,   
+	:l_dec_tare_weight,   
+	:l_s_workorder,   
+	:l_s_kanban_number,
+	:l_s_dim_qty_str,
+	:l_s_dim_qty_str_other,
+	:l_l_varying_dim_code,
+	:szshipper
+FROM	object  
+WHERE	object.serial = :iSerial   ;
+
+if sqlca.sqlcode <> 0 then
+	//	Get object information from audit_trail
+	SELECT	part,   
+		from_Loc,   
+		unit,   
+		lot,   
+		status,   
+		po_number,   
+		cost,   
+		plant,   
+		custom1,   
+		custom2,   
+		custom3,   
+		custom4,   
+		custom5,   
+		package_type,   
+		suffix,   
+		std_cost,   
+		user_defined_status,   
+		engineering_level,   
+		parent_serial,   
+		customer, 
+		sequence,   
+		convert(integer,shipper),   
+		object_type,
+		part_name,
+		start_date,   
+		field1,   
+		field2,   
+		show_on_shipper,   
+		workorder,   
+		kanban_number,
+		dimension_qty_string,
+		dim_qty_string_other,
+		varying_dimension_code,
+		shipper
+	INTO	:szPart,   
+		:szLocation,   
+		:szUM,   
+		:szLot,
+		:szStatus,	
+		:szPo,
+		:nCost,
+		:szPlant,
+		:szCustom1,
+		:szCustom2,
+		:szCustom3,
+		:szCustom4,
+		:szCustom5,
+		:szPackageType,
+		:iSuffix,
+		:d_StdCost,
+		:ls_UserDefinedStatus,
+		:ls_engineering_level,
+		:l_l_parent_serial,   
+		:l_s_customer,   
+		:l_l_sequence,   
+		:l_l_shipper,   
+		:l_s_object_type,
+		:l_s_part_name,
+		:l_dt_start_date,   
+		:l_s_field1,   
+		:l_s_field2,   
+		:l_s_show_on_shipper,   
+		:l_s_workorder,   
+		:l_s_kanban_number,
+		:l_s_dim_qty_str,
+		:l_s_dim_qty_str_other,
+		:l_l_varying_dim_code,
+		:szshipper
+	FROM	audit_trail 
+	WHERE	serial = :iSerial and type = 'M' and (workorder = :szvalue8 or workorder= :szvalue9);
+end if 	
+
+if isnull(l_s_dim_qty_str) then l_s_dim_qty_str =''
+if isnull(l_s_dim_qty_str_other) then l_s_dim_qty_str_other =''
+if isnull(l_l_varying_dim_code) then l_l_varying_dim_code = 1
+nQuantity = IsNull ( nQuantity, 0 )
+SELECT	part_online.on_hand  
+INTO	:nOnHand  
+FROM	part_online  
+WHERE	part_online.part = :szPart   ;
+
+//	Evaluate type
+Choose Case szType
+	Case "S"	//Shipping
+		szShipper	= szValue1
+		szTo		= szValue2
+		szCustomer	= szValue3
+		szFrom		= szLocation
+		szOperator	= szValue4
+		szRemark	= "Shipping"
+		nPrice		= Dec(szValue5)
+		szSalesman	= szValue6
+		szNote		= szValue7
+		szGroup		= szValue8
+		szSalesOrder	= stTransParm.value1
+		nQuantity	= f_get_value ( nQuantity )
+	Case "V"	//Return to vendor
+		szShipper	= szValue1
+		szTo		= szValue2
+		szVendor	= szValue3
+		szFrom		= szLocation
+		szOperator	= szValue4
+		szRemark	= "Ret Vendor"
+		nPrice		= Dec(szValue5)
+		szSalesman	= szValue6
+		szNote		= szValue7
+	Case "O"	//Outside process
+		szShipper	= szValue1
+		szTo		= szValue2
+		szVendor	= szValue3
+		szFrom		= szLocation
+		szOperator	= szValue4
+		szRemark	= "Out Proc"
+		nPrice		= Dec(szValue5)
+		szSalesman	= szValue6
+		szNote		= szValue7
+	Case "D"	//Deletion
+		szFrom		= szLocation
+		szTo		= "TRASH"
+		szRemark	= "Delete"
+		If szValue1 <> "" Then szOperator = szValue1
+		nQuantity	= Dec ( szValue3 )
+		nStd_Quantity	= Dec ( szValue4 )
+		szUM		= szValue5
+		IF IsNull ( szFrom ) OR Trim ( szFrom ) = '' THEN szFrom 	= szValue6
+		szNote		= szValue7
+		If IsNull ( szPart ) OR Trim ( szPart ) = '' THEN szPart	= szValue8
+		select	IsNull(unit_weight,0)
+		into	:ld_unitweight
+		from	part_inventory
+		where	part_inventory.part=:szpart;
+		nWeight		= isnull(ld_unitweight,0) * isnull(nstd_quantity,0)
+		SELECT	part_online.on_hand  
+		INTO	:nOnHand  
+		FROM	part_online  
+		WHERE	part_online.part = :szPart   ;
+		szWorkorder	= szValue9
+	Case "R"	//Receiving
+		szPO		= szValue1
+		szFrom		= szValue2	
+		szVendor	= szValue2
+		szControlNumber	= szValue3
+		szShipper	= szValue4
+		szTo		= szLocation
+		szRemark	= "Receiving"
+		szGLAccount	= stTransParm.value1
+		szNote		= szNote // stTransParm.value2, I don't know why this was assigned, changed on 8/20/01
+		szOperator	= stTransParm.value3
+		szPlant		= stTransParm.value4
+		nPrice		= Dec(stTransParm.value5)
+		szRelease	= stTransParm.value8
+		If IsDate(stTransParm.value6) then
+			dDueDate= Date(stTransParm.value6)
+		End If
+		If (iObjSerial = 0) or IsNull(iObjSerial) then
+			iObjSerial	= iSerial
+			szPart		= szValue5
+			nQuantity	= Dec(szValue6)
+			nCost		= Dec(szValue7)
+			szTo		= szValue8
+			szUM		= szValue9
+			nStd_quantity	= Dec(stTransParm.value7)
+			dtDateTime	= DateTime(today(), now())
+			szStatus	= 'A'
+			SELECT	location.plant  
+			INTO	:szPlant  
+			FROM	location  
+			WHERE	location.code = :szTo;
+			nOnHand	= Dec(f_get_part_info(szPart, "ON HAND"))
+			nWeight	= Dec(f_get_part_info(szPart, "UNIT WEIGHT")) * nStd_Quantity			
+		End If
+		If (nCost = 0) or IsNull(nCost) Then
+			nCost	= Dec(szValue7)
+		End If
+	Case "J"	//Job completion
+		szFrom		= szLocation
+		szTo		= szLocation
+		szControlNumber	= szValue1
+		szRemark	= "Job Comp"
+		nCost          	= Dec ( szValue2 )
+		If szValue4 	= "Normal" Then szFrom = szValue3
+		szWorkOrder    = szValue5
+	Case "L"	//Original Parts coming back from Outside Process
+		szFrom		= szValue2	
+		szVendor	= szValue2
+		szTo		= szLocation
+		szRemark	= "OP Receive"
+		if szOperator = '' then 
+			szOperator	= stTransParm.value3
+		end if 	
+		if szValue6 > '' then 
+			nquantity = Dec ( szvalue6)
+			nstd_quantity = Dec ( szvalue6)
+		end if 	
+	Case "M"	// Material issue
+		nQuantity	= Dec(szValue1)
+		nStd_Quantity	= Dec(szValue2)
+		nprice		= ncost
+		szUM		= szValue3
+		szTo		= szValue4
+		szFrom		= szLocation
+		szRemark	= "Mat Issue"
+		szVendor       	= szValue5
+//		szShipper      	= szValue6
+		szPlant        	= szValue7
+		szWorkOrder	= szValue8
+		szOperator	= szValue9
+		szNote		= stTransParm.value1
+		select	IsNull(unit_weight,0)
+		into	:ld_unitweight
+		from	part_inventory
+		where	part_inventory.part=:szpart;
+		nWeight		= isnull(ld_unitweight,0) * isnull(nstd_quantity,0)
+		if isnull(szpo,'') > '' then 
+			ll_ponumber = long(szpo)
+			select	vendor_code
+			into	:szVendor
+			from	po_header
+			where	po_number = :ll_ponumber;
+		end if 	
+	Case "N"	// Un- issue
+		nQuantity	= -Dec(szValue1)
+		nStd_Quantity	= -Dec(szValue2)
+		szUM		= szValue3
+		szTo		= szValue4
+		szFrom		= szLocation
+		szRemark	= "MatUnIssue"
+		szVendor       	= szValue5
+//		szShipper      	= szValue6
+		szPlant        	= szValue7
+		szWorkOrder	= szValue8
+		szOperator	= szValue9
+		szNote		= stTransParm.value1
+		select	IsNull(unit_weight,0)
+		into	:ld_unitweight
+		from	part_inventory
+		where	part_inventory.part=:szpart;
+		nWeight		= isnull(ld_unitweight,0) * isnull(nstd_quantity,0)
+		if isnull(szpo,'') > '' then 
+			ll_ponumber = long(szpo)
+			select	vendor_code
+			into	:szVendor
+			from	po_header
+			where	po_number = :ll_ponumber;
+		end if 	
+	Case "T"	//Transfers
+		szFrom		= szValue1
+		szTo		= szValue2
+		szRemark	= "Transfer"
+		szVendor       	= szValue3
+		szShipper      	= szValue4
+		szPlant        	= szValue5
+	Case "B"	// Breakout
+		szRemark	= "Break Out"
+		IF szValue4 <> "Original" Then
+			szFrom	= szValue1	//Parent object serial number
+			szTo	= szLocation    //String(iSerial)		//New object serial number
+		Else
+			szFrom 	= szLocation
+			szTo   	= szLocation
+		End if
+		szVendor       	= szValue2
+		szShipper      	= szValue3
+		if szValue5 > '' then 
+			nquantity = Dec ( szvalue5)
+			nstd_quantity = Dec ( szvalue5)
+		end if 	
+	Case "Q"	// Quality
+		szRemark      	= "Quality"
+		szFrom        	= szValue1
+		szTo           	= szValue2
+		szNote		= szValue3
+	Case "C"	// Combine
+		If szValue10 = "Remaining" Then
+			szRemark= "Combine-Re"
+			szFrom	= szLocation
+			szTo	= szLocation
+		Else
+			szRemark       = "Combine"
+			szFrom         = szValue1
+			szTo           = szValue2
+			iSerial        = Long ( szValue3 )
+			nQuantity      = Dec ( szValue4 )
+			szUM           = szValue5
+		End if
+	Case "W"	// Weight
+		szRemark			= "Weight"
+	Case "A"	// Manual Add
+		szRemark			= "Manual Add"
+		nOnHand 			= Dec ( szValue1 )
+		szTo				= szLocation
+	Case "X"	// Correct object
+		szRemark			= "Correct"
+		szFrom			= szLocation
+		szTo				= szLocation
+		nOnHand			= Dec ( szValue1 )
+	Case "P"	//New Pallet
+		szRemark			= "New Pallet"
+		szFrom			= szvalue1 // location is passed in the parameter
+		nQuantity		= 0
+End Choose
+szOperator = Trim(szOperator)
+
+//	Write audit trail
+If Not IsDate(String(dDueDate)) then
+	dDueDate	= Today()
+End If
+INSERT	INTO audit_trail  
+	( serial,   
+	date_stamp,   
+	type,   
+	part,   
+	quantity,   
+	remarks,   
+	price,   
+	salesman,   
+	customer,   
+	vendor,   
+	po_number,   
+	operator,   
+	from_loc,   
+	to_loc,   
+	on_hand,   
+	lot,   
+	weight,   
+	status,   
+	shipper,   
+	flag,   
+	activity,   
+	unit,   
+	workorder,   
+	std_quantity,   
+	cost,   
+	control_number,   
+	custom1,   
+	custom2,   
+	custom3,   
+	custom4,   
+	custom5,   
+	plant,   
+	invoice_number,   
+	notes,   
+	gl_account,   
+	package_type,   
+	suffix,   
+	due_date,   
+	group_no,   
+	sales_order,   
+	release_no,   
+	dropship_shipper,   
+	std_cost,   
+	user_defined_status,   
+	engineering_level,   
+	posted,   
+	parent_serial,
+	origin,
+	destination,
+	sequence,
+	object_type,
+	part_name,
+	start_date,
+	field1,
+	field2,
+	show_on_shipper,
+	tare_weight,
+	kanban_number,
+	dimension_qty_string,
+	dim_qty_string_other,
+	varying_dimension_code)  
+VALUES	( :iSerial,   
+	:dtdatetime,   
+	:sztype,   
+	:szpart,   
+	:nquantity,   
+	:szremark,   
+	:nprice,   
+	:szsalesman,   
+	:szcustomer,   
+	:szvendor,   
+	:szpo,   
+	:szoperator,   
+	:szfrom,   
+	:szto,   
+	:nonhand,   
+	:szlot,   
+	:nweight,   
+	:szstatus,   
+	:szshipper,   
+	:szflag,   
+	:szactivity,   
+	:szum,   
+	:szworkorder,   
+	:nstd_quantity,   
+	:ncost,   
+	:szcontrolnumber,   
+	:szcustom1,   
+	:szcustom2,   
+	:szcustom3,   
+	:szcustom4,   
+	:szcustom5,   
+	:szplant,   
+	:l_s_invoicenumber,   
+	:sznote,   
+	:szglaccount,   
+	:szpackagetype,   
+	:isuffix,   
+	:l_dt_due_date,   
+	:szgroup,   
+	:szsalesorder,   
+	:szrelease,   
+	:l_l_dropship_shipper,   
+	:d_stdcost,   
+	:ls_userdefinedstatus,   
+	:ls_engineering_level,   
+	null,   
+	:l_l_parent_serial,
+	:l_s_origin,
+	:l_s_destination,
+	:l_i_sequence,
+	:l_s_object_type,
+	:l_s_part_name,
+	:l_dt_start_date,
+	:l_s_field1,
+	:l_s_field2,
+	:l_s_show_on_shipper,
+	:l_dec_tare_weight,
+	:l_s_kanban_number,
+	:l_s_dim_qty_str,
+	:l_s_dim_qty_str_other,
+	:l_l_varying_dim_code) ;
+
+If sqlca.sqlcode = 0 then
+	If szValue10 <> "No Commit" Then
+		Commit;
+	End if
+	Return TRUE
+Else
+	If szValue10 <> "No Commit" Then
+		Rollback;
+	End if
+	Return FALSE
+End If
+
+end function
+

@@ -1,0 +1,30 @@
+﻿$PBExportHeader$d_listoforders.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=168 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=customerpo dbname="cdivw_orders_list.customerpo" )
+ column=(type=char(35) updatewhereclause=yes name=customerpart dbname="cdivw_orders_list.customerpart" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="cdivw_orders_list.destination" )
+ column=(type=char(25) updatewhereclause=yes name=boxlabel dbname="cdivw_orders_list.boxlabel" )
+ column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="cdivw_orders_list.order_no" )
+ retrieve="select	customerpo,
+	customerpart,
+	destination,
+	boxlabel,
+	order_no
+from	cdivw_orders_list
+where	part = :as_part
+order by duedate" arguments=(("as_part", string)) )
+text(band=header alignment="0" text="Customer PO"border="6" color="0" x="9" y="108" height="52" width="503"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Customer Part"border="6" color="0" x="521" y="108" height="52" width="558"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Destination"border="6" color="0" x="1088" y="108" height="52" width="603"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Box Label"border="6" color="0" x="1701" y="108" height="52" width="727"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+button(band=header text="&Print"filename=""action="0" border="0" color="0" x="18" y="0" height="96" width="485" vtextalign="0" htextalign="0"  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="76" width="503" format="[general]"  name=customerpo edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="521" y="0" height="76" width="558" format="[general]"  name=customerpart edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1088" y="0" height="76" width="603" format="[general]"  name=destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1701" y="0" height="76" width="727" format="[general]"  name=boxlabel edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

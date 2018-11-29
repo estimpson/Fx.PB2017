@@ -1,0 +1,176 @@
+﻿$PBExportHeader$m_edi_overlay.srm
+forward
+global type m_edi_overlay from menu
+end type
+type m_m_overlay from menu within m_edi_overlay
+end type
+type m_new from menu within m_m_overlay
+end type
+type m_delete from menu within m_m_overlay
+end type
+type m_save from menu within m_m_overlay
+end type
+type m_exit from menu within m_m_overlay
+end type
+type m_m_overlay from menu within m_edi_overlay
+m_new m_new
+m_delete m_delete
+m_save m_save
+m_exit m_exit
+end type
+type m_edit from menu within m_edi_overlay
+end type
+type m_edit from menu within m_edi_overlay
+end type
+type m_window from menu within m_edi_overlay
+end type
+type m_window from menu within m_edi_overlay
+end type
+type m_help from menu within m_edi_overlay
+end type
+type m_help from menu within m_edi_overlay
+end type
+end forward
+
+global type m_edi_overlay from menu
+m_m_overlay m_m_overlay
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_edi_overlay m_edi_overlay
+
+on m_edi_overlay.create
+m_edi_overlay=this
+this.m_m_overlay=create m_m_overlay
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_m_overlay, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_edi_overlay.destroy
+destroy(this.m_m_overlay)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_m_overlay from menu within m_edi_overlay
+m_new m_new
+m_delete m_delete
+m_save m_save
+m_exit m_exit
+end type
+
+on m_m_overlay.create
+this.Text="&File"
+this.m_new=create m_new
+this.m_delete=create m_delete
+this.m_save=create m_save
+this.m_exit=create m_exit
+this.Item[]={this.m_new, &
+this.m_delete, &
+this.m_save, &
+this.m_exit}
+end on
+
+on m_m_overlay.destroy
+destroy(this.m_new)
+destroy(this.m_delete)
+destroy(this.m_save)
+destroy(this.m_exit)
+end on
+
+type m_new from menu within m_m_overlay
+end type
+
+on clicked;w_edi_overlay_structure_builder.TriggerEvent("new_item")
+end on
+
+on m_new.create
+this.Text="&New~tAlt+N"
+this.Microhelp="Add a new overlay line"
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="New"
+this.ToolBarItemOrder=10
+this.Shortcut=590
+end on
+
+type m_delete from menu within m_m_overlay
+end type
+
+on clicked;w_edi_overlay_structure_builder.TriggerEvent("delete_item")
+end on
+
+on m_delete.create
+this.Text="&Delete~tAlt+D"
+this.Microhelp="Delete the current overlay line"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Delete"
+this.ToolBarItemOrder=20
+this.Shortcut=580
+end on
+
+type m_save from menu within m_m_overlay
+end type
+
+on clicked;w_edi_overlay_structure_builder.TriggerEvent("save_item")
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.Microhelp="Save overlay changes"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=30
+this.Shortcut=595
+end on
+
+type m_exit from menu within m_m_overlay
+end type
+
+on clicked;Close(w_edi_overlay_structure_builder)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+E"
+this.Microhelp="Exit the overlay setup"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=581
+end on
+
+type m_edit from menu within m_edi_overlay
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_edi_overlay
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_edi_overlay
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

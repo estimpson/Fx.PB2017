@@ -1,0 +1,643 @@
+﻿$PBExportHeader$m_router_maint.srm
+forward
+global type m_router_maint from menu
+end type
+type m_file from menu within m_router_maint
+end type
+type m_save from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_-1 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_router_maint
+m_save m_save
+m_print m_print
+m_-1 m_-1
+m_close m_close
+end type
+type m_view from menu within m_router_maint
+end type
+type m_bommaint from menu within m_view
+end type
+type m_activitymaint from menu within m_view
+end type
+type m_machinemaint from menu within m_view
+end type
+type m_vendormaint from menu within m_view
+end type
+type m_toolmaint from menu within m_view
+end type
+type m_routermaint from menu within m_view
+end type
+type m_- from menu within m_view
+end type
+type m_current from menu within m_view
+end type
+type m_future from menu within m_view
+end type
+type m_all from menu within m_view
+end type
+type m_specify from menu within m_view
+end type
+type m_fastcopy from menu within m_view
+end type
+type m_view from menu within m_router_maint
+m_bommaint m_bommaint
+m_activitymaint m_activitymaint
+m_machinemaint m_machinemaint
+m_vendormaint m_vendormaint
+m_toolmaint m_toolmaint
+m_routermaint m_routermaint
+m_- m_-
+m_current m_current
+m_future m_future
+m_all m_all
+m_specify m_specify
+m_fastcopy m_fastcopy
+end type
+type m_help from menu within m_router_maint
+end type
+global type m_router_maint from menu
+m_file m_file
+m_view m_view
+m_help m_help
+end type
+end forward
+
+global type m_router_maint from menu
+m_file m_file
+m_view m_view
+m_help m_help
+end type
+global m_router_maint m_router_maint
+
+type variables
+BOOLEAN	i_b_bom,&
+		i_b_activity,&
+		i_b_router,&
+		i_b_machine,&
+		i_b_outside,&
+		i_b_tool,&
+                                i_b_fastcopy
+end variables
+
+on m_router_maint.create
+m_router_maint=this
+call super::create
+this.m_file=create m_file
+this.m_view=create m_view
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_view
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_router_maint.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_view)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_router_maint
+m_save m_save
+m_print m_print
+m_-1 m_-1
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_save=create m_save
+this.m_print=create m_print
+this.m_-1=create m_-1
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_print)
+destroy(this.m_-1)
+destroy(this.m_close)
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_save_router")
+m_router_maint.m_view.m_routermaint.ToolbarItemDown = FALSE
+m_router_maint.m_file.m_save.Enabled = FALSE
+i_b_router = FALSE
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save"
+this.enabled = false
+this.microhelp = "Save router for current part"
+this.toolbaritemname = "Save!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 8
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent('ue_print') 
+end event
+
+on m_print.create
+call super::create
+this.text = "Print"
+this.microhelp = "Printing Flow Router"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 8
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_file
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;Close(gnv_App.of_GetFrame().GetActiveSheet())
+end event
+
+type m_view from menu within m_router_maint
+m_bommaint m_bommaint
+m_activitymaint m_activitymaint
+m_machinemaint m_machinemaint
+m_vendormaint m_vendormaint
+m_toolmaint m_toolmaint
+m_routermaint m_routermaint
+m_- m_-
+m_current m_current
+m_future m_future
+m_all m_all
+m_specify m_specify
+m_fastcopy m_fastcopy
+end type
+
+on m_view.create
+call super::create
+this.text = "&View"
+this.m_bommaint=create m_bommaint
+this.m_activitymaint=create m_activitymaint
+this.m_machinemaint=create m_machinemaint
+this.m_vendormaint=create m_vendormaint
+this.m_toolmaint=create m_toolmaint
+this.m_routermaint=create m_routermaint
+this.m_-=create m_-
+this.m_current=create m_current
+this.m_future=create m_future
+this.m_all=create m_all
+this.m_specify=create m_specify
+this.m_fastcopy=create m_fastcopy
+this.Item[UpperBound(this.Item)+1]=this.m_bommaint
+this.Item[UpperBound(this.Item)+1]=this.m_activitymaint
+this.Item[UpperBound(this.Item)+1]=this.m_machinemaint
+this.Item[UpperBound(this.Item)+1]=this.m_vendormaint
+this.Item[UpperBound(this.Item)+1]=this.m_toolmaint
+this.Item[UpperBound(this.Item)+1]=this.m_routermaint
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_current
+this.Item[UpperBound(this.Item)+1]=this.m_future
+this.Item[UpperBound(this.Item)+1]=this.m_all
+this.Item[UpperBound(this.Item)+1]=this.m_specify
+this.Item[UpperBound(this.Item)+1]=this.m_fastcopy
+end on
+
+on m_view.destroy
+call super::destroy
+destroy(this.m_bommaint)
+destroy(this.m_activitymaint)
+destroy(this.m_machinemaint)
+destroy(this.m_vendormaint)
+destroy(this.m_toolmaint)
+destroy(this.m_routermaint)
+destroy(this.m_-)
+destroy(this.m_current)
+destroy(this.m_future)
+destroy(this.m_all)
+destroy(this.m_specify)
+destroy(this.m_fastcopy)
+end on
+
+type m_bommaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_bom THEN
+	ToolBarItemDown = FALSE
+	i_b_bom = FALSE
+	routerMaintenance.post event ue_maint_mode(0)
+ELSE
+	m_activitymaint.ToolBarItemDown = FALSE
+	m_routermaint.ToolBarItemDown = FALSE
+	m_machinemaint.ToolBarItemDown = FALSE
+	m_vendormaint.ToolBarItemDown = FALSE
+	m_toolmaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = TRUE
+	i_b_activity = FALSE
+	i_b_router = FALSE
+	i_b_outside = FALSE
+	i_b_machine = FALSE
+	i_b_tool = FALSE
+	routerMaintenance.post event ue_maint_mode(1)
+END IF
+end event
+
+on m_bommaint.create
+call super::create
+this.text = "1. &BOM Maintenance"
+this.microhelp = "Bill of material maintenance"
+this.toolbaritemname = "UserObject!"
+this.toolbaritemtext = "1. BOM"
+this.toolbaritemorder = 2
+end on
+
+on m_bommaint.destroy
+call super::destroy
+end on
+
+type m_activitymaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_activity THEN
+	ToolBarItemDown = FALSE
+	i_b_activity = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 0 )
+ELSE
+	m_bommaint.ToolBarItemDown = FALSE
+	m_routermaint.ToolBarItemDown = FALSE
+	m_machinemaint.ToolBarItemDown = FALSE
+	m_vendormaint.ToolBarItemDown = FALSE
+	m_toolmaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = FALSE
+	i_b_activity = TRUE
+	i_b_router = FALSE
+	i_b_outside = FALSE
+	i_b_machine = FALSE
+	i_b_tool = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 2 )
+END IF
+end event
+
+on m_activitymaint.create
+call super::create
+this.text = "2. Acti&vity Maintenance"
+this.microhelp = "Activity maintenance"
+this.toolbaritemname = "SetDefaultClass!"
+this.toolbaritemtext = "2. Activity"
+this.toolbaritemorder = 3
+end on
+
+on m_activitymaint.destroy
+call super::destroy
+end on
+
+type m_machinemaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_machine THEN
+	ToolBarItemDown = FALSE
+	i_b_machine = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 0 )
+ELSE
+	m_bommaint.ToolBarItemDown = FALSE
+	m_activitymaint.ToolBarItemDown = FALSE
+	m_routermaint.ToolBarItemDown = FALSE
+	m_vendormaint.ToolBarItemDown = FALSE
+	m_toolmaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = FALSE
+	i_b_activity = FALSE
+	i_b_router = FALSE
+	i_b_machine = TRUE
+	i_b_outside = FALSE
+	i_b_tool = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 3 )
+END IF
+end event
+
+on m_machinemaint.create
+call super::create
+this.text = "3. &Machine Maintenance"
+this.microhelp = "Machine maintenance"
+this.toolbaritemname = "Application!"
+this.toolbaritemtext = "3. Machine"
+this.toolbaritemorder = 4
+end on
+
+on m_machinemaint.destroy
+call super::destroy
+end on
+
+type m_vendormaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_outside THEN
+	ToolBarItemDown = FALSE
+	i_b_outside = FALSE
+	m_file.m_save.Enabled = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 0 )
+ELSE
+	m_activitymaint.ToolBarItemDown = FALSE
+	m_bommaint.ToolBarItemDown = FALSE
+	m_machinemaint.ToolBarItemDown = FALSE
+	m_routermaint.ToolBarItemDown = FALSE
+	m_toolmaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = FALSE
+	i_b_activity = FALSE
+	i_b_machine = FALSE
+	i_b_router = FALSE
+	i_b_outside = TRUE
+	i_b_tool = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 5 )
+END IF
+end event
+
+on m_vendormaint.create
+call super::create
+this.text = "4. &Vendor Maintenance"
+this.toolbaritemname = "Next5!"
+this.toolbaritemtext = "4. Vendor"
+this.toolbaritemorder = 5
+end on
+
+on m_vendormaint.destroy
+call super::destroy
+end on
+
+type m_toolmaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_tool THEN
+	ToolBarItemDown = FALSE
+	i_b_tool = FALSE
+	m_file.m_save.Enabled = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 0 )
+ELSE
+	m_activitymaint.ToolBarItemDown = FALSE
+
+	m_bommaint.ToolBarItemDown = FALSE
+	m_machinemaint.ToolBarItemDown = FALSE
+	m_routermaint.ToolBarItemDown = FALSE
+	m_vendormaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = FALSE
+	i_b_activity = FALSE
+	i_b_machine = FALSE
+	i_b_router = FALSE
+	i_b_outside = FALSE
+	i_b_tool = TRUE
+	routerMaintenance.Post Event ue_maint_mode ( 6 )
+END IF
+end event
+
+on m_toolmaint.create
+call super::create
+this.text = "5. Tool Maintenance"
+this.toolbaritemname = "toolbutn.bmp"
+this.toolbaritemtext = "5. Tool"
+this.toolbaritemorder = 6
+end on
+
+on m_toolmaint.destroy
+call super::destroy
+end on
+
+type m_routermaint from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+IF i_b_router THEN
+	ToolBarItemDown = FALSE
+	i_b_router = FALSE
+	m_file.m_save.Enabled = FALSE
+	routerMaintenance.Post Event ue_maint_mode ( 0 )
+ELSE
+	m_activitymaint.ToolBarItemDown = FALSE
+	m_bommaint.ToolBarItemDown = FALSE
+	m_machinemaint.ToolBarItemDown = FALSE
+	m_vendormaint.ToolBarItemDown = FALSE
+	m_toolmaint.ToolBarItemDown = FALSE
+	ToolBarItemDown = TRUE
+	i_b_bom = FALSE
+	i_b_activity = FALSE
+	i_b_machine = FALSE
+	i_b_outside = FALSE
+	i_b_router = TRUE
+	i_b_tool = FALSE
+	m_file.m_save.Enabled = TRUE
+	routerMaintenance.Post Event ue_maint_mode ( 4 )
+END IF
+end event
+
+on m_routermaint.create
+call super::create
+this.text = "6. &Router Maintenance"
+this.microhelp = "Router maintenance"
+this.toolbaritemname = "TreeView!"
+this.toolbaritemtext = "6. Router"
+this.toolbaritemorder = 7
+end on
+
+on m_routermaint.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_view
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_current from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+m_future.Checked = FALSE
+m_all.Checked = FALSE
+m_specify.Checked = FALSE
+Checked = TRUE
+
+routerMaintenance.Trigger Event ue_change_display ( Integer ( Tag ) )
+end event
+
+on m_current.create
+call super::create
+this.tag = "0"
+this.text = "&Current"
+this.checked = true
+this.microhelp = "Display current bom effective changes"
+end on
+
+on m_current.destroy
+call super::destroy
+end on
+
+type m_future from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+m_current.Checked = FALSE
+m_all.Checked = FALSE
+m_specify.Checked = FALSE
+Checked = TRUE
+
+routerMaintenance.Trigger Event ue_change_display ( Integer ( Tag ) )
+end event
+
+on m_future.create
+call super::create
+this.tag = "1"
+this.text = "&Future"
+this.microhelp = "Display future bom effective changes"
+end on
+
+on m_future.destroy
+call super::destroy
+end on
+
+type m_all from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+m_current.Checked = FALSE
+m_future.Checked = FALSE
+m_specify.Checked = FALSE
+Checked = TRUE
+
+routerMaintenance.Trigger Event ue_change_display ( Integer ( Tag ) )
+end event
+
+on m_all.create
+call super::create
+this.tag = "2"
+this.text = "&All"
+this.microhelp = "Display all bom effective changes"
+end on
+
+on m_all.destroy
+call super::destroy
+end on
+
+type m_specify from menu within m_view
+end type
+
+event clicked;w_router_maintenance routerMaintenance
+routerMaintenance = gnv_App.of_GetFrame().GetActiveSheet()
+m_current.Checked = FALSE
+m_all.Checked = FALSE
+m_future.Checked = FALSE
+Checked = TRUE
+
+routerMaintenance.Trigger Event ue_change_display ( Integer ( Tag ) )
+end event
+
+on m_specify.create
+call super::create
+this.tag = "3"
+this.text = "&Specify"
+this.microhelp = "Specify display of bom effective changes"
+end on
+
+on m_specify.destroy
+call super::destroy
+end on
+
+type m_fastcopy from menu within m_view
+end type
+
+on m_fastcopy.create
+call super::create
+this.text = "Fast Copy"
+this.microhelp = "Fast Copy of BOM"
+this.toolbaritemname = "copy!"
+this.toolbaritemtext = "Fast Copy"
+this.toolbaritemorder = 8
+end on
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent('ue_fastcopy') 
+
+end event
+
+on m_fastcopy.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_router_maint
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

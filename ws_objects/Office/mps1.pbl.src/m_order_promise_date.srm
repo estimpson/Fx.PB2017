@@ -1,0 +1,197 @@
+﻿$PBExportHeader$m_order_promise_date.srm
+forward
+global type m_order_promise_date from menu
+end type
+type m_file from menu within m_order_promise_date
+end type
+type m_save from menu within m_file
+end type
+type m_optimize from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_order_promise_date
+m_save m_save
+m_optimize m_optimize
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_order_promise_date
+end type
+type m_window from menu within m_order_promise_date
+end type
+type m_help from menu within m_order_promise_date
+end type
+global type m_order_promise_date from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_order_promise_date from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_order_promise_date m_order_promise_date
+
+on m_order_promise_date.create
+m_order_promise_date=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_order_promise_date.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_order_promise_date
+m_save m_save
+m_optimize m_optimize
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_save=create m_save
+this.m_optimize=create m_optimize
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_optimize
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_optimize)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_save_mps_datetime")
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save"
+this.microhelp = "Save the MPS data/time"
+this.toolbaritemname = "update!"
+this.toolbaritemtext = "&Save"
+this.toolbaritemorder = 10
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_optimize from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_optimize")
+end event
+
+on m_optimize.create
+call super::create
+this.text = "&Optimize"
+this.microhelp = "Optimize the schedule automatically"
+this.toolbaritemname = "Arrow!"
+this.toolbaritemtext = "Optimize"
+this.toolbaritemorder = 20
+end on
+
+on m_optimize.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;Close(gnv_App.of_GetFrame().GetActiveSheet())
+
+end event
+
+type m_edit from menu within m_order_promise_date
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_order_promise_date
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_order_promise_date
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,132 @@
+﻿$PBExportHeader$d_order_header_info.srd
+$PBExportComments$*
+release 6;
+datawindow(units=0 timer_interval=0 color=79216776 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=408 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=order_no dbname="order_no" )
+ column=(type=datetime update=yes updatewhereclause=yes name=order_date dbname="order_date" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="customer" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="status" values="Open	O/Closed	C/Hold	H/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ship_type dbname="ship_type" values="Partial	P/All	A/" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=contact dbname="contact" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="notes" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=customer_po dbname="customer_po" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=salesman dbname="salesman" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="order_type" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=blanket_part dbname="blanket_part" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="model_year" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=customer_part dbname="customer_part" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=box_label dbname="box_label" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=pallet_label dbname="pallet_label" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_pack dbname="standard_pack" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=our_cum dbname="our_cum" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=the_cum dbname="the_cum" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=amount dbname="amount" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=shipped dbname="shipped" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=deposit dbname="deposit" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=artificial_cum dbname="artificial_cum" )
+ column=(type=long update=yes updatewhereclause=yes name=shipper dbname="shipper" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=location dbname="location" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit dbname="unit" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=revision dbname="revision" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=blanket_qty dbname="blanket_qty" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="alternate_price" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=price_unit dbname="price_unit" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=line_feed_code dbname="line_feed_code" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=zone_code dbname="zone_code" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=dock_code dbname="dock_code" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=package_type dbname="package_type" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=shipping_unit dbname="shipping_unit" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=term dbname="term" )
+ column=(type=datetime update=yes updatewhereclause=yes name=due_date dbname="due_date" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=currency_unit dbname="currency_unit" )
+ column=(type=long update=yes updatewhereclause=yes name=show_euro_amount dbname="show_euro_amount" values="Yes	0/No	1/" )
+ column=(type=long updatewhereclause=yes name=euro_enabled dbname="euro_enabled" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=cs_status dbname="cs_status" )
+ column=(type=char(1) updatewhereclause=yes name=status_type dbname="status_type" )
+ column=(type=char(1) updatewhereclause=yes name=check_standard_pack dbname="check_standard_pack" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=order_status dbname="order_status" values="Active	A/Hold	H/" )
+ retrieve="  SELECT order_header.order_no,   
+         order_header.order_date,   
+         order_header.customer,   
+         order_header.destination,   
+         order_header.status,   
+         order_header.ship_type,   
+         order_header.contact,   
+         order_header.notes,   
+         order_header.customer_po,   
+         order_header.salesman,   
+         order_header.order_type,   
+         order_header.blanket_part,   
+         order_header.model_year,   
+         order_header.customer_part,   
+         order_header.box_label,   
+         order_header.pallet_label,   
+         order_header.standard_pack,   
+         order_header.our_cum,   
+         order_header.the_cum,   
+         order_header.amount,   
+         order_header.shipped,   
+         order_header.deposit,   
+         order_header.artificial_cum,   
+         order_header.shipper,   
+         order_header.location,   
+         order_header.unit,   
+         order_header.revision,   
+         order_header.blanket_qty,   
+         order_header.alternate_price,   
+         order_header.price_unit,   
+         order_header.line_feed_code,   
+         order_header.zone_code,   
+         order_header.dock_code,   
+         order_header.package_type,   
+         order_header.plant,   
+         order_header.shipping_unit,   
+         order_header.term,   
+         order_header.due_date,   
+         order_header.currency_unit,   
+         isnull(order_header.show_euro_amount,1) as show_euro_amount,   
+         parameters.euro_enabled as euro_enabled,
+			order_header.cs_status,
+			customer_service_status.status_type,
+			check_standard_pack,
+	 order_header.order_status    
+    FROM order_header
+				join customer on customer.customer = order_header.customer, 
+			parameters, customer_service_status   
+   WHERE order_header.order_no = :lOrder and
+			order_header.cs_status = customer_service_status.status_name 
+" update="order_header" updatewhere=0 updatekeyinplace=yes arguments=(("lOrder", number)) )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="37234728" x="347" y="84" height="64" width="475" format="[general]"  name=order_date editmask.required=yes editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="5" color="37234728" x="347" y="324" height="64" width="475" format="[general]"  name=contact edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Order No:"border="0" color="37234728" x="27" y="4" height="52" width="283"  name=order_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Order Date:"border="0" color="37234728" x="27" y="84" height="52" width="283"  name=order_date_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Destination:"border="0" color="37234728" x="27" y="164" height="52" width="283"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Customer:"border="0" color="37234728" x="27" y="244" height="52" width="283"  name=customer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Contact:"border="0" color="37234728" x="27" y="324" height="52" width="283"  name=contact_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=42 alignment="0" tabsequence=32766 border="5" color="37234728" x="2194" y="4" height="60" width="402" format="[general]" protect="0~t1"  name=cs_status edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=40 alignment="0" tabsequence=110 border="0" color="37234728" x="2176" y="228" height="64" width="475" format="[general]" protect="0~tif ( euro_enabled = 0, 0, 1 )"  name=show_euro_amount visible="1~tif ( euro_enabled = 0, 1, 0 )" radiobuttons.columns=2 radiobuttons.scale=yes radiobuttons.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="37234728" x="347" y="164" height="64" width="475" format="[general]"  name=destination dddw.name=d_destination_list_grey dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=10 dddw.allowedit=yes dddw.useasborder=yes dddw.case=upper dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="37234728" x="347" y="244" height="64" width="475" format="[general]" protect="0~tIF ( IsRowNew ( ), 0, 1 )"  name=customer dddw.name=d_dddw_customers dddw.displaycolumn=customer dddw.datacolumn=customer dddw.percentwidth=200 dddw.lines=0 dddw.limit=10 dddw.allowedit=yes dddw.useasborder=yes dddw.case=upper dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="77897888~tif (IsRowNew(), f_get_color_value ( ~"window~" ), f_get_color_value ( ~"buttonface~"  ))" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="37234728" x="347" y="4" height="64" width="475" format="[general]" protect="0~t1"  name=order_no edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=39 alignment="0" tabsequence=100 border="5" color="37234728" x="2194" y="84" height="64" width="411" format="[general]"  name=currency_unit dddw.name=d_currency_list dddw.displaycolumn=currency_code dddw.datacolumn=currency_code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=45 alignment="0" tabsequence=120 border="5" color="37234728" x="2194" y="324" height="64" width="411"  name=order_status ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Customer Status:"border="0" color="37234728" x="1792" y="4" height="52" width="370"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Currency:"border="0" color="37234728" x="1792" y="84" height="52" width="370"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Show Euro Amount?"border="0" color="37234728" x="1792" y="164" height="52" width="494" visible="1~tif ( euro_enabled = 0, 1, 0 )"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Order Status:"border="0" color="37234728" x="1792" y="324" height="52" width="370"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Terms:"border="0" color="37234728" x="869" y="4" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=37 alignment="0" tabsequence=50 border="5" color="33554432" x="1202" y="4" height="64" width="549" format="[general]" protect="0~tIF ( IsRowNew ( ), 0, 1 )"  name=term dddw.name=d_terms_dddw_grey_10 dddw.displaycolumn=description dddw.datacolumn=description dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="79741120~tif (IsRowNew(), f_get_color_value ( ~"window~" ), f_get_color_value ( ~"buttonface~"  ))" )
+text(band=detail alignment="0" text="Customer PO:"border="0" color="37234728" x="869" y="84" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=60 border="5" color="37234728" x="1202" y="84" height="64" width="549" format="[general]"  name=customer_po edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Salesman:"border="0" color="37234728" x="869" y="164" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=10 alignment="0" tabsequence=70 border="5" color="37234728" x="1202" y="164" height="64" width="549" format="[general]"  name=salesman dddw.name=d_sales_rep_dddw_grey_10 dddw.displaycolumn=name dddw.datacolumn=salesrep dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Plant:"border="0" color="37234728" x="869" y="244" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=35 alignment="0" tabsequence=80 border="5" color="37234728" x="1202" y="244" height="64" width="549" format="[general]"  name=plant dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Due Date:"border="0" color="37234728" x="869" y="324" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=38 alignment="0" tabsequence=90 border="5" color="37234728" x="1202" y="324" height="64" width="549" format="[shortdate]"  name=due_date editmask.mask="mm/dd/yy" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

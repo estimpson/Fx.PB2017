@@ -1,0 +1,58 @@
+﻿$PBExportHeader$d_shipperquantitiesdates.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=77971394 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(10) updatewhereclause=yes name=quantity dbname="quantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="unit" )
+ column=(type=datetime updatewhereclause=yes name=shipdate dbname="shipdate" )
+ column=(type=char(5) updatewhereclause=yes name=operator dbname="operator" )
+ column=(type=char(5) updatewhereclause=yes name=password dbname="password" )
+ column=(type=decimal(0) updatewhereclause=yes name=row_id dbname="row_id" )
+ retrieve="select	Part = po_detail.part_number,
+	Quantity = po_detail.balance * IsNull (
+	(	select	unit_conversion.conversion
+		from	unit_conversion
+			join part_unit_conversion on unit_conversion.code = part_unit_conversion.code and
+				part_unit_conversion.part = po_detail.part_number
+		where	unit1 = po_detail.unit_of_measure and
+			unit2 = order_detail.unit ), 1 ) - IsNull (
+	(	select	sum ( qty_packed )
+		from	shipper_detail
+		where	dropship_po = po_detail.po_number and
+			dropship_po_row_id = po_detail.row_id ), 0 ),
+	Unit = order_detail.unit,
+	ShipDate = GetDate ( ),
+	Operator = convert ( varchar ( 5 ), '' ),
+	Password = convert ( varchar ( 5 ), '' ),
+	po_detail.row_id
+from	po_detail
+	join order_detail on po_detail.sales_order = order_detail.order_no and
+		po_detail.dropship_oe_row_id = order_detail.row_id
+where	po_detail.po_number = :PONumber and
+	po_detail.row_id in ( :RowID )
+" arguments=(("PONumber", number),("RowID", numberlist)) )
+text(band=header alignment="0" text="Operator:" border="0" color="33554432" x="14" y="0" height="56" width="338" html.valueishtml="0"  name=operator_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Part:" border="0" color="33554432" x="393" y="0" height="56" width="320" html.valueishtml="0"  name=part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Quantity:" border="0" color="33554432" x="1120" y="0" height="56" width="320" html.valueishtml="0"  name=quantity_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Ship Date:" border="0" color="33554432" x="1573" y="0" height="56" width="320" html.valueishtml="0"  name=dateshipped_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="33554432" x="14" y="8" height="56" width="165" format="'*****';'*****'" html.valueishtml="0"  name=password visible="1~tif ( GetRow ( ) > 1, 0, 1 )" edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.password=yes edit.required=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="197" y="8" height="56" width="165" format="[general]" html.valueishtml="0"  name=operator visible="1~tif ( GetRow ( ) > 1, 0, 1 )" edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="393" y="8" height="56" width="713" format="[general]" html.valueishtml="0"  name=part visible="1" height.autosize=yes edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="33554432" x="1115" y="8" height="56" width="329" format="###,###.00" html.valueishtml="0"  name=quantity visible="1" edit.limit=0 edit.case=any edit.format="###,###.00" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1458" y="8" height="56" width="82" format="[general]" html.valueishtml="0"  name=unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="33554432" x="1573" y="8" height="56" width="329" format="[shortdate] [time]" html.valueishtml="0"  name=shipdate visible="1~tif ( GetRow ( ) > 1, 0, 1 )" edit.limit=0 edit.case=any edit.format="[shortdate] [time]" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,228 @@
+﻿$PBExportHeader$m_contact_call.srm
+forward
+global type m_contact_call from menu
+end type
+type m_file from menu within m_contact_call
+end type
+type m_save from menu within m_file
+end type
+type m_newissue from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_contact_call
+m_save m_save
+m_newissue m_newissue
+m_line11 m_line11
+m_exit m_exit
+end type
+type m_window from menu within m_contact_call
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_contact_call
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_contact_call
+end type
+type m_help from menu within m_contact_call
+end type
+end forward
+
+global type m_contact_call from menu
+m_file m_file
+m_window m_window
+m_help m_help
+end type
+global m_contact_call m_contact_call
+
+on m_contact_call.create
+m_contact_call=this
+this.m_file=create m_file
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_contact_call.destroy
+destroy(this.m_file)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_contact_call
+m_save m_save
+m_newissue m_newissue
+m_line11 m_line11
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_save=create m_save
+this.m_newissue=create m_newissue
+this.m_line11=create m_line11
+this.m_exit=create m_exit
+this.Item[]={this.m_save, &
+this.m_newissue, &
+this.m_line11, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_save)
+destroy(this.m_newissue)
+destroy(this.m_line11)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;//w_contact_call_log_entry.Post Event ue_save ( )
+end event
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+end on
+
+type m_newissue from menu within m_file
+end type
+
+event clicked;//w_contact_call_log_entry.Post Event ue_new_issue ( )
+end event
+
+on m_newissue.create
+this.Text="&New Issue"
+this.Microhelp="New issue"
+this.ToolBarItemName="DosEdit5!"
+this.ToolBarItemText="New Issue"
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;Close ( w_contact_call_log_entry )
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit window"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=1
+end on
+
+type m_window from menu within m_contact_call
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Tile!)
+end on
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Layer!)
+end on
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Cascade!)
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Icons!)
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_contact_call
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

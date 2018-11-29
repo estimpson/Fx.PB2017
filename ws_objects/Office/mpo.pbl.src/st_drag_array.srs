@@ -1,0 +1,11 @@
+﻿$PBExportHeader$st_drag_array.srs
+global type st_drag_array from structure
+	string		part
+	datetime		date_due
+	long		po_number
+	character		release_type
+	long		release_no
+	integer		bucket_no
+	decimal {2}	quantity
+end type
+

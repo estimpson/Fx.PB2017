@@ -1,0 +1,23 @@
+﻿$PBExportHeader$dw_ei_ship_total_ytd.srd
+$PBExportComments$update 5/14
+release 5;
+datawindow(units=2 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+summary(height=343 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(35) updatewhereclause=yes name=part dbname="shipper_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="shipper_detail.price" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_status dbname="shipper.status" )
+ column=(type=decimal(9) updatewhereclause=yes name=compute_0005 dbname="compute_0005" )
+ retrieve="SELECT shipper_detail.part, shipper_detail.qty_packed, shipper_detail.price, shipper.status, shipper_detail.qty_packed * shipper_detail.price FROM shipper_detail, shipper WHERE ( shipper.id = shipper_detail.shipper ) "  sort="part A " )
+group(level=1 header.height=0 trailer.height=0 by=("part" ) header.color="536870912" trailer.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1666" y="104" height="166" width="625" format="[General]"  name=qty_packed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="2427" y="104" height="166" width="625" format="[general]"  name=price edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="3156" y="115" height="145" width="281" format="[general]"  name=shipper_status edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="0" x="3500" y="94" height="166" width="1031" format="$#,##0;[RED]($#,##0)"  name=compute_0005 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=trailer.1 alignment="1" expression="sum(compute_0005 for group 1)"border="0" color="0" x="3489" y="32" height="166" width="1031" format="$#,##0;[RED]($#,##0)"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=trailer.1 alignment="1" expression="sum(qty_packed for group 1)"border="0" color="0" x="1666" y="42" height="197" width="625" format="[General]"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(price for group 1)"border="0" color="0" x="2427" y="21" height="197" width="625" format="[general]"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="sum(  compute_0005  for all )"border="0" color="0" x="1916" y="41" height="291" width="3708" format="$#,##0.00;($#,##0.00)"  font.face="Bookman Old Style" font.height="-12" font.weight="700"  font.family="1" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=summary alignment="0" text="Total Shipped YTD"border="0" color="0" x="41" y="41" height="291" width="1833"  font.face="Arial" font.height="-12" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

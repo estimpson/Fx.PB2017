@@ -1,0 +1,71 @@
+﻿$PBExportHeader$d_xcommoditydefn.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes key=yes name=topcommodityid dbname="XCommodityDefn.TopCommodityID" )
+ column=(type=long updatewhereclause=yes name=parentcommodityid dbname="XCommodityDefn.ParentCommodityID" )
+ column=(type=long updatewhereclause=yes name=commodityid dbname="XCommodityDefn.CommodityID" )
+ column=(type=char(25) updatewhereclause=yes name=commoditycode dbname="XCommodityDefn.CommodityCode" )
+ column=(type=char(255) updatewhereclause=yes name=commoditydescription dbname="XCommodityDefn.CommodityDescription" )
+ column=(type=number updatewhereclause=yes name=virtual dbname="XCommodityDefn.Virtual" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=level dbname="XCommodityDefn.Level" )
+ column=(type=long updatewhereclause=yes key=yes name=sequence dbname="XCommodityDefn.Sequence" )
+ column=(type=char(32766) updatewhereclause=no name=chain dbname="XCommodityDefn.Chain" )
+ column=(type=char(8000) updatewhereclause=yes name=commoditytree dbname="CommodityTree" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=draccount dbname="XCommodityDefn.DrAccount" )
+ column=(type=char(50) updatewhereclause=yes name=idraccount dbname="XCommodityDefn.iDrAccount" )
+ retrieve="
+select
+	TopCommodityID
+,	ParentCommodityID
+,	CommodityID
+,	CommodityCode
+,	CommodityDescription
+,	Virtual
+,	Level
+,	Sequence
+,	Chain
+,	CommodityTree = space(Level * 5) + CommodityCode
+,	DrAccount
+,	iDrAccount
+from
+	dbo.XCommodityDefn xcd
+where
+	TopCommodityID in
+	(	select
+			CommodityID
+		from
+			dbo.CommodityDefn
+		where
+			ParentCommodityID is null)
+" update="XCommodityDefn" updatewhere=0 updatekeyinplace=no  sort="chain A " )
+text(band=header alignment="2" text="Parent Commodity" border="6" color="33554432" x="9" y="12" height="60" width="448" html.valueishtml="0"  name=parentcommodityid_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Virtual" border="6" color="33554432" x="466" y="12" height="60" width="174" html.valueishtml="0"  name=virtual_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commodity Code" border="6" color="33554432" x="649" y="12" height="60" width="713" html.valueishtml="0"  name=commoditycode_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commodity Description" border="6" color="33554432" x="1371" y="12" height="60" width="1015" html.valueishtml="0"  name=commoditydescription_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Chain" border="6" color="33554432" x="2395" y="12" height="60" width="1042" html.valueishtml="0"  name=chain_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commodity Tree" border="6" color="33554432" x="3447" y="12" height="60" width="923" html.valueishtml="0"  name=commoditytree_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Dr Account" border="6" color="33554432" x="4379" y="12" height="60" width="667" html.valueishtml="0"  name=draccount_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Inherited Dr Account" border="6" color="33554432" x="5056" y="12" height="60" width="581" html.valueishtml="0"  name=idraccount_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="448" format="[general]" html.valueishtml="0"  name=parentcommodityid visible="1" dddw.name=d_commoditydefn dddw.displaycolumn=commoditycode dddw.datacolumn=commodityid dddw.percentwidth=450 dddw.lines=10 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="33554432" x="649" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=commoditycode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="1371" y="8" height="76" width="1015" format="[general]" html.valueishtml="0"  name=commoditydescription visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2395" y="8" height="76" width="1042" format="[general]" html.valueishtml="0"  name=chain visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="3447" y="8" height="76" width="923" format="[general]" html.valueishtml="0"  name=commoditytree visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=40 border="0" color="33554432" x="4379" y="8" height="76" width="667" format="[general]" html.valueishtml="0"  name=draccount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="5056" y="8" height="76" width="581" format="[general]" html.valueishtml="0"  name=idraccount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=20 border="0" color="33554432" x="471" y="8" height="76" width="169" format="[general]" html.valueishtml="0"  name=virtual visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

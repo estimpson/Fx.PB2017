@@ -1,0 +1,473 @@
+﻿$PBExportHeader$m_quick_shipper.srm
+forward
+global type m_quick_shipper from menu
+end type
+type m_file from menu within m_quick_shipper
+end type
+type m_createshipper from menu within m_file
+end type
+type m_shipout from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_certs from menu within m_print
+end type
+type m_destinationlabel from menu within m_print
+end type
+type m_packlist from menu within m_print
+end type
+type m_customform from menu within m_print
+end type
+type m_print from menu within m_file
+m_certs m_certs
+m_destinationlabel m_destinationlabel
+m_packlist m_packlist
+m_customform m_customform
+end type
+type m_- from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_quick_shipper
+m_createshipper m_createshipper
+m_shipout m_shipout
+m_print m_print
+m_- m_-
+m_exit m_exit
+end type
+type m_edit from menu within m_quick_shipper
+end type
+type m_window from menu within m_quick_shipper
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_quick_shipper
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_quick_shipper
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_quick_shipper
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_quick_shipper from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_quick_shipper from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_quick_shipper m_quick_shipper
+
+on m_quick_shipper.create
+m_quick_shipper=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_quick_shipper.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_quick_shipper
+m_createshipper m_createshipper
+m_shipout m_shipout
+m_print m_print
+m_- m_-
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_createshipper=create m_createshipper
+this.m_shipout=create m_shipout
+this.m_print=create m_print
+this.m_-=create m_-
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_createshipper
+this.Item[UpperBound(this.Item)+1]=this.m_shipout
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_createshipper)
+destroy(this.m_shipout)
+destroy(this.m_print)
+destroy(this.m_-)
+destroy(this.m_exit)
+end on
+
+type m_createshipper from menu within m_file
+end type
+
+on clicked;w_quick_shipper.TriggerEvent("create_shipper")
+end on
+
+on m_createshipper.create
+call super::create
+this.text = "&Create Shipper"
+this.microhelp = "Create Shipper..."
+this.toolbaritemname = "SetVariable!"
+this.toolbaritemtext = "Crt Ship"
+this.toolbaritemorder = 2
+end on
+
+on m_createshipper.destroy
+call super::destroy
+end on
+
+type m_shipout from menu within m_file
+end type
+
+on clicked;w_quick_shipper.TriggerEvent ( "ue_scan_to_truck" )
+end on
+
+on m_shipout.create
+call super::create
+this.text = "&Ship Out"
+this.microhelp = "Scan shipment to truck"
+this.toolbaritemname = "Export!"
+this.toolbaritemtext = "Ship Out"
+this.toolbaritemorder = 3
+end on
+
+on m_shipout.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+m_certs m_certs
+m_destinationlabel m_destinationlabel
+m_packlist m_packlist
+m_customform m_customform
+end type
+
+on m_print.create
+call super::create
+this.text = "&Print"
+this.microhelp = "Print shipping form"
+this.toolbaritemvisible = false
+this.toolbaritemorder = 4
+this.m_certs=create m_certs
+this.m_destinationlabel=create m_destinationlabel
+this.m_packlist=create m_packlist
+this.m_customform=create m_customform
+this.Item[UpperBound(this.Item)+1]=this.m_certs
+this.Item[UpperBound(this.Item)+1]=this.m_destinationlabel
+this.Item[UpperBound(this.Item)+1]=this.m_packlist
+this.Item[UpperBound(this.Item)+1]=this.m_customform
+end on
+
+on m_print.destroy
+call super::destroy
+destroy(this.m_certs)
+destroy(this.m_destinationlabel)
+destroy(this.m_packlist)
+destroy(this.m_customform)
+end on
+
+type m_certs from menu within m_print
+end type
+
+event clicked;w_quick_shipper.TriggerEvent("ue_print_certs")
+end event
+
+on m_certs.create
+call super::create
+this.text = "&Certs"
+end on
+
+on m_certs.destroy
+call super::destroy
+end on
+
+type m_destinationlabel from menu within m_print
+end type
+
+event clicked;w_quick_shipper.TriggerEvent ( "ue_dest_label" )
+end event
+
+on m_destinationlabel.create
+call super::create
+this.text = "&Destination Label"
+end on
+
+on m_destinationlabel.destroy
+call super::destroy
+end on
+
+type m_packlist from menu within m_print
+end type
+
+event clicked;w_quick_shipper.TriggerEvent ( "ue_print" )
+end event
+
+on m_packlist.create
+call super::create
+this.text = "&Pack List"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 4
+end on
+
+on m_packlist.destroy
+call super::destroy
+end on
+
+type m_customform from menu within m_print
+end type
+
+event clicked;w_quick_shipper.TriggerEvent ( "ue_custom_form" )
+end event
+
+on m_customform.create
+call super::create
+this.text = "Custom &Form"
+end on
+
+on m_customform.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;w_quick_shipper.TriggerEvent("exit_system")
+end on
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.microhelp = "Exit..."
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Exit"
+this.toolbaritemorder = 1
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_quick_shipper
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_quick_shipper
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_quick_shipper
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4001 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays Help Contents..."
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;open (w_about)
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright..."
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

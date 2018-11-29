@@ -1,0 +1,303 @@
+﻿$PBExportHeader$m_part_unit_conversion_build.srm
+$PBExportComments$mad1
+forward
+global type m_part_unit_conversion_build from menu
+end type
+type m_file from menu within m_part_unit_conversion_build
+end type
+type m_save from menu within m_file
+end type
+type m_clear from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_line12 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_part_unit_conversion_build
+m_save m_save
+m_clear m_clear
+m_delete m_delete
+m_line12 m_line12
+m_exit m_exit
+end type
+type m_edit from menu within m_part_unit_conversion_build
+end type
+type m_edit from menu within m_part_unit_conversion_build
+end type
+type m_window from menu within m_part_unit_conversion_build
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_part_unit_conversion_build
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_part_unit_conversion_build
+end type
+type m_help from menu within m_part_unit_conversion_build
+end type
+end forward
+
+global type m_part_unit_conversion_build from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_part_unit_conversion_build m_part_unit_conversion_build
+
+type variables
+String szPart
+end variables
+
+forward prototypes
+public subroutine wf_reset ()
+end prototypes
+
+public subroutine wf_reset ();If m_part_master.Text <> "Units of Measure" Then
+
+   Close ( w_conversion_part_link )
+
+End If
+
+If m_part_master.Text <> "Characteristics" Then
+
+   Close ( w_part_char )
+
+End If
+
+If m_part_master.Text <> "Notes" Then
+
+   Close ( w_notes )
+
+End If
+
+
+
+end subroutine
+
+on m_part_unit_conversion_build.create
+m_part_unit_conversion_build=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_part_unit_conversion_build.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_part_unit_conversion_build
+m_save m_save
+m_clear m_clear
+m_delete m_delete
+m_line12 m_line12
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_save=create m_save
+this.m_clear=create m_clear
+this.m_delete=create m_delete
+this.m_line12=create m_line12
+this.m_exit=create m_exit
+this.Item[]={this.m_save, &
+this.m_clear, &
+this.m_delete, &
+this.m_line12, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_save)
+destroy(this.m_clear)
+destroy(this.m_delete)
+destroy(this.m_line12)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;w_conversion_maintenance.TriggerEvent ( 'ue_save' )
+end event
+
+on m_save.create
+this.Text="&Save~tCtrl+S"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=7
+this.Shortcut=339
+end on
+
+type m_clear from menu within m_file
+end type
+
+event clicked;w_conversion_maintenance.TriggerEvent ( 'ue_clear' )
+end event
+
+on m_clear.create
+this.Text="&Clear~tCtrl+D"
+this.Microhelp="Clear current definition"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Clear"
+this.ToolBarItemOrder=8
+this.Shortcut=324
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;w_conversion_maintenance.TriggerEvent ( 'ue_delete' )
+end event
+
+on m_delete.create
+this.Text="&Undo~tCtrl+U"
+this.Microhelp="Delete existing unit conversions"
+this.ToolBarItemName="Undo!"
+this.ToolBarItemText="Undo"
+this.ToolBarItemOrder=9
+this.Shortcut=341
+end on
+
+type m_line12 from menu within m_file
+end type
+
+on m_line12.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;w_conversion_maintenance.TriggerEvent ( 'ue_exit' )
+end event
+
+on m_exit.create
+this.Text="E&xit~tCtrl+X"
+this.Microhelp="Exit Conversion Maintenance"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=344
+end on
+
+type m_edit from menu within m_part_unit_conversion_build
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_part_unit_conversion_build
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_line31, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_part_unit_conversion_build
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

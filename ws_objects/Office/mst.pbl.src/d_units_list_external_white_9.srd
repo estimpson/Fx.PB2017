@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_units_list_external_white_9.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=73 color="536870912")
+table(column=(type=char(2) name=unit dbname="unit" )
+ )
+text(band=header color="0" alignment="2" border="0" x="10" y="8" height="65" width="138" text="Unit" name=unit_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="77" tabsequence=10 width="138" x="10" y="8"  name=unit format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

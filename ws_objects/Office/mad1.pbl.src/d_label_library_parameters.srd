@@ -1,0 +1,13 @@
+﻿$PBExportHeader$d_label_library_parameters.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(40) update=yes updatewhereclause=yes name=name dbname="label_library.name" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="label_library.code" )
+ retrieve="SELECT label_library.name, label_library.code FROM label_library " update="label_library" updatewhere=0 updatekeyinplace=yes )
+text(band=detail alignment="1" text="Code:"border="0" color="0" x="1390" y="4" height="64" width="174"  name=code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="1" color="0" x="1591" y="4" height="64" width="238" format="[general]"  name=code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="72" width="526" format="[general]"  name=name dddw.name=d_label_library_white_10 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=250 dddw.lines=0 dddw.limit=40 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

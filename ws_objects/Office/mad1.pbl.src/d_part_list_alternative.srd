@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_part_list_alternative.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=alt_part dbname="alternative_parts.alt_part" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=main_part dbname="alternative_parts.main_part" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"alternative_parts~" ) COLUMN(NAME=~"alternative_parts.alt_part~") COLUMN(NAME=~"alternative_parts.main_part~")WHERE( EXP1 =~"~~~"alternative_parts~~~".~~~"main_part~~~"~" OP =~"=~" EXP2 =~":as_main_part~" ) ) ORDER(NAME=~"alternative_parts.alt_part~" ASC=yes ) ARG(NAME = ~"as_main_part~" TYPE = string) " update="alternative_parts" updatewhere=0 updatekeyinplace=yes arguments=(("as_main_part", string)) )
+text(band=header alignment="2" text="Alt Part"border="0" color="0" x="9" y="8" height="64" width="759"  name=alt_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Main Part"border="0" color="0" x="777" y="8" height="64" width="512"  name=main_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="759" format="[general]"  name=alt_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="777" y="8" height="76" width="512" format="[general]"  name=main_part visible="1~t0" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

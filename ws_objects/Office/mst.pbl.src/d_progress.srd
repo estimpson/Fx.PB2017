@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_progress.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=149 color="536870912")
+summary(height=165 color="536870912")
+footer(height=113 color="536870912")
+detail(height=173 color="536870912")
+table(column=(type=number name=pct dbname="pct" initial="0" )
+ )
+column(band=foreground id=1 border="5" alignment="2" color="0" height="65" tabsequence=32766 width="897" x="37" y="34"  name=pct height.autosize=yes format="0%" edit.limit=0 edit.case=any edit.autoselect=yes criteria.required=yes  font.face="MS Sans Serif" font.height="-8" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+rectangle(band=header x="421" y="32" height="65" width="138" name=bar  brush.hatch="6" brush.color="8421504" pen.style="0" pen.width="5" pen.color="79741120" background.mode="2" background.color="79741120")

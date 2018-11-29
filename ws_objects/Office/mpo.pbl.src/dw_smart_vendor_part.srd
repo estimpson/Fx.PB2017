@@ -1,0 +1,50 @@
+﻿$PBExportHeader$dw_smart_vendor_part.srd
+$PBExportComments$*
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_vendor.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=receiving_um dbname="part_vendor.receiving_um" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=lead_time dbname="part_vendor.lead_time" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=min_on_order dbname="part_vendor.min_on_order" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=vendor_part dbname="part_vendor.vendor_part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=vendor_standard_pack dbname="part_vendor.vendor_standard_pack" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=outside_process dbname="part_vendor.outside_process" values="YES	Y/NO	N/" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=vendor dbname="part_vendor.vendor" )
+ column=(type=char(3) updatewhereclause=yes name=vendor_default_currency_unit dbname="vendor.default_currency_unit" )
+ retrieve="  SELECT part_vendor.part,   
+         part_vendor.receiving_um,   
+         part_vendor.lead_time,   
+         part_vendor.min_on_order,   
+         part_vendor.vendor_part,   
+         part_vendor.vendor_standard_pack,   
+         part_vendor.outside_process,   
+         part_vendor.vendor,   
+         vendor.default_currency_unit as default_currency_unit  
+    FROM part_vendor,   
+         vendor  
+   WHERE ( part_vendor.vendor = vendor.code ) and  
+         ( ( part_vendor.vendor = :szVendor ) )    
+" update="part_vendor" updatewhere=0 updatekeyinplace=yes arguments=(("szVendor", string))  sort="part A " )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="60" width="430"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="UM"border="6" color="0" x="448" y="8" height="60" width="174"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="LeadTime(days)"border="6" color="0" x="631" y="8" height="60" width="402"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="MinOrderQty"border="6" color="0" x="1042" y="8" height="60" width="325"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Vendor Part"border="6" color="0" x="1376" y="8" height="60" width="562"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Vendor Std Pack"border="6" color="0" x="1947" y="8" height="60" width="421"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Outside Process"border="6" color="0" x="2377" y="8" height="60" width="411"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Vendor"border="6" color="0" x="2798" y="8" height="60" width="219"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Currency Unit"border="6" color="0" x="3026" y="8" height="60" width="375"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="56" width="430" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="453" y="4" height="56" width="169" format="[general]"  name=receiving_um dddw.name=d_dddw_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="631" y="4" height="56" width="402" format="#,##0"  name=lead_time edit.limit=0 edit.case=any edit.format="###,###" edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="5" color="0" x="1042" y="4" height="56" width="325" format="[general]"  name=min_on_order editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="1376" y="4" height="56" width="562" format="[general]"  name=vendor_part edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="0" x="1947" y="4" height="56" width="421" format="[general]"  name=vendor_standard_pack edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="0" x="2377" y="4" height="56" width="411" format="[general]"  name=outside_process ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="2798" y="4" height="56" width="219" format="[general]"  name=vendor edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="3026" y="4" height="56" width="375" format="[general]"  name=vendor_default_currency_unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

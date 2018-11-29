@@ -1,0 +1,89 @@
+﻿$PBExportHeader$d_packaging_bulktracking_headers.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(20) updatewhereclause=yes name=packagecode dbname="Packaging_BulkTracking_SETUP.PackageCode" )
+ column=(type=char(25) updatewhereclause=yes name=description dbname="Packaging_BulkTracking_SETUP.Description" )
+ column=(type=char(6) updatewhereclause=yes name=packagingtype dbname="Packaging_BulkTracking_SETUP.PackagingType" )
+ column=(type=long updatewhereclause=yes name=returnableflag dbname="Packaging_BulkTracking_SETUP.ReturnableFlag" values="1	Returnable/0	Expendable/" )
+ column=(type=decimal(6) updatewhereclause=yes name=tareweight dbname="Packaging_BulkTracking_SETUP.TareWeight" )
+ column=(type=long updatewhereclause=yes name=bulktrackflag dbname="Packaging_BulkTracking_SETUP.BulkTrackFlag" values="Disabled	0/Bulk	1/" )
+ column=(type=long updatewhereclause=yes name=inhousequantity dbname="Packaging_BulkTracking_SETUP.InHouseQuantity" )
+ column=(type=long updatewhereclause=yes name=repairquantity dbname="Packaging_BulkTracking_SETUP.RepairQuantity" )
+ column=(type=long updatewhereclause=yes name=scrapquantity dbname="Packaging_BulkTracking_SETUP.ScrapQuantity" )
+ column=(type=long updatewhereclause=yes name=outsidequantity dbname="Packaging_BulkTracking_SETUP.OutsideQuantity" )
+ column=(type=long updatewhereclause=yes name=purchasequantity dbname="Packaging_BulkTracking_SETUP.PurchaseQuantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=purchaseamount dbname="Packaging_BulkTracking_SETUP.PurchaseAmount" )
+ column=(type=decimal(6) updatewhereclause=yes name=averageprice dbname="Packaging_BulkTracking_SETUP.AveragePrice" )
+ column=(type=long updatewhereclause=yes name=accumshipped dbname="Packaging_BulkTracking_SETUP.AccumShipped" )
+ column=(type=long updatewhereclause=yes name=accumreceived dbname="Packaging_BulkTracking_SETUP.AccumReceived" )
+ column=(type=long updatewhereclause=yes name=accumrepairshipped dbname="Packaging_BulkTracking_SETUP.AccumRepairShipped" )
+ column=(type=long updatewhereclause=yes name=accumscrapped dbname="Packaging_BulkTracking_SETUP.AccumScrapped" )
+ column=(type=long updatewhereclause=yes name=accuminhousequantityadjustment dbname="Packaging_BulkTracking_SETUP.AccumInHouseQuantityAdjustment" )
+ column=(type=long updatewhereclause=yes name=accumrepairquantityadjustment dbname="Packaging_BulkTracking_SETUP.AccumRepairQuantityAdjustment" )
+ column=(type=long updatewhereclause=yes name=accumscrapquantityadjustment dbname="Packaging_BulkTracking_SETUP.AccumScrapQuantityAdjustment" )
+ column=(type=long updatewhereclause=yes name=accumoutsidequantityadjustment dbname="Packaging_BulkTracking_SETUP.AccumOutsideQuantityAdjustment" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	pbts.PackageCode
+,	pbts.Description
+,	pbts.PackagingType
+,	pbts.ReturnableFlag
+,	pbts.TareWeight
+,	pbts.BulkTrackFlag
+,	pbts.InHouseQuantity
+,	pbts.RepairQuantity
+,	pbts.ScrapQuantity
+,	pbts.OutsideQuantity
+,	pbts.PurchaseQuantity
+,	pbts.PurchaseAmount
+,	pbts.AveragePrice
+,	pbts.AccumShipped
+,	pbts.AccumReceived
+,	pbts.AccumRepairShipped
+,	pbts.AccumScrapped
+,	pbts.AccumInHouseQuantityAdjustment
+,	pbts.AccumRepairQuantityAdjustment
+,	pbts.AccumScrapQuantityAdjustment
+,	pbts.AccumOutsideQuantityAdjustment
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.Packaging_BulkTracking_SETUP pbts
+where
+	pbts.ReturnableFlag = 1
+order by
+	pbts.PackageCode
+" )
+text(band=header alignment="0" text="Package code" border="6" color="33554432" x="87" y="8" height="76" width="430" html.valueishtml="0"  name=packagecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="526" y="8" height="76" width="832" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="1367" y="8" height="76" width="210" html.valueishtml="0"  name=packagingtype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Traceability" border="6" color="33554432" x="1586" y="8" height="76" width="357" html.valueishtml="0"  name=bulktrackflag_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="In house bal." border="6" color="33554432" x="1952" y="8" height="76" width="393" html.valueishtml="0"  name=inhousequantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Outside bal." border="6" color="33554432" x="2354" y="8" height="76" width="393" html.valueishtml="0"  name=outsidequantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Accum. shipped" border="6" color="33554432" x="2757" y="8" height="76" width="466" html.valueishtml="0"  name=accumshipped_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Accum. received" border="6" color="33554432" x="3232" y="8" height="76" width="466" html.valueishtml="0"  name=accumreceived_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="87" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=packagecode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="526" y="8" height="76" width="832" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1367" y="8" height="76" width="210" format="[general]" html.valueishtml="0"  name=packagingtype visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="1586" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=bulktrackflag visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="69" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="2757" y="8" height="76" width="466" format="#,##0" html.valueishtml="0"  name=accumshipped visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="3232" y="8" height="76" width="466" format="#,##0" html.valueishtml="0"  name=accumreceived visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="1952" y="8" height="76" width="393" format="#,##0;(#,##0)[RED];0; " html.valueishtml="0"  name=inhousequantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="2354" y="8" height="76" width="393" format="#,##0;(#,##0)[RED];0; " html.valueishtml="0"  name=outsidequantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

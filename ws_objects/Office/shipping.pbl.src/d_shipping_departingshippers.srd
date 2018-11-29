@@ -1,0 +1,81 @@
+﻿$PBExportHeader$d_shipping_departingshippers.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=712 color="536870912" )
+table(column=(type=char(32766) updatewhereclause=no name=customerlist dbname="Shipping_DepartingTruckList.CustomerList" )
+ column=(type=char(32766) updatewhereclause=no name=shiptolist dbname="Shipping_DepartingTruckList.ShipToList" )
+ column=(type=char(30) updatewhereclause=yes name=trucknumber dbname="Shipping_DepartingTruckList.TruckNumber" )
+ column=(type=char(35) updatewhereclause=yes name=pronumber dbname="Shipping_DepartingTruckList.PRONumber" )
+ column=(type=char(32766) updatewhereclause=no name=shippernumberlist dbname="Shipping_DepartingTruckList.ShipperNumberList" )
+ column=(type=char(32766) updatewhereclause=no name=legacyshipperid dbname="Shipping_DepartingTruckList.LegacyShipperID" )
+ column=(type=long updatewhereclause=yes name=isverified dbname="Shipping_DepartingTruckList.IsVerified" )
+ column=(type=long updatewhereclause=yes name=objectcount dbname="Shipping_DepartingTruckList.ObjectCount" )
+ column=(type=long updatewhereclause=yes name=looseboxcount dbname="Shipping_DepartingTruckList.LooseBoxCount" )
+ column=(type=long updatewhereclause=yes name=palletcount dbname="Shipping_DepartingTruckList.PalletCount" )
+ column=(type=long updatewhereclause=yes name=boxonpalletcount dbname="Shipping_DepartingTruckList.BoxOnPalletCount" )
+ column=(type=long updatewhereclause=yes name=verifiedlooseboxcount dbname="Shipping_DepartingTruckList.VerifiedLooseBoxCount" )
+ column=(type=long updatewhereclause=yes name=verifiedpalletcount dbname="Shipping_DepartingTruckList.VerifiedPalletCount" )
+ column=(type=long updatewhereclause=yes name=verifiedboxonpalletcount dbname="Shipping_DepartingTruckList.VerifiedBoxOnPalletCount" )
+ column=(type=datetime updatewhereclause=yes name=departurebegindt dbname="Shipping_DepartingTruckList.DepartureBeginDT" )
+ column=(type=long updatewhereclause=yes name=isoverridescanning dbname="Shipping_DepartingTruckList.IsOverrideScanning" )
+ column=(type=long updatewhereclause=yes name=requiresreprint dbname="Shipping_DepartingTruckList.RequiresReprint" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	sdtl.CustomerList
+,	sdtl.ShipToList
+,	sdtl.TruckNumber
+,	sdtl.PRONumber
+,	sdtl.ShipperNumberList
+,	sdtl.LegacyShipperID
+,	sdtl.IsVerified
+,	sdtl.ObjectCount
+,	sdtl.LooseBoxCount
+,	sdtl.PalletCount
+,	sdtl.BoxOnPalletCount
+,	sdtl.VerifiedLooseBoxCount
+,	sdtl.VerifiedPalletCount
+,	sdtl.VerifiedBoxOnPalletCount
+,	sdtl.DepartureBeginDT
+,	sdtl.IsOverrideScanning
+,	sdtl.RequiresReprint
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.Shipping_DepartingTruckList sdtl
+order by
+	sdtl.DepartureBeginDT
+" )
+groupbox(band=detail text="Departing Truck"border="5" color="33554432" x="37" y="4" height="704" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+rectangle(band=detail x="73" y="420" height="64" width="1317"  name=r_1 visible="1" brush.hatch="6" brush.color="25231359" pen.style="0" pen.width="5" pen.color="25231359"  background.mode="2" background.color="33554432" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="695" y="4" height="76" width="658" format="[general]" html.valueishtml="0"  name=trucknumber visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="292" height="76" width="987" format="[general]" html.valueishtml="0"  name=legacyshipperid visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer:" border="0" color="33554432" x="73" y="100" height="64" width="293" html.valueishtml="0"  name=customercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ship to:" border="0" color="33554432" x="73" y="196" height="64" width="293" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="~"Shipper~" + if(match(legacyshipperid, ~",~"), ~"s~", ~"~") + ~":~""border="0" color="33554432" x="73" y="292" height="64" width="293" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="ok-32.bmp" x="1463" y="36" height="128" width="146" border="0"  name=p_ok  tag="Begin shipout" visible="1~tif(requiresreprint = 0 and isverified > 0 and trim(pronumber) > '', 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1463" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel shipout" visible="1" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="420" height="64" width="914" format="[general]" html.valueishtml="0" protect="0~tif(isverified > 0, 0, 1)"  name=pronumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if(looseboxcount > 0, String(verifiedlooseboxcount) + ~" of ~" + String(looseboxcount) + ~" loose box~" + if(looseboxcount > 1, ~"es~", ~"~") + if(palletCount > 0, ~",~", ~"~"), ~"~") + 
+if(palletcount > 0, String(verifiedpalletcount) + ~" of ~" + String(palletcount) + ~" pallet~" + if(palletcount > 1, ~"s~", ~"~"), ~"~")"border="0" color="33554432~tif( IsOverrideScanning = 1, RGB(255,0,0), 33554432)" x="73" y="612" height="64" width="1207" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Scan to truck progress:" border="0" color="33554432" x="73" y="548" height="64" width="613" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="PRO #:" border="0" color="33554432" x="73" y="420" height="64" width="293" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="100" height="64" width="987" format="[general]" html.valueishtml="0"  name=customerlist visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="196" height="64" width="987" format="[general]" html.valueishtml="0"  name=shiptolist visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=detail filename="list-16.bmp" x="1317" y="420" height="64" width="73" border="0"  name=p_prodetails  tag="PRO Number Details" visible="1~tif(isverified > 0, 1, 0)" )
+bitmap(band=detail filename="run-icon-24.bmp" x="1280" y="580" height="96" width="110" border="0"  name=p_override  tag="Scan To Truck Override" visible="1~tif(isverified > 0, 0, 1)" )
+compute(band=detail alignment="0" expression="if (IsOverrideScanning = 1, ~"SCANNING OVERRIDE~", ~"~")"border="0" color="255" x="731" y="548" height="64" width="658" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="printer-32.bmp" x="1463" y="580" height="128" width="146" border="0"  name=p_print  tag="Reprint shipper(s)" visible="1~tif(requiresreprint > 0 and isverified > 0 and trim(pronumber) > '', 1, 0)" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

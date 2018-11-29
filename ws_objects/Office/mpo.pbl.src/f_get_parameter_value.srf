@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_get_parameter_value.srf
+global type f_get_parameter_value from function_object
+end type
+
+forward prototypes
+global function character f_get_parameter_value ()
+end prototypes
+
+global function character f_get_parameter_value ();string ls_requisition
+
+SELECT 	requisition
+INTO   	:ls_requisition
+FROM 		parameters ;
+
+return ls_requisition
+end function
+

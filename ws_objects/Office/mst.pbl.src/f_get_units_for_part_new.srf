@@ -1,0 +1,56 @@
+﻿$PBExportHeader$f_get_units_for_part_new.srf
+global type f_get_units_for_part_new from function_object
+end type
+
+forward prototypes
+global function listbox f_get_units_for_part_new (string szoriginalunit, string part_number, ref listbox lbunits)
+end prototypes
+
+global function listbox f_get_units_for_part_new (string szoriginalunit, string part_number, ref listbox lbunits);//  Declare Variables
+
+String szUnit1, szUnit2
+
+ DECLARE available_units CURSOR FOR  
+  SELECT unit_conversion.unit1,   
+         unit_conversion.unit2  
+    FROM part_unit_conversion,   
+         unit_conversion  
+   WHERE ( part_unit_conversion.code  = unit_conversion.code ) and  
+         ( (part_unit_conversion.part = :Part_number ) AND  
+         (  unit_conversion.unit1     = :szOriginalUnit OR  
+            unit_conversion.unit2     = :szOriginalUnit ) )   ;
+
+//  Initialize Variables
+
+If IsNull ( szOriginalUnit ) Or szOriginalUnit = "" Then
+
+  SELECT  part_inventory.standard_unit  
+    INTO :szOriginalUnit  
+    FROM part_inventory  
+   WHERE part_inventory.part = :Part_number   ;
+
+End if
+
+Open available_units ;
+
+Do
+	Fetch available_units Into :szUnit1, :szUnit2 ;
+	If SQLCA.SQLCode = 0 Then
+		If szUnit1 <> szOriginalUnit And lbUnits.FindItem ( szUnit1, 1 ) < 1 Then
+			lbUnits.AddItem ( szUnit1 )
+		End if
+		If szUnit2 <> szOriginalUnit And lbUnits.FindItem ( szUnit2, 1 ) < 1 Then
+			lbUnits.AddItem ( szUnit2 )
+		End if
+	End if
+Loop While SQLCA.SQLCode = 0
+
+Close available_units ;
+
+If lbUnits.FindItem ( szOriginalUnit, 1 ) < 1 Then &
+	lbUnits.AddItem ( szOriginalUnit )
+
+Return lbUnits
+
+end function
+

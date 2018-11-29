@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_sort.srs
+$PBExportComments$Used to pass parameters to w_sort window
+global type str_sort from structure
+    datawindow dw
+    string title
+end type
+

@@ -1,0 +1,336 @@
+﻿$PBExportHeader$m_global_shipping_scheduler.srm
+forward
+global type m_global_shipping_scheduler from menu
+end type
+type m_file from menu within m_global_shipping_scheduler
+end type
+type m_viewdate from menu within m_file
+end type
+type m_savereleases from menu within m_file
+end type
+type m_partmode from menu within m_file
+end type
+type m_destmode from menu within m_file
+end type
+type m_activedemand from menu within m_file
+end type
+type m_pastdue from menu within m_file
+end type
+type m_addedit from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_global_shipping_scheduler
+m_viewdate m_viewdate
+m_savereleases m_savereleases
+m_partmode m_partmode
+m_destmode m_destmode
+m_activedemand m_activedemand
+m_pastdue m_pastdue
+m_addedit m_addedit
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_global_shipping_scheduler
+end type
+type m_window from menu within m_global_shipping_scheduler
+end type
+type m_help from menu within m_global_shipping_scheduler
+end type
+global type m_global_shipping_scheduler from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_global_shipping_scheduler from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_global_shipping_scheduler m_global_shipping_scheduler
+
+on m_global_shipping_scheduler.create
+m_global_shipping_scheduler=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_global_shipping_scheduler.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_global_shipping_scheduler
+m_viewdate m_viewdate
+m_savereleases m_savereleases
+m_partmode m_partmode
+m_destmode m_destmode
+m_activedemand m_activedemand
+m_pastdue m_pastdue
+m_addedit m_addedit
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_viewdate=create m_viewdate
+this.m_savereleases=create m_savereleases
+this.m_partmode=create m_partmode
+this.m_destmode=create m_destmode
+this.m_activedemand=create m_activedemand
+this.m_pastdue=create m_pastdue
+this.m_addedit=create m_addedit
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_viewdate
+this.Item[UpperBound(this.Item)+1]=this.m_savereleases
+this.Item[UpperBound(this.Item)+1]=this.m_partmode
+this.Item[UpperBound(this.Item)+1]=this.m_destmode
+this.Item[UpperBound(this.Item)+1]=this.m_activedemand
+this.Item[UpperBound(this.Item)+1]=this.m_pastdue
+this.Item[UpperBound(this.Item)+1]=this.m_addedit
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_viewdate)
+destroy(this.m_savereleases)
+destroy(this.m_partmode)
+destroy(this.m_destmode)
+destroy(this.m_activedemand)
+destroy(this.m_pastdue)
+destroy(this.m_addedit)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_viewdate from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent("view_date")
+end event
+
+on m_viewdate.create
+call super::create
+this.text = "View &Date~tAlt+D"
+this.shortcut = 580
+this.microhelp = "Change view date"
+this.toolbaritemname = "Custom023!"
+this.toolbaritemtext = "View Date"
+this.toolbaritemorder = 10
+end on
+
+on m_viewdate.destroy
+call super::destroy
+end on
+
+type m_savereleases from menu within m_file
+end type
+
+event clicked;ParentWindow.GetActiveSheet().TriggerEvent("save_releases")
+end event
+
+on m_savereleases.create
+call super::create
+this.text = "&Save Releases~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Save releases"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 80
+end on
+
+on m_savereleases.destroy
+call super::destroy
+end on
+
+type m_partmode from menu within m_file
+end type
+
+on m_partmode.create
+call super::create
+this.text = "&Part Mode~tAlt+P"
+this.shortcut = 592
+this.microhelp = "Part Mode"
+this.toolbaritemname = "CreateRuntime5!"
+this.toolbaritemtext = "Part Mode"
+this.toolbaritemorder = 20
+end on
+
+event clicked;ParentWindow.dynamic event ue_part_dest ( 'P' )
+end event
+
+on m_partmode.destroy
+call super::destroy
+end on
+
+type m_destmode from menu within m_file
+end type
+
+on m_destmode.create
+call super::create
+this.text = "D&est Mode~tAlt+E"
+this.shortcut = 581
+this.microhelp = "Destination Mode"
+this.toolbaritemname = "Custom042!"
+this.toolbaritemtext = "Dest Mode"
+this.toolbaritemorder = 30
+end on
+
+event clicked;ParentWindow.dynamic event ue_part_dest ( 'D' )
+end event
+
+on m_destmode.destroy
+call super::destroy
+end on
+
+type m_activedemand from menu within m_file
+end type
+
+on m_activedemand.create
+call super::create
+this.text = "A&ctive Dmd~tAlt+C"
+this.shortcut = 579
+this.microhelp = "Display only Active Demands"
+this.toolbaritemname = "StaticText1!"
+this.toolbaritemtext = "Active Dmd"
+this.toolbaritemorder = 40
+end on
+
+event clicked;ParentWindow.Triggerevent('ue_active_demand')
+end event
+
+on m_activedemand.destroy
+call super::destroy
+end on
+
+type m_pastdue from menu within m_file
+end type
+
+on m_pastdue.create
+call super::create
+this.text = "Pa&st Due~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Display Past Due data only "
+this.toolbaritemname = "Custom053!"
+this.toolbaritemtext = "Past due"
+this.toolbaritemorder = 50
+end on
+
+event clicked;ParentWindow.Triggerevent('ue_past_due')
+end event
+
+on m_pastdue.destroy
+call super::destroy
+end on
+
+type m_addedit from menu within m_file
+end type
+
+on m_addedit.create
+call super::create
+this.text = "&Add/Edit~tAlt+A"
+this.shortcut = 577
+this.microhelp = "Add/Edit"
+this.toolbaritemname = "PlaceColumn5!"
+this.toolbaritemtext = "Add/Edit Rel."
+this.toolbaritemorder = 70
+end on
+
+event clicked;ParentWindow.triggerevent('ue_addedit_rel')
+end event
+
+on m_addedit.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;
+Close(ParentWindow)
+
+end event
+
+type m_edit from menu within m_global_shipping_scheduler
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_global_shipping_scheduler
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_global_shipping_scheduler
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

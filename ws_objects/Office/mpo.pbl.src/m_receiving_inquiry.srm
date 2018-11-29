@@ -1,0 +1,391 @@
+﻿$PBExportHeader$m_receiving_inquiry.srm
+forward
+global type m_receiving_inquiry from menu
+end type
+type m_file from menu within m_receiving_inquiry
+end type
+type m_sort from menu within m_file
+end type
+type m_inquiry from menu within m_file
+end type
+type m_arrival from menu within m_file
+end type
+type m__1 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_receiving_inquiry
+m_sort m_sort
+m_inquiry m_inquiry
+m_arrival m_arrival
+m__1 m__1
+m_close m_close
+end type
+type m_edit from menu within m_receiving_inquiry
+end type
+type m_window from menu within m_receiving_inquiry
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_receiving_inquiry
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_receiving_inquiry
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_receiving_inquiry
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_receiving_inquiry from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_receiving_inquiry from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_receiving_inquiry m_receiving_inquiry
+
+on m_receiving_inquiry.create
+m_receiving_inquiry=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_receiving_inquiry.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_receiving_inquiry
+m_sort m_sort
+m_inquiry m_inquiry
+m_arrival m_arrival
+m__1 m__1
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_sort=create m_sort
+this.m_inquiry=create m_inquiry
+this.m_arrival=create m_arrival
+this.m__1=create m__1
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_sort
+this.Item[UpperBound(this.Item)+1]=this.m_inquiry
+this.Item[UpperBound(this.Item)+1]=this.m_arrival
+this.Item[UpperBound(this.Item)+1]=this.m__1
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_sort)
+destroy(this.m_inquiry)
+destroy(this.m_arrival)
+destroy(this.m__1)
+destroy(this.m_close)
+end on
+
+type m_sort from menu within m_file
+end type
+
+on m_sort.create
+call super::create
+this.text = "Sort~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Sort"
+this.toolbaritemname = "Sort!"
+this.toolbaritemtext = "Sort"
+this.toolbaritemorder = 40
+end on
+
+event clicked;ParentWindow.TriggerEvent( "ue_sort" )
+end event
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_inquiry from menu within m_file
+end type
+
+on m_inquiry.create
+call super::create
+this.text = "PO Status~tAlt+P"
+this.shortcut = 592
+this.microhelp = "PO Status Inquiry"
+this.toolbaritemname = "Properties!"
+this.toolbaritemtext = "PO Status "
+this.toolbaritemorder = 20
+end on
+
+event clicked;ParentWindow.TriggerEvent ( "ue_po_inquiry" )
+end event
+
+on m_inquiry.destroy
+call super::destroy
+end on
+
+type m_arrival from menu within m_file
+end type
+
+on m_arrival.create
+call super::create
+this.text = "Arrival~tAlt+A"
+this.shortcut = 577
+this.microhelp = "Arrival Inquiry"
+this.toolbaritemname = "Truck.bmp"
+this.toolbaritemtext = "Arrival"
+this.toolbaritemorder = 30
+end on
+
+event clicked;ParentWindow.TriggerEvent ( "ue_arrival" )
+end event
+
+on m_arrival.destroy
+call super::destroy
+end on
+
+type m__1 from menu within m_file
+end type
+
+on m__1.create
+call super::create
+this.text = "-"
+end on
+
+on m__1.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;Close (ParentWindow)
+
+
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.microhelp = "Exit..."
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_receiving_inquiry
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_receiving_inquiry
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_receiving_inquiry
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Index! )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays Help Contents..."
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright..."
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

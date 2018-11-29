@@ -1,0 +1,25 @@
+﻿$PBExportHeader$d_outside_process_received.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=no name=not_processed_qty dbname="not_processed_qty" )
+ column=(type=decimal(6) updatewhereclause=no name=cum_received dbname="cum_received" )
+ procedure="1 select	isnull(sum(audit_trail.std_quantity),0) not_processed_qty,
+	isnull((select	accum_received
+		from	part_vendor
+		where	part = :as_part and
+			vendor = :as_vendor),0) cum_received
+from 	audit_trail
+where	audit_trail.part = :as_part and
+	audit_trail.type = 'R' and
+	audit_trail.status <> 'C' and
+	audit_trail.vendor = :as_vendor
+" arguments=(("as_part", string),("as_vendor", string)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="1774" y="4" height="64" width="402" format="[general]"  name=cum_received visible="1~t0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=detail alignment="1" expression="if( ( not_processed_qty > cum_received ), ( not_processed_qty -  cum_received ), (cum_received  -  not_processed_qty ) )"border="5" color="0" x="1765" y="4" height="64" width="402" format="[general]"  name=test  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Cum Received And Processed:"border="0" color="0" x="1006" y="4" height="52" width="731"  name=cum_received_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=detail alignment="1" text="Not Processed Qty:"border="0" color="0" x="18" y="4" height="52" width="457"  name=not_processed_qty_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="512" y="4" height="64" width="402" format="[general]"  name=not_processed_qty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

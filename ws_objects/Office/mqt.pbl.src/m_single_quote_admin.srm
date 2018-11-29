@@ -1,0 +1,377 @@
+﻿$PBExportHeader$m_single_quote_admin.srm
+forward
+global type m_single_quote_admin from menu
+end type
+type m_file from menu within m_single_quote_admin
+end type
+type m_addquoteitem from menu within m_file
+end type
+type m_deletequoteitem from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_printquote from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_single_quote_admin
+m_addquoteitem m_addquoteitem
+m_deletequoteitem m_deletequoteitem
+m_save m_save
+m_printquote m_printquote
+m__ m__
+m_close m_close
+end type
+type m_edit from menu within m_single_quote_admin
+end type
+type m_window from menu within m_single_quote_admin
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_single_quote_admin
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_single_quote_admin
+end type
+global type m_single_quote_admin from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_single_quote_admin from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_single_quote_admin m_single_quote_admin
+
+type variables
+Boolean bAscOrder
+Boolean bScreenOpen
+end variables
+
+forward prototypes
+public subroutine mf_setmenu (boolean a_b_add, boolean a_b_delete, boolean a_b_save)
+end prototypes
+
+public subroutine mf_setmenu (boolean a_b_add, boolean a_b_delete, boolean a_b_save);m_file.m_addquoteitem.Enabled 	= a_b_add
+m_file.m_deletequoteitem.Enabled = a_b_delete
+m_file.m_save.Enabled				= a_b_save
+end subroutine
+
+on m_single_quote_admin.create
+m_single_quote_admin=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_single_quote_admin.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+event clicked;
+Close(gnv_App.of_GetFrame().GetActiveSheet())
+
+end event
+
+type m_file from menu within m_single_quote_admin
+m_addquoteitem m_addquoteitem
+m_deletequoteitem m_deletequoteitem
+m_save m_save
+m_printquote m_printquote
+m__ m__
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_addquoteitem=create m_addquoteitem
+this.m_deletequoteitem=create m_deletequoteitem
+this.m_save=create m_save
+this.m_printquote=create m_printquote
+this.m__=create m__
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_addquoteitem
+this.Item[UpperBound(this.Item)+1]=this.m_deletequoteitem
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_printquote
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_addquoteitem)
+destroy(this.m_deletequoteitem)
+destroy(this.m_save)
+destroy(this.m_printquote)
+destroy(this.m__)
+destroy(this.m_close)
+end on
+
+type m_addquoteitem from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_add" )
+end event
+
+on m_addquoteitem.create
+call super::create
+this.text = "&Add Quote Item"
+this.toolbaritemname = "SelectScript!"
+this.toolbaritemtext = "Add"
+this.toolbaritemorder = 2
+end on
+
+on m_addquoteitem.destroy
+call super::destroy
+end on
+
+type m_deletequoteitem from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_delete" )
+end event
+
+on m_deletequoteitem.create
+call super::create
+this.text = "&Delete Quote Item"
+this.toolbaritemname = "Custom094!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 3
+end on
+
+on m_deletequoteitem.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_save" )
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save Quote Info"
+this.toolbaritemname = "Save!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 4
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_printquote from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_print" )
+end event
+
+on m_printquote.create
+call super::create
+this.text = "&Print Quote"
+this.microhelp = "Print current quote"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 5
+end on
+
+on m_printquote.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;Close(ParentWindow)
+end event
+
+type m_edit from menu within m_single_quote_admin
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_single_quote_admin
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_single_quote_admin
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,12 @@
+﻿$PBExportHeader$f_get_build_no_from_ini.srf
+global type f_get_build_no_from_ini from function_object
+end type
+
+forward prototypes
+global function long f_get_build_no_from_ini (string l_s_buildtype)
+end prototypes
+
+global function long f_get_build_no_from_ini (string l_s_buildtype);Return ProfileInt ( "mn.ini", "build", l_s_BuildType, 0 )
+
+end function
+

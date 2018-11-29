@@ -1,0 +1,77 @@
+﻿$PBExportHeader$d_dropshippodetail.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1086312914 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="553648127" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=po_number dbname="po_detail.po_number" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=date_due dbname="po_detail.date_due" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=balance dbname="po_detail.balance" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_of_measure dbname="po_detail.unit_of_measure" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_qty dbname="po_detail.standard_qty" )
+ column=(type=long update=yes updatewhereclause=yes name=sales_order dbname="po_detail.sales_order" )
+ column=(type=long update=yes updatewhereclause=yes name=dropship_oe_row_id dbname="po_detail.dropship_oe_row_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=row_id dbname="po_detail.row_id" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=ship_to_destination dbname="po_detail.ship_to_destination" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="po_detail.price" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=price_unit dbname="po_detail.price_unit" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="po_detail.plant" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=vendor_code dbname="po_detail.vendor_code" )
+ column=(type=decimal(6) updatewhereclause=yes name=committed_qty dbname="committed_qty" )
+ column=(type=char(1) updatewhereclause=yes name=printed dbname="po_detail.printed" )
+ retrieve="select	po_detail.po_number,
+	po_detail.part_number,
+	po_detail.date_due,
+	po_detail.balance,
+	po_detail.unit_of_measure,
+	po_detail.standard_qty,
+	po_detail.sales_order,
+	po_detail.dropship_oe_row_id,
+	po_detail.row_id,
+	po_detail.ship_to_destination,
+	po_detail.price,
+	po_detail.price_unit,
+	po_detail.plant,
+	po_detail.vendor_code,
+	committed_qty = IsNull (
+	(	select	sum ( alternative_qty )
+		from	shipper_detail
+			join shipper on shipper_detail.shipper = shipper.id and
+				shipper.status in ( 'A', 'S' )
+		where	dropship_po = po_detail.po_number and
+			dropship_po_row_id = po_detail.row_id ), 0 ) * IsNull (
+	(	select	conversion
+		from	unit_conversion
+			join part_inventory on part_inventory.part = po_detail.part_number
+			join part_unit_conversion on unit_conversion.code = part_unit_conversion.code and
+				part_unit_conversion.part = po_detail.part_number
+		where	unit1 = part_inventory.standard_unit and
+			unit2 = po_detail.unit_of_measure ), 1 ),
+	po_detail.printed
+from	po_detail
+where	po_detail.ship_type = 'D' and
+	po_detail.balance > 0 and
+	po_detail.dropship_oe_row_id > 0
+order by
+	po_detail.po_number,
+	po_detail.row_id
+" update="po_detail" updatewhere=0 updatekeyinplace=no )
+bitmap(band=header filename="PRINTER.BMP" x="9" y="12" height="56" width="78" border="6" )
+text(band=header alignment="2" text="PO #"border="6" color="33554432" x="96" y="12" height="52" width="197"  name=po_number_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Vendor"border="6" color="33554432" x="302" y="12" height="52" width="311"  name=vendor_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="2" text="Ship To Dest"border="6" color="33554432" x="622" y="12" height="52" width="320"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Part"border="6" color="33554432" x="951" y="12" height="52" width="567"  name=part_number_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Date"border="6" color="33554432" x="1527" y="12" height="52" width="279"  name=date_due_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Balance"border="6" color="33554432" x="1815" y="12" height="52" width="206"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="UM"border="6" color="33554432" x="2030" y="12" height="52" width="87"  name=unit_of_measure_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="96" y="8" height="56" width="197" format="[general]"  name=po_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="951" y="8" height="56" width="567" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1527" y="8" height="56" width="279" format="[general]"  name=date_due edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2030" y="8" height="56" width="87" format="[general]"  name=unit_of_measure edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="302" y="8" height="56" width="311" format="[general]"  name=vendor_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="622" y="8" height="56" width="320" format="[general]"  name=ship_to_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+compute(band=detail alignment="1" expression="balance - committed_qty"border="0" color="33554432" x="1815" y="8" height="56" width="206" format="######0.00"  name=unschedbalance  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+compute(band=detail alignment="0" expression="bitmap ( if ( printed = 'Y', ~"printer.bmp~", ~"~" ) )"border="0" color="33554432" x="9" y="8" height="56" width="78" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

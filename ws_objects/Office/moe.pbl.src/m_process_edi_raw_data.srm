@@ -1,0 +1,78 @@
+﻿$PBExportHeader$m_process_edi_raw_data.srm
+forward
+global type m_process_edi_raw_data from menu
+end type
+type m_m_edi_raw from menu within m_process_edi_raw_data
+end type
+type m_process from menu within m_m_edi_raw
+end type
+type m_exit from menu within m_m_edi_raw
+end type
+type m_m_edi_raw from menu within m_process_edi_raw_data
+m_process m_process
+m_exit m_exit
+end type
+end forward
+
+global type m_process_edi_raw_data from menu
+m_m_edi_raw m_m_edi_raw
+end type
+global m_process_edi_raw_data m_process_edi_raw_data
+
+on m_process_edi_raw_data.create
+m_process_edi_raw_data=this
+this.m_m_edi_raw=create m_m_edi_raw
+this.Item[]={this.m_m_edi_raw}
+end on
+
+on m_process_edi_raw_data.destroy
+destroy(this.m_m_edi_raw)
+end on
+
+type m_m_edi_raw from menu within m_process_edi_raw_data
+m_process m_process
+m_exit m_exit
+end type
+
+on m_m_edi_raw.create
+this.Text="&File"
+this.m_process=create m_process
+this.m_exit=create m_exit
+this.Item[]={this.m_process, &
+this.m_exit}
+end on
+
+on m_m_edi_raw.destroy
+destroy(this.m_process)
+destroy(this.m_exit)
+end on
+
+type m_process from menu within m_m_edi_raw
+end type
+
+on clicked;w_edi_raw_data_processor.TriggerEvent("process")
+end on
+
+on m_process.create
+this.Text="&Process~tAlt+P"
+this.Microhelp="Process the raw data"
+this.ToolBarItemName="Run!"
+this.ToolBarItemText="Process"
+this.ToolBarItemOrder=10
+this.Shortcut=592
+end on
+
+type m_exit from menu within m_m_edi_raw
+end type
+
+on clicked;Close(w_edi_raw_data_processor)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+

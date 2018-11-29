@@ -1,0 +1,174 @@
+﻿$PBExportHeader$f_recalc_po_detail_per_part.srf
+$PBExportComments$Recalculate the po detail release per part number
+global type f_recalc_po_detail_per_part from function_object
+end type
+
+forward prototypes
+global function boolean f_recalc_po_detail_per_part (long lponumber, string szpart, window wcancelwindow)
+end prototypes
+
+global function boolean f_recalc_po_detail_per_part (long lponumber, string szpart, window wcancelwindow);//  Declare Variables
+Long lCount
+Long lRowCount
+Long lProgress
+
+Dec  dQuantity
+Dec  dReceived
+Dec  dBalance
+Dec  nQtyOverReceived
+
+str_progress stParm
+
+st_generic_structure stGenericParm
+
+String 	szVendor				//Vendor code
+String	szUM					//Unit of Measure
+
+Boolean	bDelete				//Whether to delete the current PO releases.
+
+//  Open recalc window
+stGenericParm.value1	= String(lPoNumber)
+stGenericParm.value2	= szPart
+
+OpenWithParm ( w_smart_po_recalc_window, stGenericParm )
+
+dw1 = w_smart_po_recalc_window.dw_1
+
+If dw1.RowCount ( ) < 1 Then 
+	Close ( w_smart_po_recalc_window )
+	Return TRUE
+End if
+
+If IsNull(bNoCommit) then
+	bNoCommit	= FALSE
+End If
+
+lRowCount = dw1.RowCount ( ) * 3
+lProgress = 0
+lCount	 = 1
+
+If dw1.RowCount() > 0 then
+
+	szVendor	= f_get_po_info(lPONumber, "VENDOR")
+	szUM		= dw1.GetItemString(1, "unit_of_measure")
+
+	SELECT 	qty_over_received  
+  	INTO 		:nQtyOverReceived  
+   FROM 		part_vendor  
+   WHERE 	( vendor = :szVendor ) AND  
+         	( part 	= :szPart )   ;
+
+	nQtyOverReceived	= f_get_value(nQtyOverReceived)
+
+	Select sum(received)  
+     Into :dReceived  
+     From po_detail  
+    Where ( po_number 		= :lPONumber ) AND  
+          ( part_number 	= :szPart )   ;
+
+	nQtyOverReceived	= f_get_value(nQtyOverReceived) + f_get_value(dReceived)
+
+End If
+
+//  recalc the releases
+
+For lCount = 1 to dw1.RowCount()
+
+	lProgress = lProgress + 1
+
+	// MB 01/29/04 modified to get 0 if its null
+	dQuantity = f_get_value ( dw1.GetItemNumber ( lCount, "quantity" ) ) 
+
+	If dQuantity > nQtyOverReceived then
+		dBalance	= dQuantity - nQtyOverReceived
+		dReceived= nQtyOverReceived
+		nQtyOverReceived	= 0
+	Else
+		dBalance	= 0
+		dReceived= dQuantity
+		nQtyOverReceived	= nQtyOverReceived - dQuantity
+	End If	
+
+	If dReceived < 0 then
+		dQuantity	= dQuantity - dReceived
+		dReceived	= 0
+		dBalance		= dQuantity
+	End If
+
+	dw1.SetItem ( lCount, "quantity", dQuantity)
+	dw1.SetItem ( lCount, "balance", dBalance )
+	dw1.SetItem ( lCount, "received", dReceived)
+	dw1.SetItem ( lCount, "standard_qty", f_convert_units(szUM, "", szPart, dBalance))
+
+Next
+
+lProgress	= dw1.RowCount()
+
+If dw1.Update ( ) = -1 Then
+	If Not bNoCommit then
+		Rollback ;
+	End If
+	Close ( w_po_recalc_window )
+	Return FALSE
+Else
+	If Not bNoCommit then
+		Commit;
+	End If
+End if
+
+UPDATE 	part_vendor  
+SET 		qty_over_received = :nQtyOverReceived  
+WHERE 	( vendor = :szVendor ) AND  
+         ( part = :szPart )   ;
+
+If SQLCA.SQLCode = -1 then
+	If Not bNoCommit then
+		Rollback;
+	End If
+	Return FALSE
+Else
+	If Not bNoCommit then	
+		Commit;
+	End If
+End If
+
+//  Delete records with 0 balance
+
+bDelete	= FALSE
+
+For lCount = dw1.RowCount ( ) to 1 Step -1
+
+	lProgress = lProgress + 1
+
+	If dw1.GetItemString	( lCount, "deleted") = 'Y' then
+		bDelete	= FALSE
+	Else
+		bDelete	= (dw1.GetItemNumber( lCount, "balance") <= 0)
+	End If
+
+	If bDelete Then
+		dw1.DeleteRow ( lCount )
+	End if
+
+Next
+
+
+If dw1.Update ( ) = -1 Then
+	If Not bNoCommit then
+		Rollback ;
+	End If
+
+	Close ( w_smart_po_recalc_window )
+	Return FALSE
+Else
+	If Not bNoCommit then
+		Commit;
+	End If
+
+	Close ( w_smart_po_recalc_window )
+	Return TRUE
+End if
+
+
+end function
+

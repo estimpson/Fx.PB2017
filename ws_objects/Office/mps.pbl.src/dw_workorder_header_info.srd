@@ -1,0 +1,26 @@
+﻿$PBExportHeader$dw_workorder_header_info.srd
+$PBExportComments$work order header information
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=108 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=tool dbname="work_order.tool" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=process_id dbname="work_order.process_id" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=runtime dbname="work_order.runtime" )
+ column=(type=long update=yes updatewhereclause=yes name=cycle_time dbname="work_order.cycle_time" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=cycle_unit dbname="work_order.cycle_unit" )
+ retrieve="  SELECT work_order.tool,
+         work_order.process_id,   
+         work_order.runtime,   
+         work_order.cycle_time,   
+         work_order.cycle_unit  
+    FROM work_order  
+   WHERE work_order.work_order = :szWorkOrder    
+" arguments=(("szWorkOrder", string)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="18" y="20" height="68" width="238" format="[general]"  name=process_id edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="265" y="20" height="68" width="320" format="[general]"  name=tool edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="594" y="20" height="68" width="256" format="[general]"  name=runtime editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="859" y="20" height="68" width="347" format="[general]"  name=cycle_unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1216" y="20" height="68" width="306" format="[general]"  name=cycle_time edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

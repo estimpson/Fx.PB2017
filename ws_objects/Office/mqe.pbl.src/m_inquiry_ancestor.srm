@@ -1,0 +1,560 @@
+﻿$PBExportHeader$m_inquiry_ancestor.srm
+forward
+global type m_inquiry_ancestor from menu
+end type
+type m_file from menu within m_inquiry_ancestor
+end type
+type m_print from menu within m_file
+end type
+type m_-0 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_inquiry_ancestor
+m_print m_print
+m_-0 m_-0
+m_close m_close
+end type
+type m_edit from menu within m_inquiry_ancestor
+end type
+type m_addlocationmachine from menu within m_edit
+end type
+type m_deletelocationmachine from menu within m_edit
+end type
+type m_-1 from menu within m_edit
+end type
+type m_sort from menu within m_edit
+end type
+type m_filter from menu within m_edit
+end type
+type m_cancel from menu within m_edit
+end type
+type m_reset from menu within m_edit
+end type
+type m_- from menu within m_edit
+end type
+type m_custom1 from menu within m_edit
+end type
+type m_dummy2 from menu within m_edit
+end type
+type m_dummy3 from menu within m_edit
+end type
+type m_edit from menu within m_inquiry_ancestor
+m_addlocationmachine m_addlocationmachine
+m_deletelocationmachine m_deletelocationmachine
+m_-1 m_-1
+m_sort m_sort
+m_filter m_filter
+m_cancel m_cancel
+m_reset m_reset
+m_- m_-
+m_custom1 m_custom1
+m_dummy2 m_dummy2
+m_dummy3 m_dummy3
+end type
+type m_window from menu within m_inquiry_ancestor
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_inquiry_ancestor
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_inquiry_ancestor
+end type
+global type m_inquiry_ancestor from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_inquiry_ancestor from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_inquiry_ancestor m_inquiry_ancestor
+
+forward prototypes
+public subroutine mf_cancel (boolean a_b_mode)
+end prototypes
+
+public subroutine mf_cancel (boolean a_b_mode);if a_b_mode then
+	this.m_edit.m_cancel.Enabled = TRUE
+else
+	this.m_edit.m_cancel.Enabled = FALSE
+end if
+end subroutine
+
+on m_inquiry_ancestor.create
+m_inquiry_ancestor=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_inquiry_ancestor.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_inquiry_ancestor
+m_print m_print
+m_-0 m_-0
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_print=create m_print
+this.m_-0=create m_-0
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_-0
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_print)
+destroy(this.m_-0)
+destroy(this.m_close)
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_print" )
+end event
+
+on m_print.create
+call super::create
+this.text = "&Print"
+this.microhelp = "Print contents of query"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 8
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_-0 from menu within m_file
+end type
+
+on m_-0.create
+call super::create
+this.text = "-"
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;
+Close(ParentWindow)
+
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_inquiry_ancestor
+m_addlocationmachine m_addlocationmachine
+m_deletelocationmachine m_deletelocationmachine
+m_-1 m_-1
+m_sort m_sort
+m_filter m_filter
+m_cancel m_cancel
+m_reset m_reset
+m_- m_-
+m_custom1 m_custom1
+m_dummy2 m_dummy2
+m_dummy3 m_dummy3
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_addlocationmachine=create m_addlocationmachine
+this.m_deletelocationmachine=create m_deletelocationmachine
+this.m_-1=create m_-1
+this.m_sort=create m_sort
+this.m_filter=create m_filter
+this.m_cancel=create m_cancel
+this.m_reset=create m_reset
+this.m_-=create m_-
+this.m_custom1=create m_custom1
+this.m_dummy2=create m_dummy2
+this.m_dummy3=create m_dummy3
+this.Item[UpperBound(this.Item)+1]=this.m_addlocationmachine
+this.Item[UpperBound(this.Item)+1]=this.m_deletelocationmachine
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_sort
+this.Item[UpperBound(this.Item)+1]=this.m_filter
+this.Item[UpperBound(this.Item)+1]=this.m_cancel
+this.Item[UpperBound(this.Item)+1]=this.m_reset
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_custom1
+this.Item[UpperBound(this.Item)+1]=this.m_dummy2
+this.Item[UpperBound(this.Item)+1]=this.m_dummy3
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_addlocationmachine)
+destroy(this.m_deletelocationmachine)
+destroy(this.m_-1)
+destroy(this.m_sort)
+destroy(this.m_filter)
+destroy(this.m_cancel)
+destroy(this.m_reset)
+destroy(this.m_-)
+destroy(this.m_custom1)
+destroy(this.m_dummy2)
+destroy(this.m_dummy3)
+end on
+
+type m_addlocationmachine from menu within m_edit
+end type
+
+on m_addlocationmachine.create
+call super::create
+this.text = "&Add "
+this.microhelp = "Add a new item"
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "Add"
+this.toolbaritemorder = 2
+this.toolbaritemspace = 1
+end on
+
+event clicked;ParentWindow.TriggerEvent ( "ue_add" )
+end event
+
+on m_addlocationmachine.destroy
+call super::destroy
+end on
+
+type m_deletelocationmachine from menu within m_edit
+end type
+
+on m_deletelocationmachine.create
+call super::create
+this.text = "&Delete "
+this.microhelp = "Delete current item"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 3
+end on
+
+event clicked;ParentWindow.TriggerEvent ( "ue_delete" )
+end event
+
+on m_deletelocationmachine.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_edit
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_sort from menu within m_edit
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_sort" )
+end event
+
+on m_sort.create
+call super::create
+this.text = "&Sort"
+this.microhelp = "Sort current entries"
+this.toolbaritemname = "Sort!"
+this.toolbaritemtext = "Sort"
+this.toolbaritemorder = 4
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_filter from menu within m_edit
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_filter" )
+end event
+
+on m_filter.create
+call super::create
+this.text = "&Filter"
+this.microhelp = "Filter contents"
+this.toolbaritemname = "Custom090!"
+this.toolbaritemtext = "Filter"
+this.toolbaritemorder = 5
+end on
+
+on m_filter.destroy
+call super::destroy
+end on
+
+type m_cancel from menu within m_edit
+end type
+
+on m_cancel.create
+call super::create
+this.text = "&Cancel"
+this.enabled = false
+this.microhelp = "Cancel retrieval"
+this.toolbaritemname = "RetrieveCancel!"
+this.toolbaritemtext = "Cancel"
+this.toolbaritemorder = 6
+end on
+
+event clicked;ParentWindow.TriggerEvent ( 'ue_cancel' )
+end event
+
+on m_cancel.destroy
+call super::destroy
+end on
+
+type m_reset from menu within m_edit
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_reset" )
+end event
+
+on m_reset.create
+call super::create
+this.text = "&Reset"
+this.microhelp = "Reset filter and retrieve all records"
+this.toolbaritemname = "Query5!"
+this.toolbaritemtext = "Reset"
+this.toolbaritemorder = 7
+end on
+
+on m_reset.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_edit
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_custom1 from menu within m_edit
+end type
+
+on m_custom1.create
+call super::create
+this.visible = false
+this.text = "Custom&1"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemorder = 8
+end on
+
+on m_custom1.destroy
+call super::destroy
+end on
+
+type m_dummy2 from menu within m_edit
+end type
+
+on m_dummy2.create
+call super::create
+this.visible = false
+this.text = "Custom&2"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemorder = 9
+end on
+
+on m_dummy2.destroy
+call super::destroy
+end on
+
+type m_dummy3 from menu within m_edit
+end type
+
+on m_dummy3.create
+call super::create
+this.visible = false
+this.text = "Custom&3"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemorder = 10
+end on
+
+on m_dummy3.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_inquiry_ancestor
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_inquiry_ancestor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,9 @@
+﻿$PBExportHeader$d_blank_dw_gray.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=149 color="536870912" )
+table(column=(type=char(10) name=blah dbname="blah" )
+ )

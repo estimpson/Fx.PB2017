@@ -1,0 +1,89 @@
+﻿$PBExportHeader$d_dbo_billto_partpackaging_setup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(IsSelected=1,rgb(192,192,255),536870912)" )
+table(column=(type=long updatewhereclause=yes name=type dbname="BillTo_PartPackaging_Setup.Type" )
+ column=(type=char(61) updatewhereclause=no name=id dbname="BillTo_PartPackaging_Setup.ID" )
+ column=(type=char(10) updatewhereclause=yes name=billtocode dbname="BillTo_PartPackaging_Setup.BillToCode" )
+ column=(type=char(50) updatewhereclause=yes name=billtoname dbname="BillTo_PartPackaging_Setup.BillToName" )
+ column=(type=char(25) updatewhereclause=no name=partcode dbname="BillTo_PartPackaging_Setup.PartCode" )
+ column=(type=char(100) updatewhereclause=yes name=partname dbname="BillTo_PartPackaging_Setup.PartName" )
+ column=(type=char(20) updatewhereclause=no name=packagingcode dbname="BillTo_PartPackaging_Setup.PackagingCode" )
+ column=(type=char(25) updatewhereclause=yes name=packagename dbname="BillTo_PartPackaging_Setup.PackageName" )
+ column=(type=char(171) updatewhereclause=no name=code dbname="BillTo_PartPackaging_Setup.Code" )
+ column=(type=char(295) updatewhereclause=no name=description dbname="BillTo_PartPackaging_Setup.Description" )
+ column=(type=long updatewhereclause=yes name=packdisabled dbname="BillTo_PartPackaging_Setup.PackDisabled" )
+ column=(type=long updatewhereclause=yes name=packenabled dbname="BillTo_PartPackaging_Setup.PackEnabled" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=packdefault dbname="BillTo_PartPackaging_Setup.PackDefault" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=packwarn dbname="BillTo_PartPackaging_Setup.PackWarn" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=defaultpackdisabled dbname="BillTo_PartPackaging_Setup.DefaultPackDisabled" )
+ column=(type=long updatewhereclause=yes name=defaultpackenabled dbname="BillTo_PartPackaging_Setup.DefaultPackEnabled" )
+ column=(type=long updatewhereclause=yes name=defaultpackdefault dbname="BillTo_PartPackaging_Setup.DefaultPackDefault" )
+ column=(type=long updatewhereclause=yes name=defaultpackwarn dbname="BillTo_PartPackaging_Setup.DefaultPackWarn" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	btpps.Type
+,	btpps.ID
+,	btpps.BillToCode
+,	btpps.BillToName
+,	btpps.PartCode
+,	btpps.PartName
+,	btpps.PackagingCode
+,	btpps.PackageName
+,	btpps.Code
+,	btpps.Description
+,	btpps.PackDisabled
+,	btpps.PackEnabled
+,	btpps.PackDefault
+,	btpps.PackWarn
+,	btpps.DefaultPackDisabled
+,	btpps.DefaultPackEnabled
+,	btpps.DefaultPackDefault
+,	btpps.DefaultPackWarn
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.BillTo_PartPackaging_Setup btpps
+order by
+	btpps.Type
+,	btpps.ID
+,	btpps.PartCode
+,	btpps.PackagingCode
+" )
+text(band=header alignment="0" text="Bill to" border="6" color="33554432" x="9" y="8" height="72" width="302" html.valueishtml="0"  name=billto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bill to name" border="6" color="33554432" x="320" y="8" height="72" width="773" html.valueishtml="0"  name=billtoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part code" border="6" color="33554432" x="1102" y="8" height="72" width="411" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part name" border="6" color="33554432" x="1522" y="8" height="72" width="763" html.valueishtml="0"  name=partname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Packaging code" border="6" color="33554432" x="2295" y="8" height="72" width="480" html.valueishtml="0"  name=packagingcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Package name" border="6" color="33554432" x="2784" y="8" height="72" width="713" html.valueishtml="0"  name=packagename_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Enabled ?" border="6" color="33554432" x="3506" y="8" height="72" width="288" html.valueishtml="0"  name=packenabled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Default ?" border="6" color="33554432" x="3803" y="8" height="72" width="297" html.valueishtml="0"  name=packdefault_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Warn ?" border="6" color="33554432" x="4110" y="8" height="72" width="279" html.valueishtml="0"  name=packwarn_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="4398" y="8" height="72" width="1595" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=billtocode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="320" y="8" height="76" width="773" format="[general]" html.valueishtml="0"  name=billtoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1102" y="8" height="76" width="411" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1522" y="4" height="76" width="763" format="[general]" html.valueishtml="0"  name=partname visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2295" y="8" height="76" width="480" format="[general]" html.valueishtml="0"  name=packagingcode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2784" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=packagename visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4398" y="8" height="76" width="1595" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=295 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="33554432" x="3506" y="8" height="76" width="288" format="[general]" html.valueishtml="0"  name=packenabled visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="33554432" x="3803" y="4" height="76" width="297" format="[general]" html.valueishtml="0"  name=packdefault visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="33554432" x="4110" y="8" height="76" width="279" format="[general]" html.valueishtml="0"  name=packwarn visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="billtoname	partcode	partname")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

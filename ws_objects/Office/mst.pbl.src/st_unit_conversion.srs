@@ -1,0 +1,9 @@
+﻿$PBExportHeader$st_unit_conversion.srs
+$PBExportComments$arguments - Part, New unit, Original unit
+global type st_unit_conversion from structure
+    string szpart
+    string sznewunit
+    string szoriginalunit
+    decimal {6} dquantity
+end type
+

@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_dwproperty_linkageargs.srd
+$PBExportComments$PFC DataWindow Property - linkage arguments
+release 5;
+datawindow(units=0 timer_interval=0 color=80263581 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=56 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=52 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=mastercolumn dbname="mastercolumn" )
+ column=(type=char(50) updatewhereclause=yes name=detailcolumn dbname="detailcolumn" )
+ )
+text(band=header alignment="2" text="Master column"border="0" color="0" x="9" y="8" height="52" width="517"  name=mastercolumn_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Detail column"border="0" color="0" x="535" y="8" height="52" width="654"  name=detailcolumn_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="52" width="517" format="[general]"  name=mastercolumn edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="535" y="0" height="52" width="654" format="[general]"  name=detailcolumn edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

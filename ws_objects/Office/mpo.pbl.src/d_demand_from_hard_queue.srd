@@ -1,0 +1,47 @@
+﻿$PBExportHeader$d_demand_from_hard_queue.srd
+$PBExportComments$(mpo)
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="bill_of_material.part" )
+ column=(type=datetime updatewhereclause=yes name=due_date dbname="work_order.due_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity_raw dbname="quantity_raw" )
+ column=(type=char(20) updatewhereclause=yes name=plant dbname="work_order.plant" )
+ column=(type=char(10) updatewhereclause=yes name=work_order_work_order dbname="work_order.work_order" )
+ column=(type=decimal(6) updatewhereclause=yes name=cbalance dbname="balance" )
+ column=(type=long updatewhereclause=yes name=qty_covered dbname="bill_of_material.qty_covered" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ retrieve="  SELECT bill_of_material.part,   
+         work_order.due_date,   
+         bill_of_material.quantity * ( workorder_detail.qty_required - workorder_detail.qty_completed) as quantity_raw,   
+         work_order.plant,   
+         work_order.work_order,   
+         bill_of_material.quantity * ( workorder_detail.qty_required - workorder_detail.qty_completed) as balance,   
+         0 as qty_covered,   
+         part.name  
+    FROM bill_of_material,   
+         work_order,   
+         workorder_detail,   
+         part  
+   WHERE ( work_order.work_order = workorder_detail.workorder ) and  
+         ( bill_of_material.parent_part = workorder_detail.part ) and  
+         ( bill_of_material.part = part.part ) and  
+         ( ( bill_of_material.part = :as_part ) )    
+" arguments=(("as_part", string))  sort="due_date A " )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="52" width="485"  name=bill_of_material_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part Name"border="6" color="0" x="503" y="8" height="52" width="1033"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Due Date"border="6" color="0" x="1545" y="8" height="52" width="265"  name=work_order_due_date_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Req"border="6" color="0" x="1819" y="8" height="52" width="206"  name=cquantity_raw_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Work Order"border="6" color="0" x="2034" y="8" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Qty Covered"border="6" color="0" x="2345" y="8" height="52" width="325"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="9" y="8" height="64" width="485" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="VENDOR.BMP" x="421" y="4" height="64" width="73" border="0"  name=vendor_picture visible="1~tif (qty_covered >= quantity_raw, 1, 0 )" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="503" y="8" height="64" width="1033" format="[general]"  name=part_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="1545" y="8" height="64" width="265" format="[general]"  name=due_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="1819" y="8" height="64" width="206" format="[general]"  name=quantity_raw editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="2034" y="8" height="64" width="302" format="[general]"  name=work_order_work_order edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0~tif (qty_covered < quantity_raw, 255, 0 )" x="2345" y="8" height="64" width="325" format="[general]"  name=qty_covered edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

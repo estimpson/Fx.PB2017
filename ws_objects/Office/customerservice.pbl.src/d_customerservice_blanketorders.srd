@@ -1,0 +1,263 @@
+﻿$PBExportHeader$d_customerservice_blanketorders.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=decimal(0) updatewhereclause=yes name=ordernumber dbname="OrderHeaders.OrderNumber" )
+ column=(type=char(10) updatewhereclause=yes name=billtocode dbname="OrderHeaders.BillToCode" )
+ column=(type=char(20) updatewhereclause=yes name=shiptocode dbname="OrderHeaders.ShipToCode" )
+ column=(type=char(20) updatewhereclause=yes name=customerpo dbname="OrderHeaders.CustomerPO" )
+ column=(type=char(10) updatewhereclause=yes name=deliverfromplant dbname="OrderHeaders.DeliverFromPlant" )
+ column=(type=char(20) updatewhereclause=yes name=poolcode dbname="OrderHeaders.PoolCode" )
+ column=(type=char(50) updatewhereclause=yes name=billingaddressname dbname="OrderHeaders.BillingAddressName" )
+ column=(type=char(50) updatewhereclause=yes name=billingaddress1 dbname="OrderHeaders.BillingAddress1" )
+ column=(type=char(50) updatewhereclause=yes name=billingaddress2 dbname="OrderHeaders.BillingAddress2" )
+ column=(type=char(50) updatewhereclause=yes name=billingaddress3 dbname="OrderHeaders.BillingAddress3" )
+ column=(type=char(40) updatewhereclause=yes name=billingaddress4 dbname="OrderHeaders.BillingAddress4" )
+ column=(type=char(40) updatewhereclause=yes name=billingaddress5 dbname="OrderHeaders.BillingAddress5" )
+ column=(type=char(40) updatewhereclause=yes name=billingaddress6 dbname="OrderHeaders.BillingAddress6" )
+ column=(type=char(50) updatewhereclause=yes name=deliveryaddressname dbname="OrderHeaders.DeliveryAddressName" )
+ column=(type=char(50) updatewhereclause=yes name=deliveryaddress1 dbname="OrderHeaders.DeliveryAddress1" )
+ column=(type=char(50) updatewhereclause=yes name=deliveryaddress2 dbname="OrderHeaders.DeliveryAddress2" )
+ column=(type=char(50) updatewhereclause=yes name=deliveryaddress3 dbname="OrderHeaders.DeliveryAddress3" )
+ column=(type=char(40) updatewhereclause=yes name=deliveryaddress4 dbname="OrderHeaders.DeliveryAddress4" )
+ column=(type=char(40) updatewhereclause=yes name=deliveryaddress5 dbname="OrderHeaders.DeliveryAddress5" )
+ column=(type=char(40) updatewhereclause=yes name=deliveryaddress6 dbname="OrderHeaders.DeliveryAddress6" )
+ column=(type=char(50) updatewhereclause=yes name=deliverfromaddressname dbname="OrderHeaders.DeliverFromAddressName" )
+ column=(type=char(50) updatewhereclause=yes name=deliverfromaddress1 dbname="OrderHeaders.DeliverFromAddress1" )
+ column=(type=char(50) updatewhereclause=yes name=deliverfromaddress2 dbname="OrderHeaders.DeliverFromAddress2" )
+ column=(type=char(50) updatewhereclause=yes name=deliverfromaddress3 dbname="OrderHeaders.DeliverFromAddress3" )
+ column=(type=char(40) updatewhereclause=yes name=deliverfromaddress4 dbname="OrderHeaders.DeliverFromAddress4" )
+ column=(type=char(40) updatewhereclause=yes name=deliverfromaddress5 dbname="OrderHeaders.DeliverFromAddress5" )
+ column=(type=char(40) updatewhereclause=yes name=deliverfromaddress6 dbname="OrderHeaders.DeliverFromAddress6" )
+ column=(type=char(50) updatewhereclause=yes name=pooladdressname dbname="OrderHeaders.PoolAddressName" )
+ column=(type=char(50) updatewhereclause=yes name=pooladdress1 dbname="OrderHeaders.PoolAddress1" )
+ column=(type=char(50) updatewhereclause=yes name=pooladdress2 dbname="OrderHeaders.PoolAddress2" )
+ column=(type=char(50) updatewhereclause=yes name=pooladdress3 dbname="OrderHeaders.PoolAddress3" )
+ column=(type=char(40) updatewhereclause=yes name=pooladdress4 dbname="OrderHeaders.PoolAddress4" )
+ column=(type=char(40) updatewhereclause=yes name=pooladdress5 dbname="OrderHeaders.PoolAddress5" )
+ column=(type=char(40) updatewhereclause=yes name=pooladdress6 dbname="OrderHeaders.PoolAddress6" )
+ column=(type=datetime updatewhereclause=yes name=orderdate dbname="OrderHeaders.OrderDate" )
+ column=(type=char(35) updatewhereclause=yes name=customercontactname dbname="OrderHeaders.CustomerContactName" )
+ column=(type=char(25) updatewhereclause=yes name=salesrep dbname="OrderHeaders.SalesRep" )
+ column=(type=char(20) updatewhereclause=yes name=terms dbname="OrderHeaders.Terms" )
+ column=(type=char(3) updatewhereclause=yes name=currency_unit dbname="OrderHeaders.currency_unit" )
+ column=(type=long updatewhereclause=yes name=show_euro_amount dbname="OrderHeaders.show_euro_amount" )
+ column=(type=char(9) updatewhereclause=no name=shiptype dbname="OrderHeaders.ShipType" )
+ column=(type=char(1) updatewhereclause=yes name=status dbname="OrderHeaders.Status" )
+ column=(type=char(20) updatewhereclause=yes name=customerstatus dbname="OrderHeaders.CustomerStatus" )
+ column=(type=char(6) updatewhereclause=no name=orderstatus dbname="OrderHeaders.OrderStatus" )
+ column=(type=char(255) updatewhereclause=yes name=ordernotes dbname="OrderHeaders.OrderNotes" )
+ column=(type=char(1) updatewhereclause=yes name=ordertype dbname="OrderHeaders.OrderType" )
+ column=(type=char(25) updatewhereclause=yes name=blanketpart dbname="OrderHeaders.BlanketPart" )
+ column=(type=char(35) updatewhereclause=yes name=customerpart dbname="OrderHeaders.CustomerPart" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="OrderHeaders.PackageType" )
+ column=(type=char(25) updatewhereclause=yes name=engineeringlevel dbname="OrderHeaders.EngineeringLevel" )
+ column=(type=datetime updatewhereclause=yes name=poexpirationdate dbname="OrderHeaders.POExpirationDate" )
+ column=(type=char(4) updatewhereclause=yes name=modelyear dbname="OrderHeaders.ModelYear" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardpack dbname="OrderHeaders.StandardPack" )
+ column=(type=decimal(6) updatewhereclause=yes name=blanketyqty dbname="OrderHeaders.BlanketyQty" )
+ column=(type=char(15) updatewhereclause=yes name=unitmeasure dbname="OrderHeaders.UnitMeasure" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardprice dbname="OrderHeaders.StandardPrice" )
+ column=(type=decimal(6) updatewhereclause=yes name=alternateprice dbname="OrderHeaders.AlternatePrice" )
+ column=(type=char(1) updatewhereclause=yes name=priceunit dbname="OrderHeaders.PriceUnit" )
+ column=(type=decimal(6) updatewhereclause=yes name=accumshipped dbname="OrderHeaders.AccumShipped" )
+ column=(type=decimal(6) updatewhereclause=yes name=accumreceived dbname="OrderHeaders.AccumReceived" )
+ column=(type=char(12) updatewhereclause=no name=releasecontrol dbname="OrderHeaders.ReleaseControl" )
+ column=(type=long updatewhereclause=yes name=lastshipper dbname="OrderHeaders.LastShipper" )
+ column=(type=decimal(2) updatewhereclause=yes name=fabaccumauthorizatin dbname="OrderHeaders.FabAccumAuthorizatin" )
+ column=(type=datetime updatewhereclause=yes name=highfabauthorizationdate dbname="OrderHeaders.HighFabAuthorizationDate" )
+ column=(type=decimal(2) updatewhereclause=yes name=rawaccumauthorizatin dbname="OrderHeaders.RawAccumAuthorizatin" )
+ column=(type=datetime updatewhereclause=yes name=highrawauthorizationdate dbname="OrderHeaders.HighRawAuthorizationDate" )
+ column=(type=char(30) updatewhereclause=yes name=custom01 dbname="OrderHeaders.custom01" )
+ column=(type=char(30) updatewhereclause=yes name=custom02 dbname="OrderHeaders.custom02" )
+ column=(type=char(30) updatewhereclause=yes name=custom03 dbname="OrderHeaders.custom03" )
+ column=(type=char(15) updatewhereclause=no name=custom1label dbname="OrderHeaders.Custom1Label" )
+ column=(type=char(15) updatewhereclause=no name=custom2label dbname="OrderHeaders.Custom2Label" )
+ column=(type=char(15) updatewhereclause=no name=custom3label dbname="OrderHeaders.Custom3Label" )
+ column=(type=char(1) updatewhereclause=no name=orderconfirmationformat dbname="OrderHeaders.OrderConfirmationFormat" )
+ column=(type=char(1) updatewhereclause=no name=packingslipformat dbname="OrderHeaders.PackingSlipFormat" )
+ column=(type=char(1) updatewhereclause=no name=billofladingformat dbname="OrderHeaders.BillOfLadingFormat" )
+ column=(type=char(1) updatewhereclause=no name=customsformformat dbname="OrderHeaders.CustomsFormFormat" )
+ column=(type=char(1) updatewhereclause=no name=invoiceformat dbname="OrderHeaders.InvoiceFormat" )
+ column=(type=char(25) updatewhereclause=yes name=boxlabelformat dbname="OrderHeaders.BoxLabelFormat" )
+ column=(type=char(25) updatewhereclause=yes name=palletlabelformat dbname="OrderHeaders.PalletLabelFormat" )
+ column=(type=char(1) updatewhereclause=no name=destinationlabelformat dbname="OrderHeaders.DestinationLabelFormat" )
+ column=(type=char(10) updatewhereclause=yes name=dockcode dbname="OrderHeaders.DockCode" )
+ column=(type=char(30) updatewhereclause=yes name=linefeedcode dbname="OrderHeaders.LineFeedCode" )
+ column=(type=char(30) updatewhereclause=yes name=zonecode dbname="OrderHeaders.ZoneCode" )
+ column=(type=char(6) updatewhereclause=yes name=beginkanbannumber dbname="OrderHeaders.BeginKANBANNumber" )
+ column=(type=char(6) updatewhereclause=yes name=endkanbannumber dbname="OrderHeaders.EndKANBANNumber" )
+ column=(type=char(35) updatewhereclause=yes name=line11 dbname="OrderHeaders.Line11" )
+ column=(type=char(35) updatewhereclause=yes name=line12 dbname="OrderHeaders.Line12" )
+ column=(type=char(35) updatewhereclause=yes name=line13 dbname="OrderHeaders.Line13" )
+ column=(type=char(35) updatewhereclause=yes name=line14 dbname="OrderHeaders.Line14" )
+ column=(type=char(35) updatewhereclause=yes name=line15 dbname="OrderHeaders.Line15" )
+ column=(type=char(35) updatewhereclause=yes name=line16 dbname="OrderHeaders.Line16" )
+ column=(type=char(35) updatewhereclause=yes name=line17 dbname="OrderHeaders.Line17" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	oh.OrderNumber
+,	oh.BillToCode
+,	oh.ShipToCode
+,	oh.CustomerPO
+,	oh.DeliverFromPlant
+,	oh.PoolCode
+,	oh.BillingAddressName
+,	oh.BillingAddress1
+,	oh.BillingAddress2
+,	oh.BillingAddress3
+,	oh.BillingAddress4
+,	oh.BillingAddress5
+,	oh.BillingAddress6
+,	oh.DeliveryAddressName
+,	oh.DeliveryAddress1
+,	oh.DeliveryAddress2
+,	oh.DeliveryAddress3
+,	oh.DeliveryAddress4
+,	oh.DeliveryAddress5
+,	oh.DeliveryAddress6
+,	oh.DeliverFromAddressName
+,	oh.DeliverFromAddress1
+,	oh.DeliverFromAddress2
+,	oh.DeliverFromAddress3
+,	oh.DeliverFromAddress4
+,	oh.DeliverFromAddress5
+,	oh.DeliverFromAddress6
+,	oh.PoolAddressName
+,	oh.PoolAddress1
+,	oh.PoolAddress2
+,	oh.PoolAddress3
+,	oh.PoolAddress4
+,	oh.PoolAddress5
+,	oh.PoolAddress6
+,	oh.OrderDate
+,	oh.CustomerContactName
+,	oh.SalesRep
+,	oh.Terms
+,	oh.currency_unit
+,	oh.show_euro_amount
+,	oh.ShipType
+,	oh.Status
+,	oh.CustomerStatus
+,	oh.OrderStatus
+,	oh.OrderNotes
+,	oh.OrderType
+,	oh.BlanketPart
+,	oh.CustomerPart
+,	oh.PackageType
+,	oh.EngineeringLevel
+,	oh.POExpirationDate
+,	oh.ModelYear
+,	oh.StandardPack
+,	oh.BlanketyQty
+,	oh.UnitMeasure
+,	oh.StandardPrice
+,	oh.AlternatePrice
+,	oh.PriceUnit
+,	oh.AccumShipped
+,	oh.AccumReceived
+,	oh.ReleaseControl
+,	oh.LastShipper
+,	oh.FabAccumAuthorizatin
+,	oh.HighFabAuthorizationDate
+,	oh.RawAccumAuthorizatin
+,	oh.HighRawAuthorizationDate
+,	oh.custom01
+,	oh.custom02
+,	oh.custom03
+,	oh.Custom1Label
+,	oh.Custom2Label
+,	oh.Custom3Label
+,	oh.OrderConfirmationFormat
+,	oh.PackingSlipFormat
+,	oh.BillOfLadingFormat
+,	oh.CustomsFormFormat
+,	oh.InvoiceFormat
+,	oh.BoxLabelFormat
+,	oh.PalletLabelFormat
+,	oh.DestinationLabelFormat
+,	oh.DockCode
+,	oh.LineFeedCode
+,	oh.ZoneCode
+,	oh.BeginKANBANNumber
+,	oh.EndKANBANNumber
+,	oh.Line11
+,	oh.Line12
+,	oh.Line13
+,	oh.Line14
+,	oh.Line15
+,	oh.Line16
+,	oh.Line17
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custsrv.OrderHeaders oh
+where
+	OrderType = 'B'
+order by
+	oh.OrderNumber
+" )
+text(band=header alignment="0" text="Order no." border="6" color="33554432" x="105" y="8" height="80" width="352" html.valueishtml="0"  name=ordernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to code" border="6" color="33554432" x="466" y="8" height="80" width="576" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Blanket part" border="6" color="33554432" x="1051" y="8" height="80" width="425" html.valueishtml="0"  name=blanketpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer part" border="6" color="33554432" x="1486" y="8" height="80" width="521" html.valueishtml="0"  name=customerpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bill to code" border="6" color="33554432" x="2016" y="8" height="80" width="466" html.valueishtml="0"  name=billtocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer PO." border="6" color="33554432" x="2491" y="8" height="80" width="407" html.valueishtml="0"  name=customerpo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PO expiration date" border="6" color="33554432" x="2907" y="8" height="80" width="512" html.valueishtml="0"  name=poexpirationdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=70 alignment="0" tabsequence=32766 border="6" color="33554432" x="3429" y="8" height="80" width="315" format="[general]" html.valueishtml="0"  name=custom1label visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=71 alignment="0" tabsequence=32766 border="6" color="33554432" x="3753" y="8" height="80" width="357" format="[general]" html.valueishtml="0"  name=custom2label visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=72 alignment="0" tabsequence=32766 border="6" color="33554432" x="4119" y="8" height="80" width="315" format="[general]" html.valueishtml="0"  name=custom3label visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Deliver from" border="6" color="33554432" x="4443" y="8" height="80" width="430" html.valueishtml="0"  name=deliverfromplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool point code" border="6" color="33554432" x="4882" y="8" height="80" width="471" html.valueishtml="0"  name=poolcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Billing company name" border="6" color="33554432" x="5362" y="8" height="80" width="795" html.valueishtml="0"  name=billingaddressname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Delivery company name" border="6" color="33554432" x="6167" y="8" height="80" width="763" html.valueishtml="0"  name=deliveryaddressname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pool company name" border="6" color="33554432" x="6939" y="8" height="80" width="613" html.valueishtml="0"  name=pooladdressname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer contact name" border="6" color="33554432" x="7561" y="8" height="80" width="686" html.valueishtml="0"  name=customercontactname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sales rep." border="6" color="33554432" x="8256" y="8" height="80" width="503" html.valueishtml="0"  name=salesrep_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Order date" border="6" color="33554432" x="8768" y="8" height="80" width="603" html.valueishtml="0"  name=orderdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Terms" border="6" color="33554432" x="9381" y="8" height="80" width="270" html.valueishtml="0"  name=terms_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Currency unit" border="6" color="33554432" x="9659" y="8" height="80" width="407" html.valueishtml="0"  name=currency_unit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="10075" y="8" height="80" width="165" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer status" border="6" color="33554432" x="10249" y="8" height="80" width="576" html.valueishtml="0"  name=customerstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Order status" border="6" color="33554432" x="10834" y="8" height="80" width="379" html.valueishtml="0"  name=orderstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Note" border="6" color="33554432" x="11223" y="8" height="80" width="791" html.valueishtml="0"  name=ordernotes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="105" y="8" height="76" width="352" format="[general]" html.valueishtml="0"  name=ordernumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="2016" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=billtocode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="466" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=shiptocode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2491" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=customerpo visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="4443" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=deliverfromplant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4882" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=poolcode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="5362" y="8" height="76" width="795" format="[general]" html.valueishtml="0"  name=billingaddressname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="6167" y="8" height="76" width="763" format="[general]" html.valueishtml="0"  name=deliveryaddressname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="6939" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=pooladdressname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="0" color="33554432" x="8768" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=orderdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="0" tabsequence=32766 border="0" color="33554432" x="7561" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=customercontactname visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="0" color="33554432" x="8256" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=salesrep visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="33554432" x="9381" y="8" height="76" width="270" format="[general]" html.valueishtml="0"  name=terms visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="0" color="33554432" x="9659" y="8" height="76" width="407" format="[general]" html.valueishtml="0"  name=currency_unit visible="1" edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="0" tabsequence=32766 border="0" color="33554432" x="10075" y="8" height="76" width="165" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=43 alignment="0" tabsequence=32766 border="0" color="33554432" x="10249" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=customerstatus visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=44 alignment="0" tabsequence=32766 border="0" color="33554432" x="10834" y="8" height="76" width="379" format="[general]" html.valueishtml="0"  name=orderstatus visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=45 alignment="0" tabsequence=32766 border="0" color="33554432" x="11223" y="8" height="76" width="791" format="[general]" html.valueishtml="0"  name=ordernotes visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="0" color="33554432" x="1051" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=blanketpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=48 alignment="0" tabsequence=32766 border="0" color="33554432" x="1486" y="8" height="76" width="521" format="[general]" html.valueishtml="0"  name=customerpart visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=51 alignment="0" tabsequence=32766 border="0" color="33554432" x="2907" y="8" height="76" width="512" format="[shortdate] [time]" html.valueishtml="0"  name=poexpirationdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=67 alignment="0" tabsequence=32766 border="0" color="33554432" x="3429" y="8" height="76" width="315" format="[general]" html.valueishtml="0"  name=custom01 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=68 alignment="0" tabsequence=32766 border="0" color="33554432" x="3753" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=custom02 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=69 alignment="0" tabsequence=32766 border="0" color="33554432" x="4119" y="8" height="76" width="315" format="[general]" html.valueishtml="0"  name=custom03 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

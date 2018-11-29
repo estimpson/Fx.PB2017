@@ -1,0 +1,369 @@
+﻿$PBExportHeader$m_account_payable.srm
+forward
+global type m_account_payable from menu
+end type
+type m_file from menu within m_account_payable
+end type
+type m_viewall from menu within m_file
+end type
+type m_viewunmarked from menu within m_file
+end type
+type m_viewmarked from menu within m_file
+end type
+type m_query from menu within m_file
+end type
+type m_markall from menu within m_file
+end type
+type m_post from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_account_payable
+m_viewall m_viewall
+m_viewunmarked m_viewunmarked
+m_viewmarked m_viewmarked
+m_query m_query
+m_markall m_markall
+m_post m_post
+m__ m__
+m_exit m_exit
+end type
+type m_window from menu within m_account_payable
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_account_payable
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_account_payable
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_account_payable
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_account_payable from menu
+m_file m_file
+m_window m_window
+m_help m_help
+end type
+global m_account_payable m_account_payable
+
+on m_account_payable.create
+m_account_payable=this
+this.m_file=create m_file
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_account_payable.destroy
+destroy(this.m_file)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_account_payable
+m_viewall m_viewall
+m_viewunmarked m_viewunmarked
+m_viewmarked m_viewmarked
+m_query m_query
+m_markall m_markall
+m_post m_post
+m__ m__
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_viewall=create m_viewall
+this.m_viewunmarked=create m_viewunmarked
+this.m_viewmarked=create m_viewmarked
+this.m_query=create m_query
+this.m_markall=create m_markall
+this.m_post=create m_post
+this.m__=create m__
+this.m_exit=create m_exit
+this.Item[]={this.m_viewall, &
+this.m_viewunmarked, &
+this.m_viewmarked, &
+this.m_query, &
+this.m_markall, &
+this.m_post, &
+this.m__, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_viewall)
+destroy(this.m_viewunmarked)
+destroy(this.m_viewmarked)
+destroy(this.m_query)
+destroy(this.m_markall)
+destroy(this.m_post)
+destroy(this.m__)
+destroy(this.m_exit)
+end on
+
+type m_viewall from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("view_all")
+end on
+
+on m_viewall.create
+this.Text="View &All~tAlt+A"
+this.Microhelp="View all transactions"
+this.ToolBarItemName="Rectangle!"
+this.ToolBarItemText="ViewAll"
+this.ToolBarItemOrder=10
+this.Shortcut=577
+end on
+
+type m_viewunmarked from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("view_unmarked")
+end on
+
+on m_viewunmarked.create
+this.Text="View &Unmarked~tAlt+U"
+this.Microhelp="View only payment marked transactions"
+this.ToolBarItemName="Search!"
+this.ToolBarItemText="UnMked"
+this.ToolBarItemOrder=20
+this.Shortcut=597
+end on
+
+type m_viewmarked from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("view_marked")
+end on
+
+on m_viewmarked.create
+this.Text="View &Marked~tAlt+M"
+this.Microhelp="View only marked payment"
+this.ToolBarItemName="Custom038!"
+this.ToolBarItemText="Marked"
+this.ToolBarItemOrder=30
+this.Shortcut=589
+end on
+
+type m_query from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("query")
+end on
+
+on m_query.create
+this.Text="&Query~tAlt+Q"
+this.Microhelp="Search by batch# / invoice#"
+this.ToolBarItemName="Custom065!"
+this.ToolBarItemText="Search"
+this.ToolBarItemOrder=35
+this.Shortcut=593
+end on
+
+type m_markall from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("mark_all")
+end on
+
+on m_markall.create
+this.Text="Mar&k All~tAlt+K"
+this.Microhelp="Mark all unpaid"
+this.ToolBarItemName="selectall!"
+this.ToolBarItemText="MarkAll"
+this.ToolBarItemOrder=37
+this.Shortcut=587
+end on
+
+type m_post from menu within m_file
+end type
+
+on clicked;w_account_payable_interface.TriggerEvent("post")
+end on
+
+on m_post.create
+this.Text="&Post~tAlt+P"
+this.Microhelp="Mark/Post to account payable"
+this.ToolBarItemName="Custom048!"
+this.ToolBarItemText="Post"
+this.ToolBarItemOrder=40
+this.Shortcut=592
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+this.Text="-"
+this.ToolBarItemOrder=50
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Window wActiveSheet
+
+wActiveSheet = gnv_App.of_GetFrame().GetActiveSheet ( )
+
+If IsValid ( wActiveSheet ) Then &
+	Close ( wActiveSheet )
+
+
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_window from menu within m_account_payable
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Tile Windows..."
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+this.Text="&Layer"
+this.Microhelp="Layer Windows..."
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Cascade Windows..."
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+this.Microhelp="Arrange Icons..."
+end on
+
+type m_help from menu within m_account_payable
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Index! )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays Help Contents..."
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright..."
+end on
+

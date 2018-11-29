@@ -1,0 +1,53 @@
+﻿$PBExportHeader$f_populate_dddw.srf
+$PBExportComments$Populate child datawindows for base datawindow (only for child datawindows with no retrieve argument).
+global type f_populate_dddw from function_object
+end type
+
+forward prototypes
+global subroutine f_populate_dddw (ref datawindow adw_base, datawindowchild adwc_dddw[])
+end prototypes
+
+global subroutine f_populate_dddw (ref datawindow adw_base, datawindowchild adwc_dddw[]);/* 
+Description	:	Generic function to populate dropdown datawindow for any
+					base datawindow.
+Author		:	Jim Wu
+Start Date	:	02/08/96
+Modification:
+*/
+
+/* Declaration */
+Integer	li_TotalCols, &
+			li_Column, &
+			li_dwcCount
+
+String	ls_Col, &
+			ls_DataObject, &
+			ls_ColumnName
+
+DataWindowChild	ldwc_dddw
+
+/* Initialization */
+li_dwcCount	= 0
+
+/* Main Process */
+li_TotalCols	= Integer(adw_base.describe( 'datawindow.column.count'))
+
+For li_Column = 1 to li_TotalCols
+	ls_Col			= '#' + string( li_Column )
+	ls_DataObject	= adw_base.describe( ls_Col + '.dddw.name' )
+	If ls_DataObject <> '?' then
+		ls_ColumnName	= adw_base.describe( ls_Col + '.name')
+		If adw_base.GetChild( ls_ColumnName, ldwc_dddw ) = 1 then
+			li_dwcCount ++
+			adwc_dddw[li_dwcCount] = ldwc_dddw
+			adwc_dddw[li_dwcCount].SetTransObject(SQLCA)
+			adwc_dddw[li_dwcCount].Retrieve()
+		End If
+	End If
+Next
+
+Return
+		
+		
+end subroutine
+

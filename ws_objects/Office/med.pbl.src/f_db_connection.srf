@@ -1,0 +1,27 @@
+﻿$PBExportHeader$f_db_connection.srf
+global type f_db_connection from function_object
+end type
+
+forward prototypes
+global function integer f_db_connection (boolean ab_mode)
+end prototypes
+
+global function integer f_db_connection (boolean ab_mode);IF ab_Mode THEN
+	DISCONNECT ;
+	SQLCA.DBMS 			= ProfileString ( "PB.INI", "database", "DBMS", "ODBC" )
+	SQLCA.database 	= ProfileString ( "PB.INI", "database", "database", "MONITOR" )
+	SQLCA.DBParm 		= ProfileString ( "PB.INI", "database", "DBParm", "connectstring='dsn=MONITOR" )
+	SQLCA.UserId 		= ProfileString ( "PB.INI", "database", "UserId", "dba" )
+	SQLCA.DBPass		= ProfileString ( "PB.INI", "database", "DBPass", "sql" )
+	SQLCA.ServerName	= ProfileString ( "PB.INI", "database", "ServerName", "<default>" )
+	CONNECT ;
+	IF SQLCA.SQLCode <> 0 THEN
+		Return -1
+	END IF
+ELSE
+	DISCONNECT ;
+END IF
+
+Return 0
+end function
+

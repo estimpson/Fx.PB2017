@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_report_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=132 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(150) updatewhereclause=no name=name dbname="Name" )
+ column=(type=char(50) updatewhereclause=no name=datetime dbname="LastDate" )
+ column=(type=char(300) updatewhereclause=no name=comments dbname="Comments" )
+ )
+text(band=header alignment="0" text="Report Name"border="6" color="8388608" x="9" y="12" height="112" width="919"  name=name_t  font.face="Arial" font.height="-18" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="76" width="919" format="[general]"  name=name edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

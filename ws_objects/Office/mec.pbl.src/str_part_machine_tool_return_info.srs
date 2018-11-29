@@ -1,0 +1,8 @@
+﻿$PBExportHeader$str_part_machine_tool_return_info.srs
+global type str_part_machine_tool_return_info from structure
+	string		part
+	string		machine
+	string		tool
+	decimal {6}	quantity
+end type
+

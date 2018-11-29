@@ -1,0 +1,60 @@
+﻿$PBExportHeader$f_check_required_dw.srf
+$PBExportComments$Checks all required fields are populated for passed datawindow.
+global type f_check_required_dw from function_object
+end type
+
+forward prototypes
+global function integer f_check_required_dw (ref datawindow adw_control)
+end prototypes
+
+global function integer f_check_required_dw (ref datawindow adw_control);integer li_colnbr = 1
+
+long ll_row = 1
+string ls_colname, ls_textname, ls_coltext
+
+// Make sure the last entry is accepted
+IF adw_control.AcceptText() = -1 THEN
+	adw_control.SetFocus()
+	RETURN -2
+END IF
+
+// Find the first empty row and column, if any
+IF adw_control.FindRequired( Primary!, ll_row,  &
+	li_colnbr, ls_colname, false ) < 0 THEN
+	//If search fails due to error, then return
+	RETURN -2
+END IF
+
+// Was any row found?
+IF ll_row <> 0 THEN
+	// Get the text of that column's label.
+
+ls_textname = ls_colname + "_t.Text"
+	ls_coltext = adw_control.Describe(ls_textname)
+
+IF ls_coltext = '!' THEN
+	ls_coltext = adw_control.getitemstring(ll_row,ls_colname + "_t")
+END IF
+
+
+	// Tell the user which column to fill in
+	MessageBox("Required Value Missing",  &
+		"Please enter a value for '"  &
+		+ ls_coltext  &
+		+ "', row "  &
+		+ String(ll_row) + ".",  &
+		StopSign! )
+
+	// Make the problem column current.
+	adw_control.SetColumn(li_colnbr)
+	adw_control.ScrollToRow(ll_row)
+	adw_control.SetFocus()
+	RETURN -1
+END IF
+
+// Return success code if all required 
+
+// rows and columns have data
+RETURN 1
+end function
+

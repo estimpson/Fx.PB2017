@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_serial_scan_interface_mri.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=156 color="536870912" )
+table(column=(type=char(255) updatewhereclause=yes name=scan dbname="scan" )
+ )
+data(null ) 
+text(band=detail alignment="0" text="Box Serial"border="0" color="0" x="1806" y="12" height="80" width="585"  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="Long ( Right ( scan, Len ( scan ) - Pos ( scan, 'S' ) ) )"border="0" color="0" x="2400" y="12" height="80" width="585" format="[general]"  name=boxserial  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Pallet Serial"border="0" color="0" x="1806" y="104" height="80" width="585"  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="Long ( Right ( scan, Len ( scan ) - Pos ( scan, 'Z' ) ) )"border="0" color="0" x="2400" y="104" height="80" width="585" format="[general]"  name=palletserial  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="2" text="Scan Serial Here"border="0" color="33554432" x="0" y="32" height="100" width="256"  name=scan_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Þ"border="0" color="0" x="265" y="24" height="108" width="105"  font.face="Symbol" font.height="-18" font.weight="400"  font.family="1" font.pitch="2" font.charset="2" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="389" y="60" height="52" width="498" format="[general]"  name=scan edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

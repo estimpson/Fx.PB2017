@@ -1,0 +1,57 @@
+﻿$PBExportHeader$print_label.srf
+global type print_label from function_object
+end type
+
+forward prototypes
+global subroutine print_label (long a_l_serial)
+end prototypes
+
+global subroutine print_label (long a_l_serial);String 					l_s_Part, &
+							l_s_Label, &
+							l_s_WindowName
+Window 					wLabel
+st_generic_structure l_st_Parm
+Int 						l_i_NumberOfLabels
+
+SELECT object.part  
+  INTO :l_s_Part  
+  FROM object  
+ WHERE object.serial = :a_l_Serial   ;
+
+If SQLCA.SQLCode <> 0 Then
+	MessageBox ( monsys.msg_title, "Printing of label failed!", StopSign! )
+	Return
+End if
+
+SELECT part_inventory.label_format  
+  INTO :l_s_Label  
+  FROM part_inventory  
+ WHERE part_inventory.part = :l_s_Part   ;
+
+If SQLCA.SQLCode <> 0 Then
+	MessageBox ( monsys.msg_title, "Printing of label failed!", StopSign! )
+	Return
+End if
+
+  SELECT report_library.object_name,   
+         report_library.copies  
+  INTO 	:l_s_WindowName,
+		 	:l_i_NumberOfLabels
+    FROM report_library 
+	 WHERE  report_library.name = :l_s_Label;
+
+If SQLCA.SQLCode <> 0 Then
+	MessageBox ( monsys.msg_title, "Printing of label failed!", StopSign! )
+	Return
+End if
+
+l_st_Parm.Value1	= String ( a_l_Serial )
+l_st_Parm.Value2	= l_s_Part
+l_st_Parm.Value11 = String ( l_i_NumberOfLabels )
+
+OpenWithParm ( wLabel, l_st_Parm, l_s_WindowName )
+
+
+
+end subroutine
+

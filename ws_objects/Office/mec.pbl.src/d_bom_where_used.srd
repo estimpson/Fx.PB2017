@@ -1,0 +1,31 @@
+﻿$PBExportHeader$d_bom_where_used.srd
+$PBExportComments$Bill of Material where used report - takes component as argument.
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=116 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=bill_of_material_parent_part dbname="bill_of_material.parent_part" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(25) updatewhereclause=yes name=part_product_line dbname="part.product_line" )
+ column=(type=decimal(7) updatewhereclause=yes name=bill_of_material_quantity dbname="bill_of_material.quantity" )
+ column=(type=char(2) updatewhereclause=yes name=bill_of_material_unit_measure dbname="bill_of_material.unit_measure" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"bill_of_material~" )  TABLE(NAME=~"part~" ) COLUMN(NAME=~"bill_of_material.parent_part~") COLUMN(NAME=~"part.name~") COLUMN(NAME=~"part.product_line~") COLUMN(NAME=~"bill_of_material.quantity~") COLUMN(NAME=~"bill_of_material.unit_measure~")    JOIN (LEFT=~"bill_of_material.parent_part~"    OP =~"=~"RIGHT=~"part.part~" )WHERE(    EXP1 =~"bill_of_material.part~"   OP =~"=~"    EXP2 =~":a_component~" ) ) ORDER(NAME=~"bill_of_material.parent_part~" ASC=yes )  ORDER(NAME=~"part.product_line~" ASC=yes ) ARG(NAME = ~"a_component~" TYPE = string) " arguments=(("a_component", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="9" y="4" height="76" width="713" format="[general]"  name=bill_of_material_parent_part edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Parent
+Part"border="6" color="0" x="5" y="4" height="104" width="731"  name=bill_of_material_parent_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part
+Name"border="6" color="0" x="750" y="4" height="104" width="1399"  name=part_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part
+Product Line"border="6" color="0" x="2167" y="4" height="104" width="713"  name=part_product_line_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="BOM
+Quantity"border="6" color="0" x="2898" y="4" height="104" width="343"  name=bill_of_material_quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Unit of
+
+Measure"border="6" color="0" x="3259" y="4" height="104" width="229"  name=bill_of_material_unit_measure_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="750" y="4" height="76" width="1399" format="[general]"  name=part_name edit.limit=100 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="2176" y="4" height="76" width="713" format="[general]"  name=part_product_line edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="2917" y="4" height="76" width="329" format="[general]"  name=bill_of_material_quantity edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="3273" y="4" height="76" width="229" format="[general]"  name=bill_of_material_unit_measure edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

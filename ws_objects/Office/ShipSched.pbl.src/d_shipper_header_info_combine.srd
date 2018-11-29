@@ -1,0 +1,107 @@
+﻿$PBExportHeader$d_shipper_header_info_combine.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=680 color="553648127" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="shipper.id" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_stamp dbname="shipper.date_stamp" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=shipping_dock dbname="shipper.shipping_dock" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=aetc_number dbname="shipper.aetc_number" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=freight_type dbname="shipper.freight_type" values="Collect	Collect/Prepaid	Prepaid/Prepaid-Billed	Prepaid-Billed/" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="shipper.plant" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="shipper.status" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="shipper.ship_via" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=trans_mode dbname="shipper.trans_mode" )
+ column=(type=long updatewhereclause=yes name=isexpedite dbname="IsExpedite" values="Expedite?	1/Expedite?	0" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=expeditecode dbname="shipper.ExpediteCode" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=freight dbname="shipper.freight" validation="Number(GetText())>=0 " validationmsg="~"Freight charge must greater than or equal to zero!~"" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=notes dbname="shipper.notes" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="shipper.model_year" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=customer dbname="shipper.customer" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=invoiced dbname="shipper.invoiced" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="shipper.type" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=invoice_printed dbname="shipper.invoice_printed" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=tax_rate dbname="shipper.tax_rate" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=picklist_printed dbname="shipper.picklist_printed" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="shipper.printed" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=terms dbname="shipper.terms" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=location dbname="shipper.location" )
+ column=(type=char(3) updatewhereclause=yes name=currency_unit dbname="shipper.currency_unit" )
+ column=(type=char(20) updatewhereclause=yes name=cs_status dbname="shipper.cs_status" )
+ retrieve="select
+	s.id
+,	s.date_stamp
+,	s.shipping_dock
+,	s.aetc_number
+,	s.freight_type
+,	s.plant
+,	s.status
+,	s.ship_via
+,	s.destination
+,	s.trans_mode
+,	IsExpedite =
+		case
+			when tm.IsExpedite = 1 then 1
+			when s.ExpediteCode is not null then 1
+			else 0
+		end
+,	s.ExpediteCode
+,	s.freight
+,	s.notes
+,	s.model_year
+,	s.customer
+,	s.invoiced
+,	s.type
+,	s.invoice_printed
+,	s.tax_rate
+,	s.picklist_printed
+,	s.printed
+,	s.terms
+,	s.location
+,	s.currency_unit
+,	s.cs_status
+from
+	dbo.shipper s
+	left join dbo.trans_mode tm
+		on tm.code = s.trans_mode
+where
+    s.id = :shipper
+" update="shipper" updatewhere=0 updatekeyinplace=yes arguments=(("shipper", number)) )
+groupbox(band=detail text="Shipper Header Information"border="5" color="33554432" x="37" y="4" height="672" width="1719"  name=gb_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=60 border="5" color="33554432" x="1280" y="196" height="64" width="439" format="[general]" html.valueishtml="0"  name=trans_mode visible="1" dddw.name=d_dddw_trans_mode dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Trans. Mode" border="0" color="33554432" x="914" y="196" height="64" width="320" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+groupbox(band=detail text="Note"border="5" color="33554432" x="1792" y="4" height="672" width="1207"  name=gb_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=120 border="5" color="33554432" x="1829" y="100" height="544" width="1134" format="" html.valueishtml="0"  name=notes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+text(band=detail alignment="0" text="Shipper #" border="0" color="33554432" x="73" y="100" height="64" width="329" html.valueishtml="0"  name=id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="A.E.T.C." border="0" color="33554432" x="73" y="388" height="64" width="329" html.valueishtml="0"  name=aetc_number_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Dock Code" border="0" color="33554432" x="73" y="484" height="64" width="329" html.valueishtml="0"  name=shipping_dock_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="F.O.B." border="0" color="33554432" x="73" y="580" height="64" width="329" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Date / Time" border="0" color="33554432" x="73" y="196" height="64" width="329" html.valueishtml="0"  name=date_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="33554432" x="256" y="292" height="64" width="585" format="[general] [hh:mm]" html.valueishtml="0"  name=date_stamp visible="1" editmask.mask="[date] [time]" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="439" y="100" height="64" width="402" format="[general]" html.valueishtml="0"  name=id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="5" color="33554432" x="439" y="388" height="64" width="402" format="[general]" html.valueishtml="0"  name=aetc_number visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="33554432" x="439" y="484" height="64" width="402" format="[general]" html.valueishtml="0"  name=shipping_dock visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=24 alignment="0" tabsequence=40 border="5" color="33554432" x="439" y="580" height="64" width="402" format="[general]" html.valueishtml="0"  name=location visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="SCAC" border="0" color="33554432" x="914" y="100" height="64" width="329" html.valueishtml="0"  name=ship_via_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Freight Type" border="0" color="33554432" x="914" y="388" height="64" width="320" html.valueishtml="0"  name=freight_type_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Freight Charge" border="0" color="33554432" x="914" y="484" height="64" width="320" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Plant" border="0" color="33554432" x="914" y="580" height="64" width="320" html.valueishtml="0"  name=plant_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="5" color="33554432" x="1280" y="100" height="64" width="439" format="[general]" html.valueishtml="0"  name=ship_via visible="1" dddw.name=d_dddw_scac dddw.displaycolumn=scac dddw.datacolumn=scac dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=90 border="5" color="33554432" x="1280" y="388" height="64" width="439" format="[general]" html.valueishtml="0"  name=freight_type visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=100 border="5" color="33554432" x="1280" y="484" height="64" width="439" format="[general]" html.valueishtml="0"  name=freight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=110 border="5" color="33554432" x="1280" y="580" height="64" width="439" format="[general]" html.valueishtml="0"  name=plant visible="1" dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=10 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=70 border="0" color="33554432" x="914" y="292" height="64" width="329" format="[general]" html.valueishtml="0"  name=isexpedite visible="1" checkbox.text="Expedite?" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=12 alignment="0" tabsequence=80 border="5" color="33554432" x="1280" y="292" height="64" width="439" format="[general];N/A" html.valueishtml="0"  name=expeditecode visible="1~t isexpedite " dddw.name=d_shipping_expeditecodeslist dddw.displaycolumn=expeditecode dddw.datacolumn=expeditecode dddw.percentwidth=550 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

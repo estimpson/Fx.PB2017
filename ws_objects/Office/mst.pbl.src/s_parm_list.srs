@@ -1,0 +1,13 @@
+﻿$PBExportHeader$s_parm_list.srs
+$PBExportComments$(mst) Added new component 'dt_parm_list[]'
+global type s_parm_list from structure
+    string s_key_value
+    string s_type
+    string s_parm_list[]
+    date d_parm_list[]
+    decimal {6} c_parm_list[]
+    datawindow dw_parm_list[]
+    boolean b_parm_list[]
+    datetime dt_parm_list[]
+end type
+

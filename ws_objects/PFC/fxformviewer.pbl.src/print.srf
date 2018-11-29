@@ -1,0 +1,73 @@
+﻿$PBExportHeader$print.srf
+global type print from function_object
+end type
+
+forward prototypes
+global function integer print (ref n_cst_associative_array ancst_parm)
+end prototypes
+
+global function integer print (ref n_cst_associative_array ancst_parm);
+//	Description:
+//	Print a Monitor Report 
+//
+//	Syntax:
+//	Print ( * MonitorReportParm )
+//
+//	Arguments:
+//	MonitorReportParm	An associative array containing retrieval arguments and report and
+//						report name.
+//
+//	Return Value:
+//	Returns 1 if it succeeds, -1 if an error occurs.
+
+//	Declarations.
+integer	li_ReturnValue
+
+n_cst_report	lncst_Report;lncst_Report = create n_cst_report
+
+//	Call print function for report.
+li_ReturnValue = lncst_Report.of_Print ( ancst_Parm )
+
+//	Display error code
+choose case li_ReturnValue
+	case lncst_Report.PRINT
+	case lncst_Report.PRINTCANCEL
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Print cancelled." )
+	case lncst_Report.REPORTNOTFOUND
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Report not found." )
+	case lncst_Report.INVALIDXTRN
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Invalid external DataWindow or DataWindow not found." )
+	case lncst_Report.INVALIDDW
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Compiled DataWindow not found." )
+	case lncst_Report.NODATA
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "No data retrieved.  Check report." )
+	case lncst_Report.INVALIDXTRNFUS
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Invalid external DataWindow or DataWindow not found for fusion." )
+	case lncst_Report.FUSIONNOINIT
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Fusion error." )
+	case lncst_Report.FUSIONNODUP
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Fusion error." )
+	case lncst_Report.FUSIONNOPRINT
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Fusion error." )
+	case lncst_Report.FUSIONNOTRM
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Fusion error." )
+	case else
+		li_ReturnValue = -1
+		MessageBox ( gnv_App.iapp_Object.DisplayName, "Unknown or unspecified error while printing." )
+end choose
+
+//	Return.
+destroy lncst_Report
+return li_ReturnValue
+end function
+

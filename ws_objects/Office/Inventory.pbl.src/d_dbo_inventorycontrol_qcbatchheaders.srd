@@ -1,0 +1,87 @@
+﻿$PBExportHeader$d_dbo_inventorycontrol_qcbatchheaders.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=qualitybatchnumber dbname="QualityBatchNumber" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="Type" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=description dbname="Description" )
+ column=(type=datetime update=yes updatewhereclause=yes name=sortbegindt dbname="SortBeginDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=sortenddt dbname="SortEndDT" )
+ column=(type=long updatewhereclause=yes name=sortcompleted dbname="SortCompleted" )
+ column=(type=long updatewhereclause=yes name=sortcount dbname="SortCount" )
+ column=(type=long updatewhereclause=yes name=sortedcount dbname="SortedCount" )
+ column=(type=long updatewhereclause=yes name=scrapcount dbname="ScrapCount" )
+ column=(type=decimal(6) updatewhereclause=yes name=scrapquantity dbname="ScrapQuantity" )
+ column=(type=char(32766) updatewhereclause=no name=seriallist dbname="SerialList" )
+ column=(type=char(32766) updatewhereclause=no name=partlist dbname="PartList" )
+ column=(type=long update=yes updatewhereclause=yes identity=yes name=rowid dbname="RowID" )
+ column=(type=char(1000) update=yes updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long update=yes updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	icqbh.QualityBatchNumber
+,	icqbh.Status
+,	icqbh.Type
+,	icqbh.Description
+,	icqbh.SortBeginDT
+,	icqbh.SortEndDT
+,	SortCompleted = case when exists(select * from dbo.InventoryControl_QualityBatchObjects where QualityBatchNumber = icqbh.QualityBatchNumber and Status = 0) then 0 else 1 end
+,	icqbh.SortCount
+,	icqbh.SortedCount
+,	icqbh.ScrapCount
+,	icqbh.ScrapQuantity
+,	icqbos.SerialList
+,	icqbos.PartList
+,	icqbh.RowID
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.InventoryControl_QualityBatchHeaders icqbh
+	cross apply
+		(	select
+				SerialList = FX.ToList(icqbo.Serial)
+			,	PartList = Fx.ToList(distinct icqbo.Part)
+			from
+				dbo.InventoryControl_QualityBatchObjects icqbo
+			where
+				icqbh.QualityBatchNumber = icqbo.QualityBatchNumber
+		) icqbos
+order by
+	icqbh.QualityBatchNumber
+" )
+text(band=header alignment="2" text="Part list" border="6" color="33554432" x="110" y="8" height="72" width="549" html.valueishtml="0"  name=partlist_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="667" y="8" height="72" width="997" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sort begin" border="6" color="33554432" x="1673" y="8" height="72" width="558" html.valueishtml="0"  name=sortbegindt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sort end" border="6" color="33554432" x="2240" y="8" height="72" width="585" html.valueishtml="0"  name=sortenddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sort completed" border="6" color="33554432" x="2834" y="8" height="72" width="466" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# Sort" border="6" color="33554432" x="3310" y="8" height="72" width="389" html.valueishtml="0"  name=sortcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# Sorted" border="6" color="33554432" x="3707" y="8" height="72" width="462" html.valueishtml="0"  name=sortedcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# Scrap" border="6" color="33554432" x="4178" y="8" height="72" width="425" html.valueishtml="0"  name=scrapcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. to scrap" border="6" color="33554432" x="4613" y="8" height="72" width="389" html.valueishtml="0"  name=scrapquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serial list" border="6" color="33554432" x="5010" y="8" height="72" width="699" html.valueishtml="0"  name=seriallist_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="91" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="667" y="8" height="76" width="997" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1673" y="8" height="76" width="558" format="[shortdate] [time];~"Not begun~"" html.valueishtml="0"  name=sortbegindt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2240" y="8" height="76" width="585" format="[shortdate] [time];~"Not ended~"" html.valueishtml="0"  name=sortenddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="if(SortCompleted=1, ~"P~", ~"~")"border="0" color="32768~tif(Status = 1, rgb(255,255,0), rgb(0,255,0))" x="2834" y="8" height="76" width="466" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Wingdings" font.height="-12" font.weight="700"  font.family="0" font.pitch="2" font.charset="2" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="2" tabsequence=32766 border="0" color="33554432" x="3310" y="8" height="76" width="389" format="[general]" html.valueishtml="0"  name=sortcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="2" tabsequence=32766 border="0" color="33554432" x="3707" y="8" height="76" width="462" format="[general]" html.valueishtml="0"  name=sortedcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="33554432" x="4178" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=scrapcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4613" y="8" height="76" width="389" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=scrapquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="5010" y="8" height="76" width="699" format="[general]" html.valueishtml="0"  name=seriallist visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="110" y="8" height="76" width="549" format="[general]" html.valueishtml="0"  name=partlist visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

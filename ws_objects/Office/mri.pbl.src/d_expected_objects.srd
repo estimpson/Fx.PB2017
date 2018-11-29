@@ -1,0 +1,35 @@
+﻿$PBExportHeader$d_expected_objects.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=no key=yes name=serial dbname="serial" )
+ column=(type=char(25) update=yes updatewhereclause=no name=part dbname="part" )
+ column=(type=decimal(6) update=yes updatewhereclause=no name=quantity dbname="quantity" )
+ column=(type=char(1) update=yes updatewhereclause=no name=status dbname="status" )
+ column=(type=char(10) update=yes updatewhereclause=no name=engineering_level dbname="engineering_level" )
+ column=(type=datetime update=yes updatewhereclause=no key=yes name=date_stamp dbname="date_stamp" )
+ column=(type=char(1) updatewhereclause=no name=object_type dbname="object_type" )
+ column=(type=char(1) updatewhereclause=no name=type dbname="type" )
+ procedure="1 begin
+execute msp_build_rma_exp_objects  :rma
+end
+commit transaction
+" arguments=(("rma", number)) )
+text(band=header alignment="2" text="Serial"border="6" color="0" x="9" y="8" height="60" width="242"  name=serial_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="261" y="8" height="60" width="279"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type"border="6" color="0" x="549" y="8" height="60" width="87"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Status"border="6" color="0" x="645" y="8" height="60" width="174"  name=status_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="827" y="8" height="60" width="329"  name=quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Engineering Level"border="6" color="0" x="1166" y="8" height="60" width="306"  name=engineering_level_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Stamp"border="6" color="0" x="1481" y="8" height="60" width="690"  name=date_stamp_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="68" width="242" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="261" y="8" height="68" width="279" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap ( if (  object_type = 'S', 'pallet.bmp', 'box.bmp' )) "border="0" color="0" x="549" y="8" height="68" width="87" format="[general]"  name=type  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="645" y="8" height="68" width="174" format="[general]"  name=status edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="827" y="8" height="68" width="329" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1166" y="8" height="68" width="306" format="[general]"  name=engineering_level edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1481" y="8" height="68" width="690" format="[shortdate] [time]"  name=date_stamp edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

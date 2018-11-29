@@ -1,0 +1,25 @@
+﻿$PBExportHeader$d_report_list_entry.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127"  height.autosize=yes)
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=report dbname="report_list.report" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=description dbname="report_list.description" )
+ column=(type=long updatewhereclause=yes name=report_usage dbname="report_usage" initial="0" )
+ retrieve="SELECT	report,
+		description,
+		(
+			SELECT	count ( 1 )
+			  FROM	report_library
+			 WHERE	report_list.report = report_library.report ) report_usage
+  FROM	report_list
+ORDER BY 1" update="report_list" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Report"border="6" color="37234728" x="9" y="8" height="52" width="549"  name=report_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Description"border="6" color="37234728" x="567" y="8" height="52" width="960"  name=description_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Entries"border="6" color="37234728" x="1536" y="8" height="52" width="361"  name=report_usage_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="37234728" x="9" y="8" height="52" width="549" format="[general]" protect="0~tif ( isRowNew ( ), 0, 1 )"  name=report edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="37234728" x="567" y="8" height="52" width="960" format="[general]"  name=description height.autosize=yes edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="37234728" x="1536" y="8" height="52" width="361" format="[general]"  name=report_usage edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

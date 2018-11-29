@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_range.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=1 selected.mouse=no )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=number updatewhereclause=no name=range_row dbname="range_row" )
+ column=(type=number updatewhereclause=no name=range_col dbname="range_col" )
+ filter="max_column = range_col"  sort="range_row D " )
+group(level=1 header.height=1 trailer.height=85 by=("range_row" ) header.color="553648127" trailer.color="536870912" )
+text(band=header alignment="2" text="Row"border="6" color="0" x="10" y="8" height="65" width="321"  name=range_row_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Column"border="6" color="0" x="339" y="8" height="65" width="348"  name=begin_col_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="2" color="0" x="339" y="8" height="77" width="348" format="0"  name=range_col edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="2" color="0" x="10" y="8" height="77" width="321" format="0"  name=range_row edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="Max ( range_col for group 1 )"border="0" color="0" x="339" y="4" height="77" width="348" format="[general]"  name=max_column  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

@@ -1,0 +1,61 @@
+﻿$PBExportHeader$f_parts_per_hour.srf
+$PBExportComments$Calculate the parts per hour based on cycle_unit, parts_per_cycle and cycle_time.
+global type f_parts_per_hour from function_object
+end type
+
+forward prototypes
+global function decimal f_parts_per_hour (string as_cycle_unit, decimal ac_parts_per_cycle, decimal ac_cycle_time)
+end prototypes
+
+global function decimal f_parts_per_hour (string as_cycle_unit, decimal ac_parts_per_cycle, decimal ac_cycle_time);/*
+Description	:To calculate the parts per hour based on parts/cycle, cycle
+				 unit and cycle time.
+Author		:Jim Wu
+Start Date	:02/10/96
+Modification:
+*/
+
+
+/* Declaration */
+
+Decimal	lc_factor, &
+			lc_PartsPerHour
+
+/* Initialization */
+
+lc_factor		= 0
+as_cycle_unit	= Upper(as_cycle_unit)
+
+/* Main Process */
+
+Choose Case as_cycle_unit
+	Case "SECOND"
+		lc_factor 	= 3600
+	Case "MINUTE"
+		lc_factor	= 60
+	Case "HOUR"
+		lc_factor	= 1 
+	Case "DAY"
+		lc_factor	= (1 / 24)
+	Case Else
+		lc_factor			= 0
+		lc_PartsPerHour	= 0
+End Choose
+
+
+If lc_factor > 0 then
+	If f_get_value(ac_Parts_Per_Cycle) = 0 then
+		lc_PartsPerHour	= 0
+	Else
+		If f_get_value(ac_Cycle_Time) = 0 then
+			lc_PartsPerHour	= 0
+		Else
+			lc_PartsPerHour	=Truncate( lc_factor * ac_Parts_per_Cycle &
+								/ ac_Cycle_Time , 2)
+		End If
+	End If
+End If
+
+Return lc_PartsPerHour
+end function
+

@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_status_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=136 color="536870912" )
+table(column=(type=char(30) update=yes updatewhereclause=yes key=yes name=display_name dbname="user_defined_status.display_name" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="user_defined_status.type" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"user_defined_status~" ) COLUMN(NAME=~"user_defined_status.display_name~") COLUMN(NAME=~"user_defined_status.type~")) ORDER(NAME=~"user_defined_status.display_name~" ASC=yes ) " update="user_defined_status" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Display Name"border="0" color="0" x="5" y="4" height="64" width="603"  name=display_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="5" y="4" height="128" width="1239" format="[general]"  name=display_name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.displayonly=yes  font.face="MS Sans Serif" font.height="-20" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

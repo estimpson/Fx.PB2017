@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_part_list.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=121 color="536870912" )
+table(column=(type=char(25) update=yes key=yes name=part dbname="part.part" )
+ column=(type=char(100) update=yes name=name dbname="part.name" )
+ retrieve="SELECT part.part, part.name FROM part WHERE part.class = 'M' ORDER BY part.part ASC " update="part" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="part"border="0" color="0" x="5" y="4" height="65" width="513"  name=number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="0" color="0" x="522" y="4" height="65" width="970"  name=name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="14" y="4" height="113" width="892" format="[general]"  name=part dddw.name=d_part_dddw dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=200 dddw.limit=25 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.required=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1491" y="0" height="57" width="1153" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

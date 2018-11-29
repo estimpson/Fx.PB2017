@@ -1,0 +1,60 @@
+﻿$PBExportHeader$f_loop_for_avail_units.srf
+global type f_loop_for_avail_units from function_object
+end type
+
+forward prototypes
+global function listbox f_loop_for_avail_units (string szunit, int iorder, ref listbox lbunits)
+end prototypes
+
+global function listbox f_loop_for_avail_units (string szunit, int iorder, ref listbox lbunits);//  Declare Variables
+
+String     szCurrentUnit
+
+Long       lCount
+Long       lItem
+
+
+//  Initialize Variables
+
+If iOrder = 1 Then
+	dw1.SetFilter ( "unit1 = ~"" + szUnit + "~"" )
+	dw1.SetSort ( "unit2 A" )
+Else
+	dw1.SetFilter ( "unit2 = ~"" + szUnit + "~"" )
+	dw1.SetSort ( "unit1 A" )
+End if
+
+dw1.Filter ( )
+dw1.Sort ( )
+ 
+//  Loop through the possible units and check each one
+
+For lCount = 1 to dw1.RowCount ( )
+
+	If iOrder = 1 Then
+		szCurrentUnit = dw1.GetItemString ( lCount, "unit2" )
+	Else
+		szCurrentUnit = dw1.GetItemString ( lCount, "unit1" )
+	End if
+
+	If lbUnits.FindItem ( szCurrentUnit, 1 ) < 1 Then
+		lbUnits.AddItem ( szCurrentUnit )
+		lbUnits = f_loop_for_avail_units ( szCurrentUnit, iOrder, lbUnits )
+	End if
+
+	If iOrder = 1 Then
+		dw1.SetFilter ( "unit1 = ~"" + szUnit + "~"" )
+		dw1.SetSort ( "unit2 A" )
+	Else
+		dw1.SetFilter ( "unit2 = ~"" + szUnit + "~"" )
+		dw1.SetSort ( "unit1 A" )
+	End if
+	
+	dw1.Filter ( )
+	dw1.Sort ( )
+ 
+Next
+
+Return lbUnits
+end function
+

@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dw_ei_defects_part_sum.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+summary(height=343 color="536870912" )
+footer(height=10 color="536870912" )
+detail(height=10 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="defects.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="defects.quantity" )
+ retrieve="  SELECT  defects.part ,           defects.quantity     
+        FROM defects    "  sort="part A " )
+group(level=1 header.height=10 trailer.height=177 by=("part" ) header.color="536870912" trailer.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1250" y="42" height="166" width="625" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=1 alignment="0" tabsequence=32766 border="2" color="0" x="83" y="0" height="166" width="1333" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(quantity for group 1)"border="2" color="0" x="1416" y="0" height="166" width="625" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(quantity for all)"border="2" color="0" x="1416" y="84" height="197" width="625" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

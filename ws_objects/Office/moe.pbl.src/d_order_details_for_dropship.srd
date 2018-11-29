@@ -1,0 +1,66 @@
+﻿$PBExportHeader$d_order_details_for_dropship.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="order_detail.order_no" )
+ column=(type=char(25) updatewhereclause=yes name=part_number dbname="order_detail.part_number" )
+ column=(type=datetime updatewhereclause=yes name=due_date dbname="order_detail.due_date" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="order_detail.unit" )
+ column=(type=long updatewhereclause=yes name=row_id dbname="order_detail.row_id" )
+ column=(type=char(25) updatewhereclause=yes name=destination dbname="order_detail.destination" )
+ column=(type=long updatewhereclause=yes name=dropship_po dbname="order_detail.dropship_po" )
+ column=(type=long updatewhereclause=yes name=dropship_po_row_id dbname="order_detail.dropship_po_row_id" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="order_detail.quantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=committed_qty dbname="order_detail.committed_qty" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="order_detail.plant" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="order_detail.suffix" )
+ retrieve="SELECT	order_detail.order_no,   
+	order_detail.part_number,   
+	order_detail.due_date,   
+	order_detail.unit,   
+	order_detail.row_id,   
+	order_detail.destination,   
+	order_detail.dropship_po,   
+	order_detail.dropship_po_row_id,   
+	order_detail.quantity,   
+	order_detail.committed_qty,   
+	order_detail.plant,   
+	order_detail.suffix  
+FROM	order_detail,
+	order_header,
+	customer_service_status   
+WHERE	order_header.order_no = order_detail.order_no and
+	order_detail.sequence in (	select	sequence
+from	order_detail od_in
+where	od_in.quantity > od_in.committed_qty and  
+	od_in.ship_type = 'D' and
+	od_in.order_no = order_header.order_no ) and
+	customer_service_status.status_name = order_header.cs_status and
+	customer_service_status.status_type <> 'C'  
+"  sort="order_no A part_number A destination A " )
+text(band=header alignment="2" text="Order"border="6" color="0" x="9" y="8" height="60" width="192"  name=order_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="210" y="8" height="60" width="425"  name=part_number_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Date"border="6" color="0" x="645" y="8" height="60" width="197"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Qty"border="6" color="0" x="850" y="8" height="60" width="242"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="UM"border="6" color="0" x="1102" y="8" height="60" width="78"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Quantity"border="6" color="0" x="2560" y="8" height="60" width="183"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Plant"border="6" color="0" x="3077" y="8" height="60" width="219"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Suffix"border="6" color="0" x="1189" y="8" height="60" width="352"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Committed Qty"border="6" color="0" x="2752" y="8" height="60" width="315"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="60" width="192" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="210" y="8" height="60" width="425" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="645" y="8" height="56" width="197" format="[general]"  name=due_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="quantity  -  committed_qty"border="0" color="0" x="850" y="8" height="56" width="242" format="######0.00"  name=balance  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1102" y="8" height="56" width="78" format="[general]"  name=unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1550" y="8" height="56" width="215" format="[general]"  name=row_id visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1774" y="8" height="56" width="197" format="[general]"  name=destination visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1979" y="8" height="56" width="288" format="[general]"  name=dropship_po visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2277" y="8" height="56" width="274" format="[general]"  name=dropship_po_row_id visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2560" y="8" height="56" width="183" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="3077" y="8" height="56" width="219" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="1189" y="8" height="56" width="352" format="[general]"  name=suffix edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2752" y="8" height="56" width="315" format="[general]"  name=committed_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

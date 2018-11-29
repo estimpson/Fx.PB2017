@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_order_detail_taxable.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=149 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=97 color="536870912")
+table(column=(type=decimal(0) name=order_no dbname="order_detail.order_no" )
+ column=(type=char(25) name=part_number dbname="order_detail.part_number" )
+ column=(type=char(1) name=taxable dbname="part_customer.taxable" )
+ retrieve="SELECT order_detail.order_no, order_detail.part_number, part_customer.taxable FROM order_detail, destination, part_customer WHERE ( destination.customer = part_customer.customer ) and ( order_detail.destination = destination.destination ) and ( order_detail.part_number = part_customer.part ) and ( ( order_no = :ll_Order ) ) " arguments=(("ll_Order", number)) )
+text(band=header color="33554432" alignment="2" border="0" x="10" y="8" height="129" width="330" text="Order Detail
+Order No" name=order_detail_order_no_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="33554432" alignment="2" border="0" x="348" y="8" height="65" width="714" text="Part" name=order_detail_part_number_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="33554432" alignment="2" border="0" x="1070" y="8" height="65" width="206" text="Taxable" name=part_customer_taxable_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="1" color="33554432" height="77" tabsequence=32766 width="330" x="10" y="8"  name=order_no format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="33554432" height="77" tabsequence=32766 width="714" x="348" y="8"  name=part_number format="[general]" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=3 border="0" alignment="0" color="33554432" height="65" tabsequence=32766 width="206" x="1070" y="8"  name=taxable format="[general]" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

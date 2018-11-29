@@ -1,0 +1,62 @@
+﻿$PBExportHeader$d_po_details_for_dropship.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=po_number dbname="po_detail.po_number" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=date_due dbname="po_detail.date_due" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=balance dbname="po_detail.balance" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_of_measure dbname="po_detail.unit_of_measure" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_qty dbname="po_detail.standard_qty" )
+ column=(type=long update=yes updatewhereclause=yes name=sales_order dbname="po_detail.sales_order" )
+ column=(type=long update=yes updatewhereclause=yes name=dropship_oe_row_id dbname="po_detail.dropship_oe_row_id" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=row_id dbname="po_detail.row_id" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=ship_to_destination dbname="po_detail.ship_to_destination" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="po_detail.price" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=price_unit dbname="po_detail.price_unit" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="po_detail.plant" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=vendor_code dbname="po_detail.vendor_code" )
+ retrieve="  SELECT po_detail.po_number,   
+         po_detail.part_number,   
+         po_detail.date_due,   
+         po_detail.balance,   
+         po_detail.unit_of_measure,   
+         po_detail.standard_qty,   
+         po_detail.sales_order,   
+         po_detail.dropship_oe_row_id,   
+         po_detail.row_id,   
+         po_detail.ship_to_destination,   
+         po_detail.price,   
+         po_detail.price_unit,   
+         po_detail.plant,   
+         po_detail.vendor_code  
+    FROM po_detail  
+   WHERE ( po_detail.ship_type = 'D' ) AND  
+         ( po_detail.balance > 0 ) AND  
+         (po_detail.dropship_oe_row_id > 0)    
+" update="po_detail" updatewhere=0 updatekeyinplace=no )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="197" format="[general]"  name=po_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" vendor_code "border="0" color="0" x="215" y="4" height="64" width="315" format="[GENERAL]"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="539" y="4" height="64" width="283" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="832" y="4" height="64" width="187" format="[general]"  name=date_due edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1029" y="4" height="64" width="210" format="######0.00"  name=balance edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1248" y="4" height="64" width="87" format="[general]"  name=unit_of_measure edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="12632256" x="1344" y="4" height="64" width="265" format="######0.00"  name=standard_qty  tag="Value of balance in standard unit of measurement." edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="12632256" x="1618" y="4" height="64" width="261" format="[general]"  name=sales_order edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="12632256" x="1888" y="4" height="64" width="261" format="[general]"  name=dropship_oe_row_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="12632256" x="2158" y="4" height="64" width="247" format="[general]"  name=row_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2414" y="4" height="64" width="293" format="[general]"  name=ship_to_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="2715" y="4" height="64" width="178" format="[general]"  name=price edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="2903" y="4" height="64" width="105" format="[general]"  name=price_unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3017" y="4" height="64" width="219" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="3246" y="4" height="56" width="219" format="[general]"  name=vendor_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="P.O."border="6" color="0" x="9" y="8" height="52" width="197"  name=po_number_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Vendor"border="6" color="0" x="215" y="8" height="52" width="315"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="539" y="8" height="52" width="283"  name=part_number_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date"border="6" color="0" x="832" y="8" height="52" width="187"  name=date_due_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="1029" y="8" height="52" width="210"  name=balance_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UM"border="6" color="0" x="1248" y="8" height="52" width="87"  name=unit_of_measure_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

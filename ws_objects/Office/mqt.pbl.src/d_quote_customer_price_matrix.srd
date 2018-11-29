@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_quote_customer_price_matrix.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=73 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=qty_break dbname="part_customer_price_matrix.qty_break" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="part_customer_price_matrix.price" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_customer_price_matrix~" ) COLUMN(NAME=~"part_customer_price_matrix.qty_break~") COLUMN(NAME=~"part_customer_price_matrix.price~")WHERE(    EXP1 =~"part_customer_price_matrix.part~"   OP =~"=~"    EXP2 =~":a_s_part~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"part_customer_price_matrix.customer~"   OP =~"=~"    EXP2 =~":a_s_customer~" ) ) ORDER(NAME=~"part_customer_price_matrix.qty_break~" ASC=yes )  ORDER(NAME=~"part_customer_price_matrix.price~" ASC=yes ) ARG(NAME = ~"a_s_part~" TYPE = string)  ARG(NAME = ~"a_s_customer~" TYPE = string) " arguments=(("a_s_part", string),("a_s_customer", string)) )
+text(band=header alignment="2" text="Qty Break"border="0" color="0" x="10" y="8" height="65" width="339"  name=qty_break_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Price"border="0" color="0" x="357" y="8" height="65" width="339"  name=price_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="10" y="8" height="61" width="339" format="[general]"  name=qty_break editmask.mask="########.00####" editmask.focusrectangle=no  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="357" y="8" height="61" width="339" format="[general]"  name=price editmask.mask="[currency(9)]" editmask.focusrectangle=no  font.face="Arial             " font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

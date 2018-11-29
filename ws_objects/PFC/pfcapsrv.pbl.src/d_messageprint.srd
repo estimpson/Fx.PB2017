@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_messageprint.srd
+$PBExportComments$PFC Message service Print
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=5 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=377 color="553648127"  height.autosize=yes)
+table(column=(type=char(255) updatewhereclause=yes name=title dbname="title" )
+ column=(type=char(5000) updatewhereclause=yes name=message dbname="message" )
+ column=(type=char(5000) updatewhereclause=yes name=comments dbname="comments" )
+ )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="398" y="248" height="77" width="2689" format="[general]"  name=comments  slideup=allabove height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="398" y="128" height="73" width="2689" format="[general]"  name=message height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="398" y="4" height="73" width="2689" format="[general]"  name=title height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Comments:"border="0" color="0" x="5" y="248" height="65" width="371"  name=comments_t  slideup=allabove  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Message:"border="0" color="0" x="5" y="128" height="65" width="371"  name=message_t  slideup=allabove  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Title:"border="0" color="0" x="5" y="4" height="65" width="371"  name=title_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

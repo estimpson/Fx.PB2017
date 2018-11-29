@@ -1,0 +1,37 @@
+﻿$PBExportHeader$f_center_window.srf
+$PBExportComments$(mst)
+global type f_center_window from function_object
+end type
+
+forward prototypes
+global function boolean f_center_window (window aw_window)
+end prototypes
+
+global function boolean f_center_window (window aw_window);Integer &
+	li_New_X, &
+	li_New_Y
+
+integer &
+	li_workspace_width,&
+	li_workspace_height
+f_get_workspace_size( li_workspace_width, li_workspace_height )
+
+If li_WorkSpace_Width > 0 Then
+	li_New_X = ( li_WorkSpace_Width / 2 ) - ( aw_Window.Width / 2 )
+Else
+	li_New_X = aw_Window.X
+End If
+
+If li_WorkSpace_Height > 0 Then
+	li_New_Y = ( li_WorkSpace_Height / 2 ) - ( aw_Window.Height / 2 )
+Else
+	li_New_Y = aw_Window.Y
+End If
+
+If aw_Window.Move( li_New_X, li_New_Y ) = 1 Then
+	Return TRUE
+Else
+	Return FALSE
+End If
+end function
+

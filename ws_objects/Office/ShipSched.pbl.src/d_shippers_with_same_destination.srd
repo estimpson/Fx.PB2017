@@ -1,0 +1,91 @@
+﻿$PBExportHeader$d_shippers_with_same_destination.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=4 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=id dbname="id" values="<New>	0/" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_stamp dbname="date_stamp" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=shipping_dock dbname="shipping_dock" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="ship_via" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="status" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="model_year" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="notes" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="printed" )
+ retrieve="select distinct
+	sh.id,
+	sh.date_stamp,
+	sh.shipping_dock,
+	sh.ship_via,
+	sh.status,
+	sh.model_year,
+	sh.plant,
+	sh.notes, 
+	sh.printed 
+from	order_header oh
+	join shipper sh on sh.destination = :ShipTo and
+		sh.status in ( 'O', 'S' ) and
+		IsNull ( sh.type, 'N' ) = :ShipType
+	left outer join shipper_detail sd on sh.id = sd.shipper
+	left outer join order_header soh on sd.order_no = soh.order_no
+	join destination_shipping ds on ds.destination = :ShipTo
+	join customer_service_status css on sh.cs_status = css.status_name and
+		css.status_type != 'C'
+where	
+	(	IsNull ( oh.dock_code, '' ) = Coalesce ( soh.dock_code, oh.dock_code, '' ) or
+		IsNull ( ds.dock_code_flag, 'Y' ) = 'Y' ) and
+	(	IsNull ( oh.model_year, '' ) = IsNull ( soh.model_year, '' ) or
+		IsNull ( ds.model_year_flag, 'Y' ) = 'Y' ) and
+	(	IsNull ( oh.customer_po, '' ) = IsNull ( soh.customer_po, '' ) or
+		IsNull ( ds.allow_mult_po, 'Y' ) = 'Y' )
+union 
+select	0 id,
+	:DueDT,
+	ShipToOH.dock_code shipping_dock,
+	ds.scac_code ship_via,
+	'O' status,
+	ShipToOH.model_year model_year,
+	ShipToOH.plant plant,
+	ds.note_for_shipper notes,
+	'N' printed
+from	destination st
+	left outer join destination_shipping ds on ds.destination = :ShipTo
+	left outer join order_header ShipToOH on ShipToOH.destination = :ShipTo and
+		ShipToOH.order_no =
+		(	select	min ( OrderList.order_no )
+			from	order_header OrderList
+			where	OrderList.order_no in ( :OrderNo ) )
+where	st.destination = :ShipTo
+order by 1
+" arguments=(("Shiptype", string),("OrderNo", numberlist),("ShipTo", string),("DueDT", datetime)) )
+text(band=header alignment="2" text="Shipper #" border="6" color="37765120" x="9" y="12" height="48" width="274" html.valueishtml="0"  name=id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Date" border="6" color="37765120" x="293" y="12" height="48" width="279" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Dock Code" border="6" color="37765120" x="581" y="12" height="48" width="384" html.valueishtml="0"  name=shipping_dock_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Model Year" border="6" color="37765120" x="974" y="12" height="48" width="338" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Ship Via " border="6" color="37765120" x="1321" y="12" height="48" width="389" html.valueishtml="0"  name=ship_via_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Plant" border="6" color="37765120" x="1719" y="12" height="48" width="329" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="2" text="Status" border="6" color="37765120" x="2057" y="12" height="48" width="247" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="0" text="Notes" border="6" color="37765120" x="2313" y="12" height="48" width="727" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+text(band=header alignment="0" text="Printed" border="6" color="37765120" x="3049" y="12" height="48" width="206" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="76585128" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="37765120" x="9" y="4" height="52" width="274" format="[general]" html.valueishtml="0"  name=id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.codetable=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37765120" x="293" y="4" height="52" width="279" format="[general]" html.valueishtml="0"  name=date_stamp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="37765120" x="581" y="4" height="52" width="384" format="[general]" html.valueishtml="0"  name=shipping_dock visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="37765120" x="974" y="4" height="52" width="338" format="[general]" html.valueishtml="0"  name=model_year visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="37765120" x="1321" y="4" height="52" width="389" format="[general]" html.valueishtml="0"  name=ship_via visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="37765120" x="1719" y="4" height="52" width="329" format="[general]" html.valueishtml="0"  name=plant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="37765120" x="2057" y="4" height="52" width="247" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2313" y="4" height="52" width="727" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="37765120" x="3049" y="4" height="52" width="206" format="[general]" html.valueishtml="0"  name=printed visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,23 @@
+﻿$PBExportHeader$d_user_definable_data_pm_1.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(32767) updatewhereclause=yes name=code dbname="user_definable_data.code" )
+ column=(type=char(32767) updatewhereclause=yes name=description dbname="user_definable_data.description" )
+ retrieve="SELECT code,
+		 description 
+  FROM user_definable_data
+ WHERE module = 'PM' AND
+		 sequence = 1  
+UNION 
+SELECT (null) ,
+		 (null)   
+FROM user_definable_data 
+ORDER BY 1 ASC" )
+text(band=header alignment="2" text="Code"border="0" color="8388608" x="183" y="4" height="64" width="151"  name=code_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Description"border="0" color="8388608" x="969" y="4" height="64" width="325"  name=description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="64" width="873" format="[general]"  name=code edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="896" y="4" height="64" width="1225" format="[general]"  name=description edit.limit=256 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

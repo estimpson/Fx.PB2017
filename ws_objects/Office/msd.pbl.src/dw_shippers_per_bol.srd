@@ -1,0 +1,40 @@
+﻿$PBExportHeader$dw_shippers_per_bol.srd
+$PBExportComments$List shippers for specified bill of lading
+release 6;
+datawindow(units=0 timer_interval=0 color=78748035 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no row.resize=1 grid.lines=0 grid.columnmove=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="shipper.id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="shipper.ship_via" )
+ column=(type=long update=yes updatewhereclause=yes name=bill_of_lading_number dbname="shipper.bill_of_lading_number" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=trans_mode dbname="shipper.trans_mode" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="shipper.status" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="shipper.printed" )
+ retrieve="  SELECT shipper.id,   
+         shipper.destination,   
+         shipper.ship_via,   
+         shipper.bill_of_lading_number,   
+         shipper.trans_mode,   
+         shipper.status,   
+         shipper.printed  
+    FROM shipper  
+   WHERE ( shipper.bill_of_lading_number = :al_bol ) AND  
+         (( shipper.status = 'O' ) OR  
+         ( shipper.status = 'S' ))
+" update="shipper" updatewhere=0 updatekeyinplace=no arguments=(("al_bol", number))  sort="id A " )
+text(band=header alignment="2" text="Shipper"border="0" color="33554432" x="9" y="8" height="56" width="197"  name=id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Destination"border="0" color="33554432" x="215" y="8" height="56" width="407"  name=destination_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ship Via"border="0" color="33554432" x="631" y="8" height="56" width="274"  name=ship_via_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tran Mode"border="0" color="33554432" x="914" y="8" height="56" width="283"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BOL"border="0" color="33554432" x="1207" y="8" height="56" width="224"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="72" width="197" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="215" y="8" height="72" width="407" format="[general]"  name=destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="631" y="8" height="72" width="274" format="[general]"  name=ship_via dddw.name=dw_list_scac dddw.displaycolumn=scac dddw.datacolumn=scac dddw.percentwidth=500 dddw.lines=0 dddw.limit=20 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="914" y="8" height="72" width="283" format="[general]"  name=trans_mode edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1207" y="8" height="72" width="224" format="[general]"  name=bill_of_lading_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="Bitmap ( IF ( printed ='Y', ~"printer.bmp~", ~"~" ) )"border="0" color="33554432" x="1440" y="8" height="72" width="110" format="[GENERAL]"  name=printed_bmp  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (if(status=~"S~", ~"logo2.bmp~", ~"~"))"border="0" color="33554432" x="1559" y="8" height="72" width="110" format="[GENERAL]"  name=status_bmp  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

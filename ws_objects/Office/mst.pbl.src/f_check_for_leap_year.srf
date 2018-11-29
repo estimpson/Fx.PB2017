@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_check_for_leap_year.srf
+global type f_check_for_leap_year from function_object
+end type
+
+forward prototypes
+global function boolean f_check_for_leap_year (integer iYear)
+end prototypes
+
+global function boolean f_check_for_leap_year (integer iYear);/*
+Declare Variables
+*/
+
+Date dDate1, dDate2
+
+
+/*
+Initialize Variables
+*/
+
+dDate1 = Date ( iYear, 2, 1 )
+dDate2 = Date ( iYear, 3, 1 )
+
+If DaysAfter ( dDate1, dDate2 ) = 29 Then
+	Return True
+Else
+	Return False
+End if
+
+end function
+

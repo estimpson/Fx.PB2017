@@ -1,0 +1,58 @@
+﻿$PBExportHeader$d_fxcop_firmorders.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(34) updatewhereclause=no name=firmorder dbname="vwFirmOrders.FirmOrder" )
+ column=(type=char(18) updatewhereclause=no name=source dbname="vwFirmOrders.Source" )
+ column=(type=char(65) updatewhereclause=no name=tool dbname="vwFirmOrders.Tool" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="vwFirmOrders.PartCode" )
+ column=(type=decimal(0) updatewhereclause=yes name=rownumber dbname="vwFirmOrders.RowNumber" )
+ column=(type=datetime updatewhereclause=yes name=firmduedt dbname="vwFirmOrders.FirmDueDT" )
+ column=(type=decimal(6) updatewhereclause=yes name=firmqty dbname="vwFirmOrders.FirmQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=postaccum dbname="vwFirmOrders.PostAccum" )
+ retrieve="
+select
+	FirmOrder
+,	Source
+,	Tool
+,	PartCode
+,	RowNumber
+,	FirmDueDT
+,	FirmQty
+,	PostAccum
+from
+	FT.vwFirmOrders vfo
+where
+	PartCode = :PartCode
+" arguments=(("PartCode", string)) )
+text(band=header alignment="2" text="Source" border="0" color="33554432" x="576" y="8" height="64" width="608" html.valueishtml="0"  name=source_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part code" border="0" color="33554432" x="1193" y="8" height="64" width="713" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Row number" border="0" color="33554432" x="1915" y="8" height="64" width="366" html.valueishtml="0"  name=rownumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Post accum" border="0" color="33554432" x="3045" y="8" height="64" width="329" html.valueishtml="0"  name=postaccum_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Firm order" border="0" color="33554432" x="119" y="8" height="64" width="448" html.valueishtml="0"  name=firmorder_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Firm due DT" border="0" color="134217742" x="2290" y="8" height="64" width="407" html.valueishtml="0"  name=firmduedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="2" text="Firm qty" border="0" color="134217742" x="2706" y="8" height="64" width="329" html.valueishtml="0"  name=firmqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="2" text="Tool" border="0" color="33554432" x="3383" y="8" height="64" width="631" html.valueishtml="0"  name=tool_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="576" y="8" height="76" width="608" format="  [general]" html.valueishtml="0"  name=source visible="1" edit.limit=17 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1193" y="8" height="76" width="713" format="  [general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1915" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=rownumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="0" color="33554432" x="2290" y="8" height="76" width="407" format="  [shortdate]" html.valueishtml="0"  name=firmduedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="0" color="33554432" x="2706" y="8" height="76" width="329" format="#,##0.00  ;[red](#,##0.00) ; " html.valueishtml="0"  name=firmqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="8" height="76" width="101" format="  [GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="119" y="8" height="76" width="448" format="  [general]" html.valueishtml="0"  name=firmorder visible="1" edit.limit=34 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3045" y="8" height="76" width="329" format="#,##0.00  ;[red](#,##0.00) ; " html.valueishtml="0"  name=postaccum visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="3383" y="8" height="76" width="631" format="[general]" html.valueishtml="0"  name=tool visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

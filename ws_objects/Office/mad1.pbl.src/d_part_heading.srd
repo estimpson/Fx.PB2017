@@ -1,0 +1,48 @@
+﻿$PBExportHeader$d_part_heading.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=292 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part.part" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="part.name" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=cross_ref dbname="part.cross_ref" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=class dbname="part.class" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="part.type" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=product_line dbname="part.product_line" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=commodity dbname="part.commodity" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=quality_alert dbname="part.quality_alert" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=serial_type dbname="part.serial_type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=user_defined_1 dbname="part.user_defined_1" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=user_defined_2 dbname="part.user_defined_2" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=group_technology dbname="part.group_technology" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=engineering_level dbname="part.engineering_level" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=gl_account_code dbname="part.gl_account_code" )
+ column=(type=datetime update=yes updatewhereclause=yes name=eng_effective_date dbname="part.eng_effective_date" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=drawing_number dbname="part.drawing_number" )
+ retrieve="  SELECT part.part,   
+         part.name,   
+         part.cross_ref,   
+         part.class,   
+         part.type,   
+         part.product_line,   
+         part.commodity,   
+         part.quality_alert,   
+         part.serial_type,   
+         part.user_defined_1,   
+         part.user_defined_2,   
+         part.group_technology,   
+         part.engineering_level,           
+         part.gl_account_code,   
+         part.eng_effective_date,
+         part.drawing_number  
+    FROM part  
+   WHERE part.part = :szPart    
+" update="part" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+text(band=detail alignment="1" text="Part:"border="0" color="0" x="398" y="4" height="52" width="137"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="567" y="4" height="76" width="1394" format="[general]" protect="0~t1"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Description:"border="0" color="0" x="178" y="104" height="52" width="357"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="567" y="112" height="64" width="1394" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Cross Reference:"border="0" color="0" x="23" y="200" height="52" width="512"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="567" y="208" height="64" width="1394" format="[general]"  name=cross_ref edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

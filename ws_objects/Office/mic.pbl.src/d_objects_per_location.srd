@@ -1,0 +1,74 @@
+﻿$PBExportHeader$d_objects_per_location.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=serial dbname="object.serial" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="object.quantity" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_measure dbname="object.unit_measure" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_date dbname="object.last_date" initial="today" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_time dbname="object.last_time" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=operator dbname="object.operator" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="object.status" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=weight dbname="object.weight" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=lot dbname="object.lot" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=po_number dbname="object.po_number" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="object.plant" )
+ column=(type=char(1000) updatewhereclause=no name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	object.serial
+,	object.quantity
+,	object.unit_measure
+,	object.last_date
+,	object.last_time
+,	object.operator
+,	object.status
+,	object.weight
+,	object.lot
+,	object.po_number
+,	object.plant
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	object
+where
+	object.part = :Part
+	and object.location = :Location
+order by
+	object.serial asc   
+" update="object" updatewhere=1 updatekeyinplace=no arguments=(("Part", string),("Location", string)) )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="105" y="12" height="72" width="247" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quantity" border="6" color="33554432" x="361" y="12" height="72" width="283" html.valueishtml="0"  name=quantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Unit" border="6" color="33554432" x="654" y="12" height="72" width="174" html.valueishtml="0"  name=unit_measure_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Last Date" border="6" color="33554432" x="837" y="12" height="72" width="283" html.valueishtml="0"  name=last_date_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Last Time" border="6" color="33554432" x="1129" y="12" height="72" width="320" html.valueishtml="0"  name=last_time_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Operator" border="6" color="33554432" x="1458" y="12" height="72" width="283" html.valueishtml="0"  name=operator_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="1751" y="12" height="72" width="210" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Weight" border="6" color="33554432" x="1970" y="12" height="72" width="274" html.valueishtml="0"  name=weight_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Lot" border="6" color="33554432" x="2254" y="12" height="72" width="366" html.valueishtml="0"  name=lot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Po Number" border="6" color="33554432" x="2629" y="12" height="72" width="603" html.valueishtml="0"  name=po_number_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="80" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="105" y="8" height="80" width="247" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="361" y="8" height="80" width="283" format="[general]" html.valueishtml="0"  name=quantity visible="1" editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="654" y="8" height="80" width="174" format="[general]" html.valueishtml="0"  name=unit_measure visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="837" y="8" height="80" width="283" format="[general]" html.valueishtml="0"  name=last_date visible="1" editmask.mask="mm/dd/yy" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1129" y="8" height="80" width="320" format="[time]" html.valueishtml="0"  name=last_time visible="1" editmask.mask="hh:mm:ss:fff" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1458" y="8" height="80" width="283" format="[general]" html.valueishtml="0"  name=operator visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1751" y="8" height="80" width="210" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="1970" y="8" height="80" width="274" format="[general]" html.valueishtml="0"  name=weight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2254" y="8" height="80" width="366" format="[general]" html.valueishtml="0"  name=lot visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2629" y="8" height="80" width="603" format="[general]" html.valueishtml="0"  name=po_number visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

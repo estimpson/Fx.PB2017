@@ -1,0 +1,9 @@
+﻿$PBExportHeader$st_order_chain.srs
+global type st_order_chain from structure
+    string szpart
+    decimal {6} nqty
+    long isalesorder
+    date ddate
+    int irowid
+end type
+

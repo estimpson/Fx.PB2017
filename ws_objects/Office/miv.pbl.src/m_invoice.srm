@@ -1,0 +1,212 @@
+﻿$PBExportHeader$m_invoice.srm
+forward
+global type m_invoice from menu
+end type
+type m_file from menu within m_invoice
+end type
+type m_print from menu within m_file
+end type
+type m_edit from menu within m_file
+end type
+type m_add from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_invoice
+m_print m_print
+m_edit m_edit
+m_add m_add
+m_save m_save
+m__ m__
+m_exit m_exit
+end type
+type m_edit1 from menu within m_invoice
+end type
+type m_edit1 from menu within m_invoice
+end type
+type m_window from menu within m_invoice
+end type
+type m_window from menu within m_invoice
+end type
+type m_help from menu within m_invoice
+end type
+type m_help from menu within m_invoice
+end type
+end forward
+
+global type m_invoice from menu
+m_file m_file
+m_edit1 m_edit1
+m_window m_window
+m_help m_help
+end type
+global m_invoice m_invoice
+
+on m_invoice.create
+m_invoice=this
+this.m_file=create m_file
+this.m_edit1=create m_edit1
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit1, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_invoice.destroy
+destroy(this.m_file)
+destroy(this.m_edit1)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_invoice
+m_print m_print
+m_edit m_edit
+m_add m_add
+m_save m_save
+m__ m__
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_print=create m_print
+this.m_edit=create m_edit
+this.m_add=create m_add
+this.m_save=create m_save
+this.m__=create m__
+this.m_exit=create m_exit
+this.Item[]={this.m_print, &
+this.m_edit, &
+this.m_add, &
+this.m_save, &
+this.m__, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_print)
+destroy(this.m_edit)
+destroy(this.m_add)
+destroy(this.m_save)
+destroy(this.m__)
+destroy(this.m_exit)
+end on
+
+type m_print from menu within m_file
+end type
+
+on clicked;wChain.TriggerEvent("print_invoice")
+end on
+
+on m_print.create
+this.Text="&Print~tAlt+P"
+this.Microhelp="Print Invoice"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=10
+this.Shortcut=592
+end on
+
+type m_edit from menu within m_file
+end type
+
+on clicked;wChain.TriggerEvent("edit_detail")
+end on
+
+on m_edit.create
+this.Text="&Edit~tAlt+E"
+this.Microhelp="Edit Invoice"
+this.ToolBarItemName="Custom041!"
+this.ToolBarItemText="Edit"
+this.ToolBarItemOrder=30
+this.Shortcut=581
+end on
+
+type m_add from menu within m_file
+end type
+
+on clicked;wChain.TriggerEvent("add_item")
+end on
+
+on m_add.create
+this.Text="&Add~tAlt+A"
+this.Microhelp="Add detail item"
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="Add"
+this.ToolBarItemOrder=30
+this.Shortcut=577
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;wChain.TriggerEvent("save_change")
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.Microhelp="Save changes in invoice header"
+this.ToolBarItemName="update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=50
+this.Shortcut=595
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Close(wChain)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit1 from menu within m_invoice
+end type
+
+on m_edit1.create
+this.Text="&Edit"
+end on
+
+on m_edit1.destroy
+end on
+
+type m_window from menu within m_invoice
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_invoice
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

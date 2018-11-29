@@ -1,0 +1,38 @@
+﻿$PBExportHeader$f_global_replace.srf
+$PBExportComments$Performs a search and repalce on all occureances within a string
+global type f_global_replace from function_object
+end type
+
+forward prototypes
+global function string f_global_replace (string source, string look_for, string replace_with)
+end prototypes
+
+global function string f_global_replace (string source, string look_for, string replace_with);/*
+A String Occurrence Search and Replace Routine
+
+The following code demonstrates a string occurrence search and replace routine.
+
+This routine works generically for any string. For example, 
+if old_str = "red" and new_str = "green", all occurrences of 
+ "red" inside of mystring will be replaced with "green".
+*/
+int start_pos=1,len_look_for
+len_look_for = LenA(look_for)
+
+//find the first occurrence of look_for ...
+start_pos = PosA(source,look_for,start_pos)
+
+//only enter the loop if you find whats in look_for
+
+DO WHILE start_pos > 0
+	//replace look_for with replace_with ...
+	source = ReplaceA(source,start_pos,Len_look_for,replace_with)
+	//find the next occurrence of look_for
+	start_pos = PosA(source,look_for,start_pos+LenA(replace_with))
+LOOP
+return source
+
+
+
+end function
+

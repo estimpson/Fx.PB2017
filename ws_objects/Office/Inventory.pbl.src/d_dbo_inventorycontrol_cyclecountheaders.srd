@@ -1,0 +1,74 @@
+﻿$PBExportHeader$d_dbo_inventorycontrol_cyclecountheaders.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=cyclecountnumber dbname="InventoryControl_CycleCountHeaders.CycleCountNumber" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="InventoryControl_CycleCountHeaders.Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="InventoryControl_CycleCountHeaders.Type" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=description dbname="InventoryControl_CycleCountHeaders.Description" )
+ column=(type=datetime update=yes updatewhereclause=yes name=countbegindt dbname="InventoryControl_CycleCountHeaders.CountBeginDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=countenddt dbname="InventoryControl_CycleCountHeaders.CountEndDT" )
+ column=(type=long updatewhereclause=yes name=countcompleted dbname="CountCompleted" )
+ column=(type=long update=yes updatewhereclause=yes name=expectedcount dbname="InventoryControl_CycleCountHeaders.ExpectedCount" )
+ column=(type=long update=yes updatewhereclause=yes name=foundcount dbname="InventoryControl_CycleCountHeaders.FoundCount" )
+ column=(type=long update=yes updatewhereclause=yes name=recoveredcount dbname="InventoryControl_CycleCountHeaders.RecoveredCount" )
+ column=(type=long updatewhereclause=yes name=qtyadjustedcount dbname="InventoryControl_CycleCountHeaders.QtyAdjustedCount" )
+ column=(type=long updatewhereclause=yes name=locationchangedcount dbname="InventoryControl_CycleCountHeaders.LocationChangedCount" )
+ column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=rowid dbname="InventoryControl_CycleCountHeaders.RowID" )
+ column=(type=char(1000) update=yes updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long update=yes updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	iccch.CycleCountNumber
+,	iccch.Status
+,	iccch.Type
+,	iccch.Description
+,	iccch.CountBeginDT
+,	iccch.CountEndDT
+,	CountCompleted = case when exists(select * from dbo.InventoryControl_CycleCountObjects where CycleCountNumber = iccch.CycleCountNumber and Status = 0) then 0 else 1 end
+,	iccch.ExpectedCount
+,	iccch.FoundCount
+,	iccch.RecoveredCount
+,	iccch.QtyAdjustedCount
+,	iccch.LocationChangedCount
+,	iccch.RowID
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.InventoryControl_CycleCountHeaders iccch
+order by
+	iccch.CycleCountNumber
+" update="InventoryControl_CycleCountHeaders" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="110" y="8" height="72" width="997" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Count begin" border="6" color="33554432" x="1115" y="8" height="72" width="558" html.valueishtml="0"  name=countbegindt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Count end" border="6" color="33554432" x="1682" y="8" height="72" width="585" html.valueishtml="0"  name=countenddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Count completed" border="6" color="33554432" x="2277" y="8" height="72" width="466" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# expected" border="6" color="33554432" x="2752" y="8" height="72" width="402" html.valueishtml="0"  name=expectedcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# found" border="6" color="33554432" x="3163" y="8" height="72" width="329" html.valueishtml="0"  name=foundcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# recovered" border="6" color="33554432" x="3502" y="8" height="72" width="416" html.valueishtml="0"  name=recoveredcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# qty. adjusted" border="6" color="33554432" x="3927" y="8" height="72" width="498" html.valueishtml="0"  name=qtyadjustedcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="# location changed" border="6" color="33554432" x="4434" y="8" height="72" width="521" html.valueishtml="0"  name=locationchangedcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="12" height="76" width="91" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="110" y="8" height="76" width="997" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1115" y="8" height="76" width="558" format="[shortdate] [time];~"Not begun~"" html.valueishtml="0"  name=countbegindt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2752" y="8" height="76" width="402" format="[general]" html.valueishtml="0"  name=expectedcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3163" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=foundcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3502" y="8" height="76" width="416" format="[general]" html.valueishtml="0"  name=recoveredcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="3927" y="8" height="76" width="498" format="[general]" html.valueishtml="0"  name=qtyadjustedcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="4434" y="8" height="76" width="521" format="[general]" html.valueishtml="0"  name=locationchangedcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1682" y="8" height="76" width="585" format="[shortdate] [time];~"Not ended~"" html.valueishtml="0"  name=countenddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="if(CountCompleted=1, ~"P~", ~"~")"border="0" color="32768~tif(Status = 1, rgb(255,255,0), rgb(0,255,0))" x="2277" y="8" height="76" width="466" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Wingdings" font.height="-12" font.weight="700"  font.family="0" font.pitch="2" font.charset="2" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

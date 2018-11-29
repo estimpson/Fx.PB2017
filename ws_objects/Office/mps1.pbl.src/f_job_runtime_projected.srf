@@ -1,0 +1,146 @@
+﻿$PBExportHeader$f_job_runtime_projected.srf
+$PBExportComments$(mps1) Calculate the projected job runtime
+global type f_job_runtime_projected from function_object
+end type
+
+forward prototypes
+global subroutine f_job_runtime_projected (string as_job, s_parm_list astr_projected_part, ref decimal ac_original_runtime, ref decimal ac_projected_runtime)
+end prototypes
+
+global subroutine f_job_runtime_projected (string as_job, s_parm_list astr_projected_part, ref decimal ac_original_runtime, ref decimal ac_projected_runtime);integer	li_count, &
+			li_ptr
+
+long 		ll_row, &
+			ll_total_rows
+
+string	ls_machine, &
+			ls_part, &
+			ls_cycle_unit
+
+decimal 	lc_QtyRequired, &
+			lc_QtyCompleted, &
+			lc_PartsPerCycle, &
+			lc_RunTime, &
+			lc_MaxRunTime, &
+			lc_Projected_RunTime, &
+			lc_CycleTime, &
+			lc_qty, &
+			lc_PartsPerHour
+
+integer	li_factor
+
+boolean	lb_processed	= FALSE
+
+li_count	=  upperbound( astr_projected_part.s_parm_list )
+
+SELECT	work_order.machine_no
+INTO 		:ls_Machine  
+FROM 		work_order  
+WHERE 	work_order.work_order = :as_Job   ;
+
+DECLARE WKDetail CURSOR FOR  
+ SELECT workorder_detail.part,   
+        workorder_detail.qty_required,   
+        workorder_detail.qty_completed,   
+        workorder_detail.parts_per_hour 
+   FROM workorder_detail  
+  WHERE workorder_detail.workorder = :as_Job   ;
+
+if SQLCA.SQLCode 	< 0 then signalerror()
+
+lc_PartsPerHour	= 0
+
+OPEN WKDetail;
+
+if SQLCA.SQLCode 	< 0 then signalerror()
+
+FETCH WKDetail INTO 	:ls_Part, 			:lc_QtyRequired, 
+							:lc_QtyCompleted, :lc_PartsPerHour;
+
+if SQLCA.SQLCode 	< 0 then signalerror()
+
+lc_MaxRunTime				= 0
+lc_Projected_RunTime		= 0
+
+for li_ptr = 1 to li_count
+	astr_projected_part.b_parm_list[ li_ptr ] = FALSE
+next
+
+do while SQLCA.SQLCode 	= 0 
+
+	lc_Qty	= f_get_value(lc_QtyRequired) - f_get_value(lc_QtyCompleted)
+
+	if lc_PartsPerHour > 0 then
+		lc_RunTime			= lc_Qty / lc_PartsPerHour
+	else
+		lc_RunTime			= 0
+	End If
+							
+	if lc_RunTime > lc_MaxRunTime then
+		lc_MaxRunTime		= lc_RunTime
+	end if
+
+	for li_ptr = 1 to li_count
+
+		if ls_part	= astr_projected_part.s_parm_list[ li_ptr ] then
+			lc_Qty			+= astr_projected_part.c_parm_list[ li_ptr ]
+			astr_projected_part.b_parm_list[ li_ptr ]	= TRUE	//Flas as PROCESSED
+			if lc_PartsPerHour > 0 then
+				lc_RunTime	= lc_Qty / lc_PartsPerHour
+			else
+				lc_RunTime	= 0
+			end if
+
+			if lc_RunTime > lc_Projected_RunTime then
+				lc_Projected_RunTime	= lc_RunTime
+			end if
+
+
+		end if
+
+	next
+ 
+	lc_PartsPerHour	= 0
+
+	FETCH WKDetail INTO 	:ls_Part, 				:lc_QtyRequired, 
+								:lc_QtyCompleted, 	:lc_PartsPerHour;
+
+	if SQLCA.SQLCode 	< 0 then signalerror()
+
+Loop
+
+Close WKDetail;
+
+if SQLCA.SQLCode 	< 0 then signalerror()
+
+For li_ptr	= 1 to li_count
+
+	if not astr_projected_part.b_parm_list[ li_ptr ] then
+		lc_PartsPerHour	= f_get_value( &
+			dec( f_get_part_info( &
+			astr_projected_part.s_parm_list[ li_ptr ], 'PARTS PER HOUR' ) ) )	 
+
+		if lc_PartsPerHour > 0 then
+			lc_RunTime	= astr_projected_part.c_parm_list [ li_ptr ] / lc_PartsPerHour
+		else
+			lc_RunTime	= 0
+		end if
+
+		if lc_RunTime > lc_Projected_RunTime then
+			lc_Projected_RunTime	= lc_RunTime
+		end if
+
+	end if
+
+next
+
+
+ac_original_runtime	= lc_MaxRunTime
+ac_projected_runtime	= lc_Projected_RunTime
+
+
+
+
+
+end subroutine
+

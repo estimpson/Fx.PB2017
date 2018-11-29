@@ -1,0 +1,144 @@
+﻿$PBExportHeader$f_recalc_po_detail.srf
+global type f_recalc_po_detail from function_object
+end type
+
+forward prototypes
+global function int f_recalc_po_detail (long lponumber, window wcancelwindow)
+end prototypes
+
+global function int f_recalc_po_detail (long lponumber, window wcancelwindow);//  Declare Variables
+Long lCount
+Long lRowCount
+Long lProgress
+
+Dec  dQuantity
+Dec  dReceived
+Dec  dBalance
+Dec  dLeftOver
+
+str_progress stParm
+
+
+//  Open recalc window
+OpenWithParm ( w_po_recalc_window, lPoNumber )
+
+dw1 = w_po_recalc_window.dw_1
+
+
+If dw1.RowCount ( ) < 1 Then 
+	Close ( w_po_recalc_window )
+	Return -1
+End if
+
+
+// 
+//  Prime and open progress window
+//
+		
+stParm.Title = "Recalculate PO Detail"
+stParm.Cancel_window = wCancelWindow
+stParm.Cancel_event = 'Show!'
+		
+OpenWithParm ( w_progress, stParm )
+	
+lRowCount = dw1.RowCount ( ) * 3
+lProgress = 0
+
+
+//  recalc the releases
+For lCount = 1 to dw1.RowCount ( )
+
+	lProgress = lProgress + 1
+	w_progress.wf_progress ( lProgress / lRowCount, "Recalculating release - " + String ( lCount ) + "..." )
+
+	dQuantity = dw1.GetItemNumber ( lCount, "quantity" )
+	dReceived = dw1.GetItemNumber ( lCount, "received" )
+
+	If dLeftOver > 0 Then
+
+		dReceived = dReceived + dLeftOver
+		dLeftOver = 0
+
+	End if
+
+	If dReceived > dQuantity Then
+
+		dLeftOver = dReceived - dQuantity
+		dReceived = dQuantity
+		dBalance  = 0
+
+	Else
+
+		dBalance = dQuantity - dReceived
+
+	End if	
+
+	dw1.SetItem ( lCount, "received", dReceived )
+	dw1.SetItem ( lCount, "balance", dBalance )
+
+Next
+
+If dw1.Update ( ) = -1 Then
+	Rollback ;
+	Close ( w_po_recalc_window )
+	Close ( w_progress )
+	Return -1
+End if
+
+Commit ;
+
+//  Delete records with 0 balance
+For lCount = 1 to dw1.RowCount ( )
+
+	lProgress = lProgress + 1
+	w_progress.wf_progress ( lProgress / lRowCount, "Deleting completed releases..." )
+
+	If dw1.GetItemNumber ( lCount, "balance" ) <= 0 Then
+
+		w_progress.wf_progress ( lProgress / lRowCount, "Deleting release - " + String ( lCount ) + "..." )
+
+		dw1.DeleteRow ( lCount )
+		lCount --
+
+	End if
+
+Next
+
+If dw1.Update ( ) = -1 Then
+	Rollback ;
+	Close ( w_po_recalc_window )
+	Close ( w_progress )
+	Return -1
+End if
+
+Commit ;
+
+//  Change releases to appropriate status
+
+For lCount = 1 to dw1.RowCount ( )
+
+	lProgress = lProgress + 1
+	w_progress.wf_progress ( lProgress / lRowCount, "Updating status of release " + String ( lCount ) + "..." )
+
+	If lCount = 1 Then
+		dw1.SetItem ( lCount, "status", "A" )
+	Else
+		dw1.SetItem ( lCount, "status", "N" )
+	End if
+
+Next
+
+If dw1.Update ( ) = -1 Then
+	Rollback ;
+	Close ( w_po_recalc_window )
+	Close ( w_progress )
+	Return -1
+End if
+
+Commit ;
+
+Close ( w_po_recalc_window )
+Close ( w_progress )
+Return 1
+end function
+

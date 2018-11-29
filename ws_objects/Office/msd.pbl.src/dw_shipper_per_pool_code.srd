@@ -1,0 +1,55 @@
+﻿$PBExportHeader$dw_shipper_per_pool_code.srd
+$PBExportComments$List of active shippers per pool code
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="shipper.destination" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_status dbname="shipper.status" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_printed dbname="shipper.printed" )
+ column=(type=char(1) updatewhereclause=yes name=edi_setups_pool_flag dbname="edi_setups.pool_flag" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_pool_code dbname="edi_setups.pool_code" )
+ column=(type=long update=yes updatewhereclause=yes name=shipper_bill_of_lading_number dbname="shipper.bill_of_lading_number" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_stamp dbname="shipper.date_stamp" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_type dbname="shipper.type" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="shipper.ship_via" )
+ retrieve="SELECT	shipper.id, 
+	shipper.destination, 
+	shipper.status, 
+	shipper.printed, 
+	edi_setups.pool_flag, 
+	edi_setups.pool_code, 
+	shipper.bill_of_lading_number,
+	shipper.date_stamp,
+	shipper.type,
+	shipper.ship_via
+FROM 	shipper, 
+	edi_setups 
+WHERE	(shipper.destination = edi_setups.destination) and 
+	( (edi_setups.pool_flag = 'Y' ) AND 
+	  ( edi_setups.pool_code = :szPoolDestination ) AND 
+	  (shipper.status = 'O' OR shipper.status = 'S') ) " arguments=(("szPoolDestination", string)) )
+text(band=header alignment="2" text="Id"border="0" color="0" x="9" y="8" height="64" width="165"  name=shipper_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Destination"border="0" color="0" x="183" y="8" height="64" width="297"  name=shipper_destination_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status"border="0" color="0" x="489" y="8" height="64" width="174"  name=shipper_status_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pool Flag"border="0" color="0" x="672" y="8" height="64" width="251"  name=edi_setups_pool_flag_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pool Code"border="0" color="0" x="933" y="8" height="64" width="421"  name=edi_setups_pool_code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Bill Of Lading Number"border="0" color="0" x="1362" y="8" height="64" width="219"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Printed"border="0" color="0" x="1591" y="8" height="64" width="238"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Shipper Date Stamp"border="0" color="0" x="1838" y="8" height="64" width="288"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="165" format="[general]"  name=shipper_id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="183" y="8" height="64" width="297" format="[general]"  name=shipper_destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="489" y="8" height="64" width="174" format="[general]"  name=shipper_status edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="8" height="64" width="251" format="[general]"  name=edi_setups_pool_flag edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="933" y="8" height="64" width="421" format="[general]"  name=edi_setups_pool_code edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=10 border="0" color="0" x="1362" y="8" height="64" width="219" format="[general]"  name=shipper_bill_of_lading_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1591" y="8" height="64" width="238" format="[general]"  name=shipper_printed edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="1838" y="8" height="64" width="288" format="[shortdate] [time]"  name=shipper_date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Type"border="0" color="0" x="2135" y="8" height="64" width="169"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Ship Via"border="0" color="0" x="2313" y="8" height="64" width="535"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2135" y="8" height="64" width="169" format="[general]"  name=shipper_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=0 border="0" color="0" x="2318" y="8" height="64" width="530"  name=shipper_ship_via  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

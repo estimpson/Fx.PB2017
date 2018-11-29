@@ -1,0 +1,22 @@
+﻿$PBExportHeader$str_activity_router_return_info.srs
+global type str_activity_router_return_info from structure
+	string		parent_part
+	integer		sequence
+	string		code
+	string		part
+	string		notes
+	string		labor
+	string		material
+	string		cost_bill
+	string		group_location
+	string		process
+	string		doc1
+	string		doc2
+	string		doc3
+	string		doc4
+	decimal {6}	cost
+	decimal {6}	price
+	decimal {6}	cost_price_factor
+	datetime		time_stamp
+end type
+

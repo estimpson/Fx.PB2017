@@ -1,0 +1,21 @@
+﻿$PBExportHeader$d_dddw_parts_demand_flag.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="553648127"  height.autosize=yes)
+table(column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=char(100) updatewhereclause=no name=name dbname="name" )
+ column=(type=number updatewhereclause=no name=flag dbname="flag" )
+ procedure="1 begin
+msp_build_active_part_list :start_dt, :retrieve, :type, :pastflag
+end
+commit transaction
+" arguments=(("start_dt", datetime),("retrieve", string),("type", string),("pastflag", string)) )
+text(band=header alignment="0" text="Part"border="6" color="37234728" x="9" y="8" height="52" width="402"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Name"border="6" color="37234728" x="494" y="8" height="52" width="1138"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap ( If(flag = 1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="421" y="4" height="52" width="64" format="[general]"  name=obj_47169212  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="8" height="52" width="402" format="[general]"  name=part edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="494" y="8" height="52" width="1138" format="[general]"  name=name height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

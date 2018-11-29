@@ -1,0 +1,42 @@
+﻿$PBExportHeader$d_podetaildropshipshipperlist.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1086312914 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="553648127" )
+summary(height=0 color="536870912" )
+footer(height=0 color="553648127" )
+detail(height=72 color="553648127" )
+table(column=(type=long update=yes updatewhereclause=yes name=id dbname="id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=datetime updatewhereclause=yes name=date_stamp dbname="date_stamp" )
+ column=(type=char(1) updatewhereclause=yes name=printed dbname="printed" )
+ retrieve="select	shipper.id,
+	destination = min ( shipper.destination ),
+	date_stamp = min ( shipper.date_stamp ),
+	printed = min ( shipper.printed )
+from	po_detail
+	join order_detail on po_detail.sales_order = order_detail.order_no and
+		po_detail.dropship_oe_row_id = order_detail.row_id
+	join shipper on order_detail.destination = shipper.destination and
+		shipper.type = 'D' and
+		shipper.dropship_reconciled = 'N' and
+		shipper.invoice_number is null
+where	po_detail.po_number = :PONumber and
+	po_detail.row_id in ( :RowID ) and
+	(	select	count ( distinct destination )
+		from	order_detail
+		where	po_detail.sales_order = order_detail.order_no and
+			po_detail.dropship_oe_row_id = order_detail.row_id ) = 1
+group by
+	shipper.id
+order by
+	shipper.id
+" arguments=(("PONumber", number),("RowID", numberlist)) )
+bitmap(band=header filename="printer.bmp" x="9" y="12" height="52" width="78" border="6" )
+text(band=header alignment="2" text="Shipper ID"border="6" color="33554432" x="96" y="12" height="52" width="279"  name=id_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Destination"border="6" color="33554432" x="384" y="12" height="52" width="370"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Ship Date"border="6" color="33554432" x="763" y="12" height="52" width="293"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+compute(band=detail alignment="0" expression="bitmap ( if ( printed = 'Y', ~"printer.bmp~", ~"~" ) )"border="0" color="33554432" x="9" y="8" height="56" width="78" format="[GENERAL]"  name=obj_102810543  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="96" y="8" height="56" width="279" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="384" y="8" height="56" width="370" format="[general]"  name=destination edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="763" y="8" height="56" width="293" format="[shortdate]"  name=date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

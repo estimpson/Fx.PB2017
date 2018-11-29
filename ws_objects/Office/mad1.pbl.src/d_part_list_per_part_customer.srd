@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_part_list_per_part_customer.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=part dbname="part_customer.part" )
+ column=(type=char(10) updatewhereclause=yes key=yes name=customer dbname="part_customer.customer" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_customer~" ) COLUMN(NAME=~"part_customer.part~") COLUMN(NAME=~"part_customer.customer~")WHERE( EXP1 =~"~~~"part_customer~~~".~~~"customer~~~"~" OP =~"=~" EXP2 =~":as_customer~" LOGIC =~"and~" ) WHERE( EXP1 =~"~~~"part_customer~~~".~~~"type~~~"~" OP =~"=~" EXP2 =~"'C'~" ) ) ORDER(NAME=~"part_customer.customer~" ASC=yes ) ORDER(NAME=~"part_customer.part~" ASC=yes ) ARG(NAME = ~"as_customer~" TYPE = string) " update="part_customer" updatewhere=0 updatekeyinplace=no arguments=(("as_customer", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="512" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="9" y="8" height="52" width="512"  name=part_customer_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Customer"border="0" color="0" x="530" y="8" height="52" width="256"  name=part_customer_customer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="530" y="8" height="64" width="256" format="[general]"  name=customer edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

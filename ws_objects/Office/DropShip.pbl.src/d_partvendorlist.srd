@@ -1,0 +1,34 @@
+﻿$PBExportHeader$d_partvendorlist.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1086312914 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="553648127" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127" )
+table(column=(type=char(10) updatewhereclause=yes name=vendor dbname="vendor" )
+ column=(type=char(35) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(20) updatewhereclause=yes name=terms dbname="terms" )
+ retrieve="select	part_vendor.vendor,
+	name = min ( vendor.name ),
+	terms = min ( vendor.terms )
+from	part_vendor
+	join vendor on part_vendor.vendor = vendor.code
+	join order_detail on part_vendor.part = order_detail.part_number and
+		order_detail.id in ( :SalesOrderID )
+group by
+	part_vendor.vendor
+having	count ( distinct order_detail.part_number ) =
+	(	select	count ( distinct part_number )
+		from	order_detail
+		where	id in ( :SalesOrderID ) ) and
+	(	select	count ( distinct destination )
+		from	order_detail
+		where	id in ( :SalesOrderID ) ) = 1
+" arguments=(("SalesOrderID", numberlist)) )
+text(band=header alignment="2" text="Vendor"border="6" color="33554432" x="9" y="12" height="52" width="238"  name=vendor_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Name"border="6" color="33554432" x="256" y="12" height="52" width="338"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Terms"border="6" color="33554432" x="603" y="12" height="52" width="315"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="56" width="238" format="[general]"  name=vendor edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="256" y="8" height="56" width="338" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="603" y="8" height="56" width="315" format="[general]"  name=terms edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

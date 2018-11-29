@@ -1,0 +1,94 @@
+﻿$PBExportHeader$d_blanketorder_inquiry.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=82899184 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="1090519039"  height.autosize=yes)
+table(column=(type=char(15) updatewhereclause=yes name=scheduler dbname="BlanketOrderInquiry.Scheduler" )
+ column=(type=char(10) updatewhereclause=yes name=customercode dbname="BlanketOrderInquiry.CustomerCode" )
+ column=(type=char(50) updatewhereclause=yes name=customername dbname="BlanketOrderInquiry.CustomerName" )
+ column=(type=char(20) updatewhereclause=yes name=destinationcode dbname="BlanketOrderInquiry.DestinationCode" )
+ column=(type=char(50) updatewhereclause=yes name=destinationname dbname="BlanketOrderInquiry.DestinationName" )
+ column=(type=char(35) updatewhereclause=yes name=customerpart dbname="BlanketOrderInquiry.CustomerPart" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=newcustomerpart dbname="BlanketOrderInquiry.NewCustomerPart" )
+ column=(type=decimal(0) updatewhereclause=yes key=yes name=salesorderno dbname="BlanketOrderInquiry.SalesOrderNo" )
+ column=(type=char(25) updatewhereclause=yes name=blanketpart dbname="BlanketOrderInquiry.BlanketPart" )
+ column=(type=char(100) updatewhereclause=yes name=partname dbname="BlanketOrderInquiry.PartName" )
+ column=(type=char(1) updatewhereclause=yes name=parttype dbname="BlanketOrderInquiry.PartType" )
+ column=(type=char(1) updatewhereclause=yes name=partclass dbname="BlanketOrderInquiry.PartClass" )
+ column=(type=decimal(6) updatewhereclause=yes name=availableqty dbname="BlanketOrderInquiry.AvailableQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=demandqty dbname="BlanketOrderInquiry.DemandQty" )
+ column=(type=long update=yes updatewhereclause=yes name=activeflag dbname="BlanketOrderInquiry.ActiveFlag" values="	1/	0" )
+ column=(type=char(1) updatewhereclause=yes name=orderstatus dbname="BlanketOrderInquiry.OrderStatus" )
+ column=(type=char(255) updatewhereclause=yes name=ordernotes dbname="BlanketOrderInquiry.OrderNotes" )
+ column=(type=number updatewhereclause=yes name=showunorderedparts dbname="ShowUnorderedParts" )
+ retrieve="select
+	Scheduler
+,	CustomerCode
+,	CustomerName
+,	DestinationCode
+,	DestinationName
+,	CustomerPart
+,	NewCustomerPart
+,	SalesOrderNo
+,	BlanketPart
+,	PartName
+,	PartType
+,	PartClass
+,	AvailableQty
+,	DemandQty
+,	ActiveFlag
+,	OrderStatus
+,	OrderNotes
+,	ShowUnorderedParts = convert(bit, 0)
+from
+	dbo.BlanketOrderInquiry boi
+order by
+	boi.DestinationCode
+,	boi.CustomerPart
+,	boi.BlanketPart" update="BlanketOrderInquiry" updatewhere=0 updatekeyinplace=yes filter="salesorderno > 0 or showunorderedparts = 1" sort="customercode A destinationcode A customerpart A blanketpart A salesorderno A " )
+text(band=header alignment="2" text="Scheduler" border="6" color="33554432" x="9" y="12" height="72" width="274" html.valueishtml="0"  name=scheduler_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Customer" border="6" color="33554432" x="293" y="12" height="72" width="379" html.valueishtml="0"  name=customercode_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Customer Name" border="6" color="33554432" x="681" y="12" height="72" width="791" html.valueishtml="0"  name=customername_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Destination" border="6" color="33554432" x="1481" y="12" height="72" width="334" html.valueishtml="0"  name=destinationcode_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Destination Name" border="6" color="33554432" x="1824" y="12" height="72" width="777" html.valueishtml="0"  name=destinationname_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Customer Part" border="6" color="33554432" x="2610" y="12" height="72" width="553" html.valueishtml="0"  name=customerpart_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="New Customer Part" border="6" color="0" x="3173" y="12" height="72" width="549" html.valueishtml="0"  name=newcustomerpart_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Active Order Flag" border="6" color="33554432" x="3730" y="12" height="72" width="421" html.valueishtml="0"  name=activeflag_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Sales Order No" border="6" color="33554432" x="4160" y="12" height="72" width="370" html.valueishtml="0"  name=salesorderno_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Blanket Part" border="6" color="33554432" x="4539" y="12" height="72" width="539" html.valueishtml="0"  name=blanketpart_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Available Qty" border="6" color="33554432" x="5088" y="12" height="72" width="311" html.valueishtml="0"  name=availableqty_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Demand Qty" border="6" color="33554432" x="5408" y="12" height="72" width="315" html.valueishtml="0"  name=demandqty_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Part Name" border="6" color="33554432" x="5733" y="12" height="72" width="992" html.valueishtml="0"  name=partname_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Notes" border="6" color="33554432" x="6734" y="12" height="72" width="2505" html.valueishtml="0"  name=ordernotes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Type" border="6" color="33554432" x="9248" y="12" height="72" width="174" html.valueishtml="0"  name=parttype_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Class" border="6" color="33554432" x="9431" y="12" height="72" width="178" html.valueishtml="0"  name=partclass_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="12" height="76" width="274" format="[general]" html.valueishtml="0"  name=scheduler visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="293" y="12" height="76" width="379" format="[general]" html.valueishtml="0"  name=customercode visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="681" y="12" height="76" width="791" format="[general]" html.valueishtml="0"  name=customername visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1481" y="12" height="76" width="334" format="[general]" html.valueishtml="0"  name=destinationcode visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1824" y="12" height="76" width="777" format="[general]" html.valueishtml="0"  name=destinationname visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="33554432" x="3730" y="12" height="76" width="421" format="[general]" html.valueishtml="0"  name=activeflag visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="4160" y="12" height="76" width="370" format="[general]  " html.valueishtml="0"  name=salesorderno visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="4539" y="12" height="76" width="539" format="[general]" html.valueishtml="0"  name=blanketpart visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5088" y="12" height="76" width="311" format="#,##0.######" html.valueishtml="0"  name=availableqty visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="5408" y="12" height="76" width="315" format="#,##0.######" html.valueishtml="0"  name=demandqty visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="5733" y="12" height="76" width="992" format="[general]" html.valueishtml="0"  name=partname visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="6734" y="12" height="76" width="2505" format="[general]" html.valueishtml="0"  name=ordernotes visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="9248" y="12" height="76" width="174" format="[general]" html.valueishtml="0"  name=parttype visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="9431" y="12" height="76" width="178" format="[general]" html.valueishtml="0"  name=partclass visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2610" y="12" height="76" width="553" format="[general]" html.valueishtml="0"  name=customerpart visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="3173" y="12" height="76" width="549" format="[general]" html.valueishtml="0"  name=newcustomerpart visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+
+sparse(names="scheduler	customercode	customername	destinationcode	destinationname")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

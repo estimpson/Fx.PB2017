@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_calc_part_weight.srf
+$PBExportComments$Calculate the weight for part/qty
+global type f_calc_part_weight from function_object
+end type
+
+forward prototypes
+global function decimal f_calc_part_weight (string szpart, decimal nqty)
+end prototypes
+
+global function decimal f_calc_part_weight (string szpart, decimal nqty);Decimal nUnitWeight
+
+SELECT part_inventory.unit_weight  
+  INTO :nUnitWeight  
+  FROM part_inventory  
+ WHERE part_inventory.part = :szPart   ;
+
+nUnitWeight	= f_get_value(nUnitWeight)
+
+Return f_get_value(nQty) * nUnitWeight
+end function
+

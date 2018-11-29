@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_get_currency_display_symbol.srf
+global type f_get_currency_display_symbol from function_object
+end type
+
+forward prototypes
+global function string f_get_currency_display_symbol (string as_currency_unit)
+end prototypes
+
+global function string f_get_currency_display_symbol (string as_currency_unit);string	ls_symbol
+
+sqlca.of_get_currency_display_symbol ( as_currency_unit, ls_symbol )
+
+return ls_symbol
+end function
+

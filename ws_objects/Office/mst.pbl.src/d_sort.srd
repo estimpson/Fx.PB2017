@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_sort.srd
+$PBExportComments$Used by the w_sort window
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=89 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=85 color="536870912")
+table(column=(type=char(40) name=col dbname="col" initial="" )
+ column=(type=char(1) name=direction dbname="direction" initial="A" values="Ascending	A/Descending	D/" )
+ )
+text(band=header color="0" alignment="2" border="6" x="19" y="16" height="61" width="1089" text="Item Name" name=col_t  font.face="Arial" font.height="-9" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864")
+text(band=header color="0" alignment="2" border="6" x="1134" y="16" height="61" width="814" text="Direction" name=direction_t  font.face="Arial" font.height="-9" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864")
+column(band=detail id=1 border="5" alignment="0" color="0" height="73" tabsequence=10 width="1089" x="19" y="8"  name=col format="[general]" ddlb.limit=0 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="Arial" font.height="-9" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864")
+column(band=detail id=2 border="5" alignment="0" color="0" height="69" tabsequence=20 width="814" x="1134" y="8"  name=direction format="[general]" radiobuttons.columns=2 radiobuttons.scale=no radiobuttons.3d=no  font.face="Arial" font.height="-9" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864")

@@ -1,0 +1,21 @@
+﻿$PBExportHeader$dw_delete_mps.srd
+$PBExportComments$data window used to exploded mps data
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=97 color="536870912")
+table(column=(type=char(15) update=yes key=yes name=source dbname="master_prod_sched.source" )
+ column=(type=char(15) update=yes key=yes name=origin dbname="master_prod_sched.origin" )
+ column=(type=char(15) update=yes key=yes name=part dbname="master_prod_sched.part" )
+ column=(type=date update=yes key=yes name=due dbname="master_prod_sched.due" )
+ retrieve="SELECT master_prod_sched.source, master_prod_sched.origin, master_prod_sched.part, master_prod_sched.due FROM master_prod_sched WHERE ( master_prod_sched.source = :szSource ) AND ( master_prod_sched.origin = :szOrigin ) " update="master_prod_sched" updatewhere=0 updatekeyinplace=yes arguments=(("szSource", string),("szOrigin", string)) )
+text(band=header color="0" alignment="2" border="0" x="10" y="8" height="65" width="330" text="Source" name=source_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="2" border="0" x="348" y="8" height="65" width="330" text="Orgin" name=origin_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="2" border="0" x="686" y="8" height="65" width="330" text="Part" name=part_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="2" border="0" x="1025" y="8" height="65" width="202" text="Due" name=due_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=10 width="330" x="10" y="8"  name=source  tag="This is will keep the ~"randam~" Id number for the releases in sales order" format="[general]" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=20 width="330" x="348" y="8"  name=origin  tag="This will keep the sales order number from which the explosion taken place" format="[general]" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=3 border="0" alignment="0" color="0" height="65" tabsequence=30 width="330" x="686" y="8"  name=part format="[general]" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=4 border="0" alignment="0" color="0" height="65" tabsequence=40 width="202" x="1025" y="8"  name=due format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

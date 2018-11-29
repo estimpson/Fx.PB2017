@@ -1,0 +1,79 @@
+﻿$PBExportHeader$dw_pallets.srd
+$PBExportComments$Lists objects on shipper
+release 6;
+datawindow(units=0 timer_interval=0 color=79216776 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=serial dbname="object.serial" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="object.part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="object.quantity" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_measure dbname="object.unit_measure" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=std_quantity dbname="object.std_quantity" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=parent_serial dbname="object.parent_serial" )
+ column=(type=long update=yes updatewhereclause=yes name=shipper dbname="object.shipper" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="object.type" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=package_type dbname="object.package_type" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=weight dbname="object.weight" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=tare_weight dbname="object.tare_weight" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=custom1 dbname="object.custom1" )
+ column=(type=long update=yes updatewhereclause=yes name=suffix dbname="object.suffix" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=engineering_level dbname="object.engineering_level" )
+ column=(type=long updatewhereclause=yes name=no_of_objects dbname="no_of_objects" )
+ column=(type=decimal(6) updatewhereclause=yes name=total_qty dbname="total_qty" )
+ retrieve="  SELECT object.serial,   
+         object.part,   
+         object.quantity,   
+         object.unit_measure,   
+         object.std_quantity,   
+         object.parent_serial,   
+         object.shipper,   
+         object.type,   
+         object.package_type,   
+         object.weight,   
+         object.tare_weight,   
+         object.custom1,   
+         object.suffix,   
+         object.engineering_level,
+	 isnull((Select count(1) from object o1 where o1.shipper = :iShipper and isnull(o1.parent_serial,0) = object.serial),0) No_of_objects,
+	 isnull((Select sum(quantity) from object o1 where o1.shipper = :iShipper and isnull(o1.parent_serial,0) = object.serial),0) Total_qty
+    FROM object  
+   WHERE (object.shipper = :iShipper ) AND  
+         ( object.show_on_shipper = 'Y' )    
+" update="object" updatewhere=0 updatekeyinplace=no arguments=(("iShipper", number))  sort="part A serial A " )
+text(band=header alignment="2" text="Serial"border="6" color="0" x="9" y="8" height="56" width="224"  name=serial_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="242" y="8" height="56" width="379"  name=part_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Quantity"border="6" color="0" x="631" y="8" height="56" width="219"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="UM"border="6" color="0" x="859" y="8" height="56" width="69"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Std Qty"border="6" color="0" x="937" y="8" height="56" width="197"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="2" text="Weight"border="6" color="0" x="1143" y="8" height="56" width="192"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Parent_Serial"border="6" color="0" x="1417" y="8" height="56" width="279"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Shipper"border="6" color="0" x="1705" y="8" height="56" width="274"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Type"border="6" color="0" x="1989" y="8" height="56" width="82"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Package Type"border="6" color="0" x="2080" y="8" height="56" width="219"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Net Wgt"border="6" color="0" x="2309" y="8" height="56" width="178"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Tare Weight"border="6" color="0" x="2496" y="8" height="56" width="270"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Suffix"border="6" color="0" x="2775" y="8" height="56" width="233"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+text(band=header alignment="0" text="Engineering Level"border="6" color="0" x="3017" y="8" height="56" width="256"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="56" width="224" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="242" y="8" height="56" width="379" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="631" y="8" height="56" width="219" format="[general]"  name=quantity editmask.mask="#######" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="859" y="8" height="56" width="69" format="[general]"  name=unit_measure edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1417" y="8" height="56" width="279" format="[general]"  name=parent_serial edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1705" y="8" height="56" width="274" format="[general]"  name=shipper edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (if(type = ~"S~", ~"pallet.bmp~", ~"box.bmp~"))"border="0" color="0" x="1344" y="8" height="56" width="64" format="[GENERAL]"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="1989" y="8" height="56" width="82" format="[general]"  name=type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79216776" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2080" y="8" height="56" width="219" format="[general]"  name=package_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="937" y="8" height="56" width="197" format="[general]"  name=std_quantity editmask.mask="#######" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="If(part = 'PALLET', weight,  weight  *  std_quantity) "border="0" color="0" x="2309" y="8" height="56" width="178" format="[GENERAL]"  name=net_weight  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="1143" y="8" height="56" width="192" format="[general]"  name=weight edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="2496" y="8" height="56" width="270" format="[general]"  name=tare_weight edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="2775" y="8" height="56" width="233" format="[general]"  name=suffix edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="3017" y="8" height="56" width="256" format="[general]"  name=engineering_level edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="3282" y="8" height="56" width="238" format="[general]"  name=custom1 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="0" x="3529" y="8" height="56" width="320" format="[general]"  name=no_of_objects edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="0" x="3858" y="8" height="56" width="475" format="[general]"  name=total_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="No Of Objects"border="6" color="0" x="3529" y="8" height="52" width="320"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="1" text="Total Qty"border="6" color="0" x="3858" y="8" height="52" width="475"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

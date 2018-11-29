@@ -1,0 +1,236 @@
+﻿$PBExportHeader$m_platinum.srm
+forward
+global type m_platinum from menu
+end type
+type m_file from menu within m_platinum
+end type
+type m_save from menu within m_file
+end type
+type m_cancel from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_platinum
+m_save m_save
+m_cancel m_cancel
+m_exit m_exit
+end type
+type m_window from menu within m_platinum
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_platinum
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_platinum
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_platinum
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_platinum from menu
+m_file m_file
+m_window m_window
+m_help m_help
+end type
+global m_platinum m_platinum
+
+on m_platinum.create
+m_platinum=this
+this.m_file=create m_file
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_platinum.destroy
+destroy(this.m_file)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_platinum
+m_save m_save
+m_cancel m_cancel
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_save=create m_save
+this.m_cancel=create m_cancel
+this.m_exit=create m_exit
+this.Item[]={this.m_save, &
+this.m_cancel, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_save)
+destroy(this.m_cancel)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+this.Text="&Save"
+end on
+
+type m_cancel from menu within m_file
+end type
+
+on m_cancel.create
+this.Text="&Cancel"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+this.Text="E&xit"
+end on
+
+type m_window from menu within m_platinum
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Tile Windows..."
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+this.Text="&Layer"
+this.Microhelp="Layer Windows..."
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Cascade Windows..."
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+this.Microhelp="Arrange Icons..."
+end on
+
+type m_help from menu within m_platinum
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Index! )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays Help Contents..."
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright..."
+end on
+

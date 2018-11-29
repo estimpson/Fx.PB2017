@@ -1,0 +1,219 @@
+﻿$PBExportHeader$d_customerservice_shiptos.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(20) updatewhereclause=yes name=shiptocode dbname="ShipTos.ShipToCode" )
+ column=(type=char(50) updatewhereclause=yes name=destinationname dbname="ShipTos.DestinationName" )
+ column=(type=char(10) updatewhereclause=yes name=billtocode dbname="ShipTos.BillToCode" )
+ column=(type=char(50) updatewhereclause=yes name=addressline1 dbname="ShipTos.AddressLine1" )
+ column=(type=char(50) updatewhereclause=yes name=addressline2 dbname="ShipTos.AddressLine2" )
+ column=(type=char(50) updatewhereclause=yes name=addressline3 dbname="ShipTos.AddressLine3" )
+ column=(type=char(40) updatewhereclause=yes name=addressline4 dbname="ShipTos.AddressLine4" )
+ column=(type=char(40) updatewhereclause=yes name=addressline5 dbname="ShipTos.AddressLine5" )
+ column=(type=char(40) updatewhereclause=yes name=addressline6 dbname="ShipTos.AddressLine6" )
+ column=(type=long updatewhereclause=yes name=addressstatus dbname="ShipTos.AddressStatus" )
+ column=(type=long updatewhereclause=yes name=addresstype dbname="ShipTos.AddressType" )
+ column=(type=char(255) updatewhereclause=yes name=streetaddress dbname="ShipTos.StreetAddress" )
+ column=(type=char(255) updatewhereclause=yes name=pobox dbname="ShipTos.POBox" )
+ column=(type=char(255) updatewhereclause=yes name=logistics dbname="ShipTos.Logistics" )
+ column=(type=char(255) updatewhereclause=yes name=deliverylocation dbname="ShipTos.DeliveryLocation" )
+ column=(type=char(255) updatewhereclause=yes name=cityname dbname="ShipTos.CityName" )
+ column=(type=char(255) updatewhereclause=yes name=Statecode dbname="ShipTos.StateCode" )
+ column=(type=char(255) updatewhereclause=yes name=postalcode dbname="ShipTos.PostalCode" )
+ column=(type=char(255) updatewhereclause=yes name=countrycode dbname="ShipTos.CountryCode" )
+ column=(type=char(255) updatewhereclause=yes name=profile1 dbname="ShipTos.Profile1" )
+ column=(type=char(255) updatewhereclause=yes name=profile2 dbname="ShipTos.Profile2" )
+ column=(type=char(255) updatewhereclause=yes name=profile3 dbname="ShipTos.Profile3" )
+ column=(type=char(255) updatewhereclause=yes name=profile4 dbname="ShipTos.Profile4" )
+ column=(type=char(255) updatewhereclause=yes name=profile5 dbname="ShipTos.Profile5" )
+ column=(type=char(255) updatewhereclause=yes name=profile6 dbname="ShipTos.Profile6" )
+ column=(type=char(20) updatewhereclause=yes name=status dbname="ShipTos.Status" )
+ column=(type=char(15) updatewhereclause=yes name=scheduler dbname="ShipTos.Scheduler" )
+ column=(type=char(1) updatewhereclause=yes name=salestaxflag dbname="ShipTos.SalesTaxFlag" )
+ column=(type=decimal(4) updatewhereclause=yes name=salestaxrate dbname="ShipTos.SalesTaxRate" )
+ column=(type=char(3) updatewhereclause=yes name=defaultcurrency dbname="ShipTos.DefaultCurrency" )
+ column=(type=long updatewhereclause=yes name=showeuroflag dbname="ShipTos.ShowEuroFlag" )
+ column=(type=char(10) updatewhereclause=yes name=regioncode dbname="ShipTos.RegionCode" )
+ column=(type=char(10) updatewhereclause=yes name=companysegment dbname="ShipTos.CompanySegment" )
+ column=(type=char(50) updatewhereclause=yes name=glsegment dbname="ShipTos.GLSegment" )
+ column=(type=char(4) updatewhereclause=yes name=pickupscac dbname="ShipTos.PickupSCAC" )
+ column=(type=char(2) updatewhereclause=yes name=pickuptransmode dbname="ShipTos.PickupTransMode" )
+ column=(type=char(20) updatewhereclause=yes name=shippingfob dbname="ShipTos.ShippingFOB" )
+ column=(type=char(20) updatewhereclause=yes name=shippingfreighttype dbname="ShipTos.ShippingFreightType" )
+ column=(type=char(1) updatewhereclause=yes name=isallowedmultipedock dbname="ShipTos.IsAllowedMultipeDock" )
+ column=(type=char(1) updatewhereclause=yes name=isallowedmultipemodelyear dbname="ShipTos.IsAllowedMultipeModelYear" )
+ column=(type=char(1) updatewhereclause=yes name=isallowedmultiplepo dbname="ShipTos.IsAllowedMultiplePO" )
+ column=(type=char(10) updatewhereclause=yes name=defaultshippingdays dbname="ShipTos.DefaultShippingDays" )
+ column=(type=char(1) updatewhereclause=yes name=iscallforpickup dbname="ShipTos.IsCallForPickup" )
+ column=(type=char(1) updatewhereclause=yes name=isallowedexcessshipping dbname="ShipTos.IsAllowedExcessShipping" )
+ column=(type=char(1) updatewhereclause=yes name=shipbypool dbname="ShipTos.ShipByPool" )
+ column=(type=char(20) updatewhereclause=yes name=poolcode dbname="ShipTos.PoolCode" )
+ column=(type=char(200) updatewhereclause=yes name=shippernote dbname="ShipTos.ShipperNote" )
+ column=(type=char(200) updatewhereclause=yes name=billofladingnote dbname="ShipTos.BillOfLadingNote" )
+ column=(type=char(20) updatewhereclause=yes name=edisuppliercode dbname="ShipTos.EDISupplierCode" )
+ column=(type=char(20) updatewhereclause=yes name=editradingpartner dbname="ShipTos.EDITradingPartner" )
+ column=(type=char(3) updatewhereclause=yes name=edioverlaygroup dbname="ShipTos.EDIOverlayGroup" )
+ column=(type=char(20) updatewhereclause=yes name=ediequipmentdescription dbname="ShipTos.EDIEquipmentDescription" )
+ column=(type=char(25) updatewhereclause=yes name=edimaterialissuer dbname="ShipTos.EDIMaterialIssuer" )
+ column=(type=char(10) updatewhereclause=yes name=ediidentifactiontype dbname="ShipTos.EDIIdentifactionType" )
+ column=(type=char(20) updatewhereclause=yes name=ediparentdestination dbname="ShipTos.EDIParentDestination" )
+ column=(type=char(1) updatewhereclause=yes name=ediisponumberdistinct dbname="ShipTos.EDIIsPONumberDistinct" )
+ column=(type=char(1) updatewhereclause=yes name=ediisprioraccumonasn dbname="ShipTos.EDIIsPriorAccumOnASN" )
+ column=(type=char(1) updatewhereclause=yes name=ediisreleaseplanasfirm dbname="ShipTos.EDIIsReleasePlanAsFirm" )
+ column=(type=char(1) updatewhereclause=yes name=eidismodelyeardistinct dbname="ShipTos.EIDIsModelYearDistinct" )
+ column=(type=char(1) updatewhereclause=yes name=ediisasn dbname="ShipTos.EDIIsASN" )
+ column=(type=char(10) updatewhereclause=yes name=plantcode dbname="ShipTos.PlantCode" )
+ column=(type=long updatewhereclause=yes name=isplantcode dbname="ShipTos.IsPlantCode" )
+ column=(type=char(2) updatewhereclause=yes name=poolorregular dbname="ShipTos.PoolOrRegular" )
+ column=(type=char(10) updatewhereclause=yes name=custom1 dbname="ShipTos.Custom1" )
+ column=(type=char(10) updatewhereclause=yes name=custom2 dbname="ShipTos.Custom2" )
+ column=(type=char(10) updatewhereclause=yes name=custom3 dbname="ShipTos.Custom3" )
+ column=(type=char(10) updatewhereclause=yes name=custom4 dbname="ShipTos.Custom4" )
+ column=(type=char(10) updatewhereclause=yes name=custom5 dbname="ShipTos.Custom5" )
+ column=(type=char(10) updatewhereclause=yes name=custom6 dbname="ShipTos.Custom6" )
+ column=(type=char(10) updatewhereclause=yes name=custom7 dbname="ShipTos.Custom7" )
+ column=(type=char(10) updatewhereclause=yes name=custom8 dbname="ShipTos.Custom8" )
+ column=(type=char(10) updatewhereclause=yes name=custom9 dbname="ShipTos.Custom9" )
+ column=(type=char(10) updatewhereclause=yes name=custom10 dbname="ShipTos.Custom10" )
+ column=(type=char(15) updatewhereclause=yes name=custom1label dbname="ShipTos.Custom1Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom2label dbname="ShipTos.Custom2Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom3label dbname="ShipTos.Custom3Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom4label dbname="ShipTos.Custom4Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom5label dbname="ShipTos.Custom5Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom6label dbname="ShipTos.Custom6Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom7label dbname="ShipTos.Custom7Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom8label dbname="ShipTos.Custom8Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom9label dbname="ShipTos.Custom9Label" )
+ column=(type=char(15) updatewhereclause=yes name=custom10label dbname="ShipTos.Custom10Label" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	st.ShipToCode
+,	st.DestinationName
+,	st.BillToCode
+,	st.AddressLine1
+,	st.AddressLine2
+,	st.AddressLine3
+,	st.AddressLine4
+,	st.AddressLine5
+,	st.AddressLine6
+,	st.AddressStatus
+,	st.AddressType
+,	st.StreetAddress
+,	st.POBox
+,	st.Logistics
+,	st.DeliveryLocation
+,	st.CityName
+,	st.StateCode
+,	st.PostalCode
+,	st.CountryCode
+,	st.Profile1
+,	st.Profile2
+,	st.Profile3
+,	st.Profile4
+,	st.Profile5
+,	st.Profile6
+,	st.Status
+,	st.Scheduler
+,	st.SalesTaxFlag
+,	st.SalesTaxRate
+,	st.DefaultCurrency
+,	st.ShowEuroFlag
+,	st.RegionCode
+,	st.CompanySegment
+,	st.GLSegment
+,	st.PickupSCAC
+,	st.PickupTransMode
+,	st.ShippingFOB
+,	st.ShippingFreightType
+,	st.IsAllowedMultipeDock
+,	st.IsAllowedMultipeModelYear
+,	st.IsAllowedMultiplePO
+,	st.DefaultShippingDays
+,	st.IsCallForPickup
+,	st.IsAllowedExcessShipping
+,	st.ShipByPool
+,	st.PoolCode
+,	st.ShipperNote
+,	st.BillOfLadingNote
+,	st.EDISupplierCode
+,	st.EDITradingPartner
+,	st.EDIOverlayGroup
+,	st.EDIEquipmentDescription
+,	st.EDIMaterialIssuer
+,	st.EDIIdentifactionType
+,	st.EDIParentDestination
+,	st.EDIIsPONumberDistinct
+,	st.EDIIsPriorAccumOnASN
+,	st.EDIIsReleasePlanAsFirm
+,	st.EIDIsModelYearDistinct
+,	st.EDIIsASN
+,	st.PlantCode
+,	st.IsPlantCode
+,	st.PoolOrRegular
+,	st.Custom1
+,	st.Custom2
+,	st.Custom3
+,	st.Custom4
+,	st.Custom5
+,	st.Custom6
+,	st.Custom7
+,	st.Custom8
+,	st.Custom9
+,	st.Custom10
+,	st.Custom1Label
+,	st.Custom2Label
+,	st.Custom3Label
+,	st.Custom4Label
+,	st.Custom5Label
+,	st.Custom6Label
+,	st.Custom7Label
+,	st.Custom8Label
+,	st.Custom9Label
+,	st.Custom10Label
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custsrv.ShipTos st
+where
+	st.IsCustomerShipTo = 1
+	and st.BillToCode = :billToCode
+order by
+	st.ShipToCode
+" arguments=(("BillToCode", string)) )
+text(band=header alignment="0" text="Ship to code" border="6" color="33554432" x="105" y="8" height="76" width="425" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Destination name" border="6" color="33554432" x="539" y="8" height="76" width="773" html.valueishtml="0"  name=destinationname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Street address" border="6" color="33554432" x="1326" y="8" height="76" width="503" html.valueishtml="0"  name=streetaddress_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="City name" border="6" color="33554432" x="1838" y="8" height="76" width="530" html.valueishtml="0"  name=cityname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="State" border="6" color="33554432" x="2377" y="8" height="76" width="466" html.valueishtml="0"  name=Statecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Country" border="6" color="33554432" x="2857" y="8" height="76" width="389" html.valueishtml="0"  name=countrycode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="3255" y="8" height="76" width="379" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Scheduler" border="6" color="33554432" x="3643" y="8" height="76" width="439" html.valueishtml="0"  name=scheduler_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Region" border="6" color="33554432" x="4096" y="8" height="76" width="302" html.valueishtml="0"  name=regioncode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Company segment" border="6" color="33554432" x="4407" y="8" height="76" width="466" html.valueishtml="0"  name=companysegment_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="GL segment" border="6" color="33554432" x="4882" y="8" height="76" width="553" html.valueishtml="0"  name=glsegment_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="105" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=shiptocode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="539" y="8" height="76" width="773" format="[general]" html.valueishtml="0"  name=destinationname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="1321" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=streetaddress visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="1833" y="8" height="76" width="530" format="[general]" html.valueishtml="0"  name=cityname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="2373" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=Statecode visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="2848" y="8" height="76" width="389" format="[general]" html.valueishtml="0"  name=countrycode visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="3246" y="8" height="76" width="379" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="3634" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=scheduler visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="0" color="33554432" x="4082" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=regioncode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="0" color="33554432" x="4393" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=companysegment visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="0" tabsequence=32766 border="0" color="33554432" x="4869" y="8" height="76" width="553" format="[general]" html.valueishtml="0"  name=glsegment visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="72" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

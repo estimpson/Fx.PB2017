@@ -1,0 +1,42 @@
+﻿$PBExportHeader$d_shipto.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(20) updatewhereclause=no name=destination_destination dbname="destination" )
+ column=(type=char(50) updatewhereclause=no name=destination_name dbname="name" )
+ column=(type=char(10) updatewhereclause=no name=destination_customer dbname="customer" )
+ column=(type=long updatewhereclause=no name=destination_flag dbname="flag" )
+ procedure="1 select	Code = destination.destination,
+	Name = destination.name,
+	CustomerCode = destination.customer,
+	ShipFlag = Max(case when ShipPulls.OrderNo > 0 then 1 else 0 end)
+from	dbo.destination
+	left join dbo.order_header on order_header.destination = destination.destination
+	left join dbo.udf_GetShipmentPullSignals(Null, :ShipFrom, :ShipmentType) ShipPulls on ShipPulls.OrderNo = order_header.order_no and
+		ShipPulls.DueDT <= :StartDT + 7
+group by
+	destination.destination,
+	destination.name,
+	destination.customer" arguments=(("ShipmentType", string),("StartDT", datetime),("ShipFrom", string))  sort="destination_destination A " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="137" y="8" height="52" width="393" format="[general]" html.valueishtml="0"  name=destination_destination  tag="Destination code " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="539" y="8" height="52" width="795" format="[general]" html.valueishtml="0"  name=destination_name  tag="Name of the destination " visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1344" y="8" height="52" width="448" format="[general]" html.valueishtml="0"  name=destination_customer  tag="Customer code " visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if ( destination_flag = 1, 'P', '' )"border="0" color="0" x="9" y="8" height="52" width="119" format="[general]" html.valueishtml="0"  name=flag visible="1"  font.face="Wingdings" font.height="-8" font.weight="400"  font.family="1" font.pitch="2" font.charset="2" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Flag" border="6" color="33554432" x="9" y="12" height="56" width="119" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Destination" border="6" color="33554432" x="137" y="12" height="56" width="393" html.valueishtml="0"  name=destination_destination_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Name" border="6" color="33554432" x="539" y="12" height="56" width="795" html.valueishtml="0"  name=destination_name_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Customer" border="6" color="33554432" x="1344" y="12" height="56" width="448" html.valueishtml="0"  name=destination_customer_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

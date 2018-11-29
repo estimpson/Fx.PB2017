@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_beep.srf
+$PBExportComments$Beep (n) Times
+global type f_beep from function_object
+end type
+
+forward prototypes
+global subroutine f_beep (int itime)
+end prototypes
+
+global subroutine f_beep (int itime);Integer iCount
+Integer iDelay
+
+For iCount = 1 to iTime
+	Beep(100)
+
+	For iDelay	= 1 to 3000
+	Next
+
+Next
+
+end subroutine
+

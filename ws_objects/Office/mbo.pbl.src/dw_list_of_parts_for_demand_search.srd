@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dw_list_of_parts_for_demand_search.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=81 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=77 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part.part" )
+ column=(type=number update=yes updatewhereclause=yes name=flag dbname="part.flag" )
+ retrieve="SELECT part.part, part.flag FROM part WHERE part.type = 'F' " update="part" updatewhere=0 updatekeyinplace=yes  sort="number A  A  A " )
+text(band=header alignment="2" text="Flag"border="6" color="0" x="503" y="8" height="65" width="133"  name=flag_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="part"border="6" color="0" x="10" y="8" height="65" width="403"  name=number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="12632256" x="503" y="8" height="65" width="133" format="[general]"  name=flag edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="8" height="65" width="403" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (if(flag=1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="421" y="8" height="65" width="74" format="[GENERAL]"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )

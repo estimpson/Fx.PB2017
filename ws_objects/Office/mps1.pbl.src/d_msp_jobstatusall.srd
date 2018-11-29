@@ -1,0 +1,61 @@
+﻿$PBExportHeader$d_msp_jobstatusall.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1540 color="536870912" )
+table(column=(type=decimal(2) updatewhereclause=no name=objectsproduced dbname="objectsproduced" )
+ column=(type=decimal(2) updatewhereclause=no name=avgtimeperobject dbname="avgtimeperobject" )
+ column=(type=decimal(2) updatewhereclause=no name=objectsused dbname="objectsused" )
+ column=(type=decimal(2) updatewhereclause=no name=avgtimebetissues dbname="avgtimebetissues" )
+ column=(type=decimal(2) updatewhereclause=no name=defectsperobject dbname="defectsperobject" )
+ column=(type=decimal(2) updatewhereclause=no name=avgtimebetdefects dbname="avgtimebetdefects" )
+ column=(type=decimal(2) updatewhereclause=no name=downtimeevents dbname="downtimeevents" )
+ column=(type=decimal(2) updatewhereclause=no name=avgtimeofevents dbname="avgtimeofevents" )
+ column=(type=decimal(2) updatewhereclause=no name=operatorslogged dbname="operatorslogged" )
+ column=(type=decimal(2) updatewhereclause=no name=avgtimeoflogin dbname="avgtimeoflogin" )
+ column=(type=decimal(6) updatewhereclause=no name=stdruntime dbname="stdruntime" )
+ column=(type=decimal(2) updatewhereclause=no name=preruntime dbname="preruntime" )
+ column=(type=decimal(2) updatewhereclause=no name=actruntime dbname="actruntime" )
+ column=(type=decimal(2) updatewhereclause=no name=jcqty dbname="jcqty" )
+ column=(type=decimal(2) updatewhereclause=no name=miqty dbname="miqty" )
+ column=(type=decimal(2) updatewhereclause=no name=downtime dbname="downtime" )
+ column=(type=decimal(2) updatewhereclause=no name=defects dbname="defects" )
+ column=(type=decimal(2) updatewhereclause=no name=laborhours dbname="laborhours" )
+ column=(type=decimal(2) updatewhereclause=no name=ajcqty dbname="ajcqty" )
+ column=(type=decimal(2) updatewhereclause=no name=amiqty dbname="amiqty" )
+ procedure="1 begin
+	execute msp_jobstatusall :workorder
+end
+commit transaction" arguments=(("workorder", string)) )
+text(band=detail alignment="0" text="Job Completion:"border="0" color="0" x="14" y="140" height="64" width="453"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="2" text="Objects produced"border="6" color="0" x="480" y="4" height="104" width="512"  name=objectsproduced_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Average timeper object"border="6" color="0" x="1010" y="4" height="104" width="512"  name=avgtimeperobject_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Hrs"border="0" color="0" x="1545" y="148" height="64" width="105"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="5" color="0" x="1010" y="124" height="132" width="512" format="0.00"  name=avgtimeperobject edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Material Issue:"border="0" color="0" x="14" y="404" height="64" width="453"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="2" text="Average timebetween issues"border="6" color="0" x="1010" y="264" height="104" width="512"  name=avgtimebetissues_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Hrs"border="0" color="0" x="1545" y="396" height="64" width="105"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="124" height="132" width="512" format="0.00"  name=objectsproduced edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="5" color="0" x="1010" y="384" height="132" width="512" format="0.00"  name=avgtimebetissues edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Defects:"border="0" color="0" x="14" y="668" height="64" width="453"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Hrs"border="0" color="0" x="1545" y="668" height="64" width="105"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="384" height="132" width="512" format="0.00"  name=objectsused edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="0" x="1010" y="644" height="132" width="512" format="0.00"  name=avgtimebetdefects edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="DownTime:"border="0" color="0" x="14" y="928" height="64" width="453"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="2" text="Downtimeevents"border="6" color="0" x="480" y="784" height="104" width="512"  name=downtimeevents_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Average timeof events"border="6" color="0" x="1010" y="784" height="104" width="512"  name=avgtimeofevents_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Hrs"border="0" color="0" x="1545" y="916" height="64" width="105"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="644" height="132" width="512" format="0.00"  name=defectsperobject edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="904" height="132" width="512" format="0.00"  name=downtimeevents edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="5" color="0" x="1010" y="904" height="132" width="512" format="0.00"  name=avgtimeofevents edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Labor:"border="0" color="0" x="14" y="1184" height="64" width="453"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="2" text="Operatorslogged"border="6" color="0" x="480" y="1044" height="104" width="512"  name=operatorslogged_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Average timeof login"border="6" color="0" x="1010" y="1044" height="104" width="512"  name=avgtimeoflogin_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="5" color="0" x="480" y="1164" height="132" width="512" format="0.00"  name=operatorslogged edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="5" color="0" x="1010" y="1164" height="132" width="512" format="0.00"  name=avgtimeoflogin edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Hrs"border="0" color="0" x="1545" y="1172" height="64" width="105"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Average timebetween defects"border="6" color="0" x="1010" y="524" height="104" width="512"  name=avgtimebetdefects_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Objectsused"border="6" color="0" x="480" y="264" height="104" width="512"  name=objectsused_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Average Defects per event"border="6" color="0" x="480" y="524" height="104" width="512"  name=defectsperobject_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

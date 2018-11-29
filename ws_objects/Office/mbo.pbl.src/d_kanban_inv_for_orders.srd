@@ -1,0 +1,36 @@
+﻿$PBExportHeader$d_kanban_inv_for_orders.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=566 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_location.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=location dbname="part_location.location" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=days_onhand dbname="part_location.days_onhand" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=maximum dbname="part_location.maximum" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=minimum dbname="part_location.minimum" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=destination dbname="part_location.destination" )
+ retrieve="  SELECT part_location.part,   
+         part_location.location,   
+         part_location.days_onhand,   
+         part_location.maximum,   
+         part_location.minimum,   
+         part_location.destination  
+    FROM part_location  
+   WHERE ( part_location.part = :arg_part ) AND  
+         ( part_location.destination = :arg_dest )    
+" update="part_location" updatewhere=1 updatekeyinplace=no arguments=(("arg_part", string),("arg_dest", string),("arg_stdpack", number)) )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2081" y="13" height="77" width="329" format=""  name=destination visible="1~t0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Part:"border="0" color="8388608" x="366" y="70" height="64" width="139"  name=part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Location:"border="0" color="8388608" x="238" y="176" height="64" width="267"  name=location_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Days Onhand:"border="0" color="8388608" x="99" y="278" height="64" width="406"  name=days_onhand_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="Min. quantity:"border="0" color="8388608" x="99" y="378" height="64" width="406"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="Max. quantity:"border="0" color="8388608" x="99" y="474" height="64" width="406"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="519" y="474" height="64" width="373" format="######0"  name=maximum editmask.mask="######0" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="519" y="176" height="64" width="377" format="[general]"  name=location  tag="10 character location is going to be stored in this column" dddw.name=d_location_dddw_grey_10 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=300 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="519" y="70" height="64" width="797" format="[general]"  name=part  tag="25 char part number is going to be stored in this column" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=20 border="5" color="0" x="519" y="278" height="64" width="373" format="##0.00"  name=days_onhand  tag="Minimum day on hand for that part & destination is going to be stored in this column. It's going to be a whole no." editmask.mask="##0.00" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Std Pack:"border="0" color="8388608" x="1002" y="278" height="64" width="271"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="5" color="0" x="519" y="378" height="64" width="373" format="######0"  name=minimum editmask.mask="######0" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="1" expression=" arg_stdpack "border="5" color="0" x="944" y="378" height="64" width="373" format="######0"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

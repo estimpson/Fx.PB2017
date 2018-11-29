@@ -1,0 +1,48 @@
+﻿$PBExportHeader$f_get_units_for_part.srf
+global type f_get_units_for_part from function_object
+end type
+
+forward prototypes
+global function listbox f_get_units_for_part (string szoriginalunit, string part_number, ref listbox lbunits)
+end prototypes
+
+global function listbox f_get_units_for_part (string szoriginalunit, string part_number, ref listbox lbunits);If szOriginalUnit = "" Then
+
+	SELECT part_inventory.standard_unit  
+     INTO :szOriginalUnit  
+     FROM part_inventory  
+    WHERE part_inventory.part = :part_number   ;
+
+End if
+
+ DECLARE unit_list CURSOR FOR  
+  SELECT unit_conversion.unit2  
+    FROM part_unit_conversion,   
+         unit_conversion  
+   WHERE ( part_unit_conversion.code = unit_conversion.code ) and  
+         ( ( part_unit_conversion.part = :Part_number ) AND  
+         ( unit_conversion.unit1 = :szOriginalUnit ) )   
+ORDER BY unit_conversion.unit2 ASC  ;
+
+String szUnit
+
+Open unit_list ;
+
+Do
+
+	Fetch unit_list into :szUnit ;
+
+	If SQLCA.SQLCode = 0 Then
+		lbUnits.AddItem ( szUnit )
+	End if
+
+Loop While SQLCA.SQLCode = 0
+
+Close unit_list ;
+
+lbUnits.AddItem ( szOriginalUnit )
+
+Return lbUnits
+
+end function
+

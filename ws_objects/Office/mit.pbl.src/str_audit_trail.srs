@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_audit_trail.srs
+global type str_audit_trail from structure
+    datetime adt_today
+    string as_transactiontype
+    string as_machine
+end type
+

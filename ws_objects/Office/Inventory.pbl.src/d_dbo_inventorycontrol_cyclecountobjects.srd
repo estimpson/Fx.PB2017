@@ -1,0 +1,96 @@
+﻿$PBExportHeader$d_dbo_inventorycontrol_cyclecountobjects.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(not isNull(rowCommittedDT), rgb(192, 255, 192), if(IsSelected=1,rgb(192,192,255),536870912))" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=cyclecountnumber dbname="InventoryControl_CycleCountObjects.CycleCountNumber" )
+ column=(type=number update=yes updatewhereclause=yes name=line dbname="InventoryControl_CycleCountObjects.Line" )
+ column=(type=long update=yes updatewhereclause=yes name=serial dbname="InventoryControl_CycleCountObjects.Serial" )
+ column=(type=long updatewhereclause=yes name=parentserial dbname="InventoryControl_CycleCountObjects.ParentSerial" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="InventoryControl_CycleCountObjects.Status" values="Unknown (not marked)	0/Found	1/<< Lost >>	-1/Found (adj)	2/Found (relocated)	3/Found (adj // reloc)	4/Recover	5/Ignore	-2/" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="InventoryControl_CycleCountObjects.Type" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="InventoryControl_CycleCountObjects.Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=originalquantity dbname="InventoryControl_CycleCountObjects.OriginalQuantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=correctedquantity dbname="InventoryControl_CycleCountObjects.CorrectedQuantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="InventoryControl_CycleCountObjects.Unit" )
+ column=(type=char(10) updatewhereclause=yes name=originallocation dbname="InventoryControl_CycleCountObjects.OriginalLocation" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=correctedlocation dbname="InventoryControl_CycleCountObjects.CorrectedLocation" )
+ column=(type=datetime updatewhereclause=yes name=rowcommitteddt dbname="InventoryControl_CycleCountObjects.RowCommittedDT" )
+ column=(type=long updatewhereclause=yes identity=yes name=rowid dbname="InventoryControl_CycleCountObjects.RowID" )
+ column=(type=long updatewhereclause=yes name=isstaged dbname="IsStaged" values="	1/	0" )
+ column=(type=char(30) updatewhereclause=yes name=boxlabelformat dbname="BoxLabelFormat" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=markall dbname="MarkAll" values="All	1/All	0/All	-1" )
+ retrieve="
+select
+	iccco.CycleCountNumber
+,	iccco.Line
+,	iccco.Serial
+,	iccco.ParentSerial
+,	iccco.Status
+,	iccco.Type
+,	iccco.Part
+,	iccco.OriginalQuantity
+,	iccco.CorrectedQuantity
+,	iccco.Unit
+,	iccco.OriginalLocation
+,	iccco.CorrectedLocation
+,	iccco.RowCommittedDT
+,	iccco.RowID
+,	IsStaged = case when o.shipper is not null then 1 else 0 end
+,	BoxLabelFormat = pi.label_format
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+,	MarkAll = 0
+from
+	dbo.InventoryControl_CycleCountObjects iccco
+	left join dbo.part_inventory pi
+		on pi.part = iccco.Part
+	left join dbo.object o
+		on o.serial = iccco.Serial
+where
+	iccco.CycleCountNumber = :CycleCountNumber
+order by
+	iccco.CycleCountNumber
+,	iccco.Line
+" arguments=(("CycleCountNumber", string)) )
+column(band=header id=19 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="72" width="210" format="[general]" html.valueishtml="0"  name=markall visible="1" checkbox.text="All" checkbox.on="1" checkbox.off="0" checkbox.other="-1" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Line" border="6" color="33554432" x="229" y="8" height="72" width="137" html.valueishtml="0"  name=line_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Staged?" border="6" color="33554432" x="375" y="8" height="72" width="210" html.valueishtml="0"  name=isstaged_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="594" y="8" height="72" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pallet" border="6" color="33554432" x="933" y="8" height="72" width="347" html.valueishtml="0"  name=parentserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="1289" y="8" height="72" width="613" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Committed DT" border="6" color="33554432" x="1911" y="8" height="72" width="539" html.valueishtml="0"  name=rowcommitteddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="2459" y="8" height="72" width="713" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Original quantity" border="6" color="33554432" x="3182" y="8" height="72" width="475" html.valueishtml="0"  name=originalquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Corrected quantity" border="6" color="33554432" x="3666" y="8" height="72" width="503" html.valueishtml="0"  name=correctedquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Unit" border="6" color="33554432" x="4178" y="8" height="72" width="192" html.valueishtml="0"  name=unit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Original location" border="6" color="33554432" x="4379" y="8" height="72" width="475" html.valueishtml="0"  name=originallocation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Corrected location" border="6" color="33554432" x="4864" y="8" height="72" width="535" html.valueishtml="0"  name=correctedlocation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="229" y="8" height="76" width="137" format="0. " html.valueishtml="0"  name=line visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=18 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="210" format="[general]" html.valueishtml="0" protect="0~tif(not IsNull(rowCommittedDT), 1, 0)"  name=selected visible="1~tif(not IsNull(rowCommittedDT), 0, 1)" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="594" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1289" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.codetable=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif (status in (0, -2), 1, 0)"  background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2459" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4178" y="8" height="76" width="192" format="[general]" html.valueishtml="0"  name=unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="4379" y="8" height="76" width="475" format="[general]" html.valueishtml="0"  name=originallocation visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=20 border="0" color="33554432" x="4864" y="8" height="76" width="535" format="[general]" html.valueishtml="0" protect="0~tif(not IsNull(rowCommittedDT), 1, 0)"  name=correctedlocation visible="1" dddw.name=d_cyclecount_locationlist dddw.displaycolumn=locationcode dddw.datacolumn=locationcode dddw.percentwidth=270 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],11,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3182" y="8" height="76" width="475" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=originalquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="1" tabsequence=10 border="0" color="33554432" x="3666" y="8" height="76" width="503" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(not IsNull(rowCommittedDT), 1, 0)"  name=correctedquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="933" y="8" height="76" width="347" format="[general];;;Loose box" html.valueishtml="0"  name=parentserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif (isNull(parentSerial), 1, 0)"  background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="1911" y="8" height="76" width="539" format="[shortdate] [time];~"Uncommitted~"" html.valueishtml="0"  name=rowcommitteddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400~tif (isNull(rowCommittedDT), 1, 0)"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif (isNull(rowCommittedDT), 1, 0)"  background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="33554432" x="379" y="8" height="76" width="206" format="[general]" html.valueishtml="0"  name=isstaged visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

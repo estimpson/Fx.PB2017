@@ -1,0 +1,17 @@
+﻿$PBExportHeader$isvalidpwd.srf
+global type isvalidpwd from function_object
+end type
+
+forward prototypes
+global function string isvalidpwd (string arg_password)
+end prototypes
+
+global function string isvalidpwd (string arg_password);string ls_operator
+SELECT operator_code
+  INTO :ls_operator
+  FROM employee
+ WHERE (password = :arg_password) ;
+if (sqlca.sqlcode<>0) then ls_operator=''
+Return (ls_operator)
+end function
+

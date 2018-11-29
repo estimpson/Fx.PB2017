@@ -1,0 +1,93 @@
+﻿$PBExportHeader$d_mes_bfhistory_jobbom.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=no hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="MES_JobBillOfMaterials.WorkOrderNumber" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=wodid dbname="MES_JobBillOfMaterials.WODID" initial="0" values="" )
+ column=(type=number updatewhereclause=yes name=workorderdetailline dbname="MES_JobBillOfMaterials.WorkOrderDetailLine" initial="0" values="" )
+ column=(type=number updatewhereclause=yes name=line dbname="MES_JobBillOfMaterials.Line" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=status dbname="MES_JobBillOfMaterials.Status" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=type dbname="MES_JobBillOfMaterials.Type" initial="0" values="" )
+ column=(type=char(25) updatewhereclause=yes name=childpart dbname="MES_JobBillOfMaterials.ChildPart" initial="" values="" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="MES_JobBillOfMaterials.Description" initial="" values="" )
+ column=(type=char(30) updatewhereclause=yes name=commodity dbname="MES_JobBillOfMaterials.Commodity" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=childpartsequence dbname="MES_JobBillOfMaterials.ChildPartSequence" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=childpartbomlevel dbname="MES_JobBillOfMaterials.ChildPartBOMLevel" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=billofmaterialid dbname="MES_JobBillOfMaterials.BillOfMaterialID" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="MES_JobBillOfMaterials.Suffix" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyper dbname="MES_JobBillOfMaterials.QtyPer" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=xqty dbname="MES_JobBillOfMaterials.XQty" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=xscrap dbname="MES_JobBillOfMaterials.XScrap" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=subforrowid dbname="MES_JobBillOfMaterials.SubForRowID" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=subpercentage dbname="MES_JobBillOfMaterials.SubPercentage" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=wodbomid dbname="MES_JobBillOfMaterials.WODBOMID" initial="0" values="" )
+ column=(type=char(100) updatewhereclause=yes name=consumptionprinciple dbname="MES_JobBillOfMaterials.ConsumptionPrinciple" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=backflushingprinciple dbname="MES_JobBillOfMaterials.BackflushingPrinciple" initial="0" values="No Backflush	0/Job	1/Machine	2/Staging Location	3/Group Technology	4/Plant	5/" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" initial="" values="" )
+ retrieve="select
+	WorkOrderNumber
+,	WODID
+,	WorkOrderDetailLine
+,	Line
+,	Status
+,	Type
+,	ChildPart
+,	Description
+,	Commodity
+,	ChildPartSequence
+,	ChildPartBOMLevel
+,	BillOfMaterialID
+,	Suffix
+,	QtyPer
+,	XQty
+,	XScrap
+,	SubForRowID
+,	SubPercentage
+,	WODBOMID
+,	ConsumptionPrinciple
+,	BackflushingPrinciple
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.MES_JobBillOfMaterials
+where
+	WorkOrderNumber = :WorkOrderNumber
+" arguments=(("WorkOrderNumber", string))  sort="line A " )
+text(band=header alignment="0" text="Line no." border="6" color="33554432" x="119" y="12" height="76" width="279" html.valueishtml="0"  name=line_t  tag="Line no." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="407" y="12" height="76" width="229" html.valueishtml="0"  name=status_t  tag="Status" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="645" y="12" height="76" width="229" html.valueishtml="0"  name=type_t  tag="Type" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Mat. / comp." border="6" color="33554432" x="882" y="12" height="76" width="366" html.valueishtml="0"  name=childpart_t  tag="Mat. / comp." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="1257" y="12" height="76" width="590" html.valueishtml="0"  name=description_t  tag="Description" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Commodity code" border="6" color="33554432" x="1856" y="12" height="76" width="549" html.valueishtml="0"  name=commodity_t  tag="Commodity code" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Consumption rate" border="6" color="33554432" x="2414" y="12" height="76" width="421" html.valueishtml="0"  name=xqty_t  tag="Consumption rate" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Scrap rate" border="6" color="33554432" x="2843" y="12" height="76" width="279" html.valueishtml="0"  name=xscrap_t  tag="Scrap rate" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sub. %" border="6" color="33554432" x="3131" y="12" height="76" width="297" html.valueishtml="0"  name=subpercentage_t  tag="Percentage..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Consumption principle" border="6" color="33554432" x="3438" y="12" height="76" width="590" html.valueishtml="0"  name=consumptionprinciple_t  tag="Consumption principle" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Backflush principle" border="6" color="33554432" x="4037" y="12" height="76" width="453" html.valueishtml="0"  name=backflushingprinciple_t  tag="Backflush principle" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="12" height="76" width="101" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="119" y="12" height="76" width="279" format="#,##0.000000 ;[red](#,##0.000000) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=line  tag="line" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],4,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="407" y="12" height="76" width="229" format="0 ;0 ;0 ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=status  tag="status" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="645" y="12" height="76" width="229" format="0 ;0 ;0 ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=type  tag="type" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],6,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="882" y="12" height="76" width="366" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=childpart  tag="Part number..." visible="1" dddw.name=d_Tktjmtbktp dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=251 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],7,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="1257" y="12" height="76" width="590" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=description  tag="String value..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="1856" y="12" height="76" width="549" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=commodity  tag="String value..." visible="1" dddw.name=d_Ohngmhlogl dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=284 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],9,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="2414" y="12" height="76" width="421" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=xqty  tag="xqty" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],15,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="2843" y="12" height="76" width="279" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=xscrap  tag="xscrap" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],16,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="3131" y="12" height="76" width="297" format="#,##0.000000% ;[red](#,##0.000000%) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=subpercentage  tag="Percentage..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],18,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="3438" y="12" height="76" width="590" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=consumptionprinciple  tag="String value..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],20,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=21 alignment="2" tabsequence=32766 border="0" color="33554432~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 134217731, 33554432)" x="4037" y="12" height="76" width="453" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=backflushingprinciple  tag="backflushingprinciple" visible="1" ddlb.limit=0 ddlb.allowedit=yes ddlb.case=any ddlb.nilisnull=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif ( consumptionprinciple = ~"A component which is produced and consumed inline.~", 1, 0)"  background.mode="0" background.color="536870912~tif(mid(Change[0],21,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

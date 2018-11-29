@@ -1,0 +1,43 @@
+﻿$PBExportHeader$f_get_build.srf
+global type f_get_build from function_object
+end type
+
+forward prototypes
+global function long f_get_build (string ls_Module)
+end prototypes
+
+global function long f_get_build (string ls_Module);Choose Case ls_Module
+	Case "mad"
+	Case "mad1"
+	Case "mbo"
+	Case "mcs"
+	Case "mct"
+	Case "med"
+	Case "mei"
+	Case "mfm"
+	Case "mic"
+	Case "mit"
+	Case "miv"
+	Case "mll"
+	Case "moe"
+	Case "monitor"
+	Case "mpl"
+	Case "mpo"
+	Case "mps"
+	Case "mps1"
+	Case "mqe"
+	Case "mrd"
+	Case "mrs"
+	Case "msc"
+	Case "msd"
+	Case "msf"
+	Case "msl"
+	Case "mst"
+	Case "muo"
+	Case "mvb"
+	Case "mvf"
+End Choose
+
+Return 0
+end function
+

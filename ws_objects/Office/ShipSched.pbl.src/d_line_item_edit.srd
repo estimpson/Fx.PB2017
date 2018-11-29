@@ -1,0 +1,104 @@
+﻿$PBExportHeader$d_line_item_edit.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=qty_original dbname="shipper_detail.qty_original" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_required dbname="shipper_detail.qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=char(254) updatewhereclause=yes name=note dbname="shipper_detail.note" )
+ column=(type=long updatewhereclause=yes name=boxes_staged dbname="shipper_detail.boxes_staged" )
+ column=(type=decimal(6) updatewhereclause=yes name=alternative_qty dbname="shipper_detail.alternative_qty" )
+ column=(type=char(15) updatewhereclause=yes name=alternative_unit dbname="shipper_detail.alternative_unit" )
+ column=(type=char(30) updatewhereclause=yes name=customer_part dbname="shipper_detail.customer_part" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="shipper_detail.suffix" )
+ column=(type=char(25) updatewhereclause=yes name=part_original dbname="shipper_detail.part_original" )
+ column=(type=char(1) updatewhereclause=yes name=stage_using_weight dbname="shipper_detail.stage_using_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=gross_weight dbname="shipper_detail.gross_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=orig_required dbname="orig_required" )
+ column=(type=long updatewhereclause=yes key=yes name=shipper dbname="shipper_detail.shipper" )
+ column=(type=char(35) updatewhereclause=yes key=yes name=part dbname="shipper_detail.part" )
+ column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="shipper_detail.order_no" )
+ column=(type=decimal(6) updatewhereclause=yes name=standard_pack dbname="standard_pack" )
+ column=(type=datetime updatewhereclause=yes name=due_date dbname="due_date" )
+ column=(type=char(25) updatewhereclause=yes name=customer_po dbname="shipper_detail.customer_po" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="shipper_detail.part_name" )
+ retrieve="select	shipper_detail.qty_original,
+	shipper_detail.qty_required,
+	shipper_detail.qty_packed,
+	shipper_detail.note,
+	shipper_detail.boxes_staged,
+	shipper_detail.alternative_qty,
+	shipper_detail.alternative_unit,
+	shipper_detail.customer_part,
+	shipper_detail.suffix,
+	shipper_detail.part_original,
+	shipper_detail.stage_using_weight,
+	shipper_detail.gross_weight,
+	orig_required = Convert(numeric(20, 6), qty_required),
+	shipper_detail.shipper,
+	shipper_detail.part,
+	shipper_detail.order_no,
+	standard_pack = Coalesce(part_packaging.quantity, part_inventory.standard_pack),
+	due_date =
+	(	select	min (due_date)
+		from	dbo.order_detail
+		where	order_detail.order_no = shipper_detail.order_no and
+			order_detail.part_number = shipper_detail.part_original and
+			Coalesce(order_detail.suffix, 0) = Coalesce(shipper_detail.suffix, 0)),
+	shipper_detail.customer_po,
+	shipper_detail.part_name
+from	dbo.shipper_detail
+	left join dbo.order_header on shipper_detail.order_no = order_header.order_no
+	left join dbo.part_packaging on shipper_detail.part_original = part_packaging.part and
+		part_packaging.code =
+		(	select	min (packaging_type)
+			from	dbo.order_detail
+			where	order_detail.order_no = shipper_detail.order_no and
+				order_detail.part_number = shipper_detail.part_original and
+				Coalesce(order_detail.suffix, 0) = Coalesce(shipper_detail.suffix, 0))
+	join dbo.part_inventory on shipper_detail.part_original = part_inventory.part
+where	shipper_detail.shipper = :shipper
+" update="shipper_detail" updatewhere=0 updatekeyinplace=no arguments=(("shipper", number)) )
+text(band=header alignment="2" text="Part Code" border="6" color="33554432" x="9" y="4" height="52" width="343" html.valueishtml="0"  name=part_original_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Part Description" border="6" color="33554432" x="361" y="4" height="52" width="1001" html.valueishtml="0"  name=part_name_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Original Qty" border="6" color="37765120" x="1371" y="4" height="52" width="306" html.valueishtml="0"  name=shipper_detail_qty_original_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Reqd Qty" border="6" color="37765120" x="1687" y="4" height="52" width="261" html.valueishtml="0"  name=orig_required_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Packed Qty" border="6" color="37765120" x="1957" y="4" height="52" width="311" html.valueishtml="0"  name=alternative_qty_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="New Reqd Qty" border="6" color="37765120" x="2277" y="4" height="52" width="361" html.valueishtml="0"  name=qty_required_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Unit" border="6" color="37765120" x="2647" y="4" height="52" width="151" html.valueishtml="0"  name=alternative_unit_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Staged Boxes" border="6" color="37765120" x="2807" y="4" height="52" width="347" html.valueishtml="0"  name=boxes_staged_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Order No" border="6" color="37765120" x="3163" y="4" height="52" width="302" html.valueishtml="0"  name=order_no_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Customer Part" border="6" color="37765120" x="3474" y="4" height="52" width="416" html.valueishtml="0"  name=customer_part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Suffix" border="6" color="37765120" x="3899" y="4" height="52" width="229" html.valueishtml="0"  name=suffix_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Std. Pack" border="6" color="33554432" x="4137" y="4" height="52" width="261" html.valueishtml="0"  name=standard_pack_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Due DT" border="6" color="37765120" x="4407" y="4" height="52" width="425" html.valueishtml="0"  name=due_date_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Customer PO" border="6" color="37765120" x="4841" y="4" height="52" width="302" html.valueishtml="0"  name=customer_po_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="9" y="4" height="52" width="343" format="[general]" html.valueishtml="0"  name=part_original  tag="To keep the original part number without suffix" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="361" y="4" height="52" width="1001" format="[general]" html.valueishtml="0"  name=part_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="1687" y="4" height="52" width="261" format="#.00####  " html.valueishtml="0"  name=orig_required visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="1957" y="4" height="52" width="311" format="#.00####  " html.valueishtml="0"  name=alternative_qty  tag="quantity required " visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="2647" y="4" height="52" width="151" format="[general]" html.valueishtml="0"  name=alternative_unit  tag="Alternative unit of measurement for shipping~~r~~ndock" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="2807" y="4" height="52" width="347" format="#   " html.valueishtml="0"  name=boxes_staged  tag="Total number of boxes staged for the line item" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="3163" y="4" height="52" width="302" format="[general]   " html.valueishtml="0"  name=order_no visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="3474" y="4" height="52" width="416" format="[general]" html.valueishtml="0"  name=customer_part  tag="customer part number " visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="3899" y="4" height="52" width="229" format="[general]" html.valueishtml="0"  name=suffix  tag="suffix " visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="4841" y="4" height="52" width="302" format="[general]" html.valueishtml="0"  name=customer_po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" if(orig_required - qty_required < 0, 0, orig_required - qty_required)"border="0" color="33554432" x="5152" y="4" height="52" width="5" format="" html.valueishtml="0"  name=adj_quantity visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=10 border="5" color="33554432" x="2281" y="4" height="52" width="357" format="#.00####  " html.valueishtml="0"  name=qty_required  tag="quantity required " visible="1" edit.limit=0 edit.case=any edit.format="###,###.00" edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="4137" y="4" height="52" width="261" format="#   " html.valueishtml="0"  name=standard_pack visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=18 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="4407" y="4" height="52" width="425" format="[shortdate] hh:mm" html.valueishtml="0"  name=due_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432~tif(qty_required = 0, 134217745, 33554432)" x="1371" y="4" height="52" width="306" format="#.00#### " html.valueishtml="0"  name=qty_original visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(qty_required = 0, 1, 0)"  background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

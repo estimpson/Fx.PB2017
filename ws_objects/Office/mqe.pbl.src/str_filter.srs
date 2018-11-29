@@ -1,0 +1,6 @@
+﻿$PBExportHeader$str_filter.srs
+global type str_filter from structure
+    window ParentWindow
+    datawindow FilterDW
+end type
+

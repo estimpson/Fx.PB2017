@@ -1,0 +1,7 @@
+﻿$PBExportHeader$st_return_units_for_part.srs
+global type st_return_units_for_part from structure
+    dropdownlistbox ddlbName
+    string szPart
+    string szOriginalUnit
+end type
+

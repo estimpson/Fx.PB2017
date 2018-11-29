@@ -1,0 +1,21 @@
+﻿$PBExportHeader$d_job_cost_part_characteristics.srd
+$PBExportComments$part characteristics from table "part_characteristics" to display on job shop screen.
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=297 color="536870912" )
+table(column=(type=decimal(6) update=yes name=unit_weight dbname="part_characteristics.unit_weight" )
+ column=(type=char(25) update=yes key=yes name=part dbname="part_characteristics.part" )
+ column=(type=decimal(6) update=yes name=length_x dbname="part_characteristics.length_x" )
+ column=(type=decimal(6) update=yes name=width_z dbname="part_characteristics.width_z" )
+ column=(type=char(50) update=yes name=size dbname="part_characteristics.part_size" )
+ column=(type=char(50) update=yes name=user_def_3 dbname="part_characteristics.user_defined_1" )
+ retrieve="SELECT part_characteristics.unit_weight, part_characteristics.part, part_characteristics.length_x, part_characteristics.width_z, part_characteristics.part_size, part_characteristics.user_defined_1 FROM part_characteristics WHERE part_characteristics.part = :szPart " update="part_characteristics" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="2378" y="132" height="65" width="476" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="5" color="0" x="2378" y="228" height="65" width="476" format="[general]"  name=user_def_3 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Size:"border="0" color="8388608" x="220" y="4" height="65" width="147"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="1" text="Act. Wgt./M:"border="0" color="8388608" x="1" y="104" height="65" width="366"  name=unit_weight_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="403" y="100" height="69" width="513" format="[general]"  name=unit_weight edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=0 border="5" color="0" x="403" y="4" height="65" width="513"  name=size  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )

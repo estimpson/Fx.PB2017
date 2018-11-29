@@ -1,0 +1,242 @@
+﻿$PBExportHeader$d_partcharacteristics.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=char(100) updatewhereclause=yes name=partdescription dbname="PartDescription" )
+ column=(type=char(50) updatewhereclause=yes name=partcrossref dbname="PartCrossRef" )
+ column=(type=char(50) updatewhereclause=yes name=additionalshortdescription dbname="AdditionalShortDescription" )
+ column=(type=char(255) updatewhereclause=yes name=additionallongdescription dbname="AdditionalLongDescription" )
+ column=(type=char(1) updatewhereclause=yes name=partclass dbname="PartClass" )
+ column=(type=char(1) updatewhereclause=yes name=parttype dbname="PartType" )
+ column=(type=char(30) updatewhereclause=yes name=commoditycode dbname="CommodityCode" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="GroupTechnology" )
+ column=(type=char(25) updatewhereclause=yes name=productline dbname="ProductLine" )
+ column=(type=char(30) updatewhereclause=yes name=userdefined1 dbname="UserDefined1" )
+ column=(type=char(15) updatewhereclause=no name=userdefinedlabel1 dbname="UserDefinedLabel1" )
+ column=(type=char(30) updatewhereclause=yes name=userdefined2 dbname="UserDefined2" )
+ column=(type=char(15) updatewhereclause=no name=userdefinedlabel2 dbname="UserDefinedLabel2" )
+ column=(type=char(50) updatewhereclause=yes name=userdefined3 dbname="UserDefined3" )
+ column=(type=char(15) updatewhereclause=no name=userdefinedlabel3 dbname="UserDefinedLabel3" )
+ column=(type=char(10) updatewhereclause=yes name=engineeringlevel dbname="EngineeringLevel" )
+ column=(type=datetime updatewhereclause=yes name=engineeringeffectivedt dbname="EngineeringEffectiveDT" )
+ column=(type=char(25) updatewhereclause=yes name=drawingnumber dbname="DrawingNmber" )
+ column=(type=char(50) updatewhereclause=yes name=glaccountcode dbname="GLAccountCode" )
+ column=(type=char(25) updatewhereclause=yes name=pi_partcode dbname="PI_PartCode" )
+ column=(type=char(1) updatewhereclause=yes name=qualityalertflag dbname="QualityAlertFlag" )
+ column=(type=char(1) updatewhereclause=yes name=serializationtype dbname="SerializationType" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardpack dbname="StandardPack" )
+ column=(type=decimal(6) updatewhereclause=yes name=unitweight dbname="UnitWeight" )
+ column=(type=char(2) updatewhereclause=yes name=standardunit dbname="StandardUnit" )
+ column=(type=char(10) updatewhereclause=yes name=primarylocation dbname="PrimaryLocation" )
+ column=(type=char(10) updatewhereclause=yes name=locationgroup dbname="LocationGroup" )
+ column=(type=char(30) updatewhereclause=yes name=labelformat dbname="LabelFormat" )
+ column=(type=decimal(0) updatewhereclause=yes name=shelflifedays dbname="ShelfLifeDays" )
+ column=(type=char(1) updatewhereclause=yes name=safetypartflag dbname="SafetyPartFlag" )
+ column=(type=char(15) updatewhereclause=yes name=upccode dbname="UPCCode" )
+ column=(type=char(25) updatewhereclause=yes name=pc_partcode dbname="PC_PartCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=lengthx dbname="LengthX" )
+ column=(type=decimal(6) updatewhereclause=yes name=heighty dbname="HeightY" )
+ column=(type=decimal(6) updatewhereclause=yes name=widthz dbname="WidthZ" )
+ column=(type=char(15) updatewhereclause=yes name=color dbname="Color" )
+ column=(type=char(1) updatewhereclause=yes name=hazardousflag dbname="HazardousFlag" )
+ column=(type=char(50) updatewhereclause=yes name=partsizedescription dbname="PartSizeDescription" )
+ column=(type=char(25) updatewhereclause=yes name=pp_partcode dbname="PP_PartCode" )
+ column=(type=char(25) updatewhereclause=yes name=primarybuyer dbname="PrimaryBuyer" )
+ column=(type=char(50) updatewhereclause=yes name=apglaccount dbname="APGLAccount" )
+ column=(type=char(25) updatewhereclause=yes name=po_partcode dbname="PO_PartCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyonhand dbname="QtyOnhand" )
+ column=(type=decimal(6) updatewhereclause=yes name=minonhand dbname="MinOnHand" )
+ column=(type=decimal(6) updatewhereclause=yes name=maxonhand dbname="MaxOnHand" )
+ column=(type=char(10) updatewhereclause=yes name=defaultvendorcode dbname="DefaultVendorCode" )
+ column=(type=long updatewhereclause=yes name=defaultblanketponumber dbname="DefaultBlanketPONumber" )
+ retrieve="select
+	PartCode = p.part
+,	PartDescription = p.name
+,	PartCrossRef = p.cross_ref
+,	AdditionalShortDescription = p.description_short
+,	AdditionalLongDescription = p.description_long
+,	PartClass = p.class
+,	PartType = p.type
+,	CommodityCode = p.commodity
+,	GroupTechnology = p.group_technology
+,	ProductLine = p.product_line
+,	UserDefined1 = p.user_defined_1
+,	UserDefinedLabel1 = coalesce(
+	(
+		select
+			label
+		from
+			dbo.user_definable_module_labels udml
+		where
+			module = 'pm'
+			and
+				sequence = 1
+	)
+	,	'User Defined 1')
+,	UserDefined2 = p.user_defined_2
+,	UserDefinedLabel2 = coalesce(
+	(
+		select
+			label
+		from
+			dbo.user_definable_module_labels udml
+		where
+			module = 'pm'
+			and
+				sequence = 2
+	)
+	,	'User Defined 2')
+,	UserDefined3 = pc.user_defined_1
+,	UserDefinedLabel3 = coalesce(
+	(
+		select
+			label
+		from
+			dbo.user_definable_module_labels udml
+		where
+			module = 'pm'
+			and
+				sequence = 3
+	)
+	,	'User Defined 3')
+,	EngineeringLevel = p.engineering_level
+,	EngineeringEffectiveDT = p.eng_effective_date
+,	DrawingNmber = p.drawing_number
+,	GLAccountCode = p.gl_account_code
+,	PI_PartCode = pi.part
+,	QualityAlertFlag = p.quality_alert
+,	SerializationType = p.serial_type
+,	StandardPack = pi.standard_pack
+,	UnitWeight = pi.unit_weight
+,	StandardUnit = pi.standard_unit
+,	PrimaryLocation = pi.primary_location
+,	LocationGroup = pi.location_group
+,	LabelFormat = pi.label_format
+,	ShelfLifeDays = pi.shelf_life_days
+,	SafetyPartFlag = pi.safety_part
+,	UPCCode = pi.upc_code
+,	PC_PartCode = pc.part
+,	LengthX = pc.length_x
+,	HeightY = pc.height_y
+,	WidthZ = pc.width_z
+,	Color = pc.color
+,	HazardousFlag = pc.hazardous
+,	PartSizeDescription = pc.part_size
+,	PP_PartCode = pp.part
+,	PrimaryBuyer = pp.buyer
+,	APGLAccount = pp.gl_account_code
+,	PO_PartCode = po.part
+,	QtyOnhand = po.on_hand
+,	MinOnHand = po.min_onhand
+,	MaxOnHand = po.max_onhand
+,	DefaultVendorCode = po.default_vendor
+,	DefaultBlanketPONumber = po.default_po_number
+from
+	dbo.part p
+	left join dbo.part_inventory pi on
+		pi.part = p.part
+	left join dbo.part_characteristics pc on
+		pc.part = p.part
+	left join dbo.part_purchasing pp on
+		pp.part = p.part
+	left join dbo.part_online po on
+		po.part = p.part
+order by
+	p.part
+" )
+text(band=header alignment="2" text="Part code" border="0" color="33554432" x="9" y="8" height="64" width="590" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part description" border="0" color="33554432" x="608" y="8" height="64" width="1047" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part cross ref" border="0" color="33554432" x="1664" y="8" height="64" width="855" html.valueishtml="0"  name=partcrossref_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Additional short description" border="0" color="33554432" x="2528" y="8" height="64" width="1006" html.valueishtml="0"  name=additionalshortdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Additional long description" border="0" color="33554432" x="3543" y="8" height="64" width="869" html.valueishtml="0"  name=additionallongdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part class" border="0" color="33554432" x="4421" y="8" height="64" width="343" html.valueishtml="0"  name=partclass_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part type" border="0" color="33554432" x="4773" y="8" height="64" width="279" html.valueishtml="0"  name=parttype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commodity code" border="0" color="33554432" x="5061" y="8" height="64" width="850" html.valueishtml="0"  name=commoditycode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Group technology" border="0" color="33554432" x="5920" y="8" height="64" width="713" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Product line" border="0" color="33554432" x="6642" y="8" height="64" width="713" html.valueishtml="0"  name=productline_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="7365" y="8" height="64" width="850" format="[general]" html.valueishtml="0"  name=userdefinedlabel1_1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Engineering level" border="0" color="33554432" x="9943" y="8" height="64" width="503" html.valueishtml="0"  name=engineeringlevel_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Engineering effective DT" border="0" color="33554432" x="10455" y="8" height="64" width="672" html.valueishtml="0"  name=engineeringeffectivedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Drawing number" border="0" color="33554432" x="11136" y="8" height="64" width="713" html.valueishtml="0"  name=drawingnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="GL account code" border="0" color="33554432" x="11858" y="8" height="64" width="1399" html.valueishtml="0"  name=glaccountcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quality alert flag" border="0" color="33554432" x="13266" y="8" height="64" width="453" html.valueishtml="0"  name=qualityalertflag_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serialization type" border="0" color="33554432" x="13728" y="8" height="64" width="475" html.valueishtml="0"  name=serializationtype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Standard pack" border="0" color="33554432" x="14213" y="8" height="64" width="384" html.valueishtml="0"  name=standardpack_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unit weight" border="0" color="33554432" x="14606" y="8" height="64" width="329" html.valueishtml="0"  name=unitweight_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Standardunit" border="0" color="33554432" x="14944" y="8" height="64" width="334" html.valueishtml="0"  name=standardunit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Primary location" border="0" color="33554432" x="15287" y="8" height="64" width="402" html.valueishtml="0"  name=primarylocation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Location group" border="0" color="33554432" x="15698" y="8" height="64" width="366" html.valueishtml="0"  name=locationgroup_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Label format" border="0" color="33554432" x="16073" y="8" height="64" width="850" html.valueishtml="0"  name=labelformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shelf life days" border="0" color="33554432" x="16933" y="8" height="64" width="329" html.valueishtml="0"  name=shelflifedays_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Safety part flag" border="0" color="33554432" x="17271" y="8" height="64" width="366" html.valueishtml="0"  name=safetypartflag_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="UPC code" border="0" color="33554432" x="17646" y="8" height="64" width="439" html.valueishtml="0"  name=upccode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Length (x)" border="0" color="33554432" x="18094" y="8" height="64" width="329" html.valueishtml="0"  name=lengthx_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Height (y)" border="0" color="33554432" x="18432" y="8" height="64" width="329" html.valueishtml="0"  name=heighty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Width (z)" border="0" color="33554432" x="18770" y="8" height="64" width="329" html.valueishtml="0"  name=widthz_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Color" border="0" color="33554432" x="19109" y="8" height="64" width="439" html.valueishtml="0"  name=color_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Hazardous flag" border="0" color="33554432" x="19557" y="8" height="64" width="370" html.valueishtml="0"  name=hazardousflag_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part size description" border="0" color="33554432" x="19936" y="8" height="64" width="1399" html.valueishtml="0"  name=partsizedescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Primarybuyer" border="0" color="33554432" x="21344" y="8" height="64" width="713" html.valueishtml="0"  name=primarybuyer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="AP GL account" border="0" color="33554432" x="22066" y="8" height="64" width="1399" html.valueishtml="0"  name=apglaccount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty on hand" border="0" color="33554432" x="23474" y="8" height="64" width="329" html.valueishtml="0"  name=qtyonhand_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Min on hand" border="0" color="33554432" x="23813" y="8" height="64" width="329" html.valueishtml="0"  name=minonhand_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Max on hand" border="0" color="33554432" x="24151" y="8" height="64" width="329" html.valueishtml="0"  name=maxonhand_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Default vendor code" border="0" color="33554432" x="24489" y="8" height="64" width="485" html.valueishtml="0"  name=defaultvendorcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Default blanket PO number" border="0" color="33554432" x="24983" y="8" height="64" width="686" html.valueishtml="0"  name=defaultblanketponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="8224" y="8" height="64" width="850" format="[general]" html.valueishtml="0"  name=userdefinedlabel2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="9083" y="8" height="64" width="850" format="[general]" html.valueishtml="0"  name=userdefinedlabel3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="590" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="608" y="8" height="76" width="1047" format="[general]" html.valueishtml="0"  name=partdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1664" y="8" height="76" width="855" format="[general]" html.valueishtml="0"  name=partcrossref visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2528" y="8" height="76" width="1006" format="[general]" html.valueishtml="0"  name=additionalshortdescription visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="3543" y="8" height="76" width="869" format="[general]" html.valueishtml="0"  name=additionallongdescription visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4421" y="8" height="76" width="343" format="[general]" html.valueishtml="0"  name=partclass visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="4773" y="8" height="76" width="279" format="[general]" html.valueishtml="0"  name=parttype visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="5061" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=commoditycode visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="5920" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=grouptechnology visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="6642" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=productline visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="7365" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=userdefined1 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="8224" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=userdefined2 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="9083" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=userdefined3 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="9943" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=engineeringlevel visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="10455" y="8" height="76" width="672" format="[shortdate] [time]" html.valueishtml="0"  name=engineeringeffectivedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="11136" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=drawingnumber visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="11858" y="8" height="76" width="1399" format="[general]" html.valueishtml="0"  name=glaccountcode visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="13266" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=qualityalertflag visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="13728" y="8" height="76" width="475" format="[general]" html.valueishtml="0"  name=serializationtype visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="1" tabsequence=32766 border="0" color="33554432" x="14213" y="8" height="76" width="384" format="[general]" html.valueishtml="0"  name=standardpack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="33554432" x="14606" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=unitweight visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="14944" y="8" height="76" width="334" format="[general]" html.valueishtml="0"  name=standardunit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="15287" y="8" height="76" width="402" format="[general]" html.valueishtml="0"  name=primarylocation visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="15698" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=locationgroup visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="33554432" x="16073" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=labelformat visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="0" color="33554432" x="16933" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=shelflifedays visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="33554432" x="17271" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=safetypartflag visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="0" color="33554432" x="17646" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=upccode visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="1" tabsequence=32766 border="0" color="33554432" x="18094" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=lengthx visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="33554432" x="18432" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=heighty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=36 alignment="1" tabsequence=32766 border="0" color="33554432" x="18770" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=widthz visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="0" color="33554432" x="19109" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=color visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="33554432" x="19557" y="8" height="76" width="370" format="[general]" html.valueishtml="0"  name=hazardousflag visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="0" color="33554432" x="19936" y="8" height="76" width="1399" format="[general]" html.valueishtml="0"  name=partsizedescription visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=41 alignment="0" tabsequence=32766 border="0" color="33554432" x="21344" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=primarybuyer visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=42 alignment="0" tabsequence=32766 border="0" color="33554432" x="22066" y="8" height="76" width="1399" format="[general]" html.valueishtml="0"  name=apglaccount visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=44 alignment="1" tabsequence=32766 border="0" color="33554432" x="23474" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyonhand visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=45 alignment="1" tabsequence=32766 border="0" color="33554432" x="23813" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=minonhand visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=46 alignment="1" tabsequence=32766 border="0" color="33554432" x="24151" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=maxonhand visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="0" color="33554432" x="24489" y="8" height="76" width="485" format="[general]" html.valueishtml="0"  name=defaultvendorcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=48 alignment="1" tabsequence=32766 border="0" color="33554432" x="24983" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=defaultblanketponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

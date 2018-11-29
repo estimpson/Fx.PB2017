@@ -1,0 +1,19 @@
+﻿$PBExportHeader$d_dwproperty_srvcal.srd
+$PBExportComments$PFC DataWindow Property - calendar
+release 5;
+datawindow(units=0 timer_interval=0 color=80263328 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=56 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=char(1) updatewhereclause=no name=register dbname="register" initial="N" values="	Y/	N" )
+ column=(type=char(40) updatewhereclause=no name=columnname dbname="columnname" )
+ column=(type=number updatewhereclause=no name=style dbname="style" values="NONE	1/DDLB	2/DDLB  WArrow	3/" )
+ )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="9" y="4" height="60" width="695" format="[general]"  name=columnname edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="718" y="4" height="60" width="64" format="[general]"  name=register checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="786" y="4" height="56" width="425" format="[general]"  name=style ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=header alignment="2" text="Column"border="0" color="0" x="0" y="0" height="52" width="608"  name=columnname_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Register"border="0" color="0" x="635" y="0" height="52" width="233"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+text(band=header alignment="2" text="Style"border="0" color="0" x="887" y="0" height="52" width="224"  name=style_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

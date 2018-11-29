@@ -1,0 +1,165 @@
+﻿$PBExportHeader$dw_smart_blanket_po_detail_entry.srd
+$PBExportComments$blanket po entry detail dw
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=72 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=datetime update=yes updatewhereclause=yes key=yes name=date_due dbname="po_detail.date_due" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="po_detail.quantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=received dbname="po_detail.received" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=balance dbname="po_detail.balance" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_of_measure dbname="po_detail.unit_of_measure" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="po_detail.alternate_price" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=terms dbname="po_detail.terms" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=ship_via dbname="po_detail.ship_via" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=po_number dbname="po_detail.po_number" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=description dbname="po_detail.description" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=requisition_number dbname="po_detail.requisition_number" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="po_detail.status" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=row_id dbname="po_detail.row_id" )
+ column=(type=long update=yes updatewhereclause=yes name=week_no dbname="po_detail.week_no" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=account_code dbname="po_detail.account_code" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_qty dbname="po_detail.standard_qty" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="po_detail.plant" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="po_detail.printed" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=deleted dbname="po_detail.deleted" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="po_detail.type" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=vendor_code dbname="po_detail.vendor_code" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ship_type dbname="po_detail.ship_type" )
+ column=(type=long update=yes updatewhereclause=yes name=release_no dbname="po_detail.release_no" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="po_detail.notes" )
+ column=(type=datetime updatewhereclause=yes name=last_recvd_date dbname="po_detail.last_recvd_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=last_recvd_amount dbname="po_detail.last_recvd_amount" )
+ column=(type=char(25) updatewhereclause=yes name=cross_reference_part dbname="po_detail.cross_reference_part" )
+ column=(type=decimal(6) updatewhereclause=yes name=active_release_cum dbname="po_detail.active_release_cum" )
+ column=(type=decimal(6) updatewhereclause=yes name=received_cum dbname="po_detail.received_cum" )
+ column=(type=char(1) updatewhereclause=yes name=invoice_status dbname="po_detail.invoice_status" )
+ column=(type=datetime updatewhereclause=yes name=invoice_date dbname="po_detail.invoice_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=invoice_qty dbname="po_detail.invoice_qty" )
+ column=(type=decimal(6) updatewhereclause=yes name=invoice_unit_price dbname="po_detail.invoice_unit_price" )
+ column=(type=char(25) updatewhereclause=yes name=ship_to_destination dbname="po_detail.ship_to_destination" )
+ column=(type=char(10) updatewhereclause=yes name=invoice_number dbname="po_detail.invoice_number" )
+ column=(type=long updatewhereclause=yes name=sales_order dbname="po_detail.sales_order" )
+ column=(type=long updatewhereclause=yes name=dropship_oe_row_id dbname="po_detail.dropship_oe_row_id" )
+ column=(type=long updatewhereclause=yes name=dropship_shipper dbname="po_detail.dropship_shipper" )
+ column=(type=char(1) updatewhereclause=yes name=price_unit dbname="po_detail.price_unit" )
+ column=(type=char(1) updatewhereclause=yes name=selected_for_print dbname="po_detail.selected_for_print" )
+ column=(type=char(1) updatewhereclause=yes name=release_type dbname="po_detail.release_type" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=taxable dbname="po_detail.taxable" values="Yes	Y/No	N/" )
+ column=(type=decimal(2) updatewhereclause=yes name=po_header_tax_rate dbname="po_header.tax_rate" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=dimension_qty_string dbname="po_detail.dimension_qty_string" )
+ column=(type=datetime update=yes updatewhereclause=yes name=po_detail_scheduled_time dbname="po_detail.scheduled_time" )
+ column=(type=long updatewhereclause=yes name=po_detail_requisition_id dbname="po_detail.requisition_id" )
+ column=(type=datetime update=yes updatewhereclause=yes name=po_detail_promise_date dbname="po_detail.promise_date" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=po_detail_other_charge dbname="po_detail.other_charge" )
+ retrieve="  SELECT po_detail.date_due,   
+         po_detail.quantity,   
+         po_detail.received,   
+         po_detail.balance,   
+         po_detail.unit_of_measure,   
+         po_detail.alternate_price,   
+         po_detail.terms,   
+         po_detail.ship_via,   
+         po_detail.part_number,   
+         po_detail.po_number,   
+         po_detail.description,   
+         po_detail.requisition_number,   
+         po_detail.status,   
+         po_detail.row_id,   
+         po_detail.week_no,   
+         po_detail.account_code,   
+         po_detail.standard_qty,   
+         po_detail.plant,   
+         po_detail.printed,   
+         po_detail.deleted,   
+         po_detail.type,   
+         po_detail.vendor_code,   
+         po_detail.ship_type,   
+         po_detail.release_no,   
+         po_detail.notes,   
+         po_detail.last_recvd_date,   
+         po_detail.last_recvd_amount,   
+         po_detail.cross_reference_part,   
+         po_detail.active_release_cum,   
+         po_detail.received_cum,   
+         po_detail.invoice_status,   
+         po_detail.invoice_date,   
+         po_detail.invoice_qty,   
+         po_detail.invoice_unit_price,   
+         po_detail.ship_to_destination,   
+         po_detail.invoice_number,   
+         po_detail.sales_order,   
+         po_detail.dropship_oe_row_id,   
+         po_detail.dropship_shipper,   
+         po_detail.price_unit,   
+         po_detail.selected_for_print,   
+         po_detail.release_type,   
+         po_detail.taxable,   
+         po_header.tax_rate,   
+         po_detail.dimension_qty_string,   
+         po_detail.scheduled_time,
+	 po_detail.requisition_id,
+	 po_detail.promise_date,
+	 po_Detail.other_Charge
+    FROM po_detail,   
+         po_header  
+   WHERE ( po_header.po_number = po_detail.po_number ) and  
+         ( po_detail.po_number = :iPO ) AND  
+         ( po_detail.part_number = :szPart )    
+" update="po_detail" updatewhere=0 updatekeyinplace=yes arguments=(("iPO", number),("szPart", string))  sort="date_due A release_no A " )
+text(band=header alignment="2" text="Date Due"border="6" color="0" x="9" y="4" height="64" width="283"  name=date_due_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="302" y="4" height="64" width="297"  name=quantity_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Received"border="6" color="0" x="608" y="4" height="64" width="329"  name=received_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Balance"border="6" color="0" x="946" y="4" height="64" width="302"  name=balance_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Price"border="6" color="0" x="1257" y="4" height="64" width="293"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="UM"border="6" color="0" x="1559" y="4" height="64" width="142"  name=unit_of_measure_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Taxable"border="6" color="0" x="1710" y="4" height="64" width="206"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Extended Price"border="6" color="0" x="1925" y="4" height="64" width="398"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Release No"border="6" color="0" x="2331" y="4" height="64" width="283"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Scheduled Time"border="6" color="0" x="2624" y="4" height="64" width="366"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Promise Date"border="6" color="0" x="2999" y="4" height="64" width="347"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Other Charge"border="6" color="0" x="3355" y="4" height="64" width="393"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Pt"border="6" color="0" x="3758" y="4" height="64" width="69"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Dt"border="6" color="0" x="3835" y="4" height="64" width="59"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Nt"border="6" color="0" x="3904" y="4" height="64" width="59"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Tx"border="6" color="0" x="3973" y="4" height="64" width="64"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Part Number"border="6" color="0" x="4046" y="4" height="64" width="471"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Terms"border="6" color="0" x="4526" y="4" height="64" width="293"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Po Number"border="6" color="0" x="4827" y="4" height="64" width="352"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Ship Via"border="6" color="0" x="5189" y="4" height="64" width="288"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Description"border="6" color="0" x="5486" y="4" height="64" width="416"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Tax Rate"border="6" color="0" x="5911" y="4" height="64" width="352"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Row Id"border="6" color="0" x="6272" y="4" height="64" width="265"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Week No"border="6" color="0" x="6546" y="4" height="64" width="306"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="0" text="Requisition Id"border="6" color="0" x="6862" y="4" height="64" width="411"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="64" width="283" format="[shortdate]"  name=date_due editmask.mask="mm/dd/yy" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="302" y="8" height="64" width="297" format="#######"  name=quantity editmask.mask="#######.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="0" x="608" y="8" height="64" width="329" format="#######"  name=received editmask.mask="#######.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="5" color="0" x="946" y="8" height="64" width="302" format="#######"  name=balance editmask.mask="#######.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="5" color="0" x="1262" y="8" height="64" width="288" format="#,##0.0000"  name=price edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="1559" y="8" height="64" width="142" format="[general]"  name=unit_of_measure dddw.name=d_dddw_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=43 alignment="0" tabsequence=60 border="5" color="0" x="1710" y="8" height="64" width="206" format="[general]"  name=taxable ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="1" expression="if (taxable = 'Y', quantity * price * ( 1 + po_header_tax_rate / 100 ),  ( quantity * price ) )"border="5" color="0" x="1925" y="8" height="64" width="398" format="##############.000000"  name=extended_price  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=24 alignment="0" tabsequence=70 border="5" color="0" x="2331" y="8" height="64" width="283" format="[general]"  name=release_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="bitmap (if(printed = 'Y', ~"printer.bmp~", ~"~"))"border="5" color="0" x="3758" y="8" height="64" width="69" format="[GENERAL]"  name=obj_10207795  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="bitmap (if(f_get_string_value(deleted) = 'Y', ~"delbox.bmp~", ~"~"))"border="5" color="0" x="3835" y="8" height="64" width="59" format="[GENERAL]"  name=obj_1229741  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="2" expression="bitmap ( if ( trim ( notes ) > ~"~", ~"noteyes.bmp~", ~"~" ) )"border="5" color="0" x="3904" y="8" height="64" width="59" format="[GENERAL]"  name=obj_24384893  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="bitmap( if( taxable = 'Y', ~"taxable.bmp~", ~"~") )"border="5" color="0" x="3973" y="8" height="64" width="64" format="[general]"  name=taxable_1  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0" x="4046" y="8" height="64" width="471" format="[general]"  name=part_number  tag="Part_Number" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="0" x="4526" y="8" height="64" width="293" format="[general]"  name=terms dddw.name=d_terms_dddw_grey_8 dddw.displaycolumn=description dddw.datacolumn=description dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="4827" y="8" height="64" width="352" format="[general]"  name=po_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="5189" y="8" height="64" width="288" format="[general]"  name=ship_via dddw.name=d_carrier_dddw_grey_8 dddw.displaycolumn=scac dddw.datacolumn=scac dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="5" color="0" x="5486" y="8" height="64" width="416" format="[general]"  name=description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=detail alignment="0" expression="if (taxable = 'Y',1, 0)"border="5" color="0" x="5911" y="8" height="64" width="352" format="[general]"  name=tax_rate  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="5" color="0" x="6272" y="8" height="64" width="265" format="[general]"  name=row_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="5" color="0" x="6546" y="8" height="64" width="306" format="[general]"  name=week_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="5" color="0" x="6862" y="8" height="64" width="411" format="[general]"  name=po_detail_requisition_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=46 alignment="0" tabsequence=80 border="5" color="0" x="2624" y="8" height="64" width="366" format="h:mm AM/PM"  name=po_detail_scheduled_time editmask.mask="hh:mm AM/PM" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=48 alignment="0" tabsequence=90 border="5" color="0" x="2999" y="8" height="64" width="347" format="mm/dd/yy"  name=po_detail_promise_date editmask.mask="mm/dd/yy" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=49 alignment="0" tabsequence=100 border="5" color="0" x="3360" y="8" height="64" width="389" format="#,##0.0000"  name=po_detail_other_charge edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=summary alignment="2" text="Total"border="0" color="0" x="1710" y="8" height="52" width="206"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  extended_price )  "border="0" color="0" x="1925" y="8" height="60" width="398" format="#############.000000"  name=total  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

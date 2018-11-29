@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_get_string_value.srf
+global type f_get_string_value from function_object
+end type
+
+forward prototypes
+global function string f_get_string_value (string szvalue)
+end prototypes
+
+global function string f_get_string_value (string szvalue);If IsNull(szValue) then
+	Return ""
+Else
+	Return szValue
+End If
+end function
+

@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_numeric_value.srf
+global type f_numeric_value from function_object
+end type
+
+forward prototypes
+global function decimal f_numeric_value (decimal nvalue)
+end prototypes
+
+global function decimal f_numeric_value (decimal nvalue);If IsNull(nValue) then
+	Return 0
+Else
+	Return nValue
+End If
+end function
+

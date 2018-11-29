@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_report_names.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=name dbname="report_library.name" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=report dbname="report_library.report" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"report_library~" ) COLUMN(NAME=~"report_library.name~") COLUMN(NAME=~"report_library.report~")WHERE(    EXP1 =~"report~"   OP =~"=~"    EXP2 =~":report~" ) ) ARG(NAME = ~"report~" TYPE = string) " update="report_library" updatewhere=1 updatekeyinplace=no arguments=(("report", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="52" width="713" format="[general]"  name=name edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="731" y="8" height="52" width="713" format="[general]"  name=report edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="6" color="0" x="9" y="8" height="52" width="713"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Report"border="6" color="0" x="731" y="8" height="52" width="713"  name=report_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,118 @@
+﻿$PBExportHeader$f_update_shipper_container.srf
+$PBExportComments$Update the package type info per shipper
+global type f_update_shipper_container from function_object
+end type
+
+forward prototypes
+global function boolean f_update_shipper_container (long ishipper, string szpackagetype, string szflag)
+end prototypes
+
+global function boolean f_update_shipper_container (long ishipper, string szpackagetype, string szflag);//************************************************************************
+//* Declaration
+//************************************************************************
+
+Integer 	nQty
+
+Decimal	nPackageWeight
+String	szPackageGroup	
+
+Boolean	bReturn
+Boolean	bNoCommit	= FALSE
+
+//************************************************************************
+//* Main Routine
+//************************************************************************
+
+If IsNull(szPackageType) then
+	Return TRUE
+End If
+
+If RightA(szFlag, 1) = '*' then
+	bNoCommit	= TRUE
+End If
+
+szFlag	= LeftA(szFlag, 1)
+
+SetNull(nQty)
+
+szPackageGroup	= LeftA(szPackageType, 3)
+
+Select shipper_container.quantity  
+  Into :nQty  
+  From shipper_container  
+ Where ( shipper_container.shipper 				= :iShipper ) AND  
+       ( shipper_container.container_type 	= :szPackageGroup )   ;
+
+If IsNull(nQty) then 			//Brand new package type for the shipper
+	If szFlag = "+" then			//Make sure only to process "ADD"
+		INSERT INTO shipper_container  
+         			( 	shipper,   
+           				container_type,   
+           				quantity )  
+		VALUES 		( 	:iShipper,   
+           				:szPackageGroup,   
+           				1 )  ;
+
+		If SQLCA.SQLCode = 0 then
+			If Not bNoCommit then
+				Commit;
+			End If
+			bReturn	= TRUE
+		Else
+			If Not bNoCommit then
+				Rollback;
+			End If
+			bReturn	= FALSE
+		End If
+	Else
+		bReturn	= FALSE
+	End If
+
+Else	
+	If szFlag = "+" then
+		nQty ++
+	Else
+		nQty --
+	End If
+
+	If nQty > 0 then
+
+	  	UPDATE shipper_container  
+	     SET  quantity = :nQty  
+	   WHERE ( shipper = :iShipper ) AND  
+	         ( container_type = :szPackageGroup )   ;
+	Else
+
+  		DELETE FROM shipper_container  		//Delete empty row
+   	WHERE ( shipper = :iShipper ) AND  
+      	   ( container_type = :szPackageGroup )   ;
+
+	End If
+
+	If SQLCA.SQLCode = 0 then
+		If Not bNoCommit then
+			Commit;
+		End If	
+			bReturn = TRUE
+	Else
+		If Not bNoCommit then
+			Rollback;
+		End If
+		bReturn = FALSE
+	End If
+
+End If
+
+If bReturn then
+	SELECT package_materials.weight  
+	  INTO :nPackageWeight  
+	  FROM package_materials  
+	 WHERE package_materials.code = :szPackageType;
+
+	nPackageWeight	= f_get_value(nPackageWeight)
+
+End If
+
+Return bReturn		
+end function
+

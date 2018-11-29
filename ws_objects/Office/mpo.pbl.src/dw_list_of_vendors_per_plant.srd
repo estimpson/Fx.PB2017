@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dw_list_of_vendors_per_plant.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=8 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=code dbname="po_header.vendor_code" )
+ column=(type=number updatewhereclause=yes name=flag dbname="po_header.flag" )
+ retrieve="SELECT po_header.vendor_code, po_header.flag FROM po_header WHERE ( po_header.plant = :szPlant ) AND ( po_header.status = 'A' ) " arguments=(("szPlant", string)) )
+text(band=header alignment="2" text="Vendor Code"border="0" color="0" x="9" y="8" height="64" width="343"  name=vendor_code_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Flag"border="0" color="0" x="448" y="8" height="64" width="165"  name=flag_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="343" format="[general]"  name=code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=detail alignment="0" expression="bitmap(If(flag = 1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="361" y="8" height="64" width="78" format="[GENERAL]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="448" y="8" height="64" width="165" format="[general]"  name=flag  tag="used in w_smart_po as BMP indicator" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

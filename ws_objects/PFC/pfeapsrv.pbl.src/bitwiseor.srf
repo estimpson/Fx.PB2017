@@ -1,0 +1,14 @@
+﻿$PBExportHeader$bitwiseor.srf
+global type bitwiseor from function_object
+end type
+
+forward prototypes
+global function long bitwiseor (long value1, long value2)
+end prototypes
+
+global function long bitwiseor (long value1, long value2);
+n_cst_numerical math
+return math.of_BitwiseOr (value1, value2)
+
+end function
+

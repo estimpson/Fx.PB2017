@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_at_serial_list.srd
+release 6;
+datawindow(units=2 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=yes )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="audit_trail.part" )
+ column=(type=long updatewhereclause=yes key=yes name=serial dbname="audit_trail.serial" )
+ column=(type=datetime updatewhereclause=yes key=yes name=date_stamp dbname="audit_trail.date_stamp" )
+ column=(type=char(10) updatewhereclause=yes name=workorder dbname="audit_trail.workorder" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"audit_trail~" ) COLUMN(NAME=~"audit_trail.part~") COLUMN(NAME=~"audit_trail.serial~") COLUMN(NAME=~"audit_trail.date_stamp~") COLUMN(NAME=~"audit_trail.workorder~")WHERE(    EXP1 =~"audit_trail.workorder~"   OP =~"=~"    EXP2 =~":arg_wono~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"audit_trail.workorder~"   OP =~"<>~"    EXP2 =~"''~" ) ) ARG(NAME = ~"arg_wono~" TYPE = string) " update="audit_trail" updatewhere=0 updatekeyinplace=no arguments=(("arg_wono", string))  sort="part A serial A " )
+group(level=1 header.height=216 trailer.height=0 by=("part" ) header.color="536870912" trailer.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="6" color="0" x="33" y="25" height="166" width="1733" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="5" color="0" x="33" y="25" height="158" width="800" format="[general]"  name=serial edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="0" x="866" y="25" height="158" width="1158" format="[shortdate] [time]"  name=date_stamp edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

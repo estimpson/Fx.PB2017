@@ -1,0 +1,38 @@
+﻿$PBExportHeader$m_general.srm
+forward
+global type m_general from menu
+end type
+type m_test from menu within m_general
+end type
+type m_test from menu within m_general
+end type
+end forward
+
+global type m_general from menu
+m_test m_test
+end type
+global m_general m_general
+
+on m_general.create
+m_general=this
+this.m_test=create m_test
+this.Item[]={this.m_test}
+end on
+
+on m_general.destroy
+destroy(this.m_test)
+end on
+
+type m_test from menu within m_general
+end type
+
+on m_test.create
+this.Text="test"
+end on
+
+on m_test.destroy
+end on
+
+event clicked;ParentWindow.Post Event DYNAMIC ue_clicked_popup ( Text )
+end event
+

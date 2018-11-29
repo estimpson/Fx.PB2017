@@ -1,0 +1,26 @@
+﻿$PBExportHeader$d_ole_object_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="553648127"  height.autosize=yes)
+table(column=(type=char(255) update=yes updatewhereclause=yes name=id dbname="ole_objects.id" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=parent_id dbname="ole_objects.parent_id" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_stamp dbname="ole_objects.date_stamp" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=serial dbname="ole_objects.serial" )
+ retrieve="  SELECT ole_objects.id,
+			ole_objects.parent_id,
+			ole_objects.date_stamp,
+			ole_objects.serial   
+    FROM ole_objects  
+   WHERE ole_objects.parent_id = :as_parent_id   
+ORDER BY ole_objects.serial ASC   
+" update="ole_objects" updatewhere=0 updatekeyinplace=yes arguments=(("as_parent_id", string)) )
+text(band=header alignment="2" text="Date"border="0" color="0" x="366" y="4" height="64" width="137"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Document Description"border="0" color="0" x="805" y="4" height="64" width="654"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="366" y="4" height="64" width="421" format="[shortdate] "  name=date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="805" y="4" height="76" width="2505" format="[general]"  name=id height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="0" color="0" x="0" y="4" height="64" width="347"  name=serial  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Serial #"border="0" color="0" x="18" y="4" height="64" width="229"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

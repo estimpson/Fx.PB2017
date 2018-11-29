@@ -1,0 +1,6 @@
+﻿$PBExportHeader$st_touch_key_operator.srs
+global type st_touch_key_operator from structure
+    window calling_window
+    singlelineedit sle
+end type
+

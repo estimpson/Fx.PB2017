@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_carrier_dddw_grey_8.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(4) update=yes updatewhereclause=yes name=scac dbname="scac" )
+ column=(type=char(35) update=yes updatewhereclause=yes key=yes name=name dbname="name" )
+ retrieve="select	'' scac,
+			'' name
+union all
+SELECT	carrier.scac, 
+			carrier.name 
+FROM 		carrier 
+ORDER BY 1 ASC " update="carrier" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Scac"border="0" color="0" x="18" y="4" height="56" width="114"  name=scac_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="0" color="0" x="425" y="4" height="56" width="142"  name=name_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="709" y="4" height="64" width="288" format="[general]"  name=scac edit.limit=4 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="64" width="695" format="[general]"  name=name edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

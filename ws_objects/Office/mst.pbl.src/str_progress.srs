@@ -1,0 +1,8 @@
+﻿$PBExportHeader$str_progress.srs
+$PBExportComments$Used to pass parameters to w_progress
+global type str_progress from structure
+    window cancel_window
+    string cancel_event
+    string title
+end type
+

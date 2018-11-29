@@ -1,0 +1,70 @@
+﻿$PBExportHeader$d_router_part_machine.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=20 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_machine.part" )
+ column=(type=char(15) update=yes updatewhereclause=yes key=yes name=machine dbname="part_machine.machine" )
+ column=(type=long update=yes updatewhereclause=yes name=sequence dbname="part_machine.sequence" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=mfg_lot_size dbname="part_machine.mfg_lot_size" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=process_id dbname="part_machine.process_id" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=parts_per_cycle dbname="part_machine.parts_per_cycle" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=parts_per_hour dbname="part_machine.parts_per_hour" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=cycle_unit dbname="part_machine.cycle_unit" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=cycle_time dbname="part_machine.cycle_time" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=overlap_type dbname="part_machine.overlap_type" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=overlap_time dbname="part_machine.overlap_time" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=labor_code dbname="part_machine.labor_code" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=activity dbname="part_machine.activity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=setup_time dbname="part_machine.setup_time" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=crew_size dbname="part_machine.crew_size" )
+ retrieve="  SELECT part_machine.part,   
+         part_machine.machine,   
+         part_machine.sequence,   
+         part_machine.mfg_lot_size,   
+         part_machine.process_id,   
+         part_machine.parts_per_cycle,   
+         part_machine.parts_per_hour,   
+         part_machine.cycle_unit,   
+         part_machine.cycle_time,   
+         part_machine.overlap_type,   
+         part_machine.overlap_time,   
+         part_machine.labor_code,   
+         part_machine.activity,   
+         part_machine.setup_time,   
+         part_machine.crew_size  
+    FROM part_machine   
+   where part_machine.part = :a_s_part" update="part_machine" updatewhere=0 updatekeyinplace=yes arguments=(("a_s_part", string)) )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="52" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Machine"border="6" color="0" x="530" y="8" height="52" width="329"  name=machine_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Sequence"border="6" color="0" x="869" y="8" height="52" width="265"  name=sequence_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Mfg Lot Size"border="6" color="0" x="1143" y="8" height="52" width="334"  name=mfg_lot_size_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Process Id"border="6" color="0" x="1486" y="8" height="52" width="713"  name=process_id_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Parts Per Cycle"border="6" color="0" x="2208" y="8" height="52" width="421"  name=parts_per_cycle_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Parts Per Hour"border="6" color="0" x="2638" y="8" height="52" width="393"  name=parts_per_hour_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cycle Unit"border="6" color="0" x="3040" y="8" height="52" width="302"  name=cycle_unit_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cycle Time"border="6" color="0" x="3351" y="8" height="52" width="329"  name=cycle_time_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Overlap Type"border="6" color="0" x="3689" y="8" height="52" width="343"  name=overlap_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Overlap Time"border="6" color="0" x="4041" y="8" height="52" width="343"  name=overlap_time_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Labor Code"border="6" color="0" x="4393" y="8" height="52" width="713"  name=labor_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Activity"border="6" color="0" x="5115" y="8" height="52" width="713"  name=activity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Setup Time"border="6" color="0" x="5838" y="8" height="52" width="329"  name=setup_time_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Crew Size"border="6" color="0" x="6176" y="8" height="52" width="329"  name=crew_size_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="64" width="512" format="[general]"  name=part  tag="Part code " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="530" y="8" height="64" width="329" format="[general]"  name=machine  tag="Machine code " edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="869" y="8" height="64" width="265" format="[general]"  name=sequence  tag="Sequence " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="0" x="1143" y="8" height="76" width="334" format="[general]"  name=mfg_lot_size edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1486" y="8" height="76" width="713" format="[general]"  name=process_id edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2208" y="8" height="76" width="421" format="[general]"  name=parts_per_cycle edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="0" x="2638" y="8" height="76" width="393" format="[general]"  name=parts_per_hour edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="0" x="3040" y="8" height="76" width="302" format="[general]"  name=cycle_unit edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="0" x="3351" y="8" height="76" width="329" format="[general]"  name=cycle_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="0" tabsequence=100 border="0" color="0" x="3689" y="8" height="76" width="343" format="[general]"  name=overlap_type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=11 alignment="1" tabsequence=110 border="0" color="0" x="4041" y="8" height="76" width="343" format="[general]"  name=overlap_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=12 alignment="0" tabsequence=120 border="0" color="0" x="4393" y="8" height="76" width="713" format="[general]"  name=labor_code edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=130 border="0" color="0" x="5115" y="8" height="76" width="713" format="[general]"  name=activity edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="1" tabsequence=140 border="0" color="0" x="5838" y="8" height="76" width="329" format="[general]"  name=setup_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="1" tabsequence=150 border="0" color="0" x="6176" y="8" height="76" width="329" format="[general]"  name=crew_size edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

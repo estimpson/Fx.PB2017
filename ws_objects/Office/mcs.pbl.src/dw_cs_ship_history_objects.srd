@@ -1,0 +1,53 @@
+﻿$PBExportHeader$dw_cs_ship_history_objects.srd
+$PBExportComments$mcs
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="audit_trail.serial" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="audit_trail.quantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="audit_trail.unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=std_quantity dbname="audit_trail.std_quantity" )
+ column=(type=decimal(0) updatewhereclause=yes name=parent_serial dbname="audit_trail.parent_serial" )
+ column=(type=char(20) updatewhereclause=yes name=shipper dbname="audit_trail.shipper" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="audit_trail.type" )
+ column=(type=char(20) updatewhereclause=yes name=package_type dbname="audit_trail.package_type" )
+ column=(type=decimal(6) updatewhereclause=yes name=weight dbname="audit_trail.weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=tare_weight dbname="audit_trail.tare_weight" )
+ column=(type=char(50) updatewhereclause=yes name=custom1 dbname="audit_trail.custom1" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="audit_trail.suffix" )
+ column=(type=char(20) updatewhereclause=yes name=lot dbname="audit_trail.lot" )
+ procedure="  SELECT audit_trail.serial,   
+         audit_trail.quantity,   
+         audit_trail.unit,   
+         audit_trail.std_quantity,   
+         audit_trail.parent_serial,   
+         audit_trail.shipper,   
+         audit_trail.type,   
+         audit_trail.package_type,   
+         audit_trail.weight,   
+         audit_trail.tare_weight,   
+         audit_trail.custom1,   
+         audit_trail.suffix,
+	 audit_trail.lot
+    FROM audit_trail  
+   WHERE audit_trail.shipper = :sShipper AND  
+         audit_trail.part + ltrim(isnull(convert(varchar(10),audit_trail.suffix),'')) = :as_part   
+ORDER BY audit_trail.serial ASC   
+" arguments=(("sShipper", string),("as_part", string))  sort="serial A " )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="430" y="8" height="56" width="357"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Serial"border="6" color="0" x="9" y="8" height="56" width="411"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="UM"border="6" color="0" x="795" y="8" height="56" width="119"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Std Qty"border="6" color="0" x="923" y="8" height="56" width="302"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="430" y="8" height="56" width="357" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="795" y="8" height="56" width="119" format="[general]"  name=unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="923" y="8" height="56" width="302" format="[general]"  name=std_quantity edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="56" width="411" format="[general]"  name=serial edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression="bitmap (if(type = ~"S~", ~"pallet.bmp~", ~"box.bmp~"))"border="0" color="0" x="1765" y="8" height="56" width="64" format="[GENERAL]"  name=obj_174519190  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="1234" y="8" height="56" width="521" format="[general]"  name=weight edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=13 alignment="0" tabsequence=0 border="0" color="0" x="1842" y="8" height="56" width="631"  name=lot  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Weight"border="6" color="0" x="1234" y="8" height="56" width="521"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Lot"border="6" color="0" x="1838" y="8" height="56" width="635"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,49 @@
+﻿$PBExportHeader$d_kanban_toppartactivitylist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=id dbname="MES_TopPartActivities.ID" )
+ column=(type=char(25) updatewhereclause=yes name=toppart dbname="MES_TopPartActivities.TopPart" )
+ column=(type=char(25) updatewhereclause=yes name=childpart dbname="MES_TopPartActivities.ChildPart" )
+ column=(type=char(100) updatewhereclause=yes name=childpartdescription dbname="MES_TopPartActivities.ChildPartDescription" )
+ column=(type=char(8000) updatewhereclause=no name=bom dbname="MES_TopPartActivities.BOM" )
+ column=(type=char(25) updatewhereclause=yes name=activitycode dbname="MES_TopPartActivities.ActivityCode" )
+ column=(type=long updatewhereclause=yes name=bomlevel dbname="MES_TopPartActivities.BOMLevel" )
+ column=(type=long updatewhereclause=yes name=sequence dbname="MES_TopPartActivities.Sequence" )
+ retrieve="
+select
+	mtpa.ID
+,	mtpa.TopPart
+,	mtpa.ChildPart
+,	mtpa.ChildPartDescription
+,	mtpa.BOM
+,	mtpa.ActivityCode
+,	mtpa.BOMLevel
+,	mtpa.Sequencefrom
+	dbo.MES_TopPartActivities mtpa
+where
+	mtpa.TopPart = coalesce(nullif(:TopPart, ''), mtpa.TopPart)
+order by
+	mtpa.TopPart
+,	mtpa.Sequence
+" arguments=(("TopPart", string)) )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1129" y="8" height="76" width="887" format="[general]" html.valueishtml="0"  name=childpartdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="1111" format="[general]" html.valueishtml="0"  name=bom visible="1" edit.limit=8000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2025" y="8" height="76" width="590" format="[general]" html.valueishtml="0"  name=activitycode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bom" border="6" color="33554432" x="9" y="8" height="76" width="1111" html.valueishtml="0"  name=bom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part description" border="6" color="33554432" x="1129" y="8" height="76" width="887" html.valueishtml="0"  name=childpartdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Activity code" border="6" color="33554432" x="2025" y="8" height="76" width="590" html.valueishtml="0"  name=activitycode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

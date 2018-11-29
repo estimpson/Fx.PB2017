@@ -1,0 +1,58 @@
+﻿$PBExportHeader$d_report_properties.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=type dbname="type" )
+ column=(type=char(255) updatewhereclause=yes name=object_name dbname="object_name" )
+ column=(type=char(255) updatewhereclause=yes name=library_name dbname="library_name" )
+ column=(type=char(1) updatewhereclause=yes name=preview dbname="preview" )
+ column=(type=char(1) updatewhereclause=yes name=print_setup dbname="print_setup" )
+ column=(type=char(255) updatewhereclause=yes name=printer dbname="printer" )
+ column=(type=real updatewhereclause=yes name=copies dbname="copies" )
+ column=(type=char(50) updatewhereclause=yes name=xlabelformat dbname="xlabelformat" )
+ column=(type=char(8) updatewhereclause=yes name=datasource dbname="datasource_name" )
+ column=(type=char(50) updatewhereclause=yes name=datasource_library_name dbname="library_name" )
+ column=(type=char(50) updatewhereclause=yes name=datasource_dw_name dbname="dw_name" )
+ retrieve="SELECT	report_library.type,   
+		report_library.object_name,   
+		report_library.library_name,   
+		report_library.preview,   
+		report_library.print_setup,   
+		report_library.printer,   
+    	report_library.copies,   
+		xreport_library.xlabelformat,   
+		xreport_datasource.datasource_name,   
+		xreport_datasource.library_name,   
+		xreport_datasource.dw_name  
+  FROM	report_library
+		left outer join xreport_library on report_library.name = xreport_library.name
+		left outer join xreport_datasource on xreport_library.datasource = xreport_datasource.datasource_name
+ WHERE	report_library.name = :name AND  
+		report_library.report = :report
+" arguments=(("name", string),("report", string)) )
+text(band=header alignment="2" text="Type"border="6" color="0" x="9" y="8" height="52" width="128"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Object Name"border="6" color="0" x="146" y="8" height="52" width="576"  name=object_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Library Name"border="6" color="0" x="731" y="8" height="52" width="448"  name=library_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Preview"border="6" color="0" x="1189" y="8" height="52" width="201"  name=preview_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Print Setup"border="6" color="0" x="1399" y="8" height="52" width="297"  name=print_setup_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Printer"border="6" color="0" x="1705" y="8" height="52" width="361"  name=printer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Copies"border="6" color="0" x="2075" y="8" height="52" width="219"  name=copies_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Xlabelformat"border="6" color="0" x="2304" y="8" height="52" width="933"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Datasource"border="6" color="0" x="3246" y="8" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Datasource Library Name"border="6" color="0" x="3557" y="8" height="52" width="1056"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Datasource Dw Name"border="6" color="0" x="4622" y="8" height="52" width="718"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="52" width="128" format="[general]"  name=type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="146" y="8" height="52" width="576" format="[general]"  name=object_name edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="731" y="8" height="52" width="448" format="[general]"  name=library_name edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1189" y="8" height="52" width="201" format="[general]"  name=preview edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1399" y="8" height="52" width="297" format="[general]"  name=print_setup edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1705" y="8" height="52" width="361" format="[general]"  name=printer edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="2075" y="8" height="52" width="219" format="[general]"  name=copies edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2304" y="8" height="52" width="933" format="[general]"  name=xlabelformat edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="3246" y="8" height="52" width="302" format="[general]"  name=datasource edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="3557" y="8" height="52" width="1056" format="[general]"  name=datasource_library_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="4622" y="8" height="52" width="718" format="[general]"  name=datasource_dw_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_extra_info.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=313 color="536870912")
+table(column=(type=char(10) name=location dbname="location" )
+ column=(type=char(5) name=operator_password dbname="operator_password" )
+ column=(type=char(10) name=operator_code dbname="operator_code" )
+ )
+text(band=detail color="0" alignment="2" border="0" x="302" y="4" height="65" width="426" text="Additional Info" font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256")
+text(band=detail color="8388608" alignment="1" border="0" x="19" y="100" height="65" width="275" text="Location:" name=location_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="5" alignment="0" color="33554432" height="77" tabsequence=10 width="677" x="330" y="100"  name=location format="[general]" dddw.name=d_external_location_list dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")
+text(band=detail color="8388608" alignment="1" border="0" x="19" y="196" height="65" width="275" text="Operator:" name=operator_password_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="5" alignment="0" color="33554432" height="77" tabsequence=20 width="257" x="330" y="196"  name=operator_password format="'*****';'*****'" edit.limit=5 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.password=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")
+column(band=detail id=3 border="5" alignment="0" color="8421504" height="77" tabsequence=32766 width="403" x="604" y="196"  name=operator_code format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215")

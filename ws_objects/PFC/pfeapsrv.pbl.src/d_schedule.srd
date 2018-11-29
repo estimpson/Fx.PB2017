@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_schedule.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=448 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=repeat dbname="repeat" values="Once	O/Every	E/" )
+ column=(type=number updatewhereclause=yes name=interval dbname="interval" )
+ column=(type=char(10) updatewhereclause=yes name=inverval_type dbname="inverval_type" values="Seconds	Seconds/Minutes	Minutes/Hours	Hours/Days	Days/Weeks	Weeks/Months	Months/" )
+ )
+data(null null null ) 
+groupbox(band=detail text="Run"border="5" color="33554432" x="18" y="8" height="400" width="1152"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="27" y="64" height="124" width="251" format="[general]"  name=repeat radiobuttons.columns=1 radiobuttons.scale=no radiobuttons.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="293" y="128" height="64" width="247" format="[general]"  name=interval edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="622" y="108" height="268" width="535" format="[general]"  name=inverval_type radiobuttons.columns=2 radiobuttons.scale=yes radiobuttons.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

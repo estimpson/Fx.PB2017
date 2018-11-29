@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_vendor_list_for_drop_ship.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=73 color="536870912")
+table(column=(type=char(10) update=yes name=code dbname="vendor.code" )
+ column=(type=char(35) update=yes name=name dbname="vendor.name" )
+ retrieve="SELECT vendor.code, vendor.name FROM vendor, part_vendor WHERE ( vendor.code = part_vendor.vendor ) and ( ( part_vendor.part = :szPart ) ) ORDER BY vendor.code ASC, vendor.name ASC " arguments=(("szPart", string)) )
+text(band=header color="0" alignment="2" border="0" x="5" y="4" height="65" width="238" text="Code" name=code_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="2" border="0" x="247" y="4" height="65" width="695" text="Name" name=name_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="380" x="5" y="4"  name=code format="[general]" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="897" x="403" y="4"  name=name format="[general]" edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

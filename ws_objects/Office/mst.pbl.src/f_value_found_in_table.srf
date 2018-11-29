@@ -1,0 +1,66 @@
+﻿$PBExportHeader$f_value_found_in_table.srf
+$PBExportComments$Check whether the value is found in table
+global type f_value_found_in_table from function_object
+end type
+
+forward prototypes
+global function boolean f_value_found_in_table (st_generic_structure astr_checklist[], long al_value)
+end prototypes
+
+global function boolean f_value_found_in_table (st_generic_structure astr_checklist[], long al_value);/*
+Description	:To check whether the value (long) exist in the table.
+Author		:Jim Wu
+Date			:01/30/96
+Modification:
+*/
+
+/* Declaration */
+String	ls_SQLStatement, &
+			ls_TableName, &
+			ls_ColumnName
+
+Long		ll_CheckVal, &
+			ll_Total, &
+			ll_Count
+
+Boolean	lb_ValueFound
+
+/* Initialization */
+
+lb_ValueFound	= FALSE
+ll_Total			= UpperBound(astr_CheckList)
+ll_Count			= 1
+
+/* Main Process */
+
+Do while (ll_Count <= ll_Total) AND (Not lb_ValueFound)
+
+	ls_TableName		= astr_CheckList[ll_Count].value1
+	ls_ColumnName		= astr_CheckList[ll_Count].value2
+
+	ls_SQLStatement	= "SELECT " + ls_ColumnName + &
+						" FROM  " + ls_TableName  + &
+						" WHERE " + ls_ColumnName + " = ?"
+
+	PREPARE 	SQLSA FROM :ls_SQLStatement;
+	DESCRIBE SQLSA INTO SQLDA ;
+
+	ll_CheckVal	= 0
+	DECLARE curSQLCheck DYNAMIC CURSOR FOR SQLSA ;
+	SetDynamicParm(SQLDA, 1, al_Value)
+
+	OPEN DYNAMIC curSQLCheck USING DESCRIPTOR SQLDA ;
+	FETCH curSQLCheck USING DESCRIPTOR SQLDA ;
+
+	ll_CheckVal	=	GetDynamicNumber(SQLDA, 1)
+
+	CLOSE curSQLCheck ;
+
+	lb_ValueFound	=  (ll_CheckVal > 0)
+	ll_Count ++
+
+Loop
+
+Return lb_ValueFound
+end function
+

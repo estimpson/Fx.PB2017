@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_contact_entry.srs
+global type str_contact_entry from structure
+	string		customer
+	string		vendor
+	string		destination
+end type
+

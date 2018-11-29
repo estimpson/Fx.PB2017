@@ -1,0 +1,364 @@
+﻿$PBExportHeader$m_po_inquiry.srm
+forward
+global type m_po_inquiry from m_inquiry_ancestor
+end type
+type m_closerelease from menu within m_edit
+end type
+type m_edit from m_inquiry_ancestor`m_edit within m_po_inquiry
+m_closerelease m_closerelease
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from m_inquiry_ancestor`m_help within m_po_inquiry
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_po_inquiry from m_inquiry_ancestor
+end type
+global m_po_inquiry m_po_inquiry
+
+on m_po_inquiry.create
+m_po_inquiry=this
+call super::create
+end on
+
+on m_po_inquiry.destroy
+call super::destroy
+end on
+
+type m_file from m_inquiry_ancestor`m_file within m_po_inquiry
+end type
+
+on m_file.create
+call super::create
+end on
+
+on m_file.destroy
+call super::destroy
+end on
+
+type m_print from m_inquiry_ancestor`m_print within m_file
+end type
+
+on m_print.create
+call super::create
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_-0 from m_inquiry_ancestor`m_-0 within m_file
+end type
+
+on m_-0.create
+call super::create
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_close from m_inquiry_ancestor`m_close within m_file
+end type
+
+on m_close.create
+call super::create
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from m_inquiry_ancestor`m_edit within m_po_inquiry
+m_closerelease m_closerelease
+end type
+
+on m_edit.create
+call super::create
+this.m_closerelease=create m_closerelease
+this.Item[UpperBound(this.Item)+1]=this.m_closerelease
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_closerelease)
+end on
+
+type m_addlocationmachine from m_inquiry_ancestor`m_addlocationmachine within m_edit
+end type
+
+on m_addlocationmachine.create
+call super::create
+end on
+
+on m_addlocationmachine.destroy
+call super::destroy
+end on
+
+type m_deletelocationmachine from m_inquiry_ancestor`m_deletelocationmachine within m_edit
+end type
+
+on m_deletelocationmachine.create
+call super::create
+end on
+
+on m_deletelocationmachine.destroy
+call super::destroy
+end on
+
+type m_-1 from m_inquiry_ancestor`m_-1 within m_edit
+end type
+
+on m_-1.create
+call super::create
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_sort from m_inquiry_ancestor`m_sort within m_edit
+end type
+
+on m_sort.create
+call super::create
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_filter from m_inquiry_ancestor`m_filter within m_edit
+end type
+
+on m_filter.create
+call super::create
+end on
+
+on m_filter.destroy
+call super::destroy
+end on
+
+type m_cancel from m_inquiry_ancestor`m_cancel within m_edit
+end type
+
+on m_cancel.create
+call super::create
+end on
+
+on m_cancel.destroy
+call super::destroy
+end on
+
+type m_reset from m_inquiry_ancestor`m_reset within m_edit
+end type
+
+on m_reset.create
+call super::create
+end on
+
+on m_reset.destroy
+call super::destroy
+end on
+
+type m_- from m_inquiry_ancestor`m_- within m_edit
+end type
+
+on m_-.create
+call super::create
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_custom1 from m_inquiry_ancestor`m_custom1 within m_edit
+end type
+
+on m_custom1.create
+call super::create
+end on
+
+on m_custom1.destroy
+call super::destroy
+end on
+
+type m_dummy2 from m_inquiry_ancestor`m_dummy2 within m_edit
+end type
+
+on m_dummy2.create
+call super::create
+end on
+
+on m_dummy2.destroy
+call super::destroy
+end on
+
+type m_dummy3 from m_inquiry_ancestor`m_dummy3 within m_edit
+end type
+
+on m_dummy3.create
+call super::create
+end on
+
+on m_dummy3.destroy
+call super::destroy
+end on
+
+type m_window from m_inquiry_ancestor`m_window within m_po_inquiry
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_tile from m_inquiry_ancestor`m_tile within m_window
+end type
+
+on m_tile.create
+call super::create
+this.microhelp = "Tile Windows..."
+end on
+
+event m_tile::clicked;call super::clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from m_inquiry_ancestor`m_layer within m_window
+end type
+
+on m_layer.create
+call super::create
+this.microhelp = "Layer Windows..."
+end on
+
+event m_layer::clicked;call super::clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from m_inquiry_ancestor`m_cascade within m_window
+end type
+
+on m_cascade.create
+call super::create
+this.microhelp = "Cascade Windows..."
+end on
+
+event m_cascade::clicked;call super::clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from m_inquiry_ancestor`m__ within m_window
+end type
+
+on m__.create
+call super::create
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from m_inquiry_ancestor`m_arrangeicons within m_window
+end type
+
+on m_arrangeicons.create
+call super::create
+this.microhelp = "Arrange Icons..."
+end on
+
+event m_arrangeicons::clicked;call super::clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from m_inquiry_ancestor`m_help within m_po_inquiry
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_closerelease from menu within m_edit
+end type
+
+event clicked;ParentWindow.triggerevent ( 'ue_closereleases')
+end event
+
+on m_closerelease.create
+call super::create
+this.text = "&Close"
+this.toolbaritemname = "Custom089!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 11
+end on
+
+on m_closerelease.destroy
+call super::destroy
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 5 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays Help Contents..."
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright..."
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

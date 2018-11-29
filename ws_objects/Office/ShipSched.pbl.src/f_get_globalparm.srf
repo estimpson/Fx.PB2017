@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_get_globalparm.srf
+global type f_get_globalparm from function_object
+end type
+
+forward prototypes
+global function integer f_get_globalparm (string category, string parmname)
+end prototypes
+
+global function integer f_get_globalparm (string category, string parmname);datastore lds_globalparms
+lds_globalparms = CREATE datastore
+
+lds_globalparms.dataobject = "d_globalparmvalue"
+lds_globalparms.settransobject(SQLCA)
+
+IF lds_globalparms.retrieve(category,parmname) < 0 THEN
+	Return -1
+ELSE
+   Return lds_globalparms.GetItemNumber(1,"parmvalue")
+END IF
+end function
+

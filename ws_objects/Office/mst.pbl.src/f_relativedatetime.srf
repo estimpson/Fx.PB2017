@@ -1,0 +1,57 @@
+﻿$PBExportHeader$f_relativedatetime.srf
+$PBExportComments$Calcualte the relative datetime
+global type f_relativedatetime from function_object
+end type
+
+forward prototypes
+global function datetime f_relativedatetime (date adt_date, time at_time, decimal ad_hours)
+end prototypes
+
+global function datetime f_relativedatetime (date adt_date, time at_time, decimal ad_hours);/*
+Description	:To calcualte the relative data time.
+Author		:Jim Wu
+Start Date	:01/23/96
+Modification:
+*/
+
+/* Declaration */
+
+Decimal	ld_Hours
+
+Integer	li_Days, &
+			li_Hr, &
+			li_Min, &
+			li_Second
+
+/* Initialication */
+
+
+/* Main Process */
+
+ld_Hours	= 	Hour(at_Time) + (Minute(at_Time) / 60) + &
+			 	(Second(at_Time) / 3600) + ad_Hours
+
+If ld_Hours >= 0 then
+	li_Days	= Truncate(ld_Hours/ 24, 0)
+	adt_Date	= RelativeDate(adt_Date, li_Days)
+
+	ld_Hours	= ld_Hours - (li_Days * 24)
+	at_Time	= RelativeTime(Time("00:00:00"), ld_Hours * 3600)
+Else
+	li_Days	= Truncate((-1) * ld_Hours / 24, 0) 
+	If ld_Hours	= (-24) * li_Days then
+		adt_Date	= RelativeDate(adt_Date, (-1) * li_Days)
+		at_Time	= Time("00:00:00")
+	Else
+		li_Days++
+		adt_Date	= RelativeDate(adt_Date, (-1) * li_Days)
+		ld_Hours	= (li_Days * 24) + ld_Hours
+		at_Time	= RelativeTime(Time("00:00:00"), ld_Hours * 3600)
+	End If
+End If
+
+Return DateTime(adt_Date, at_Time)
+
+
+end function
+

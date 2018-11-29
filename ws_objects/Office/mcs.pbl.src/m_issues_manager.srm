@@ -1,0 +1,411 @@
+﻿$PBExportHeader$m_issues_manager.srm
+forward
+global type m_issues_manager from menu
+end type
+type m_file from menu within m_issues_manager
+end type
+type m_new from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_issues_manager
+m_new m_new
+m_save m_save
+m_delete m_delete
+m_line11 m_line11
+m_close m_close
+end type
+type m_edit from menu within m_issues_manager
+end type
+type m_paste from menu within m_edit
+end type
+type m_adddocument from menu within m_edit
+end type
+type m_addfile from menu within m_edit
+end type
+type m_edit from menu within m_issues_manager
+m_paste m_paste
+m_adddocument m_adddocument
+m_addfile m_addfile
+end type
+type m_window from menu within m_issues_manager
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_issues_manager
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_issues_manager
+end type
+global type m_issues_manager from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_issues_manager from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_issues_manager m_issues_manager
+
+on m_issues_manager.create
+m_issues_manager=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_issues_manager.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_issues_manager
+m_new m_new
+m_save m_save
+m_delete m_delete
+m_line11 m_line11
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_new=create m_new
+this.m_save=create m_save
+this.m_delete=create m_delete
+this.m_line11=create m_line11
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_new
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_line11
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_new)
+destroy(this.m_save)
+destroy(this.m_delete)
+destroy(this.m_line11)
+destroy(this.m_close)
+end on
+
+type m_new from menu within m_file
+end type
+
+event clicked;w_issue_manager sheetWindow
+sheetWindow = ParentWindow
+sheetWindow.tab_1.Post Event ue_newissue ( )
+end event
+
+on m_new.create
+call super::create
+this.text = "&New"
+this.toolbaritemname = "SelectScript!"
+this.toolbaritemtext = "New"
+this.toolbaritemorder = 4
+end on
+
+on m_new.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+call super::create
+this.text = "&Save"
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 2
+end on
+
+event clicked;w_issue_manager sheetWindow
+sheetWindow = ParentWindow
+sheetWindow.tab_1.Post Event ue_save ( )
+end event
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;w_issue_manager sheetWindow
+sheetWindow = ParentWindow
+sheetWindow.tab_1.tabpage_3.Post Event ue_delete ( )
+end event
+
+on m_delete.create
+call super::create
+this.text = "&Delete"
+this.toolbaritemname = "Custom094!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 3
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+call super::create
+this.text = "-"
+end on
+
+on m_line11.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;Close(ParentWindow)
+end event
+
+type m_edit from menu within m_issues_manager
+m_paste m_paste
+m_adddocument m_adddocument
+m_addfile m_addfile
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_paste=create m_paste
+this.m_adddocument=create m_adddocument
+this.m_addfile=create m_addfile
+this.Item[UpperBound(this.Item)+1]=this.m_paste
+this.Item[UpperBound(this.Item)+1]=this.m_adddocument
+this.Item[UpperBound(this.Item)+1]=this.m_addfile
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_paste)
+destroy(this.m_adddocument)
+destroy(this.m_addfile)
+end on
+
+type m_paste from menu within m_edit
+end type
+
+event clicked;w_issue_manager.tab_1.tabpage_3.Post Event ue_paste ( )
+end event
+
+on m_paste.create
+call super::create
+this.text = "&Paste"
+this.toolbaritemname = "Paste!"
+this.toolbaritemtext = "Paste"
+this.toolbaritemorder = 4
+end on
+
+on m_paste.destroy
+call super::destroy
+end on
+
+type m_adddocument from menu within m_edit
+end type
+
+event clicked;w_issue_manager.tab_1.tabpage_3.Post Event ue_add_document ( )
+end event
+
+on m_adddocument.create
+call super::create
+this.text = "Add &Document"
+this.toolbaritemname = "Ole5!"
+this.toolbaritemtext = "Add Doc"
+this.toolbaritemorder = 5
+end on
+
+on m_adddocument.destroy
+call super::destroy
+end on
+
+type m_addfile from menu within m_edit
+end type
+
+event clicked;w_issue_manager.tab_1.tabpage_3.Post Event ue_add_file ( )
+end event
+
+on m_addfile.create
+call super::create
+this.text = "Add &File"
+this.toolbaritemname = "Custom050!"
+this.toolbaritemtext = "Add File"
+this.toolbaritemorder = 6
+end on
+
+on m_addfile.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_issues_manager
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Tile!)
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Layer!)
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Cascade!)
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Icons!)
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_issues_manager
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

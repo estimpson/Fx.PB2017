@@ -1,0 +1,46 @@
+﻿$PBExportHeader$dw_destinations_per_scheduler.srd
+$PBExportComments$List of destinations per scheduler
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=destination dbname="destination.destination" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="destination.name" )
+ column=(type=long update=yes updatewhereclause=yes name=flag dbname="destination.flag" )
+ column=(type=char(10) updatewhereclause=yes name=customer dbname="destination.customer" )
+ column=(type=char(10) updatewhereclause=yes name=vendor dbname="destination.vendor" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="destination.plant" )
+ column=(type=char(1) updatewhereclause=yes name=status_type dbname="customer_service_status.status_type" )
+ column=(type=char(20) updatewhereclause=yes name=cs_status dbname="destination.cs_status" )
+ retrieve="  SELECT destination.destination,   
+         destination.name,   
+         destination.flag,   
+         destination.customer,   
+         destination.vendor,   
+         destination.plant,
+			customer_service_status.status_type,
+			cs_status  
+    FROM destination, customer_service_status   
+   WHERE destination.scheduler = :szScheduler and   
+			( isnull(status_type,'') <> 'C' and
+			destination.cs_status = customer_service_status.status_name )" update="destination" updatewhere=0 updatekeyinplace=yes arguments=(("szScheduler", string))  sort="destination A " )
+text(band=header alignment="2" text="Destination"border="6" color="0" x="9" y="8" height="64" width="379"  name=destination_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="6" color="0" x="471" y="8" height="64" width="709"  name=name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Flag"border="6" color="0" x="1189" y="8" height="64" width="110"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Customer"border="6" color="0" x="1307" y="8" height="64" width="219"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Vendor"border="6" color="0" x="1536" y="8" height="64" width="219"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Plant"border="6" color="12632256" x="1765" y="8" height="64" width="219"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Customer Service Status Status Type"border="0" color="0" x="1993" y="4" height="76" width="594" visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="379" format="[general]"  name=destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression="bitmap ( If(flag = 1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="398" y="8" height="64" width="64" format="[GENERAL]"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="12632256" x="471" y="8" height="64" width="709" format="[general]"  name=name edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1189" y="8" height="64" width="110" format="[general]"  name=flag edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1307" y="8" height="64" width="219" format="[general]"  name=customer edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1536" y="8" height="64" width="219" format="[general]"  name=vendor edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1765" y="8" height="56" width="219" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1993" y="4" height="48" width="594" format="[general]"  name=status_type visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="0" color="0" x="2601" y="0" height="48" width="352"  name=cs_status visible="1~t0"  font.face="Arial" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="Destination Cs Status"border="0" color="0" x="2597" y="4" height="76" width="357" visible="1~t0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

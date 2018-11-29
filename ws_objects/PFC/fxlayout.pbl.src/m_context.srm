@@ -1,0 +1,31 @@
+﻿$PBExportHeader$m_context.srm
+forward
+global type m_context from menu
+end type
+end forward
+
+global type m_context from menu
+end type
+global m_context m_context
+
+type variables
+
+public n_cst_virtual_controller Controller
+
+end variables
+
+event clicked;
+if	not IsValid(controller) then return
+controller.event contextmenuclick(this.Text, this.Tag)
+
+end event
+
+on m_context.create
+m_context=this
+call super::create
+end on
+
+on m_context.destroy
+call super::destroy
+end on
+

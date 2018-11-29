@@ -1,0 +1,384 @@
+﻿$PBExportHeader$m_part_master_customer_matrix.srm
+forward
+global type m_part_master_customer_matrix from menu
+end type
+type m_file from menu within m_part_master_customer_matrix
+end type
+type m_addcustomer from menu within m_file
+end type
+type m_deletecustomer from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_add from menu within m_file
+end type
+type m_deleteprice from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_part_master_customer_matrix
+m_addcustomer m_addcustomer
+m_deletecustomer m_deletecustomer
+m_save m_save
+m_add m_add
+m_deleteprice m_deleteprice
+m_line11 m_line11
+m_exit m_exit
+end type
+type m_edit from menu within m_part_master_customer_matrix
+end type
+type m_edit from menu within m_part_master_customer_matrix
+end type
+type m_window from menu within m_part_master_customer_matrix
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_part_master_customer_matrix
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_part_master_customer_matrix
+end type
+type m_help from menu within m_part_master_customer_matrix
+end type
+end forward
+
+global type m_part_master_customer_matrix from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_part_master_customer_matrix m_part_master_customer_matrix
+
+on m_part_master_customer_matrix.create
+m_part_master_customer_matrix=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_part_master_customer_matrix.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_part_master_customer_matrix
+m_addcustomer m_addcustomer
+m_deletecustomer m_deletecustomer
+m_save m_save
+m_add m_add
+m_deleteprice m_deleteprice
+m_line11 m_line11
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_addcustomer=create m_addcustomer
+this.m_deletecustomer=create m_deletecustomer
+this.m_save=create m_save
+this.m_add=create m_add
+this.m_deleteprice=create m_deleteprice
+this.m_line11=create m_line11
+this.m_exit=create m_exit
+this.Item[]={this.m_addcustomer, &
+this.m_deletecustomer, &
+this.m_save, &
+this.m_add, &
+this.m_deleteprice, &
+this.m_line11, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_addcustomer)
+destroy(this.m_deletecustomer)
+destroy(this.m_save)
+destroy(this.m_add)
+destroy(this.m_deleteprice)
+destroy(this.m_line11)
+destroy(this.m_exit)
+end on
+
+type m_addcustomer from menu within m_file
+end type
+
+on clicked;Long lRow
+
+w_part_master_customer_price_overlay.dw_1.SetFocus ( )
+
+w_part_master_customer_price_overlay.dw_1.InsertRow ( 0 )
+w_part_master_customer_price_overlay.dw_1.ScrollToRow ( 9999999 )
+lRow = w_part_master_customer_price_overlay.dw_1.GetRow ( )
+w_part_master_customer_price_overlay.dw_1.SetItem ( lRow, "part", w_part_master_customer_price_overlay.szPart )
+w_part_master_customer_price_overlay.dw_1.SetColumn ( 1 )
+
+end on
+
+on m_addcustomer.create
+this.Text="&Add Customer"
+this.Microhelp="Add Customer..."
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="Add Cust"
+this.ToolBarItemOrder=1
+end on
+
+type m_deletecustomer from menu within m_file
+end type
+
+on clicked;Long lRow
+
+lRow = w_part_master_customer_price_overlay.dw_1.GetRow ( )
+
+If lRow < 1 Then Return
+
+w_part_master_customer_price_overlay.dw_1.DeleteRow ( lRow )
+
+If w_part_master_customer_price_overlay.dw_1.Update ( ) = -1 Then
+	RollBack ;
+	Return
+End if
+
+Commit ;
+
+end on
+
+on m_deletecustomer.create
+this.Text="&Delete Customer"
+this.Microhelp="Delete Customer..."
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Del Cust"
+this.ToolBarItemOrder=2
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;If w_part_master_customer_price_overlay.dw_1.Update ( ) = -1 Then
+	RollBack ;
+	Return
+End if
+
+Commit ;
+
+If w_part_master_customer_price_overlay.dw_2.Update ( ) = -1 Then
+	RollBack ;
+	Return
+End if
+
+Commit ;
+end on
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save Contents of Window..."
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=3
+end on
+
+type m_add from menu within m_file
+end type
+
+on clicked;If w_part_master_customer_price_overlay.dw_1.RowCount ( ) < 1 Then Return
+
+String szCustomer
+
+Long lRow, lSeq
+
+w_part_master_customer_price_overlay.dw_2.SetFocus ( )
+
+w_part_master_customer_price_overlay.dw_2.ScrollToRow ( 9999999 )
+
+w_part_master_customer_price_overlay.dw_2.InsertRow ( 0 )
+w_part_master_customer_price_overlay.dw_2.ScrollToRow ( 9999999 )
+
+lRow = w_part_master_customer_price_overlay.dw_2.GetRow ( )
+
+szCustomer = w_part_master_customer_price_overlay.dw_1.GetItemString ( w_part_master_customer_price_overlay.dw_1.GetRow ( ), "customer" )
+
+w_part_master_customer_price_overlay.dw_2.SetItem ( lRow, "part", w_part_master_customer_price_overlay.szPart )
+w_part_master_customer_price_overlay.dw_2.SetItem ( lRow, "customer", szCustomer )
+
+w_part_master_customer_price_overlay.dw_2.SetColumn ( 1 )
+
+end on
+
+on m_add.create
+this.Text="Add &Price"
+this.Microhelp="Add Price..."
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="Add Price"
+this.ToolBarItemOrder=4
+end on
+
+type m_deleteprice from menu within m_file
+end type
+
+on clicked;Long lRow
+
+lRow = w_part_master_customer_price_overlay.dw_2.GetRow ( )
+
+If lRow < 1 Then Return
+
+w_part_master_customer_price_overlay.dw_2.DeleteRow ( lRow )
+
+If w_part_master_customer_price_overlay.dw_2.Update ( ) = -1 Then
+	RollBack ;
+	Return
+End if
+
+Commit ;
+
+end on
+
+on m_deleteprice.create
+this.Text="Delete P&rice"
+this.Microhelp="Delete Price..."
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Del Price"
+this.ToolBarItemOrder=5
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Close ( w_part_master_customer_price_overlay )
+gnv_App.of_GetFrame().ChangeMenu ( m_part_master )
+wChain.TriggerEvent ( "prime_toolbar" )
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit Vendor Pricing..."
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_part_master_customer_matrix
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_part_master_customer_matrix
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_line31, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_part_master_customer_matrix
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

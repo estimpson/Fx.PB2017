@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dw_calc_committed_qty.srd
+$PBExportComments$calc committed quantity in order detail
+release 4;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=149 color="536870912" )
+summary(height=73 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=decimal(6) name=shipper_detail_qty_required dbname="shipper_detail.qty_required" )
+ column=(type=number name=shipper_id dbname="shipper.id" )
+ retrieve="PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME=~"shipper~" ) TABLE(NAME=~"shipper_detail~" ) COLUMN(NAME=~"shipper_detail.qty_required~") COLUMN(NAME=~"shipper.id~") JOIN (LEFT=~"shipper.id~" OP =~"=~"RIGHT=~"shipper_detail.shipper~" )WHERE( EXP1 =~"( ( shipper_detail.order_no~" OP =~"=~" EXP2 =~":iOrder )~" LOGIC =~"and~" ) WHERE( EXP1 =~"(shipper.status~" OP =~"=~" EXP2 =~"'O'~" LOGIC =~"or~" ) WHERE( EXP1 =~"shipper.status~" OP =~"=~" EXP2 =~"'S')~" LOGIC =~"and~" ) WHERE( EXP1 =~"shipper_detail.part~" OP =~"=~" EXP2 =~":szPart )~" ) ) ARG(NAME = ~"iOrder~" TYPE = number) ARG(NAME = ~"szPart~" TYPE = string) " arguments=(("iOrder", number),("szPart", string)) )
+text(band=header alignment="0" text="Shipper Detail Qty Required"border="0" color="0" x="10" y="4" height="57" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Id"border="0" color="0" x="906" y="4" height="57" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="4" height="57" width="887" format="[general]"  name=shipper_detail_qty_required edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="906" y="0" height="57" width="887" format="[general]"  name=shipper_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="0" expression="sum(shipper_detail_qty_required for all)"border="0" color="0" x="10" y="4" height="57" width="887" format="[general]"  name=total_pack  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

@@ -1,0 +1,19 @@
+﻿$PBExportHeader$s_printdlgattrib.srs
+$PBExportComments$PFC Structure for Print dialog window
+global type s_printdlgattrib from structure
+	boolean		b_allpages
+	boolean		b_pagenums
+	boolean		b_selection
+	boolean		b_disablepagenums
+	boolean		b_disableselection
+	boolean		b_collate
+	long		l_copies
+	boolean		b_printtofile
+	boolean		b_disableprinttofile
+	boolean		b_hideprinttofile
+	long		l_frompage
+	long		l_topage
+	long		l_minpage
+	long		l_maxpage
+end type
+

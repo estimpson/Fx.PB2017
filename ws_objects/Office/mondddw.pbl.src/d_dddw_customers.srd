@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_dddw_customers.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127"  height.autosize=yes)
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=customer dbname="customer.customer" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="customer.name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"customer~" )  TABLE(NAME=~"customer_service_status~" ) COLUMN(NAME=~"customer.customer~") COLUMN(NAME=~"customer.name~")    JOIN (LEFT=~"customer.cs_status~"    OP =~"=~"RIGHT=~"customer_service_status.status_name~" )WHERE(    EXP1 =~"customer_service_status.status_type~"   OP =~"<>~"    EXP2 =~"'C'~" ) ) ORDER(NAME=~"customer.customer~" ASC=yes ) " update="customer" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Customer"border="6" color="37234728" x="9" y="8" height="52" width="411"  name=customer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Name"border="6" color="37234728" x="430" y="8" height="52" width="1326"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="8" height="60" width="411" format="[general]"  name=customer height.autosize=yes edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="430" y="8" height="60" width="1326" format="[general]"  name=name height.autosize=yes edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,47 @@
+﻿$PBExportHeader$d_buildpartlist_machineorder.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="part.part" )
+ column=(type=char(15) updatewhereclause=yes name=part_machine_machine dbname="part_machine.machine" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=description dbname="description" )
+ retrieve="select
+	p.part
+,	pm.machine
+,	description = p.name
+from
+	dbo.part p
+	join dbo.part_machine pm
+		on pm.part = p.part
+		and pm.sequence = 1
+where
+	p.type != 'O'
+order by
+	case
+		when pm.machine = :machineCode then 1
+		when pm.machine is not null then 2
+		else 3
+	end
+,	pm.machine
+,	part
+" arguments=(("machineCode", string)) )
+text(band=header alignment="0" text="Part code" border="0" color="33554432" x="9" y="8" height="64" width="576" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="0" color="33554432" x="1001" y="8" height="64" width="1381" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Machine code" border="0" color="33554432" x="594" y="8" height="64" width="398" html.valueishtml="0"  name=part_machine_machine_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1001" y="8" height="76" width="1381" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="594" y="8" height="76" width="398" format="[general]" html.valueishtml="0"  name=part_machine_machine visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

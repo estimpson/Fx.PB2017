@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_dddw_machine_gray_8.srd
+$PBExportComments$dropdown window for machine. Size 8 and grey background.
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=char(10) update=yes key=yes name=machine_no dbname="machine.machine_no" )
+ column=(type=char(35) update=yes name=mach_descp dbname="machine.mach_descp" )
+ retrieve="PBSELECT(TABLE(NAME=~"machine~") COLUMN(NAME=~"machine.machine_no~")COLUMN(NAME=~"machine.mach_descp~"))" update="machine" updatewhere=1 updatekeyinplace=no  sort="machine_no A " )
+text(band=header alignment="2" text="Machine No"border="0" color="0" x="5" y="4" height="65" width="316"  name=machine_no_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mach Descp"border="0" color="0" x="325" y="4" height="65" width="695"  name=mach_descp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="65" width="289" format="[general]"  name=machine_no edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="330" y="4" height="65" width="695" format="[general]"  name=mach_descp edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

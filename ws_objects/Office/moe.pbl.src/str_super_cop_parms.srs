@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_super_cop_parms.srs
+global type str_super_cop_parms from structure
+    string a_regen_all
+    decimal {0} a_order_no
+    integer a_row_id
+end type
+

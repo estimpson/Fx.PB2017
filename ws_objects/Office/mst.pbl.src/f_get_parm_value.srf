@@ -1,0 +1,152 @@
+﻿$PBExportHeader$f_get_parm_value.srf
+global type f_get_parm_value from function_object
+end type
+
+forward prototypes
+global function long f_get_parm_value (string s_column)
+end prototypes
+
+global function long f_get_parm_value (string s_column);DataWindow	dw_next
+
+w_nonvisible_base	l_w_parent
+
+Boolean		bGoodValue
+Integer 		iColumn, &
+		 		iSQLCount, &
+ 				iCount
+Long    		l_RtnValue, &
+				l_Dummy
+String   	szSQLSyntaxArray[10], &
+				szSyntax, &
+				szErrors
+
+iCount		= 1
+
+Open ( l_w_parent, "w_nonvisible_base" )
+
+l_w_parent.OpenUserObject ( dw_next, "DataWindow" )
+
+szSyntax = "SELECT " + s_Column + " FROM parameters"
+
+SQLCA.autocommit = True
+
+EXECUTE IMMEDIATE :szSyntax ;
+
+SQLCA.autocommit = False
+
+If SQLCA.SQLCode = 0 Then  //wf_valid_colname(szColName) then										
+
+	Choose Case s_Column
+
+		Case 	"next_serial"
+			szSQLSyntaxArray[1]	= "SELECT SERIAL FROM OBJECT WHERE SERIAL = " 
+			szSQLSyntaxArray[2]	= "SELECT SERIAL FROM AUDIT_TRAIL WHERE SERIAL = " 		
+			iSQLCount				= 2
+	
+		Case  "shipper"
+			szSQLSyntaxArray[1]	= "SELECT ID FROM SHIPPER WHERE ID = "
+			iSQLCount				= 1
+	
+		Case	"sales_order"
+			szSQLSyntaxArray[1]	= "SELECT ORDER_NO FROM ORDER_HEADER WHERE ORDER_NO = "
+			iSQLCount				= 1	
+	
+		Case "purchase_order"
+			szSQLSyntaxArray[1]	= "SELECT PO_NUMBER FROM PO_HEADER WHERE PO_NUMBER = "
+			iSQLCount				= 1	
+	
+		Case "next_invoice"
+			szSQLSyntaxArray[1]	= "SELECT INVOICE_NUMBER FROM SHIPPER WHERE INVOICE_NUMBER = "
+			iSQLCount				= 1	
+	
+		Case "bol_number"
+			szSQLSyntaxArray[1]	= "SELECT BOL_NUMBER FROM BILL_OF_LADING WHERE BOL_NUMBER = "
+			iSQLCount				= 1
+	
+		Case "next_db_change"
+			szSQLSyntaxArray[1]	= "SELECT CHANGE_NUMBER FROM DATABASE_CHANGES WHERE CHANGE_NUMBER = "
+			iSQLCount				= 1
+	
+	End Choose
+	
+	Do While (Not bGoodValue) AND (iCount <= 10)
+
+//		SELECT	:s_Column
+//		INTO		:l_RtnValue
+//		FROM		parameters ;
+		
+		szsyntax	= "SELECT " +  s_column + " FROM parameters" 
+		
+		DECLARE my_cursor DYNAMIC CURSOR FOR SQLSA ;
+		PREPARE SQLSA FROM :szsyntax ;
+		OPEN DYNAMIC my_cursor ;
+		FETCH my_cursor INTO :l_Rtnvalue ;
+		CLOSE my_cursor ;
+
+		l_RtnValue = f_get_value ( l_RtnValue )
+
+		Choose Case s_Column 
+
+			Case "next_serial"
+				Update parameters  
+				Set next_serial = :l_RtnValue + 1  ;
+
+			Case "purchase_order"
+				Update parameters  
+				Set purchase_order = :l_RtnValue + 1  ;
+
+			Case "shipper"	
+				Update parameters  
+				Set shipper = :l_RtnValue + 1  ;
+
+			Case "sales_order"	
+				Update parameters  
+				Set sales_order = :l_RtnValue + 1  ;
+
+			Case "next_issue"	
+				Update parameters  
+				Set next_issue  = :l_RtnValue + 1  ;
+
+			Case "next_invoice"
+				Update parameters  
+				Set next_invoice = :l_RtnValue + 1  ;
+
+			Case "bol_number"
+				Update parameters
+				Set bol_number	= :l_RtnValue + 1 	;
+
+			Case "next_db_change"
+				Update parameters
+				Set next_db_change = :l_RtnValue + 1 ;
+
+		End Choose
+
+		If SQLCA.SQLCode	= 0 then
+			Commit;
+			bGoodValue	= TRUE
+			iCount		= 1
+			Do While (iCount <= iSQLCount) AND bGoodValue
+				szSyntax	= szSQLSyntaxArray[iCount] + String(l_RtnValue)
+				dw_next.Create(SyntaxFromSQL(SQLCA, szSyntax, "", szErrors))
+				dw_next.SetTransObject(sqlca)
+				dw_next.Retrieve()
+				bGoodValue 	= (dw_next.RowCount() = 0)
+				iCount		= iCount + 1
+			Loop	
+		Else		
+			RollBack;		
+			l_RtnValue	= 0
+			iCount		= iCount + 1
+			bGoodValue	= (iCount >= 10)
+		End If
+
+	Loop
+
+End If
+l_w_parent.CloseUserObject ( dw_next )
+Close ( l_w_parent )
+Return l_RtnValue
+
+
+end function
+

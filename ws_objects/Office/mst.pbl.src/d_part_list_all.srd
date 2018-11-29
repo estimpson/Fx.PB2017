@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_part_list_all.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=73 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=137 color="536870912")
+table(column=(type=char(25) update=yes key=yes name=part dbname="part.part" )
+ column=(type=char(2) update=yes name=part_inventory_standard_unit dbname="part_inventory.standard_unit" )
+ retrieve="SELECT part.part, part_inventory.standard_unit FROM part, part_inventory WHERE ( part.part = part_inventory.part ) ORDER BY part.part ASC " update="part" updatewhere=0 updatekeyinplace=no )
+text(band=header color="8388608" alignment="2" border="0" x="1" y="4" height="65" width="915" text="Part Number" name=number_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="8388608" alignment="2" border="0" x="915" y="4" height="65" width="257" text="Std Unit" font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=1 border="0" alignment="0" color="0" height="129" tabsequence=32766 width="892" x="14" y="4"  name=part format="[general]" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-16" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="129" tabsequence=20 width="257" x="915" y="4"  name=part_inventory_standard_unit format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-16" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256")
+ 
+

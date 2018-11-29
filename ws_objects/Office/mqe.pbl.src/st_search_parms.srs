@@ -1,0 +1,6 @@
+﻿$PBExportHeader$st_search_parms.srs
+global type st_search_parms from structure
+    string szColumn
+    string szCriteria
+end type
+

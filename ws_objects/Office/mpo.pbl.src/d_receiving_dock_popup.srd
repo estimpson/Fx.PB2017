@@ -1,0 +1,185 @@
+﻿$PBExportHeader$d_receiving_dock_popup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=char(100) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(10) updatewhereclause=yes name=unit dbname="unit" )
+ column=(type=long updatewhereclause=yes name=quantity dbname="quantity" )
+ column=(type=long updatewhereclause=yes name=boxes dbname="boxes" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="location" )
+ column=(type=char(1) updatewhereclause=yes name=lot dbname="lot" )
+ column=(type=char(1) updatewhereclause=yes name=value1 dbname="value1" )
+ column=(type=char(1) updatewhereclause=yes name=value2 dbname="value2" )
+ column=(type=char(1) updatewhereclause=yes name=value3 dbname="value3" )
+ column=(type=char(1) updatewhereclause=yes name=value4 dbname="value4" )
+ column=(type=char(1) updatewhereclause=yes name=value5 dbname="value5" )
+ column=(type=char(1) updatewhereclause=yes name=value6 dbname="value6" )
+ column=(type=char(1) updatewhereclause=yes name=notes dbname="notes" )
+ column=(type=char(20) updatewhereclause=yes name=package_type dbname="package_type" )
+ column=(type=long updatewhereclause=yes name=row_id dbname="row_id" )
+ column=(type=char(1) updatewhereclause=yes name=deliver_to_operator dbname="deliver_to_operator" )
+ column=(type=char(15) updatewhereclause=yes name=label1 dbname="label1" )
+ column=(type=char(15) updatewhereclause=yes name=label2 dbname="label2" )
+ column=(type=char(15) updatewhereclause=yes name=label3 dbname="label3" )
+ column=(type=char(15) updatewhereclause=yes name=label4 dbname="label4" )
+ column=(type=char(15) updatewhereclause=yes name=label5 dbname="label5" )
+ column=(type=char(15) updatewhereclause=yes name=label6 dbname="label6" )
+ column=(type=char(1) updatewhereclause=yes name=drop_ship_part dbname="part_inventory.drop_ship_part" )
+ retrieve="select
+	pd.part_number
+,	name = coalesce(pd.description, p.name)
+,	unit = coalesce(pd.unit_of_measure,coalesce(pv.receiving_um,pi.standard_unit))
+,	quantity = 0
+,	boxes = 1
+,	location = pi.primary_location
+,	lot = ''
+,	value1 = ''
+,	value2 = ''
+,	value3 = ''
+,	value4 = ''
+,	value5 = ''
+,	value6 = ''
+,	notes = ''
+,	package_type = min(pp.code)
+,	row_id = null
+,	deliver_to_operator = ''
+,	label1 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 1
+		)
+	,	'Custom1'
+	)
+,	label2 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 2
+		)
+	,	'Custom1'
+	)
+,	label3 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 3
+		)
+	,	'Custom1'
+	)
+,	label4 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 4
+		)
+	,	'Custom1'
+	)
+,	label5 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 5
+		)
+	,	'Custom1'
+	)
+,	label6 = coalesce
+	(	(	select
+				label
+			from
+				user_definable_module_labels
+			where
+				module = 'RD'
+				and sequence = 6
+		)
+	,	'Custom1'
+	)
+,	pi.drop_ship_part
+from
+	dbo.po_detail pd
+	left join dbo.part p
+		on p.part = pd.part_number
+	left join dbo.part_vendor pv
+		on pv.part = pd.part_number
+		and pv.vendor = pd.vendor_code
+	left join dbo.part_inventory pi
+		on p.part = pi.part
+	left join dbo.part_packaging pp
+		on pp.part = pd.part_number
+where
+	pd.part_number in (:PartList)
+	and pd.po_number = :PONumber
+group by
+	pd.part_number
+,	pd.description
+,	p.name
+,	pv.receiving_um
+,	pi.standard_unit
+,	pi.primary_location
+,	pd.unit_of_measure
+,	pi.drop_ship_part
+" arguments=(("PONumber", number),("PartList", stringlist))  sort="part_number A " )
+text(band=background alignment="2" text="Name" border="6" color="0" x="416" y="8" height="52" width="731" html.valueishtml="0"  name=name_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Part Number" border="6" color="0" x="9" y="8" height="52" width="398" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Boxes" border="6" color="0" x="1157" y="8" height="52" width="229" html.valueishtml="0"  name=boxes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity" border="6" color="0" x="1394" y="8" height="52" width="288" html.valueishtml="0"  name=quantity_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unit" border="6" color="0" x="1691" y="8" height="52" width="270" html.valueishtml="0"  name=unit_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Package Type" border="6" color="0" x="1970" y="8" height="52" width="384" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Location" border="6" color="0" x="2363" y="8" height="52" width="320" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Lot" border="6" color="0" x="2693" y="8" height="52" width="681" html.valueishtml="0"  name=lot_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=18 alignment="0" tabsequence=32766 border="6" color="0" x="3383" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=label1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=19 alignment="0" tabsequence=32766 border="6" color="0" x="3634" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=label2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=20 alignment="0" tabsequence=32766 border="6" color="0" x="3886" y="8" height="52" width="251" format="[general]" html.valueishtml="0"  name=label3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=21 alignment="0" tabsequence=32766 border="6" color="0" x="4146" y="8" height="52" width="256" format="[general]" html.valueishtml="0"  name=label4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=22 alignment="0" tabsequence=32766 border="6" color="0" x="4411" y="8" height="52" width="265" format="[general]" html.valueishtml="0"  name=label5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=23 alignment="0" tabsequence=32766 border="6" color="0" x="4686" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=label6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes" border="6" color="0" x="4937" y="8" height="52" width="823" html.valueishtml="0"  name=notes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Deliver To Operator" border="6" color="0" x="5769" y="8" height="52" width="494" html.valueishtml="0"  name=deliver_to_operator_t visible="1~tif ( upper(if ( isnull ( f_Get_parameter_Value() ) , 'N', f_get_parameter_Value() )  )  <> ~"Y~", 0, 1 )"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="52" width="398" format="[general]" html.valueishtml="0"  name=part_number visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="416" y="8" height="52" width="654" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=10 border="5" color="0" x="1157" y="8" height="52" width="229" format="[general]" html.valueishtml="0"  name=boxes visible="1" editmask.spin=yes editmask.mask="000" editmask.spinrange="1~~999" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="5" color="0" x="1394" y="8" height="52" width="288" format="0.000000~t0.000000" html.valueishtml="0"  name=quantity visible="1" editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="1691" y="8" height="52" width="270" format="[general]" html.valueishtml="0"  name=unit visible="1" dddw.name=d_dddw_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=100 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="0" tabsequence=40 border="5" color="0" x="1970" y="8" height="52" width="384" format="[general]" html.valueishtml="0"  name=package_type visible="1" dddw.name=d_dddw_part_package_type dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=150 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="0" x="2363" y="8" height="52" width="320" format="[general]" html.valueishtml="0"  name=location visible="1" dddw.name=d_dddw_location dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="0" x="2693" y="8" height="52" width="681" format="[general]" html.valueishtml="0"  name=lot visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="5" color="0" x="3383" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=value1 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="5" color="0" x="3634" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=value2 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=90 border="5" color="0" x="3886" y="8" height="52" width="251" format="[general]" html.valueishtml="0"  name=value3 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=100 border="5" color="0" x="4146" y="8" height="52" width="256" format="[general]" html.valueishtml="0"  name=value4 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=12 alignment="0" tabsequence=110 border="5" color="0" x="4411" y="8" height="52" width="265" format="[general]" html.valueishtml="0"  name=value5 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=120 border="5" color="0" x="4686" y="8" height="52" width="242" format="[general]" html.valueishtml="0"  name=value6 visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=14 alignment="0" tabsequence=130 border="5" color="0" x="4937" y="8" height="52" width="823" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="5769" y="8" height="52" width="494" format="[general]" html.valueishtml="0"  name=deliver_to_operator visible="1~tif ( upper(if ( isnull ( f_Get_parameter_Value() ) , 'N', f_get_parameter_Value() )  )  <> ~"Y~", 0, 1 )" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="BITMAP (if (  ISNULL(row_id) , 'blank.bmp', 'pstart.bmp' ) )"border="0" color="0" x="1079" y="8" height="76" width="69" format="[general]" html.valueishtml="0"  name=release_flag visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=footer alignment="2" text="text" border="0" color="0" x="4937" y="548" height="52" width="823" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

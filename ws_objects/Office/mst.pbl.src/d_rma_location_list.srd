@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_rma_location_list.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=73 color="536870912")
+table(column=(type=char(10) update=yes key=yes name=code dbname="location.code" )
+ column=(type=char(30) update=yes name=name dbname="location.name" )
+ retrieve="PBSELECT(TABLE(NAME=~"location~" ) COLUMN(NAME=~"location.code~") COLUMN(NAME=~"location.name~")) ORDER(NAME=~"location.code~" ASC=yes ) " update="location" updatewhere=1 updatekeyinplace=no )
+text(band=header color="33554432" alignment="2" border="0" x="5" y="4" height="65" width="238" text="Location" name=code_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="33554432" alignment="2" border="0" x="247" y="4" height="65" width="604" text="Name" name=name_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="33554432" height="65" tabsequence=32766 width="453" x="5" y="4"  name=code format="[general]" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="33554432" height="65" tabsequence=32766 width="842" x="458" y="4"  name=name  tag="Description of the Location" format="[general]" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

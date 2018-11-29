@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dw_list_of_parts_per_commodity.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part.part" )
+ column=(type=number update=yes updatewhereclause=yes name=flag dbname="part.flag" )
+ retrieve="SELECT part.part, part.flag FROM part WHERE ( part.commodity = :szCommodity ) AND (part.class = 'P' OR part.class = 'N') " update="part" updatewhere=0 updatekeyinplace=yes arguments=(("szCommodity", string))  sort="number A  A " )
+text(band=header alignment="2" text="part"border="0" color="0" x="9" y="8" height="64" width="293"  name=number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Flag"border="0" color="0" x="393" y="8" height="64" width="73"  name=flag_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="64" width="293" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (if(flag=1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="311" y="8" height="64" width="73" format="[GENERAL]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="77897888" x="393" y="8" height="64" width="73" format="[general]"  name=flag edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

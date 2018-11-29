@@ -1,0 +1,10 @@
+﻿$PBExportHeader$dw_dd_location_list.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=201 color="536870912")
+table(column=(type=char(10) update=yes key=yes name=code dbname="location.code" )
+ retrieve="SELECT location.code FROM location " update="location" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=1 border="0" alignment="0" color="0" height="193" tabsequence=10 width="1148" x="10" y="4"  name=code format="[general]" dddw.name=dw_list_locations dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.limit=10 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.required=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-26" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256")

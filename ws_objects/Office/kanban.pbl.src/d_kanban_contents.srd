@@ -1,0 +1,60 @@
+﻿$PBExportHeader$d_kanban_contents.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes name=kanbannumber dbname="MES_KanbanContents.KanbanNumber" )
+ column=(type=long updatewhereclause=yes name=kanbanserial dbname="MES_KanbanContents.KanbanSerial" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="MES_KanbanContents.PartCode" )
+ column=(type=char(10) updatewhereclause=yes name=kanbanlocation dbname="MES_KanbanContents.KanbanLocation" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalquantity dbname="MES_KanbanContents.TotalQuantity" )
+ column=(type=long updatewhereclause=yes name=contentcount dbname="MES_KanbanContents.ContentCount" )
+ column=(type=long updatewhereclause=yes name=contentserial dbname="MES_KanbanContents.ContentSerial" )
+ column=(type=char(25) updatewhereclause=yes name=contentpart dbname="MES_KanbanContents.ContentPart" )
+ column=(type=char(1) updatewhereclause=yes name=contentstatus dbname="MES_KanbanContents.ContentStatus" )
+ column=(type=char(10) updatewhereclause=yes name=contentlocation dbname="MES_KanbanContents.ContentLocation" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	mkc.KanbanNumber
+,	mkc.KanbanSerial
+,	mkc.PartCode
+,	mkc.KanbanLocation
+,	mkc.TotalQuantity
+,	mkc.ContentCount
+,	mkc.ContentSerial
+,	mkc.ContentPart
+,	mkc.ContentStatus
+,	mkc.ContentLocation
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+
+from
+	dbo.MES_KanbanContents mkc
+where
+	mkc.KanbanNumber = :KanbanNumber
+order by
+	mkc.ContentSerial
+" arguments=(("KanbanNumber", string)) )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="5" y="8" height="76" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="101" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=contentserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1198" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=contentstatus visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1563" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=contentlocation visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="393" y="8" height="76" width="795" format="[general]" html.valueishtml="0"  name=contentpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="101" y="8" height="76" width="283" html.valueishtml="0"  name=contentserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="393" y="8" height="76" width="795" html.valueishtml="0"  name=contentpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="1198" y="8" height="76" width="357" html.valueishtml="0"  name=contentstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Location" border="6" color="33554432" x="1563" y="8" height="76" width="393" html.valueishtml="0"  name=contentlocation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

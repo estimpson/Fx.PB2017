@@ -1,0 +1,11 @@
+﻿$PBExportHeader$dw_read_line_char80.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=57 color="536870912")
+table(column=(type=char(80) name=Value dbname="Value" )
+ )
+text(band=header color="0" alignment="2" border="0" x="5" y="4" height="65" width="2195" text="Value" name=value_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="49" tabsequence=10 width="1367" x="5" y="4"  name=value format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-7" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

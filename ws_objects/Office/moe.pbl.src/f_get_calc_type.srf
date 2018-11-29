@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_get_calc_type.srf
+global type f_get_calc_type from function_object
+end type
+
+forward prototypes
+global function string f_get_calc_type ()
+end prototypes
+
+global function string f_get_calc_type ();string	ls_inv_reg_col
+
+SELECT parameters.inv_reg_col  
+  INTO :ls_inv_reg_col  
+  FROM parameters  ;
+
+if isnull ( ls_inv_reg_col ) then
+	return ""
+else
+	return lower ( ls_inv_reg_col )
+end if
+end function
+

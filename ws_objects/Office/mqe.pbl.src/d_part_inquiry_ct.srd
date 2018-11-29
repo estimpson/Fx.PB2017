@@ -1,0 +1,72 @@
+﻿$PBExportHeader$d_part_inquiry_ct.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part.part" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="part.name" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=cross_ref dbname="part.cross_ref" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=class dbname="part.class" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="part.type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=commodity dbname="part.commodity" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=group_technology dbname="part.group_technology" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=quality_alert dbname="part.quality_alert" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=description_short dbname="part.description_short" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=description_long dbname="part.description_long" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=serial_type dbname="part.serial_type" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=product_line dbname="part.product_line" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=configuration dbname="part.configuration" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_cost dbname="part.standard_cost" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=user_defined_1 dbname="part.user_defined_1" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=user_defined_2 dbname="part.user_defined_2" )
+ column=(type=long update=yes updatewhereclause=yes name=flag dbname="part.flag" )
+ retrieve="  SELECT part.part,   
+         part.name,   
+         part.cross_ref,   
+         part.class,   
+         part.type,   
+         part.commodity,   
+         part.group_technology,   
+         part.quality_alert,   
+         part.description_short,   
+         part.description_long,   
+         part.serial_type,   
+         part.product_line,   
+         part.configuration,   
+         part.standard_cost,   
+         part.user_defined_1,   
+         part.user_defined_2,   
+         part.flag  
+    FROM part   
+" update="part" updatewhere=0 updatekeyinplace=yes  sort="part A " )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="52" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Name"border="6" color="0" x="530" y="8" height="52" width="965"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Cross Ref"border="6" color="0" x="1504" y="8" height="52" width="512"  name=cross_ref_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Class"border="6" color="0" x="2025" y="8" height="52" width="274"  name=class_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="2309" y="8" height="52" width="283"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Commodity"border="6" color="0" x="2601" y="8" height="52" width="343"  name=commodity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Group Technology"border="6" color="0" x="2953" y="8" height="52" width="544"  name=group_technology_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Quality Alert"border="6" color="0" x="3506" y="8" height="52" width="384"  name=quality_alert_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Serial Type"border="6" color="0" x="3899" y="8" height="52" width="338"  name=serial_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Product Line"border="6" color="0" x="4247" y="8" height="52" width="512"  name=product_line_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Configuration"border="6" color="0" x="4768" y="8" height="52" width="389"  name=configuration_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="512" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="530" y="8" height="64" width="965" format="[general]"  name=name edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1504" y="8" height="64" width="512" format="[general]"  name=cross_ref edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2025" y="8" height="64" width="274" format="[general]"  name=class edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2309" y="8" height="64" width="283" format="[general]"  name=type  tag="Raw Wip or Finished" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2601" y="8" height="64" width="343" format="[general]"  name=commodity edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="2953" y="8" height="64" width="544" format="[general]"  name=group_technology edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="3506" y="8" height="64" width="384" format="[general]"  name=quality_alert edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="3899" y="8" height="64" width="338" format="[general]"  name=serial_type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="4247" y="8" height="64" width="512" format="[general]"  name=product_line edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="4768" y="8" height="64" width="389" format="[general]"  name=configuration edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="5166" y="0" height="64" width="1390" format="[general]"  name=description_short visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="6565" y="0" height="64" width="9" format="[general]"  name=description_long visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="6583" y="0" height="64" width="9" format="[general]"  name=standard_cost visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="6601" y="0" height="64" width="9" format="[general]"  name=user_defined_1 visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="6619" y="0" height="64" width="9" format="[general]"  name=user_defined_2 visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="6638" y="0" height="64" width="9" format="[general]"  name=flag visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

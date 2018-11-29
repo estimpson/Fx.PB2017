@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_customer_name_address.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=5 color="536870912")
+footer(height=1 color="536870912")
+detail(height=265 color="536870912")
+table(column=(type=char(50) name=address_1 dbname="customer.address_1" )
+ column=(type=char(50) name=address_2 dbname="customer.address_2" )
+ column=(type=char(50) name=address_3 dbname="customer.address_3" )
+ column=(type=char(50) name=name dbname="customer.name" )
+ retrieve="SELECT customer.address_1, customer.address_2, customer.address_3, customer.name FROM customer WHERE customer.customer = :szCode " arguments=(("szCode", string)) )
+column(band=detail id=4 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="970" x="1" y="4"  name=name format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="970" x="1" y="68"  name=address_1 format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="970" x="1" y="132"  name=address_2 format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=3 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="970" x="1" y="196"  name=address_3 format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

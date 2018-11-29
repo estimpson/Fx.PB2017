@@ -1,0 +1,29 @@
+﻿$PBExportHeader$f_get_podet_next_seqno.srf
+global type f_get_podet_next_seqno from function_object
+end type
+
+forward prototypes
+global function integer f_get_podet_next_seqno (long ai_po)
+end prototypes
+
+global function integer f_get_podet_next_seqno (long ai_po);Integer li_seqno
+
+select
+	max (next_seqno)
+into	:li_seqno
+from
+	(	select next_seqno
+		from po_header
+		where po_number = :ai_po
+		union
+		select max(row_id) + 1
+		from po_detail
+		where po_number = :ai_po
+	) as NextSeqNo  ;
+
+if isnull ( li_seqno ) then li_seqno = 1	
+
+return li_seqno
+
+end function
+

@@ -1,0 +1,11 @@
+﻿$PBExportHeader$f_build_number_mst.srf
+global type f_build_number_mst from function_object
+end type
+
+forward prototypes
+global function integer f_build_number_mst ()
+end prototypes
+
+global function integer f_build_number_mst ();Return 2
+end function
+

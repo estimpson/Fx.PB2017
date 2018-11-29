@@ -1,0 +1,49 @@
+﻿$PBExportHeader$d_partmaster_partcustomfieldvaluelist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=partcode dbname="PartMaster_PartCustomFieldStringValueList.PartCode" )
+ column=(type=long updatewhereclause=yes name=isother dbname="PartMaster_PartCustomFieldStringValueList.IsOther" initial="1" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=customfieldname dbname="PartMaster_PartCustomFieldStringValueList.CustomFieldName" )
+ column=(type=long update=yes updatewhereclause=yes name=ischecked dbname="PartMaster_PartCustomFieldStringValueList.IsChecked" initial="1" values="	1/	0" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=stringvalue dbname="PartMaster_PartCustomFieldStringValueList.StringValue" )
+ column=(type=long updatewhereclause=yes name=onlydefinedvalues dbname="PartMaster_PartCustomFieldStringValueList.OnlyDefinedValues" initial="0" )
+ column=(type=long updatewhereclause=yes key=yes identity=yes name=rowid dbname="PartMaster_PartCustomFieldStringValueList.RowID" )
+ retrieve="
+select
+	pmpcfsvl.PartCode
+,	pmpcfsvl.IsOther
+,	pmpcfsvl.CustomFieldName
+,	pmpcfsvl.IsChecked
+,	pmpcfsvl.StringValue
+,	pmpcfsvl.OnlyDefinedValues
+,	pmpcfsvl.RowID
+from
+	dbo.PartMaster_PartCustomFieldStringValueList pmpcfsvl
+where
+	pmpcfsvl.PartCode = :PartCode
+	and	pmpcfsvl.CustomFieldName = :CustomFieldName
+order by
+	pmpcfsvl.PartCode
+,	pmpcfsvl.IsOther
+,	pmpcfsvl.CustomFieldName
+,	pmpcfsvl.StringValue
+" update="PartMaster_PartCustomFieldStringValueList" updatewhere=0 updatekeyinplace=no arguments=(("PartCode", string),("CustomFieldName", string)) )
+text(band=header alignment="0" text="Value" border="6" color="134217742" x="183" y="8" height="72" width="503" html.valueishtml="0"  name=stringvalue_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=4 alignment="2" tabsequence=10 border="0" color="33554432" x="73" y="8" height="76" width="101" format="[general]" html.valueishtml="0"  name=ischecked visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="183" y="8" height="76" width="503" format="[general]" html.valueishtml="0" protect="0~tif ( IsOther = 1, 0, 1 )"  name=stringvalue visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tIsOther"  background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(~"New.bmp~")"border="0" color="33554432" x="9" y="8" height="64" width="55" format="[GENERAL]" html.valueishtml="0"  name=c_new  tag="New value..." visible="1~tif ( onlydefinedvalues = 0, 1, 0 )"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

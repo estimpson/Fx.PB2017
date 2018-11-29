@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_currency_list.srd
+$PBExportComments$new
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=currency_code dbname="currency_conversion.currency_code" )
+ column=(type=decimal(6) updatewhereclause=yes name=rate dbname="rate" )
+ column=(type=char(10) updatewhereclause=yes name=currency_display_symbol dbname="currency_conversion.currency_display_symbol" )
+ retrieve="SELECT	DISTINCT cc1.currency_code, 
+			(	select	cc2.rate 
+				from		currency_conversion as cc2 
+				where		cc2.effective_date = (	select	max (cc3.effective_date) 
+															from 		currency_conversion as cc3 
+															where 	cc3.effective_date <= GetDate() and 
+																		cc1.currency_code = cc3.currency_code ) and
+							cc1.currency_code = cc2.currency_code ),
+			currency_display_symbol
+FROM currency_conversion as cc1" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="4" height="76" width="841" format="[general]"  name=currency_code edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

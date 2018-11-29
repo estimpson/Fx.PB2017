@@ -1,0 +1,621 @@
+﻿$PBExportHeader$m_customer_destination_menu.srm
+forward
+global type m_customer_destination_menu from menu
+end type
+type m_file from menu within m_customer_destination_menu
+end type
+type m_addcustomer from menu within m_file
+end type
+type m_deletecustomer from menu within m_file
+end type
+type m_savecustomer from menu within m_file
+end type
+type m_adddestination from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_savedestination from menu within m_file
+end type
+type m_saveshippinginfo from menu within m_file
+end type
+type m_acctsync from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_customer_destination_menu
+m_addcustomer m_addcustomer
+m_deletecustomer m_deletecustomer
+m_savecustomer m_savecustomer
+m_adddestination m_adddestination
+m_delete m_delete
+m_savedestination m_savedestination
+m_saveshippinginfo m_saveshippinginfo
+m_acctsync m_acctsync
+m__ m__
+m_close m_close
+end type
+type m_edit from menu within m_customer_destination_menu
+end type
+type m_copy from menu within m_edit
+end type
+type m_edit from menu within m_customer_destination_menu
+m_copy m_copy
+end type
+type m_window from menu within m_customer_destination_menu
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_customer_destination_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_customer_destination_menu
+end type
+global type m_customer_destination_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_customer_destination_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_customer_destination_menu m_customer_destination_menu
+
+type variables
+String szDestination
+end variables
+
+forward prototypes
+public function boolean wf_check_for_orphans (string ls_string, string ls_mode)
+end prototypes
+
+public function boolean wf_check_for_orphans (string ls_string, string ls_mode);Long		ll_Dummy
+String	ls_Dummy
+
+If ls_Mode = "Customer" Then
+
+	DECLARE valid_customers CURSOR FOR  
+	 SELECT destination.destination  
+      FROM destination  
+     WHERE destination.customer = :ls_String   ;
+
+	Open valid_customers ;
+	Fetch valid_customers Into :ls_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_customers ;
+		Return True
+	End if
+	Close valid_customers ;
+
+	DECLARE valid_order_customer CURSOR FOR  
+	 SELECT order_header.order_no  
+	   FROM order_header  
+	  WHERE order_header.customer = :ls_String  ;
+	
+	Open valid_order_customer ;
+	Fetch valid_order_customer Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_order_customer ;
+		Return True
+	End if
+	Close valid_order_customer ;
+	
+	
+	DECLARE valid_shipper_customer CURSOR FOR  
+	 SELECT shipper.id  
+	   FROM shipper  
+	  WHERE shipper.customer = :ls_String  ;
+	
+	Open valid_shipper_customer ;
+	Fetch valid_shipper_customer Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_customer ;
+		Return True
+	End if
+	Close valid_shipper_customer ;
+	
+	DECLARE valid_part_customer CURSOR FOR  
+	 SELECT part_customer.customer_standard_pack  
+	   FROM part_customer  
+	  WHERE part_customer.customer = :ls_String   ;
+
+	Open valid_part_customer ;
+	Fetch valid_part_customer Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_customer ;
+		Return True
+	End if
+	Close valid_shipper_customer ;
+
+Elseif ls_Mode = "Destination" Then
+
+	DECLARE valid_order_destination CURSOR FOR  
+	 SELECT order_header.order_no  
+	   FROM order_header  
+	  WHERE order_header.destination = :ls_String   ;
+
+	Open valid_order_destination ;
+	Fetch valid_order_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_order_destination ;
+		Return True
+	End if
+	Close valid_order_destination ;
+
+
+	DECLARE valid_shipper_destination CURSOR FOR  
+	 SELECT shipper.id  
+	   FROM shipper  
+	  WHERE shipper.destination = :ls_String   ;
+
+	Open valid_shipper_destination ;
+	Fetch valid_shipper_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_destination ;
+		Return True
+	End if
+	Close valid_shipper_destination ;
+
+
+	DECLARE valid_po_destination CURSOR FOR  
+	 SELECT po_header.po_number  
+	   FROM po_header  
+	  WHERE po_header.ship_to_destination = :ls_String   ;
+
+	Open valid_po_destination ;
+	Fetch valid_po_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_po_destination ;
+		Return True
+	End if
+	Close valid_po_destination ;
+
+
+End if
+
+Return False
+end function
+
+on m_customer_destination_menu.create
+m_customer_destination_menu=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_customer_destination_menu.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_customer_destination_menu
+m_addcustomer m_addcustomer
+m_deletecustomer m_deletecustomer
+m_savecustomer m_savecustomer
+m_adddestination m_adddestination
+m_delete m_delete
+m_savedestination m_savedestination
+m_saveshippinginfo m_saveshippinginfo
+m_acctsync m_acctsync
+m__ m__
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_addcustomer=create m_addcustomer
+this.m_deletecustomer=create m_deletecustomer
+this.m_savecustomer=create m_savecustomer
+this.m_adddestination=create m_adddestination
+this.m_delete=create m_delete
+this.m_savedestination=create m_savedestination
+this.m_saveshippinginfo=create m_saveshippinginfo
+this.m_acctsync=create m_acctsync
+this.m__=create m__
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_addcustomer
+this.Item[UpperBound(this.Item)+1]=this.m_deletecustomer
+this.Item[UpperBound(this.Item)+1]=this.m_savecustomer
+this.Item[UpperBound(this.Item)+1]=this.m_adddestination
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_savedestination
+this.Item[UpperBound(this.Item)+1]=this.m_saveshippinginfo
+this.Item[UpperBound(this.Item)+1]=this.m_acctsync
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_addcustomer)
+destroy(this.m_deletecustomer)
+destroy(this.m_savecustomer)
+destroy(this.m_adddestination)
+destroy(this.m_delete)
+destroy(this.m_savedestination)
+destroy(this.m_saveshippinginfo)
+destroy(this.m_acctsync)
+destroy(this.m__)
+destroy(this.m_close)
+end on
+
+type m_addcustomer from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "add_customer" )
+
+end event
+
+on m_addcustomer.create
+call super::create
+this.text = "&Add Customer"
+this.microhelp = "Add Customer..."
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "Add Cust"
+this.toolbaritemorder = 1
+end on
+
+on m_addcustomer.destroy
+call super::destroy
+end on
+
+type m_deletecustomer from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "delete_customer" )
+
+end event
+
+on m_deletecustomer.create
+call super::create
+this.text = "Delete &Customer"
+this.microhelp = "Delete Customer..."
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del Cust"
+this.toolbaritemorder = 2
+end on
+
+on m_deletecustomer.destroy
+call super::destroy
+end on
+
+type m_savecustomer from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "save_customer" )
+
+
+end event
+
+on m_savecustomer.create
+call super::create
+this.text = "&Save Customer"
+this.microhelp = "Save Customer..."
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save Cust"
+this.toolbaritemorder = 3
+end on
+
+on m_savecustomer.destroy
+call super::destroy
+end on
+
+type m_adddestination from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "Add_Destination" )
+end event
+
+on m_adddestination.create
+call super::create
+this.text = "Add Des&tination"
+this.microhelp = "Add Destination..."
+this.toolbaritemname = "InsertReturn!"
+this.toolbaritemtext = "Add Dest"
+this.toolbaritemorder = 5
+end on
+
+on m_adddestination.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().triggerEvent ( "delete_destination" )
+
+
+end event
+
+on m_delete.create
+call super::create
+this.text = "&Delete Destination"
+this.microhelp = "Delete Destination..."
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del Dest"
+this.toolbaritemorder = 6
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_savedestination from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "save_destination" )
+
+end event
+
+on m_savedestination.create
+call super::create
+this.text = "Sa&ve Destination"
+this.microhelp = "Save Destination"
+this.toolbaritemname = "UpdateReturn!"
+this.toolbaritemtext = "Save Dest"
+this.toolbaritemorder = 7
+end on
+
+on m_savedestination.destroy
+call super::destroy
+end on
+
+type m_saveshippinginfo from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().SetMicroHelp ( "Saving setup..." )
+
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "save_shipper" )
+
+
+end event
+
+on m_saveshippinginfo.create
+call super::create
+this.text = "Save Shipping Info"
+this.microhelp = "Save Shipping Info"
+this.toolbaritemname = "Custom046!"
+this.toolbaritemtext = "Save Ship"
+this.toolbaritemorder = 8
+end on
+
+on m_saveshippinginfo.destroy
+call super::destroy
+end on
+
+type m_acctsync from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_sync_cust" )
+end event
+
+on m_acctsync.create
+call super::create
+this.visible = false
+this.text = "Acct Sync"
+this.microhelp = "Synchronize customer list with accounting system"
+this.toolbaritemvisible = false
+this.toolbaritemname = "PasteStatement!"
+this.toolbaritemtext = "Sync Cust"
+this.toolbaritemorder = 10
+end on
+
+on m_acctsync.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_exit" )
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_customer_destination_menu
+m_copy m_copy
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_copy=create m_copy
+this.Item[UpperBound(this.Item)+1]=this.m_copy
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_copy)
+end on
+
+type m_copy from menu within m_edit
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "copy_customer" )
+end event
+
+on m_copy.create
+call super::create
+this.text = "&Copy"
+this.microhelp = "Copy Customer to Destination..."
+this.toolbaritemname = "Copy!"
+this.toolbaritemtext = "Copy"
+this.toolbaritemorder = 4
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_customer_destination_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Windows..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_customer_destination_menu
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,40 @@
+﻿$PBExportHeader$dw_ei_shipments_todaypart.srd
+$PBExportComments$update 5/15
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=77 color="536870912" )
+table(column=(type=char(35) update=yes updatewhereclause=yes name=part dbname="shipper_detail.part" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=customer_part dbname="shipper_detail.customer_part" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=order_no dbname="shipper_detail.order_no" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=customer_po dbname="shipper_detail.customer_po" )
+ column=(type=long update=yes updatewhereclause=yes name=shipper dbname="shipper_detail.shipper" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_required dbname="shipper_detail.qty_required" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_stamp dbname="shipper.date_stamp" )
+ retrieve="  SELECT shipper_detail.part,   
+         shipper_detail.customer_part,   
+         shipper_detail.order_no,   
+         shipper_detail.customer_po,   
+         shipper_detail.shipper,   
+         shipper_detail.qty_required,   
+         shipper_detail.qty_packed,   
+         shipper.date_stamp  
+    FROM shipper_detail,   
+         shipper  
+   WHERE ( shipper_detail.shipper = shipper.id )    
+" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="10" y="8" height="65" width="577"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer Part"border="0" color="0" x="595" y="8" height="65" width="613"  name=customer_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shipper"border="0" color="0" x="1898" y="12" height="65" width="330"  name=shipper_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Required"border="0" color="0" x="1217" y="8" height="65" width="348"  name=qty_required_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Packed"border="0" color="0" x="1573" y="8" height="65" width="316"  name=qty_packed_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Date Stamp"border="0" color="0" x="2236" y="4" height="57" width="220"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="8" height="61" width="577" format="[general]"  name=part edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="595" y="8" height="61" width="613" format="[general]"  name=customer_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="0" color="0" x="1898" y="8" height="61" width="330" format="0"  name=shipper edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=30 border="0" color="0" x="1217" y="8" height="61" width="348" format="#,##0"  name=qty_required edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=40 border="0" color="0" x="1573" y="8" height="61" width="316" format="#,##0"  name=qty_packed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2236" y="0" height="57" width="220" format="[general]"  name=shipper_date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

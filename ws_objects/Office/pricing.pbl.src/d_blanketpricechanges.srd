@@ -1,0 +1,61 @@
+﻿$PBExportHeader$d_blanketpricechanges.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=216 color="536870912" )
+detail(height=132 color="536870912~tif (EffectiveDate <= today() and activated = 0, rgb (255, 128, 128), rgb (255, 255, 255))" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="BlanketPriceChanges.Part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=customer dbname="BlanketPriceChanges.Customer" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=effectivedate dbname="BlanketPriceChanges.EffectiveDate" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=blanketprice dbname="BlanketPriceChanges.BlanketPrice" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=customerpo dbname="BlanketPriceChanges.CustomerPO" )
+ column=(type=long update=yes updatewhereclause=yes name=activated dbname="BlanketPriceChanges.Activated" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=selectedfordelete dbname="SelectedForDelete" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=selectedallfordelete dbname="SelectedAllForDelete" values="Delete	1/Delete	0" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=usercode dbname="BlanketPriceChanges.UserCode" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=username dbname="BlanketPriceChanges.UserName" )
+ column=(type=datetime update=yes updatewhereclause=yes name=changeddate dbname="BlanketPriceChanges.ChangedDate" )
+ column=(type=long update=yes updatewhereclause=yes name=cleared dbname="BlanketPriceChanges.Cleared" )
+ retrieve="  SELECT BlanketPriceChanges.Part,   
+         BlanketPriceChanges.Customer,   
+         BlanketPriceChanges.EffectiveDate,   
+         BlanketPriceChanges.BlanketPrice,
+		BlanketPriceChanges.CustomerPO,
+         BlanketPriceChanges.Activated ,
+		SelectedForDelete=0,
+		SelectedAllForDelete=0,
+		BlanketPriceChanges.UserCode,
+		BlanketPriceChanges.UserName,
+		BlanketPriceChanges.ChangedDate,
+		BlanketPriceChanges.Cleared
+    FROM BlanketPriceChanges   
+" update="BlanketPriceChanges" updatewhere=0 updatekeyinplace=yes filter=" cleared = 0")
+text(band=header alignment="2" text="Customer" border="0" color="33554432" x="1170" y="8" height="64" width="727" html.valueishtml="0"  name=customer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Effective Date" border="0" color="33554432" x="1906" y="8" height="64" width="617" html.valueishtml="0"  name=effective_date_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Blanket Price" border="0" color="33554432" x="2533" y="8" height="64" width="393" html.valueishtml="0"  name=blanket_price_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part" border="0" color="33554432" x="338" y="8" height="64" width="823" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Activated" border="0" color="33554432" x="3474" y="8" height="64" width="288" html.valueishtml="0"  name=t_activated visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="16" height="64" width="320" format="[general]" html.valueishtml="0"  name=selectedallfordelete_1  tag="" visible="1" checkbox.text="Delete" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer PO" border="0" color="33554432" x="2935" y="8" height="64" width="530" html.valueishtml="0"  name=customerpo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1170" y="8" height="76" width="727" format="[general]" html.valueishtml="0"  name=customer visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="33554432" x="1906" y="4" height="76" width="617" format="m/d/yyyy" html.valueishtml="0" protect="0~t if(activated = 1, 1, 0)"  name=effective_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=30 border="0" color="33554432" x="2533" y="8" height="76" width="393" format="[general]" html.valueishtml="0" protect="0~tif(activated = 1, 1, 0)"  name=blanket_price visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="338" y="8" height="76" width="823" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=selectedfordelete visible="1~tif (activated = 1, 0, 1)" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="3474" y="8" height="72" width="288" format="[general]" html.valueishtml="0"  name=activated visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="1" tabsequence=40 border="0" color="33554432" x="2935" y="4" height="76" width="530" format="[general]" html.valueishtml="0" protect="0~t if(activated = 1, 1, 0)"  name=customerpo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=footer text="Activate Prices" enabled=yes action="0" border="0" color="0" x="631" y="24" height="120" width="544" vtextalign="0" htextalign="0"  name=b_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=footer text="Save Changes" enabled=yes action="0" border="0" color="33554432" x="37" y="24" height="120" width="535" vtextalign="0" htextalign="0"  name=b_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=footer text="Clear Activated" enabled=yes action="0" border="0" color="33554432" x="1234" y="24" height="120" width="567" vtextalign="0" htextalign="0"  name=b_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

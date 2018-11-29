@@ -1,0 +1,43 @@
+﻿$PBExportHeader$d_workorder_detail.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_required dbname="qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_completed dbname="qty_completed" )
+ column=(type=decimal(6) updatewhereclause=yes name=balance dbname="balance" )
+ column=(type=decimal(6) updatewhereclause=yes name=run_time dbname="run_time" )
+ column=(type=decimal(6) updatewhereclause=yes name=parts_per_cycle dbname="parts_per_cycle" )
+ column=(type=char(100) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(2) updatewhereclause=yes name=standard_unit dbname="standard_unit" )
+ retrieve="SELECT 	workorder_detail.part,   
+       	workorder_detail.qty_required,   
+       	workorder_detail.qty_completed,   
+       	workorder_detail.balance,   
+       	workorder_detail.run_time,   
+       	workorder_detail.parts_per_cycle,   
+       	part.name, 
+			pi.standard_unit
+FROM		workorder_detail
+			join part on part.part = workorder_detail.part			
+			join part_inventory pi on pi.part = workorder_detail.part
+WHERE		workorder_detail.workorder = :szWorkorder
+" arguments=(("szworkorder", string)) )
+text(band=header alignment="0" text="Part"border="6" color="0" x="9" y="4" height="52" width="576"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Qty Required"border="6" color="0" x="1751" y="4" height="52" width="393"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Qty Completed"border="6" color="0" x="2153" y="4" height="52" width="425"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Balance"border="6" color="0" x="2587" y="4" height="52" width="430"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Name"border="6" color="0" x="594" y="4" height="52" width="1147"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Run Time"border="6" color="0" x="3026" y="4" height="52" width="311"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="0" text="Standard Unit"border="6" color="0" x="3346" y="4" height="52" width="110"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="76" width="576" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="594" y="0" height="76" width="1147" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="3031" y="0" height="76" width="306" format="0.00"  name=run_time edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="3346" y="0" height="76" width="110" format="[general]"  name=standard_unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1755" y="0" height="76" width="389" format="0.00"  name=qty_required edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="2158" y="0" height="76" width="421" format="0.00"  name=qty_completed edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="2592" y="0" height="76" width="425" format="0.00"  name=balance edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

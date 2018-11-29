@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_non_inventory_mfg_account_code.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=120 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=gl_account_code dbname="gl_account_code" )
+ retrieve="PBSELECT(TABLE(NAME=~"part_mfg~" ) COLUMN(NAME=~"part_mfg.part~") COLUMN(NAME=~"part_mfg.gl_account_code~")WHERE( EXP1 =~"part_mfg.part~" OP =~"=~" EXP2 =~":ls_Part~" ) ) ARG(NAME = ~"ls_Part~" TYPE = string) " update="part_mfg" updatewhere=0 updatekeyinplace=yes arguments=(("ls_Part", string)) )
+text(band=detail alignment="1" text="Part:"border="0" color="33554432" x="2286" y="100" height="64" width="471"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="2784" y="100" height="76" width="713" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Gl Account Code:"border="0" color="0" x="14" y="20" height="52" width="498"  name=gl_account_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="33554432" x="530" y="20" height="76" width="859" format="[general]"  name=gl_account_code edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

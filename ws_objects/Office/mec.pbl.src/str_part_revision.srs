@@ -1,0 +1,9 @@
+﻿$PBExportHeader$str_part_revision.srs
+$PBExportComments$Part revision structure.
+global type str_part_revision from structure
+	string		part
+	string		revision
+	string		engineering_level
+	datetime		effective_datetime
+end type
+

@@ -1,0 +1,45 @@
+﻿$PBExportHeader$d_dbo_mes_setupbackflushingprinciples.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=no hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long updatewhereclause=no name=type dbname="Type" initial="0" values="" )
+ column=(type=char(25) updatewhereclause=no key=yes name=id dbname="ID" initial="" values="" )
+ column=(type=char(44) updatewhereclause=no name=code dbname="Code" initial="" values="" )
+ column=(type=char(255) updatewhereclause=no name=description dbname="Description" initial="" values="" )
+ column=(type=long update=yes updatewhereclause=no name=backflushingprinciple dbname="BackflushingPrinciple" initial="0" values="No Backflush	0/Job	1/Machine	2/Staging Location	3/Group Technology	4/Plant	5/WIP	6/Floor	7/" )
+ column=(type=long updatewhereclause=no name=defaulttype dbname="DefaultType" initial="0" values="" )
+ column=(type=long updatewhereclause=no name=defaultbackflushingprinciple dbname="DefaultBackflushingPrinciple" initial="0" values="No Backflush	0/Job	1/Machine	2/Staging Location	3/Group Technology	4/Plant	5/" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" initial="" values="" )
+ column=(type=long updatewhereclause=no name=isselected dbname="IsSelected" initial="" values="" )
+ retrieve="select
+	Type
+,	ID
+,	Code
+,	Description
+,	BackflushingPrinciple
+,	DefaultType
+,	DefaultBackflushingPrinciple
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.MES_SetupBackflushingPrinciples" update="MES_SetupBackflushingPrinciples" updatewhere=0 updatekeyinplace=no  sort="type A id A " )
+text(band=header alignment="0" text="Code" border="6" color="33554432" x="9" y="12" height="72" width="581" html.valueishtml="0"  name=code_t  tag="Code" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Descriptoin" border="6" color="33554432" x="599" y="12" height="72" width="1897" html.valueishtml="0"  name=description_t  tag="Descriptoin" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Principle:" border="6" color="33554432" x="2505" y="12" height="72" width="448" html.valueishtml="0"  name=backflushingprinciple_t  tag="" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="12" height="76" width="581" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=code  tag="String value..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],3,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="599" y="12" height="76" width="1897" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=description  tag="String value..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],4,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="2" tabsequence=10 border="0" color="33554432" x="2505" y="12" height="76" width="448" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=backflushingprinciple  tag="" visible="1" ddlb.limit=0 ddlb.allowedit=yes ddlb.case=any ddlb.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

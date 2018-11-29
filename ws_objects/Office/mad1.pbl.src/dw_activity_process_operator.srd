@@ -1,0 +1,12 @@
+﻿$PBExportHeader$dw_activity_process_operator.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=id dbname="process.id" )
+ column=(type=number update=yes updatewhereclause=yes name=operators dbname="process.operators" )
+ retrieve="SELECT process.id, process.operators FROM process WHERE process.id = :szProcess " update="process" updatewhere=0 updatekeyinplace=yes arguments=(("szProcess", string)) )
+text(band=detail alignment="1" text="Operators:"border="0" color="0" x="55" y="4" height="52" width="311"  name=operators_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="5" color="0" x="439" y="4" height="64" width="274" format="[general]"  name=operators edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

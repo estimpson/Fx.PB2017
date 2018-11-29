@@ -1,0 +1,136 @@
+﻿$PBExportHeader$f_bk_cb_unit.srf
+global type f_bk_cb_unit from function_object
+end type
+
+forward prototypes
+global function string f_bk_cb_unit (string arg_strvalue, string arg_type, string arg_unitgroup)
+end prototypes
+
+global function string f_bk_cb_unit (string arg_strvalue, string arg_type, string arg_unitgroup);String ls_valstr='',&
+		 ls_ary[],&
+		 ls_temp='', &
+       ls_singular='',&
+       ls_singularary[],&		 
+		 ls_plural='',&
+		 ls_pluralary[],&		 
+		 ls_shrtname='',&
+		 ls_shrtnameary[],&		 
+		 ls_symbol='', &
+		 ls_symbolary[], &
+		 ls_unitbefdec='', &
+		 ls_unittemp=''
+		 
+Int    li_strlen=0,&
+       li_finddot_pos=0,&
+		 li_idx=0,&
+		 li_remchar=0
+		 
+Char   lc_charelem=''
+		 
+Dec    ld_fact[], &
+       ld_factor=0, &
+		 ld_temp=0, &
+		 ld_divisor=0
+		 
+arg_strvalue = trim(arg_strvalue)
+
+// retrieve data from unit_sub table. User defined data
+	DECLARE unt_cur CURSOR FOR
+		 SELECT name_1,name_2,short_name,symbol,factor
+			FROM unit_sub
+		  WHERE unit_group = :arg_unitgroup;
+
+		OPEN unt_cur ;
+		FETCH unt_cur into :ls_singular, :ls_plural, :ls_shrtname, :ls_symbol, &
+								 :ld_factor ;
+		Do while (sqlca.sqlcode = 0) 
+			li_idx ++
+			ls_singularary[li_idx] = ls_singular
+			ls_pluralary[li_idx]   = ls_plural			
+			ls_shrtnameary[li_idx] = ls_shrtname			
+			ls_symbolary[li_idx]   = ls_symbol			
+			ld_fact[li_idx] 		  = ld_factor 			
+			CHOOSE Case arg_type
+					 case '1','name1','NAME1'
+							ls_ary[li_idx] = ls_singular
+					 case '2','name1','NAME1'
+							ls_ary[li_idx] = ls_plural
+					 case '3','short name','SHORT NAME'
+							ls_ary[li_idx] = ls_shrtname
+					 case '4','symbol','SYMBOL'
+							ls_ary[li_idx] = ls_symbol
+			END CHOOSE
+			FETCH unt_cur into :ls_singular, :ls_plural, :ls_shrtname, :ls_symbol,&
+			                   :ld_factor ;
+		Loop
+		CLOSE unt_cur ;
+// retrieval code till here 
+
+	// get the length of the string 
+	li_strlen     = LenA(arg_strvalue)
+
+	// check whether they have entered any values or text
+	// depending on that branch to the respective code
+	
+	li_finddot_pos = PosA(arg_strvalue,'.')
+	
+	if li_finddot_pos = 0 then 			
+		// check char by char & pick up only numbers 
+		for li_idx = 1 to li_strlen
+			 lc_charelem = MidA(arg_strvalue,li_idx,1)
+			 Choose case AscA(lc_charelem)
+					  case 65 to 90, 97 to 122, 34, 39
+							 ls_unittemp = ls_unittemp + lc_charelem
+					  case 48 to 57	
+							 ls_valstr = ls_valstr + lc_charelem
+   				  case 32
+							 ls_temp = ls_valstr + '.'
+							 ls_unitbefdec = ls_unittemp
+							 ls_unittemp=''
+							 ls_valstr = "" 
+			 End choose	
+		next 
+
+// to get the array index so that the right factor can be considered
+		FOR li_idx = 1 to Upperbound(ld_fact)
+			 CHOOSE CASE ls_unitbefdec
+				CASE ls_singularary[li_idx],ls_pluralary[li_idx], &	
+				     ls_shrtnameary[li_idx],ls_symbolary[li_idx]
+					  ld_divisor = li_idx
+					  EXIT 	 	  
+			 END CHOOSE
+		NEXT
+
+	   If (ld_divisor=0 or isnull(ld_divisor))then ld_divisor=1
+	   If (ld_fact[ld_divisor] = 0 or isnull(ld_fact[ld_divisor])) then ld_fact[ld_divisor]=1	
+		
+		IF ls_temp > '' then
+    	   ld_temp   = Integer(ls_valstr) / ld_fact[ld_divisor]
+		else
+			ls_temp = ls_valstr
+		End if 	 
+      ld_temp  += Integer(ls_temp)
+	   ls_valstr = string(ld_temp)
+	else
+		// if the user has entered the value, converting it into a text
+	
+		if upperbound(ls_ary) > 0 then 
+			ls_valstr = LeftA(arg_strvalue, li_finddot_pos - 1) +ls_ary[1]+" "
+			li_remchar = li_strlen - (li_finddot_pos)
+			ls_temp = MidA(arg_strvalue,li_finddot_pos,li_strlen)
+			ld_temp = dec(ls_temp) * ld_fact[1]
+			ls_temp   = trim(string(Integer(ld_temp)))
+			if LenA(ls_temp) = 1 then
+			   ls_temp = LeftA(ls_temp,1)
+			else
+				ls_temp = LeftA(ls_temp,2)
+			end if 	
+			if (ld_temp > 0) then
+  			   ls_valstr += ls_temp + ls_ary[2]
+			end if	  
+		end if 
+	end if
+return ls_valstr
+
+end function
+

@@ -1,0 +1,339 @@
+﻿$PBExportHeader$m_invoice_register.srm
+forward
+global type m_invoice_register from menu
+end type
+type m_file from menu within m_invoice_register
+end type
+type m_viewaccountsummary from menu within m_file
+end type
+type m_printinvoiceregister from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_invoice_register
+m_viewaccountsummary m_viewaccountsummary
+m_printinvoiceregister m_printinvoiceregister
+m__ m__
+m_close m_close
+end type
+type m_edit from menu within m_invoice_register
+end type
+type m_zoom from menu within m_edit
+end type
+type m_edit from menu within m_invoice_register
+m_zoom m_zoom
+end type
+type m_window from menu within m_invoice_register
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_invoice_register
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_invoice_register
+end type
+global type m_invoice_register from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_invoice_register from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_invoice_register m_invoice_register
+
+on m_invoice_register.create
+m_invoice_register=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_invoice_register.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_invoice_register
+m_viewaccountsummary m_viewaccountsummary
+m_printinvoiceregister m_printinvoiceregister
+m__ m__
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_viewaccountsummary=create m_viewaccountsummary
+this.m_printinvoiceregister=create m_printinvoiceregister
+this.m__=create m__
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_viewaccountsummary
+this.Item[UpperBound(this.Item)+1]=this.m_printinvoiceregister
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_viewaccountsummary)
+destroy(this.m_printinvoiceregister)
+destroy(this.m__)
+destroy(this.m_close)
+end on
+
+type m_viewaccountsummary from menu within m_file
+end type
+
+event clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "account_summary" )
+end event
+
+on m_viewaccountsummary.create
+call super::create
+this.text = "&View Account Summary"
+this.microhelp = "View Account Summary Totals..."
+this.toolbaritemname = "Where!"
+this.toolbaritemtext = "Accounts"
+this.toolbaritemorder = 3
+end on
+
+on m_viewaccountsummary.destroy
+call super::destroy
+end on
+
+type m_printinvoiceregister from menu within m_file
+end type
+
+event clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "print_register" )
+end event
+
+on m_printinvoiceregister.create
+call super::create
+this.text = "&Print Invoice Register"
+this.microhelp = "Print Invoice Register..."
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 4
+end on
+
+on m_printinvoiceregister.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("pfc_close")
+
+end event
+
+on m_close.create
+call super::create
+this.text = "&Close~tCtrl+W"
+this.shortcut = 343
+this.microhelp = "Exit Invoice Register..."
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_invoice_register
+m_zoom m_zoom
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_zoom=create m_zoom
+this.Item[UpperBound(this.Item)+1]=this.m_zoom
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_zoom)
+end on
+
+type m_zoom from menu within m_edit
+end type
+
+event clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "zoom" )
+end event
+
+on m_zoom.create
+call super::create
+this.text = "&Zoom"
+this.microhelp = "PrintZoom Invoice Register..."
+this.toolbaritemname = "Search!"
+this.toolbaritemtext = "Zoom"
+this.toolbaritemorder = 5
+end on
+
+on m_zoom.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_invoice_register
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_invoice_register
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

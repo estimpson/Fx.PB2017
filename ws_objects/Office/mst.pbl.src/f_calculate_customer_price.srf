@@ -1,0 +1,189 @@
+﻿$PBExportHeader$f_calculate_customer_price.srf
+global type f_calculate_customer_price from function_object
+end type
+
+forward prototypes
+global function decimal f_calculate_customer_price (string a_s_part, string a_s_customer, decimal a_dec_quantity)
+end prototypes
+
+global function decimal f_calculate_customer_price (string a_s_part, string a_s_customer, decimal a_dec_quantity);///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 
+//	Default		No attached to anything
+//	Price break	Not attached to anything, but based on qty
+//	Category	Attached to customer, applies to all parts
+//	Discount	Applies to a specific customer & part
+//	Promotion	Applies to specific part, customer & category
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//	Declarations
+dec	l_dec_std_price,&
+	l_dec_price,&
+	l_dec_markup,&
+	l_dec_premium,&
+	l_dec_qty_break, &
+	l_dec_discount
+string	l_s_premium,&
+	l_s_multiplier,&
+	l_s_category,&
+	l_s_price_type,&
+	ls_currency
+
+//	Get the standard price & preminum info from part_standard table
+SELECT	price,
+	premium
+INTO	:l_dec_std_price,
+	:l_s_premium  
+FROM	part_standard  
+WHERE	part_standard.part = :a_s_part   ;
+
+//	Check for sql status & return if it is not successful
+if sqlca.sqlcode <> 0 then
+	return 0
+end if
+
+//	Get the category & currency from the customer table
+SELECT	category,
+	default_currency_unit
+INTO	:l_s_category,
+	:ls_currency
+FROM	customer
+WHERE	customer = :a_s_customer ;
+
+//	Check for sql status & return if it is not successful
+if sqlca.sqlcode <> 0 then
+	return 0
+end if
+
+//	Get the type from part_customer table
+SELECT 	type
+INTO	:l_s_price_type
+FROM	part_customer
+WHERE	part = :a_s_part AND
+	customer = :a_s_customer ;
+
+//	Check for sql status & return if it is not successful
+if sqlca.sqlcode <> 0 then
+	return l_dec_std_price
+end if
+
+//	On price type or category being null or empty return standard price
+if Isnull ( l_s_price_type,'' ) = '' then
+	if Isnull ( l_s_category, '' ) = '' then
+		return l_dec_std_price
+	else
+		l_s_price_type = 'C'
+	end if
+end if
+
+//	Based on the price type compute the new price 
+Choose Case l_s_price_type
+Case 'C'	// Type Category
+
+	// Get the promotion price from price_promotion table
+	SELECT	Max(price)
+	INTO	:l_dec_price
+	FROM	price_promotion as a
+	WHERE	( a.part = :a_s_part ) AND  
+		( a.customer = :a_s_customer ) and
+		( a.category = :l_s_category ) and
+		( today() >= start_date and today() <= end_date );
+		
+	//	Check for sql status & return if it is not successful
+	if (sqlca.sqlcode <> 0 or isnull(l_dec_price) or l_dec_price = 0) then
+	
+		//	Get the markup, multiplier & premium from the category table
+		SELECT	markup,
+			multiplier,
+			premium
+		INTO	:l_dec_markup,
+			:l_s_multiplier,
+			:l_dec_premium
+		FROM	category
+		WHERE	code = :l_s_category ;
+		
+		//	Check for sql status & return standard price if it is not successful
+		if sqlca.sqlcode <> 0 then
+			return l_dec_std_price
+		end if
+		
+		//	Check whether the premium needs to be included or not
+		if f_get_string_value ( l_s_premium ) <> 'Y' then &
+			l_dec_premium = 0
+		
+		//	Based on the multiplier type compute the new price
+		Choose Case l_s_multiplier
+			Case "+"
+				l_dec_price = l_dec_std_price + l_dec_markup + l_dec_premium
+			Case "-"
+				l_dec_price = l_dec_std_price - l_dec_markup + l_dec_premium
+			Case "%"
+				l_dec_price = (l_dec_std_price + ( l_dec_std_price * l_dec_markup * 0.01 )) + l_dec_premium
+			Case "x"
+				l_dec_price = l_dec_std_price * l_dec_markup + l_dec_premium
+		End Choose
+	end if
+	
+Case 'B' // Type Price Break
+
+	//	Get the max break qty from part_customer_price_matrix table
+	SELECT	max(qty_break)
+	INTO	:l_dec_qty_break
+	FROM	part_customer_price_matrix  
+	WHERE	( part = :a_s_part ) AND  
+		( customer = :a_s_customer ) AND  
+		( qty_break <= :a_dec_quantity )   ;
+
+	//	Check for sql status & return if it is not successful
+	if sqlca.sqlcode = 0 then
+
+		// Get price from part_customer_price_matrix tabke
+		SELECT	price
+		INTO	:l_dec_price  
+		FROM	part_customer_price_matrix  
+		WHERE	part = :a_s_part AND  
+			customer = :a_s_customer AND  
+			qty_break = :l_dec_qty_break   ;
+	else
+		return l_dec_std_price
+	end if
+	
+Case 'D' // Type Discount
+
+	//	Get the max break qty from part_customer_price_matrix table
+	SELECT	max(qty_break)
+	INTO	:l_dec_qty_break
+	FROM	part_customer_price_matrix  
+	WHERE	( part = :a_s_part ) AND  
+		( customer = :a_s_customer ) AND  
+		( qty_break <= :a_dec_quantity );
+		
+	//	Check for sql status & return if it is not successful
+	if sqlca.sqlcode = 0 then
+
+		// Get price from part_customer_price_matrix table
+		SELECT	price,
+			discount
+		INTO	:l_dec_price,
+			:l_dec_discount
+		FROM	part_customer_price_matrix  
+		WHERE	part = :a_s_part AND  
+			customer = :a_s_customer AND  
+			qty_break = :l_dec_qty_break ;
+	end if
+
+	//	Check for sql status & return if it is not successful
+	if (sqlca.sqlcode <> 0 or isnull(l_dec_price) or l_dec_price = 0 ) then
+		l_dec_price = l_dec_std_price
+	end if 
+	l_dec_price = l_dec_price - (l_dec_price * l_dec_discount * 0.01 ) 
+	
+End Choose
+
+// Check whether the new price is 0 or null
+if Isnull ( l_dec_price, 0 ) = 0 then l_dec_price = l_dec_std_price
+	
+// Return the new price	
+return l_dec_price
+end function
+

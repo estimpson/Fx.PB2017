@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_invoice_detail_notes.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=16776960 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=585 color="536870912")
+table(column=(type=char(254) update=yes name=note dbname="shipper_detail.note" )
+ column=(type=number key=yes name=shipper dbname="shipper_detail.shipper" )
+ column=(type=char(35) key=yes name=part dbname="shipper_detail.part" )
+ retrieve="SELECT shipper_detail.note, shipper_detail.shipper, shipper_detail.part FROM shipper_detail WHERE ( shipper_detail.shipper = :lShipper ) AND ( shipper_detail.part = :szPart ) " update="shipper_detail" updatewhere=0 updatekeyinplace=yes arguments=(("lShipper", number),("szPart", string)) )
+column(band=detail id=1 border="0" alignment="0" color="0" height="577" tabsequence=10 width="1884" x="1" y="4"  name=note  tag="Shipping Detail Note" format="[general]" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="1093" x="2963" y="68"  name=shipper format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=3 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="979" x="2977" y="0"  name=part format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

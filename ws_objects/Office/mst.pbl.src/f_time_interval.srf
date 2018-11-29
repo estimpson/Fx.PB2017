@@ -1,0 +1,24 @@
+﻿$PBExportHeader$f_time_interval.srf
+global type f_time_interval from function_object
+end type
+
+forward prototypes
+global function int f_time_interval ()
+end prototypes
+
+global function int f_time_interval ();Integer iTimeInterval
+ 
+iTimeInterval	= 10
+
+Select parameters.time_interval
+Into :iTimeInterval  
+From parameters  ;
+
+If IsNull(iTimeInterval) then
+	iTimeInterval	= 10
+End If
+
+Return iTimeInterval
+
+end function
+

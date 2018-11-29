@@ -1,0 +1,1444 @@
+﻿$PBExportHeader$m_ancestor.srm
+forward
+global type m_ancestor from menu
+end type
+type m_file from menu within m_ancestor
+end type
+type m_new from menu within m_file
+end type
+type m_filedummy1 from menu within m_file
+end type
+type m_filedummy2 from menu within m_file
+end type
+type m_open from menu within m_file
+end type
+type m_filedummy3 from menu within m_file
+end type
+type m_filedummy4 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m__1 from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_filedummy5 from menu within m_file
+end type
+type m_saveas from menu within m_file
+end type
+type m_saverowsas from menu within m_file
+end type
+type m__2 from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_printpreview from menu within m_file
+end type
+type m_previewzoom from menu within m_file
+end type
+type m_printsetup from menu within m_file
+end type
+type m__3 from menu within m_file
+end type
+type m_filedummy9 from menu within m_file
+end type
+type m_filedummy10 from menu within m_file
+end type
+type m__4 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m__5 from menu within m_file
+end type
+type m_filedummy11 from menu within m_file
+end type
+type m_filedummy12 from menu within m_file
+end type
+type m_filedummy13 from menu within m_file
+end type
+type m_filedummy14 from menu within m_file
+end type
+type m_filedummy15 from menu within m_file
+end type
+type m_file from menu within m_ancestor
+m_new m_new
+m_filedummy1 m_filedummy1
+m_filedummy2 m_filedummy2
+m_open m_open
+m_filedummy3 m_filedummy3
+m_filedummy4 m_filedummy4
+m_close m_close
+m__1 m__1
+m_save m_save
+m_filedummy5 m_filedummy5
+m_saveas m_saveas
+m_saverowsas m_saverowsas
+m__2 m__2
+m_print m_print
+m_printpreview m_printpreview
+m_previewzoom m_previewzoom
+m_printsetup m_printsetup
+m__3 m__3
+m_filedummy9 m_filedummy9
+m_filedummy10 m_filedummy10
+m__4 m__4
+m_exit m_exit
+m__5 m__5
+m_filedummy11 m_filedummy11
+m_filedummy12 m_filedummy12
+m_filedummy13 m_filedummy13
+m_filedummy14 m_filedummy14
+m_filedummy15 m_filedummy15
+end type
+type m_design from menu within m_ancestor
+end type
+type m_designmode from menu within m_design
+end type
+type m__6 from menu within m_design
+end type
+type m_zoom from menu within m_design
+end type
+type m_design from menu within m_ancestor
+m_designmode m_designmode
+m__6 m__6
+m_zoom m_zoom
+end type
+type m_rows from menu within m_ancestor
+end type
+type m_insert from menu within m_rows
+end type
+type m_delete from menu within m_rows
+end type
+type m_update from menu within m_rows
+end type
+type m__7 from menu within m_rows
+end type
+type m_import from menu within m_rows
+end type
+type m_retrieve from menu within m_rows
+end type
+type m__81 from menu within m_rows
+end type
+type m_describe from menu within m_rows
+end type
+type m_filter from menu within m_rows
+end type
+type m_sort from menu within m_rows
+end type
+type m_-2 from menu within m_rows
+end type
+type m_firstpage from menu within m_rows
+end type
+type m_priorpage from menu within m_rows
+end type
+type m_nextpage from menu within m_rows
+end type
+type m_lastpage from menu within m_rows
+end type
+type m_rows from menu within m_ancestor
+m_insert m_insert
+m_delete m_delete
+m_update m_update
+m__7 m__7
+m_import m_import
+m_retrieve m_retrieve
+m__81 m__81
+m_describe m_describe
+m_filter m_filter
+m_sort m_sort
+m_-2 m_-2
+m_firstpage m_firstpage
+m_priorpage m_priorpage
+m_nextpage m_nextpage
+m_lastpage m_lastpage
+end type
+type m_window from menu within m_ancestor
+end type
+type m_tile from menu within m_window
+end type
+type m_windowdummy1 from menu within m_window
+end type
+type m_windowdummy2 from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_windowdummy3 from menu within m_window
+end type
+type m_windowdummy4 from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__8 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_windowdummy5 from menu within m_window
+end type
+type m_windowdummy6 from menu within m_window
+end type
+type m_windowdummy7 from menu within m_window
+end type
+type m_windowdummy8 from menu within m_window
+end type
+type m_windowdummy9 from menu within m_window
+end type
+type m_windowdummy10 from menu within m_window
+end type
+type m_window from menu within m_ancestor
+m_tile m_tile
+m_windowdummy1 m_windowdummy1
+m_windowdummy2 m_windowdummy2
+m_layer m_layer
+m_windowdummy3 m_windowdummy3
+m_windowdummy4 m_windowdummy4
+m_cascade m_cascade
+m__8 m__8
+m_arrangeicons m_arrangeicons
+m_windowdummy5 m_windowdummy5
+m_windowdummy6 m_windowdummy6
+m_windowdummy7 m_windowdummy7
+m_windowdummy8 m_windowdummy8
+m_windowdummy9 m_windowdummy9
+m_windowdummy10 m_windowdummy10
+end type
+type m_help from menu within m_ancestor
+end type
+type m_helpdummy1 from menu within m_help
+end type
+type m_helpdummy2 from menu within m_help
+end type
+type m_helpdummy3 from menu within m_help
+end type
+type m_helpdummy4 from menu within m_help
+end type
+type m_helpdummy5 from menu within m_help
+end type
+type m_helpdummy6 from menu within m_help
+end type
+type m_helpdummy7 from menu within m_help
+end type
+type m__9 from menu within m_help
+end type
+type m_about from menu within m_help
+end type
+type m_helpdummy8 from menu within m_help
+end type
+type m_helpdummy9 from menu within m_help
+end type
+type m_helpdummy10 from menu within m_help
+end type
+type m_help from menu within m_ancestor
+m_helpdummy1 m_helpdummy1
+m_helpdummy2 m_helpdummy2
+m_helpdummy3 m_helpdummy3
+m_helpdummy4 m_helpdummy4
+m_helpdummy5 m_helpdummy5
+m_helpdummy6 m_helpdummy6
+m_helpdummy7 m_helpdummy7
+m__9 m__9
+m_about m_about
+m_helpdummy8 m_helpdummy8
+m_helpdummy9 m_helpdummy9
+m_helpdummy10 m_helpdummy10
+end type
+end forward
+
+global type m_ancestor from menu
+m_file m_file
+m_design m_design
+m_rows m_rows
+m_window m_window
+m_help m_help
+end type
+global m_ancestor m_ancestor
+
+type variables
+window		i_w_parent
+
+end variables
+
+forward prototypes
+public subroutine mf_click (string a_s_event)
+public subroutine mf_design_on ()
+public subroutine mf_design_off ()
+public subroutine mf_preview_on ()
+public subroutine mf_preview_off ()
+end prototypes
+
+public subroutine mf_click (string a_s_event);WINDOW	l_w_parent
+
+IF IsValid ( gnv_App.of_GetFrame() ) THEN
+	l_w_parent = gnv_App.of_GetFrame().GetActiveSheet ( )
+	IF IsValid ( l_w_parent ) THEN
+		l_w_parent.TriggerEvent ( a_s_event )
+	END IF
+ELSEIF IsValid ( gnv_App.of_GetFrame() ) THEN
+	l_w_parent = gnv_App.of_GetFrame().GetActiveSheet ( )
+	IF IsValid ( l_w_parent ) THEN
+		l_w_parent.TriggerEvent ( a_s_event )
+	END IF	 
+ELSE
+	ParentWindow.TriggerEvent ( a_s_event )
+END IF
+end subroutine
+
+public subroutine mf_design_on ();m_file.m_save.Enable ( )
+m_file.m_save.toolbaritemvisible = TRUE
+m_file.m_saveas.Enable ( )
+m_file.m_saveas.toolbaritemvisible = TRUE
+m_file.m_saverowsas.Disable ( )
+m_file.m_print.Disable ( )
+m_file.m_print.toolbaritemvisible = FALSE
+m_file.m_printpreview.Disable ( )
+m_file.m_previewzoom.Disable ( )
+m_design.m_designmode.Check ( )
+m_design.m_designmode.toolbaritemname = "EditObject!"
+m_design.m_designmode.toolbaritemtext = "Data Entry"
+m_design.m_zoom.Disable ( )
+m_rows.m_insert.Disable ( )
+m_rows.m_insert.toolbaritemvisible = FALSE
+m_rows.m_delete.Disable ( )
+m_rows.m_delete.toolbaritemvisible = FALSE
+m_rows.m_update.Disable ( )
+m_rows.m_update.toolbaritemvisible = FALSE
+m_rows.m_import.Disable ( )
+m_rows.m_import.toolbaritemvisible = FALSE
+m_rows.m_retrieve.Disable ( )
+m_rows.m_retrieve.toolbaritemvisible = FALSE
+m_rows.m_describe.Disable ( )
+m_rows.m_firstpage.Disable ( )
+m_rows.m_firstpage.toolbaritemvisible = FALSE
+m_rows.m_priorpage.Disable ( )
+m_rows.m_priorpage.toolbaritemvisible = FALSE
+m_rows.m_nextpage.Disable ( )
+m_rows.m_nextpage.toolbaritemvisible = FALSE
+m_rows.m_lastpage.Disable ( )
+m_rows.m_lastpage.toolbaritemvisible = FALSE
+
+mf_click ( 'ue_design_on' )
+end subroutine
+
+public subroutine mf_design_off ();m_file.m_save.Disable ( )
+m_file.m_save.toolbaritemvisible = FALSE
+m_file.m_saveas.Disable ( )
+m_file.m_saveas.toolbaritemvisible = FALSE
+m_file.m_saverowsas.Enable ( )
+m_file.m_print.Enable ( )
+m_file.m_print.toolbaritemvisible = TRUE
+m_file.m_printpreview.Enable ( )
+m_file.m_previewzoom.Enable ( )
+m_design.m_designmode.Uncheck ( )
+m_design.m_designmode.toolbaritemname = "Custom041!"
+m_design.m_designmode.toolbaritemtext = "Design"
+m_design.m_zoom.Enable ( )
+m_rows.m_insert.Enable ( )
+m_rows.m_insert.toolbaritemvisible = TRUE
+m_rows.m_delete.Enable ( )
+m_rows.m_delete.toolbaritemvisible = TRUE
+m_rows.m_update.Enable ( )
+m_rows.m_update.toolbaritemvisible = TRUE
+m_rows.m_import.Enable ( )
+m_rows.m_import.toolbaritemvisible = TRUE
+m_rows.m_retrieve.Enable ( )
+m_rows.m_retrieve.toolbaritemvisible = TRUE
+m_rows.m_describe.Enable ( )
+m_rows.m_firstpage.Enable ( )
+m_rows.m_firstpage.toolbaritemvisible = TRUE
+m_rows.m_priorpage.Enable ( )
+m_rows.m_priorpage.toolbaritemvisible = TRUE
+m_rows.m_nextpage.Enable ( )
+m_rows.m_nextpage.toolbaritemvisible = TRUE
+m_rows.m_lastpage.Enable ( )
+m_rows.m_lastpage.toolbaritemvisible = TRUE
+
+mf_click ( 'ue_design_off' )
+end subroutine
+
+public subroutine mf_preview_on ();m_file.m_printpreview.Check ( )
+m_file.m_previewzoom.Enable ( )
+m_design.m_designmode.Disable ( )
+m_design.m_designmode.toolbaritemvisible = FALSE
+
+mf_click ( 'ue_print_preview_on' )
+end subroutine
+
+public subroutine mf_preview_off ();m_file.m_printpreview.Uncheck ( )
+m_file.m_previewzoom.Disable ( )
+m_design.m_designmode.Enable ( )
+m_design.m_designmode.toolbaritemvisible = TRUE
+
+mf_click ( 'ue_print_preview_off' )
+end subroutine
+
+on m_ancestor.create
+m_ancestor=this
+this.m_file=create m_file
+this.m_design=create m_design
+this.m_rows=create m_rows
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_design, &
+this.m_rows, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_ancestor.destroy
+destroy(this.m_file)
+destroy(this.m_design)
+destroy(this.m_rows)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_ancestor
+m_new m_new
+m_filedummy1 m_filedummy1
+m_filedummy2 m_filedummy2
+m_open m_open
+m_filedummy3 m_filedummy3
+m_filedummy4 m_filedummy4
+m_close m_close
+m__1 m__1
+m_save m_save
+m_filedummy5 m_filedummy5
+m_saveas m_saveas
+m_saverowsas m_saverowsas
+m__2 m__2
+m_print m_print
+m_printpreview m_printpreview
+m_previewzoom m_previewzoom
+m_printsetup m_printsetup
+m__3 m__3
+m_filedummy9 m_filedummy9
+m_filedummy10 m_filedummy10
+m__4 m__4
+m_exit m_exit
+m__5 m__5
+m_filedummy11 m_filedummy11
+m_filedummy12 m_filedummy12
+m_filedummy13 m_filedummy13
+m_filedummy14 m_filedummy14
+m_filedummy15 m_filedummy15
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_new=create m_new
+this.m_filedummy1=create m_filedummy1
+this.m_filedummy2=create m_filedummy2
+this.m_open=create m_open
+this.m_filedummy3=create m_filedummy3
+this.m_filedummy4=create m_filedummy4
+this.m_close=create m_close
+this.m__1=create m__1
+this.m_save=create m_save
+this.m_filedummy5=create m_filedummy5
+this.m_saveas=create m_saveas
+this.m_saverowsas=create m_saverowsas
+this.m__2=create m__2
+this.m_print=create m_print
+this.m_printpreview=create m_printpreview
+this.m_previewzoom=create m_previewzoom
+this.m_printsetup=create m_printsetup
+this.m__3=create m__3
+this.m_filedummy9=create m_filedummy9
+this.m_filedummy10=create m_filedummy10
+this.m__4=create m__4
+this.m_exit=create m_exit
+this.m__5=create m__5
+this.m_filedummy11=create m_filedummy11
+this.m_filedummy12=create m_filedummy12
+this.m_filedummy13=create m_filedummy13
+this.m_filedummy14=create m_filedummy14
+this.m_filedummy15=create m_filedummy15
+this.Item[]={this.m_new, &
+this.m_filedummy1, &
+this.m_filedummy2, &
+this.m_open, &
+this.m_filedummy3, &
+this.m_filedummy4, &
+this.m_close, &
+this.m__1, &
+this.m_save, &
+this.m_filedummy5, &
+this.m_saveas, &
+this.m_saverowsas, &
+this.m__2, &
+this.m_print, &
+this.m_printpreview, &
+this.m_previewzoom, &
+this.m_printsetup, &
+this.m__3, &
+this.m_filedummy9, &
+this.m_filedummy10, &
+this.m__4, &
+this.m_exit, &
+this.m__5, &
+this.m_filedummy11, &
+this.m_filedummy12, &
+this.m_filedummy13, &
+this.m_filedummy14, &
+this.m_filedummy15}
+end on
+
+on m_file.destroy
+destroy(this.m_new)
+destroy(this.m_filedummy1)
+destroy(this.m_filedummy2)
+destroy(this.m_open)
+destroy(this.m_filedummy3)
+destroy(this.m_filedummy4)
+destroy(this.m_close)
+destroy(this.m__1)
+destroy(this.m_save)
+destroy(this.m_filedummy5)
+destroy(this.m_saveas)
+destroy(this.m_saverowsas)
+destroy(this.m__2)
+destroy(this.m_print)
+destroy(this.m_printpreview)
+destroy(this.m_previewzoom)
+destroy(this.m_printsetup)
+destroy(this.m__3)
+destroy(this.m_filedummy9)
+destroy(this.m_filedummy10)
+destroy(this.m__4)
+destroy(this.m_exit)
+destroy(this.m__5)
+destroy(this.m_filedummy11)
+destroy(this.m_filedummy12)
+destroy(this.m_filedummy13)
+destroy(this.m_filedummy14)
+destroy(this.m_filedummy15)
+end on
+
+type m_new from menu within m_file
+end type
+
+on m_new.create
+this.Text="&New"
+this.ToolBarItemName="New!"
+this.ToolBarItemText="New"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_new' )
+end event
+
+type m_filedummy1 from menu within m_file
+end type
+
+on m_filedummy1.create
+this.Text="filedummy1"
+this.Visible=false
+end on
+
+type m_filedummy2 from menu within m_file
+end type
+
+on m_filedummy2.create
+this.Text="filedummy2"
+this.Visible=false
+end on
+
+type m_open from menu within m_file
+end type
+
+on m_open.create
+this.Text="&Open"
+this.ToolBarItemName="Open!"
+this.ToolBarItemText="Open"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_open' )
+end event
+
+type m_filedummy3 from menu within m_file
+end type
+
+on m_filedummy3.create
+this.Text="filedummy3"
+this.Visible=false
+end on
+
+type m_filedummy4 from menu within m_file
+end type
+
+on m_filedummy4.create
+this.Text="filedummy4"
+this.Visible=false
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+this.Text="&Close"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_close' )
+end event
+
+type m__1 from menu within m_file
+end type
+
+on m__1.create
+this.Text="-"
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+this.Text="&Save"
+this.ToolBarItemName="Save!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_save' )
+end event
+
+type m_filedummy5 from menu within m_file
+end type
+
+on m_filedummy5.create
+this.Text="filedummy5"
+this.Visible=false
+end on
+
+type m_saveas from menu within m_file
+end type
+
+on m_saveas.create
+this.Text="Save &As..."
+this.ToolBarItemName="SaveAs!"
+this.ToolBarItemText="Save As"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_save_as' )
+end event
+
+type m_saverowsas from menu within m_file
+end type
+
+on m_saverowsas.create
+this.Text="Save &Rows As..."
+end on
+
+event clicked;mf_click ( 'ue_save_rows_as' )
+end event
+
+type m__2 from menu within m_file
+end type
+
+on m__2.create
+this.Text="-"
+end on
+
+type m_print from menu within m_file
+end type
+
+on m_print.create
+this.Text="&Print"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_print' )
+end event
+
+type m_printpreview from menu within m_file
+end type
+
+on m_printpreview.create
+this.Text="Print Pre&view"
+end on
+
+event clicked;IF checked THEN
+	mf_preview_off ( )
+ELSE
+	mf_preview_on ( )
+END IF
+end event
+
+type m_previewzoom from menu within m_file
+end type
+
+on m_previewzoom.create
+this.Text="Preview &Zoom..."
+this.Enabled=false
+end on
+
+event clicked;mf_click ( 'ue_preview_zoom' )
+end event
+
+type m_printsetup from menu within m_file
+end type
+
+on m_printsetup.create
+this.Text="Pr&inter Setup"
+end on
+
+event clicked;mf_click ( 'ue_print_setup' )
+end event
+
+type m__3 from menu within m_file
+end type
+
+on m__3.create
+this.Text="-"
+end on
+
+type m_filedummy9 from menu within m_file
+end type
+
+on m_filedummy9.create
+this.Text="filedummy9"
+this.Visible=false
+end on
+
+type m_filedummy10 from menu within m_file
+end type
+
+on m_filedummy10.create
+this.Text="filedummy10"
+this.Visible=false
+end on
+
+type m__4 from menu within m_file
+end type
+
+on m__4.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;mf_click ( 'ue_exit' )
+end event
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit..."
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m__5 from menu within m_file
+end type
+
+on m__5.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_filedummy11 from menu within m_file
+end type
+
+on m_filedummy11.create
+this.Text="filedummy11"
+this.Visible=false
+end on
+
+type m_filedummy12 from menu within m_file
+end type
+
+on m_filedummy12.create
+this.Text="filedummy12"
+this.Visible=false
+end on
+
+type m_filedummy13 from menu within m_file
+end type
+
+on m_filedummy13.create
+this.Text="filedummy13"
+this.Visible=false
+end on
+
+type m_filedummy14 from menu within m_file
+end type
+
+on m_filedummy14.create
+this.Text="filedummy14"
+this.Visible=false
+end on
+
+type m_filedummy15 from menu within m_file
+end type
+
+on m_filedummy15.create
+this.Text="filedummy15"
+this.Visible=false
+end on
+
+type m_design from menu within m_ancestor
+m_designmode m_designmode
+m__6 m__6
+m_zoom m_zoom
+end type
+
+on m_design.create
+this.Text="&Design"
+this.m_designmode=create m_designmode
+this.m__6=create m__6
+this.m_zoom=create m_zoom
+this.Item[]={this.m_designmode, &
+this.m__6, &
+this.m_zoom}
+end on
+
+on m_design.destroy
+destroy(this.m_designmode)
+destroy(this.m__6)
+destroy(this.m_zoom)
+end on
+
+type m_designmode from menu within m_design
+end type
+
+on m_designmode.create
+this.Text="&Design Mode"
+this.ToolBarItemName="Custom041!"
+this.ToolBarItemText="Design"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;IF checked THEN
+	mf_design_off ( )
+ELSE
+	mf_design_on ( )
+END IF
+end event
+
+type m__6 from menu within m_design
+end type
+
+on m__6.create
+this.Text="-"
+end on
+
+type m_zoom from menu within m_design
+end type
+
+on m_zoom.create
+this.Text="&Zoom..."
+end on
+
+event clicked;mf_click ( 'ue_zoom' )
+end event
+
+type m_rows from menu within m_ancestor
+m_insert m_insert
+m_delete m_delete
+m_update m_update
+m__7 m__7
+m_import m_import
+m_retrieve m_retrieve
+m__81 m__81
+m_describe m_describe
+m_filter m_filter
+m_sort m_sort
+m_-2 m_-2
+m_firstpage m_firstpage
+m_priorpage m_priorpage
+m_nextpage m_nextpage
+m_lastpage m_lastpage
+end type
+
+on m_rows.create
+this.Text="&Rows"
+this.m_insert=create m_insert
+this.m_delete=create m_delete
+this.m_update=create m_update
+this.m__7=create m__7
+this.m_import=create m_import
+this.m_retrieve=create m_retrieve
+this.m__81=create m__81
+this.m_describe=create m_describe
+this.m_filter=create m_filter
+this.m_sort=create m_sort
+this.m_-2=create m_-2
+this.m_firstpage=create m_firstpage
+this.m_priorpage=create m_priorpage
+this.m_nextpage=create m_nextpage
+this.m_lastpage=create m_lastpage
+this.Item[]={this.m_insert, &
+this.m_delete, &
+this.m_update, &
+this.m__7, &
+this.m_import, &
+this.m_retrieve, &
+this.m__81, &
+this.m_describe, &
+this.m_filter, &
+this.m_sort, &
+this.m_-2, &
+this.m_firstpage, &
+this.m_priorpage, &
+this.m_nextpage, &
+this.m_lastpage}
+end on
+
+on m_rows.destroy
+destroy(this.m_insert)
+destroy(this.m_delete)
+destroy(this.m_update)
+destroy(this.m__7)
+destroy(this.m_import)
+destroy(this.m_retrieve)
+destroy(this.m__81)
+destroy(this.m_describe)
+destroy(this.m_filter)
+destroy(this.m_sort)
+destroy(this.m_-2)
+destroy(this.m_firstpage)
+destroy(this.m_priorpage)
+destroy(this.m_nextpage)
+destroy(this.m_lastpage)
+end on
+
+type m_insert from menu within m_rows
+end type
+
+on m_insert.create
+this.Text="I&nsert"
+this.ToolBarItemName="Insert5!"
+this.ToolBarItemText="Insert"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_insert' )
+end event
+
+type m_delete from menu within m_rows
+end type
+
+on m_delete.create
+this.Text="&Delete"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Delete"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_delete' )
+end event
+
+type m_update from menu within m_rows
+end type
+
+on m_update.create
+this.Text="U&pdate"
+this.ToolBarItemName="Update5!"
+this.ToolBarItemText="Update"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_update' )
+end event
+
+type m__7 from menu within m_rows
+end type
+
+on m__7.create
+this.Text="-"
+end on
+
+type m_import from menu within m_rows
+end type
+
+on m_import.create
+this.Text="&Import..."
+this.ToolBarItemName="Import5!"
+this.ToolBarItemText="Import"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_import' )
+end event
+
+type m_retrieve from menu within m_rows
+end type
+
+on m_retrieve.create
+this.Text="&Retrieve"
+this.ToolBarItemName="Retrieve5!"
+this.ToolBarItemText="Retrieve"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_retrieve' )
+end event
+
+type m__81 from menu within m_rows
+end type
+
+on m__81.create
+this.Text="-"
+end on
+
+type m_describe from menu within m_rows
+end type
+
+on m_describe.create
+this.Text="D&escribe..."
+end on
+
+event clicked;mf_click ( 'ue_describe' )
+end event
+
+type m_filter from menu within m_rows
+end type
+
+on m_filter.create
+this.Text="&Filter..."
+end on
+
+event clicked;mf_click ( 'ue_filter' )
+end event
+
+type m_sort from menu within m_rows
+end type
+
+on m_sort.create
+this.Text="&Sort..."
+end on
+
+event clicked;mf_click ( 'ue_sort' )
+end event
+
+type m_-2 from menu within m_rows
+end type
+
+on m_-2.create
+this.Text="-"
+end on
+
+type m_firstpage from menu within m_rows
+end type
+
+on m_firstpage.create
+this.Text="&First Page"
+this.ToolBarItemName="VCRFirst!"
+this.ToolBarItemText="First"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_first' )
+end event
+
+type m_priorpage from menu within m_rows
+end type
+
+on m_priorpage.create
+this.Text="&Prior Page"
+this.ToolBarItemName="VCRPrior!"
+this.ToolBarItemText="Prior"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_prior' )
+end event
+
+type m_nextpage from menu within m_rows
+end type
+
+on m_nextpage.create
+this.Text="&Next Page"
+this.ToolBarItemName="VCRNext!"
+this.ToolBarItemText="Next"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_next' )
+end event
+
+type m_lastpage from menu within m_rows
+end type
+
+on m_lastpage.create
+this.Text="&Last Page"
+this.ToolBarItemName="VCRLast!"
+this.ToolBarItemText="Last"
+this.ToolBarItemOrder=1
+end on
+
+event clicked;mf_click ( 'ue_last' )
+end event
+
+type m_window from menu within m_ancestor
+m_tile m_tile
+m_windowdummy1 m_windowdummy1
+m_windowdummy2 m_windowdummy2
+m_layer m_layer
+m_windowdummy3 m_windowdummy3
+m_windowdummy4 m_windowdummy4
+m_cascade m_cascade
+m__8 m__8
+m_arrangeicons m_arrangeicons
+m_windowdummy5 m_windowdummy5
+m_windowdummy6 m_windowdummy6
+m_windowdummy7 m_windowdummy7
+m_windowdummy8 m_windowdummy8
+m_windowdummy9 m_windowdummy9
+m_windowdummy10 m_windowdummy10
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_windowdummy1=create m_windowdummy1
+this.m_windowdummy2=create m_windowdummy2
+this.m_layer=create m_layer
+this.m_windowdummy3=create m_windowdummy3
+this.m_windowdummy4=create m_windowdummy4
+this.m_cascade=create m_cascade
+this.m__8=create m__8
+this.m_arrangeicons=create m_arrangeicons
+this.m_windowdummy5=create m_windowdummy5
+this.m_windowdummy6=create m_windowdummy6
+this.m_windowdummy7=create m_windowdummy7
+this.m_windowdummy8=create m_windowdummy8
+this.m_windowdummy9=create m_windowdummy9
+this.m_windowdummy10=create m_windowdummy10
+this.Item[]={this.m_tile, &
+this.m_windowdummy1, &
+this.m_windowdummy2, &
+this.m_layer, &
+this.m_windowdummy3, &
+this.m_windowdummy4, &
+this.m_cascade, &
+this.m__8, &
+this.m_arrangeicons, &
+this.m_windowdummy5, &
+this.m_windowdummy6, &
+this.m_windowdummy7, &
+this.m_windowdummy8, &
+this.m_windowdummy9, &
+this.m_windowdummy10}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_windowdummy1)
+destroy(this.m_windowdummy2)
+destroy(this.m_layer)
+destroy(this.m_windowdummy3)
+destroy(this.m_windowdummy4)
+destroy(this.m_cascade)
+destroy(this.m__8)
+destroy(this.m_arrangeicons)
+destroy(this.m_windowdummy5)
+destroy(this.m_windowdummy6)
+destroy(this.m_windowdummy7)
+destroy(this.m_windowdummy8)
+destroy(this.m_windowdummy9)
+destroy(this.m_windowdummy10)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;IF IsValid ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+END IF
+
+end event
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_windowdummy1 from menu within m_window
+end type
+
+on m_windowdummy1.create
+this.Text="windowdummy1"
+this.Visible=false
+end on
+
+type m_windowdummy2 from menu within m_window
+end type
+
+on m_windowdummy2.create
+this.Text="windowdummy2"
+this.Visible=false
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;IF IsValid ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+END IF
+end event
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_windowdummy3 from menu within m_window
+end type
+
+on m_windowdummy3.create
+this.Text="windowdummy3"
+this.Visible=false
+end on
+
+type m_windowdummy4 from menu within m_window
+end type
+
+on m_windowdummy4.create
+this.Text="windowdummy4"
+this.Visible=false
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;IF IsValid ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+END IF
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m__8 from menu within m_window
+end type
+
+on m__8.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;IF IsValid ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+END IF
+end event
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_windowdummy5 from menu within m_window
+end type
+
+on m_windowdummy5.create
+this.Text="windowdummy5"
+this.Visible=false
+end on
+
+type m_windowdummy6 from menu within m_window
+end type
+
+on m_windowdummy6.create
+this.Text="windowdummy6"
+this.Visible=false
+end on
+
+type m_windowdummy7 from menu within m_window
+end type
+
+on m_windowdummy7.create
+this.Text="windowdummy7"
+this.Visible=false
+end on
+
+type m_windowdummy8 from menu within m_window
+end type
+
+on m_windowdummy8.create
+this.Text="windowdummy8"
+this.Visible=false
+end on
+
+type m_windowdummy9 from menu within m_window
+end type
+
+on m_windowdummy9.create
+this.Text="windowdummy9"
+this.Visible=false
+end on
+
+type m_windowdummy10 from menu within m_window
+end type
+
+on m_windowdummy10.create
+this.Text="windowdummy10"
+this.Visible=false
+end on
+
+type m_help from menu within m_ancestor
+m_helpdummy1 m_helpdummy1
+m_helpdummy2 m_helpdummy2
+m_helpdummy3 m_helpdummy3
+m_helpdummy4 m_helpdummy4
+m_helpdummy5 m_helpdummy5
+m_helpdummy6 m_helpdummy6
+m_helpdummy7 m_helpdummy7
+m__9 m__9
+m_about m_about
+m_helpdummy8 m_helpdummy8
+m_helpdummy9 m_helpdummy9
+m_helpdummy10 m_helpdummy10
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_helpdummy1=create m_helpdummy1
+this.m_helpdummy2=create m_helpdummy2
+this.m_helpdummy3=create m_helpdummy3
+this.m_helpdummy4=create m_helpdummy4
+this.m_helpdummy5=create m_helpdummy5
+this.m_helpdummy6=create m_helpdummy6
+this.m_helpdummy7=create m_helpdummy7
+this.m__9=create m__9
+this.m_about=create m_about
+this.m_helpdummy8=create m_helpdummy8
+this.m_helpdummy9=create m_helpdummy9
+this.m_helpdummy10=create m_helpdummy10
+this.Item[]={this.m_helpdummy1, &
+this.m_helpdummy2, &
+this.m_helpdummy3, &
+this.m_helpdummy4, &
+this.m_helpdummy5, &
+this.m_helpdummy6, &
+this.m_helpdummy7, &
+this.m__9, &
+this.m_about, &
+this.m_helpdummy8, &
+this.m_helpdummy9, &
+this.m_helpdummy10}
+end on
+
+on m_help.destroy
+destroy(this.m_helpdummy1)
+destroy(this.m_helpdummy2)
+destroy(this.m_helpdummy3)
+destroy(this.m_helpdummy4)
+destroy(this.m_helpdummy5)
+destroy(this.m_helpdummy6)
+destroy(this.m_helpdummy7)
+destroy(this.m__9)
+destroy(this.m_about)
+destroy(this.m_helpdummy8)
+destroy(this.m_helpdummy9)
+destroy(this.m_helpdummy10)
+end on
+
+type m_helpdummy1 from menu within m_help
+end type
+
+on m_helpdummy1.create
+this.Text="helpdummy1"
+this.Visible=false
+end on
+
+type m_helpdummy2 from menu within m_help
+end type
+
+on m_helpdummy2.create
+this.Text="helpdummy2"
+this.Visible=false
+end on
+
+type m_helpdummy3 from menu within m_help
+end type
+
+on m_helpdummy3.create
+this.Text="helpdummy3"
+this.Visible=false
+end on
+
+type m_helpdummy4 from menu within m_help
+end type
+
+on m_helpdummy4.create
+this.Text="helpdummy4"
+this.Visible=false
+end on
+
+type m_helpdummy5 from menu within m_help
+end type
+
+on m_helpdummy5.create
+this.Text="helpdummy5"
+this.Visible=false
+end on
+
+type m_helpdummy6 from menu within m_help
+end type
+
+on m_helpdummy6.create
+this.Text="helpdummy6"
+this.Visible=false
+end on
+
+type m_helpdummy7 from menu within m_help
+end type
+
+on m_helpdummy7.create
+this.Text="helpdummy7"
+this.Visible=false
+end on
+
+type m__9 from menu within m_help
+end type
+
+on m__9.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_about from menu within m_help
+end type
+
+event clicked;SetPointer (hourglass!)
+gnv_app.of_about()
+
+end event
+
+on m_about.create
+this.Text="&About"
+end on
+
+type m_helpdummy8 from menu within m_help
+end type
+
+on m_helpdummy8.create
+this.Text="helpdummy8"
+this.Visible=false
+end on
+
+type m_helpdummy9 from menu within m_help
+end type
+
+on m_helpdummy9.create
+this.Text="helpdummy9"
+this.Visible=false
+end on
+
+type m_helpdummy10 from menu within m_help
+end type
+
+on m_helpdummy10.create
+this.Text="helpdummy10"
+this.Visible=false
+end on
+

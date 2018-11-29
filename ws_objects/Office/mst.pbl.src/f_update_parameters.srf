@@ -1,0 +1,35 @@
+﻿$PBExportHeader$f_update_parameters.srf
+$PBExportComments$Update the parameter table.
+global type f_update_parameters from function_object
+end type
+
+forward prototypes
+global subroutine f_update_parameters (string as_columnname, long al_value)
+end prototypes
+
+global subroutine f_update_parameters (string as_columnname, long al_value);/*
+Description	:To dynamically update the parameter table.
+Author		:Jim Wu
+Date			:01/30/96
+Modification:
+*/
+
+/* Declaration */
+String	ls_SQLStatement
+
+/* Initialization */
+
+
+/* Main Process */
+
+
+ls_SQLStatement=	"UPDATE parameters SET " + as_ColumnName + &
+						" = " + String(al_Value)  
+
+SQLCA.autocommit = TRUE
+
+EXECUTE IMMEDIATE :ls_SQLStatement USING SQLCA ;
+
+SQLCA.autocommit = False
+end subroutine
+

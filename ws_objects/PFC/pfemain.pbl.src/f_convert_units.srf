@@ -1,0 +1,55 @@
+﻿$PBExportHeader$f_convert_units.srf
+global type f_convert_units from function_object
+end type
+
+forward prototypes
+global function decimal f_convert_units (string szoriginalunit, string sznewunit, string part_number, decimal quantity)
+end prototypes
+
+global function decimal f_convert_units (string szoriginalunit, string sznewunit, string part_number, decimal quantity);/* Declare Variables  */
+
+Dec nQty
+
+/*  Initialize variables  */
+
+If szOriginalUnit = "" Then
+
+	SELECT  standard_unit  
+     INTO  :szOriginalUnit  
+     FROM  part_inventory  
+    WHERE  part = :Part_number   ;
+	
+End if
+
+If szNewUnit = "" Then
+
+	SELECT  standard_unit  
+     INTO  :szNewUnit  
+     FROM  part_inventory  
+    WHERE  part = :Part_number   ;
+	
+End if
+
+  SELECT unit_conversion.conversion  
+    INTO :nQty  
+    FROM part_unit_conversion,   
+         unit_conversion  
+   WHERE ( part_unit_conversion.code = unit_conversion.code ) and  
+         ( ( part_unit_conversion.part = :Part_number ) AND  
+         (   unit_conversion.unit1 = :szOriginalUnit ) AND  
+         (   unit_conversion.unit2 = :szNewUnit ) )   ;
+
+
+If SQLCA.SQLCode = 0 Then
+
+	Return quantity * nQty
+
+Else
+
+	Return quantity
+
+End if
+
+
+end function
+

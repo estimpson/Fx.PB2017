@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_partmaster_newrelatedpartgroupedit.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=328 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=char(50) updatewhereclause=yes name=groupname dbname="GroupName" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	PartCode = convert(varchar(25), :partCode)
+,	GroupName = convert(varchar(50), null)
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	(	select dummy = 1
+	) d
+" arguments=(("PartCode", string)) )
+groupbox(band=detail text="New Related Part Group"border="5" color="33554432" x="37" y="4" height="320" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="1" text="Group name:" border="0" color="33554432" x="73" y="228" height="64" width="343" html.valueishtml="0"  name=groupname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="512" y="228" height="76" width="878" format="[general];<Anonymous>" html.valueishtml="0"  name=groupname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="ok-32.bmp" x="1463" y="36" height="128" width="146" border="0"  name=p_ok  tag="Keep changes..." visible="1" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1463" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel changes..." visible="1" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="512" y="100" height="76" width="878" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Part code:" border="0" color="33554432" x="73" y="100" height="64" width="325" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="33554432" x="8192" y="0" height="64" width="2135" format="[general]" html.valueishtml="0"  name=isselected visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

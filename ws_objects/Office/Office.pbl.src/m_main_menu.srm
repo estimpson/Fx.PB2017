@@ -1,0 +1,19 @@
+﻿$PBExportHeader$m_main_menu.srm
+forward
+global type m_main_menu from menu
+end type
+end forward
+
+global type m_main_menu from menu
+end type
+global m_main_menu m_main_menu
+
+on m_main_menu.create
+m_main_menu=this
+call super::create
+end on
+
+on m_main_menu.destroy
+call super::destroy
+end on
+

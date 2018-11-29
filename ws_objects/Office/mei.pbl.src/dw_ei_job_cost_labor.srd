@@ -1,0 +1,39 @@
+﻿$PBExportHeader$dw_ei_job_cost_labor.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=218 color="536870912" )
+summary(height=260 color="-1" )
+footer(height=10 color="-1" )
+detail(height=218 color="-1" )
+table(column=(type=datetime updatewhereclause=yes name=log_date dbname="time_log.log_date" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="time_log.type" )
+ column=(type=char(35) updatewhereclause=yes name=employee dbname="time_log.employee" )
+ column=(type=decimal(2) updatewhereclause=yes name=time_logged dbname="time_log.time_logged" )
+ column=(type=long updatewhereclause=yes name=id dbname="time_log.id" )
+ column=(type=char(10) updatewhereclause=yes name=time_log_workorder dbname="time_log.workorder" )
+ retrieve="  SELECT time_log.log_date,   
+         time_log.type,   
+         time_log.employee,   
+         time_log.time_logged,   
+         time_log.id,   
+         time_log.workorder  
+    FROM time_log,   
+         employee  
+   WHERE ( time_log.employee = employee.name ) and  
+         ( ( time_log.workorder = :szWorkorder ) )    
+" arguments=(("szWorkorder", string))  sort="employee A " )
+group(level=1 header.height=0 trailer.height=208 by=("employee" ) header.color="-1" trailer.color="-1" )
+text(band=header alignment="0" text="Total Labor as of "border="0" color="0" x="0" y="20" height="166" width="1395"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="1416" y="20" height="166" width="864" format="[shortdate]"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="614" y="31" height="166" width="166" format="[general]"  name=type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="947" y="31" height="166" width="625" format="[general]"  name=time_logged edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="1729" y="31" height="166" width="520" format="[general]"  name=time_log_workorder edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="31" y="31" height="166" width="458" format="[general]"  name=log_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=3 alignment="0" tabsequence=32766 border="0" color="0" x="62" y="10" height="166" width="1000" format="[general]"  name=employee edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(time_logged for group 1)"border="0" color="0" x="1229" y="10" height="166" width="958" format="#,##0.00"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression=" time_logged  * 10"border="0" color="0" x="2302" y="10" height="166" width="541" format="$#,##0.00;[RED]($#,##0.00)"  name=dollars  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum( time_logged  * 10 for all)"border="0" color="0" x="1916" y="1511" height="197" width="552" format="$#,##0.00;[RED]($#,##0.00)"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="1" text="Total Labor Cost for this Job"border="0" color="0" x="62" y="1511" height="166" width="1854"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=summary x1="83" y1="1469" x2="2468" y2="1469" pen.style="0" pen.width="41" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(time_logged for all)"border="0" color="0" x="1177" y="52" height="197" width="625" format="#,##0.00"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Total Hours"border="0" color="0" x="302" y="52" height="166" width="750"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )

@@ -1,0 +1,395 @@
+﻿$PBExportHeader$m_physical_inventory.srm
+$PBExportComments$Physical Inventory
+forward
+global type m_physical_inventory from menu
+end type
+type m_file from menu within m_physical_inventory
+end type
+type m_norand from menu within m_file
+end type
+type m_scanpal from menu within m_file
+end type
+type m_batch from menu within m_file
+end type
+type m_manual from menu within m_file
+end type
+type m_compare from menu within m_file
+end type
+type m_reconcile from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_deletelost from menu within m_file
+end type
+type m_importbackupdata from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_physical_inventory
+m_norand m_norand
+m_scanpal m_scanpal
+m_batch m_batch
+m_manual m_manual
+m_compare m_compare
+m_reconcile m_reconcile
+m_delete m_delete
+m_deletelost m_deletelost
+m_importbackupdata m_importbackupdata
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_physical_inventory
+end type
+type m_window from menu within m_physical_inventory
+end type
+type m_help from menu within m_physical_inventory
+end type
+global type m_physical_inventory from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_physical_inventory from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_physical_inventory m_physical_inventory
+
+on m_physical_inventory.create
+m_physical_inventory=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_physical_inventory.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_physical_inventory
+m_norand m_norand
+m_scanpal m_scanpal
+m_batch m_batch
+m_manual m_manual
+m_compare m_compare
+m_reconcile m_reconcile
+m_delete m_delete
+m_deletelost m_deletelost
+m_importbackupdata m_importbackupdata
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_norand=create m_norand
+this.m_scanpal=create m_scanpal
+this.m_batch=create m_batch
+this.m_manual=create m_manual
+this.m_compare=create m_compare
+this.m_reconcile=create m_reconcile
+this.m_delete=create m_delete
+this.m_deletelost=create m_deletelost
+this.m_importbackupdata=create m_importbackupdata
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_norand
+this.Item[UpperBound(this.Item)+1]=this.m_scanpal
+this.Item[UpperBound(this.Item)+1]=this.m_batch
+this.Item[UpperBound(this.Item)+1]=this.m_manual
+this.Item[UpperBound(this.Item)+1]=this.m_compare
+this.Item[UpperBound(this.Item)+1]=this.m_reconcile
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_deletelost
+this.Item[UpperBound(this.Item)+1]=this.m_importbackupdata
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_norand)
+destroy(this.m_scanpal)
+destroy(this.m_batch)
+destroy(this.m_manual)
+destroy(this.m_compare)
+destroy(this.m_reconcile)
+destroy(this.m_delete)
+destroy(this.m_deletelost)
+destroy(this.m_importbackupdata)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_norand from menu within m_file
+end type
+
+on clicked;MessageBox("System Message", "Interface not installed")
+end on
+
+on m_norand.create
+call super::create
+this.text = "&Norand~tAlt+N"
+this.shortcut = 590
+this.microhelp = "Norand Wireless Scanner Interface"
+this.toolbaritemname = "Custom046!"
+this.toolbaritemtext = "Norand"
+this.toolbaritemorder = 1
+end on
+
+on m_norand.destroy
+call super::destroy
+end on
+
+type m_scanpal from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("scanpal")
+end on
+
+on m_scanpal.create
+call super::create
+this.text = "&ScanPal~tAlt+S"
+this.shortcut = 595
+this.microhelp = "MetroLogic Scan Pal Interface"
+this.toolbaritemname = "Compute!"
+this.toolbaritemtext = "ScanPal"
+this.toolbaritemorder = 2
+end on
+
+on m_scanpal.destroy
+call super::destroy
+end on
+
+type m_batch from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("batch_process")
+end on
+
+on m_batch.create
+call super::create
+this.text = "&Batch~tAlt+B"
+this.shortcut = 578
+this.microhelp = "Read from SCANNER.DAT file"
+this.toolbaritemname = "Preferences!"
+this.toolbaritemtext = "Batch"
+this.toolbaritemorder = 3
+end on
+
+on m_batch.destroy
+call super::destroy
+end on
+
+type m_manual from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("manual_scan")
+end on
+
+on m_manual.create
+call super::create
+this.text = "&Manual~tAlt+M"
+this.shortcut = 589
+this.microhelp = "Manual Data Entry"
+this.toolbaritemname = "Custom024!"
+this.toolbaritemtext = "Manual"
+this.toolbaritemorder = 4
+end on
+
+on m_manual.destroy
+call super::destroy
+end on
+
+type m_compare from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("compare")
+end on
+
+on m_compare.create
+call super::create
+this.text = "&Compare~tAlt+C"
+this.shortcut = 579
+this.microhelp = "Compare system and physical inventory"
+this.toolbaritemname = "CheckStatus!"
+this.toolbaritemtext = "Compare"
+this.toolbaritemorder = 6
+end on
+
+on m_compare.destroy
+call super::destroy
+end on
+
+type m_reconcile from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("reconcile")
+end on
+
+on m_reconcile.create
+call super::create
+this.text = "&Reconcile~tAlt+R"
+this.shortcut = 594
+this.microhelp = "Send Excess Inventory to LOST location"
+this.toolbaritemname = "Continue!"
+this.toolbaritemtext = "Reconcile"
+this.toolbaritemorder = 7
+end on
+
+on m_reconcile.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("delete_physical")
+end on
+
+on m_delete.create
+call super::create
+this.text = "&Delete~tAlt+D"
+this.shortcut = 580
+this.microhelp = "Delete physical object"
+this.toolbaritemname = "clear!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 8
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_deletelost from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("delete_LOST")
+end on
+
+on m_deletelost.create
+call super::create
+this.text = "Delete &LOST~tAlt+L"
+this.shortcut = 588
+this.microhelp = "Delete objects in LOST location"
+this.toolbaritemname = "Custom009!"
+this.toolbaritemtext = "Del LOST"
+this.toolbaritemorder = 9
+end on
+
+on m_deletelost.destroy
+call super::destroy
+end on
+
+type m_importbackupdata from menu within m_file
+end type
+
+on clicked;IF MessageBox ( "Information", "This process will download data from " + &
+				 "a data file that was created while you were manually " + &
+             "scanning as a means of backup in the case of lost data.  "+ &
+				 "Do you want to continue?", Information!, YesNo! ) = 1 THEN
+	gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_import" )
+ELSE
+	Return
+END IF
+end on
+
+on m_importbackupdata.create
+call super::create
+this.text = "&Import Backup Data~tAlt+I"
+this.shortcut = 585
+this.microhelp = "Import Backup Data from HardDrive"
+this.toolbaritemname = "CheckOut!"
+this.toolbaritemtext = "Import Data"
+this.toolbaritemorder = 10
+end on
+
+on m_importbackupdata.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_physical_inventory
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_physical_inventory
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+event clicked;Close(gnv_App.of_GetFrame().GetActiveSheet())
+end event
+
+type m_help from menu within m_physical_inventory
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

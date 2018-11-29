@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_parts_select.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=928 color="536870912" )
+table(column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=no name=qty dbname="qty" )
+ )
+text(band=detail alignment="1" text="Part:"border="0" color="0" x="242" y="28" height="52" width="137"  name=part_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="407" y="28" height="68" width="686" format="[general]"  name=part dddw.name=d_dddw_finished_parts dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=230 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Quantity:"border="0" color="0" x="178" y="116" height="52" width="201"  name=qty_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="5" color="0" x="407" y="116" height="64" width="411" format="#########.00000"  name=qty editmask.mask="#########.00000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

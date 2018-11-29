@@ -1,0 +1,107 @@
+﻿$PBExportHeader$f_dw_get_objects_attrib.srf
+$PBExportComments$Gets a list of datawindow objects and requested attributes
+global type f_dw_get_objects_attrib from function_object
+end type
+
+forward prototypes
+global function integer f_dw_get_objects_attrib (datawindow dw_arg, ref string obj_list[], string obj_type, string band, string attributes)
+end prototypes
+
+global function integer f_dw_get_objects_attrib (datawindow dw_arg, ref string obj_list[], string obj_type, string band, string attributes);////////////////////////////////////////////////////////////////////////
+//
+//		Function:  F_Dw_Get_Objects_attrib
+//		 Purpose:  The following function will parse the list of objects 
+//					  contained in the dataobject associated with a 
+//					  datawindow control, returning their names into a string
+//					  array passed by reference, and returning the number of 
+//					  names in the array as the return value of the function.
+//					  The values of attributes can also be asked for by passing 
+//					  a comma separated list of attribute names. If attributes are 
+//					  asked for they are returned as part of the array and are 
+//					  separated from the object name by "~n' characters
+//					   
+//
+//					  You can control the objects returned by type and by 
+//					  band.  Specifying an "*" for either type or band means 
+//					  that you want all occurences of objects across type or 
+//					  band.  For information on valid band and object type 
+//					  names ( See the PowerBuilder's Advanced Datawindows 
+//								  Manual. ).
+//
+//					  Note:  if this function will be used against columns, 
+//								all of your columns must have names!!
+//
+//						Example1: This will return the names of all text objects
+//		  						    in the header band of dw_1 into mylist 
+//									(as well as their current text values), 
+//									 and the number of names returned into obj_num.
+//	
+//      							 obj_num = f_parse_obj_string(dw_1,mylist, &
+//													"text","header","text") 
+//
+//						Example2: This will return the names of all column objects
+//									 in dw_1 into mylist (no attributes were asked for)
+//									 , and the number of names 
+//									 returned into obj_num.
+//			
+//									 obj_num = f_parse_obj_string(dw_1,mylist, &
+//													"column","*","") 
+//	
+//						Example3: This will return the names of all objects in 
+//									 the summary band of dw_1 into mylist
+//									(no attributes were asked for), and the
+//									 number of names returned into obj_num.
+//
+//									 obj_num = f_parse_obj_string(dw_1,mylist, &
+//												  "*","summary","") 
+//
+//						Example4: This will return the names of all objects in 
+//									 dw_1  into mylist (and their x and y values), 
+//									 and the number of names 
+//									 returned into obj_num.
+//
+//									 obj_num = f_parse_obj_string(dw_1,mylist, &
+//												"*","*","x,y") 
+//
+//	     ARGUMENTS:
+//						dw_arg	 datawindow control passed by value
+//						obj_list  string array passed by reference
+//						obj_type  a string passed by value
+//						band      a string passed by value
+//						attributes a string passed by value
+//
+//      Log:
+//
+//			Who				When				What
+//-----------------------------------------------------------------------
+//			Powersoft 							initial version
+//			Powersoft		10/1/93			Added capability to return attributes
+//
+//////////////////////////////////////////////////////////////////////////
+
+string obj_string, obj_holder,command
+int obj_count,  count = 0,i
+
+// Get the list of objects
+obj_string = Describe(dw_arg,"datawindow.objects")
+obj_holder = f_get_token(obj_string,'~t')
+DO WHILE LenA(obj_holder) > 0
+	IF (Describe(dw_arg,obj_holder+".type") = obj_type or obj_type = "*") AND &
+		(Describe(dw_arg,obj_holder+".band") = band or band = "*") THEN
+			count++
+			obj_list[count] = obj_holder
+	END IF
+	obj_holder = f_get_token(obj_string,'~t')
+LOOP 
+
+// Now get the attributes , if any
+if LenA(attributes) > 0 then
+	for i = 1 to count
+		obj_list[i] = obj_list[i] + '~n'+f_dw_get_attributes(dw_arg,obj_list[i],attributes)
+	next
+end if
+Return count
+
+
+end function
+

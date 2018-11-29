@@ -1,0 +1,71 @@
+﻿$PBExportHeader$d_bill_of_material.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=parent_part dbname="bill_of_material_ec.parent_part" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="bill_of_material_ec.part" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=start_datetime dbname="bill_of_material_ec.start_datetime" )
+ column=(type=datetime update=yes updatewhereclause=yes name=end_datetime dbname="bill_of_material_ec.end_datetime" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="bill_of_material_ec.type" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="bill_of_material_ec.quantity" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit_measure dbname="bill_of_material_ec.unit_measure" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=reference_no dbname="bill_of_material_ec.reference_no" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=std_qty dbname="bill_of_material_ec.std_qty" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=scrap_factor dbname="bill_of_material_ec.scrap_factor" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=engineering_level dbname="bill_of_material_ec.engineering_level" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=operator dbname="bill_of_material_ec.operator" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=substitute_part dbname="bill_of_material_ec.substitute_part" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_changed dbname="bill_of_material_ec.date_changed" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=note dbname="bill_of_material_ec.note" )
+ retrieve="  SELECT bill_of_material_ec.parent_part,   
+         bill_of_material_ec.part,   
+         bill_of_material_ec.start_datetime,   
+         bill_of_material_ec.end_datetime,   
+         bill_of_material_ec.type,   
+         bill_of_material_ec.quantity,   
+         bill_of_material_ec.unit_measure,   
+         bill_of_material_ec.reference_no,   
+         bill_of_material_ec.std_qty,   
+         bill_of_material_ec.scrap_factor,   
+         bill_of_material_ec.engineering_level,   
+         bill_of_material_ec.operator,   
+         bill_of_material_ec.substitute_part,   
+         bill_of_material_ec.date_changed,   
+         bill_of_material_ec.note  
+    FROM bill_of_material_ec   
+where bill_of_material_ec.parent_part = :a_s_parentpart
+" update="bill_of_material_ec" updatewhere=1 updatekeyinplace=no arguments=(("a_s_parentpart", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="713" format="[general]"  name=parent_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="731" y="8" height="76" width="713" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="1454" y="8" height="76" width="603" format="[shortdate] [time]"  name=start_datetime edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="2066" y="8" height="76" width="603" format="[shortdate] [time]"  name=end_datetime edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="2679" y="8" height="76" width="128" format="[general]"  name=type edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2816" y="8" height="76" width="329" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="0" x="3154" y="8" height="76" width="352" format="[general]"  name=unit_measure edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="0" color="0" x="3515" y="8" height="76" width="1399" format="[general]"  name=reference_no edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="1" tabsequence=90 border="0" color="0" x="4923" y="8" height="76" width="329" format="[general]"  name=std_qty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=10 alignment="1" tabsequence=100 border="0" color="0" x="5262" y="8" height="76" width="343" format="[general]"  name=scrap_factor edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=11 alignment="0" tabsequence=110 border="0" color="0" x="5614" y="8" height="76" width="462" format="[general]"  name=engineering_level edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=12 alignment="0" tabsequence=120 border="0" color="0" x="6085" y="8" height="76" width="229" format="[general]"  name=operator edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=130 border="0" color="0" x="6322" y="8" height="76" width="713" format="[general]"  name=substitute_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=14 alignment="0" tabsequence=140 border="0" color="0" x="7045" y="8" height="76" width="603" format="[shortdate] [time]"  name=date_changed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=15 alignment="0" tabsequence=150 border="0" color="0" x="7657" y="8" height="76" width="2743" format="[general]"  name=note edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Parent Part"border="6" color="0" x="9" y="8" height="52" width="713"  name=parent_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="731" y="8" height="52" width="713"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Start Datetime"border="6" color="0" x="1454" y="8" height="52" width="603"  name=start_datetime_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="End Datetime"border="6" color="0" x="2066" y="8" height="52" width="603"  name=end_datetime_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="2679" y="8" height="52" width="128"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="2816" y="8" height="52" width="329"  name=quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Unit Measure"border="6" color="0" x="3154" y="8" height="52" width="352"  name=unit_measure_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Reference No"border="6" color="0" x="3515" y="8" height="52" width="1399"  name=reference_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Std Qty"border="6" color="0" x="4923" y="8" height="52" width="329"  name=std_qty_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Scrap Factor"border="6" color="0" x="5262" y="8" height="52" width="343"  name=scrap_factor_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Engineering Level"border="6" color="0" x="5614" y="8" height="52" width="462"  name=engineering_level_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Operator"border="6" color="0" x="6085" y="8" height="52" width="229"  name=operator_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Substitute Part"border="6" color="0" x="6322" y="8" height="52" width="713"  name=substitute_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Date Changed"border="6" color="0" x="7045" y="8" height="52" width="603"  name=date_changed_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Note"border="6" color="0" x="7657" y="8" height="52" width="2743"  name=note_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

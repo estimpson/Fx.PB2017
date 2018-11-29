@@ -1,0 +1,23 @@
+﻿$PBExportHeader$d_activity_router_new_list.srd
+$PBExportComments$Activity router list object - to be shared with d_activity_router_new.
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=activity_router_parent_part dbname="activity_router.parent_part" )
+ column=(type=decimal(0) updatewhereclause=yes name=activity_router_sequence dbname="activity_router.sequence" )
+ column=(type=char(25) updatewhereclause=yes name=activity_router_part dbname="activity_router.part" )
+ column=(type=char(25) updatewhereclause=yes name=activity_router_code dbname="activity_router.code" )
+ column=(type=char(25) updatewhereclause=yes name=activity_router_process dbname="activity_router.process" )
+ column=(type=char(15) updatewhereclause=yes name=activity_router_labor dbname="activity_router.labor" )
+ column=(type=char(10) updatewhereclause=yes name=activity_router_group_location dbname="activity_router.group_location" )
+ column=(type=char(255) updatewhereclause=yes name=activity_router_notes dbname="activity_router.notes" )
+ column=(type=char(55) updatewhereclause=yes name=activity_codes_flow_route_window dbname="activity_codes.flow_route_window" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"activity_router~" )  TABLE(NAME=~"activity_codes~" ) COLUMN(NAME=~"activity_router.parent_part~") COLUMN(NAME=~"activity_router.sequence~") COLUMN(NAME=~"activity_router.part~") COLUMN(NAME=~"activity_router.code~") COLUMN(NAME=~"activity_router.process~") COLUMN(NAME=~"activity_router.labor~") COLUMN(NAME=~"activity_router.group_location~") COLUMN(NAME=~"activity_router.notes~") COLUMN(NAME=~"activity_codes.flow_route_window~")    JOIN (LEFT=~"activity_router.code~"    OP =~"=~"RIGHT=~"activity_codes.code~" )WHERE(    EXP1 =~"activity_router.parent_part~"   OP =~"=~"    EXP2 =~":a_parent_part~" ) ) ORDER(NAME=~"activity_router.parent_part~" ASC=yes )  ORDER(NAME=~"activity_router.sequence~" ASC=yes ) ARG(NAME = ~"a_parent_part~" TYPE = string) " arguments=(("a_parent_part", string))  sort="activity_router_sequence A " )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="68" width="402" format="[general]"  name=activity_router_code edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="416" y="4" height="68" width="699" format="[general]"  name=activity_router_part dddw.name=d_part_short_desc_list dddw.displaycolumn=name dddw.datacolumn=part dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="416" y="8" height="52" width="699"  name=activity_router_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Activity Code"border="0" color="0" x="5" y="8" height="52" width="402"  name=activity_router_code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

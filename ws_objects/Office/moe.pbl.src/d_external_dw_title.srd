@@ -1,0 +1,10 @@
+﻿$PBExportHeader$d_external_dw_title.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=149 color="536870912")
+table(column=(type=char(30) name=title dbname="title" )
+ )
+text(band=detail color="8388608" alignment="2" border="6" x="19" y="4" height="65" width="1098" text="Price Matrix" font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

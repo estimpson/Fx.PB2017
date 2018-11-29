@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_valid_part.srf
+global type f_valid_part from function_object
+end type
+
+forward prototypes
+global function integer f_valid_part (string a_s_part)
+end prototypes
+
+global function integer f_valid_part (string a_s_part);int	l_i_count
+
+SELECT 	count (*)
+INTO		:l_i_count
+FROM		part
+WHERE		part = :a_s_part ;
+
+if l_i_count > 0 then
+	return 1
+else
+	return 0
+end if
+end function
+

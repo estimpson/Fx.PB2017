@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_user_defined_status_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(30) update=yes updatewhereclause=yes key=yes name=display_name dbname="DISPLAY_NAME" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="TYPE" values="Approved	A/On Hold	H/Scrapped	S/Rejected	R/Obsolete	O/" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=base dbname="BASE" initial="N" )
+ retrieve="SELECT user_defined_status.display_name , user_defined_status.type , user_defined_status.base FROM user_defined_status WHERE ( user_defined_status.base= 'N' ) " update="user_defined_status" updatewhere=0 updatekeyinplace=yes )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="16777215" x="1975" y="8" height="76" width="5" format="[general]"  name=base edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="1070" format="[general]"  name=display_name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="1088" y="8" height="76" width="878" format="[general]"  name=type ddlb.limit=1 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Display Name"border="6" color="0" x="9" y="8" height="52" width="1070"  name=display_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="1088" y="8" height="52" width="878"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

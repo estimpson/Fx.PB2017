@@ -1,0 +1,32 @@
+﻿$PBExportHeader$d_customer_user_defined.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=416 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=custom1 dbname="customer.custom1" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom2 dbname="customer.custom2" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom3 dbname="customer.custom3" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom4 dbname="customer.custom4" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom5 dbname="customer.custom5" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=customer dbname="customer.customer" )
+ retrieve="  SELECT customer.custom1,   
+         customer.custom2,   
+         customer.custom3,   
+         customer.custom4,   
+         customer.custom5,   
+         customer.customer  
+    FROM customer   
+ WHERE customer.customer = :sz_customer" update="customer" updatewhere=0 updatekeyinplace=yes arguments=(("sz_customer", string)) )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="8388608" x="3141" y="332" height="64" width="270" format="[general]"  name=customer visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label('CM', 5)"border="0" color="0" x="375" y="348" height="56" width="288" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label('CM', 1)"border="0" color="0" x="379" y="12" height="56" width="288" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label('CM', 2)"border="0" color="0" x="379" y="96" height="56" width="288" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label('CM', 3)"border="0" color="0" x="379" y="176" height="56" width="288" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label('CM', 4)"border="0" color="0" x="379" y="264" height="56" width="288" format="[general]"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="681" y="8" height="64" width="736" format="[general]"  name=custom1 dddw.name=d_user_defined_data_cust dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="681" y="92" height="64" width="736" format="[general]"  name=custom2 dddw.name=d_user_defined_data_cust dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="681" y="176" height="64" width="736" format="[general]"  name=custom3 dddw.name=d_user_defined_data_cust dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="681" y="260" height="64" width="736" format="[general]"  name=custom4 dddw.name=d_user_defined_data_cust dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="681" y="344" height="64" width="736" format="[general]"  name=custom5 dddw.name=d_user_defined_data_cust dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

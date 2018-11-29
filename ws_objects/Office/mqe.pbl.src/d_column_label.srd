@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_column_label.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=9 color="536870912")
+footer(height=5 color="536870912")
+detail(height=73 color="536870912")
+table(column=(type=char(254) name=label dbname="pbcatcol.pbc_labl" )
+ column=(type=char(254) name=pbc_hdr dbname="pbcatcol.pbc_hdr" )
+ retrieve="SELECT pbcatcol.pbc_labl, pbcatcol.pbc_hdr FROM pbcatcol WHERE ( pbcatcol.pbc_tnam = :szTable ) AND ( pbcatcol.pbc_cnam = :szLabel ) ORDER BY pbcatcol.pbc_hdr ASC " arguments=(("szTable", string),("szLabel", string)) )
+column(band=detail id=1 border="0" alignment="0" color="0" height="69" tabsequence=20 width="1034" x="5" y="4"  name=label format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=2 border="0" alignment="0" color="0" height="57" tabsequence=20 width="5843" x="1111" y="4"  name=pbc_hdr format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

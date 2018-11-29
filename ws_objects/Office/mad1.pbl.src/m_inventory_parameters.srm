@@ -1,0 +1,267 @@
+﻿$PBExportHeader$m_inventory_parameters.srm
+forward
+global type m_inventory_parameters from menu
+end type
+type m_file from menu within m_inventory_parameters
+end type
+type m_locationlimitor from menu within m_file
+end type
+type m__1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_inventory_parameters
+m_locationlimitor m_locationlimitor
+m__1 m__1
+m_exit m_exit
+end type
+type m_edit from menu within m_inventory_parameters
+end type
+type m_save from menu within m_edit
+end type
+type m_edit from menu within m_inventory_parameters
+m_save m_save
+end type
+type m_window from menu within m_inventory_parameters
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_inventory_parameters
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_inventory_parameters
+end type
+type m_help from menu within m_inventory_parameters
+end type
+end forward
+
+global type m_inventory_parameters from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_inventory_parameters m_inventory_parameters
+
+on m_inventory_parameters.create
+m_inventory_parameters=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_inventory_parameters.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_inventory_parameters
+m_locationlimitor m_locationlimitor
+m__1 m__1
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_locationlimitor=create m_locationlimitor
+this.m__1=create m__1
+this.m_exit=create m_exit
+this.Item[]={this.m_locationlimitor, &
+this.m__1, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_locationlimitor)
+destroy(this.m__1)
+destroy(this.m_exit)
+end on
+
+type m_locationlimitor from menu within m_file
+end type
+
+on clicked;w_inventory_parameters.TriggerEvent ( "loc_limit" )
+end on
+
+on m_locationlimitor.create
+this.Text="&Location Limitor"
+this.Microhelp="Limit locations to be selected in inventory..."
+this.ToolBarItemName="PasteStatement!"
+this.ToolBarItemText="Limit Locs"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=3
+end on
+
+type m__1 from menu within m_file
+end type
+
+on m__1.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;w_inventory_parameters.Triggerevent ("ue_exit")
+
+
+//Window wActiveSheet
+//
+//wActiveSheet = gnv_App.of_GetFrame().GetActiveSheet ( )
+//
+//If IsValid ( wActiveSheet ) AND wActiveSheet = w_inventory_parameters Then
+//
+//   w_inventory_parameters.Triggerevent ( "check_item" )
+//
+//Else
+//
+//	Close ( gnv_App.of_GetFrame() )
+//
+//End if
+//
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit..."
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_inventory_parameters
+m_save m_save
+end type
+
+on m_edit.create
+this.Text="&Edit"
+this.m_save=create m_save
+this.Item[]={this.m_save}
+end on
+
+on m_edit.destroy
+destroy(this.m_save)
+end on
+
+type m_save from menu within m_edit
+end type
+
+on clicked;w_inventory_parameters.TriggerEvent ( "save_item" )
+end on
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save Contents of Window..."
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=2
+end on
+
+type m_window from menu within m_inventory_parameters
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m__, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_inventory_parameters
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

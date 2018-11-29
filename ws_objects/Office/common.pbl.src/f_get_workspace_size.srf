@@ -1,0 +1,35 @@
+﻿$PBExportHeader$f_get_workspace_size.srf
+$PBExportComments$(mst) Measure the work space size on screen
+global type f_get_workspace_size from function_object
+end type
+
+forward prototypes
+global subroutine f_get_workspace_size (ref integer ai_workspace_width, ref integer ai_workspace_height)
+end prototypes
+
+global subroutine f_get_workspace_size (ref integer ai_workspace_width, ref integer ai_workspace_height);Integer &
+	li_Status = 0, &
+	li_Screen_Width, &
+	li_Screen_Height
+
+Environment &
+	lenv_Environment
+
+li_Status = GetEnvironment( lenv_Environment )
+
+If li_Status = 1 Then
+
+	li_Screen_Width = lenv_Environment.ScreenWidth
+	li_Screen_Height = lenv_Environment.ScreenHeight
+
+	If li_Screen_Width > 0 Then &
+		ai_WorkSpace_Width = PixelsToUnits( li_Screen_Width, xPixelsToUnits! )
+
+	If li_Screen_Height > 0 Then &
+		ai_WorkSpace_Height = PixelsToUnits( li_Screen_Height, yPixelsToUnits! )
+
+End If
+
+Return
+end subroutine
+

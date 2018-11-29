@@ -1,0 +1,32 @@
+﻿$PBExportHeader$m_ai_ar_platinum.srm
+forward
+global type m_ai_ar_platinum from m_post_platinum
+end type
+end forward
+
+global type m_ai_ar_platinum from m_post_platinum
+end type
+global m_ai_ar_platinum m_ai_ar_platinum
+
+on m_ai_ar_platinum.create
+m_ai_ar_platinum=this
+call m_post_platinum::create
+end on
+
+on m_ai_ar_platinum.destroy
+call m_post_platinum::destroy
+end on
+
+on m_getnumbers.create
+call m_post_platinum`m_getnumbers::create
+this.Visible=false
+this.Enabled=false
+this.ToolBarItemVisible=false
+end on
+
+on m_executepost::clicked;w_ai_ar_platinum.TriggerEvent ( 'ue_post' )
+end on
+
+on m_exit::clicked;w_ai_ar_platinum.TriggerEvent ( 'ue_cancel' )
+end on
+

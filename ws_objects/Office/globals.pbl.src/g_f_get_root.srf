@@ -1,0 +1,15 @@
+﻿$PBExportHeader$g_f_get_root.srf
+global type g_f_get_root from function_object
+end type
+
+forward prototypes
+global function string g_f_get_root ()
+end prototypes
+
+global function string g_f_get_root ();IF IsValid ( monsys ) THEN
+	Return monsys.root
+ELSE
+	Return ''
+END IF
+end function
+

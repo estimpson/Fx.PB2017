@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_dwproperty_services.srd
+$PBExportComments$PFC DataWindow Property - services
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=8 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(1) updatewhereclause=no name=serviceenabled dbname="serviceenabled" initial="N" values="	Y/	N" )
+ column=(type=char(30) updatewhereclause=no name=servicename dbname="servicename" )
+ column=(type=char(2000) updatewhereclause=no name=servicedescription dbname="servicedescription" )
+ column=(type=char(2000) updatewhereclause=no name=servicepropertypages dbname="servicepropertypages" )
+ column=(type=char(30) updatewhereclause=no name=serviceclassname dbname="serviceclassname" )
+ column=(type=char(1) updatewhereclause=no name=serviceswitchbuttons dbname="serviceswitchbuttons" initial="N" )
+  sort="servicename A " )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="5" y="8" height="44" width="69" format="[general]"  name=serviceenabled checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="82" y="4" height="56" width="1211" format="[general]"  name=servicename edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,21 @@
+﻿$PBExportHeader$d_filtersimple.srd
+$PBExportComments$PFC Holds filter criteria for pfc_w_filtersimple dialog
+release 5;
+datawindow(units=0 timer_interval=0 color=82889382 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=73 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=89 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=colname dbname="colname" )
+ column=(type=char(2) updatewhereclause=yes name=oper dbname="oper" values="Equals	=/Greater Than	>/Less Than	</> Than or Equal	>=/< Than or Equal	<=/Doesn't Equal	<>/" )
+ column=(type=char(256) updatewhereclause=yes name=colvalue dbname="colvalue" )
+ column=(type=char(3) updatewhereclause=yes name=and_or dbname="and_or" values="And	And/Or	Or/" )
+ )
+text(band=header alignment="0" text="Operator"border="0" color="0" x="700" y="16" height="53" width="366"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+text(band=header alignment="0" text="Value"border="0" color="0" x="1139" y="16" height="53" width="375"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+text(band=header alignment="0" text="Logical"border="0" color="0" x="1715" y="16" height="53" width="206"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+text(band=header alignment="0" text="Column"border="0" color="0" x="129" y="16" height="53" width="156"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263328" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="33554687" x="129" y="12" height="65" width="549" format="[general]"  name=colname dddw.name=d_columnsdddw dddw.displaycolumn=display_column dddw.datacolumn=display_column dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086381248" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="33554687" x="700" y="12" height="65" width="412" format="[general]"  name=oper ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086381248" )
+column(band=detail id=3 alignment="0" tabsequence=40 border="5" color="33554687" x="1139" y="12" height="65" width="554" format="[general]"  name=colvalue dddw.name=d_valuesdddw dddw.displaycolumn=value dddw.datacolumn=value dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086381248" )
+column(band=detail id=4 alignment="0" tabsequence=50 border="5" color="33554687" x="1715" y="12" height="65" width="170" format="[general]"  name=and_or ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086381248" )

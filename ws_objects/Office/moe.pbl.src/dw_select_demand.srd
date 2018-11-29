@@ -1,0 +1,48 @@
+﻿$PBExportHeader$dw_select_demand.srd
+$PBExportComments$Select demand for specified destination before an specified date
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part_number dbname="mvw_gss_demand.part_number" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="mvw_gss_demand.quantity" )
+ column=(type=char(35) updatewhereclause=yes name=assigned dbname="mvw_gss_demand.assigned" )
+ column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="mvw_gss_demand.order_no" )
+ column=(type=date updatewhereclause=yes name=due_date dbname="mvw_gss_demand.due_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=committed_qty dbname="mvw_gss_demand.committed_qty" )
+ column=(type=char(30) updatewhereclause=yes name=release_no dbname="mvw_gss_demand.release_no" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="mvw_gss_demand.suffix" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="mvw_gss_demand.price" )
+ retrieve="SELECT	part_number,   
+			quantity,   
+			assigned,   
+			order_no,   
+			due_date,   
+			committed_qty,   
+			release_no,   
+			suffix,   
+			price
+FROM		mvw_gss_demand
+WHERE 	destination = :szDestination AND  
+         due_date <= :dEndDate" arguments=(("szDestination", string),("dEndDate", date))  sort="part_number A order_no A due_date A " )
+text(band=header alignment="0" text="Part Number"border="0" color="0" x="9" y="4" height="76" width="791"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Quantity"border="0" color="0" x="809" y="4" height="76" width="1367"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Assigned"border="0" color="0" x="2185" y="4" height="76" width="1111"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Order No"border="0" color="0" x="3305" y="4" height="76" width="1367"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Due Date"border="0" color="0" x="4681" y="4" height="76" width="919"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Committed Qty"border="0" color="0" x="5609" y="4" height="76" width="1367"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Release No"border="0" color="0" x="6985" y="4" height="76" width="951"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Suffix"border="0" color="0" x="7945" y="4" height="76" width="1367"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="76" width="791" format="[general]"  name=part_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="809" y="0" height="76" width="1367" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2185" y="0" height="76" width="1111" format="[general]"  name=assigned edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="3305" y="0" height="76" width="1367" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="4681" y="0" height="76" width="919" format="[shortdate] [time]"  name=due_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="5609" y="0" height="76" width="1367" format="[general]"  name=committed_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="6985" y="0" height="76" width="951" format="[general]"  name=release_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="7945" y="0" height="76" width="1367" format="[general]"  name=suffix edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=0 border="0" color="0" x="9326" y="0" height="76" width="1367"  name=price  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Price"border="0" color="0" x="9321" y="4" height="76" width="1371"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

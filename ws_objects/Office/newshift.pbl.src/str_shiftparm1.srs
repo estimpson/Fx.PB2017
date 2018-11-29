@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_shiftparm1.srs
+global type str_shiftparm1 from structure
+    string s_machine
+    datetime dt_begindatetime
+    datetime dt_enddatetime
+end type
+

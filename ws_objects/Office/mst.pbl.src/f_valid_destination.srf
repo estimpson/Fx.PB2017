@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_valid_destination.srf
+$PBExportComments$check whether this is a valid destination
+global type f_valid_destination from function_object
+end type
+
+forward prototypes
+global function boolean f_valid_destination (string szdestination)
+end prototypes
+
+global function boolean f_valid_destination (string szdestination);String szResult
+
+SetNull(szResult)
+
+  SELECT destination.destination  
+    INTO :szResult  
+    FROM destination  
+   WHERE destination.destination = :szDestination   ;
+
+Return (Not IsNull(szResult))
+end function
+

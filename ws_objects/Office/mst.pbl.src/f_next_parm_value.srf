@@ -1,0 +1,169 @@
+﻿$PBExportHeader$f_next_parm_value.srf
+$PBExportComments$Get the next parm value
+global type f_next_parm_value from function_object
+end type
+
+forward prototypes
+global function long f_next_parm_value (string as_type, boolean ab_commit)
+end prototypes
+
+global function long f_next_parm_value (string as_type, boolean ab_commit);/*
+Description	:To get the next available parm value from parameters
+Author		:Jim Wu
+Date			:01/30/96
+Modification:
+*/
+
+/* Declaration */
+
+String	ls_DBColumnName
+
+Long	ll_Serial, &
+		ll_Shipper, &
+		ll_Order, &
+		ll_PO, &
+		ll_Fix, &
+		ll_Invoice, &
+		ll_Requisition, &
+		ll_BOL, &
+		ll_DBChange, &
+		ll_CheckVal, &
+		ll_ReturnVal, &
+		ll_Issue
+
+Integer	li_Count
+
+Boolean 	lb_NoErrors
+
+st_generic_structure	lstr_CheckList[]	//Value1:Table Name Value2:Column Name
+
+/* Initialization */
+
+	as_Type		= Upper(as_Type)
+	lb_NoErrors	= FALSE
+	li_Count		= 1
+	
+	SELECT 	parameters.next_serial,   
+   			parameters.next_issue,   
+         	parameters.sales_order,   
+         	parameters.shipper,   
+         	parameters.purchase_order,   
+         	parameters.next_invoice,   
+         	parameters.next_requisition,   
+         	parameters.bol_number,   
+         	parameters.next_db_change,   
+         	parameters.fix_number  
+   INTO 		:ll_Serial,   
+         	:ll_Issue,   
+         	:ll_Order,   
+         	:ll_Shipper,   
+         	:ll_PO,   
+         	:ll_Invoice,   
+         	:ll_Requisition,   
+         	:ll_BOL,   
+         	:ll_DBChange,   
+         	:ll_Fix  
+	FROM 		parameters;
+
+/* Main Process */
+
+Do while Not lb_NoErrors 
+
+	Choose Case as_Type
+
+		Case "SERIAL"
+
+			ll_Serial ++
+			ll_ReturnVal		= ll_Serial
+			ls_DBColumnName	= "next_serial"
+
+			lstr_CheckList[1].value1	= "object"
+			lstr_CheckList[1].value2	= "serial"
+			lstr_CheckList[2].value1	= "audit_trail"
+			lstr_CheckList[2].value2	= "serial"
+
+		Case "ORDER"
+			ll_Order ++
+			ll_ReturnVal		= ll_Order
+			ls_DBColumnName	= "sales_order"
+
+			lstr_CheckList[1].value1	= "order_header"
+			lstr_CheckList[1].value2	= "order_no"
+
+		Case "PO"
+			ll_PO ++
+			ll_ReturnVal		= ll_PO
+			ls_DBColumnName	= "purchase_order"
+
+			lstr_CheckList[1].value1	= "po_header"
+			lstr_CheckList[1].value2	= "po_number"
+
+		Case "SHIPPER"
+			ll_Shipper ++
+			ll_ReturnVal		= ll_Shipper
+			ls_DBColumnName	= "shipper"
+
+			lstr_CheckList[1].value1	= "shipper"
+			lstr_CheckList[1].value2	= "id"
+
+		Case "BOL"
+			ll_BOL ++
+			ll_ReturnVal		= ll_BOL
+			ls_DBColumnName	= "bol_number"
+
+			lstr_CheckList[1].value1	= "bill_of_lading"
+			lstr_CheckList[1].value2	= "bol_number"
+
+		Case "DBCHANGE"
+			ll_DBChange ++
+			ll_ReturnVal		= ll_DBChange
+			ls_DBColumnName	= "next_db_change"
+
+
+		Case "REQUISITION"
+			ll_Requisition ++
+			ll_ReturnVal		= ll_Requisition
+			ls_DBColumnName	= "next_requisition"
+
+		Case "ISSUE"
+			ll_Issue ++
+			ll_ReturnVal		= ll_Issue	
+			ls_DBColumnName	= "next_issue"
+
+		Case "FIX"
+			ll_fix ++
+			ll_ReturnVal		= ll_Fix
+			ls_DBColumnName	= "fix_number"
+
+		Case "INVOICE"
+			ll_Invoice++
+			ll_ReturnVal		= ll_Invoice
+			ls_DBColumnName	= "next_invoice"
+
+			lstr_CheckList[1].value1	= "shipper"
+			lstr_CheckList[1].value2	= "invoice_number"
+
+		Case Else
+			Return 0
+			
+	End Choose
+
+	If Not f_value_found_in_table(lstr_CheckList, ll_ReturnVal) then
+
+		f_update_parameters(ls_DBColumnName, ll_ReturnVal)
+	
+		If SQLCA.SQLCode = 0 then
+			lb_NoErrors		= TRUE
+		End If
+
+	End If		
+
+Loop
+
+If ab_Commit then
+	COMMIT;
+End If	
+
+Return ll_ReturnVal
+end function
+

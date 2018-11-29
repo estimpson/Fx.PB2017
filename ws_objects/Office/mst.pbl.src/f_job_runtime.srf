@@ -1,0 +1,103 @@
+﻿$PBExportHeader$f_job_runtime.srf
+$PBExportComments$Update / Get the run time data from job
+global type f_job_runtime from function_object
+end type
+
+forward prototypes
+global function decimal f_job_runtime (string szjob, integer iflag)
+end prototypes
+
+global function decimal f_job_runtime (string szjob, integer iflag);//iFlag =1 : Calc based on remaining qty
+//iFlag =2 : Calc based on original qty
+//iFlag =3 : Calc based on original qty by cycle-time in part_mfg
+
+Long iRow
+Long iTotalRows
+
+String	szMachine
+
+Decimal nQtyRequired
+Decimal nQtyCompleted
+Decimal nPartsPerCycle
+Decimal nRunTime
+Decimal nMaxRunTime
+Decimal iFactor
+Decimal nCycleTime
+Decimal nQty
+Decimal nPartsPerHour
+
+String  szPart
+String  szCycleUnit
+
+Select work_order.machine_no
+  Into :szMachine  
+  From work_order  
+ Where work_order.work_order = :szJob   ;
+
+ DECLARE WKDetail CURSOR FOR  
+  SELECT workorder_detail.part,   
+         workorder_detail.qty_required,   
+         workorder_detail.qty_completed,   
+         workorder_detail.parts_per_hour 
+    FROM workorder_detail  
+   WHERE workorder_detail.workorder = :szJob   ;
+
+nPartsPerHour	= 0
+
+Open WKDetail;
+
+Fetch WKDetail INTO :szPart, :nQtyRequired, :nQtyCompleted, :nPartsPerHour;
+
+nMaxRunTime	= 0
+
+Do While SQLCA.SQLCode = 0 
+
+	If iFlag = 1 then
+		nQty	= f_get_value(nQtyRequired) - f_get_value(nQtyCompleted)
+	Else
+		nQty	= f_get_value(nQtyRequired)
+	End If
+
+	If nPartsPerHour > 0 then
+		nRunTime			= nQty / nPartsPerHour
+	Else
+		nRunTime			= 0
+	End If
+							
+	If nRunTime > nMaxRunTime then
+		nMaxRunTime	= nRunTime
+	End If
+	
+  	UPDATE workorder_detail  
+     SET  run_time = :nRunTime  
+   WHERE ( workorder = :szJob ) AND  
+         ( part = :szPart )   ;
+
+	If SQLCA.SQLCode = 0 then
+		Commit;
+
+	  	UPDATE machine  
+	   SET    redraw_graph = 'Y'  
+	   WHERE machine_no = :szMachine   ;
+
+		If SQLCA.SQLCode = 0 then
+			Commit;
+		Else
+			Rollback;
+		End If
+
+	Else
+		Rollback;
+	End If
+	
+	nPartsPerHour	= 0
+	Fetch WKDetail INTO :szPart, :nQtyRequired, :nQtyCompleted, :nPartsPerHour;
+
+Loop
+
+Close WKDetail;
+
+Return nMaxRunTime
+
+end function
+

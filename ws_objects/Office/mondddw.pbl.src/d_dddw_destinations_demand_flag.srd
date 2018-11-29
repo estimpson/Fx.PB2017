@@ -1,0 +1,26 @@
+﻿$PBExportHeader$d_dddw_destinations_demand_flag.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=12 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(25) updatewhereclause=no name=destination dbname="destination" )
+ column=(type=char(50) updatewhereclause=no name=name dbname="name" )
+ column=(type=char(10) updatewhereclause=no name=customer dbname="customer" )
+ column=(type=char(10) updatewhereclause=no name=vendor dbname="vendor" )
+ column=(type=char(10) updatewhereclause=no name=plant dbname="plant" )
+ column=(type=char(1) updatewhereclause=no name=status_type dbname="status_type" )
+ column=(type=char(20) updatewhereclause=no name=cs_status dbname="cs_status" )
+ column=(type=number updatewhereclause=no name=flag dbname="flag" )
+ procedure="1 begin
+execute msp_build_active_dest_list  :start_dt, :argument, :type, :pastflag
+end
+commit transaction
+" arguments=(("start_dt", datetime),("argument", string),("type", string),("pastflag", string)) )
+text(band=header alignment="0" text="Destination"border="6" color="0" x="9" y="8" height="52" width="293"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Name"border="6" color="0" x="384" y="8" height="52" width="791"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="52" width="293" format="[general]"  name=destination edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="384" y="8" height="52" width="791" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap ( If(flag = 1, ~"logo2.bmp~", ~"~"))"border="0" color="0" x="311" y="8" height="52" width="64" format="[general]"  name=obj_47169212  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

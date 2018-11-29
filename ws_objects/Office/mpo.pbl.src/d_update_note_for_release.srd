@@ -1,0 +1,46 @@
+﻿$PBExportHeader$d_update_note_for_release.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=64 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=po_number dbname="po_detail.po_number" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_due dbname="po_detail.date_due" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=row_id dbname="po_detail.row_id" )
+ column=(type=char(8000) update=yes updatewhereclause=yes name=notes dbname="po_detail.notes" )
+ retrieve="select
+	pd.po_number
+,	pd.part_number
+,	pd.date_due
+,	pd.row_id
+,	pd.notes
+from
+	dbo.po_detail pd
+where
+	pd.po_number = :PONumber
+	and pd.part_number = :Part
+	and pd.date_due > :EndDT
+" update="po_detail" updatewhere=0 updatekeyinplace=yes arguments=(("PONumber", number),("Part", string),("EndDT", date)) )
+text(band=header alignment="0" text="Po Number" border="6" color="0" x="23" y="4" height="52" width="165" html.valueishtml="0"  name=po_number_t visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part Number" border="6" color="0" x="197" y="4" height="52" width="512" html.valueishtml="0"  name=part_number_t visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Due" border="6" color="0" x="713" y="4" height="52" width="201" html.valueishtml="0"  name=date_due_t visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Row Id" border="6" color="0" x="923" y="4" height="52" width="274" html.valueishtml="0"  name=row_id_t visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes" border="6" color="0" x="1207" y="4" height="52" width="238" html.valueishtml="0"  name=notes_t visible="1"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="23" y="4" height="64" width="165" format="[general]" html.valueishtml="0"  name=po_number  tag="Purchase order number " visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="197" y="4" height="64" width="512" format="[general]" html.valueishtml="0"  name=part_number  tag="Part number " visible="1" edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="713" y="4" height="64" width="201" format="[shortdate] [time]" html.valueishtml="0"  name=date_due  tag="due date " visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="5" color="0" x="923" y="4" height="64" width="274" format="[general]" html.valueishtml="0"  name=row_id  tag="To identify the row in the MPS file" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="1207" y="4" height="64" width="238" format="[general]" html.valueishtml="0"  name=notes  tag="Notes " visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

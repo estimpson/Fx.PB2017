@@ -1,0 +1,118 @@
+﻿$PBExportHeader$d_partmaster_partedit.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=8 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3432 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=partcode dbname="PartMaster_Setup.PartCode" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=description dbname="PartMaster_Setup.Description" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=crossreferences dbname="PartMaster_Setup.CrossReferences" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=relatedparts dbname="PartMaster_Setup.RelatedParts" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=customfields dbname="PartMaster_Setup.CustomFields" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=partclass dbname="PartMaster_Setup.PartClass" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=parttype dbname="PartMaster_Setup.PartType" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=productline dbname="PartMaster_Setup.ProductLine" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=commodity dbname="PartMaster_Setup.Commodity" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=grouptechnology dbname="PartMaster_Setup.GroupTechnology" )
+ column=(type=long update=yes updatewhereclause=yes name=quality_newonhold dbname="PartMaster_Setup.Quality_NewOnHold" values="Place New Inventory On Hold?	1/Place New Inventory On Hold?	0" )
+ column=(type=char(39) update=yes updatewhereclause=yes name=drawingguid dbname="PartMaster_Setup.DrawingGUID" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=drawingfilename dbname="PartMaster_Setup.DrawingFileName" )
+ column=(type=char(39) update=yes updatewhereclause=yes name=imageguid dbname="PartMaster_Setup.ImageGUID" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=imagefilename dbname="PartMaster_Setup.ImageFileName" )
+ column=(type=char(4000) update=yes updatewhereclause=yes name=intraneturl dbname="PartMaster_Setup.IntranetURL" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standardpack dbname="PartMaster_Setup.StandardPack" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=standardunit dbname="PartMaster_Setup.StandardUnit" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=primarylocation dbname="PartMaster_Setup.PrimaryLocation" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=labelformat dbname="PartMaster_Setup.LabelFormat" )
+ column=(type=long updatewhereclause=yes name=rowid dbname="PartMaster_Setup.RowID" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	pms.PartCode
+,	pms.Description
+,	pms.CrossReferences
+,	pms.RelatedParts
+,	pms.CustomFields
+,	pms.PartClass
+,	pms.PartType
+,	pms.ProductLine
+,	pms.Commodity
+,	pms.GroupTechnology
+,	pms.Quality_NewOnHold
+,	pms.DrawingGUID
+,	pms.DrawingFileName
+,	pms.ImageGUID
+,	pms.ImageFileName
+,	pms.IntranetURL
+,	pms.StandardPack
+,	pms.StandardUnit
+,	pms.PrimaryLocation
+,	pms.LabelFormat
+,	pms.RowID
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custom.PartMaster_Setup pms
+where
+	pms.PartCode = :partCode
+order by
+	pms.PartCode
+" update="custom.PartMaster_Setup" updatewhere=0 updatekeyinplace=yes arguments=(("partCode", string)) )
+groupbox(band=detail text="Profile"border="5" color="33554432" x="37" y="4" height="1056" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=40 border="0" color="33554432" x="73" y="836" height="192" width="987" format="[general]" html.valueishtml="0"  name=drawingfilename visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="73" y="164" height="76" width="914" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Description:" border="0" color="33554432" x="73" y="292" height="64" width="507" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Part code:" border="0" color="33554432" x="73" y="100" height="64" width="507" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=detail text="" filename="Delete.bmp" enabled=yes action="0" border="0" color="33554432" x="1207" y="164" height="72" width="82" vtextalign="0" htextalign="0"  name=b_delete  tag="Delete part..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Rename.bmp" enabled=yes action="0" border="0" color="33554432" x="1097" y="164" height="72" width="82" vtextalign="0" htextalign="0"  name=b_rename  tag="Rename part..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="New.bmp" enabled=yes action="0" border="0" color="33554432" x="1317" y="164" height="72" width="82" vtextalign="0" htextalign="0"  name=b_new  tag="New part..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="73" y="356" height="76" width="1317" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+button(band=detail text="" filename="CopyEdit.bmp" enabled=yes action="0" border="0" color="33554432" x="987" y="164" height="72" width="82" vtextalign="0" htextalign="0"  name=b_copy  tag="Copy part..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="0" tabsequence=30 border="0" color="33554432" x="73" y="548" height="192" width="987" format="[general]" html.valueishtml="0"  name=imagefilename visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=detail text="" filename="Camera-64.bmp" enabled=yes action="0" border="0" color="33554432" x="1097" y="484" height="256" width="293" vtextalign="0" htextalign="0"  name=b_setimage  tag="Choose image..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Drawing-64.bmp" enabled=yes action="0" border="0" color="33554432" x="1097" y="772" height="256" width="293" vtextalign="0" htextalign="0"  name=b_setdrawing  tag="Choose drawing..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+groupbox(band=detail text="Class, Type"border="5" color="33554432" x="37" y="1092" height="192" width="1390"  name=gb_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Class:" border="0" color="33554432" x="73" y="1188" height="64" width="215" html.valueishtml="0"  name=partclass_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="0" color="33554432" x="329" y="1188" height="76" width="366" format="[general]" html.valueishtml="0"  name=partclass visible="1" dddw.name=d_partmaster_partclasslist dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Type:" border="0" color="33554432" x="805" y="1188" height="64" width="215" html.valueishtml="0"  name=parttype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="0" color="33554432" x="1024" y="1188" height="76" width="366" format="[general]" html.valueishtml="0"  name=parttype visible="1" dddw.name=d_partmaster_parttypelist_forclass dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+groupbox(band=detail text="Categories"border="5" color="33554432" x="37" y="1924" height="448" width="1390"  name=gb_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text="Inventory"border="5" color="33554432" x="37" y="1316" height="576" width="1390"  name=gb_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=110 border="0" color="33554432" x="73" y="1796" height="76" width="1317" format="[general]" html.valueishtml="0"  name=quality_newonhold visible="1" checkbox.text="Place New Inventory On Hold?" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Standard pack:" border="0" color="33554432" x="73" y="1412" height="64" width="507" html.valueishtml="0"  name=standardpack_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Primary location:" border="0" color="33554432" x="73" y="1540" height="64" width="507" html.valueishtml="0"  name=primarylocation_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Default label format:" border="0" color="33554432" x="73" y="1668" height="64" width="539" html.valueishtml="0"  name=labelformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=70 border="0" color="33554432" x="622" y="1412" height="76" width="421" format="#,##0.0#####" html.valueishtml="0"  name=standardpack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=19 alignment="0" tabsequence=90 border="0" color="33554432" x="622" y="1540" height="76" width="768" format="[general]" html.valueishtml="0"  name=primarylocation visible="1" dddw.name=d_partmaster_locationlist dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=20 alignment="0" tabsequence=100 border="0" color="33554432" x="622" y="1668" height="76" width="768" format="[general]" html.valueishtml="0"  name=labelformat visible="1" dddw.name=d_partmaster_labellist dddw.displaycolumn=name dddw.datacolumn=name dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=18 alignment="0" tabsequence=80 border="0" color="33554432" x="1097" y="1412" height="76" width="293" format="[general]" html.valueishtml="0"  name=standardunit visible="1" dddw.name=d_partmaster_unitlist dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Product line:" border="0" color="33554432" x="73" y="2020" height="64" width="507" html.valueishtml="0"  name=productline_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Commodity:" border="0" color="33554432" x="73" y="2148" height="64" width="507" html.valueishtml="0"  name=commodity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Group technology:" border="0" color="33554432" x="73" y="2276" height="64" width="507" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=120 border="0" color="33554432" x="622" y="2020" height="76" width="768" format="[general]" html.valueishtml="0"  name=productline visible="1" dddw.name=d_partmaster_productlinelist dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=9 alignment="0" tabsequence=130 border="0" color="33554432" x="622" y="2148" height="76" width="768" format="[general]" html.valueishtml="0"  name=commodity visible="1" dddw.name=d_partmaster_commoditylist dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=10 alignment="0" tabsequence=140 border="0" color="33554432" x="622" y="2276" height="76" width="768" format="[general]" html.valueishtml="0"  name=grouptechnology visible="1" dddw.name=d_partmaster_grouptechnologylist dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+groupbox(band=detail text="Cross References"border="5" color="33554432" x="37" y="2404" height="320" width="1390"  name=gb_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Image file:" border="0" color="33554432" x="73" y="484" height="64" width="507" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Drawing file:" border="0" color="33554432" x="73" y="772" height="64" width="507" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+groupbox(band=detail text="Related Parts"border="5" color="33554432" x="37" y="2756" height="320" width="1390"  name=gb_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=150 border="0" color="33554432" x="73" y="2500" height="192" width="1317" format="[general]" html.valueishtml="0"  name=crossreferences visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+groupbox(band=detail text="Custom Fields"border="5" color="33554432" x="37" y="3108" height="320" width="1390"  name=gb_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+button(band=detail text="" filename="Autofill.bmp" enabled=yes action="0" border="0" color="33554432" x="1317" y="2404" height="72" width="82" vtextalign="0" htextalign="0"  name=b_editcrossref  tag="Edit cross references..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Autofill.bmp" enabled=yes action="0" border="0" color="33554432" x="1317" y="2756" height="72" width="82" vtextalign="0" htextalign="0"  name=b_editrelated  tag="Edit related parts..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Autofill.bmp" enabled=yes action="0" border="0" color="33554432" x="1317" y="3108" height="72" width="82" vtextalign="0" htextalign="0"  name=b_editcustom  tag="Edit custom fields..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=160 border="0" color="33554432" x="73" y="2852" height="192" width="1317" format="[general]" html.valueishtml="0"  name=relatedparts visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=170 border="0" color="33554432" x="73" y="3204" height="192" width="1317" html.valueishtml="0"  name=customfields visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

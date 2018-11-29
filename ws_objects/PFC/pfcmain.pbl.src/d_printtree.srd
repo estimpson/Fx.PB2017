@@ -1,0 +1,63 @@
+﻿$PBExportHeader$d_printtree.srd
+$PBExportComments$PFC print tree Datawidow
+release 5;
+datawindow(units=1 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 30 print.margin.right = 30 print.margin.top = 30 print.margin.bottom = 30 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+summary(height=0 color="-1" )
+footer(height=2 color="-1" )
+detail(height=20 color="-1" )
+table(column=(type=char(256) name=fullname dbname="fullname" )
+ column=(type=char(55) name=name dbname="name" )
+ column=(type=char(256) name=bmpname dbname="bmpname" )
+ column=(type=char(256) name=selectedbmpname dbname="selectedbmpname" )
+ column=(type=number name=selected dbname="selected" )
+ column=(type=number name=open dbname="open" )
+ column=(type=number name=children dbname="children" )
+ column=(type=number name=siblings dbname="siblings" )
+ column=(type=number name=level dbname="level" )
+ column=(type=char(256) name=bmpname1 dbname="bmpname1" )
+ column=(type=char(256) name=bmpname2 dbname="bmpname2" )
+ column=(type=char(256) name=bmpname3 dbname="bmpname3" )
+ column=(type=char(256) name=bmpname4 dbname="bmpname4" )
+ column=(type=char(256) name=bmpname5 dbname="bmpname5" )
+ column=(type=char(256) name=bmpname6 dbname="bmpname6" )
+ column=(type=char(256) name=bmpname7 dbname="bmpname7" )
+ column=(type=char(256) name=bmpname8 dbname="bmpname8" )
+ column=(type=char(256) name=bmpname9 dbname="bmpname9" )
+ column=(type=char(256) name=bmpname10 dbname="bmpname10" )
+ column=(type=char(256) name=selectedbmpname1 dbname="selectedbmpname1" )
+ column=(type=char(256) name=selectedbmpname2 dbname="selectedbmpname2" )
+ column=(type=char(256) name=selectedbmpname3 dbname="selectedbmpname3" )
+ column=(type=char(256) name=selectedbmpname4 dbname="selectedbmpname4" )
+ column=(type=char(256) name=selectedbmpname5 dbname="selectedbmpname5" )
+ column=(type=char(256) name=selectedbmpname6 dbname="selectedbmpname6" )
+ column=(type=char(256) name=selectedbmpname7 dbname="selectedbmpname7" )
+ column=(type=char(256) name=selectedbmpname8 dbname="selectedbmpname8" )
+ column=(type=char(256) name=selectedbmpname9 dbname="selectedbmpname9" )
+ column=(type=char(256) name=selectedbmpname10 dbname="selectedbmpname10" )
+ data.storage=disk )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="287~t(level - 1) * 20 + 20" y="3" height="17" width="343" format="[general]"  name=name visible="1~tif (gettext() = first(name for page),0,1)" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( children = 1, 1, if ( level[1] > level , 1, 0 ) )"border="0" color="0" x="694" y="0" height="20" width="72" format="[general]"  name=showbox visible="1~t0"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(showbox = 0, if(siblings = 0, 'empty.bmp', 'empty2.bmp'), if(open = 1,'minus.bmp','plus.bmp')))"border="0" color="0" x="230~tif(level > 1, ((level - 2) * 20), 1)" y="0" height="19" width="17" format="[general]"  name=clickbox visible="1~tif(level = 1, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="181~t161" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 11, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="1~t1" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 3, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="162~t141" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 10, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="142~t121" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 9, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="116~t101" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 8, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="93~t81" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 7, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="69~t61" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 6, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="45~t41" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 5, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(if(level > 1, ~"lines.bmp~", ~" ~"))"border="0" color="0" x="23~t21" y="0" height="25" width="17" format="[GENERAL]" visible="1~tif(level < 4, 0, 1)"  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap(If (selected = 0, If (bmpname = '', 
+Case (level When 1 Then bmpname1
+When 2 Then bmpname2 When 3 Then bmpname3
+When 4 Then bmpname4 When 5 Then bmpname5
+When 6 Then bmpname6 When 7 Then bmpname7
+When 8 Then bmpname8 When 9 Then bmpname9
+When 10 Then bmpname10), bmpname), 
+If (selectedbmpname = '', 
+Case (level When 1 Then selectedbmpname1
+When 2 Then selectedbmpname2 When 3 Then selectedbmpname3
+When 4 Then selectedbmpname4 When 5 Then selectedbmpname5
+When 6 Then selectedbmpname6 When 7 Then selectedbmpname7
+When 8 Then selectedbmpname8 When 9 Then selectedbmpname9
+When 10 Then selectedbmpname10), selectedbmpname)))"border="0" color="0" x="261~tif(level > 1, ((level - 1) * 20), 1)" y="2" height="15" width="17" format="[general]"  name=pict  font.face="MS Sans Serif" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )

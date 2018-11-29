@@ -1,0 +1,157 @@
+﻿$PBExportHeader$f_get_part_info.srf
+$PBExportComments$(mst) Added 'GROUP TECH'
+global type f_get_part_info from function_object
+end type
+
+forward prototypes
+global function string f_get_part_info (string szpart, string szinfoname)
+end prototypes
+
+global function string f_get_part_info (string szpart, string szinfoname);//***********************************************************************
+//* List of available info
+//***********************************************************************
+//*
+//*	STANDARD UNIT
+//*	UNIT WEIGHT
+//*	STANDARD PACK
+//* 	ACTIVITY
+//*	PARTS PER HOUR
+//*	NAME
+//*	ON HAND
+//*   TYPE
+//*	CLASS
+//*   CROSS REF
+//*   MIN ONHAND
+//*	GL ACCOUNT
+//* 	MFG GL ACCOUNT
+//*	STANDARD COST
+
+String	szInfoValue
+Decimal	nInfoValue
+
+SetNull(szInfoValue)
+
+Choose Case szInfoName
+	Case "STANDARD UNIT"
+		SELECT part_inventory.standard_unit  
+    	INTO   :szInfoValue  
+    	FROM   part_inventory  
+   	WHERE  part_inventory.part = :szPart   ;
+
+	Case "UNIT WEIGHT"
+  		SELECT part_inventory.unit_weight  
+    	INTO   :nInfoValue  
+    	FROM 	 part_inventory  
+   	WHERE  part_inventory.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "STANDARD PACK"
+  		SELECT part_inventory.standard_pack  
+    	INTO  :nInfoValue  
+    	FROM   part_inventory  
+   	WHERE  part_inventory.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "ACTIVITY"
+	  	SELECT part_mfg.activity  
+    	INTO   :szInfoValue  
+    	FROM   part_mfg  
+   	WHERE  part_mfg.part = :szPart   ;
+
+	Case "PARTS PER HOUR"
+	  	SELECT part_mfg.parts_per_hour  
+    	INTO  :nInfoValue  
+    	FROM   part_mfg  
+   	WHERE  part_mfg.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "NAME"
+	  	SELECT part.name  
+    	INTO   :szInfoValue  
+    	FROM   part  
+   	WHERE  part.part = :szPart   ;
+
+	Case "ON HAND"
+		SELECT part_online.on_hand  
+    	INTO   :nInfoValue  
+    	FROM   part_online  
+   	WHERE  part_online.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "CLASS"
+		SELECT part.class  
+    	INTO   :szInfoValue  
+    	FROM   part  
+   	WHERE  part.part = :szPart   ;
+
+	Case "TYPE"
+		SELECT part.type  
+    	INTO   :szInfoValue  
+    	FROM   part  
+   	WHERE  part.part = :szPart   ;
+
+	Case "CROSS REF"
+		SELECT part.cross_ref  
+    	INTO   :szInfoValue  
+    	FROM   part  
+   	WHERE  part.part = :szPart   ;
+
+	Case "MIN ONHAND"
+  		SELECT part_purchasing.min_on_hand_qty  
+    	INTO   :nInfoValue
+    	FROM   part_purchasing  
+		WHERE  part_purchasing.part = :szPart ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "GL ACCOUNT"
+		SELECT part_purchasing.gl_account_code  
+    	INTO    :szInfoValue  
+    	FROM    part_purchasing  
+   	WHERE   part_purchasing.part = :szPart   ;
+
+	Case "MFG GL ACCOUNT"
+		SELECT  part_mfg.gl_account_code  
+    	INTO    :szInfoValue  
+    	FROM    part_mfg  
+   	WHERE   part_mfg.part = :szPart   ;
+
+		if isnull(szinfovalue) then 
+			SELECT  part.gl_account_code  
+    			INTO    :szInfoValue  
+	    		FROM    part
+		   	WHERE   part.part = :szPart   ;
+		end if 	   
+
+	Case "STANDARD COST"	
+		SELECT  part_standard.cost_cum  
+    	INTO    :nInfoValue  
+    	FROM    part_standard  
+   	WHERE   part_standard.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	Case "GROUP TECH"
+		SELECT part.group_technology 
+    	INTO   :szInfoValue  
+    	FROM   part  
+   	WHERE  part.part = :szPart;
+
+
+	Case "STANDARD PRICE"
+		SELECT  part_standard.price  
+    	INTO    :nInfoValue  
+    	FROM    part_standard  
+   	WHERE   part_standard.part = :szPart   ;
+
+		szInfoValue	= String(nInfoValue)
+
+End Choose
+
+Return szInfoValue
+end function
+

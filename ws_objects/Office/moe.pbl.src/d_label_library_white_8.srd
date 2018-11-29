@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_label_library_white_8.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1085847800 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) updatewhereclause=no name=code dbname="code" )
+ column=(type=char(40) updatewhereclause=no name=name dbname="name" )
+ column=(type=char(255) updatewhereclause=no name=window_name dbname="window_name" )
+ procedure="1 begin
+execute msp_build_label_list
+end
+commit transaction
+" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="37234728" x="14" y="0" height="64" width="357" format="[general]"  name=code height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="398" y="0" height="64" width="713" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="37234728" x="1184" y="0" height="64" width="713" format="[general]"  name=window_name visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

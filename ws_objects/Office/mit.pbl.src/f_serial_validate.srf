@@ -1,0 +1,39 @@
+﻿$PBExportHeader$f_serial_validate.srf
+global type f_serial_validate from function_object
+end type
+
+forward prototypes
+global function string f_serial_validate (string arg_serial)
+end prototypes
+
+global function string f_serial_validate (string arg_serial);INT    l_i_strlen
+STRING l_s_newserial, &
+       l_s_orgstr, &
+		 l_s_tmpstr 
+l_s_orgstr = trim(upper(arg_serial))
+l_i_strlen = LenA(l_s_orgstr)
+l_s_newserial=''
+l_s_tmpstr=''
+// extract only the numbers from right
+DO WHILE (l_i_strlen > 0)
+	IF AscA(MidA(l_s_orgstr,l_i_strlen,1)) > 47 AND AscA(MidA(l_s_orgstr,l_i_strlen,1)) < 58 THEN
+		l_s_newserial = l_s_newserial + MidA(l_s_orgstr,l_i_strlen,1)	
+	ELSE
+		l_i_strlen = 0
+   END IF 
+	l_i_strlen -- 
+LOOP
+// reverse the sequence back to the correct serial 
+IF LenA(l_s_newserial) > 0 THEN
+	l_i_strlen = LenA(l_s_newserial)
+	DO WHILE (l_i_strlen > 0)
+		l_s_tmpstr = l_s_tmpstr  + MidA(l_s_newserial,l_i_strlen,1)
+		l_i_strlen -- 
+	LOOP
+	l_s_newserial = l_s_tmpstr
+END IF 
+// return the new serial 
+RETURN (l_s_newserial)
+
+end function
+

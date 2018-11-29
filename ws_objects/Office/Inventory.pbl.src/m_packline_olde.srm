@@ -1,0 +1,392 @@
+﻿$PBExportHeader$m_packline_olde.srm
+forward
+global type m_packline_olde from menu
+end type
+type m_file from menu within m_packline_olde
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_packline_olde
+m_exit m_exit
+end type
+type m_edit from menu within m_packline_olde
+end type
+type m_operation from menu within m_packline_olde
+end type
+type m_pallet from menu within m_operation
+end type
+type m_changedate from menu within m_operation
+end type
+type m_clearscreen from menu within m_operation
+end type
+type m_newpallet from menu within m_operation
+end type
+type m_palletlabel from menu within m_operation
+end type
+type m_sort from menu within m_operation
+end type
+type m_jobcompletion from menu within m_operation
+end type
+type m_scaleinterface from menu within m_operation
+end type
+type m_operation from menu within m_packline_olde
+m_pallet m_pallet
+m_changedate m_changedate
+m_clearscreen m_clearscreen
+m_newpallet m_newpallet
+m_palletlabel m_palletlabel
+m_sort m_sort
+m_jobcompletion m_jobcompletion
+m_scaleinterface m_scaleinterface
+end type
+type m_window from menu within m_packline_olde
+end type
+type m_help from menu within m_packline_olde
+end type
+type m_contents from menu within m_help
+end type
+type m_help from menu within m_packline_olde
+m_contents m_contents
+end type
+global type m_packline_olde from menu
+m_file m_file
+m_edit m_edit
+m_operation m_operation
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_packline_olde from menu
+m_file m_file
+m_edit m_edit
+m_operation m_operation
+m_window m_window
+m_help m_help
+end type
+global m_packline_olde m_packline_olde
+
+on m_packline_olde.create
+m_packline_olde=this
+call super::create
+this.text = "m_packline_olde"
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_operation=create m_operation
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_operation
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_packline_olde.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_operation)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_packline_olde
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_exit)
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;If MessageBox ( "Exit Packing Line", "Are you sure you want to exit?", Question!, YesNo!, 1 ) = 1 Then
+	Close(ParentWindow)
+End If
+end on
+
+on m_exit.create
+call super::create
+this.text = "Close"
+this.microhelp = "Exit the packline system"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 1
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_packline_olde
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_operation from menu within m_packline_olde
+m_pallet m_pallet
+m_changedate m_changedate
+m_clearscreen m_clearscreen
+m_newpallet m_newpallet
+m_palletlabel m_palletlabel
+m_sort m_sort
+m_jobcompletion m_jobcompletion
+m_scaleinterface m_scaleinterface
+end type
+
+on m_operation.create
+call super::create
+this.text = "&Operation"
+this.m_pallet=create m_pallet
+this.m_changedate=create m_changedate
+this.m_clearscreen=create m_clearscreen
+this.m_newpallet=create m_newpallet
+this.m_palletlabel=create m_palletlabel
+this.m_sort=create m_sort
+this.m_jobcompletion=create m_jobcompletion
+this.m_scaleinterface=create m_scaleinterface
+this.Item[UpperBound(this.Item)+1]=this.m_pallet
+this.Item[UpperBound(this.Item)+1]=this.m_changedate
+this.Item[UpperBound(this.Item)+1]=this.m_clearscreen
+this.Item[UpperBound(this.Item)+1]=this.m_newpallet
+this.Item[UpperBound(this.Item)+1]=this.m_palletlabel
+this.Item[UpperBound(this.Item)+1]=this.m_sort
+this.Item[UpperBound(this.Item)+1]=this.m_jobcompletion
+this.Item[UpperBound(this.Item)+1]=this.m_scaleinterface
+end on
+
+on m_operation.destroy
+call super::destroy
+destroy(this.m_pallet)
+destroy(this.m_changedate)
+destroy(this.m_clearscreen)
+destroy(this.m_newpallet)
+destroy(this.m_palletlabel)
+destroy(this.m_sort)
+destroy(this.m_jobcompletion)
+destroy(this.m_scaleinterface)
+end on
+
+type m_pallet from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("check_pallet")
+end event
+
+on m_pallet.create
+call super::create
+this.text = "Check &Pallet~tAlt+P"
+this.shortcut = 592
+this.microhelp = "Check the pallet number for object"
+this.toolbaritemname = "pallet.bmp"
+this.toolbaritemtext = "Pallet"
+this.toolbaritemorder = 10
+end on
+
+on m_pallet.destroy
+call super::destroy
+end on
+
+type m_changedate from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("change_date")
+end event
+
+on m_changedate.create
+call super::create
+this.text = "Change &Date~tAlt+D"
+this.shortcut = 580
+this.microhelp = "Change view date"
+this.toolbaritemname = "ComputeToday!"
+this.toolbaritemtext = "ViewDate"
+this.toolbaritemorder = 20
+end on
+
+on m_changedate.destroy
+call super::destroy
+end on
+
+type m_clearscreen from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("clear_screen")
+end event
+
+on m_clearscreen.create
+call super::create
+this.text = "Clear &Screen~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Clear Screen and get eady for packing against inventory"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Clear"
+this.toolbaritemorder = 30
+end on
+
+on m_clearscreen.destroy
+call super::destroy
+end on
+
+type m_newpallet from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("new_pallet")
+end event
+
+on m_newpallet.create
+call super::create
+this.text = "&New Pallet~tAlt+N"
+this.shortcut = 590
+this.microhelp = "Create new pallet"
+this.toolbaritemname = "Custom025!"
+this.toolbaritemtext = "New Plt"
+this.toolbaritemorder = 40
+end on
+
+on m_newpallet.destroy
+call super::destroy
+end on
+
+type m_palletlabel from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("print_pallet_label")
+end event
+
+on m_palletlabel.create
+call super::create
+this.text = "Pallet &Label~tAlt+L"
+this.shortcut = 588
+this.microhelp = "Print pallet label"
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Plt Label"
+this.toolbaritemorder = 50
+end on
+
+on m_palletlabel.destroy
+call super::destroy
+end on
+
+type m_sort from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("sort_demand")
+end event
+
+on m_sort.create
+call super::create
+this.text = "S&ort~tAlt+O"
+this.shortcut = 591
+this.microhelp = "Sort the demand screen"
+this.toolbaritemname = "Sort!"
+this.toolbaritemtext = "Sort"
+this.toolbaritemorder = 60
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_jobcompletion from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("job_completion")
+end event
+
+on m_jobcompletion.create
+call super::create
+this.text = "&Job Completion~tAlt+J"
+this.shortcut = 586
+this.microhelp = "Job Completion"
+this.toolbaritemname = "CreateRuntime!"
+this.toolbaritemtext = "Complete"
+this.toolbaritemorder = 70
+end on
+
+on m_jobcompletion.destroy
+call super::destroy
+end on
+
+type m_scaleinterface from menu within m_operation
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_popup_scale" )
+end event
+
+on m_scaleinterface.create
+call super::create
+this.text = "&Scale Interface~tAlt+I"
+this.shortcut = 585
+this.microhelp = "Use the scale interface"
+this.toolbaritemname = "EditMask!"
+this.toolbaritemtext = "Scale"
+this.toolbaritemorder = 80
+end on
+
+on m_scaleinterface.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_packline_olde
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_packline_olde
+m_contents m_contents
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 1001 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays help contents"
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+

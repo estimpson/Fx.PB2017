@@ -1,0 +1,332 @@
+﻿$PBExportHeader$m_category_setup.srm
+forward
+global type m_category_setup from menu
+end type
+type m_file from menu within m_category_setup
+end type
+type m_savechanges from menu within m_file
+end type
+type m_-0 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_category_setup
+m_savechanges m_savechanges
+m_-0 m_-0
+m_close m_close
+end type
+type m_edit from menu within m_category_setup
+end type
+type m_add from menu within m_edit
+end type
+type m_delete from menu within m_edit
+end type
+type m_edit from menu within m_category_setup
+m_add m_add
+m_delete m_delete
+end type
+type m_window from menu within m_category_setup
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_category_setup
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_category_setup
+end type
+global type m_category_setup from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_category_setup from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_category_setup m_category_setup
+
+on m_category_setup.create
+m_category_setup=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_category_setup.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_category_setup
+m_savechanges m_savechanges
+m_-0 m_-0
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_savechanges=create m_savechanges
+this.m_-0=create m_-0
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_savechanges
+this.Item[UpperBound(this.Item)+1]=this.m_-0
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_savechanges)
+destroy(this.m_-0)
+destroy(this.m_close)
+end on
+
+type m_savechanges from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_save" )
+end event
+
+on m_savechanges.create
+call super::create
+this.text = "Sa&ve Changes~tAlt+V"
+this.shortcut = 598
+this.microhelp = "Save Changes Made to Pricing Grid "
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 4
+end on
+
+on m_savechanges.destroy
+call super::destroy
+end on
+
+type m_-0 from menu within m_file
+end type
+
+on m_-0.create
+call super::create
+this.text = "-"
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_cancel' )
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_category_setup
+m_add m_add
+m_delete m_delete
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_add=create m_add
+this.m_delete=create m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_add
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_add)
+destroy(this.m_delete)
+end on
+
+type m_add from menu within m_edit
+end type
+
+event clicked;w_category_setup.TriggerEvent ( 'ue_add' )
+end event
+
+on m_add.create
+call super::create
+this.text = "&Add~tIns"
+this.shortcut = 45
+this.toolbaritemname = "Prior5!"
+this.toolbaritemtext = "Add"
+end on
+
+on m_add.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_edit
+end type
+
+event clicked;w_category_setup.TriggerEvent ( 'ue_delete' )
+end event
+
+on m_delete.create
+call super::create
+this.text = "&Delete~tDel"
+this.shortcut = 46
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Delete"
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_category_setup
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_category_setup
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

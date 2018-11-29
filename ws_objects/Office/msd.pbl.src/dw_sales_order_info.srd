@@ -1,0 +1,21 @@
+﻿$PBExportHeader$dw_sales_order_info.srd
+$PBExportComments$Retrieve detail sales order information, such as Cust Part
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=5 color="536870912")
+footer(height=1 color="536870912")
+detail(height=513 color="536870912")
+table(column=(type=decimal(0) update=yes key=yes name=order_no dbname="order_header.order_no" )
+ column=(type=decimal(6) update=yes name=our_cum dbname="order_header.our_cum" )
+ column=(type=char(1) update=yes name=order_type dbname="order_header.order_type" )
+ column=(type=char(35) update=yes name=customer_part dbname="order_header.customer_part" )
+ retrieve="SELECT order_header.order_no, order_header.our_cum, order_header.order_type, order_header.customer_part FROM order_header WHERE order_header.order_no = :iSales_order " update="order_header" updatewhere=0 updatekeyinplace=no arguments=(("iSales_order", number)) )
+text(band=detail color="0" alignment="1" border="0" x="37" y="4" height="65" width="403" text="Order Number:" name=order_no_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="1" alignment="1" color="0" height="65" tabsequence=10 width="275" x="467" y="4"  name=order_no format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=detail color="0" alignment="1" border="0" x="37" y="132" height="65" width="403" text="Our Cum:" name=our_cum_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="1" alignment="1" color="0" height="65" tabsequence=20 width="275" x="467" y="132"  name=our_cum format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=detail color="0" alignment="1" border="0" x="37" y="256" height="65" width="403" text="Order Type:" name=order_type_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=3 border="1" alignment="0" color="0" height="65" tabsequence=30 width="74" x="467" y="256"  name=order_type format="[general]" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=detail color="0" alignment="1" border="0" x="37" y="384" height="65" width="403" text="Customer Part:" name=customer_part_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=4 border="1" alignment="0" color="0" height="65" tabsequence=40 width="695" x="467" y="384"  name=customer_part format="[general]" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

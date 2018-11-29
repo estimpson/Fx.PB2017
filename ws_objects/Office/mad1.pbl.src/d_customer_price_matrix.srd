@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_customer_price_matrix.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_customer_price_matrix.part" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=customer dbname="part_customer_price_matrix.customer" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes key=yes name=qty_break dbname="part_customer_price_matrix.qty_break" validation="Number(Gettext()) > 0" validationmsg="~"Qty break cannot be negative!~"" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=alternate_price dbname="part_customer_price_matrix.alternate_price" validation="Number(Gettext()) > 0" validationmsg="~"Price cannot be negative!~"" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="part_customer_price_matrix.price" validation="Number(Gettext()) > 0" validationmsg="~"Price cannot be negative!~"" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_customer_price_matrix~" ) COLUMN(NAME=~"part_customer_price_matrix.part~") COLUMN(NAME=~"part_customer_price_matrix.customer~") COLUMN(NAME=~"part_customer_price_matrix.qty_break~") COLUMN(NAME=~"part_customer_price_matrix.alternate_price~") COLUMN(NAME=~"part_customer_price_matrix.price~")WHERE(    EXP1 =~"( part_customer_price_matrix.part~"   OP =~"=~"    EXP2 =~":szPart )~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"( part_customer_price_matrix.customer~"   OP =~"=~"    EXP2 =~":szCustomer )~" ) ) ORDER(NAME=~"part_customer_price_matrix.qty_break~" ASC=yes ) ARG(NAME = ~"szPart~" TYPE = string)  ARG(NAME = ~"szCustomer~" TYPE = string) " update="part_customer_price_matrix" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string),("szCustomer", string)) )
+text(band=header alignment="2" text="Price"border="0" color="0" x="434" y="8" height="52" width="462"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Qty Break"border="0" color="0" x="9" y="8" height="52" width="416"  name=qty_break_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="64" width="416" format="[general]"  name=qty_break editmask.mask="###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="0" x="434" y="8" height="64" width="462" format="[general]"  name=alternate_price editmask.mask="$#,###,###.000000" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

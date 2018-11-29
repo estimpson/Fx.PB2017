@@ -1,0 +1,7 @@
+﻿$PBExportHeader$str_statusbar.srs
+$PBExportComments$statusbar for the grids.
+global type str_statusbar from structure
+    string title
+    boolean enable_cancel
+end type
+

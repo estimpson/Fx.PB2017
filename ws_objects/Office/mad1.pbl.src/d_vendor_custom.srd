@@ -1,0 +1,46 @@
+﻿$PBExportHeader$d_vendor_custom.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=77633680 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=412 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes name=custom1 dbname="vendor_custom.custom1" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom2 dbname="vendor_custom.custom2" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom3 dbname="vendor_custom.custom3" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom4 dbname="vendor_custom.custom4" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=custom5 dbname="vendor_custom.custom5" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="vendor_custom.code" )
+ retrieve="select
+	vendor_custom.custom1
+,	vendor_custom.custom2
+,	vendor_custom.custom3
+,	vendor_custom.custom4
+,	vendor_custom.custom5
+,	vendor_custom.code
+from
+	vendor_custom
+where
+	vendor_custom.code = :arg_vendor
+
+" update="vendor_custom" updatewhere=0 updatekeyinplace=yes arguments=(("arg_vendor", string)) )
+compute(band=detail alignment="0" expression="f_get_user_defined_label ( 'VM',1 )"border="0" color="0" x="78" y="40" height="48" width="233" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label ( 'VM',2 )"border="0" color="0" x="78" y="112" height="52" width="233" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label ( 'VM',3 )"border="0" color="0" x="78" y="188" height="48" width="233" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label ( 'VM',4 )"border="0" color="0" x="78" y="260" height="52" width="233" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+compute(band=detail alignment="0" expression="f_get_user_defined_label ( 'VM',5 )"border="0" color="0" x="78" y="332" height="52" width="233" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="329" y="40" height="56" width="699" format="[general]" html.valueishtml="0"  name=custom1  tag="Could be anything, custom field (ie user defined)" visible="1" dddw.name=d_user_definable_data_lst dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="329" y="112" height="60" width="699" format="[general]" html.valueishtml="0"  name=custom2  tag="Could be anything, custom field (ie user defined)" visible="1" dddw.name=d_user_definable_data_lst dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="329" y="188" height="56" width="699" format="[general]" html.valueishtml="0"  name=custom3  tag="Could be anything, custom field (ie user defined)" visible="1" dddw.name=d_user_definable_data_lst dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="329" y="260" height="56" width="699" format="[general]" html.valueishtml="0"  name=custom4  tag="Could be anything, custom field (ie user defined)" visible="1" dddw.name=d_user_definable_data_lst dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="329" y="332" height="64" width="699" format="[general]" html.valueishtml="0"  name=custom5  tag="Could be anything, custom field (ie user defined)" visible="1" dddw.name=d_user_definable_data_lst dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

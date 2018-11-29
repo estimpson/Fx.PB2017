@@ -1,0 +1,33 @@
+﻿$PBExportHeader$d_contact_call_log.srd
+release 6;
+datawindow(units=0 timer_interval=1000 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=696 color="536870912" )
+table(column=(type=char(35) update=yes updatewhereclause=yes key=yes name=contact dbname="contact_call_log.contact" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=start_date dbname="contact_call_log.start_date" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=call_subject dbname="contact_call_log.call_subject" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=call_content dbname="contact_call_log.call_content" )
+ column=(type=datetime update=yes updatewhereclause=yes name=stop_date dbname="contact_call_log.stop_date" )
+ retrieve="  SELECT contact_call_log.contact,   
+         contact_call_log.start_date,   
+         contact_call_log.call_subject,   
+         contact_call_log.call_content,
+			contact_call_log.stop_date
+    FROM contact_call_log  
+   WHERE contact_call_log.contact = :as_contact AND  
+         start_date = :adt_date_stamp    
+" update="contact_call_log" updatewhere=0 updatekeyinplace=yes arguments=(("as_contact", string),("adt_date_stamp", datetime)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="402" y="4" height="64" width="695" format="[general]"  name=contact dddw.name=d_contact_list dddw.displaycolumn=contact_name dddw.datacolumn=contact_name dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="402" y="196" height="64" width="2011" format="[general]"  name=call_subject edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="402" y="292" height="384" width="2011" format="[general]"  name=call_content edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Contact:"border="0" color="0" x="18" y="4" height="64" width="347"  name=contact_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Started:"border="0" color="0" x="18" y="100" height="64" width="233"  name=date_stamp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Call Subject:"border="0" color="0" x="18" y="196" height="64" width="347"  name=call_subject_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Call Content:"border="0" color="0" x="18" y="292" height="64" width="347"  name=call_content_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="0" x="402" y="100" height="64" width="695" format="mm/dd/yyyy hh:mm" protect="0~t1"  name=start_date editmask.mask="mm/dd/yy hh:mm:ss" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="5" color="0" x="1627" y="100" height="64" width="786" format="mm/dd/yyyy hh:mm" protect="0~t1"  name=stop_date editmask.mask="mm/dd/yy hh:mm:ss" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Stopped:"border="0" color="0" x="1134" y="100" height="64" width="256"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( isnull (stop_date),secondsafter( time(string(start_date,'hh:mm:ss')) , time(string(now ( ),'hh:mm:ss')) )/60, secondsafter( time(string(start_date,'hh:mm:ss')) , time(string(stop_date,'hh:mm:ss')) )/60)"border="0" color="0" x="1627" y="4" height="64" width="475" format="##0"  name=elapsed_time  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="Elapsed Minutes:"border="0" color="0" x="1134" y="4" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

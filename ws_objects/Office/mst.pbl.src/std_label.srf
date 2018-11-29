@@ -1,0 +1,149 @@
+﻿$PBExportHeader$std_label.srf
+global type std_label from function_object
+end type
+
+forward prototypes
+global subroutine std_label (long lserial)
+end prototypes
+
+global subroutine std_label (long lserial);//  Standard label for job completion
+
+/////////////////////////////////////////////////
+//  Declaration
+//
+
+Long ll_Label		  // Open Handle for print job, 32-bit
+//Int iLabel        // Open Handle for print job, 16-bit
+
+String cEsc         // Escape Code
+String szLoc        // Location
+String szLot        // Material Lot
+String szUnit       // Unit Of Measure
+String szOperator   // Operator
+String szPart
+String szTemp
+String szName1
+String szName2
+String szName3
+
+Dec dQuantity
+
+Time tTime
+
+Date dDate
+
+Datetime l_ddate
+Datetime l_tTime
+
+/////////////////////////////////////////////////
+//  Initialization
+//
+
+  SELECT object.part,   
+         object.lot,   
+         object.location,   
+         object.last_date,   
+         object.unit_measure,   
+         object.operator,   
+         object.quantity,   
+         object.last_time  
+    INTO :szPart,   
+         :szLot,   
+         :szLoc,   
+         :l_dDate,   
+         :szUnit,   
+         :szOperator,   
+         :dQuantity,   
+         :l_tTime  
+    FROM object  
+   WHERE object.serial = :lSerial   ;
+
+   dDate = Date( l_dDate )
+   tTime = Time( l_tTime )
+
+  SELECT part.name  
+    INTO :szTemp  
+    FROM part  
+   WHERE part.part = :szPart   ;
+
+szName1 = MidA ( szTemp, 1, 20 )
+szName2 = MidA ( szTemp, 21, 20 )
+szName3 = MidA ( szTemp, 41, 20 )
+
+cEsc = "~h1B"
+
+/////////////////////////////////////////////////
+//  Main Routine
+//
+
+ll_Label = PrintOpen ( )
+
+//  Start Printing
+PrintSend ( ll_Label, cEsc + "A" )
+
+//  Part Info
+PrintSend ( ll_Label, cEsc + "%3" )
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H825" )
+PrintSend ( ll_Label, cEsc + "M" + "PART NO." )
+PrintSend ( ll_Label, cEsc + "V20" + cEsc + "H800" )
+PrintSend ( ll_Label, cEsc + "M" + "(P)" )
+PrintSend ( ll_Label, cEsc + "V80" + cEsc + "H785" )
+PrintSend ( ll_Label, cEsc + "L0303" + cEsc + "WB1" + szPart )
+PrintSend ( ll_Label, cEsc + "L0101" )
+PrintSend ( ll_Label, cEsc + "V30" + cEsc + "H700" )
+PrintSend ( ll_Label, cEsc + "B102095" + "*" + szPart + "*" )
+
+//  Quantity Info
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H590" )
+PrintSend ( ll_Label, cEsc + "M" + "QUANTITY" )
+PrintSend ( ll_Label, cEsc + "V20" + cEsc + "H565" )
+PrintSend ( ll_Label, cEsc + "M" + "(Q)" )
+PrintSend ( ll_Label, cEsc + "V80" + cEsc + "H540" )
+PrintSend ( ll_Label, cEsc + "L0202" + cEsc + "WB1" + String ( dQuantity ) + " " + szUnit )
+PrintSend ( ll_Label, cEsc + "L0101" )
+PrintSend ( ll_Label, cEsc + "V30" + cEsc + "H475" )
+PrintSend ( ll_Label, cEsc + "B102095" + "*" + String ( dQuantity ) + "*" )
+
+//  Lot Number
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H365" )
+PrintSend ( ll_Label, cEsc + "M" + "MATERIAL LOT#" )
+PrintSend ( ll_Label, cEsc + "V20" + cEsc + "H340" )
+PrintSend ( ll_Label, cEsc + "M" + "(V)" )
+PrintSend ( ll_Label, cEsc + "V215" + cEsc + "H365" )
+PrintSend ( ll_Label, cEsc + "WL1" + szLot )
+PrintSend ( ll_Label, cEsc + "V30" + cEsc + "H305" )
+PrintSend ( ll_Label, cEsc + "B102095" + "*" + szLot + "*" )
+
+//  Serial Number
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H190" )
+PrintSend ( ll_Label, cEsc + "M" + "SERIAL #" )
+PrintSend ( ll_Label, cEsc + "V20" + cEsc + "H165" )
+PrintSend ( ll_Label, cEsc + "M" + "(S)" )
+PrintSend ( ll_Label, cEsc + "V125" + cEsc + "H190" )
+PrintSend ( ll_Label, cEsc + "WL1" + String ( lSerial ) )
+PrintSend ( ll_Label, cEsc + "V30" + cEsc + "H135" )
+PrintSend ( ll_Label, cEsc + "B102095" + "*" + String ( lSerial ) + "*" )
+
+//  Part Description
+PrintSend ( ll_Label, cEsc + "V520" + cEsc + "H590" )
+PrintSend ( ll_Label, cEsc + "M" + "MODEL/PART DESCRIPTION" )
+PrintSend ( ll_Label, cEsc + "V520" + cEsc + "H565" )
+PrintSend ( ll_Label, cEsc + "WL1" + szName1 )
+PrintSend ( ll_Label, cEsc + "V520" + cEsc + "H525" )
+PrintSend ( ll_Label, cEsc + "WL1" + szName2 )
+PrintSend ( ll_Label, cEsc + "V520" + cEsc + "H485" )
+PrintSend ( ll_Label, cEsc + "WL1" + szName3 )
+
+//  Draw Lines
+PrintSend ( ll_Label, cEsc + "%0" )
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H200" + cEsc + "FW02V1150" )
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H375" + cEsc + "FW02V1150" )
+PrintSend ( ll_Label, cEsc + "V0" + cEsc + "H600" + cEsc + "FW02V1150" )
+PrintSend ( ll_Label, cEsc + "V500" + cEsc + "H375" + cEsc + "FW02H225" )
+PrintSend ( ll_Label, cEsc + "V650" + cEsc + "H20" + cEsc + "FW02H355" )
+
+PrintSend ( ll_Label, cEsc + "Z" )
+
+PrintClose ( ll_Label )
+end subroutine
+

@@ -1,0 +1,92 @@
+﻿$PBExportHeader$d_shipschedule.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=76 color="553648127" )
+summary(height=0 color="536870912" )
+footer(height=4 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=shipper_id dbname="id" values="<New>	0/" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="destination" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_stamp dbname="date_stamp" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="ship_via" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_status dbname="status" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_printed dbname="printed" )
+ column=(type=char(1000) updatewhereclause=yes name=shipper_notes dbname="notes" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_picklist_printed dbname="picklist_printed" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_type dbname="type" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_shipped dbname="date_shipped" )
+ column=(type=datetime updatewhereclause=yes name=shipper_time_shipped dbname="time_shipped" )
+ retrieve="select	s.id,
+	s.destination,
+	s.date_stamp,
+	s.ship_via,
+	s.status,
+	s.printed,
+	s.notes,
+	s.picklist_printed,
+	s.type,
+	s.date_shipped,
+	s.time_shipped
+from	shipper s
+	join customer_service_status css on s.cs_status = css.status_name and
+		css.status_type != 'C'
+	left outer join shipper_detail sd on s.id = sd.shipper and
+		sd.part =
+		(	select	min ( part )
+			from	shipper_detail sd2
+			where	sd2.shipper = s.id )
+	left outer join order_header oh on sd.order_no = oh.order_no
+where	s.destination = :ShipTo and
+	s.status in ( 'O', 'S' ) and
+	IsNull ( s.type, 'N' ) = :ShipType and
+	isnull ( oh.plant, '' ) = coalesce ( :Plant, oh.plant, '' )
+union
+select	0,
+	d.destination,
+	GetDate ( ),
+	ds.scac_code,
+	'O',
+	'N',
+	ds.note_for_shipper,
+	'N',
+	:ShipType,
+	null,
+	null
+from	destination d
+	left outer join destination_shipping ds on ds.destination = :ShipTo
+where	d.destination = :ShipTo
+order by 1 asc
+" arguments=(("ShipType", string),("ShipTo", string),("Plant", string)) )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="52" width="206" format="0" html.valueishtml="0"  name=shipper_id  tag="Shipper identification" visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="224" y="4" height="52" width="297" format="[general]" html.valueishtml="0"  name=shipper_destination  tag="Destination " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="4" height="52" width="489" format="[shortdate] [time]" html.valueishtml="0"  name=shipper_date_stamp  tag="date stamp " visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1029" y="4" height="52" width="421" format="[general]" html.valueishtml="0"  name=shipper_ship_via  tag="Ship via " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1458" y="4" height="52" width="178" format="[general]" html.valueishtml="0"  name=shipper_status  tag="Status  O=Open display on Ship Dock? S=Staged C=Shipped, E=? Z=?" visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1646" y="4" height="52" width="178" format="[general]" html.valueishtml="0"  name=shipper_printed  tag="enabling printing option  Y = Yes N = No" visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1833" y="4" height="52" width="1883" format="[general]" html.valueishtml="0"  name=shipper_notes  tag="Notes " visible="1" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="3726" y="4" height="52" width="402" format="[general]" html.valueishtml="0"  name=shipper_picklist_printed  tag="Whether the picklist has been printed or not Y = Yes, N = No" visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="4137" y="4" height="52" width="128" format="[general]" html.valueishtml="0"  name=shipper_type  tag="What type of shipper? N=Normal, O=Outside,  D=DropShip, Q=Quick Ship" visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4274" y="4" height="52" width="357" format="[shortdate] [time]" html.valueishtml="0"  name=shipper_date_shipped  tag="Date shipped " visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="4640" y="4" height="52" width="361" format="[shortdate] [time]" html.valueishtml="0"  name=shipper_time_shipped  tag="time shipped" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Id" border="6" color="33554432" x="9" y="12" height="56" width="206" html.valueishtml="0"  name=shipper_id_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Destination" border="6" color="33554432" x="224" y="12" height="56" width="297" html.valueishtml="0"  name=shipper_destination_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Date" border="6" color="33554432" x="530" y="12" height="56" width="489" html.valueishtml="0"  name=shipper_date_stamp_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Ship Via Code" border="6" color="33554432" x="1029" y="12" height="56" width="421" html.valueishtml="0"  name=shipper_ship_via_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Status" border="6" color="33554432" x="1458" y="12" height="56" width="178" html.valueishtml="0"  name=shipper_status_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Printed" border="6" color="33554432" x="1646" y="12" height="56" width="178" html.valueishtml="0"  name=shipper_printed_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Notes" border="6" color="33554432" x="1833" y="12" height="56" width="1883" html.valueishtml="0"  name=shipper_notes_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Picklist Printed" border="6" color="33554432" x="3726" y="12" height="56" width="402" html.valueishtml="0"  name=shipper_picklist_printed_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Type" border="6" color="33554432" x="4137" y="12" height="56" width="128" html.valueishtml="0"  name=shipper_type_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Date Shipped" border="6" color="33554432" x="4274" y="12" height="56" width="357" html.valueishtml="0"  name=shipper_date_shipped_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+text(band=header alignment="2" text="Time Shipped" border="6" color="33554432" x="4640" y="12" height="56" width="361" html.valueishtml="0"  name=shipper_time_shipped_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80263581" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

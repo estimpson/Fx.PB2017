@@ -1,0 +1,41 @@
+﻿$PBExportHeader$f_get_tables_from_select.srf
+global type f_get_tables_from_select from function_object
+end type
+
+forward prototypes
+global function integer f_get_tables_from_select (string a_s_sqlselect, ref string a_s_tables[])
+end prototypes
+
+global function integer f_get_tables_from_select (string a_s_sqlselect, ref string a_s_tables[]);int		l_i_frompos,&
+			l_i_wherepos,&
+			l_i_commapos
+boolean	l_b_done
+string	l_s_temp
+
+//l_i_frompos = Pos ( Upper ( a_s_sqlselect ), " FROM " )
+//l_i_wherepos	= Pos ( Upper ( a_s_sqlselect ), " WHERE " )
+l_i_frompos = PosA ( Upper ( a_s_sqlselect ), "FROM" )
+l_i_wherepos	= PosA ( Upper ( a_s_sqlselect ), "WHERE" )
+
+if l_i_wherepos <= 0 then l_i_wherepos = LenA ( a_s_sqlselect )
+
+Do While NOT l_b_done
+	l_i_commapos = PosA ( a_s_sqlselect, ",", l_i_frompos )
+	if l_i_commapos > 0 then
+		if l_i_commapos > l_i_wherepos then
+			l_b_done = TRUE
+		else
+			l_i_frompos = PosA ( Upper ( a_s_sqlselect ), "FROM", l_i_frompos + 1 )			
+		end if
+	else
+		l_b_done = TRUE
+		l_s_temp = MidA ( a_s_sqlselect, l_i_frompos + 5, l_i_wherepos - ( l_i_frompos + 5 ) )
+		if PosA ( l_s_temp, CharA ( 13 ) ) > 0 then
+			l_s_temp = Trim ( LeftA ( l_s_temp, PosA ( l_s_temp, CharA ( 13 ) ) - 1 ) )
+		end if
+		a_s_tables[UpperBound(a_s_tables) + 1] = l_s_temp
+	end if
+loop
+return 1
+end function
+

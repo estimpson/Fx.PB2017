@@ -1,0 +1,105 @@
+﻿$PBExportHeader$f_calc_qty_available_in_po.srf
+$PBExportComments$Function to calculate the po detail qty for a list of dates, which will be used to set the cell color in the 'shortage mode' of PO SCHEDULE GRID screen.
+global type f_calc_qty_available_in_po from function_object
+end type
+
+forward prototypes
+global subroutine f_calc_qty_available_in_po (string as_part, string as_plant, date ad_date_list[], decimal ac_qty_list[], ref long al_flag_list[], ref decimal ac_qty_covered[])
+end prototypes
+
+global subroutine f_calc_qty_available_in_po (string as_part, string as_plant, date ad_date_list[], decimal ac_qty_list[], ref long al_flag_list[], ref decimal ac_qty_covered[]);/* This function will calculate the qty available from PO based on a list
+	of dates. */
+
+integer	li_ptr, &
+			li_count
+
+decimal	lc_qty, &
+			lc_po_qty = 0
+
+string	ls_plant
+
+date		ld_date
+
+boolean	lb_process
+
+li_count	= upperbound( ad_date_list )
+
+if li_count > 0 then
+
+	for li_ptr = 1 to li_count
+		al_flag_list[ li_ptr ] 		= 255	// Red: Not covered
+		ac_qty_covered[ li_ptr ] 	= 0
+	next
+
+	li_ptr	= 1
+	ld_date	= ad_date_list[ li_count ]	// get the last date in the list
+
+ 	DECLARE 	cursor_po CURSOR FOR  
+  	SELECT 	po_detail.standard_qty,   
+         	po_detail.date_due, 
+				po_detail.plant  
+   FROM 		po_detail  
+   WHERE 	po_detail.part_number = :as_part  AND
+				po_detail.date_due <= :ld_date 
+	ORDER BY po_detail.date_due ASC  ;
+
+	OPEN	cursor_po;
+	FETCH cursor_po INTO :lc_qty, :ld_date, :ls_plant;
+
+	do while (SQLCA.SQLCode = 0 or &
+				(SQLCA.SQLCode <> 0 and lc_po_qty > 0 ) ) &
+				and li_ptr <= li_count
+		lb_process	= (as_plant = '') or (ls_plant = as_plant )
+		lc_po_qty	+= lc_qty
+
+		if lb_process then
+			if ld_date <= ad_date_list[ li_ptr ] then
+				if lc_po_qty > 0 then 
+					if ac_qty_list[ li_ptr ] > lc_po_qty then
+						ac_qty_list[ li_ptr ]		-= lc_po_qty
+						ac_qty_covered[ li_ptr ] 	+= lc_po_qty
+						lc_po_qty						= 0
+						al_flag_list[ li_ptr ]		= 65535	//Yellow:partially covered		
+					else
+						lc_po_qty						-= ac_qty_list[ li_ptr ]
+						ac_qty_covered[ li_ptr ] 	+= ac_qty_list[ li_ptr ]
+						al_flag_list[ li_ptr ]		= 32768	//Green:fully covered
+						li_ptr ++
+					end if					
+				end if					
+			else
+				//loop to the next availabel date
+				do while ld_date > ad_date_list[ li_ptr ] and li_ptr <= li_count
+					li_ptr ++
+					al_flag_list[ li_ptr ] = 255			//Red:not covered
+				loop
+				
+				if li_ptr <= li_count then
+					if lc_po_qty > 0 then 
+						if ac_qty_list[ li_ptr ] > lc_po_qty then
+							ac_qty_list[ li_ptr ]		-= lc_po_qty
+							ac_qty_covered[ li_ptr ] 	+= lc_po_qty
+							lc_po_qty						= 0
+							al_flag_list[ li_ptr ]		= 65535	//Yellow:partially covered		
+						else
+							lc_po_qty						-= ac_qty_list[ li_ptr ]
+							ac_qty_covered[ li_ptr ]	+= ac_qty_list[ li_ptr ]
+							al_flag_list[ li_ptr ]		= 32768	//Green:fully covered
+							li_ptr ++
+						end if					
+					end if					
+				end if
+			end if
+		end if
+
+		if SQLCA.SQLCode = 0 then
+			FETCH cursor_po INTO :lc_qty, :ld_date, :ls_plant;
+		end if
+
+	loop
+
+	CLOSE cursor_po;
+	
+end if	
+end subroutine
+

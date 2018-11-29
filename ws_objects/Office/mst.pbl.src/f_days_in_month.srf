@@ -1,0 +1,41 @@
+﻿$PBExportHeader$f_days_in_month.srf
+global type f_days_in_month from function_object
+end type
+
+forward prototypes
+global function int f_days_in_month (date ddate)
+end prototypes
+
+global function int f_days_in_month (date ddate);/*
+Declare Variables
+*/
+
+Date dNewDate
+
+Int  iDays
+Int  iMonth, iYear
+
+
+/*
+Initialize Variables
+*/
+
+iMonth = Month ( dDate )
+iYear  = Year ( dDate )
+
+dDate    = Date ( iYear, iMonth, 1 )
+
+If iMonth = 12 Then
+	iYear++
+	iMonth = 1
+Else
+	iMonth++
+End if
+
+dNewDate = Date ( iYear, iMonth, 1 )
+
+iDays = DaysAfter ( dDate, dNewDate )
+
+Return iDays
+end function
+

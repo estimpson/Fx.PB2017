@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_dw_unexploded_order_detail_for_cop.srd
+$PBExportComments$unable to move this object to obsolete pbl.. this doesn't belong here.
+release 4;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=73 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=char(25) name=part_number dbname="order_detail.part_number" )
+ column=(type=decimal(6) name=std_qty dbname="order_detail.std_qty" )
+ column=(type=date name=due_date dbname="order_detail.due_date" )
+ column=(type=decimal(0) name=order_no dbname="order_detail.order_no" )
+ column=(type=number name=row_id dbname="order_detail.row_id" )
+ column=(type=char(1) name=ship_type dbname="order_detail.ship_type" )
+ column=(type=char(10) name=plant dbname="order_detail.plant" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"order_detail~" ) COLUMN(NAME=~"order_detail.part_number~") COLUMN(NAME=~"order_detail.std_qty~") COLUMN(NAME=~"order_detail.due_date~") COLUMN(NAME=~"order_detail.order_no~") COLUMN(NAME=~"order_detail.row_id~") COLUMN(NAME=~"order_detail.ship_type~") COLUMN(NAME=~"order_detail.plant~")WHERE( EXP1 =~"~~~"order_detail~~~".~~~"flag~~~"~" OP =~"=~" EXP2 =~"1~" LOGIC =~"and~" ) WHERE( EXP1 =~"~~~"order_detail~~~".~~~"due_date~~~"~" OP =~"<=~" EXP2 =~":ad_date~" ) ) ARG(NAME = ~"ad_date~" TYPE = date) " arguments=(("ad_date", date)) )
+text(band=header alignment="2" text="Part"border="0" color="0" x="19" y="4" height="57" width="87"  name=part_number_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty"border="0" color="0" x="348" y="4" height="57" width="78"  name=std_qty_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Due Date"border="0" color="0" x="586" y="4" height="57" width="202"  name=due_date_t  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="10" y="4" height="65" width="321" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="348" y="4" height="65" width="220" format="#######0.00"  name=std_qty  tag="Standard quantity" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="586" y="4" height="65" width="238" format="[general]"  name=due_date edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

@@ -1,0 +1,31 @@
+﻿$PBExportHeader$dw_ei_job_cost_select.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=81 color="536870912" )
+summary(height=1 color="-1" )
+footer(height=1 color="-1" )
+detail(height=97 color="-1" )
+table(column=(type=char(10) updatewhereclause=yes name=work_order dbname="work_order.work_order" )
+ column=(type=char(25) updatewhereclause=yes name=workorder_detail_part dbname="workorder_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=workorder_detail_qty_required dbname="workorder_detail.qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=workorder_detail_qty_completed dbname="workorder_detail.qty_completed" )
+ column=(type=decimal(6) updatewhereclause=yes name=workorder_detail_balance dbname="workorder_detail.balance" )
+ retrieve="  SELECT work_order.work_order,   
+         workorder_detail.part,   
+         workorder_detail.qty_required,   
+         workorder_detail.qty_completed,   
+         workorder_detail.balance  
+    FROM work_order,   
+         workorder_detail  
+   WHERE ( work_order.work_order = workorder_detail.workorder )    
+"  sort="workorder_detail_part A " )
+text(band=header alignment="1" text="Work Order"border="0" color="0" x="10" y="12" height="65" width="398"  name=work_order_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part"border="0" color="0" x="417" y="8" height="65" width="1386"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Required"border="0" color="0" x="1811" y="8" height="65" width="362"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Completed"border="0" color="0" x="2181" y="8" height="65" width="339"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Balance"border="0" color="0" x="2529" y="8" height="65" width="449"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="417" y="16" height="69" width="1386" format="[general]"  name=workorder_detail_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="10" y="16" height="69" width="398" format="[general]"  name=work_order edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="0" x="2181" y="12" height="69" width="339" format="#,##0"  name=workorder_detail_qty_completed edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="0" x="2529" y="16" height="69" width="449" format="#,##0"  name=workorder_detail_balance edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="0" x="1811" y="16" height="69" width="362" format="#,##0"  name=workorder_detail_qty_required edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

@@ -1,0 +1,61 @@
+﻿$PBExportHeader$d_resource_task_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=resource_name dbname="resource_name" )
+ column=(type=long updatewhereclause=yes name=resource_type dbname="resource_type" )
+ column=(type=long updatewhereclause=yes name=task_sequence dbname="task_sequence" )
+ column=(type=long updatewhereclause=yes name=task_id dbname="task_id" )
+ column=(type=long updatewhereclause=yes name=task_type dbname="task_type" )
+ column=(type=datetime updatewhereclause=yes name=task_start dbname="task_start" )
+ column=(type=datetime updatewhereclause=yes name=task_end dbname="task_end" )
+ column=(type=long updatewhereclause=yes name=task_duration dbname="task_duration" )
+ column=(type=char(25) updatewhereclause=yes name=task_description dbname="task_description" )
+ column=(type=datetime updatewhereclause=yes name=task_due dbname="task_due" )
+ column=(type=decimal(6) updatewhereclause=yes name=task_balance dbname="task_balance" )
+ column=(type=decimal(10) updatewhereclause=yes name=task_yield dbname="task_yield" )
+ retrieve="select	mvw_pb_resource_List.resource_name,
+	mvw_pb_resource_list.resource_type,
+	task_sequence,
+	task_id,
+	task_type,
+	task_start,
+	task_end,
+	task_duration,
+	task_description,
+	task_due,
+	task_balance,
+	task_yield 
+from	mvw_resource_task_list
+	join	mvw_pb_resource_list on mvw_resource_task_list.resource_name = mvw_pb_resource_list.resource_name and
+		mvw_resource_task_list.resource_type = mvw_pb_resource_list.resource_type 
+where 	mvw_resource_task_list.resource_type = 1
+order by 1, 2, 3" )
+text(band=header alignment="0" text="Resource Name"border="0" color="0" x="9" y="4" height="52" width="567"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Resource Type"border="0" color="0" x="585" y="4" height="52" width="503"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Id"border="0" color="0" x="1097" y="4" height="52" width="311"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Type"border="0" color="0" x="1417" y="4" height="52" width="699"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Sequence"border="0" color="0" x="2126" y="4" height="52" width="631"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Start"border="0" color="0" x="2766" y="4" height="52" width="919"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task End"border="0" color="0" x="3694" y="4" height="52" width="919"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Due"border="0" color="0" x="4622" y="4" height="52" width="919"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Duration"border="0" color="0" x="5550" y="4" height="52" width="1367"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Description"border="0" color="0" x="6926" y="4" height="52" width="791"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Yield"border="0" color="0" x="7726" y="4" height="52" width="1367"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Task Balance"border="0" color="0" x="9102" y="4" height="52" width="1367"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="0" height="76" width="567" format="[general]"  name=resource_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="585" y="0" height="76" width="503" format="[general]"  name=resource_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1097" y="0" height="76" width="311" format="[general]"  name=task_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1417" y="0" height="76" width="699" format="[general]"  name=task_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2126" y="0" height="76" width="631" format="[general]"  name=task_sequence edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2766" y="0" height="76" width="919" format="[shortdate] [time]"  name=task_start edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="3694" y="0" height="76" width="919" format="[shortdate] [time]"  name=task_end edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="4622" y="0" height="76" width="919" format="[shortdate] [time]"  name=task_due edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="5550" y="0" height="76" width="1367" format="[general]"  name=task_duration edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="6926" y="0" height="76" width="791" format="[general]"  name=task_description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="7726" y="0" height="76" width="1367" format="[general]"  name=task_yield edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="9102" y="0" height="76" width="1367" format="[general]"  name=task_balance edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

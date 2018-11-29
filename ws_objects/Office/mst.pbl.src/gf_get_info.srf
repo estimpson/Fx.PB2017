@@ -1,0 +1,11 @@
+﻿$PBExportHeader$gf_get_info.srf
+global type gf_get_info from function_object
+end type
+
+forward prototypes
+global function integer gf_get_info (string s_1, integer i_1)
+end prototypes
+
+global function integer gf_get_info (string s_1, integer i_1);return 0
+end function
+

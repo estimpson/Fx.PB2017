@@ -1,0 +1,46 @@
+﻿$PBExportHeader$f_set_tab_order.srf
+$PBExportComments$Set Tab Order for Datawindow Columns
+global type f_set_tab_order from function_object
+end type
+
+forward prototypes
+global function boolean f_set_tab_order (datawindow adw_base, string as_column, string as_columnname, string as_columnvalue, string as_columnlist[], integer ai_taborder[])
+end prototypes
+
+global function boolean f_set_tab_order (datawindow adw_base, string as_column, string as_columnname, string as_columnvalue, string as_columnlist[], integer ai_taborder[]);/*
+Description	:To set up tab order for specified column list
+Author		:Jim Wu
+Start Date	:02/08/96
+Modification:
+*/
+
+
+/* Declaration */
+String	ls_ColumnName, &
+			ls_ColumnValue
+
+Boolean	lb_Return
+
+Integer	li_Ptr
+/* Initialization */
+lb_Return	= FALSE
+
+/* Main Process */
+ls_ColumnName		= adw_base.GetColumnName()
+If ls_ColumnName	= as_ColumnName then
+	ls_ColumnValue	= adw_base.GetText()
+	If ls_ColumnValue	= 	as_ColumnValue then
+		li_Ptr	= Upperbound(as_ColumnList)
+		Do while li_Ptr > 0 
+			If as_ColumnList[li_Ptr] > ' ' then
+				adw_base.SetTabOrder(as_ColumnList[li_Ptr], ai_TabOrder[li_Ptr])
+			End If
+			li_Ptr --
+		Loop
+	lb_Return	= TRUE
+	End If
+End If
+
+Return lb_Return
+end function
+

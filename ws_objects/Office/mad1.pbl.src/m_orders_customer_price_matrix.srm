@@ -1,0 +1,334 @@
+﻿$PBExportHeader$m_orders_customer_price_matrix.srm
+forward
+global type m_orders_customer_price_matrix from menu
+end type
+type m_file from menu within m_orders_customer_price_matrix
+end type
+type m_addprice from menu within m_file
+end type
+type m_deleteprice from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_orders_customer_price_matrix
+m_addprice m_addprice
+m_deleteprice m_deleteprice
+m_save m_save
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_orders_customer_price_matrix
+end type
+type m_window from menu within m_orders_customer_price_matrix
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_-1 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_orders_customer_price_matrix
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-1 m_-1
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_orders_customer_price_matrix
+end type
+global type m_orders_customer_price_matrix from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_orders_customer_price_matrix from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_orders_customer_price_matrix m_orders_customer_price_matrix
+
+on m_orders_customer_price_matrix.create
+m_orders_customer_price_matrix=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_orders_customer_price_matrix.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_orders_customer_price_matrix
+m_addprice m_addprice
+m_deleteprice m_deleteprice
+m_save m_save
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_addprice=create m_addprice
+this.m_deleteprice=create m_deleteprice
+this.m_save=create m_save
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_addprice
+this.Item[UpperBound(this.Item)+1]=this.m_deleteprice
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_addprice)
+destroy(this.m_deleteprice)
+destroy(this.m_save)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_addprice from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_add_price" )
+end event
+
+on m_addprice.create
+call super::create
+this.text = "&Add Price~tAlt+A"
+this.shortcut = 577
+this.microhelp = "Add Price to Price Matrix"
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "AddPrice"
+this.toolbaritemorder = 2
+end on
+
+on m_addprice.destroy
+call super::destroy
+end on
+
+type m_deleteprice from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_delete_price" )
+end event
+
+on m_deleteprice.create
+call super::create
+this.text = "&Delete Price~tAlt+D"
+this.shortcut = 580
+this.microhelp = "Delete Price From Price Matrix"
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "DelPrice"
+this.toolbaritemorder = 3
+end on
+
+on m_deleteprice.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_save" )
+end event
+
+on m_save.create
+call super::create
+this.text = "&Save~tAlt+N"
+this.shortcut = 590
+this.microhelp = "Save Changes"
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 5
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_exit_program" )
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_orders_customer_price_matrix
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_orders_customer_price_matrix
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-1 m_-1
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-1=create m_-1
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-1)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_window
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_orders_customer_price_matrix
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

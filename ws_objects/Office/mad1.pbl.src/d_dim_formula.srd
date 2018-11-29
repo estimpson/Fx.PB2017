@@ -1,0 +1,13 @@
+﻿$PBExportHeader$d_dim_formula.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=164 color="536870912" )
+table(column=(type=char(254) update=yes updatewhereclause=yes name=relationship dbname="dim_relation.relationship" )
+ column=(type=char(2) update=yes updatewhereclause=yes key=yes name=dim_code dbname="dim_relation.dim_code" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dim_relation~" ) COLUMN(NAME=~"dim_relation.relationship~") COLUMN(NAME=~"dim_relation.dim_code~")WHERE(    EXP1 =~"dim_relation.dim_code~"   OP =~"=~"    EXP2 =~":arg_dimcode~" ) ) ARG(NAME = ~"arg_dimcode~" TYPE = string) " update="dim_relation" updatewhere=0 updatekeyinplace=no arguments=(("arg_dimcode", string)) )
+text(band=header alignment="0" text="Formula/Relation"border="6" color="0" x="9" y="12" height="52" width="1422"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="152" width="1422" format="[general]"  name=relationship edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

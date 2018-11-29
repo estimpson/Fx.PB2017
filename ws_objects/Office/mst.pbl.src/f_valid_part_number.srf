@@ -1,0 +1,23 @@
+﻿$PBExportHeader$f_valid_part_number.srf
+$PBExportComments$Check whether this is a valid part number
+global type f_valid_part_number from function_object
+end type
+
+forward prototypes
+global function boolean f_valid_part_number (string szpart)
+end prototypes
+
+global function boolean f_valid_part_number (string szpart);String szThisPart
+
+  SELECT part.part  
+    INTO :szThisPart  
+    FROM part  
+   WHERE part.part = :szPart   ;
+
+If IsNull(szThisPart) OR (szThisPart = "") then
+	Return FALSE
+Else
+	Return TRUE
+End If
+end function
+

@@ -1,0 +1,95 @@
+﻿$PBExportHeader$d_ppimolding_allocations.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=workordernumber dbname="WorkOrderDetailMaterialAllocations.WorkOrderNumber" )
+ column=(type=number update=yes updatewhereclause=yes name=workorderdetailline dbname="WorkOrderDetailMaterialAllocations.WorkOrderDetailLine" )
+ column=(type=number update=yes updatewhereclause=yes name=workorderdetailbillofmaterialline dbname="WorkOrderDetailMaterialAllocations.WorkOrderDetailBillOfMaterialLine" )
+ column=(type=datetime update=yes updatewhereclause=yes name=allocationdt dbname="WorkOrderDetailMaterialAllocations.AllocationDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=allocationenddt dbname="WorkOrderDetailMaterialAllocations.AllocationEndDT" )
+ column=(type=long update=yes updatewhereclause=yes name=serial dbname="WorkOrderDetailMaterialAllocations.Serial" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="WorkOrderDetailMaterialAllocations.Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="WorkOrderDetailMaterialAllocations.Type" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyoriginal dbname="WorkOrderDetailMaterialAllocations.QtyOriginal" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtybegin dbname="WorkOrderDetailMaterialAllocations.QtyBegin" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyissued dbname="WorkOrderDetailMaterialAllocations.QtyIssued" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyend dbname="WorkOrderDetailMaterialAllocations.QtyEnd" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyestimatedend dbname="WorkOrderDetailMaterialAllocations.QtyEstimatedEnd" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyoverage dbname="WorkOrderDetailMaterialAllocations.QtyOverage" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyper dbname="WorkOrderDetailMaterialAllocations.QtyPer" )
+ column=(type=char(1000) update=yes updatewhereclause=yes name=changereason dbname="WorkOrderDetailMaterialAllocations.ChangeReason" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=allowablepercentoverage dbname="WorkOrderDetailMaterialAllocations.AllowablePercentOverage" )
+ retrieve="
+select
+    WorkOrderNumber
+,   WorkOrderDetailLine
+,   WorkOrderDetailBillOfMaterialLine
+,   AllocationDT
+,   AllocationEndDT
+,   Serial
+,   Status
+,   Type
+,   QtyOriginal
+,   QtyBegin
+,   QtyIssued
+,   QtyEnd
+,   QtyEstimatedEnd
+,   QtyOverage
+,   QtyPer
+,   ChangeReason
+,   AllowablePercentOverage
+from
+    dbo.WorkOrderDetailMaterialAllocations wodma
+where
+    WorkOrderNumber = :WorkOrderNumber
+    and
+        WorkOrderDetailLine = :WODLine
+    and
+        WorkOrderDetailBillOfMaterialLine = :WODBOMLine
+order by
+    WorkOrderDetailBillOfMaterialLine
+,   AllocationDT
+" arguments=(("WorkOrderNumber", string),("WODLine", number),("WODBOMLine", number))  sort="allocationdt A " )
+text(band=header alignment="2" text="Alloc dt." border="0" color="33554432" x="91" y="8" height="64" width="512" html.valueishtml="0"  name=allocationdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Allocation end dt." border="0" color="33554432" x="613" y="8" height="64" width="512" html.valueishtml="0"  name=allocationenddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serial" border="0" color="33554432" x="1134" y="8" height="64" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status" border="0" color="33554432" x="1472" y="8" height="64" width="297" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type" border="0" color="33554432" x="1778" y="8" height="64" width="297" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. orig." border="0" color="33554432" x="2085" y="8" height="64" width="329" html.valueishtml="0"  name=qtyoriginal_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. begin" border="0" color="33554432" x="2423" y="8" height="64" width="329" html.valueishtml="0"  name=qtybegin_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. issued" border="0" color="33554432" x="2761" y="8" height="64" width="329" html.valueishtml="0"  name=qtyissued_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. end" border="0" color="33554432" x="3099" y="8" height="64" width="329" html.valueishtml="0"  name=qtyend_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. estm'd. end" border="0" color="33554432" x="3438" y="8" height="64" width="457" html.valueishtml="0"  name=qtyestimatedend_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. ovrg." border="0" color="33554432" x="3904" y="8" height="64" width="329" html.valueishtml="0"  name=qtyoverage_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. per" border="0" color="33554432" x="4754" y="8" height="64" width="329" html.valueishtml="0"  name=qtyper_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Change reason" border="0" color="33554432" x="5093" y="8" height="64" width="677" html.valueishtml="0"  name=changereason_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Allowable % ovrg." border="0" color="33554432" x="4242" y="8" height="64" width="503" html.valueishtml="0"  name=allowablepercentoverage_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="33554432" x="91" y="8" height="76" width="512" format="[shortdate] [time] " html.valueishtml="0"  name=allocationdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="613" y="8" height="76" width="512" format="[shortdate] [time] " html.valueishtml="0"  name=allocationenddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=30 border="0" color="33554432" x="1134" y="8" height="76" width="329" format="[general] " html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=40 border="0" color="33554432" x="1472" y="8" height="76" width="297" format="[general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=50 border="0" color="33554432" x="1778" y="8" height="76" width="297" format="[general]" html.valueishtml="0"  name=type visible="1" dddw.name=d_dddw_type dddw.displaycolumn=typename dddw.datacolumn=typecode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=60 border="0" color="33554432" x="2085" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyoriginal visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=70 border="0" color="33554432" x="2423" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtybegin visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=80 border="0" color="33554432" x="2761" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyissued visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=90 border="0" color="33554432" x="3099" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyend visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=100 border="0" color="33554432" x="3438" y="8" height="76" width="457" format="[general]" html.valueishtml="0"  name=qtyestimatedend visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=110 border="0" color="33554432" x="3904" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyoverage visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=130 border="0" color="33554432" x="4754" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyper visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=140 border="0" color="33554432" x="5093" y="8" height="76" width="677" format="[general]" html.valueishtml="0"  name=changereason visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=120 border="0" color="33554432" x="4242" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=allowablepercentoverage visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="5" y="8" height="76" width="78" format="  [GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

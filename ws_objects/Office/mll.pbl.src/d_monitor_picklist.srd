@@ -1,0 +1,90 @@
+﻿$PBExportHeader$d_monitor_picklist.srd
+$PBExportComments$Shipping Dock Picklist
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 94 print.margin.bottom = 94 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=724 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=168 color="536870912"  height.autosize=yes)
+table(column=(type=decimal(6) updatewhereclause=yes name=order_header_standard_pack dbname="order_header.standard_pack" )
+ column=(type=char(30) updatewhereclause=yes name=order_header_zone_code dbname="order_header.zone_code" )
+ column=(type=char(10) updatewhereclause=yes name=order_header_dock_code dbname="order_header.dock_code" )
+ column=(type=char(20) updatewhereclause=yes name=order_header_package_type dbname="order_header.package_type" )
+ column=(type=char(30) updatewhereclause=yes name=order_header_line_feed_code dbname="order_header.line_feed_code" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="shipper.destination" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="shipper.ship_via" )
+ column=(type=datetime updatewhereclause=yes name=shipper_scheduled_ship_time dbname="shipper.scheduled_ship_time" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="shipper_detail.customer_part" )
+ column=(type=char(35) updatewhereclause=yes name=shipper_detail_part dbname="shipper_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_qty_required dbname="shipper_detail.qty_required" )
+ column=(type=long updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=char(10) updatewhereclause=yes name=part_inventory_primary_location dbname="part_inventory.primary_location" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_online_on_hand dbname="part_online.on_hand" )
+ column=(type=char(50) updatewhereclause=yes name=destination_name dbname="destination.name" )
+ column=(type=char(50) updatewhereclause=yes name=parameters_company_name dbname="parameters.company_name" )
+ retrieve="  SELECT order_header.standard_pack,   
+         order_header.zone_code,   
+         order_header.dock_code,   
+         order_header.package_type,   
+         order_header.line_feed_code,   
+         shipper.destination,   
+         shipper.ship_via,   
+         shipper.scheduled_ship_time,   
+         shipper_detail.customer_part,   
+         shipper_detail.part,   
+         shipper_detail.qty_required,   
+         shipper.id,   
+         part_inventory.primary_location,
+			part_online.on_hand,
+			destination.name,
+			parameters.company_name  
+    FROM order_header,   
+         shipper,   
+         shipper_detail,   
+         part_inventory,
+			part_online,
+			destination,
+			parameters 
+   WHERE (shipper.destination = destination.destination)and
+			(part_online.part = shipper_detail.part) and
+			( order_header.customer = shipper.customer ) and  
+         ( shipper_detail.shipper = shipper.id ) and  
+         ( order_header.order_no = shipper_detail.order_no ) and  
+         ( shipper_detail.part = part_inventory.part ) and  
+         ( ( shipper.id = convert(integer,:shipper )) )    
+" arguments=(("shipper", string)) )
+column(band=header id=16 alignment="1" tabsequence=32766 border="0" color="0" x="919" y="16" height="80" width="1001" format="[general]"  name=parameters_company_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PICKLIST"border="0" color="0" x="1952" y="16" height="80" width="690"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="32" y="120" height="92" width="411" format="mm/dd/yyyy"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="NOW()"border="0" color="0" x="480" y="128" height="68" width="270" format="[time]"  name=time  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="2711" y="112" height="92" width="791" format="[general]"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Carrier:"border="0" color="0" x="9" y="292" height="64" width="219"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="0" color="0" x="402" y="292" height="80" width="617" format="[general]"  name=shipper_ship_via edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper ID : "border="0" color="0" x="2085" y="276" height="64" width="375"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=12 alignment="0" tabsequence=32766 border="0" color="0" x="2469" y="276" height="64" width="827" format="[general]"  name=shipper_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pickup Time:"border="0" color="0" x="18" y="388" height="64" width="379"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="0" x="402" y="388" height="76" width="617" format="[shortdate] [time]"  name=shipper_scheduled_ship_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship To : "border="0" color="0" x="2085" y="356" height="68" width="375"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2469" y="352" height="80" width="786" format="[general]"  name=shipper_destination edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=15 alignment="0" tabsequence=32766 border="0" color="0" x="2469" y="440" height="64" width="1006" format="[general]"  name=destination_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="YOUR PART"border="0" color="0" x="18" y="568" height="64" width="361"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="CUSTOMER PART"border="0" color="0" x="160" y="648" height="64" width="530"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="QUANTITY REQUIRED"border="0" color="0" x="1070" y="648" height="64" width="658"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="STANDARD PACK QTY"border="0" color="0" x="1842" y="648" height="64" width="658"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="BOXES"border="0" color="0" x="2619" y="648" height="64" width="219"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="PRIMARY LOCATION"border="0" color="0" x="2866" y="648" height="64" width="603"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="32" y1="720" x2="3465" y2="720" pen.style="0" pen.width="14" pen.color="0"  background.mode="1" background.color="553648127" )
+rectangle(band=detail x="2565" y="80" height="76" width="891" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="165" y="92" height="76" width="869" format="[general]"  name=shipper_detail_customer_part edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Verdana" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="23" y="4" height="80" width="1010" format="[general]"  name=shipper_detail_part edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="9" y1="380" x2="3442" y2="380" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="0" x="2889" y="4" height="64" width="530" format="[general]"  name=part_inventory_primary_location edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="0" x="2894" y="88" height="64" width="526" format="#,##0"  name=part_online_on_hand edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Verdana" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="On Hand : "border="0" color="0" x="2578" y="96" height="52" width="311"  font.face="Verdana" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="ceiling( boxes1 )"border="2" color="0" x="2569" y="8" height="64" width="279" format="[general]"  name=cartons  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="0" x="1070" y="4" height="80" width="658" format="#,##0.00"  name=shipper_detail_qty_required edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="0" x="1842" y="4" height="80" width="658" format="#,##0.00"  name=order_header_standard_pack edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="d_nest_serial_picklist" x="160" y="200" height="136" width="1179" border="0"  height.autosize=yes criteria="" nest_arguments=(("shipper_detail_part")) trail_footer = yes  slideup=directlyabove )
+report(band=detail dataobject="d_nest_serial_picklist_staged" x="2117" y="196" height="136" width="1266" border="0"  height.autosize=yes criteria="" nest_arguments=(("shipper_detail_part"),("shipper_id")) trail_footer = yes  slideup=directlyabove )
+compute(band=summary alignment="0" expression=" shipper_detail_qty_required  /  order_header_standard_pack "border="0" color="0" x="2039" y="16" height="52" width="215" format="#,##0.00"  name=boxes1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

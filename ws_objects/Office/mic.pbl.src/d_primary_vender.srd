@@ -1,0 +1,10 @@
+﻿$PBExportHeader$d_primary_vender.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=group_location dbname="activity_router.group_location" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"activity_router~" )  TABLE(NAME=~"bill_of_material~" ) COLUMN(NAME=~"activity_router.group_location~")    JOIN (LEFT=~"activity_router.parent_part~"    OP =~"=~"RIGHT=~"bill_of_material.parent_part~" )    JOIN (LEFT=~"bill_of_material.parent_part~"    OP =~"=~"RIGHT=~"activity_router.part~" )WHERE(    EXP1 =~"~~~"bill_of_material~~~".~~~"part~~~"~"   OP =~"=~"    EXP2 =~":as_part~" ) ) ORDER(NAME=~"activity_router.group_location~" ASC=yes ) ARG(NAME = ~"as_part~" TYPE = string) " arguments=(("as_part", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="4" height="64" width="713" format="[general]"  name=group_location  tag="Location/Machine code " edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

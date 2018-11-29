@@ -1,0 +1,23 @@
+﻿$PBExportHeader$dw_sm_purchase.srd
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=201 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=9 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=po_detail_status dbname="po_detail.status" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_quantity dbname="po_detail.quantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_received dbname="po_detail.received" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_balance dbname="po_detail.balance" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_price dbname="po_detail.price" )
+ retrieve="  SELECT po_detail.status,   
+         po_detail.quantity,   
+         po_detail.received,   
+         po_detail.balance,   
+         po_detail.price  
+    FROM po_detail   
+" )
+compute(band=header alignment="0" expression="sum(   po_detail_quantity   for all )"border="0" color="0" x="37" y="116" height="57" width="567" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="sum(  po_detail_received   for all )"border="0" color="0" x="641" y="24" height="57" width="791" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="sum(  po_detail_balance   for all )"border="0" color="0" x="641" y="116" height="57" width="1006" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="sum(  po_detail_price  for all )"border="0" color="0" x="37" y="20" height="57" width="549" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

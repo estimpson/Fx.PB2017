@@ -1,0 +1,15 @@
+﻿$PBExportHeader$str_menuuseraccess.srs
+global type str_menuuseraccess from structure
+	string		applicationname
+	string		menuitemname
+	string		menuicon
+	string		menutext
+	string		objectclass
+	string		objecttype
+	long		menulevel
+	long		menusequence
+	string		chain
+	integer		useraccess
+	long		treeviewhandle
+end type
+

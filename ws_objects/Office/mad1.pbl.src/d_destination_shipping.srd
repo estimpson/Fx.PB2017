@@ -1,0 +1,77 @@
+﻿$PBExportHeader$d_destination_shipping.srd
+$PBExportComments$*
+release 10;
+datawindow(units=0 timer_interval=0 color=77633680 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=648 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=destination dbname="destination_shipping.destination" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=scac_code dbname="destination_shipping.scac_code" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=trans_mode dbname="destination_shipping.trans_mode" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=dock_code_flag dbname="destination_shipping.dock_code_flag" values="No	N/Yes	Y/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=model_year_flag dbname="destination_shipping.model_year_flag" values="No	N/Yes	Y/" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=fob dbname="destination_shipping.fob" values="Collect	Collect/Prepaid	Prepaid/Prepaid-Billed	Prepaid-Billed/" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=freight_type dbname="destination_shipping.freight_type" )
+ column=(type=char(200) update=yes updatewhereclause=yes name=note_for_shipper dbname="destination_shipping.note_for_shipper" )
+ column=(type=char(200) update=yes updatewhereclause=yes name=note_for_bol dbname="destination_shipping.note_for_bol" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=print_shipper_note dbname="destination_shipping.print_shipper_note" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=print_bol_note dbname="destination_shipping.print_bol_note" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=allow_mult_po dbname="destination_shipping.allow_mult_po" values="YES	Y/NO	N/" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=ship_day dbname="destination_shipping.ship_day" values="Sunday	Sunday/Monday	Monday/Tuesday	Tuesday/Wednesday	Wednesday/Thursday	Thursday/Friday	Friday/Saturday	Saturday/Any_Day	Any_Day/Tomorrow	Tomorrow/Release Date	Release/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=will_call_customer dbname="destination_shipping.will_call_customer" values="Yes	Y/No	N/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=allow_overstage dbname="destination_shipping.allow_overstage" values="Yes	Y/No	N/" )
+ column=(type=long update=yes updatewhereclause=yes name=isaetcrequired dbname="destination_shipping.IsAETCRequired" values="Require AETC for Expedite?	1/Require AETC for Expedite?	0" )
+ retrieve="select
+	ds.destination
+,	ds.scac_code
+,	ds.trans_mode
+,	ds.dock_code_flag
+,	ds.model_year_flag
+,	ds.fob
+,	ds.freight_type
+,	ds.note_for_shipper
+,	ds.note_for_bol
+,	ds.print_shipper_note
+,	ds.print_bol_note
+,	ds.allow_mult_po
+,	ds.ship_day
+,	ds.will_call_customer
+,	ds.allow_overstage
+,	ds.IsAETCRequired
+from
+	dbo.destination_shipping ds
+where
+	ds.destination = :szDestination	
+" update="destination_shipping" updatewhere=0 updatekeyinplace=yes arguments=(("szDestination", string)) )
+text(band=detail alignment="0" text="SCAC Code:" border="0" color="33554432" x="37" y="4" height="52" width="274" html.valueishtml="0"  name=scac_code_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Transportation Mode:" border="0" color="33554432" x="37" y="100" height="52" width="462" html.valueishtml="0"  name=trans_mode_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Multiple Dock Codes?" border="0" color="33554432" x="37" y="196" height="52" width="475" html.valueishtml="0"  name=dock_code_flag_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Multiple Model Years?" border="0" color="33554432" x="37" y="292" height="52" width="494" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Allow Multiple POs?" border="0" color="33554432" x="37" y="388" height="52" width="457" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="F.O.B.:" border="0" color="33554432" x="933" y="196" height="52" width="160" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Freight:" border="0" color="33554432" x="933" y="292" height="52" width="178" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Ship Day:" border="0" color="33554432" x="933" y="388" height="52" width="219" html.valueishtml="0"  name=t_5 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+text(band=detail alignment="0" text="Will Call :" border="0" color="33554432" x="933" y="484" height="52" width="201" html.valueishtml="0"  name=t_6 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="33554432" x="549" y="4" height="64" width="366" format="[general]" html.valueishtml="0"  name=scac_code visible="1" dddw.name=d_carrier_dddw_grey_8 dddw.displaycolumn=scac dddw.datacolumn=scac dddw.percentwidth=250 dddw.lines=0 dddw.limit=4 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="33554432" x="549" y="100" height="64" width="366" format="[general]" html.valueishtml="0"  name=trans_mode visible="1" dddw.name=d_trans_mode_dddw_grey_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=250 dddw.lines=0 dddw.limit=2 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="33554432" x="549" y="196" height="64" width="366" format="[general]" html.valueishtml="0"  name=dock_code_flag visible="1" ddlb.limit=1 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="33554432" x="549" y="292" height="64" width="366" format="[general]" html.valueishtml="0"  name=model_year_flag visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=12 alignment="0" tabsequence=50 border="5" color="33554432" x="549" y="388" height="64" width="366" format="[general]" html.valueishtml="0"  name=allow_mult_po visible="1" ddlb.limit=1 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=80 border="5" color="33554432" x="1170" y="196" height="64" width="421" format="[general]" html.valueishtml="0"  name=fob visible="1" edit.limit=20 edit.case=upper edit.focusrectangle=no edit.autoselect=no edit.autovscroll=yes edit.codetable=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=90 border="5" color="33554432" x="1170" y="292" height="64" width="421" format="[general]" html.valueishtml="0"  name=freight_type visible="1" dddw.name=d_freight_type_dddw dddw.displaycolumn=type_name dddw.datacolumn=type_name dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=13 alignment="0" tabsequence=100 border="5" color="33554432" x="1170" y="388" height="64" width="421" format="[general]" html.valueishtml="0"  name=ship_day visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=14 alignment="0" tabsequence=110 border="5" color="33554432" x="1170" y="484" height="64" width="421" format="[general]" html.valueishtml="0"  name=will_call_customer visible="1" ddlb.limit=1 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="0" tabsequence=60 border="5" color="33554432" x="549" y="484" height="56" width="366" format="[general]" html.valueishtml="0"  name=allow_overstage visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Allow Overstaging?" border="0" color="33554432" x="37" y="484" height="52" width="439" html.valueishtml="0"  name=t_7 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+column(band=detail id=16 alignment="0" tabsequence=70 border="0" color="33554432" x="37" y="580" height="56" width="878" html.valueishtml="0"  name=isaetcrequired visible="1" checkbox.text="Require AETC for Expedite?" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77633680" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

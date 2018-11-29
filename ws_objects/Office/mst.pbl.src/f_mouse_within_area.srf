@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_mouse_within_area.srf
+global type f_mouse_within_area from function_object
+end type
+
+forward prototypes
+global subroutine f_mouse_within_area (ref window calling_window)
+end prototypes
+
+global subroutine f_mouse_within_area (ref window calling_window);Int iCurrentX, iCurrentY
+
+iCurrentX = calling_window.PointerX ( )
+iCurrentY = calling_window.PointerY ( )
+
+MessageBox ( "Mouse Coordinates", "X=" + String ( iCurrentX ) + "~r" + &
+											 "Y=" + String ( iCurrentY ) ) 
+end subroutine
+

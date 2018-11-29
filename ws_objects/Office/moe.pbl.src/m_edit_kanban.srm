@@ -1,0 +1,295 @@
+﻿$PBExportHeader$m_edit_kanban.srm
+forward
+global type m_edit_kanban from menu
+end type
+type m_file from menu within m_edit_kanban
+end type
+type m_save from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_edit_kanban
+m_save m_save
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_edit_kanban
+end type
+type m_undo from menu within m_edit
+end type
+type m_delete from menu within m_edit
+end type
+type m_shiftdelete from menu within m_edit
+end type
+type m_unmarkdeleted from menu within m_edit
+end type
+type m_shiftundelete from menu within m_edit
+end type
+type m_edit from menu within m_edit_kanban
+m_undo m_undo
+m_delete m_delete
+m_shiftdelete m_shiftdelete
+m_unmarkdeleted m_unmarkdeleted
+m_shiftundelete m_shiftundelete
+end type
+type m_window from menu within m_edit_kanban
+end type
+type m_help from menu within m_edit_kanban
+end type
+global type m_edit_kanban from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_edit_kanban from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_edit_kanban m_edit_kanban
+
+on m_edit_kanban.create
+m_edit_kanban=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_edit_kanban.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_edit_kanban
+m_save m_save
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_save=create m_save
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_save' )
+end on
+
+on m_save.create
+call super::create
+this.text = "&Save~tF2"
+this.shortcut = 113
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 1
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("pfc_close")
+
+end event
+
+on m_close.create
+call super::create
+this.text = "&Close~tCtrl+W"
+this.shortcut = 343
+this.microhelp = "Finished editing KANBAN information."
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 99
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_edit_kanban
+m_undo m_undo
+m_delete m_delete
+m_shiftdelete m_shiftdelete
+m_unmarkdeleted m_unmarkdeleted
+m_shiftundelete m_shiftundelete
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_undo=create m_undo
+this.m_delete=create m_delete
+this.m_shiftdelete=create m_shiftdelete
+this.m_unmarkdeleted=create m_unmarkdeleted
+this.m_shiftundelete=create m_shiftundelete
+this.Item[UpperBound(this.Item)+1]=this.m_undo
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_shiftdelete
+this.Item[UpperBound(this.Item)+1]=this.m_unmarkdeleted
+this.Item[UpperBound(this.Item)+1]=this.m_shiftundelete
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_undo)
+destroy(this.m_delete)
+destroy(this.m_shiftdelete)
+destroy(this.m_unmarkdeleted)
+destroy(this.m_shiftundelete)
+end on
+
+type m_undo from menu within m_edit
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_refresh' )
+end on
+
+on m_undo.create
+call super::create
+this.text = "&Undo~tCtrl+Z"
+this.shortcut = 346
+this.toolbaritemname = "Undo!"
+this.toolbaritemtext = "Undo"
+this.toolbaritemorder = 1
+end on
+
+on m_undo.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_edit
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_delete' )
+end on
+
+on m_delete.create
+call super::create
+this.text = "Mark Deleted~tDel"
+this.shortcut = 46
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_shiftdelete from menu within m_edit
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_shiftdelete' )
+end on
+
+on m_shiftdelete.create
+call super::create
+this.visible = false
+this.text = "ShiftDelete~tShift+Del"
+this.shortcut = 1070
+end on
+
+on m_shiftdelete.destroy
+call super::destroy
+end on
+
+type m_unmarkdeleted from menu within m_edit
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_undelete' )
+end on
+
+on m_unmarkdeleted.create
+call super::create
+this.text = "Unmark Deleted~tIns"
+this.shortcut = 45
+end on
+
+on m_unmarkdeleted.destroy
+call super::destroy
+end on
+
+type m_shiftundelete from menu within m_edit
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( 'ue_shiftundelete' )
+end on
+
+on m_shiftundelete.create
+call super::create
+this.visible = false
+this.text = "ShiftUndelete~tShift+Ins"
+this.shortcut = 1069
+end on
+
+on m_shiftundelete.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_edit_kanban
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_edit_kanban
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

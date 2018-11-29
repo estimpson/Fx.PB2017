@@ -1,0 +1,335 @@
+﻿$PBExportHeader$m_rma_shop_level.srm
+forward
+global type m_rma_shop_level from menu
+end type
+type m_file from menu within m_rma_shop_level
+end type
+type m_scanserial from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_notes from menu within m_file
+end type
+type m_printlabel from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m__1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_rma_shop_level
+m_scanserial m_scanserial
+m_delete m_delete
+m_notes m_notes
+m_printlabel m_printlabel
+m_print m_print
+m__1 m__1
+m_exit m_exit
+end type
+type m_edit from menu within m_rma_shop_level
+end type
+type m_edit from menu within m_rma_shop_level
+end type
+type m_window from menu within m_rma_shop_level
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_rma_shop_level
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_rma_shop_level
+end type
+type m_help from menu within m_rma_shop_level
+end type
+end forward
+
+global type m_rma_shop_level from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_rma_shop_level m_rma_shop_level
+
+on m_rma_shop_level.create
+m_rma_shop_level=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_rma_shop_level.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_rma_shop_level
+m_scanserial m_scanserial
+m_delete m_delete
+m_notes m_notes
+m_printlabel m_printlabel
+m_print m_print
+m__1 m__1
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_scanserial=create m_scanserial
+this.m_delete=create m_delete
+this.m_notes=create m_notes
+this.m_printlabel=create m_printlabel
+this.m_print=create m_print
+this.m__1=create m__1
+this.m_exit=create m_exit
+this.Item[]={this.m_scanserial, &
+this.m_delete, &
+this.m_notes, &
+this.m_printlabel, &
+this.m_print, &
+this.m__1, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_scanserial)
+destroy(this.m_delete)
+destroy(this.m_notes)
+destroy(this.m_printlabel)
+destroy(this.m_print)
+destroy(this.m__1)
+destroy(this.m_exit)
+end on
+
+type m_scanserial from menu within m_file
+end type
+
+event clicked;w_rma_receive_object.triggerevent ( 'ue_scan_object' )
+end event
+
+on m_scanserial.create
+this.Text="&ScanSerial~tAlt+S"
+this.Microhelp="Scan Outserial "
+this.ToolBarItemName="ArrangeTables!"
+this.ToolBarItemText="Scan Serial"
+this.ToolBarItemOrder=20
+this.Shortcut=595
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;w_rma_receive_object.triggerevent ( 'ue_delete_object' )
+end event
+
+on m_delete.create
+this.Text="&Delete"
+this.Microhelp="Delete Object "
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Delete"
+this.ToolBarItemOrder=30
+end on
+
+type m_notes from menu within m_file
+end type
+
+event clicked;w_rma_receive_object.TriggerEvent ( "ue_notes" )
+end event
+
+on m_notes.create
+this.Text="&Notes"
+this.Microhelp="Add/Modify object's notes..."
+this.ToolBarItemName="Custom070!"
+this.ToolBarItemText="Notes"
+this.ToolBarItemOrder=40
+end on
+
+type m_printlabel from menu within m_file
+end type
+
+event clicked;w_rma_receive_object.TriggerEvent ( "ue_label" )
+end event
+
+on m_printlabel.create
+this.Text="&Print Label"
+this.Microhelp="Print label for highlighted object..."
+this.ToolBarItemName="ComputePage!"
+this.ToolBarItemText="Label"
+this.ToolBarItemOrder=50
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;w_rma_receive_object.TriggerEvent ( "ue_print_rma" )
+end event
+
+on m_print.create
+this.Text="&Print"
+this.Microhelp="Print RMA"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=60
+end on
+
+type m__1 from menu within m_file
+end type
+
+on m__1.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Window wActiveSheet
+
+wActiveSheet = gnv_App.of_GetFrame().GetActiveSheet ( )
+
+If IsValid ( wActiveSheet ) Then
+	Close ( wActiveSheet )
+Else
+	Close ( gnv_App.of_GetFrame() )
+End if
+
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit..."
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=10
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_rma_shop_level
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_rma_shop_level
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m__, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;IF ISVALID ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+END IF
+
+
+end event
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;IF ISVALID ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+END IF
+
+end event
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;IF ISVALID ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+END IF
+
+
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;IF ISVALID ( gnv_App.of_GetFrame() ) THEN
+	gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+END IF
+end event
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_rma_shop_level
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

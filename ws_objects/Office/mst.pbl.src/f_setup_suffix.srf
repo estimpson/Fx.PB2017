@@ -1,0 +1,104 @@
+﻿$PBExportHeader$f_setup_suffix.srf
+type st_suffix from structure
+    long isequence
+    long isuffix
+    string szNote
+end type
+
+global type f_setup_suffix from function_object
+end type
+
+forward prototypes
+global function boolean f_setup_suffix (long iorder, string szpart, string sznote, long irowid)
+end prototypes
+
+global function boolean f_setup_suffix (long iorder, string szpart, string sznote, long irowid);st_suffix Suffix[]
+
+Long iCount = 0
+Long iSuffix
+Long iLength
+Long iTotal
+
+String szResult
+
+Boolean bReturn = TRUE
+Boolean bUpdate = TRUE
+Boolean bResetSuffix = FALSE
+
+SELECT count(order_detail.order_no )  
+  INTO :iCount  
+  FROM order_detail  
+ WHERE ( order_detail.order_no 		= :iOrder ) AND  
+       ( order_detail.part_number 	= :szPart )   ;
+
+bResetSuffix	= (iCount = 0)
+
+szNote		= Trim(f_get_string_value(szNote))
+
+iLength		= LenA(szNote)
+iSuffix		= 0
+
+For iCount 	= 1 to iLength
+	szResult	= MidA(szNote, iCount, 1)
+	iSuffix	= iSuffix + (AscA(szResult) * iCount)
+Next	
+
+If iSuffix > 0 then
+	iSuffix	= Mod(9999998, iSuffix) + 1
+End If
+
+If bResetSuffix then
+
+	SetNull(szResult)
+
+	Select shipper_detail.part  
+  	Into   :szResult  
+  	From   shipper_detail  
+  	Where  ( shipper_detail.part 		= :szPart ) And  
+       	 ( shipper_detail.suffix 	= :iSuffix ) And
+			 ( shipper_detail.suffix > 0)   ;
+				
+	If IsNull(szResult) then
+			
+	  	Select 	order_detail.part_number  
+		Into 		:szResult  
+		From  	order_detail  
+		Where 	( order_detail.part_number = :szPart ) AND  
+					( order_detail.suffix = :iSuffix ) And
+					( order_detail.row_id <> :iRowId)  ;
+
+		If IsNull(szResult) then
+			Select audit_trail.part  
+    		Into   :szPart
+    		From   audit_trail  
+   		Where  ( audit_trail.part 		= :szPart ) And 
+	     		 	 ( audit_trail.suffix 	= :iSuffix ) And
+					 ( audit_trail.suffix 	> 0 );
+
+			If IsNull(szResult) then
+				SetNull(iSuffix)
+			End If
+		End If
+	End If
+End If
+
+IF iSuffix > 0 THEN
+	Update order_detail  
+	Set 	suffix = :iSuffix
+//			Committed_qty = 0
+	Where ( order_no = :iOrder ) And 
+			( part_number = :szPart ) And  
+			( row_id = :iRowId )   ;
+END IF
+
+If SQLCA.SQLCode = 0 then
+	bReturn	= TRUE
+Else
+	bReturn	= FALSE
+End If 
+
+Return bReturn	
+
+
+end function
+

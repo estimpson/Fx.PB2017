@@ -1,0 +1,9 @@
+﻿$PBExportHeader$str_generic_search.srs
+global type str_generic_search from structure
+	string		s_tables[]
+	boolean		b_allow_retrieve_all
+	string		primary_column
+	string		parent_title
+	string		default_operator
+end type
+

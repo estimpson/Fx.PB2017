@@ -1,0 +1,51 @@
+﻿$PBExportHeader$d_cyclecount_recoverserial.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=876 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="Serial" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="Quantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="Unit" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="Location" )
+ column=(type=char(10) updatewhereclause=yes name=lasttrans dbname="LastTrans" )
+ column=(type=datetime updatewhereclause=yes name=lasttransdt dbname="LastTransDT" )
+ retrieve="select
+	icccgsi.Serial
+,	icccgsi.Part
+,	icccgsi.Quantity
+,	icccgsi.Unit
+,	icccgsi.Location
+,	icccgsi.LastTrans
+,	icccgsi.LastTransDT
+from
+	dbo.InventoryControl_CycleCount_GetSerialInfo(:Serial) icccgsi
+" arguments=(("serial", number)) )
+data(null null null null null null null ) 
+groupbox(band=detail text="Locate Serial:"border="5" color="33554432" x="37" y="4" height="864" width="1353"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+button(band=detail text="Lookup" enabled=yes action="0" border="0" color="33554432" x="1024" y="100" height="96" width="329" vtextalign="0" htextalign="0"  name=b_lookup visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="0" text="Part:" border="0" color="33554432" x="73" y="228" height="96" width="366" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Last tran:" border="0" color="33554432" x="73" y="356" height="96" width="366" html.valueishtml="0"  name=lasttrans_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Last tran DT:" border="0" color="33554432" x="73" y="484" height="96" width="366" html.valueishtml="0"  name=lasttransdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="841" y="612" height="96" width="110" format="[general]" html.valueishtml="0"  name=unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Location:" border="0" color="134217742" x="73" y="740" height="96" width="366" html.valueishtml="0"  name=location_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Quantity:" border="0" color="134217742" x="73" y="612" height="96" width="366" html.valueishtml="0"  name=quantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Serial:" border="0" color="134217742" x="73" y="100" height="96" width="366" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="475" y="100" height="96" width="512" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="475" y="228" height="96" width="878" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="475" y="356" height="96" width="878" format="[general]" html.valueishtml="0"  name=lasttrans visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="475" y="484" height="96" width="878" format="[shortdate] [time]" html.valueishtml="0"  name=lasttransdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=20 border="0" color="33554432" x="475" y="612" height="96" width="329" format="#,###.0#####" html.valueishtml="0"  name=quantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="33554432" x="475" y="740" height="96" width="878" format="[General]" html.valueishtml="0"  name=location visible="1" dddw.name=d_cyclecount_locationlist dddw.displaycolumn=locationcode dddw.datacolumn=locationcode dddw.percentwidth=170 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

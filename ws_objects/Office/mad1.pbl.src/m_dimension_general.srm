@@ -1,0 +1,177 @@
+﻿$PBExportHeader$m_dimension_general.srm
+forward
+global type m_dimension_general from menu
+end type
+type m_file from menu within m_dimension_general
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_dimension_general
+m_exit m_exit
+end type
+type m_edit from menu within m_dimension_general
+end type
+type m_edit from menu within m_dimension_general
+end type
+type m_options from menu within m_dimension_general
+end type
+type m_save from menu within m_options
+end type
+type m_delete from menu within m_options
+end type
+type m_options from menu within m_dimension_general
+m_save m_save
+m_delete m_delete
+end type
+type m_windows from menu within m_dimension_general
+end type
+type m_windows from menu within m_dimension_general
+end type
+type m_help from menu within m_dimension_general
+end type
+type m_help from menu within m_dimension_general
+end type
+end forward
+
+global type m_dimension_general from menu
+m_file m_file
+m_edit m_edit
+m_options m_options
+m_windows m_windows
+m_help m_help
+end type
+global m_dimension_general m_dimension_general
+
+type variables
+
+end variables
+
+on m_dimension_general.create
+m_dimension_general=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_options=create m_options
+this.m_windows=create m_windows
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_options, &
+this.m_windows, &
+this.m_help}
+end on
+
+on m_dimension_general.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_options)
+destroy(this.m_windows)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_dimension_general
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_exit=create m_exit
+this.Item[]={this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_exit)
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+this.Text="&Exit~tAlt+E"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=1
+this.Shortcut=581
+end on
+
+event clicked;//this.ParentWindow.Triggerevent('ue_exit')
+w_dim_display.triggerevent('ue_exit')
+end event
+
+type m_edit from menu within m_dimension_general
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_options from menu within m_dimension_general
+m_save m_save
+m_delete m_delete
+end type
+
+on m_options.create
+this.Text="&Options"
+this.m_save=create m_save
+this.m_delete=create m_delete
+this.Item[]={this.m_save, &
+this.m_delete}
+end on
+
+on m_options.destroy
+destroy(this.m_save)
+destroy(this.m_delete)
+end on
+
+type m_save from menu within m_options
+end type
+
+event clicked;//this.parentwindow.triggerevent('ue_save')
+w_dim_display.triggerevent('ue_save')
+end event
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=2
+this.Shortcut=595
+end on
+
+type m_delete from menu within m_options
+end type
+
+event clicked;//this.parentwindow.triggerevent('ue_delete')
+w_dim_display.triggerevent('ue_delete')
+end event
+
+on m_delete.create
+this.Text="&Delete~tAlt+D"
+this.ToolBarItemName="Custom009!"
+this.ToolBarItemText="Delete"
+this.ToolBarItemOrder=3
+this.Shortcut=580
+end on
+
+type m_windows from menu within m_dimension_general
+end type
+
+on m_windows.create
+this.Text="&Windows"
+end on
+
+on m_windows.destroy
+end on
+
+type m_help from menu within m_dimension_general
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

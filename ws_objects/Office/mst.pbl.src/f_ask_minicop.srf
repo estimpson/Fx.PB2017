@@ -1,0 +1,21 @@
+﻿$PBExportHeader$f_ask_minicop.srf
+global type f_ask_minicop from function_object
+end type
+
+forward prototypes
+global function boolean f_ask_minicop ()
+end prototypes
+
+global function boolean f_ask_minicop ();String ls_RunCOP
+
+SELECT ask_for_minicop
+  INTO :ls_RunCOP
+  FROM parameters		;
+
+If ls_RunCOP = 'Y' Then
+	Return TRUE
+Else
+	Return FALSE
+End If
+end function
+

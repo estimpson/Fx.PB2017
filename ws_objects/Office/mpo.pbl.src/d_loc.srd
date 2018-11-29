@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_loc.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="location.code" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"location~" ) COLUMN(NAME=~"location.code~")) " update="location" updatewhere=1 updatekeyinplace=no )
+data(null ) 
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="52" width="635" format="[general]"  name=code  tag="location code " dddw.name=d_dddw_location dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=5 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

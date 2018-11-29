@@ -1,0 +1,27 @@
+﻿$PBExportHeader$d_dddw_parentparts.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=80269524 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="bill_of_material.part" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="part.name" )
+ retrieve="SELECT	parent_part part,
+		part.name name
+FROM 	bill_of_material,
+		part
+where 	bill_of_material.part = :as_part and
+		part.part = parent_part
+union
+select	part.part part,
+	part.name name
+from 	part
+where	part.part = :as_part 
+
+Order by 1" arguments=(("as_part", string)) )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="52" width="567"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Name"border="6" color="0" x="585" y="8" height="52" width="969"  name=name_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="585" y="4" height="60" width="969" format="[general]"  name=name  tag="Name of the part or desciption of the part" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="60" width="567" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

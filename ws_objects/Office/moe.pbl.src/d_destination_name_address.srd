@@ -1,0 +1,10 @@
+﻿$PBExportHeader$d_destination_name_address.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=5 color="536870912")
+footer(height=1 color="536870912")
+detail(height=261 color="536870912")
+table(column=(type=char(50) name=name dbname="destination.name" )
+ retrieve="SELECT destination.name FROM destination " )
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=32766 width="988" x="1" y="4"  name=name format="[general]" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

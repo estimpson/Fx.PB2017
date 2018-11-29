@@ -1,0 +1,298 @@
+﻿$PBExportHeader$m_object_inquiry.srm
+forward
+global type m_object_inquiry from m_inquiry_ancestor
+end type
+end forward
+
+global type m_object_inquiry from m_inquiry_ancestor
+end type
+global m_object_inquiry m_object_inquiry
+
+forward prototypes
+public subroutine mf_switch (integer ai_switch)
+end prototypes
+
+public subroutine mf_switch (integer ai_switch);if ai_switch = 0 then
+	this.m_file.m_print.Enabled = FALSE	
+	this.m_edit.m_cancel.Enabled = TRUE
+	this.m_edit.m_addlocationmachine.Enabled = FALSE
+	this.m_edit.m_deletelocationmachine.Enabled = FALSE
+	this.m_edit.m_sort.Enabled = FALSE
+	this.m_edit.m_filter.Enabled = FALSE
+	this.m_edit.m_custom1.Enabled = FALSE
+	this.m_edit.m_dummy2.Enabled = FALSE	
+else
+	this.m_file.m_print.Enabled = TRUE		
+	this.m_edit.m_cancel.Enabled = FALSE
+	this.m_edit.m_addlocationmachine.Enabled = TRUE
+	this.m_edit.m_deletelocationmachine.Enabled = TRUE
+	this.m_edit.m_sort.Enabled = TRUE
+	this.m_edit.m_filter.Enabled = TRUE
+	this.m_edit.m_custom1.Enabled = TRUE
+	this.m_edit.m_dummy2.Enabled = TRUE
+end if 	
+end subroutine
+
+on m_object_inquiry.create
+m_object_inquiry=this
+call super::create
+end on
+
+on m_object_inquiry.destroy
+call super::destroy
+end on
+
+type m_file from m_inquiry_ancestor`m_file within m_object_inquiry
+end type
+
+on m_file.create
+call super::create
+end on
+
+on m_file.destroy
+call super::destroy
+end on
+
+type m_print from m_inquiry_ancestor`m_print within m_file
+end type
+
+on m_print.create
+call super::create
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_edit from m_inquiry_ancestor`m_edit within m_object_inquiry
+end type
+
+on m_edit.create
+call super::create
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_addlocationmachine from m_inquiry_ancestor`m_addlocationmachine within m_edit
+end type
+
+on m_addlocationmachine.create
+call super::create
+end on
+
+on m_addlocationmachine.destroy
+call super::destroy
+end on
+
+type m_deletelocationmachine from m_inquiry_ancestor`m_deletelocationmachine within m_edit
+end type
+
+on m_deletelocationmachine.create
+call super::create
+end on
+
+on m_deletelocationmachine.destroy
+call super::destroy
+end on
+
+type m_-1 from m_inquiry_ancestor`m_-1 within m_edit
+end type
+
+on m_-1.create
+call super::create
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_sort from m_inquiry_ancestor`m_sort within m_edit
+end type
+
+on m_sort.create
+call super::create
+end on
+
+on m_sort.destroy
+call super::destroy
+end on
+
+type m_filter from m_inquiry_ancestor`m_filter within m_edit
+end type
+
+on m_filter.create
+call super::create
+end on
+
+on m_filter.destroy
+call super::destroy
+end on
+
+type m_cancel from m_inquiry_ancestor`m_cancel within m_edit
+end type
+
+on m_cancel.create
+call super::create
+end on
+
+on m_cancel.destroy
+call super::destroy
+end on
+
+type m_reset from m_inquiry_ancestor`m_reset within m_edit
+end type
+
+on m_reset.create
+call super::create
+end on
+
+on m_reset.destroy
+call super::destroy
+end on
+
+type m_- from m_inquiry_ancestor`m_- within m_edit
+end type
+
+on m_-.create
+call super::create
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_custom1 from m_inquiry_ancestor`m_custom1 within m_edit
+end type
+
+event m_custom1::clicked;call super::clicked;
+gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_correct")
+
+end event
+
+on m_custom1.create
+call super::create
+this.visible = true
+this.text = "Correct "
+this.microhelp = "Correct Object Information"
+this.toolbaritemvisible = true
+this.toolbaritemname = "DosEdit5!"
+this.toolbaritemtext = "Correct"
+this.toolbaritemorder = 9
+end on
+
+on m_custom1.destroy
+call super::destroy
+end on
+
+type m_dummy2 from m_inquiry_ancestor`m_dummy2 within m_edit
+end type
+
+on m_dummy2.create
+call super::create
+this.visible = true
+this.text = "&Label"
+this.microhelp = "Print object label"
+this.toolbaritemvisible = true
+this.toolbaritemname = "label.bmp"
+this.toolbaritemtext = "Label"
+this.toolbaritemorder = 10
+end on
+
+event m_dummy2::clicked;call super::clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "ue_label" )
+end event
+
+on m_dummy2.destroy
+call super::destroy
+end on
+
+type m_dummy3 from m_inquiry_ancestor`m_dummy3 within m_edit
+end type
+
+on m_dummy3.create
+call super::create
+this.toolbaritemorder = 11
+end on
+
+on m_dummy3.destroy
+call super::destroy
+end on
+
+type m_window from m_inquiry_ancestor`m_window within m_object_inquiry
+end type
+
+on m_window.create
+call super::create
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_tile from m_inquiry_ancestor`m_tile within m_window
+end type
+
+on m_tile.create
+call super::create
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from m_inquiry_ancestor`m_layer within m_window
+end type
+
+on m_layer.create
+call super::create
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from m_inquiry_ancestor`m_cascade within m_window
+end type
+
+on m_cascade.create
+call super::create
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m__ from m_inquiry_ancestor`m__ within m_window
+end type
+
+on m__.create
+call super::create
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from m_inquiry_ancestor`m_arrangeicons within m_window
+end type
+
+on m_arrangeicons.create
+call super::create
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from m_inquiry_ancestor`m_help within m_object_inquiry
+end type
+
+on m_help.create
+call super::create
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

@@ -1,0 +1,67 @@
+﻿$PBExportHeader$d_poquantitiesprices.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=77971394 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=char(25) updatewhereclause=yes name=part_number dbname="part_number" )
+ column=(type=decimal(6) updatewhereclause=yes name=orderquantity dbname="orderquantity" )
+ column=(type=char(2) updatewhereclause=yes name=orderunit dbname="orderunit" )
+ column=(type=decimal(9) updatewhereclause=yes name=vendorquantity dbname="vendorquantity" )
+ column=(type=char(10) updatewhereclause=yes name=vendorunit dbname="vendorunit" )
+ column=(type=decimal(6) updatewhereclause=yes name=poquantity dbname="poquantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=poprice dbname="poprice" )
+ column=(type=long updatewhereclause=yes identity=yes name=id dbname="id" )
+ retrieve="select	od.destination,
+	od.part_number,
+	OrderQuantity = quantity - IsNull ( committed_qty, 0 ),
+	OrderUnit = od.unit,
+	VendorQuantity = ( quantity - IsNull ( committed_qty, 0 ) ) * IsNull (
+	(	select	conversion
+		from	unit_conversion uc
+			join part_unit_conversion puc on uc.code = puc.code and
+				puc.part = od.part_number
+		where	uc.unit1 = od.unit and
+			uc.unit2 = pv.receiving_um ), 1 ),
+	VendorUnit = pv.receiving_um,
+	POQuantity = convert ( numeric (20,6), 0 ),
+	POPrice = convert ( numeric (20,6), 0 ),
+	od.id
+from	order_detail od
+	join part_vendor pv on od.part_number = pv.part and
+		pv.vendor = :Vendor
+where	od.id in ( :SalesOrderID ) and
+	(	select	count ( distinct destination )
+		from	order_detail
+		where	id in ( :SalesOrderID ) ) = 1" arguments=(("SalesOrderID", numberlist),("vendor", string)) )
+text(band=header alignment="0" text="Ship To:" border="0" color="33554432" x="0" y="0" height="56" width="187" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="210" y="0" height="56" width="443" format="[general]" html.valueishtml="0"  name=destination visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Part Number:" border="0" color="33554432" x="0" y="80" height="56" width="389" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Vendor Quantity:" border="0" color="33554432" x="562" y="80" height="56" width="370" html.valueishtml="0"  name=quantity_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Vendor Price:" border="0" color="33554432" x="960" y="80" height="56" width="370" html.valueishtml="0"  name=price_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Order Quantity:" border="0" color="33554432" x="1696" y="80" height="56" width="370" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="832" y="8" height="56" width="91" format="[general]" html.valueishtml="0"  name=vendorunit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=detail alignment="0" text="per" border="0" color="33554432" x="1184" y="8" height="56" width="78" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1275" y="8" height="56" width="91" format="[general]" html.valueishtml="0"  name=vendorunit_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+compute(band=detail alignment="0" expression="~"= ~" + string ( poprice * poquantity, ~"[currency]~" )"border="0" color="33554432" x="1385" y="8" height="56" width="279" format="[general]" html.valueishtml="0"  name=totalprice visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="0" y="8" height="56" width="549" format="[general]" html.valueishtml="0"  name=part_number visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=7 alignment="1" tabsequence=10 border="5" color="33554432" x="558" y="8" height="56" width="229" format="0.00####" html.valueishtml="0"  name=poquantity visible="1" edit.limit=0 edit.case=any edit.format="###,###.00####" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1087955144" )
+column(band=detail id=8 alignment="1" tabsequence=20 border="5" color="33554432" x="960" y="12" height="56" width="201" format="[currency]" html.valueishtml="0"  name=poprice visible="1" edit.limit=0 edit.case=any edit.format="[currency]" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1087955144" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="1696" y="8" height="56" width="197" format="0.00" html.valueishtml="0"  name=orderquantity visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1906" y="8" height="56" width="91" format="[general]" html.valueishtml="0"  name=orderunit visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=detail alignment="0" text="=" border="0" color="33554432" x="2011" y="8" height="56" width="37" html.valueishtml="0"  name=t_5 visible="1~tif ( orderunit = vendorunit, 0, 1 )"  slideleft=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2062" y="8" height="56" width="238" format="0.00" html.valueishtml="0"  name=vendorquantity visible="1~tif ( orderunit = vendorunit, 0, 1 )"  slideleft=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2313" y="8" height="56" width="91" format="[general]" html.valueishtml="0"  name=vendorunit_2 visible="1~tif ( orderunit = vendorunit, 0, 1 )"  slideleft=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,431 @@
+﻿$PBExportHeader$m_cost_menu.srm
+forward
+global type m_cost_menu from menu
+end type
+type m_file from menu within m_cost_menu
+end type
+type m_save from menu within m_file
+end type
+type m_rollup from menu within m_file
+end type
+type m_labor from menu within m_file
+end type
+type m_machine from menu within m_file
+end type
+type m_xx from menu within m_file
+end type
+type m_dd from menu within m_file
+end type
+type m_global from menu within m_file
+end type
+type m_move from menu within m_file
+end type
+type m_view from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_cost_menu
+m_save m_save
+m_rollup m_rollup
+m_labor m_labor
+m_machine m_machine
+m_xx m_xx
+m_dd m_dd
+m_global m_global
+m_move m_move
+m_view m_view
+m_- m_-
+m_close m_close
+end type
+type m_edit from menu within m_cost_menu
+end type
+type m_window from menu within m_cost_menu
+end type
+type m_help from menu within m_cost_menu
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_cost_menu
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_cost_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_cost_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_cost_menu m_cost_menu
+
+on m_cost_menu.create
+m_cost_menu=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_cost_menu.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_cost_menu
+m_save m_save
+m_rollup m_rollup
+m_labor m_labor
+m_machine m_machine
+m_xx m_xx
+m_dd m_dd
+m_global m_global
+m_move m_move
+m_view m_view
+m_- m_-
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_save=create m_save
+this.m_rollup=create m_rollup
+this.m_labor=create m_labor
+this.m_machine=create m_machine
+this.m_xx=create m_xx
+this.m_dd=create m_dd
+this.m_global=create m_global
+this.m_move=create m_move
+this.m_view=create m_view
+this.m_-=create m_-
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_rollup
+this.Item[UpperBound(this.Item)+1]=this.m_labor
+this.Item[UpperBound(this.Item)+1]=this.m_machine
+this.Item[UpperBound(this.Item)+1]=this.m_xx
+this.Item[UpperBound(this.Item)+1]=this.m_dd
+this.Item[UpperBound(this.Item)+1]=this.m_global
+this.Item[UpperBound(this.Item)+1]=this.m_move
+this.Item[UpperBound(this.Item)+1]=this.m_view
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_rollup)
+destroy(this.m_labor)
+destroy(this.m_machine)
+destroy(this.m_xx)
+destroy(this.m_dd)
+destroy(this.m_global)
+destroy(this.m_move)
+destroy(this.m_view)
+destroy(this.m_-)
+destroy(this.m_close)
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+call super::create
+this.text = "&Save~tAlt+S"
+this.shortcut = 595
+this.toolbaritemname = "Save!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 3
+end on
+
+event clicked;ParentWindow.triggerevent('ue_save')
+end event
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_rollup from menu within m_file
+end type
+
+on m_rollup.create
+call super::create
+this.text = "&Rollup~tAlt+R"
+this.shortcut = 594
+this.toolbaritemname = "Regenerate5!"
+this.toolbaritemtext = "Rollup"
+this.toolbaritemorder = 4
+end on
+
+event clicked;ParentWindow.triggerevent('ue_rollup')
+end event
+
+on m_rollup.destroy
+call super::destroy
+end on
+
+type m_labor from menu within m_file
+end type
+
+on m_labor.create
+call super::create
+this.text = "&Labor~tAlt+L"
+this.shortcut = 588
+this.toolbaritemname = "Custom076!"
+this.toolbaritemtext = "Labor"
+this.toolbaritemorder = 5
+end on
+
+event clicked;ParentWindow.triggerevent('ue_changelabor')
+end event
+
+on m_labor.destroy
+call super::destroy
+end on
+
+type m_machine from menu within m_file
+end type
+
+on m_machine.create
+call super::create
+this.text = "&Burden~tAlt+M"
+this.shortcut = 589
+this.toolbaritemname = "Custom044!"
+this.toolbaritemtext = "Burden"
+this.toolbaritemorder = 6
+end on
+
+event clicked;ParentWindow.triggerevent('ue_changemachine')
+end event
+
+on m_machine.destroy
+call super::destroy
+end on
+
+type m_xx from menu within m_file
+end type
+
+event clicked;ParentWindow.triggerevent('ue_build_graphdata')
+end event
+
+on m_xx.create
+call super::create
+this.text = "Grap&h~tAlt+H"
+this.shortcut = 584
+this.toolbaritemname = "Graph!"
+this.toolbaritemtext = "Graph"
+this.toolbaritemorder = 7
+end on
+
+on m_xx.destroy
+call super::destroy
+end on
+
+type m_dd from menu within m_file
+end type
+
+event clicked;ParentWindow.triggerevent('ue_print_cost')
+end event
+
+on m_dd.create
+call super::create
+this.text = "&Print~tAlt+P"
+this.shortcut = 592
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print "
+this.toolbaritemorder = 8
+end on
+
+on m_dd.destroy
+call super::destroy
+end on
+
+type m_global from menu within m_file
+end type
+
+on m_global.create
+call super::create
+this.text = "&Global~tAlt+G"
+this.shortcut = 583
+this.toolbaritemname = "Globals!"
+this.toolbaritemtext = "Global"
+this.toolbaritemorder = 9
+end on
+
+event clicked;ParentWindow.triggerevent('ue_global')
+end event
+
+on m_global.destroy
+call super::destroy
+end on
+
+type m_move from menu within m_file
+end type
+
+event clicked;ParentWindow.triggerevent('ue_move')
+end event
+
+on m_move.create
+call super::create
+this.tag = "Move"
+this.text = "&Move~tAlt+M"
+this.shortcut = 589
+this.microhelp = "Move cost to Frozen/Planned/Standard"
+this.toolbaritemname = "Move!"
+this.toolbaritemtext = "Move"
+this.toolbaritemorder = 10
+end on
+
+on m_move.destroy
+call super::destroy
+end on
+
+type m_view from menu within m_file
+end type
+
+event clicked;ParentWindow.triggerevent('ue_view')
+end event
+
+on m_view.create
+call super::create
+this.tag = "View"
+this.text = "&View~tAlt+V"
+this.shortcut = 598
+this.microhelp = "View required columns"
+this.toolbaritemname = "Search!"
+this.toolbaritemtext = "View"
+this.toolbaritemorder = 11
+end on
+
+on m_view.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent("ue_exit")
+end event
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_cost_menu
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_cost_menu
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_cost_menu
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 1501 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays help contents"
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright"
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

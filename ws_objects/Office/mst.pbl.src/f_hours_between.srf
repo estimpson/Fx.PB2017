@@ -1,0 +1,15 @@
+﻿$PBExportHeader$f_hours_between.srf
+$PBExportComments$Calculate the hours between (beginDate, beginTime) and (EndDate, EndTime)
+global type f_hours_between from function_object
+end type
+
+forward prototypes
+global function integer f_hours_between (date dBeginDate, time tBeginTime, date dEndDate, time tEndTime)
+end prototypes
+
+global function integer f_hours_between (date dBeginDate, time tBeginTime, date dEndDate, time tEndTime);Return DaysAfter(dBeginDate, dEndDate) * 24 + (SecondsAfter(tBeginTime, tEndTime) / 3600)
+
+
+
+end function
+

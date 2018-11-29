@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_location_dddw_grey_10.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=73 color="536870912")
+table(column=(type=char(10) update=yes key=yes name=code dbname="location.code" )
+ column=(type=char(30) update=yes name=name dbname="location.name" )
+ retrieve="SELECT location.code, location.name FROM location ORDER BY location.code ASC " update="location" updatewhere=1 updatekeyinplace=no )
+text(band=detail color="0" alignment="2" border="0" x="2305" y="68" height="65" width="252" text="Location" name=code_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="0" color="0" height="65" tabsequence=10 width="439" x="1" y="4"  name=code format="[general]" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=detail color="0" alignment="2" border="0" x="1975" y="100" height="65" width="170" text="Name" name=name_t  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="65" tabsequence=20 width="915" x="476" y="4"  name=name  tag="Description of the Location" format="[general]" edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

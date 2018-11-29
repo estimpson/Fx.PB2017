@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_detail_items.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=number key=yes name=shipper dbname="shipper_detail.shipper" )
+ column=(type=decimal(6) update=yes name=pack_line_qty dbname="shipper_detail.pack_line_qty" )
+ column=(type=char(35) key=yes name=part dbname="shipper_detail.part" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"shipper_detail~" ) COLUMN(NAME=~"shipper_detail.shipper~") COLUMN(NAME=~"shipper_detail.pack_line_qty~") COLUMN(NAME=~"shipper_detail.part~")WHERE( EXP1 =~"~~~"shipper_detail~~~".~~~"shipper~~~"~" OP =~"=~" EXP2 =~":ll_Origin~" LOGIC =~"and~" ) WHERE( EXP1 =~"~~~"shipper_detail~~~".~~~"part~~~"~" OP =~"=~" EXP2 =~":szPart~" ) ) ARG(NAME = ~"ll_Origin~" TYPE = number) ARG(NAME = ~"szPart~" TYPE = string) " update="shipper_detail" updatewhere=0 updatekeyinplace=yes arguments=(("ll_Origin", number),("szPart", string)) )
+text(band=header alignment="2" text="Shipper"border="0" color="0" x="10" y="8" height="65" width="202"  name=shipper_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pack Line Qty"border="0" color="0" x="220" y="8" height="65" width="380"  name=pack_line_qty_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part"border="0" color="0" x="609" y="4" height="57" width="796"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="10" y="8" height="65" width="202" format="[general]"  name=shipper edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="220" y="8" height="77" width="380" format="[general]"  name=pack_line_qty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="609" y="0" height="57" width="796" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

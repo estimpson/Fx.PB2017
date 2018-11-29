@@ -1,0 +1,59 @@
+﻿$PBExportHeader$d_shopfloor_jobcomplete.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=348 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="Serial" )
+ column=(type=datetime updatewhereclause=yes name=productiondt dbname="ProductionDT" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="PackageType" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyproduced dbname="QtyProduced" )
+ column=(type=char(30) updatewhereclause=yes name=labelformat dbname="LabelFormat" )
+ column=(type=long updatewhereclause=yes name=boxes dbname="Boxes" initial="1" )
+ retrieve="
+select
+	Serial = convert(int, null)
+,	ProductionDT = convert(datetime, null)
+,	PartCode = wod.PartCode
+,	PackageType = pp.code
+,	QtyProduced = coalesce(pp.quantity, pi.standard_pack)
+,	LabelFormat = pi.label_format
+,	Boxes = 1
+from
+	dbo.WorkOrderDetails wod
+	join dbo.part_inventory pi on
+		wod.PartCode = pi.part
+	left join dbo.part_packaging pp on
+		wod.PartCode = pp.part
+where
+	wod.WorkOrderNumber = :WorkOrderNumber
+	and
+		wod.Line = :WorkOrderDetailLine
+" arguments=(("WorkOrderNumber", string),("WorkOrderDetailLine", number)) )
+groupbox(band=detail text="Report Production:"border="5" color="33554432" x="9" y="0" height="344" width="2341"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Part code:" border="0" color="33554432" x="37" y="164" height="64" width="347" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Qty Produced:" border="0" color="33554432" x="1184" y="164" height="64" width="370" html.valueishtml="0"  name=stdpack_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Package type:" border="0" color="33554432" x="37" y="244" height="64" width="366" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Label Format:" border="0" color="33554432" x="1184" y="244" height="64" width="366" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=40 border="0" color="33554432" x="1600" y="244" height="64" width="315" format="[general]" html.valueishtml="0"  name=labelformat visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="430" y="164" height="64" width="713" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="33554432" x="430" y="244" height="64" width="576" format="[general]" html.valueishtml="0"  name=packagetype visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=50 border="0" color="33554432" x="430" y="84" height="64" width="576" format="[general];;;<new>" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=10 border="0" color="33554432" x="1600" y="164" height="64" width="315" format="#,##0.0#####" html.valueishtml="0"  name=qtyproduced visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Serial:" border="0" color="33554432" x="37" y="80" height="64" width="347" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Boxes:" border="0" color="33554432" x="1961" y="164" height="64" width="183" html.valueishtml="0"  name=t_1 visible="1~tif(serial>0, 0, 1)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="0" color="33554432" x="2171" y="164" height="64" width="137" format="0" html.valueishtml="0"  name=boxes visible="1~tif(serial>0, 0, 1)" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Production dt." border="0" color="33554432" x="1184" y="84" height="64" width="370" html.valueishtml="0"  name=t_4 visible="1~tif(serial>0, 1, 0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=60 border="0" color="33554432" x="1600" y="84" height="64" width="544" format="[shortdate] [time]" html.valueishtml="0"  name=productiondt visible="1~tif(serial>0, 1, 0)" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

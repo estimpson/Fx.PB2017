@@ -1,0 +1,361 @@
+﻿$PBExportHeader$d_1050_iss.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=200 color="-1" )
+summary(height=8 color="-1" )
+footer(height=8 color="-1" )
+detail(height=392 color="536870912" )
+table(column=(type=char(10) updatewhereclause=no name=wo_number dbname="wo_number" )
+ column=(type=number updatewhereclause=no name=machine_count dbname="machine_count" )
+ column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=number updatewhereclause=no name=box_per_square dbname="box_per_square" )
+ column=(type=number updatewhereclause=no name=required dbname="required" )
+ column=(type=number updatewhereclause=no name=cycles dbname="cycles" )
+ column=(type=number updatewhereclause=no name=issue dbname="issue" )
+ column=(type=number updatewhereclause=no name=available dbname="available" )
+ column=(type=number updatewhereclause=no name=avail_plant dbname="avail_plant" )
+ column=(type=number updatewhereclause=no name=unavailable dbname="unavailable" )
+ procedure="1 begin
+execute msp_get_1050_iss_data :a_s_machine, :a_s_parent , :a_s_part
+end
+commit transaction
+" arguments=(("a_s_machine", string),("a_s_parent", string),("a_s_part", string))  sort="part A " )
+text(band=header alignment="1" text="Wo Number:"border="0" color="0" x="5522" y="20" height="68" width="457"  name=wo_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="1" color="0" x="6016" y="20" height="80" width="274" format="[general]"  name=wo_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Machine Count:"border="0" color="0" x="5522" y="160" height="68" width="457"  name=machine_count_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=32766 border="1" color="0" x="6016" y="160" height="80" width="219" format="[general]"  name=machine_count edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="IN"border="0" color="0" x="18" y="20" height="92" width="82"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=header x="384" y="4" height="48" width="55" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Required Issues"border="0" color="0" x="457" y="4" height="56" width="416"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=header x="1170" y="4" height="48" width="55" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Available Inventory In Plant"border="0" color="0" x="1243" y="4" height="56" width="672"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=header x="384" y="68" height="48" width="55" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Current Issues"border="0" color="0" x="457" y="68" height="56" width="384"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=header x="1170" y="68" height="48" width="55" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Unavailable Inventory"border="0" color="0" x="1243" y="68" height="56" width="530"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=header x="384" y="132" height="48" width="55" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Inventory At Machine"border="0" color="0" x="457" y="132" height="56" width="530"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=header x="1170" y="132" height="48" width="55" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+text(band=header alignment="0" text="Cycle Count"border="0" color="0" x="1243" y="132" height="56" width="302"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="37"border="0" color="33554432" x="4571" y="20" height="64" width="110" format="[GENERAL]"  name=one  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="165"border="0" color="33554432" x="4699" y="20" height="64" width="110" format="[GENERAL]"  name=two  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="293"border="0" color="33554432" x="4827" y="20" height="64" width="110" format="[GENERAL]"  name=three  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="421"border="0" color="33554432" x="4955" y="20" height="64" width="110" format="[GENERAL]"  name=four  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="549"border="0" color="33554432" x="5083" y="20" height="64" width="110" format="[GENERAL]"  name=five  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="1061"border="0" color="33554432" x="5266" y="36" height="64" width="110" format="[GENERAL]"  name=nine  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Required:"border="0" color="0" x="5413" y="20" height="64" width="457"  name=required_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="16777215" x="5925" y="20" height="64" width="366" format="[general]"  name=required edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" issue +  available "border="0" color="0" x="4571" y="116" height="64" width="498" format="[GENERAL]"  name=available_end  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="677"border="0" color="33554432" x="5120" y="116" height="64" width="110" format="[GENERAL]"  name=six  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Cycles:"border="0" color="0" x="5413" y="56" height="64" width="457"  name=cycles_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="8388608" x="5906" y="56" height="64" width="347" format="[general]"  name=cycles edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" issue +  available + avail_plant"border="0" color="0" x="4571" y="196" height="64" width="498" format="[GENERAL]"  name=avail_plant_end  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="805"border="0" color="33554432" x="5102" y="196" height="64" width="110" format="[GENERAL]"  name=seven  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="1189"border="0" color="33554432" x="5266" y="180" height="64" width="110" format="[GENERAL]"  name=ten  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Issues:"border="0" color="33554432" x="5413" y="152" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="5906" y="152" height="64" width="347" format="[general]"  name=issue edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" issue +  available + avail_plant + unavailable"border="0" color="0" x="4571" y="276" height="64" width="498" format="[GENERAL]"  name=unavailable_end  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="933"border="0" color="33554432" x="5102" y="276" height="64" width="110" format="[GENERAL]"  name=eight  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Available:"border="0" color="33554432" x="5413" y="248" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="32768" x="5906" y="248" height="64" width="347" format="[general]"  name=available edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="1" text="Available (plant):"border="0" color="33554432" x="5413" y="344" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="65535" x="5906" y="344" height="64" width="366" format="[general]"  name=avail_plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1189" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1061" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="933" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="549" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="293" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="Part:"border="0" color="0" x="18" y="4" height="64" width="137"  name=part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="6" color="0" x="183" y="4" height="64" width="686" format="[general]"  name=part edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="37" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="37" y="116" height="32" width="110~tIF ( 	required < 1 AND required > .9,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="37" y="148" height="32" width="110~tIF ( 	issue < .1,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue = 0, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="165" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="165" y="116" height="32" width="110~tIF ( 	required < .2 AND required > .1,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .1, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="165" y="148" height="32" width="110~tIF ( 	issue < .2 and issue > .1,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .1, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="293" y="116" height="32" width="110~tIF ( 	required < .3 AND required > .2,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .2, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="293" y="148" height="32" width="110~tIF ( 	issue < .3 and issue > .2,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .2, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="421" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="421" y="116" height="32" width="110~tIF ( 	required < .3 AND required > .4,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .3, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="549" y="116" height="32" width="110~tIF ( 	required < .4 AND required > .5,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .4, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="165" y="180" height="32" width="110~tIF ( 	cycles < .2 and cycles > .1,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .1, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="293" y="180" height="32" width="110~tIF ( 	cycles < .3 and cycles > .2,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .2, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="421" y="148" height="32" width="110~tIF ( 	issue < .4 and issue > .3,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .3, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="549" y="148" height="32" width="110~tIF ( 	issue < .5 and issue > .4,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .4, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="549" y="180" height="32" width="110~tIF ( 	cycles < .5 and cycles > .4,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .4, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="677" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="677" y="116" height="32" width="110~tIF ( 	required < .6 AND required > .5,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .5, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="37" y="180" height="32" width="110~tIF ( 	cycles < .1,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles = 0, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="677" y="148" height="32" width="110~tIF ( 	issue < .6 and issue > .5,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .5, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="677" y="180" height="32" width="110~tIF ( 	cycles < .6 and cycles > .5,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .5, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="805" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="805" y="116" height="32" width="110~tIF ( 	required < .7 AND required > .6,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .6, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="805" y="148" height="32" width="110~tIF ( 	issue < .7 and issue > .6,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .6, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="933" y="116" height="32" width="110~tIF ( 	required < .8 AND required > .7,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .7, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="421" y="180" height="32" width="110~tIF ( 	cycles < .4 and cycles > .3,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .3, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="933" y="148" height="32" width="110~tIF ( 	issue < .8 and issue > .7,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .7, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="1061" y="116" height="32" width="110~tIF ( 	required < .9 AND required > .8,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .8, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="933" y="180" height="32" width="110~tIF ( 	cycles < .8 and cycles > .7,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .7, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="1061" y="148" height="32" width="110~tIF ( 	issue < .9 and issue > .8,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .8, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="1189" y="116" height="32" width="110~tIF ( 	required < .1,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .9, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="805" y="180" height="32" width="110~tIF ( 	cycles < .7 and cycles > .6,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .6, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="1061" y="180" height="32" width="110~tIF ( 	cycles < .9 and cycles > .8,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .8, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="1189" y="148" height="32" width="110~tIF ( 	issue < 1 and issue > .9,
+	110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	110)" visible="1~tIF ( issue < .9, 0, 1 )" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="1189" y="180" height="32" width="110~tIF ( 	cycles < 1 and cycles > .9,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .9, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="37~tIF ( 	issue < .1,
+	one + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	one )" y="148" height="32" width="110~tIF ( 	available_end < .1,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) )" visible="1~tIF ( issue = available_end OR issue >= .1, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="165~tIF ( 	issue < .2 and issue > .1,
+	two + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	two )" y="148" height="32" width="110~tIF ( 	available_end < .2,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .1, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .2 OR available_end < .1, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="293~tIF ( 	issue < .3 and issue > .2,
+	three + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	three )" y="148" height="32" width="110~tIF ( 	available_end < .3,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .2, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .3 OR available_end < .2, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="421~tIF ( 	issue < .4 and issue > .3,
+	four + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	four )" y="148" height="32" width="110~tIF ( 	available_end < .4,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .3, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .4 OR available_end < .3, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="549~tIF ( 	issue < .5 and issue > .4,
+	five + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	five )" y="148" height="32" width="110~tIF ( 	available_end < .5,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .4, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .5 OR available_end < .4, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="677~tIF ( 	issue < .6 and issue > .5,
+	six + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	six )" y="148" height="32" width="110~tIF ( 	available_end < .6,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .5, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .6 OR available_end < .5, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="805~tIF ( 	issue < .7 and issue > .6,
+	seven + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	seven )" y="148" height="32" width="110~tIF ( 	available_end < .7,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .6, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .7 OR available_end < .6, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="933~tIF ( 	issue < .8 and issue > .7,
+	eight + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	eight )" y="148" height="32" width="110~tIF ( 	available_end < .8,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .7, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .8 OR available_end < .7, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="1061~tIF ( 	issue < .9 and issue > .8,
+	nine + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	nine )" y="148" height="32" width="110~tIF ( 	available_end < .9,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .8, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= .9 OR available_end < .8, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="1189~tIF ( 	issue < 1 and issue > .9,
+	ten + 110 * ( issue - Int ( 10 * issue ) / 10 ) * 10,
+	ten )" y="148" height="32" width="110~tIF ( 	available_end < 1,
+	110 * ( ( available_end - Int ( 10 * available_end ) / 10 ) * 10 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ),
+	IF ( issue < .9, 110,
+	110 * ( 1 - ( issue - Int ( 10 * issue ) / 10 ) * 10 ) ) )" visible="1~tIF ( issue = available_end OR issue >= 1 OR available_end < .9, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="37~tIF ( 	available_end < .1,
+	one + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	one )" y="148" height="32" width="110~tIF ( avail_plant_end < .1,	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 		10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+		110 * ( 1 - available_end * 10 ) )"  name=yellow_1 visible="1~tIF ( available_end = avail_plant_end OR available_end >= .1, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="165~tIF ( 	available_end < .2 and available_end > .1,
+	two + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	two )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .2,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .1, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .2 OR avail_plant_end < .1, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="293~tIF ( 	available_end < .3 and available_end > .2,
+	three + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	three )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .3,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .2, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .3 OR avail_plant_end < .2, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="421~tIF ( 	available_end < .4 and available_end > .3,
+	four + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	four )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .4,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .3, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .4 OR avail_plant_end < .3, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="549~tIF ( 	available_end < .5 and available_end > .4,
+	five + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	five )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .5,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .4, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .5 OR avail_plant_end < .4, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="677~tIF ( 	available_end < .6 and available_end > .5,
+	six + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	six )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .6,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .5, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .6 OR avail_plant_end < .5, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="805~tIF ( 	available_end < .7 and available_end > .6,
+	seven + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	seven )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .7,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .6, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .7 OR avail_plant_end < .6, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="933~tIF ( 	available_end < .8 and available_end > .7,
+	eight + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	eight )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .8,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .7, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .8 OR avail_plant_end < .7, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="1061~tIF ( 	available_end < .9 and available_end > .8,
+	nine + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	nine )" y="148" height="32" width="110~tIF ( 	avail_plant_end < .9,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .8, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= .9 OR avail_plant_end < .8, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="1189~tIF ( 	available_end < 1 and available_end > .9,
+	ten + 110 * ( available_end - Int ( 10 * available_end ) / 10 ) * 10,
+	ten )" y="148" height="32" width="110~tIF ( 	avail_plant_end < 1,
+	110 * ( ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ),
+	IF ( available_end < .9, 110,
+	110 * ( 1 - ( available_end - Int ( 10 * available_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( available_end = avail_plant_end OR available_end >= 1 OR avail_plant_end < .9, 0, 1 )" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="293~tIF ( 	avail_plant_end < .3 and avail_plant_end > .2,
+	three + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	three )" y="148" height="32" width="110~tIF ( 	unavailable_end < .3,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .2, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .3 OR unavailable_end < .2, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="421~tIF ( 	avail_plant_end < .4 and avail_plant_end > .3,
+	four + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	four )" y="148" height="32" width="110~tIF ( 	unavailable_end < .4,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .3, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .4 OR unavailable_end < .3, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="549~tIF ( 	avail_plant_end < .5 and avail_plant_end > .4,
+	five + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	five )" y="148" height="32" width="110~tIF ( 	unavailable_end < .5,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .4, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .5 OR unavailable_end < .4, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="677~tIF ( 	avail_plant_end < .6 and avail_plant_end > .5,
+	six + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	six )" y="148" height="32" width="110~tIF ( 	unavailable_end < .6,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .5, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .6 OR unavailable_end < .5, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="805~tIF ( 	avail_plant_end < .7 and avail_plant_end > .6,
+	seven + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	seven )" y="148" height="32" width="110~tIF ( 	unavailable_end < .7,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .6, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .7 OR unavailable_end < .6, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="933~tIF ( 	avail_plant_end < .8 and avail_plant_end > .7,
+	eight + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	eight )" y="148" height="32" width="110~tIF ( 	unavailable_end < .8,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .7, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .8 OR unavailable_end < .7, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1061~tIF ( 	avail_plant_end < .9 and avail_plant_end > .8,
+	nine + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	nine )" y="148" height="32" width="110~tIF ( 	unavailable_end < .9,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .8, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .9 OR unavailable_end < .8, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1189~tIF ( 	avail_plant_end < 1 and avail_plant_end > .9,
+	ten + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	ten )" y="148" height="32" width="110~tIF ( 	unavailable_end < 1,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .9, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= 1 OR unavailable_end < .9, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+line(band=detail x1="37" y1="116" x2="37" y2="276" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+line(band=detail x1="1298" y1="116" x2="1298" y2="276" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=detail alignment="2" text="0"border="0" color="0" x="18" y="292" height="64" width="50"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=detail x="37~tIF ( 	avail_plant_end < .1,
+	one + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	one )" y="148" height="32" width="110~tIF ( 	 unavailable_end  < .1,
+	110 * ( (  unavailable_end  - Int ( 10 *  unavailable_end  ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) )" visible="1~tIF ( avail_plant_end = unavailable_end  OR avail_plant_end >= .1, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="165~tIF ( 	avail_plant_end < .2 and avail_plant_end > .1,
+	two + 110 * ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10,
+	two )" y="148" height="32" width="110~tIF ( 	unavailable_end < .2,
+	110 * ( ( unavailable_end - Int ( 10 * unavailable_end ) / 10 ) * 10 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ),
+	IF ( avail_plant_end < .1, 110,
+	110 * ( 1 - ( avail_plant_end - Int ( 10 * avail_plant_end ) / 10 ) * 10 ) ) )" visible="1~tIF ( avail_plant_end = unavailable_end OR avail_plant_end >= .2 OR unavailable_end < .1, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+text(band=detail alignment="1" text="Unavailable:"border="0" color="33554432" x="3072" y="456" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="255" x="3566" y="456" height="64" width="366" format="[general]"  name=unavailable edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="4" height="48" width="55" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+compute(band=detail alignment="0" expression=" required  *   total  "border="0" color="16777215" x="1445" y="4" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="68" height="48" width="55" brush.hatch="6" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+compute(band=detail alignment="0" expression=" issue  *   total  "border="0" color="0" x="1445" y="68" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="132" height="48" width="55" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+compute(band=detail alignment="0" expression=" available  *   total  "border="0" color="32768" x="1445" y="132" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="196" height="48" width="55" brush.hatch="6" brush.color="65535" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+compute(band=detail alignment="0" expression=" avail_plant  *   total  "border="0" color="65535" x="1445" y="196" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="260" height="48" width="55" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+compute(band=detail alignment="0" expression=" unavailable  *   total  "border="0" color="255" x="1445" y="260" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1371" y="324" height="48" width="55" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+compute(band=detail alignment="0" expression=" cycles  *   total  "border="0" color="8388608" x="1445" y="324" height="56" width="329" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="1" expression=" box_per_square  * 10"border="0" color="0" x="1024" y="292" height="56" width="274" format="[GENERAL]"  name=total  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="Issues / Square = "border="0" color="0" x="201" y="212" height="56" width="448"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="658" y="212" height="64" width="366" format="[general]"  name=box_per_square edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

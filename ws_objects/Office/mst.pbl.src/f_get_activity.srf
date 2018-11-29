@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_get_activity.srf
+$PBExportComments$Get activity per part
+global type f_get_activity from function_object
+end type
+
+forward prototypes
+global function string f_get_activity (string szpart)
+end prototypes
+
+global function string f_get_activity (string szpart);String szActivity
+
+SELECT part_mfg.activity  
+  INTO :szActivity  
+  FROM part_mfg  
+ WHERE part_mfg.part = :szPart   ;
+
+Return szActivity
+end function
+

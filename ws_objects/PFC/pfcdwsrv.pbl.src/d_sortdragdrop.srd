@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_sortdragdrop.srd
+$PBExportComments$PFC DataWindow used in pfc_w_sortdragdrop dialog
+release 5;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=65 color="553648127" )
+table(column=(type=char(50) updatewhereclause=yes name=columnname dbname="columnname" )
+ column=(type=char(1) updatewhereclause=yes name=sort_order dbname="sort_order" initial="A" values="Asc	A/Asc	D" )
+ column=(type=char(10) updatewhereclause=yes name=displayname dbname="displayname" )
+ column=(type=char(1) updatewhereclause=yes name=use_display dbname="use_display" )
+ )
+compute(band=detail alignment="0" expression="~" ~" + displayname "border="0" color="33554687" x="11" y="3" height="58" width="662" format="[general]"  name=display_column  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554687" x="705" y="3" height="58" width="65" format="[general]"  name=sort_order checkbox.text="Asc" checkbox.on="A" checkbox.off="D" checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )

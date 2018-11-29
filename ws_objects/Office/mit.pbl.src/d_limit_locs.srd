@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_limit_locs.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=4 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=location_code dbname="location_limits.location_code" )
+ column=(type=char(1) update=yes updatewhereclause=yes key=yes name=trans_code dbname="location_limits.trans_code" )
+ retrieve="SELECT location_limits.location_code, location_limits.trans_code FROM location_limits WHERE location_limits.trans_code = :szTrans " update="location_limits" updatewhere=0 updatekeyinplace=yes arguments=(("szTrans", string)) )
+text(band=header alignment="2" text="Location Code"border="0" color="33554432" x="9" y="8" height="64" width="402"  name=location_code_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Trans Code"border="0" color="33554432" x="421" y="8" height="64" width="347"  name=trans_code_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="64" width="402" format="[general]"  name=location_code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="421" y="8" height="64" width="347" format="[general]"  name=trans_code edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

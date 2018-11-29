@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_get_user_defined_label.srf
+global type f_get_user_defined_label from function_object
+end type
+
+forward prototypes
+global function string f_get_user_defined_label (string a_s_module, integer a_i_sequence)
+end prototypes
+
+global function string f_get_user_defined_label (string a_s_module, integer a_i_sequence);STRING	l_s_label
+
+select	label
+into		:l_s_label
+from		user_definable_module_labels
+where		module = :a_s_module and
+			sequence = :a_i_sequence ;
+			
+return l_s_label
+end function
+

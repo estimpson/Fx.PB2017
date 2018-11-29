@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_part_machine_tool_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=232 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_machine_tool.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=machine dbname="part_machine_tool.machine" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=tool dbname="part_machine_tool.tool" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quantity dbname="part_machine_tool.quantity" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_machine_tool~" ) COLUMN(NAME=~"part_machine_tool.part~") COLUMN(NAME=~"part_machine_tool.machine~") COLUMN(NAME=~"part_machine_tool.tool~") COLUMN(NAME=~"part_machine_tool.quantity~")WHERE(    EXP1 =~"part_machine_tool.part~"   OP =~"=~"    EXP2 =~":a_s_part~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"part_machine_tool.machine~"   OP =~"=~"    EXP2 =~":a_s_machine~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"part_machine_tool.tool~"   OP =~"=~"    EXP2 =~":a_s_tool~" ) ) ARG(NAME = ~"a_s_part~" TYPE = string)  ARG(NAME = ~"a_s_machine~" TYPE = string)  ARG(NAME = ~"a_s_tool~" TYPE = string) " update="part_machine_tool" updatewhere=0 updatekeyinplace=yes arguments=(("a_s_part", string),("a_s_machine", string),("a_s_tool", string)) )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="329" y="20" height="80" width="841" format="[general]"  name=tool dddw.name=d_part_list dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="329" y="132" height="80" width="841" format="[General]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Tool:"border="0" color="0" x="160" y="28" height="52" width="146"  name=tool_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Quantity:"border="0" color="0" x="41" y="140" height="52" width="265"  name=quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

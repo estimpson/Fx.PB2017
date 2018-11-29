@@ -1,0 +1,17 @@
+﻿$PBExportHeader$f_mouse_within_range.srf
+$PBExportComments$Check whether the mouse is withing the specified area
+global type f_mouse_within_range from function_object
+end type
+
+forward prototypes
+global function boolean f_mouse_within_range (integer iObjectX, integer iObjectY, integer iObjectWidth, integer iObjectHeight, integer iMouseX, integer iMouseY)
+end prototypes
+
+global function boolean f_mouse_within_range (integer iObjectX, integer iObjectY, integer iObjectWidth, integer iObjectHeight, integer iMouseX, integer iMouseY);If 	(iMouseX >= iObjectX) AND (iMouseX <= iObjectX + iObjectWidth) &
+AND 	(iMouseY >= iObjectY) AND (iMouseY <= iObjectY + iObjectHeight) then
+	Return TRUE
+Else
+	Return FALSE
+End If
+end function
+

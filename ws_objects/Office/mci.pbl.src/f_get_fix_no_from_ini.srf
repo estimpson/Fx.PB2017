@@ -1,0 +1,11 @@
+﻿$PBExportHeader$f_get_fix_no_from_ini.srf
+global type f_get_fix_no_from_ini from function_object
+end type
+
+forward prototypes
+global function long f_get_fix_no_from_ini ()
+end prototypes
+
+global function long f_get_fix_no_from_ini ();Return ProfileInt ( "mn.ini", "fix", "latest", 0 )
+end function
+

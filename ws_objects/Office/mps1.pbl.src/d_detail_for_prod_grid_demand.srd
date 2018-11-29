@@ -1,0 +1,57 @@
+﻿$PBExportHeader$d_detail_for_prod_grid_demand.srd
+$PBExportComments$(mps1) Added the 'order_detail_type'
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=due dbname="master_prod_sched.due" )
+ column=(type=decimal(6) updatewhereclause=yes name=qnty dbname="master_prod_sched.qnty" )
+ column=(type=datetime updatewhereclause=yes name=dead_start dbname="master_prod_sched.dead_start" )
+ column=(type=decimal(6) updatewhereclause=yes name=run_time dbname="master_prod_sched.run_time" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_assigned dbname="master_prod_sched.qty_assigned" )
+ column=(type=long updatewhereclause=yes name=source dbname="master_prod_sched.source" )
+ column=(type=decimal(0) updatewhereclause=yes name=origin dbname="master_prod_sched.origin" )
+ column=(type=char(1) updatewhereclause=yes name=order_detail_type dbname="order_detail.type" values="Firm	F/Planning	P/Forcast	O/" )
+ column=(type=char(10) updatewhereclause=yes name=order_header_customer dbname="order_header.customer" )
+ column=(type=char(20) updatewhereclause=yes name=order_header_destination dbname="order_header.destination" )
+ retrieve="  SELECT master_prod_sched.due,   
+         master_prod_sched.qnty,   
+         master_prod_sched.dead_start,   
+         master_prod_sched.run_time,   
+         master_prod_sched.qty_assigned,   
+         master_prod_sched.source,   
+         master_prod_sched.origin,   
+         order_detail.type,   
+         order_header.customer,   
+         order_header.destination
+    FROM master_prod_sched,   
+         order_detail,   
+         order_header  
+   WHERE ( master_prod_sched.source = order_detail.row_id ) and  
+         ( order_detail.order_no = order_header.order_no ) and  
+         ( master_prod_sched.origin = order_header.order_no ) and  
+         ( ( master_prod_sched.part = :as_part ) AND  
+         ( master_prod_sched.due >= :ad_begin_date ) AND  
+         ( master_prod_sched.due <= :ad_end_date ) )    
+" arguments=(("as_part", string),("ad_begin_date", date),("ad_end_date", date)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="265" format="[general]"  name=due edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=detail alignment="0" expression="qnty - qty_assigned"border="0" color="33554432" x="283" y="8" height="64" width="357" format="[GENERAL]"  name=balance  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="649" y="8" height="64" width="265" format="[general]"  name=dead_start edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="923" y="8" height="64" width="274" format="[general]"  name=run_time edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1207" y="8" height="64" width="329" format="[general]"  name=origin  tag="This will keep the sales order / purchase order number from which the explosion taken place" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1545" y="8" height="64" width="265" format="[general]"  name=order_header_customer edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1819" y="8" height="64" width="343" format="[general]"  name=order_header_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2171" y="8" height="64" width="256" format="[general]"  name=order_detail_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2437" y="8" height="64" width="274" format="[general]"  name=source edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Due"border="6" color="33554432" x="9" y="8" height="52" width="265"  name=due_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="UnAsgned Qty"border="6" color="33554432" x="283" y="8" height="52" width="357"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Drop Dead"border="6" color="33554432" x="649" y="8" height="52" width="265"  name=dead_start_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Run Time"border="6" color="33554432" x="923" y="8" height="52" width="274"  name=run_time_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Sales Order"border="6" color="33554432" x="1207" y="8" height="52" width="329"  name=origin_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Customer"border="6" color="33554432" x="1545" y="8" height="52" width="265"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Destination"border="6" color="33554432" x="1819" y="8" height="52" width="343"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Type"border="6" color="33554432" x="2171" y="8" height="52" width="256"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Source"border="6" color="33554432" x="2437" y="8" height="52" width="274"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

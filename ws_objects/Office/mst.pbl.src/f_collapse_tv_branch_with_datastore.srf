@@ -1,0 +1,70 @@
+﻿$PBExportHeader$f_collapse_tv_branch_with_datastore.srf
+global type f_collapse_tv_branch_with_datastore from function_object
+end type
+
+forward prototypes
+global function integer f_collapse_tv_branch_with_datastore (ref treeview a_tv_parm, long a_l_handle, ref datastore a_ds_treeview)
+end prototypes
+
+global function integer f_collapse_tv_branch_with_datastore (ref treeview a_tv_parm, long a_l_handle, ref datastore a_ds_treeview);// Declare local variables
+treeviewitem	l_tvi_item
+datastore		l_ds_stack
+LONG				l_l_row,&
+					l_l_handle,&
+					l_l_child,&
+					l_l_next
+BOOLEAN			l_b_done
+INT				l_i_level = 1
+
+// Instantiate stack
+l_ds_stack = CREATE datastore
+l_ds_stack.DataObject = "d_temp_stack"
+
+// Add sent handle to stack
+l_ds_stack.InsertRow ( 1 )
+l_ds_stack.object.item_level[1]	= 1
+l_ds_stack.object.item_handle[1]	= a_l_handle
+
+// Add all children to stack
+DO WHILE l_i_level > 0
+	// Get next item in current level from stack
+	l_l_row = l_ds_stack.Find ( "item_level = " + String ( l_i_level ), 1, l_ds_stack.RowCount ( ) )
+	IF l_l_row > 0 THEN
+		IF l_ds_stack.object.item_level[l_l_row] = l_i_level THEN
+			l_l_handle = l_ds_stack.object.item_handle[l_l_row]
+			a_tv_parm.CollapseItem ( l_l_handle )
+			l_ds_stack.DeleteRow ( l_l_row )
+			l_l_row = a_ds_treeview.Find ( "item_handle = " + String ( l_l_handle ), 1, a_ds_treeview.RowCount ( ) )
+			IF l_l_row > 0 THEN
+				IF a_ds_treeview.object.item_handle[l_l_row] = l_l_handle THEN
+					a_ds_treeview.object.expanded[l_l_row] = 0
+				END IF
+			END IF
+			IF l_l_handle <> a_l_handle THEN
+				l_l_next = a_tv_parm.FindItem ( NextTreeItem!, l_l_handle )
+				IF l_l_next > 0 THEN
+					l_l_row = l_ds_stack.InsertRow ( 0 )
+					l_ds_stack.object.item_handle[l_l_row] = l_l_next
+					l_ds_stack.object.item_level[l_l_row] = l_i_level
+				END IF
+			END IF
+			l_l_child = a_tv_parm.FindItem ( ChildTreeItem!, l_l_handle )
+			IF l_l_child > 0 THEN
+				l_l_row = l_ds_stack.InsertRow ( 0 )
+				l_ds_stack.object.item_handle[l_l_row] = l_l_child
+				l_ds_stack.object.item_level[l_l_row] = l_i_level + 1
+				l_i_level++
+			END IF
+		ELSE
+			l_i_level --
+		END IF
+	ELSE
+		l_i_level --
+	END IF
+LOOP
+
+DESTROY l_ds_stack
+
+return 1
+end function
+

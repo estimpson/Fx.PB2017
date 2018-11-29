@@ -1,0 +1,92 @@
+﻿$PBExportHeader$d_ppimolding_jobcompletes.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="Serial" )
+ column=(type=datetime updatewhereclause=yes name=productiondt dbname="ProductionDT" )
+ column=(type=long updatewhereclause=yes name=bfstatus dbname="BFStatus" )
+ column=(type=long updatewhereclause=yes name=bftype dbname="BFType" )
+ column=(type=char(25) updatewhereclause=no name=partcode dbname="PartCode" )
+ column=(type=char(20) updatewhereclause=no name=packagetype dbname="PackageType" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyproduced dbname="QtyProduced" )
+ column=(type=char(30) updatewhereclause=no name=labelformat dbname="LabelFormat" )
+ retrieve="
+select
+	Serial = convert(int, null)
+,	ProductionDT = convert(datetime, null)
+,	BFStatus = dbo.udf_StatusValue('dbo.BackflushHeaders', 'New')
+,	BFType = dbo.udf_TypeValue('dbo.BackflushHeaders', 'Production')
+,	PartCode = wod.PartCode
+,	PackageType = pp.code
+,	QtyProduced = coalesce(pp.quantity, pi.standard_pack)
+,	LabelFormat = pi.label_format
+from
+	dbo.WorkOrderDetails wod
+	join dbo.part_inventory pi on
+		wod.PartCode = pi.part
+	left join dbo.part_packaging pp on
+		wod.PartCode = pp.part
+where
+	wod.WorkOrderNumber = :WorkOrderNumber
+	and
+		wod.Line = :WorkOrderDetailLine
+union all
+select
+	Serial = at.serial
+,	ProductionDT = at.date_stamp
+,	BFStatus = coalesce(bh.Status, dbo.udf_StatusValue('dbo.BackflushHeaders', 'New'))
+,	BFType = coalesce(bh.Type, dbo.udf_TypeValue('dbo.BackflushHeaders', 'Production'))
+,	PartCode = at.part
+,	PackageType = at.package_type
+,	QtyProduced = at.std_quantity
+,	LabelFormat = pi.label_format
+from
+	dbo.WorkOrderDetails wod
+	join dbo.part_inventory pi on
+		wod.PartCode = pi.part
+	left join dbo.part_packaging pp on
+		wod.PartCode = pp.part
+	join dbo.audit_trail at on
+		at.type = 'J'
+		and
+			wod.PartCode = at.part
+	left join dbo.BackflushHeaders bh on
+		at.serial = bh.SerialProduced
+where
+	wod.WorkOrderNumber = :WorkOrderNumber
+	and
+		wod.Line = :WorkOrderDetailLine
+" arguments=(("WorkOrderNumber", string),("WorkOrderDetailLine", number))  sort="productiondt D " )
+text(band=header alignment="2" text="Serial" border="0" color="33554432" x="229" y="8" height="64" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Row" border="0" color="33554432" x="96" y="8" height="64" width="123" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Production dt." border="0" color="33554432" x="567" y="8" height="64" width="603" html.valueishtml="0"  name=productiondt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part code" border="0" color="33554432" x="1801" y="8" height="64" width="754" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty. produced" border="0" color="33554432" x="2962" y="8" height="64" width="389" html.valueishtml="0"  name=qtyproduced_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Label format" border="0" color="33554432" x="3360" y="8" height="64" width="503" html.valueishtml="0"  name=labelformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status" border="0" color="33554432" x="1179" y="8" height="64" width="293" html.valueishtml="0"  name=bfstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Type" border="0" color="33554432" x="1481" y="8" height="64" width="311" html.valueishtml="0"  name=bftype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Package type" border="0" color="33554432" x="2565" y="8" height="64" width="389" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="229" y="8" height="76" width="329" format="[general] ;;;<new> " html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="8" height="76" width="78" format="  [GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="getRow()"border="0" color="33554432" x="96" y="8" height="76" width="123" format="0.  " html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="567" y="8" height="76" width="603" format=" [shortdate] [time]; <new>" html.valueishtml="0"  name=productiondt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1801" y="8" height="76" width="754" format=" [general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2962" y="8" height="76" width="389" format="#,##0.0##### " html.valueishtml="0"  name=qtyproduced visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="3360" y="8" height="76" width="503" format=" [general]" html.valueishtml="0"  name=labelformat visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2565" y="8" height="76" width="389" format=" [general]" html.valueishtml="0"  name=packagetype visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="1179" y="8" height="76" width="293" format="[general]" html.valueishtml="0"  name=bfstatus visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="1481" y="8" height="76" width="311" format="[general]" html.valueishtml="0"  name=bftype visible="1" dddw.name=d_dddw_type dddw.displaycolumn=typename dddw.datacolumn=typecode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

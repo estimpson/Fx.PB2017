@@ -1,0 +1,25 @@
+﻿$PBExportHeader$f_get_company.srf
+global type f_get_company from function_object
+end type
+
+forward prototypes
+global function string f_get_company (string l_s_serial)
+end prototypes
+
+global function string f_get_company (string l_s_serial);Choose Case l_s_serial
+	Case "832916737"
+		Return "E & E Manufacturing"
+	Case "695366917"
+		Return "Elliot Group International"
+	Case "274396145"
+		Return "Radar Industries"
+	Case "938476043"
+		Return "Dirksen Screw Products Co."
+	Case "475038227"
+		Return "Demo Copy by Neumenon Inc."
+	Case Else
+		Return "Demo Copy"
+End Choose
+
+end function
+

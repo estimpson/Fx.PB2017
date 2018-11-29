@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_process_code_list.srd
+$PBExportComments$List of process codes.
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=id dbname="process.id" )
+ column=(type=char(283) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(255) updatewhereclause=yes name=name dbname="process.name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"process~" ) COLUMN(NAME=~"process.id~") COMPUTE(NAME=~"name = rtrim(process.id) + '   ' + rtrim(process.name)~") COLUMN(NAME=~"process.name~")) " update="process" updatewhere=0 updatekeyinplace=no )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="4" height="76" width="768" format="[general]"  name=name edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="786" y="4" height="80" width="3511" format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

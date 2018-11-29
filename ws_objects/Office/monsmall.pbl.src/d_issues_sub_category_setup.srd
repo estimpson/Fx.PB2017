@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_issues_sub_category_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(50) update=yes updatewhereclause=yes key=yes name=category dbname="issues_sub_category.category" )
+ column=(type=char(50) update=yes updatewhereclause=yes key=yes name=sub_category dbname="issues_sub_category.sub_category" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=default_value dbname="issues_sub_category.default_value" values="Yes	Y/No	N/" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"issues_sub_category~" ) COLUMN(NAME=~"issues_sub_category.category~") COLUMN(NAME=~"issues_sub_category.sub_category~") COLUMN(NAME=~"issues_sub_category.default_value~")) ORDER(NAME=~"issues_sub_category.category~" ASC=yes )  ORDER(NAME=~"issues_sub_category.sub_category~" ASC=yes ) " update="issues_sub_category" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Category"border="6" color="0" x="9" y="8" height="52" width="869"  name=category_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Subcategory"border="6" color="0" x="887" y="8" height="52" width="869"  name=sub_category_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Default Value"border="6" color="0" x="1765" y="8" height="52" width="425"  name=default_value_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="869" format="[general]"  name=category dddw.name=d_issues_category_list dddw.displaycolumn=category dddw.datacolumn=category dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="887" y="8" height="76" width="869" format="[general]"  name=sub_category edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1765" y="8" height="76" width="425" format="[general]"  name=default_value ddlb.limit=0 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

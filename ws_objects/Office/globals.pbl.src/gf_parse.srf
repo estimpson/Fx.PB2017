@@ -1,0 +1,36 @@
+﻿$PBExportHeader$gf_parse.srf
+global type gf_parse from function_object
+end type
+
+forward prototypes
+global function string gf_parse (string as_data, string as_label, string as_delimiter, string as_default)
+end prototypes
+
+global function string gf_parse (string as_data, string as_label, string as_delimiter, string as_default);// declar local variables
+string	ls_value
+
+long		ll_label
+long		ll_delimiter
+long		ll_id
+
+ll_label = PosA ( lower ( as_data ), lower ( as_label ) )
+
+setnull ( ls_value )
+
+if ll_label > 0 then
+	
+	ll_label += LenA ( as_label )
+	
+	ll_delimiter = PosA ( as_data, as_delimiter, ll_label )
+	
+	if ll_delimiter > 0 then
+
+		ls_value = MidA ( as_data, ll_label, ll_delimiter - ll_label )
+		
+	end if
+	
+end if
+
+return isnull ( ls_value, as_default )
+end function
+

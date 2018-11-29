@@ -1,0 +1,11 @@
+﻿$PBExportHeader$f_calc_alt_qty.srf
+global type f_calc_alt_qty from function_object
+end type
+
+forward prototypes
+global function decimal f_calc_alt_qty (string part, string unit, decimal quantity)
+end prototypes
+
+global function decimal f_calc_alt_qty (string part, string unit, decimal quantity);Return f_convert_units ( "", unit, part, quantity )
+end function
+

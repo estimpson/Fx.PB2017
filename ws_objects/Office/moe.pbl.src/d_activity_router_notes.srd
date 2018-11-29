@@ -1,0 +1,13 @@
+﻿$PBExportHeader$d_activity_router_notes.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912")
+summary(height=5 color="536870912")
+footer(height=1 color="536870912")
+detail(height=513 color="536870912")
+table(column=(type=char(25) update=yes key=yes name=parent_part dbname="activity_router.parent_part" )
+ column=(type=decimal(0) update=yes key=yes name=sequence dbname="activity_router.sequence" )
+ column=(type=char(25) update=yes name=part dbname="activity_router.part" )
+ column=(type=char(255) update=yes name=notes dbname="activity_router.notes" )
+ retrieve="PBSELECT(TABLE(NAME=~"activity_router~" ) COLUMN(NAME=~"activity_router.parent_part~") COLUMN(NAME=~"activity_router.sequence~") COLUMN(NAME=~"activity_router.part~") COLUMN(NAME=~"activity_router.notes~")WHERE( EXP1 =~"( activity_router.parent_part~" OP =~"=~" EXP2 =~":szParentPart )~" LOGIC =~"and~" ) WHERE( EXP1 =~"( activity_router.sequence~" OP =~"=~" EXP2 =~":lSequence )~" LOGIC =~"and~" ) WHERE( EXP1 =~"( activity_router.part~" OP =~"=~" EXP2 =~":szPart )~" ) ) ARG(NAME = ~"szParentPart~" TYPE = string) ARG(NAME = ~"lSequence~" TYPE = number) ARG(NAME = ~"szPart~" TYPE = string) " update="activity_router" updatewhere=0 updatekeyinplace=yes arguments=(("szParentPart", string),("lSequence", number),("szPart", string)) )
+column(band=detail id=4 border="0" alignment="0" color="0" height="385" tabsequence=40 width="2780" x="1" y="4"  name=notes format="[general]" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

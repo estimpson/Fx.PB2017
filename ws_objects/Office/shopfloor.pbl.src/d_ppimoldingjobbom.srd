@@ -1,0 +1,84 @@
+﻿$PBExportHeader$d_ppimoldingjobbom.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=workordernumber dbname="WorkOrderDetailBillOfMaterials.WorkOrderNumber" )
+ column=(type=number update=yes updatewhereclause=yes name=workorderdetailline dbname="WorkOrderDetailBillOfMaterials.WorkOrderDetailLine" )
+ column=(type=number update=yes updatewhereclause=yes name=line dbname="WorkOrderDetailBillOfMaterials.Line" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="WorkOrderDetailBillOfMaterials.Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="WorkOrderDetailBillOfMaterials.Type" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=childpart dbname="WorkOrderDetailBillOfMaterials.ChildPart" )
+ column=(type=char(100) updatewhereclause=no name=description dbname="Description" )
+ column=(type=char(30) updatewhereclause=no name=commodity dbname="Commodity" )
+ column=(type=long update=yes updatewhereclause=yes name=childpartsequence dbname="WorkOrderDetailBillOfMaterials.ChildPartSequence" )
+ column=(type=long update=yes updatewhereclause=yes name=childpartbomlevel dbname="WorkOrderDetailBillOfMaterials.ChildPartBOMLevel" )
+ column=(type=long update=yes updatewhereclause=yes name=billofmaterialid dbname="WorkOrderDetailBillOfMaterials.BillOfMaterialID" )
+ column=(type=long update=yes updatewhereclause=yes name=suffix dbname="WorkOrderDetailBillOfMaterials.Suffix" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qtyper dbname="WorkOrderDetailBillOfMaterials.QtyPer" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=xqty dbname="WorkOrderDetailBillOfMaterials.XQty" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=xscrap dbname="WorkOrderDetailBillOfMaterials.XScrap" )
+ column=(type=long update=yes updatewhereclause=yes name=subforrowid dbname="WorkOrderDetailBillOfMaterials.SubForRowID" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=subpercentage dbname="WorkOrderDetailBillOfMaterials.SubPercentage" )
+ column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=rowid dbname="WorkOrderDetailBillOfMaterials.RowID" )
+ column=(type=char(100) updatewhereclause=no name=consumptionprinciple dbname="ConsumptionPrinciple" )
+ retrieve="select
+	WorkOrderNumber
+,	WorkOrderDetailLine
+,	Line
+,	Status
+,	Type
+,	ChildPart
+,	Description = (select name from part where part = wodbom.ChildPart)
+,	Commodity = (select commodity from part where part = wodbom.ChildPart)
+,	ChildPartSequence
+,	ChildPartBOMLevel
+,	BillOfMaterialID
+,	Suffix
+,	QtyPer
+,	XQty
+,	XScrap
+,	SubForRowID
+,	SubPercentage
+,	RowID
+,	ConsumptionPrinciple = (select HelpText from FT.StatusDefn where StatusTable = 'dbo.WorkOrderDetailBillOfMaterials' and StatusCode = wodbom.status)
+from
+	dbo.WorkOrderDetailBillOfMaterials wodbom
+where
+	WorkOrderNumber = :WorkOrderNumber
+	and
+		WorkOrderDetailLine = :Line
+order by
+	ChildPartSequence
+" update="WorkOrderDetailBillOfMaterials" updatewhere=1 updatekeyinplace=no arguments=(("WorkOrderNumber", string),("Line", number)) )
+data("32863", 1, 1, 1, 1, "PC+PET-02-VIR", "MAKROBLEND UT 403 9BN800231 BEIGE VIRGIN", "PLASTIC", 1, 0, 6386, null null 0.182819, 1.000000, null null 14, "A primary or substitute component that will be consumed first.", "32863", 1, 2, 2, 1, "ABS-01-50", "CYCOLAC KJU-4051 BLK 50%", "PLASTIC", 2, 1, null null null 0.182819, 1.000000, 14, 0.000000, 298, "A primary or substitute component that will be consumed last.", ) 
+text(band=header alignment="2" text="Status" border="0" color="33554432" x="105" y="8" height="64" width="233" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type" border="0" color="33554432" x="347" y="8" height="64" width="247" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Description" border="0" color="33554432" x="1129" y="8" height="64" width="901" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Consump. rate" border="0" color="33554432" x="2459" y="8" height="64" width="407" html.valueishtml="0"  name=xqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Commodity" border="0" color="33554432" x="2039" y="8" height="64" width="411" html.valueishtml="0"  name=commodity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="2" text="Sub. pct." border="0" color="33554432" x="2875" y="8" height="64" width="416" html.valueishtml="0"  name=subpercentage_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Consumptionprinciple" border="0" color="33554432" x="3301" y="8" height="64" width="2409" html.valueishtml="0"  name=consumptionprinciple_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mat. / comp." border="0" color="33554432" x="603" y="8" height="64" width="517" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1129" y="8" height="76" width="901" format="  [general]" html.valueishtml="0"  name=description visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="2459" y="8" height="76" width="407" format="#,##0.0#####  " html.valueishtml="0"  name=xqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2039" y="8" height="76" width="411" format="  [general]" html.valueishtml="0"  name=commodity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="8" height="76" width="87" format="  [GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="2875" y="8" height="76" width="416" format="#,##0.0#####%  " html.valueishtml="0"  name=subpercentage visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="3301" y="8" height="76" width="2409" format="  [general]" html.valueishtml="0"  name=consumptionprinciple visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="105" y="8" height="76" width="233" format="[general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="347" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=type visible="1" dddw.name=d_dddw_type dddw.displaycolumn=typename dddw.datacolumn=typecode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="space(3 * childpartbomlevel) + childpart"border="0" color="33554432" x="603" y="8" height="76" width="517" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

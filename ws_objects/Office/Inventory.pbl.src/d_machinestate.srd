@@ -1,0 +1,153 @@
+﻿$PBExportHeader$d_machinestate.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=machinecode dbname="MachineCode" )
+ column=(type=char(35) updatewhereclause=yes name=description dbname="Description" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="GroupTechnology" )
+ column=(type=long updatewhereclause=yes name=machinestatus dbname="MachineStatus" )
+ column=(type=char(5) updatewhereclause=no name=operatorcode dbname="OperatorCode" )
+ column=(type=char(40) updatewhereclause=no name=operatorname dbname="OperatorName" )
+ column=(type=long updatewhereclause=yes name=workorderdetailid dbname="WorkOrderDetailID" )
+ column=(type=long updatewhereclause=yes name=jobstatus dbname="JobStatus" )
+ column=(type=char(25) updatewhereclause=no name=toppartcode dbname="TopPartCode" )
+ column=(type=char(25) updatewhereclause=no name=partcode dbname="PartCode" )
+ column=(type=char(4000) updatewhereclause=no name=jobdescription dbname="JobDescription" )
+ column=(type=long updatewhereclause=yes name=currentpalletserial dbname="CurrentPalletSerial" )
+ column=(type=decimal(6) updatewhereclause=yes name=requiredqty dbname="RequiredQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=producedqty dbname="ProducedQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=buildableqty dbname="BuildableQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=defectqty dbname="DefectQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=reworkedqty dbname="ReworkedQty" )
+ column=(type=char(-1) updatewhereclause=no name=materiallots dbname="MaterialLots" )
+ column=(type=number updatewhereclause=yes name=jobsetuptime dbname="JobSetupTime" )
+ column=(type=number updatewhereclause=yes name=jobruntime dbname="JobRunTime" )
+ column=(type=number updatewhereclause=yes name=jobdowntime dbname="JobDownTime" )
+ column=(type=datetime updatewhereclause=yes name=actualstartdt dbname="ActualStartDT" )
+ column=(type=datetime updatewhereclause=yes name=estimatedcompletiondt dbname="EstimatedCompletionDT" )
+ column=(type=datetime updatewhereclause=yes name=duedt dbname="DueDT" )
+ column=(type=datetime updatewhereclause=yes name=shiftbegindt dbname="ShiftBeginDT" )
+ column=(type=datetime updatewhereclause=yes name=shiftenddt dbname="ShiftEndDT" )
+ column=(type=number updatewhereclause=yes name=accumulatedsetuptime dbname="AccumulatedSetupTime" )
+ column=(type=number updatewhereclause=yes name=accumulatedruntime dbname="AccumulatedRunTime" )
+ column=(type=number updatewhereclause=yes name=accumulateddowntime dbname="AccumulatedDownTime" )
+ column=(type=number updatewhereclause=yes name=accumulatedunscheduledtime dbname="AccumulatedUnscheduledTime" )
+ column=(type=long updatewhereclause=yes name=showmachine dbname="ShowMachine" values="	1/	0" )
+ retrieve="select
+	MachineCode
+,	Description
+,	GroupTechnology
+,	MachineStatus
+,	OperatorCode
+,	OperatorName
+,	WorkOrderDetailID
+,	JobStatus
+,	TopPartCode
+,	PartCode
+,	JobDescription
+,	CurrentPalletSerial
+,	RequiredQty
+,	ProducedQty
+,	BuildableQty
+,	DefectQty
+,	ReworkedQty
+,	MaterialLots
+,	JobSetupTime
+,	JobRunTime
+,	JobDownTime
+,	ActualStartDT
+,	EstimatedCompletionDT
+,	DueDT
+,	ShiftBeginDT
+,	ShiftEndDT
+,	AccumulatedSetupTime
+,	AccumulatedRunTime
+,	AccumulatedDownTime
+,	AccumulatedUnscheduledTime
+,	ShowMachine = coalesce (VisibleMachines.ShowMachine, 0)
+from
+	dbo.MachineState ms
+	left join
+	(	select
+			VisibleMachineCode = machine_no
+		,	ShowMachine = 1
+		from
+			dbo.machine
+		where
+			machine_no not in (:HiddenMachines)
+	) VisibleMachines on ms.MachineCode = VisibleMachines.VisibleMachineCode
+order by
+	GroupTechnology
+,	MachineCode
+" arguments=(("HiddenMachines", stringlist))  sort="grouptechnology A machinecode A " )
+text(band=header alignment="2" text="Description" border="0" color="33554432" x="658" y="8" height="64" width="891" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Machine status" border="0" color="33554432" x="2071" y="8" height="64" width="430" html.valueishtml="0"  name=machinestatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Operator name" border="0" color="33554432" x="2510" y="8" height="64" width="937" html.valueishtml="0"  name=operatorname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Job status" border="0" color="33554432" x="3456" y="8" height="64" width="329" html.valueishtml="0"  name=jobstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Top part code" border="0" color="33554432" x="3794" y="8" height="64" width="567" html.valueishtml="0"  name=toppartcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Produce for" border="0" color="33554432" x="4370" y="8" height="64" width="521" html.valueishtml="0"  name=jobdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Current pallet serial" border="0" color="33554432" x="4901" y="8" height="64" width="562" html.valueishtml="0"  name=currentpalletserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Required qty" border="0" color="33554432" x="5472" y="8" height="64" width="407" html.valueishtml="0"  name=requiredqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Produced qty" border="0" color="33554432" x="5888" y="8" height="64" width="375" html.valueishtml="0"  name=producedqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Buildable qty" border="0" color="33554432" x="6272" y="8" height="64" width="379" html.valueishtml="0"  name=buildableqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Defect qty" border="0" color="33554432" x="6661" y="8" height="64" width="329" html.valueishtml="0"  name=defectqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Reworked qty" border="0" color="33554432" x="6999" y="8" height="64" width="384" html.valueishtml="0"  name=reworkedqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Material lots" border="0" color="33554432" x="7392" y="8" height="64" width="375" html.valueishtml="0"  name=materiallots_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Job setup time" border="0" color="33554432" x="7776" y="8" height="64" width="402" html.valueishtml="0"  name=jobsetuptime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Job run time" border="0" color="33554432" x="8187" y="8" height="64" width="370" html.valueishtml="0"  name=jobruntime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Job own time" border="0" color="33554432" x="8567" y="8" height="64" width="384" html.valueishtml="0"  name=jobdowntime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Actual start DT" border="0" color="33554432" x="8960" y="8" height="64" width="603" html.valueishtml="0"  name=actualstartdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Est. completion DT" border="0" color="33554432" x="9573" y="8" height="64" width="667" html.valueishtml="0"  name=estimatedcompletiondt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Due DT" border="0" color="33554432" x="10249" y="8" height="64" width="603" html.valueishtml="0"  name=duedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shift begin DT" border="0" color="33554432" x="10862" y="8" height="64" width="603" html.valueishtml="0"  name=shiftbegindt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shift end DT" border="0" color="33554432" x="11474" y="8" height="64" width="603" html.valueishtml="0"  name=shiftenddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum. setup time" border="0" color="33554432" x="12087" y="8" height="64" width="681" html.valueishtml="0"  name=accumulatedsetuptime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum. run time" border="0" color="33554432" x="12777" y="8" height="64" width="640" html.valueishtml="0"  name=accumulatedruntime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum. down time" border="0" color="33554432" x="13426" y="8" height="64" width="649" html.valueishtml="0"  name=accumulateddowntime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum. unsched. time" border="0" color="33554432" x="14085" y="8" height="64" width="599" html.valueishtml="0"  name=accumulatedunscheduledtime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Group technology" border="0" color="33554432" x="1559" y="8" height="64" width="503" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Machine code" border="0" color="33554432" x="274" y="8" height="64" width="375" html.valueishtml="0"  name=machinecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Show" border="0" color="33554432" x="114" y="8" height="64" width="151" html.valueishtml="0"  name=showmachine_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="4" height="76" width="96" format="  [GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="274" y="4" height="76" width="375" format="  [general]" html.valueishtml="0"  name=machinecode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="4" height="76" width="891" format="  [general]" html.valueishtml="0"  name=description visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="2071" y="4" height="76" width="430" format="  [general]" html.valueishtml="0"  name=machinestatus visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2510" y="4" height="76" width="937" format="  [general]" html.valueishtml="0"  name=operatorname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3456" y="4" height="76" width="329" format="  [general]" html.valueishtml="0"  name=jobstatus visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="3794" y="4" height="76" width="567" format="  [general]" html.valueishtml="0"  name=toppartcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="4370" y="4" height="76" width="521" format="  [general]" html.valueishtml="0"  name=jobdescription visible="1" edit.limit=-1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="4901" y="4" height="76" width="562" format="  [general]" html.valueishtml="0"  name=currentpalletserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5472" y="4" height="76" width="407" format="  [general]" html.valueishtml="0"  name=requiredqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="5888" y="4" height="76" width="375" format="  [general]" html.valueishtml="0"  name=producedqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="1" tabsequence=32766 border="0" color="33554432" x="6272" y="4" height="76" width="379" format="  [general]" html.valueishtml="0"  name=buildableqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="6661" y="4" height="76" width="329" format="  [general]" html.valueishtml="0"  name=defectqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="33554432" x="6999" y="4" height="76" width="384" format="  [general]" html.valueishtml="0"  name=reworkedqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="7392" y="4" height="76" width="375" format="  [general]" html.valueishtml="0"  name=materiallots visible="1" edit.limit=-1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="7776" y="4" height="76" width="402" format="  [general]" html.valueishtml="0"  name=jobsetuptime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=32766 border="0" color="33554432" x="8187" y="4" height="76" width="370" format="  [general]" html.valueishtml="0"  name=jobruntime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="8567" y="4" height="76" width="384" format="  [general]" html.valueishtml="0"  name=jobdowntime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="8960" y="4" height="76" width="603" format="  [general]" html.valueishtml="0"  name=actualstartdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="9573" y="4" height="76" width="667" format="  [general]" html.valueishtml="0"  name=estimatedcompletiondt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="33554432" x="10249" y="4" height="76" width="603" format="  [general]" html.valueishtml="0"  name=duedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="33554432" x="10862" y="4" height="76" width="603" format="  [general]" html.valueishtml="0"  name=shiftbegindt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="11474" y="4" height="76" width="603" format="  [general]" html.valueishtml="0"  name=shiftenddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="33554432" x="12087" y="4" height="76" width="681" format="  [general]" html.valueishtml="0"  name=accumulatedsetuptime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="33554432" x="12777" y="4" height="76" width="640" format="  [general]" html.valueishtml="0"  name=accumulatedruntime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=29 alignment="1" tabsequence=32766 border="0" color="33554432" x="13426" y="4" height="76" width="649" format="  [general]" html.valueishtml="0"  name=accumulateddowntime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=30 alignment="1" tabsequence=32766 border="0" color="33554432" x="14085" y="4" height="76" width="599" format="  [general]" html.valueishtml="0"  name=accumulatedunscheduledtime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1559" y="4" height="76" width="503" format="  [general]" html.valueishtml="0"  name=grouptechnology visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=31 alignment="2" tabsequence=10 border="0" color="33554432" x="114" y="4" height="76" width="151" format="[general]" html.valueishtml="0"  name=showmachine visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,48 @@
+﻿$PBExportHeader$f_moduleaccess.srf
+global type f_moduleaccess from function_object
+end type
+
+forward prototypes
+global function integer f_moduleaccess (string module, string submenu)
+end prototypes
+
+global function integer f_moduleaccess (string module, string submenu);int	li_returnval=1
+int	li_ucode=0
+string	ls_scode=''
+string	ls_escode
+string	ls_returnedstring
+li_ucode = integer ( submenu ) 
+if isnull(szoperator,'') = '' then 
+	open ( w_operator_login ) 
+	szoperator = message.stringparm
+end if 	
+if isnull(szoperator,'') = '' then 
+	Messagebox ( monsys.msg_title, "Invalid User Id/Password")
+	szoperator=''
+	li_returnval = -1 
+else
+	if isvalid ( w_operator_login ) then close ( w_operator_login ) 	
+	select	escode
+	into	:ls_escode
+	from	tdata
+	where	mcode = :module and ucode = :szoperator;
+	
+	Open ( w_encrypt )
+	ls_scode = w_encrypt.decrypt ( ls_escode, szoperator)
+	Close ( w_encrypt )	
+	
+	if ls_scode > '' then 
+		if MidA(ls_scode, li_ucode, 1 ) = '1' then
+			li_returnval = 0 
+		else
+			li_returnval = 1
+		end if 	
+	else
+		szoperator=''			
+		li_returnval = 1
+	end if 	
+end if
+return li_returnval
+
+end function
+

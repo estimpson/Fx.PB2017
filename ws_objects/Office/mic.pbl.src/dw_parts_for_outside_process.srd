@@ -1,0 +1,42 @@
+﻿$PBExportHeader$dw_parts_for_outside_process.srd
+$PBExportComments$List parts for outside process
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="-1" )
+summary(height=8 color="-1" )
+footer(height=0 color="-1" )
+detail(height=80 color="-1" )
+table(column=(type=char(25) updatewhereclause=yes name=parent_part dbname="parent_part" )
+ column=(type=char(10) updatewhereclause=yes name=vendor dbname="vendor" )
+ column=(type=char(1) updatewhereclause=yes name=outside_process dbname="outside_process" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum_shipped dbname="accum_shipped" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_vendor_accum_received dbname="accum_received" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=yes name=unprocessed dbname="unprocessed" )
+ retrieve="SELECT	part_vendor_a.part parent_part,   
+		part_vendor_a.vendor,   
+		part_vendor_a.outside_process,   
+		part_vendor_b.accum_shipped,   
+		part_vendor_a.accum_received,
+		part_vendor_b.part,
+		sum ( audit_trail.std_quantity ) as unprocessed
+FROM 	part_vendor part_vendor_a
+			join part_vendor part_vendor_b  on part_vendor_a.vendor = part_vendor_b.vendor 
+			join part on part.part = part_vendor_a.part and part.class = 'P'
+			join bill_of_material  on part_vendor_a.part = bill_of_material.parent_part and bill_of_material.part = part_vendor_b.part
+			left outer join audit_trail on audit_trail.part = part_vendor_a.part and audit_trail.type = 'R' and audit_trail.status <> 'C' and audit_trail.vendor = part_vendor_a.vendor
+WHERE 	part_vendor_a.outside_process = 'Y'
+GROUP BY part_vendor_a.part,part_vendor_a.vendor,part_vendor_a.outside_process,part_vendor_b.accum_shipped,part_vendor_a.accum_received,part_vendor_b.part"  sort="part A vendor A " )
+text(band=header alignment="2" text="Part Received"border="6" color="0" x="9" y="8" height="52" width="558"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Part Shipped"border="6" color="0" x="576" y="8" height="52" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Vendor"border="6" color="0" x="1097" y="8" height="52" width="549"  name=vendor_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Accum Shipped"border="6" color="0" x="1655" y="8" height="52" width="640"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Accum Received"border="6" color="0" x="2304" y="8" height="52" width="613"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="U"border="6" color="0" x="2926" y="8" height="52" width="110"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1097" y="4" height="68" width="549" format="[general]"  name=vendor edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1655" y="4" height="68" width="640" format="[general]"  name=accum_shipped edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2304" y="4" height="68" width="613" format="[general]"  name=part_vendor_accum_received edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="576" y="4" height="68" width="512" format="[general]"  name=part editmask.mask="XXXXXXXXXXXXXXXXXXXX" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="68" width="558" format="[general]"  name=parent_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap ( if ( unprocessed > 0, 'logo2.bmp','' ) )"border="0" color="0" x="2926" y="4" height="76" width="110" format="[general]"  name=unprocessed_flag  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

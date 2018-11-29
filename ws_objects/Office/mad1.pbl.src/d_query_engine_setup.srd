@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_query_engine_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(40) updatewhereclause=yes key=yes name=screen_title dbname="dw_inquiry_files.screen_title" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=change_buttons dbname="dw_inquiry_files.change_buttons" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=retrieve_all dbname="dw_inquiry_files.retrieve_all" values="Yes	Y/Yes	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=print_button dbname="dw_inquiry_files.print_button" values="Yes	Y/Yes	N" )
+ retrieve="SELECT dw_inquiry_files.screen_title, dw_inquiry_files.change_buttons, dw_inquiry_files.retrieve_all, dw_inquiry_files.print_button FROM dw_inquiry_files WHERE dw_inquiry_files.modifiable <> 'N' " update="dw_inquiry_files" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Retrieve All Records Upon Entering The Screen?"border="6" color="0" x="850" y="8" height="52" width="1435"  name=retrieve_all_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Screen Title"border="6" color="0" x="5" y="8" height="52" width="832"  name=screen_title_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="0" x="1339" y="4" height="64" width="343" format="[general]"  name=retrieve_all  tag="Retrieve all records when you open the window." checkbox.text="Yes" checkbox.on="Y" checkbox.off="N" checkbox.scale=yes checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="4" height="64" width="832" format="[general]"  name=screen_title  tag="This is the title that will display in the window's title bar." edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

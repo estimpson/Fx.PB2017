@@ -1,0 +1,1913 @@
+﻿$PBExportHeader$pfc_m_master.srm
+$PBExportComments$PFC Master menu class
+forward
+global type pfc_m_master from menu
+end type
+type m_file from menu within pfc_m_master
+end type
+type m_new from menu within m_file
+end type
+type m_open from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_dash11 from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_saveas from menu within m_file
+end type
+type m_dash12 from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_printpreview from menu within m_file
+end type
+type m_pagesetup from menu within m_file
+end type
+type m_printimmediate from menu within m_file
+end type
+type m_dash13 from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_properties from menu within m_file
+end type
+type m_dash14 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_pfcmrudash1 from menu within m_file
+end type
+type m_pfcmru1 from menu within m_file
+end type
+type m_pfcmru2 from menu within m_file
+end type
+type m_pfcmru3 from menu within m_file
+end type
+type m_pfcmru4 from menu within m_file
+end type
+type m_pfcmru5 from menu within m_file
+end type
+type m_file from menu within pfc_m_master
+m_new m_new
+m_open m_open
+m_close m_close
+m_dash11 m_dash11
+m_save m_save
+m_saveas m_saveas
+m_dash12 m_dash12
+m_print m_print
+m_printpreview m_printpreview
+m_pagesetup m_pagesetup
+m_printimmediate m_printimmediate
+m_dash13 m_dash13
+m_delete m_delete
+m_properties m_properties
+m_dash14 m_dash14
+m_exit m_exit
+m_pfcmrudash1 m_pfcmrudash1
+m_pfcmru1 m_pfcmru1
+m_pfcmru2 m_pfcmru2
+m_pfcmru3 m_pfcmru3
+m_pfcmru4 m_pfcmru4
+m_pfcmru5 m_pfcmru5
+end type
+type m_edit from menu within pfc_m_master
+end type
+type m_undo from menu within m_edit
+end type
+type m_dash21 from menu within m_edit
+end type
+type m_cut from menu within m_edit
+end type
+type m_copy from menu within m_edit
+end type
+type m_paste from menu within m_edit
+end type
+type m_pastespecial from menu within m_edit
+end type
+type m_clear from menu within m_edit
+end type
+type m_dash22 from menu within m_edit
+end type
+type m_selectall from menu within m_edit
+end type
+type m_dash23 from menu within m_edit
+end type
+type m_find from menu within m_edit
+end type
+type m_replace from menu within m_edit
+end type
+type m_dash24 from menu within m_edit
+end type
+type m_updatelinks from menu within m_edit
+end type
+type m_object1 from menu within m_edit
+end type
+type m_edit1 from menu within m_object1
+end type
+type m_open1 from menu within m_object1
+end type
+type m_object1 from menu within m_edit
+m_edit1 m_edit1
+m_open1 m_open1
+end type
+type m_edit from menu within pfc_m_master
+m_undo m_undo
+m_dash21 m_dash21
+m_cut m_cut
+m_copy m_copy
+m_paste m_paste
+m_pastespecial m_pastespecial
+m_clear m_clear
+m_dash22 m_dash22
+m_selectall m_selectall
+m_dash23 m_dash23
+m_find m_find
+m_replace m_replace
+m_dash24 m_dash24
+m_updatelinks m_updatelinks
+m_object1 m_object1
+end type
+type m_view from menu within pfc_m_master
+end type
+type m_ruler from menu within m_view
+end type
+type m_dash31 from menu within m_view
+end type
+type m_largeicon from menu within m_view
+end type
+type m_smallicons from menu within m_view
+end type
+type m_list from menu within m_view
+end type
+type m_details from menu within m_view
+end type
+type m_dash32 from menu within m_view
+end type
+type m_arrangeicons from menu within m_view
+end type
+type m_by1 from menu within m_arrangeicons
+end type
+type m_dash33 from menu within m_arrangeicons
+end type
+type m_autoarrange from menu within m_arrangeicons
+end type
+type m_arrangeicons from menu within m_view
+m_by1 m_by1
+m_dash33 m_dash33
+m_autoarrange m_autoarrange
+end type
+type m_dash34 from menu within m_view
+end type
+type m_first from menu within m_view
+end type
+type m_nextpage from menu within m_view
+end type
+type m_priorpage from menu within m_view
+end type
+type m_lastpage from menu within m_view
+end type
+type m_dash35 from menu within m_view
+end type
+type m_sort from menu within m_view
+end type
+type m_filter from menu within m_view
+end type
+type m_dash36 from menu within m_view
+end type
+type m_zoom from menu within m_view
+end type
+type m_view from menu within pfc_m_master
+m_ruler m_ruler
+m_dash31 m_dash31
+m_largeicon m_largeicon
+m_smallicons m_smallicons
+m_list m_list
+m_details m_details
+m_dash32 m_dash32
+m_arrangeicons m_arrangeicons
+m_dash34 m_dash34
+m_first m_first
+m_nextpage m_nextpage
+m_priorpage m_priorpage
+m_lastpage m_lastpage
+m_dash35 m_dash35
+m_sort m_sort
+m_filter m_filter
+m_dash36 m_dash36
+m_zoom m_zoom
+end type
+type m_insert from menu within pfc_m_master
+end type
+type m_insertfile from menu within m_insert
+end type
+type m_picture from menu within m_insert
+end type
+type m_dash41 from menu within m_insert
+end type
+type m_object from menu within m_insert
+end type
+type m_insert from menu within pfc_m_master
+m_insertfile m_insertfile
+m_picture m_picture
+m_dash41 m_dash41
+m_object m_object
+end type
+type m_tools from menu within pfc_m_master
+end type
+type m_toolbars from menu within m_tools
+end type
+type m_tools from menu within pfc_m_master
+m_toolbars m_toolbars
+end type
+type m_window from menu within pfc_m_master
+end type
+type m_cascade from menu within m_window
+end type
+type m_tilehorizontal from menu within m_window
+end type
+type m_tilevertical from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_dash51 from menu within m_window
+end type
+type m_minimizeall from menu within m_window
+end type
+type m_undoarrange from menu within m_window
+end type
+type m_window from menu within pfc_m_master
+m_cascade m_cascade
+m_tilehorizontal m_tilehorizontal
+m_tilevertical m_tilevertical
+m_layer m_layer
+m_dash51 m_dash51
+m_minimizeall m_minimizeall
+m_undoarrange m_undoarrange
+end type
+type m_help from menu within pfc_m_master
+end type
+type m_helptopics from menu within m_help
+end type
+type m_dash61 from menu within m_help
+end type
+type m_about from menu within m_help
+end type
+type m_help from menu within pfc_m_master
+m_helptopics m_helptopics
+m_dash61 m_dash61
+m_about m_about
+end type
+end forward
+
+global type pfc_m_master from menu
+m_file m_file
+m_edit m_edit
+m_view m_view
+m_insert m_insert
+m_tools m_tools
+m_window m_window
+m_help m_help
+end type
+global pfc_m_master pfc_m_master
+
+forward prototypes
+public function integer of_sendmessage (string as_message)
+end prototypes
+
+public function integer of_sendmessage (string as_message);//////////////////////////////////////////////////////////////////////////////
+//
+//	Function:  of_SendMessage
+//
+//	Access:  public
+//
+//	Arguments:		
+//	as_message  message (event notification) to be sent
+//
+//	Returns:  integer
+//	 1 = Message successfully sent
+//	-1 = message could not be sent (use debug object for more info)
+//
+//	Description:
+//	Sends a specified message (event notification) to a receiving window 
+//	through the pfc_messagerouter event.
+//
+//	Sequence:
+//	If application is MDI:
+//	1) Active MDI sheet pfc_messagerouter event.
+//	2) MDI Frame Window pfc_messagerouter event.
+//
+//	Application is SWI:
+//	1) ParentWindow pfc_messagerouter event.
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Revision History
+//
+//	Version
+//	5.0	Initial version
+//	6.0	Function now calls of_sendMessage on n_cst_menu to consolidate code
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+n_cst_menu		lnv_menu
+
+return lnv_menu.of_sendMessage (this, as_message)
+end function
+
+on pfc_m_master.create
+pfc_m_master=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_view=create m_view
+this.m_insert=create m_insert
+this.m_tools=create m_tools
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_view, &
+this.m_insert, &
+this.m_tools, &
+this.m_window, &
+this.m_help}
+end on
+
+on pfc_m_master.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_view)
+destroy(this.m_insert)
+destroy(this.m_tools)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within pfc_m_master
+m_new m_new
+m_open m_open
+m_close m_close
+m_dash11 m_dash11
+m_save m_save
+m_saveas m_saveas
+m_dash12 m_dash12
+m_print m_print
+m_printpreview m_printpreview
+m_pagesetup m_pagesetup
+m_printimmediate m_printimmediate
+m_dash13 m_dash13
+m_delete m_delete
+m_properties m_properties
+m_dash14 m_dash14
+m_exit m_exit
+m_pfcmrudash1 m_pfcmrudash1
+m_pfcmru1 m_pfcmru1
+m_pfcmru2 m_pfcmru2
+m_pfcmru3 m_pfcmru3
+m_pfcmru4 m_pfcmru4
+m_pfcmru5 m_pfcmru5
+end type
+
+on m_file.create
+this.Text="&File"
+this.MergeOption=FileMenu!
+this.m_new=create m_new
+this.m_open=create m_open
+this.m_close=create m_close
+this.m_dash11=create m_dash11
+this.m_save=create m_save
+this.m_saveas=create m_saveas
+this.m_dash12=create m_dash12
+this.m_print=create m_print
+this.m_printpreview=create m_printpreview
+this.m_pagesetup=create m_pagesetup
+this.m_printimmediate=create m_printimmediate
+this.m_dash13=create m_dash13
+this.m_delete=create m_delete
+this.m_properties=create m_properties
+this.m_dash14=create m_dash14
+this.m_exit=create m_exit
+this.m_pfcmrudash1=create m_pfcmrudash1
+this.m_pfcmru1=create m_pfcmru1
+this.m_pfcmru2=create m_pfcmru2
+this.m_pfcmru3=create m_pfcmru3
+this.m_pfcmru4=create m_pfcmru4
+this.m_pfcmru5=create m_pfcmru5
+this.Item[]={this.m_new, &
+this.m_open, &
+this.m_close, &
+this.m_dash11, &
+this.m_save, &
+this.m_saveas, &
+this.m_dash12, &
+this.m_print, &
+this.m_printpreview, &
+this.m_pagesetup, &
+this.m_printimmediate, &
+this.m_dash13, &
+this.m_delete, &
+this.m_properties, &
+this.m_dash14, &
+this.m_exit, &
+this.m_pfcmrudash1, &
+this.m_pfcmru1, &
+this.m_pfcmru2, &
+this.m_pfcmru3, &
+this.m_pfcmru4, &
+this.m_pfcmru5}
+end on
+
+on m_file.destroy
+destroy(this.m_new)
+destroy(this.m_open)
+destroy(this.m_close)
+destroy(this.m_dash11)
+destroy(this.m_save)
+destroy(this.m_saveas)
+destroy(this.m_dash12)
+destroy(this.m_print)
+destroy(this.m_printpreview)
+destroy(this.m_pagesetup)
+destroy(this.m_printimmediate)
+destroy(this.m_dash13)
+destroy(this.m_delete)
+destroy(this.m_properties)
+destroy(this.m_dash14)
+destroy(this.m_exit)
+destroy(this.m_pfcmrudash1)
+destroy(this.m_pfcmru1)
+destroy(this.m_pfcmru2)
+destroy(this.m_pfcmru3)
+destroy(this.m_pfcmru4)
+destroy(this.m_pfcmru5)
+end on
+
+type m_new from menu within m_file
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_new")
+end event
+
+on m_new.create
+this.Text="&New"
+this.Microhelp="New"
+this.ToolBarItemName="ScriptNo!"
+this.ToolBarItemText="New"
+this.ToolBarItemOrder=10
+end on
+
+type m_open from menu within m_file
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_open")
+end event
+
+on m_open.create
+this.Text="&Open"
+this.Microhelp="Open"
+this.ToolBarItemName="Custom050!"
+this.ToolBarItemText="Open"
+this.ToolBarItemOrder=15
+end on
+
+type m_close from menu within m_file
+end type
+
+on clicked;of_SendMessage ("pfc_close")
+end on
+
+on m_close.create
+this.Text="&Close"
+this.Microhelp="Close"
+this.ToolBarItemName="Custom039!"
+this.ToolBarItemText="Close"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=20
+end on
+
+type m_dash11 from menu within m_file
+end type
+
+on m_dash11.create
+this.Text="-"
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;of_SendMessage ("pfc_save")
+end on
+
+on m_save.create
+this.Text="&Save~tCtrl+S"
+this.Microhelp="Save"
+this.ToolBarItemName="Save!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=25
+this.Shortcut=339
+end on
+
+type m_saveas from menu within m_file
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_saveas")
+end event
+
+on m_saveas.create
+this.Text="Save &As..."
+this.Microhelp="Save As"
+this.ToolBarItemName="SaveAs!"
+this.ToolBarItemText="Save As"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=30
+end on
+
+type m_dash12 from menu within m_file
+end type
+
+on m_dash12.create
+this.Text="-"
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_print")
+end event
+
+on m_print.create
+this.Text="&Print...~tCtrl+P"
+this.Microhelp="Prints the item"
+this.Shortcut=336
+end on
+
+type m_printpreview from menu within m_file
+end type
+
+on clicked;of_SendMessage ("pfc_printpreview")
+end on
+
+on m_printpreview.create
+this.Text="Print Pre&view"
+this.Microhelp="View pages as they will be printed"
+this.ToolBarItemName="EditDataFreeform!"
+this.ToolBarItemText="Print Preview"
+this.ToolBarItemOrder=40
+end on
+
+type m_pagesetup from menu within m_file
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_pagesetup")
+end event
+
+on m_pagesetup.create
+this.Text="Page Set&up..."
+this.Microhelp="Changes page layout settings"
+end on
+
+type m_printimmediate from menu within m_file
+end type
+
+event clicked;of_SendMessage ("pfc_printimmediate")
+end event
+
+on m_printimmediate.create
+this.Text="Print Immediate"
+this.Microhelp="Prints the item"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.Visible=false
+this.ToolBarItemOrder=35
+this.ToolBarItemSpace=2
+end on
+
+type m_dash13 from menu within m_file
+end type
+
+on m_dash13.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_delete from menu within m_file
+end type
+
+on m_delete.create
+this.Text="&Delete~tCtrl+D"
+this.Microhelp="Deletes the item"
+this.ToolBarItemName="Custom009!"
+this.ToolBarItemText="Delete"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=60
+this.ToolBarItemSpace=2
+this.Enabled=false
+this.Shortcut=324
+end on
+
+type m_properties from menu within m_file
+end type
+
+on m_properties.create
+this.Text="P&roperties"
+this.Microhelp="Displays or changes properties of the item"
+this.ToolBarItemName="Properties!"
+this.ToolBarItemText="Properties"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=65
+this.Enabled=false
+end on
+
+type m_dash14 from menu within m_file
+end type
+
+on m_dash14.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;gnv_app.event pfc_exit()
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Quits the application"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ShiftToRight=true
+this.MenuItemType=MenuItemTypeExit!
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=9999
+this.ToolBarItemSpace=2
+end on
+
+type m_pfcmrudash1 from menu within m_file
+end type
+
+on m_pfcmrudash1.create
+this.Text="-"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_pfcmru1 from menu within m_file
+end type
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:		Clicked
+//
+//	Arguments:	None
+//
+//	Returns:		None
+//
+//	Description:
+//	Send menu item text from menu to event on window
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	6.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+message.stringparm = this.text
+of_sendmessage("pfc_mruclicked")
+
+end event
+
+on m_pfcmru1.create
+this.Text="pfcmru1"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_pfcmru2 from menu within m_file
+end type
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:		Clicked
+//
+//	Arguments:	None
+//
+//	Returns:		None
+//
+//	Description:
+//	Send menu item text from menu to event on window
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	6.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+message.stringparm = this.text
+of_sendmessage("pfc_mruclicked")
+
+end event
+
+on m_pfcmru2.create
+this.Text="pfcmru2"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_pfcmru3 from menu within m_file
+end type
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:		Clicked
+//
+//	Arguments:	None
+//
+//	Returns:		None
+//
+//	Description:
+//	Send menu item text from menu to event on window
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	6.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+message.stringparm = this.text
+of_sendmessage("pfc_mruclicked")
+
+end event
+
+on m_pfcmru3.create
+this.Text="pfcmru3"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_pfcmru4 from menu within m_file
+end type
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:		Clicked
+//
+//	Arguments:	None
+//
+//	Returns:		None
+//
+//	Description:
+//	Send menu item text from menu to event on window
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	6.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+message.stringparm = this.text
+of_sendmessage("pfc_mruclicked")
+
+end event
+
+on m_pfcmru4.create
+this.Text="pfcmru4"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_pfcmru5 from menu within m_file
+end type
+
+event clicked;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:		Clicked
+//
+//	Arguments:	None
+//
+//	Returns:		None
+//
+//	Description:
+//	Send menu item text from menu to event on window
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	6.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+message.stringparm = this.text
+of_sendmessage("pfc_mruclicked")
+
+end event
+
+on m_pfcmru5.create
+this.Text="pfcmru5"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_edit from menu within pfc_m_master
+m_undo m_undo
+m_dash21 m_dash21
+m_cut m_cut
+m_copy m_copy
+m_paste m_paste
+m_pastespecial m_pastespecial
+m_clear m_clear
+m_dash22 m_dash22
+m_selectall m_selectall
+m_dash23 m_dash23
+m_find m_find
+m_replace m_replace
+m_dash24 m_dash24
+m_updatelinks m_updatelinks
+m_object1 m_object1
+end type
+
+on m_edit.create
+this.Text="&Edit"
+this.m_undo=create m_undo
+this.m_dash21=create m_dash21
+this.m_cut=create m_cut
+this.m_copy=create m_copy
+this.m_paste=create m_paste
+this.m_pastespecial=create m_pastespecial
+this.m_clear=create m_clear
+this.m_dash22=create m_dash22
+this.m_selectall=create m_selectall
+this.m_dash23=create m_dash23
+this.m_find=create m_find
+this.m_replace=create m_replace
+this.m_dash24=create m_dash24
+this.m_updatelinks=create m_updatelinks
+this.m_object1=create m_object1
+this.Item[]={this.m_undo, &
+this.m_dash21, &
+this.m_cut, &
+this.m_copy, &
+this.m_paste, &
+this.m_pastespecial, &
+this.m_clear, &
+this.m_dash22, &
+this.m_selectall, &
+this.m_dash23, &
+this.m_find, &
+this.m_replace, &
+this.m_dash24, &
+this.m_updatelinks, &
+this.m_object1}
+end on
+
+on m_edit.destroy
+destroy(this.m_undo)
+destroy(this.m_dash21)
+destroy(this.m_cut)
+destroy(this.m_copy)
+destroy(this.m_paste)
+destroy(this.m_pastespecial)
+destroy(this.m_clear)
+destroy(this.m_dash22)
+destroy(this.m_selectall)
+destroy(this.m_dash23)
+destroy(this.m_find)
+destroy(this.m_replace)
+destroy(this.m_dash24)
+destroy(this.m_updatelinks)
+destroy(this.m_object1)
+end on
+
+type m_undo from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_undo")
+end on
+
+on m_undo.create
+this.Text="&Undo~tCtrl+Z"
+this.Microhelp="Reverses last action"
+this.ToolBarItemName="Undo!"
+this.ToolBarItemText="Undo"
+this.ToolBarItemOrder=95
+this.ToolBarItemSpace=2
+this.Shortcut=346
+end on
+
+type m_dash21 from menu within m_edit
+end type
+
+on m_dash21.create
+this.Text="-"
+end on
+
+type m_cut from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_cut")
+end on
+
+on m_cut.create
+this.Text="Cu&t~tCtrl+X"
+this.Microhelp="Moves the selection to the Clipboard"
+this.ToolBarItemName="Cut!"
+this.ToolBarItemText="Cut"
+this.ToolBarItemOrder=70
+this.ToolBarItemSpace=2
+this.Shortcut=344
+end on
+
+type m_copy from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_copy")
+end on
+
+on m_copy.create
+this.Text="&Copy~tCtrl+C"
+this.Microhelp="Copies the selection to the Clipboard"
+this.ToolBarItemName="Copy!"
+this.ToolBarItemText="Copy"
+this.ToolBarItemOrder=75
+this.Shortcut=323
+end on
+
+type m_paste from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_paste")
+end on
+
+on m_paste.create
+this.Text="&Paste~tCtrl+V"
+this.Microhelp="Inserts Clipboard contents at current insertion point"
+this.ToolBarItemName="Paste!"
+this.ToolBarItemText="Paste"
+this.ToolBarItemOrder=80
+this.Shortcut=342
+end on
+
+type m_pastespecial from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_pastespecial")
+end on
+
+on m_pastespecial.create
+this.Text="Paste &Special..."
+this.Microhelp="Inserts the clipboard contents as a link, object, or other format"
+end on
+
+type m_clear from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_clear")
+end on
+
+on m_clear.create
+this.Text="Cle&ar"
+this.Microhelp="Removes the selection"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Clear"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=85
+end on
+
+type m_dash22 from menu within m_edit
+end type
+
+on m_dash22.create
+this.Text="-"
+end on
+
+type m_selectall from menu within m_edit
+end type
+
+on clicked;of_SendMessage ("pfc_selectall")
+end on
+
+on m_selectall.create
+this.Text="Select A&ll~tCtrl+A"
+this.Microhelp="Selects all items or information"
+this.ToolBarItemName="SelectAll!"
+this.ToolBarItemText="Select All"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=90
+this.Shortcut=321
+end on
+
+type m_dash23 from menu within m_edit
+end type
+
+on m_dash23.create
+this.Text="-"
+end on
+
+type m_find from menu within m_edit
+end type
+
+on m_find.create
+this.Text="&Find...~tCtrl+F"
+this.Microhelp="Finds the specified text"
+this.ToolBarItemName="Find!"
+this.ToolBarItemText="Find"
+this.ToolBarItemOrder=100
+this.ToolBarItemSpace=2
+this.Shortcut=326
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_finddlg")
+end event
+
+type m_replace from menu within m_edit
+end type
+
+on m_replace.create
+this.Text="&Replace...~tCtrl+H"
+this.Microhelp="Replaces specific text with different text"
+this.ToolBarItemName="Replace!"
+this.ToolBarItemText="Replace"
+this.ToolBarItemOrder=105
+this.Shortcut=328
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_replacedlg")
+end event
+
+type m_dash24 from menu within m_edit
+end type
+
+on m_dash24.create
+this.Text="-"
+end on
+
+type m_updatelinks from menu within m_edit
+end type
+
+on m_updatelinks.create
+this.Text="Update Lin&ks"
+this.Microhelp="Allows links to be updated"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_updatelinks")
+end event
+
+type m_object1 from menu within m_edit
+m_edit1 m_edit1
+m_open1 m_open1
+end type
+
+on m_object1.create
+this.Text="&Object"
+this.Microhelp="Contains commands for activating an object"
+this.ShiftToRight=true
+this.m_edit1=create m_edit1
+this.m_open1=create m_open1
+this.Item[]={this.m_edit1, &
+this.m_open1}
+end on
+
+on m_object1.destroy
+destroy(this.m_edit1)
+destroy(this.m_open1)
+end on
+
+type m_edit1 from menu within m_object1
+end type
+
+on m_edit1.create
+this.Text="&Edit"
+this.Microhelp="Activates selected object"
+end on
+
+on m_edit1.destroy
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_editobject")
+end event
+
+type m_open1 from menu within m_object1
+end type
+
+on m_open1.create
+this.Text="&Open"
+this.Microhelp="Activates selected object"
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_openobject")
+end event
+
+type m_view from menu within pfc_m_master
+m_ruler m_ruler
+m_dash31 m_dash31
+m_largeicon m_largeicon
+m_smallicons m_smallicons
+m_list m_list
+m_details m_details
+m_dash32 m_dash32
+m_arrangeicons m_arrangeicons
+m_dash34 m_dash34
+m_first m_first
+m_nextpage m_nextpage
+m_priorpage m_priorpage
+m_lastpage m_lastpage
+m_dash35 m_dash35
+m_sort m_sort
+m_filter m_filter
+m_dash36 m_dash36
+m_zoom m_zoom
+end type
+
+on m_view.create
+this.Text="&View"
+this.m_ruler=create m_ruler
+this.m_dash31=create m_dash31
+this.m_largeicon=create m_largeicon
+this.m_smallicons=create m_smallicons
+this.m_list=create m_list
+this.m_details=create m_details
+this.m_dash32=create m_dash32
+this.m_arrangeicons=create m_arrangeicons
+this.m_dash34=create m_dash34
+this.m_first=create m_first
+this.m_nextpage=create m_nextpage
+this.m_priorpage=create m_priorpage
+this.m_lastpage=create m_lastpage
+this.m_dash35=create m_dash35
+this.m_sort=create m_sort
+this.m_filter=create m_filter
+this.m_dash36=create m_dash36
+this.m_zoom=create m_zoom
+this.Item[]={this.m_ruler, &
+this.m_dash31, &
+this.m_largeicon, &
+this.m_smallicons, &
+this.m_list, &
+this.m_details, &
+this.m_dash32, &
+this.m_arrangeicons, &
+this.m_dash34, &
+this.m_first, &
+this.m_nextpage, &
+this.m_priorpage, &
+this.m_lastpage, &
+this.m_dash35, &
+this.m_sort, &
+this.m_filter, &
+this.m_dash36, &
+this.m_zoom}
+end on
+
+on m_view.destroy
+destroy(this.m_ruler)
+destroy(this.m_dash31)
+destroy(this.m_largeicon)
+destroy(this.m_smallicons)
+destroy(this.m_list)
+destroy(this.m_details)
+destroy(this.m_dash32)
+destroy(this.m_arrangeicons)
+destroy(this.m_dash34)
+destroy(this.m_first)
+destroy(this.m_nextpage)
+destroy(this.m_priorpage)
+destroy(this.m_lastpage)
+destroy(this.m_dash35)
+destroy(this.m_sort)
+destroy(this.m_filter)
+destroy(this.m_dash36)
+destroy(this.m_zoom)
+end on
+
+type m_ruler from menu within m_view
+end type
+
+event clicked;of_SendMessage ("pfc_ruler")
+end event
+
+on m_ruler.create
+this.Text="&Ruler"
+this.Microhelp="Shows or hides the ruler"
+this.ShiftToRight=true
+end on
+
+type m_dash31 from menu within m_view
+end type
+
+on m_dash31.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_largeicon from menu within m_view
+end type
+
+on m_largeicon.create
+this.Text="Lar&ge Icons"
+this.Microhelp="Displays items by using large icons"
+this.ToolBarItemName="largeico.bmp"
+this.ToolBarItemText="Large Icons"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=145
+this.ToolBarItemSpace=2
+this.Enabled=false
+end on
+
+type m_smallicons from menu within m_view
+end type
+
+on m_smallicons.create
+this.Text="S&mall Icons"
+this.Microhelp="Displays items by using small icons"
+this.ToolBarItemName="smallico.bmp"
+this.ToolBarItemText="Small Icons"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=150
+this.Enabled=false
+end on
+
+type m_list from menu within m_view
+end type
+
+on m_list.create
+this.Text="&List"
+this.Microhelp="Displays items in a list"
+this.ToolBarItemName="listv.bmp"
+this.ToolBarItemText="List"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=155
+this.Enabled=false
+end on
+
+type m_details from menu within m_view
+end type
+
+on m_details.create
+this.Text="&Details"
+this.Microhelp="Displays information about each item"
+this.ToolBarItemName="detailsv.bmp"
+this.ToolBarItemText="Details"
+this.Visible=false
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=160
+this.Enabled=false
+end on
+
+type m_dash32 from menu within m_view
+end type
+
+on m_dash32.create
+this.Text="-"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_arrangeicons from menu within m_view
+m_by1 m_by1
+m_dash33 m_dash33
+m_autoarrange m_autoarrange
+end type
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+this.Microhelp="Contains commands for arranging items"
+this.Visible=false
+this.ShiftToRight=true
+this.Enabled=false
+this.m_by1=create m_by1
+this.m_dash33=create m_dash33
+this.m_autoarrange=create m_autoarrange
+this.Item[]={this.m_by1, &
+this.m_dash33, &
+this.m_autoarrange}
+end on
+
+on m_arrangeicons.destroy
+destroy(this.m_by1)
+destroy(this.m_dash33)
+destroy(this.m_autoarrange)
+end on
+
+type m_by1 from menu within m_arrangeicons
+end type
+
+on m_by1.create
+this.Text="by"
+this.Microhelp="Arrange by"
+end on
+
+type m_dash33 from menu within m_arrangeicons
+end type
+
+on m_dash33.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_autoarrange from menu within m_arrangeicons
+end type
+
+on m_autoarrange.create
+this.Text="&Auto Arrange"
+this.Microhelp="Arranges the icons automatically"
+this.ShiftToRight=true
+end on
+
+type m_dash34 from menu within m_view
+end type
+
+on m_dash34.create
+this.Text="-"
+this.Visible=false
+this.ShiftToRight=true
+end on
+
+type m_first from menu within m_view
+end type
+
+event clicked;of_SendMessage ("pfc_firstpage")
+end event
+
+on m_first.create
+this.Text="&First"
+this.Microhelp="First"
+this.ToolBarItemName="VCRFirst!"
+this.ToolBarItemText="First"
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=165
+this.ToolBarItemSpace=2
+end on
+
+type m_nextpage from menu within m_view
+end type
+
+event clicked;of_SendMessage ("pfc_nextpage")
+end event
+
+on m_nextpage.create
+this.Text="&Next"
+this.Microhelp="Next"
+this.ToolBarItemName="VCRNext!"
+this.ToolBarItemText="Next"
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=170
+end on
+
+type m_priorpage from menu within m_view
+end type
+
+event clicked;of_SendMessage ("pfc_previouspage")
+end event
+
+on m_priorpage.create
+this.Text="&Prior"
+this.Microhelp="Prior"
+this.ToolBarItemName="VCRPrior!"
+this.ToolBarItemText="Prior"
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=175
+end on
+
+type m_lastpage from menu within m_view
+end type
+
+event clicked;of_SendMessage ("pfc_lastpage")
+end event
+
+on m_lastpage.create
+this.Text="L&ast"
+this.Microhelp="Last"
+this.ToolBarItemName="VCRLast!"
+this.ToolBarItemText="Last"
+this.ShiftToRight=true
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=180
+end on
+
+type m_dash35 from menu within m_view
+end type
+
+on m_dash35.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_sort from menu within m_view
+end type
+
+on m_sort.create
+this.Text="&Sort..."
+this.Microhelp="Sorts items"
+this.ToolBarItemText="Sort"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_sortdlg")
+end event
+
+type m_filter from menu within m_view
+end type
+
+on m_filter.create
+this.Text="Fil&ter..."
+this.Microhelp="Filters items"
+this.ToolBarItemText="Filter"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_filterdlg")
+end event
+
+type m_dash36 from menu within m_view
+end type
+
+on m_dash36.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_zoom from menu within m_view
+end type
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_zoom")
+end event
+
+on m_zoom.create
+this.Text="&Zoom..."
+this.Microhelp="Scales the display of the print preview"
+this.ShiftToRight=true
+end on
+
+type m_insert from menu within pfc_m_master
+m_insertfile m_insertfile
+m_picture m_picture
+m_dash41 m_dash41
+m_object m_object
+end type
+
+on m_insert.create
+this.Text="&Insert"
+this.m_insertfile=create m_insertfile
+this.m_picture=create m_picture
+this.m_dash41=create m_dash41
+this.m_object=create m_object
+this.Item[]={this.m_insertfile, &
+this.m_picture, &
+this.m_dash41, &
+this.m_object}
+end on
+
+on m_insert.destroy
+destroy(this.m_insertfile)
+destroy(this.m_picture)
+destroy(this.m_dash41)
+destroy(this.m_object)
+end on
+
+type m_insertfile from menu within m_insert
+end type
+
+on m_insertfile.create
+this.Text="&File..."
+this.Microhelp="Inserts the text of another file"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_insertfile")
+end event
+
+type m_picture from menu within m_insert
+end type
+
+on m_picture.create
+this.Text="&Picture..."
+this.Microhelp="Inserts a picture from a graphics file"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_insertpicture")
+end event
+
+type m_dash41 from menu within m_insert
+end type
+
+on m_dash41.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_object from menu within m_insert
+end type
+
+on m_object.create
+this.Text="&Object..."
+this.Microhelp="Inserts an object"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_insertobject")
+end event
+
+type m_tools from menu within pfc_m_master
+m_toolbars m_toolbars
+end type
+
+on m_tools.create
+this.Text="&Tools"
+this.m_toolbars=create m_toolbars
+this.Item[]={this.m_toolbars}
+end on
+
+on m_tools.destroy
+destroy(this.m_toolbars)
+end on
+
+type m_toolbars from menu within m_tools
+end type
+
+on m_toolbars.create
+this.Text="&Customize Toolbars..."
+this.Microhelp="Arranges toolbar buttons"
+this.ShiftToRight=true
+end on
+
+event clicked;SetPointer (hourglass!)
+of_SendMessage ("pfc_toolbars")
+end event
+
+type m_window from menu within pfc_m_master
+m_cascade m_cascade
+m_tilehorizontal m_tilehorizontal
+m_tilevertical m_tilevertical
+m_layer m_layer
+m_dash51 m_dash51
+m_minimizeall m_minimizeall
+m_undoarrange m_undoarrange
+end type
+
+on m_window.create
+this.Text="&Window"
+this.ShiftToRight=true
+this.MergeOption=WindowMenu!
+this.m_cascade=create m_cascade
+this.m_tilehorizontal=create m_tilehorizontal
+this.m_tilevertical=create m_tilevertical
+this.m_layer=create m_layer
+this.m_dash51=create m_dash51
+this.m_minimizeall=create m_minimizeall
+this.m_undoarrange=create m_undoarrange
+this.Item[]={this.m_cascade, &
+this.m_tilehorizontal, &
+this.m_tilevertical, &
+this.m_layer, &
+this.m_dash51, &
+this.m_minimizeall, &
+this.m_undoarrange}
+end on
+
+on m_window.destroy
+destroy(this.m_cascade)
+destroy(this.m_tilehorizontal)
+destroy(this.m_tilevertical)
+destroy(this.m_layer)
+destroy(this.m_dash51)
+destroy(this.m_minimizeall)
+destroy(this.m_undoarrange)
+end on
+
+event selected;//////////////////////////////////////////////////////////////////////////////
+//
+//	Event:  selected
+//
+//	Description:
+//	Enables menu items based on sheet manager service
+//
+//////////////////////////////////////////////////////////////////////////////
+//	
+//	Revision History
+//
+//	Version
+//	5.0   Initial version
+//
+//////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright © 1996-1997 Sybase, Inc. and its subsidiaries.  All rights reserved.
+//	Any distribution of the PowerBuilder Foundation Classes (PFC)
+//	source code by other than Sybase, Inc. and its subsidiaries is prohibited.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+any				la_rc
+boolean			lb_normal
+integer			li_rc
+integer			li_sheetcount
+integer			li_cnt = 1
+arrangetypes	le_arrange
+n_cst_menu		lnv_menu
+window			lw_obj
+window			lw_sheet[]
+w_frame			lw_frame
+
+// Get frame window
+li_rc = lnv_menu.of_GetMDIFrame (this, lw_obj)
+if li_rc < 0 then
+	return
+end if
+
+// Determine if frame is a PFC frame descendant
+la_rc = lw_obj.dynamic event pfc_descendant()
+if IsNull (la_rc) then
+	return
+end if
+lw_frame = lw_obj
+
+// If sheetmanager service is enabled, allow for undo and minimize capabilities
+if IsValid (lw_frame.inv_sheetmanager) then
+
+	// First determine if there are any nonminimized sheets open
+	li_sheetcount = lw_frame.inv_sheetmanager.of_GetSheets (lw_sheet)
+	do while li_cnt <= li_sheetcount and not lb_normal
+		if lw_sheet[li_cnt].windowstate <> minimized! then
+			lb_normal = true
+		end if
+		li_cnt++
+	loop
+
+	this.m_undoarrange.enabled = true
+	this.m_minimizeall.enabled = lb_normal
+	this.m_cascade.enabled = lb_normal
+	this.m_layer.enabled = lb_normal
+	this.m_tilehorizontal.enabled = lb_normal
+	this.m_tilevertical.enabled = lb_normal
+
+	// Get current arrange state of windows and set undo text
+	le_arrange = lw_frame.inv_sheetmanager.of_GetCurrentState()
+	choose case le_arrange
+		case tile!
+			this.m_undoarrange.text = "&Undo Tile Vertical"
+			this.m_undoarrange.microhelp = "Undoes vertical tile arrangement of windows"
+		case tilehorizontal!
+			this.m_undoarrange.text = "&Undo Tile Horizontal"
+			this.m_undoarrange.microhelp = "Undoes horizontal tile arrangement of windows"
+		case cascade!
+			this.m_undoarrange.text = "&Undo Cascade"
+			this.m_undoarrange.microhelp = "Undoes cascaded arrangement of windows"
+		case layer!
+			this.m_undoarrange.text = "&Undo Layer"
+			this.m_undoarrange.microhelp = "Undoes layered arrangement of windows"
+		case icons!
+			this.m_undoarrange.text = "&Undo Minimize All"
+			this.m_undoarrange.microhelp = "Undoes minimization of windows"
+			this.m_cascade.enabled = false
+			this.m_layer.enabled = false
+			this.m_tilehorizontal.enabled = false
+			this.m_tilevertical.enabled = false
+			this.m_minimizeall.enabled = false
+		case else
+			this.m_undoarrange.enabled = false
+			this.m_undoarrange.text = "&Undo"
+			this.m_undoarrange.microhelp = "Undo"
+	end choose
+else
+	this.m_minimizeall.enabled = false
+	this.m_undoarrange.enabled = false
+end if
+
+end event
+
+type m_cascade from menu within m_window
+end type
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Cascade windows so that each title bar is visible"
+this.ToolBarItemName="Cascade!"
+this.ToolBarItemText="Cascade"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=220
+this.ToolBarItemSpace=2
+end on
+
+event clicked;of_SendMessage ("pfc_cascade")
+end event
+
+type m_tilehorizontal from menu within m_window
+end type
+
+on m_tilehorizontal.create
+this.Text="Tile &Horizontal"
+this.Microhelp="Tile windows horizontally so that none are overlapping"
+this.ToolBarItemName="Horizontal!"
+this.ToolBarItemText="Tile Horizontal"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=225
+end on
+
+event clicked;of_SendMessage ("pfc_tilehorizontal")
+end event
+
+type m_tilevertical from menu within m_window
+end type
+
+on m_tilevertical.create
+this.Text="Tile &Vertical"
+this.Microhelp="Tile windows vertically so that none are overlapping"
+this.ToolBarItemName="Tile!"
+this.ToolBarItemText="Tile Vertical"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=230
+end on
+
+event clicked;of_SendMessage ("pfc_tilevertical")
+end event
+
+type m_layer from menu within m_window
+end type
+
+on m_layer.create
+this.Text="&Layer"
+this.Microhelp="Layer windows so that each one completely covers the one below it"
+this.ToolBarItemName="Layer!"
+this.ToolBarItemText="Layer"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=235
+end on
+
+event clicked;of_SendMessage ("pfc_layer")
+end event
+
+type m_dash51 from menu within m_window
+end type
+
+on m_dash51.create
+this.Text="-"
+end on
+
+type m_minimizeall from menu within m_window
+end type
+
+on m_minimizeall.create
+this.Text="&Minimize All Windows"
+this.Microhelp="Minimizes all windows"
+end on
+
+event clicked;of_SendMessage ("pfc_minimizeall")
+end event
+
+type m_undoarrange from menu within m_window
+end type
+
+on m_undoarrange.create
+this.Text="&Undo"
+this.Microhelp="Undo"
+end on
+
+event clicked;of_SendMessage ("pfc_undoarrange")
+end event
+
+type m_help from menu within pfc_m_master
+m_helptopics m_helptopics
+m_dash61 m_dash61
+m_about m_about
+end type
+
+on m_help.create
+this.Text="&Help"
+this.ShiftToRight=true
+this.m_helptopics=create m_helptopics
+this.m_dash61=create m_dash61
+this.m_about=create m_about
+this.Item[]={this.m_helptopics, &
+this.m_dash61, &
+this.m_about}
+end on
+
+on m_help.destroy
+destroy(this.m_helptopics)
+destroy(this.m_dash61)
+destroy(this.m_about)
+end on
+
+type m_helptopics from menu within m_help
+end type
+
+on clicked;of_SendMessage ("pfc_help")
+end on
+
+on m_helptopics.create
+this.Text="&Help Topics"
+this.Microhelp="Displays help topics"
+this.ToolBarItemName="helptop.bmp"
+this.ToolBarItemText="Help Topics"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=255
+this.ToolBarItemSpace=2
+end on
+
+type m_dash61 from menu within m_help
+end type
+
+on m_dash61.create
+this.Text="-"
+this.ShiftToRight=true
+end on
+
+type m_about from menu within m_help
+end type
+
+event clicked;SetPointer (hourglass!)
+gnv_app.of_about()
+
+end event
+
+on m_about.create
+this.Text="&About"
+this.Microhelp="Displays program information"
+this.ShiftToRight=true
+this.MenuItemType=MenuItemTypeAbout!
+end on
+

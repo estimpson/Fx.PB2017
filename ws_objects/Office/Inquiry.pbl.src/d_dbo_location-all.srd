@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_dbo_location-all.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=no hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="location.code" initial="" values="" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=name dbname="location.name" initial="" values="" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=type dbname="location.type" initial="" values="Machine	MC/Storage	ST/" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=group_no dbname="location.group_no" initial="" values="" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=sequence dbname="location.sequence" initial="0" values="" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="location.plant" initial="" values="" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="location.status" initial="" values="" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=secured_location dbname="location.secured_location" initial="" values="No	N/Yes	Y/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=label_on_transfer dbname="location.label_on_transfer" initial="" values="No	N/Yes	Y/" )
+ column=(type=long update=yes updatewhereclause=yes name=qualityalert dbname="QualityAlert" values="	1/	0" )
+ column=(type=long updatewhereclause=yes identity=yes name=rowid dbname="location.RowID" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" initial="" values="" )
+ retrieve="select
+	code
+,	name
+,	type
+,	group_no
+,	sequence
+,	plant
+,	status
+,	secured_location
+,	label_on_transfer
+,	QualityAlert = convert(int, QualityAlert)
+,	RowID
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.location
+" update="location" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="0" text="Location code" border="6" color="33554432" x="9" y="8" height="80" width="457" html.valueishtml="0"  name=code_t  tag="Location code" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="475" y="8" height="80" width="457" html.valueishtml="0"  name=name_t  tag="Description" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="942" y="8" height="80" width="457" html.valueishtml="0"  name=type_t  tag="Type" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Group technology" border="6" color="134217742" x="1408" y="8" height="80" width="549" html.valueishtml="0"  name=group_no_t  tag="Group technology" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Sequence" border="6" color="134217742" x="1966" y="8" height="80" width="457" html.valueishtml="0"  name=sequence_t  tag="Sequence" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Plant" border="6" color="134217742" x="2432" y="8" height="80" width="457" html.valueishtml="0"  name=plant_t  tag="Plant" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Status" border="6" color="134217742" x="2898" y="8" height="80" width="457" html.valueishtml="0"  name=status_t  tag="Status" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Secured?" border="6" color="134217742" x="3365" y="8" height="80" width="457" html.valueishtml="0"  name=secured_location_t  tag="Secured?" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Quality Alert?" border="6" color="134217742" x="3831" y="8" height="80" width="379" html.valueishtml="0"  name=qualityalert_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Relabel xfer?" border="6" color="134217742" x="4219" y="8" height="80" width="457" html.valueishtml="0"  name=label_on_transfer_t  tag="Relabel xfer?" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="12" height="76" width="457" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=code  tag="Location code..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],1,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="475" y="12" height="76" width="457" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=name  tag="Location description..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="0" color="33554432" x="942" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=type  tag="Location type (storage or machine)..." visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],3,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="1408" y="12" height="76" width="549" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=group_no  tag="Group technology..." visible="1" dddw.name=d_Kkzvuxbhzr dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=284 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],4,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="2" tabsequence=50 border="0" color="33554432" x="1966" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=sequence  tag="Sequence..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=6 alignment="2" tabsequence=60 border="0" color="33554432" x="2432" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=plant  tag="Location plant..." visible="1" dddw.name=d_Fdrsinevob dddw.displaycolumn=plant dddw.datacolumn=plant dddw.percentwidth=221 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],6,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="0" color="33554432" x="2898" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=status  tag="Location status..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],7,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=8 alignment="2" tabsequence=80 border="0" color="33554432" x="3365" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=secured_location  tag="Secured location?" visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=9 alignment="2" tabsequence=100 border="0" color="33554432" x="4219" y="12" height="76" width="457" format="[general]" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=label_on_transfer  tag="Relabel on transfer?" visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],9,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=10 alignment="2" tabsequence=90 border="0" color="33554432" x="3831" y="12" height="76" width="379" format="[general]" html.valueishtml="0"  name=qualityalert  tag="Quality Alert Flag - If set, inventory moved into this location will be placed on hold." visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

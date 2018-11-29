@@ -1,0 +1,143 @@
+﻿$PBExportHeader$m_generate_report.srm
+$PBExportComments$menu used in printing and viewing reports.
+forward
+global type m_generate_report from menu
+end type
+type m_file from menu within m_generate_report
+end type
+type m_print from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_generate_report
+m_print m_print
+m_- m_-
+m_exit m_exit
+end type
+type m_window from menu within m_generate_report
+end type
+type m_window from menu within m_generate_report
+end type
+type m_help from menu within m_generate_report
+end type
+type m_help from menu within m_generate_report
+end type
+end forward
+
+global type m_generate_report from menu
+m_file m_file
+m_window m_window
+m_help m_help
+end type
+global m_generate_report m_generate_report
+
+on m_generate_report.create
+m_generate_report=this
+this.m_file=create m_file
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_generate_report.destroy
+destroy(this.m_file)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_generate_report
+m_print m_print
+m_- m_-
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_print=create m_print
+this.m_-=create m_-
+this.m_exit=create m_exit
+this.Item[]={this.m_print, &
+this.m_-, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_print)
+destroy(this.m_-)
+destroy(this.m_exit)
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;Window		l_w_window
+
+l_w_Window = gnv_App.of_GetFrame().GetActiveSheet()
+
+IF ISVALID (  l_w_window ) THEN
+	l_w_window.TRIGGEREVENT ( "ue_print" )
+END IF
+end event
+
+on m_print.create
+this.Text="Print~tAlt+P"
+this.Microhelp="Print Report"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=20
+this.Shortcut=592
+end on
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=10
+end on
+
+event clicked;Window		l_w_window
+
+l_w_Window = gnv_App.of_GetFrame().GetActiveSheet()
+
+IF ISVALID (  l_w_window ) THEN
+	l_w_window.TRIGGEREVENT ( "ue_close" )
+END IF
+
+ 
+end event
+
+type m_window from menu within m_generate_report
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_generate_report
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

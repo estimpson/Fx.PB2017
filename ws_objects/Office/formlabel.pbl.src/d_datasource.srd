@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_datasource.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=name dbname="xreport_library.name" )
+ column=(type=char(25) update=yes updatewhereclause=yes key=yes name=report dbname="xreport_library.report" )
+ column=(type=char(8) update=yes updatewhereclause=yes name=datasource dbname="xreport_library.datasource" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=xlabelformat dbname="xreport_library.xlabelformat" )
+ column=(type=char(1) updatewhereclause=yes name=enabled dbname="enabled" initial="N" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"xreport_library~" ) COLUMN(NAME=~"xreport_library.name~") COLUMN(NAME=~"xreport_library.report~") COLUMN(NAME=~"xreport_library.datasource~") COLUMN(NAME=~"xreport_library.xlabelformat~") COMPUTE(NAME=~"'N' enabled~")WHERE(    EXP1 =~"~~~"xreport_library~~~".~~~"name~~~"~"   OP =~"=~"    EXP2 =~":name~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"~~~"xreport_library~~~".~~~"report~~~"~"   OP =~"=~"    EXP2 =~":report~" ) ) ARG(NAME = ~"name~" TYPE = string)  ARG(NAME = ~"report~" TYPE = string) " update="xreport_library" updatewhere=0 updatekeyinplace=yes arguments=(("name", string),("report", string)) )
+data("","","","","N",) 
+text(band=detail alignment="0" text="Data Source:"border="0" color="37234728" x="0" y="4" height="52" width="302"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="37234728" x="338" y="8" height="52" width="471" format="[general]" protect="0~tIF ( enabled = 'Y', 0, 1 )"  name=datasource dddw.name=d_dddw_datasource dddw.displaycolumn=datasource_name dddw.datacolumn=datasource_name dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1090517208~tIF ( enabled = 'Y', g_f_get_sys_color ( ~"window~" ), g_f_get_sys_color ( ~"buttonface~" ) )" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

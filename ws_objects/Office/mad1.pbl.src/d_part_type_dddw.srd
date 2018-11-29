@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_part_type_dddw.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=part_type_definition_type dbname="part_type_definition.type" )
+ column=(type=char(25) updatewhereclause=yes name=part_type_definition_type_name dbname="part_type_definition.type_name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_class_type_cross_ref~" )  TABLE(NAME=~"part_type_definition~" ) COLUMN(NAME=~"part_type_definition.type~") COLUMN(NAME=~"part_type_definition.type_name~")    JOIN (LEFT=~"part_type_definition.type~"    OP =~"=~"RIGHT=~"part_class_type_cross_ref.type~" )WHERE(    EXP1 =~"part_class_type_cross_ref.class~"   OP =~"=~"    EXP2 =~":class~" ) ) ARG(NAME = ~"class~" TYPE = string) " arguments=(("class", string)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="667" format="[general]"  name=part_type_definition_type_name edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

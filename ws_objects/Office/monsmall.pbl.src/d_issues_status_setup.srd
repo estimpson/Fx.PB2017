@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_issues_status_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=status dbname="issues_status.status" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type dbname="issues_status.type" values="Open	O/Closed	C/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=default_value dbname="issues_status.default_value" values="Yes	Y/No	N/" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"issues_status~" ) COLUMN(NAME=~"issues_status.status~") COLUMN(NAME=~"issues_status.type~") COLUMN(NAME=~"issues_status.default_value~")) ORDER(NAME=~"issues_status.status~" ASC=yes ) " update="issues_status" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Status"border="6" color="0" x="9" y="8" height="52" width="713"  name=status_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="731" y="8" height="52" width="361"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Default Value"border="6" color="0" x="1102" y="8" height="52" width="480"  name=default_value_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="4" height="76" width="713" format="[general]"  name=status edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="731" y="4" height="76" width="361" format="[general]"  name=type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1102" y="4" height="76" width="480" format="[general]"  name=default_value ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

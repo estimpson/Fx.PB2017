@@ -1,0 +1,37 @@
+﻿$PBExportHeader$d_customer_treeview.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(255) updatewhereclause=no name=itemlabel dbname="itemlabel" )
+ column=(type=char(255) updatewhereclause=no name=parentlabel dbname="parentlabel" )
+ column=(type=number updatewhereclause=no name=pictureindex dbname="pictureindex" )
+ column=(type=number updatewhereclause=no name=selectedpictureindex dbname="selectedpictureindex" )
+ column=(type=char(3) updatewhereclause=no name=expanded dbname="expanded" )
+ column=(type=number updatewhereclause=no name=itemhandle dbname="itemhandle" )
+ column=(type=char(255) updatewhereclause=no name=itemtype dbname="itemtype" )
+ column=(type=number updatewhereclause=no name=itemlevel dbname="itemlevel" )
+ procedure="1 begin
+execute msp_customerservice_treeview :where_clause
+end
+commit transaction
+" arguments=(("where_clause", string))  sort="itemlevel A pictureindex A " )
+text(band=header alignment="2" text="Itemlabel"border="0" color="0" x="9" y="8" height="64" width="667"  name=itemlabel_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Parentlabel"border="0" color="0" x="686" y="8" height="64" width="631"  name=parentlabel_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pictureindex"border="0" color="0" x="1326" y="8" height="64" width="320"  name=pictureindex_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Selectedpictureindex"border="0" color="0" x="1655" y="8" height="64" width="544"  name=selectedpictureindex_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Expanded"border="0" color="0" x="2208" y="8" height="64" width="256"  name=expanded_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Itemhandle"border="0" color="0" x="2473" y="8" height="64" width="288"  name=itemhandle_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Itemtype"border="0" color="0" x="2770" y="8" height="64" width="521"  name=itemtype_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Itemlevel"border="0" color="0" x="3301" y="4" height="76" width="251"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="667" format="[general]"  name=itemlabel edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="686" y="8" height="76" width="631" format="[general]"  name=parentlabel edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="1326" y="8" height="76" width="320" format="[general]"  name=pictureindex edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="0" x="1655" y="8" height="76" width="544" format="[general]"  name=selectedpictureindex edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="2208" y="8" height="76" width="256" format="[general]"  name=expanded edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2473" y="8" height="76" width="288" format="[general]"  name=itemhandle edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="0" color="0" x="2770" y="8" height="76" width="521" format="[general]"  name=itemtype edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="3301" y="0" height="76" width="251" format="[general]"  name=itemlevel edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

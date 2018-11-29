@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_bom.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=char(25) update=yes key=yes name=parent_part dbname="bill_of_material.parent_part" )
+ column=(type=char(25) update=yes key=yes name=part dbname="bill_of_material.part" )
+ column=(type=decimal(6) update=yes name=quantity dbname="bill_of_material.quantity" )
+ retrieve="PBSELECT(TABLE(NAME=~"bill_of_material~" ) COLUMN(NAME=~"bill_of_material.parent_part~") COLUMN(NAME=~"bill_of_material.part~") COLUMN(NAME=~"bill_of_material.quantity~")WHERE( EXP1 =~"bill_of_material.parent_part~" OP =~"=~" EXP2 =~":szPart~" ) ) ARG(NAME = ~"szPart~" TYPE = string) " update="bill_of_material" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+text(band=header alignment="2" text="Parent Part"border="0" color="0" x="10" y="8" height="65" width="513"  name=parent_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="531" y="8" height="65" width="673"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="0" x="1212" y="8" height="65" width="275"  name=quantity_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="10" y="8" height="65" width="513" format="[general]"  name=parent_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="531" y="8" height="65" width="673" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="1212" y="8" height="65" width="275" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

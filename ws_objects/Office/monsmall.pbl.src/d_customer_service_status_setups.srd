@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_customer_service_status_setups.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=status_name dbname="customer_service_status.status_name" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status_type dbname="customer_service_status.status_type" values="Approved	A/Hold	H/Closed	C/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=default_value dbname="customer_service_status.default_value" values="Yes	Y/No	N/" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"customer_service_status~" ) COLUMN(NAME=~"customer_service_status.status_name~") COLUMN(NAME=~"customer_service_status.status_type~") COLUMN(NAME=~"customer_service_status.default_value~")) ORDER(NAME=~"customer_service_status.status_name~" ASC=yes ) " update="customer_service_status" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Status Name"border="6" color="0" x="9" y="8" height="52" width="576"  name=status_name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Status Type"border="6" color="0" x="594" y="8" height="52" width="480"  name=status_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Default Value"border="6" color="0" x="1083" y="8" height="52" width="590"  name=default_value_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="4" height="76" width="576" format="[general]"  name=status_name edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="594" y="4" height="76" width="480" format="[general]"  name=status_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1083" y="4" height="76" width="590" format="[general]"  name=default_value ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.autohscroll=yes ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

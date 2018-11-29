@@ -1,0 +1,66 @@
+﻿$PBExportHeader$dw_ei_ship_xt_cust.srd
+$PBExportComments$update 5/14
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=4 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=65 color="536870912" )
+summary(height=73 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=77 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=row_column dbname="row_column" )
+ column=(type=number updatewhereclause=yes name=col2 dbname="col2" )
+ column=(type=number updatewhereclause=yes name=col3 dbname="col3" )
+ column=(type=number updatewhereclause=yes name=col4 dbname="col4" )
+ column=(type=number updatewhereclause=yes name=col5 dbname="col5" )
+ column=(type=number updatewhereclause=yes name=col6 dbname="col6" )
+ column=(type=number updatewhereclause=yes name=col7 dbname="col7" )
+ column=(type=number updatewhereclause=yes name=col8 dbname="col8" )
+ column=(type=number updatewhereclause=yes name=col9 dbname="col9" )
+ column=(type=number updatewhereclause=yes name=col10 dbname="col10" )
+ column=(type=number updatewhereclause=yes name=col11 dbname="col11" )
+ column=(type=number updatewhereclause=yes name=col12 dbname="col12" )
+ column=(type=number updatewhereclause=yes name=col13 dbname="col13" )
+ column=(type=number updatewhereclause=yes name=col14 dbname="col14" )
+ column=(type=number updatewhereclause=yes name=col15 dbname="col15" )
+ column=(type=number updatewhereclause=yes name=col16 dbname="col16" )
+ column=(type=number updatewhereclause=yes name=col17 dbname="col17" )
+ column=(type=number updatewhereclause=yes name=col18 dbname="col18" )
+ column=(type=number updatewhereclause=yes name=col19 dbname="col19" )
+ column=(type=number updatewhereclause=yes name=col20 dbname="col20" )
+ column=(type=number updatewhereclause=yes name=col21 dbname="col21" )
+ column=(type=number updatewhereclause=yes name=col22 dbname="col22" )
+ column=(type=number updatewhereclause=yes name=col23 dbname="col23" )
+ column=(type=number updatewhereclause=yes name=col24 dbname="col24" )
+ column=(type=number updatewhereclause=yes name=col25 dbname="col25" )
+ column=(type=number updatewhereclause=yes name=col26 dbname="col26" )
+ column=(type=number updatewhereclause=yes name=col27 dbname="col27" )
+ column=(type=number updatewhereclause=yes name=col28 dbname="col28" )
+ crosstabdata="LETICA	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 	Sum For 												E&EMAN	FORD	LEXAMAR	MONITOR" retrieve="  SELECT shipper_detail.shipper,   
+         shipper_detail.part,   
+         shipper_detail.qty_packed,   
+         shipper_detail.price,   
+         shipper_detail.salesman,   
+         shipper.customer,   
+         shipper.destination  
+    FROM shipper_detail,   
+         shipper  
+   WHERE ( shipper.id = shipper_detail.shipper )    
+" )
+text(band=header alignment="2" text=" "border="0" color="0" x="10" y="4" height="53" width="458"  name=row_column_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="LETICA"border="0" color="0" x="476" y="4" height="53" width="293"  name=col2_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="E&EMAN"border="0" color="0" x="778" y="4" height="53" width="321"  name=col25_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="FORD"border="0" color="0" x="1107" y="4" height="53" width="321"  name=col26_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="LEXAMAR"border="0" color="0" x="1436" y="4" height="53" width="321"  name=col27_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="MONITOR"border="0" color="0" x="1765" y="4" height="53" width="321"  name=col28_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="10" y="4" height="65" width="458" format="[general]"  name=row_column edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="476" y="4" height="65" width="293" format="$#,##0;[RED]($#,##0)"  name=col2 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="0" x="778" y="4" height="65" width="321" format="$#,##0;[RED]($#,##0)"  name=col25 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="1" tabsequence=32766 border="0" color="0" x="1107" y="4" height="65" width="321" format="$#,##0;[RED]($#,##0)"  name=col26 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="0" x="1436" y="4" height="65" width="321" format="$#,##0;[RED]($#,##0)"  name=col27 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=28 alignment="1" tabsequence=32766 border="0" color="0" x="1765" y="4" height="65" width="321" format="$#,##0;[RED]($#,##0)"  name=col28 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(col2 for all)"border="0" color="0" x="476" y="4" height="53" width="293" format="$#,##0;[RED]($#,##0)"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(col25 for all)"border="0" color="0" x="778" y="4" height="53" width="321" format="$#,##0;[RED]($#,##0)"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(col26 for all)"border="0" color="0" x="1107" y="4" height="53" width="321" format="$#,##0;[RED]($#,##0)"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(col27 for all)"border="0" color="0" x="1436" y="4" height="53" width="321" format="$#,##0;[RED]($#,##0)"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(col28 for all)"border="0" color="0" x="1765" y="4" height="53" width="321" format="$#,##0;[RED]($#,##0)"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "customer" rows = "part" values = "sum(qty_packed for crosstab)" sourcenames = "")

@@ -1,0 +1,70 @@
+﻿$PBExportHeader$d_stockinquiry_summary.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="vwStockInquiry.Part" )
+ column=(type=char(100) updatewhereclause=yes name=partname dbname="vwStockInquiry.PartName" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="vwStockInquiry.GroupTechnology" )
+ column=(type=char(50) updatewhereclause=yes name=crossref dbname="vwStockInquiry.CrossRef" )
+ column=(type=char(1) updatewhereclause=yes name=partclass dbname="vwStockInquiry.PartClass" )
+ column=(type=char(1) updatewhereclause=yes name=parttype dbname="vwStockInquiry.PartType" )
+ column=(type=char(20) updatewhereclause=no name=packagetype dbname="vwStockInquiry.PackageType" )
+ column=(type=decimal(6) updatewhereclause=yes name=packsize dbname="vwStockInquiry.PackSize" )
+ column=(type=long updatewhereclause=yes name=stock dbname="vwStockInquiry.Stock" )
+ column=(type=long updatewhereclause=yes name=holdstock dbname="vwStockInquiry.HoldStock" )
+ column=(type=long updatewhereclause=yes name=orders dbname="vwStockInquiry.Orders" )
+ retrieve="
+select
+	Part
+,	PartName
+,	GroupTechnology
+,	CrossRef
+,	PartClass
+,	PartType
+,	PackageType
+,	PackSize
+,	Stock
+,	HoldStock
+,	Orders
+from
+	FT.vwStockInquiry vsi
+order by
+	Part
+"  sort="part A " )
+text(band=header alignment="2" text="Part" border="0" color="33554432" x="119" y="8" height="64" width="398" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part name" border="0" color="33554432" x="526" y="8" height="64" width="1056" html.valueishtml="0"  name=partname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Group technology" border="0" color="33554432" x="1591" y="8" height="64" width="535" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Cross ref" border="0" color="33554432" x="2135" y="8" height="64" width="466" html.valueishtml="0"  name=crossref_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part class" border="0" color="33554432" x="2610" y="8" height="64" width="274" html.valueishtml="0"  name=partclass_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part type" border="0" color="33554432" x="2894" y="8" height="64" width="261" html.valueishtml="0"  name=parttype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Package type" border="0" color="33554432" x="3163" y="8" height="64" width="576" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pack size" border="0" color="33554432" x="3749" y="8" height="64" width="329" html.valueishtml="0"  name=packsize_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Stock" border="0" color="33554432" x="4087" y="8" height="64" width="329" html.valueishtml="0"  name=stock_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Hold stock" border="0" color="33554432" x="4425" y="8" height="64" width="329" html.valueishtml="0"  name=holdstock_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Orders" border="0" color="33554432" x="4763" y="8" height="64" width="329" html.valueishtml="0"  name=orders_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="119" y="8" height="76" width="398" format="  [general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="526" y="8" height="76" width="1056" format="  [general]" html.valueishtml="0"  name=partname visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1591" y="8" height="76" width="535" format="  [general]" html.valueishtml="0"  name=grouptechnology visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="2135" y="8" height="76" width="466" format="  [general]" html.valueishtml="0"  name=crossref visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="3163" y="8" height="76" width="576" format="  [general]" html.valueishtml="0"  name=packagetype visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3749" y="8" height="76" width="329" format="#,##0.00  ;[red](#,##0.00) ; " html.valueishtml="0"  name=packsize visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="4087" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=stock visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="4425" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=holdstock visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4763" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=orders visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="2610" y="8" height="76" width="274" format="[general]" html.valueishtml="0"  name=partclass visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="2894" y="8" height="76" width="261" format="[general]" html.valueishtml="0"  name=parttype visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( getrow () = currentrow (), '>', '' )"border="0" color="33554432" x="9" y="8" height="76" width="101" format="  [GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

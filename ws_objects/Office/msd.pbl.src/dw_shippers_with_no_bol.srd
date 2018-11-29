@@ -1,0 +1,38 @@
+﻿$PBExportHeader$dw_shippers_with_no_bol.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78748035 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="shipper.id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="shipper.ship_via" )
+ column=(type=long update=yes updatewhereclause=yes name=bill_of_lading_number dbname="shipper.bill_of_lading_number" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="shipper.status" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="shipper.printed" )
+ retrieve="  SELECT shipper.id,   
+         shipper.destination,   
+         shipper.ship_via,   
+         shipper.bill_of_lading_number,   
+         shipper.status,   
+         shipper.printed  
+    FROM shipper, customer_service_status   
+   WHERE ( (shipper.status = 'O' ) OR  
+         ( shipper.status = 'S' ) ) and
+			shipper.cs_status = customer_service_status.status_name and
+			customer_service_status.status_type <> 'C'
+			   
+" update="shipper" updatewhere=0 updatekeyinplace=no  sort="id A " )
+text(band=header alignment="1" text="Shipper"border="0" color="33554432" x="9" y="8" height="56" width="197"  name=id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BOL#"border="0" color="33554432" x="215" y="8" height="56" width="270"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Destination"border="0" color="33554432" x="494" y="8" height="56" width="302"  name=destination_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SCAC"border="0" color="33554432" x="805" y="8" height="56" width="197"  name=ship_via_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="64" width="197" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="494" y="8" height="64" width="302" format="[general]"  name=destination edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="805" y="8" height="64" width="197" format="[general]"  name=ship_via edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (if(bill_of_lading_number > ~" ~", ~"truck.bmp~", ~"~"))"border="0" color="33554432" x="1010" y="8" height="64" width="91" format="[GENERAL]"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap ( If(status = ~"S~", ~"logo2.bmp~", ~"~"))"border="0" color="33554432" x="1111" y="8" height="64" width="91" format="[GENERAL]"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap (if( printed = ~"Y~", ~"printer.bmp~", ~"~")) "border="0" color="33554432" x="1211" y="8" height="64" width="91" format="[GENERAL]"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="215" y="8" height="64" width="270" format="[general]"  name=bill_of_lading_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

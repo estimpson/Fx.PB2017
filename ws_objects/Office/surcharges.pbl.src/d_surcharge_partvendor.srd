@@ -1,0 +1,108 @@
+﻿$PBExportHeader$d_surcharge_partvendor.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="Description" )
+ column=(type=long updatewhereclause=yes name=enabled dbname="Enabled" values="	1/	0" )
+ column=(type=char(10) updatewhereclause=yes name=vendorcode dbname="VendorCode" )
+ column=(type=char(35) updatewhereclause=yes name=name dbname="Name" )
+ column=(type=char(25) updatewhereclause=yes name=vendorpart dbname="VendorPart" )
+ column=(type=decimal(6) updatewhereclause=yes name=baseblanketprice dbname="BaseBlanketPrice" )
+ column=(type=decimal(21) updatewhereclause=yes name=accumulatedsurcharge dbname="AccumulatedSurcharge" )
+ column=(type=decimal(21) updatewhereclause=yes name=adjustedblanketprice dbname="AdjustedBlanketPrice" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardpack dbname="StandardPack" )
+ column=(type=decimal(9) updatewhereclause=yes name=packprice dbname="PackPrice" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	PartCode = p.part
+,	Description = p.name
+,	Enabled = case when pv.part is not null then 1 else 0 end
+,	VendorCode = v.code
+,	Name = v.name
+,	VendorPart = pv.vendor_part
+,	BaseBlanketPrice = ppvp.BaseBlanketPrice
+,	AccumulatedSurcharge = Surcharges.PerPieceRate
+,	AdjustedBlanketPrice = ppvp.BaseBlanketPrice + coalesce(Surcharges.PerPieceRate, 0)
+,	StandardPack = coalesce(pv.vendor_standard_pack, pInv.standard_pack)
+,	PackPrice = pv.vendor_standard_pack * ppvp.BaseBlanketPrice + coalesce(Surcharges.PerPieceRate, 0)
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.part p
+	join dbo.part_inventory pInv
+		on pInv.part = p.part
+	cross join dbo.vendor v
+	left join dbo.part_vendor pv
+		on pv.vendor = v.code
+		and pv.part = p.part
+	left join dbo.PartPurchasing_VendorPrice ppvp
+		on ppvp.PartCode = p.part
+		and ppvp.VendorCode = pv.vendor
+	left join
+		(	select
+				sppv.PartCode
+			,   sppv.VendorCode
+			,   PerPieceRate =
+				sum
+				(	case
+						when sppv.ActivationType = 1 then sppv.ApplicationRate * srd.Rate
+					end
+				)
+			from
+				dbo.Surcharge_PartPurchasingVendor sppv
+				cross apply
+					(	select top 1
+							*
+						from
+							dbo.Surcharge_RateHeaders srh
+						where
+							srh.Publisher = sppv.Publisher
+							and getdate() between srh.BeginEffectiveDT and coalesce(srh.EndEffectiveDT, getdate())
+						order by
+							srh.RowID desc
+					) srh
+				join dbo.Surcharge_RateDetails srd
+					on srd.RateHeaderID = srh.RowID
+					and srd.ClassCode = sppv.SurchargeClassCode					
+			group by
+				sppv.PartCode
+			,	sppv.VendorCode
+		) Surcharges
+		on Surcharges.PartCode = pv.part
+		and Surcharges.VendorCode = pv.vendor
+where
+	p.part = :part" arguments=(("part", string)) )
+text(band=header alignment="0" text="Enabled ?" border="6" color="33554432" x="9" y="8" height="76" width="283" html.valueishtml="0"  name=enabled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Vendor" border="6" color="33554432" x="302" y="8" height="76" width="238" html.valueishtml="0"  name=vendorcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Name" border="6" color="33554432" x="549" y="8" height="76" width="987" html.valueishtml="0"  name=name_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Vendor part" border="6" color="33554432" x="1545" y="8" height="76" width="466" html.valueishtml="0"  name=vendorpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Base blanket price" border="6" color="33554432" x="2021" y="8" height="76" width="539" html.valueishtml="0"  name=baseblanketprice_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Accum. surch." border="6" color="33554432" x="2569" y="8" height="76" width="539" html.valueishtml="0"  name=accumulatedsurcharge_t  tag="Accumulated Surcharges" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Adj. blanket price" border="6" color="33554432" x="3118" y="8" height="76" width="539" html.valueishtml="0"  name=adjustedblanketprice_t  tag="Surcharge-Adjusted Blanket Price" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Std. pack" border="6" color="33554432" x="3666" y="8" height="76" width="357" html.valueishtml="0"  name=standardpack_t  tag="Standard Pack" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Total pack price" border="6" color="33554432" x="4032" y="8" height="76" width="466" html.valueishtml="0"  name=packprice_t  tag="Total Price per Standard Pack" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=enabled visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="302" y="8" height="76" width="238" format="[general]" html.valueishtml="0"  name=vendorcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="549" y="8" height="76" width="987" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="0" color="33554432" x="1545" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=vendorpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2569" y="8" height="76" width="539" format="#,##0.0#####;[red]#,##0.0#####;-0-;N/S" html.valueishtml="0"  name=accumulatedsurcharge visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="3118" y="8" height="76" width="539" format="#,##0.0#####;[red]#,##0.0#####;-0-;N/S" html.valueishtml="0"  name=adjustedblanketprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4032" y="8" height="76" width="466" format="#,##0.0#####;[red]#,##0.0#####;-0-;N/S" html.valueishtml="0"  name=packprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="0" color="33554432" x="2021" y="8" height="76" width="539" format="#,##0.0#####;[red]#,##0.0#####;-0-;N/S" html.valueishtml="0"  name=baseblanketprice visible="1" edit.limit=0 edit.case=any edit.format="#,##0.0#####" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=30 border="0" color="33554432" x="3666" y="8" height="76" width="357" format="#,##0.0#####;#,##0.0#####;N/S;N/S" html.valueishtml="0"  name=standardpack visible="1" edit.limit=0 edit.case=any edit.format="#,##0.0#####" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

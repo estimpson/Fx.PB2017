@@ -1,0 +1,31 @@
+﻿$PBExportHeader$f_visible_columns.srf
+$PBExportComments$To set visible / invisible to columns in datawindow.
+global type f_visible_columns from function_object
+end type
+
+forward prototypes
+global subroutine f_visible_columns (datawindow adw_base, string as_columnlist[], integer ai_visible_flag[])
+end prototypes
+
+global subroutine f_visible_columns (datawindow adw_base, string as_columnlist[], integer ai_visible_flag[]);/*
+Description	:To make columns visible or non visible
+Author		:Jim Wu
+Start Date	:02/08/96
+Modification:
+*/
+
+
+///* Declaration */
+//Integer	li_Count
+//
+///* Initialization */
+//li_Count	= Upperbound(as_ColumnList)
+//
+///* Main Process */
+//
+//Do while li_Count > 0
+//	adw_base.Modify('"' + as_ColumnList[li_Count] + '.visible=' + &
+//							String(ai_Visible_Flag[li_Count]) + '"')
+//Loop
+end subroutine
+

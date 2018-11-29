@@ -1,0 +1,104 @@
+﻿$PBExportHeader$d_sendporeleases_emailprofile.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=3136 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=ponumber dbname="Notification_POEmailProfileDetails.PONumber" )
+ column=(type=char(10) updatewhereclause=yes name=vendorcode dbname="Notification_POEmailProfileDetails.VendorCode" )
+ column=(type=char(3999) updatewhereclause=no name=emailto dbname="Notification_POEmailProfileDetails.EmailTo" )
+ column=(type=long updatewhereclause=yes name=podefinedemailto dbname="Notification_POEmailProfileDetails.PODefinedEmailTo" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailto dbname="Notification_POEmailProfileDetails.VendorDefinedEmailTo" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailcc dbname="Notification_POEmailProfileDetails.EmailCC" )
+ column=(type=long updatewhereclause=yes name=podefinedemailcc dbname="Notification_POEmailProfileDetails.PODefinedEmailCC" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailcc dbname="Notification_POEmailProfileDetails.VendorDefinedEmailCC" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailreplyto dbname="Notification_POEmailProfileDetails.EmailReplyTo" )
+ column=(type=long updatewhereclause=yes name=podefinedemailreplyto dbname="Notification_POEmailProfileDetails.PODefinedEmailReplyTo" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailreplyto dbname="Notification_POEmailProfileDetails.VendorDefinedEmailReplyTo" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailsubject dbname="Notification_POEmailProfileDetails.EmailSubject" )
+ column=(type=long updatewhereclause=yes name=podefinedemailsubject dbname="Notification_POEmailProfileDetails.PODefinedEmailSubject" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailsubject dbname="Notification_POEmailProfileDetails.VendorDefinedEmailSubject" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailbody dbname="Notification_POEmailProfileDetails.EmailBody" )
+ column=(type=long updatewhereclause=yes name=podefinedemailbody dbname="Notification_POEmailProfileDetails.PODefinedEmailBody" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailbody dbname="Notification_POEmailProfileDetails.VendorDefinedEmailBody" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailattachmentnames dbname="Notification_POEmailProfileDetails.EmailAttachmentNames" )
+ column=(type=long updatewhereclause=yes name=podefinedemailattachmentnames dbname="Notification_POEmailProfileDetails.PODefinedEmailAttachmentNames" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailattachmentnames dbname="Notification_POEmailProfileDetails.VendorDefinedEmailAttachmentNames" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailfrom dbname="Notification_POEmailProfileDetails.EmailFrom" )
+ column=(type=long updatewhereclause=yes name=podefinedemailfrom dbname="Notification_POEmailProfileDetails.PODefinedEmailFrom" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=vendordefinedemailfrom dbname="Notification_POEmailProfileDetails.VendorDefinedEmailFrom" values="	1/	0" )
+ retrieve="
+select
+	npepd.PONumber
+,	npepd.VendorCode
+,	npepd.EmailTo
+,	npepd.PODefinedEmailTo
+,	npepd.VendorDefinedEmailTo
+,	npepd.EmailCC
+,	npepd.PODefinedEmailCC
+,	npepd.VendorDefinedEmailCC
+,	npepd.EmailReplyTo
+,	npepd.PODefinedEmailReplyTo
+,	npepd.VendorDefinedEmailReplyTo
+,	npepd.EmailSubject
+,	npepd.PODefinedEmailSubject
+,	npepd.VendorDefinedEmailSubject
+,	npepd.EmailBody
+,	npepd.PODefinedEmailBody
+,	npepd.VendorDefinedEmailBody
+,	npepd.EmailAttachmentNames
+,	npepd.PODefinedEmailAttachmentNames
+,	npepd.VendorDefinedEmailAttachmentNames
+,	npepd.EmailFrom
+,	npepd.PODefinedEmailFrom
+,	npepd.VendorDefinedEmailFrom
+from
+	dbo.Notification_POEmailProfileDetails npepd
+where
+	npepd.PONumber = :PONumber
+" arguments=(("PONumber", number)) )
+text(band=detail alignment="0" text="PO number:" border="0" color="33554432" x="37" y="4" height="64" width="416" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="To:" border="0" color="33554432" x="37" y="276" height="64" width="416" html.valueishtml="0"  name=emailto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="CC:" border="0" color="33554432" x="37" y="412" height="64" width="416" html.valueishtml="0"  name=emailcc_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reply To:" border="0" color="33554432" x="37" y="548" height="64" width="416" html.valueishtml="0"  name=emailreplyto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Subject:" border="0" color="33554432" x="37" y="684" height="64" width="416" html.valueishtml="0"  name=emailsubject_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Body:" border="0" color="33554432" x="37" y="820" height="64" width="416" html.valueishtml="0"  name=emailbody_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="4" height="76" width="398" format="[general]" html.valueishtml="0"  name=ponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="140" height="76" width="370" format="[general]" html.valueishtml="0"  name=vendorcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Attachments:" border="0" color="33554432" x="37" y="1320" height="64" width="416" html.valueishtml="0"  name=emailattachmentnames_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Email from:" border="0" color="33554432" x="37" y="1460" height="64" width="416" html.valueishtml="0"  name=emailfrom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Vendor code:" border="0" color="33554432" x="37" y="140" height="64" width="416" html.valueishtml="0"  name=vendorcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=70 border="0" color="33554432" x="2469" y="412" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailcc visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=80 border="0" color="33554432" x="2469" y="548" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailreplyto visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=90 border="0" color="33554432" x="2469" y="684" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailsubject visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=100 border="0" color="33554432" x="2469" y="820" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailbody visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=60 border="0" color="33554432" x="2469" y="276" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailto visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="1" tabsequence=32766 border="0" color="33554432" x="2469" y="1320" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailattachmentnames visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="0" color="33554432" x="2469" y="1456" height="76" width="69" format="[general]" html.valueishtml="0"  name=podefinedemailfrom visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="33554432" x="530" y="276" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailto visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="1320" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailattachmentnames visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="530" y="1456" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailfrom visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=30 border="5" color="33554432" x="530" y="544" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailreplyto visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=40 border="5" color="33554432" x="530" y="684" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailsubject visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=50 border="5" color="33554432" x="530" y="820" height="424" width="1733" format="[general]" html.valueishtml="0"  name=emailbody visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="5" color="33554432" x="530" y="408" height="76" width="1733" format="[general]" html.valueishtml="0"  name=emailcc visible="1" edit.limit=3999 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=detail text="Save for PO" enabled=yes action="0" border="0" color="33554432" x="2313" y="120" height="120" width="361" vtextalign="0" htextalign="0"  name=b_savepo visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="Save for Vendor" enabled=yes action="0" border="0" color="33554432" x="2711" y="116" height="120" width="471" vtextalign="0" htextalign="0"  name=b_savevendor visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="1" tabsequence=120 border="0" color="33554432" x="2912" y="412" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailcc visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=130 border="0" color="33554432" x="2912" y="548" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailreplyto visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=140 border="0" color="33554432" x="2912" y="684" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailsubject visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="1" tabsequence=150 border="0" color="33554432" x="2912" y="820" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailbody visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=110 border="0" color="33554432" x="2912" y="276" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailto visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="1" tabsequence=32766 border="0" color="33554432" x="2912" y="1320" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailattachmentnames visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="1" tabsequence=32766 border="0" color="33554432" x="2912" y="1456" height="76" width="69" format="[general]" html.valueishtml="0"  name=vendordefinedemailfrom visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

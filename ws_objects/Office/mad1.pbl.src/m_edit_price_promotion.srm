@@ -1,0 +1,152 @@
+﻿$PBExportHeader$m_edit_price_promotion.srm
+forward
+global type m_edit_price_promotion from menu
+end type
+type m_file from menu within m_edit_price_promotion
+end type
+type m_save from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_edit_price_promotion
+m_save m_save
+m_delete m_delete
+m_exit m_exit
+end type
+type m_edit from menu within m_edit_price_promotion
+end type
+type m_edit from menu within m_edit_price_promotion
+end type
+type m_window from menu within m_edit_price_promotion
+end type
+type m_window from menu within m_edit_price_promotion
+end type
+type m_help from menu within m_edit_price_promotion
+end type
+type m_help from menu within m_edit_price_promotion
+end type
+end forward
+
+global type m_edit_price_promotion from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_edit_price_promotion m_edit_price_promotion
+
+on m_edit_price_promotion.create
+m_edit_price_promotion=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_edit_price_promotion.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_edit_price_promotion
+m_save m_save
+m_delete m_delete
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_save=create m_save
+this.m_delete=create m_delete
+this.m_exit=create m_exit
+this.Item[]={this.m_save, &
+this.m_delete, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_save)
+destroy(this.m_delete)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;w_edit_price_promotion.Triggerevent("Save_promo")
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=20
+this.Shortcut=595
+end on
+
+type m_delete from menu within m_file
+end type
+
+on clicked;w_edit_price_promotion.Triggerevent("Delete_promo")
+end on
+
+on m_delete.create
+this.Text="&Delete~tAlt+Del"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Delete"
+this.ToolBarItemOrder=30
+this.Shortcut=558
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;close(w_edit_price_promotion)
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=10
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_edit_price_promotion
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_edit_price_promotion
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_edit_price_promotion
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

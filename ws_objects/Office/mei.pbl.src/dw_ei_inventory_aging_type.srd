@@ -1,0 +1,26 @@
+﻿$PBExportHeader$dw_ei_inventory_aging_type.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=229 color="536870912" )
+summary(height=281 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=10 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=type dbname="part.type" values="Finished	F/Raw	R/Wip	W/" )
+ column=(type=decimal(6) updatewhereclause=yes name=cost dbname="object.cost" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="object.part" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="part.part" )
+ retrieve="  SELECT part.type,   
+         object.cost,   
+         object.part,   
+         part.part  
+    FROM object,   
+         part  
+   WHERE ( object.part = part.part )    
+"  sort="type A " )
+group(level=1 header.height=0 trailer.height=260 by=("type" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="Inventory Value as of"border="0" color="33554432" x="177" y="10" height="187" width="1635"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="1833" y="10" height="187" width="697" format="[shortdate]"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="72" y="31" height="197" width="895" format="[general]"  name=type  tag="Raw Wip or Finished" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.codetable=yes  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(cost for group 1)"border="2" color="33554432" x="1041" y="31" height="197" width="1364" format="$#,##0;[RED]($#,##0)"  font.face="Arial" font.height="-12" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Total Value"border="0" color="33554432" x="62" y="41" height="197" width="885"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(cost for all)"border="2" color="33554432" x="1031" y="41" height="197" width="1364" format="$#,##0;[RED]($#,##0)"  font.face="Arial" font.height="-12" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

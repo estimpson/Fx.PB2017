@@ -1,0 +1,35 @@
+﻿$PBExportHeader$dw_ei_production_overrun.srd
+$PBExportComments$updated on 5/20
+release 5;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 107 print.margin.right = 107 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=93 color="536870912" )
+summary(height=5 color="-1" )
+footer(height=1 color="-1" )
+detail(height=85 color="-1" )
+table(column=(type=char(10) update=yes updatewhereclause=yes name=workorder dbname="workorder" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_required dbname="qty_required" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_completed dbname="qty_completed" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=balance dbname="balance" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=scrapped dbname="scrapped" )
+ retrieve="  SELECT workorder_detail.workorder,   
+         workorder_detail.part,   
+         workorder_detail.qty_required,   
+         workorder_detail.qty_completed,   
+         workorder_detail.balance,   
+         workorder_detail.scrapped  
+    FROM workorder_detail  
+   WHERE workorder_detail.balance < 0
+" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="0" x="10" y="4" height="73" width="490" format="[general]"  name=workorder edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="0" x="508" y="4" height="73" width="609" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="0" x="1125" y="4" height="73" width="449" format="#,##0"  name=qty_required edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=40 border="0" color="0" x="1582" y="4" height="73" width="421" format="#,##0"  name=qty_completed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="255" x="2012" y="4" height="73" width="421" format="#,##0"  name=balance edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="0" x="2442" y="4" height="73" width="389" format="#,##0"  name=scrapped edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Balance"border="0" color="0" x="2012" y="4" height="81" width="421"  name=balance_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Scrapped"border="0" color="0" x="2442" y="4" height="81" width="389"  name=scrapped_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Workorder"border="0" color="0" x="10" y="4" height="81" width="490"  name=workorder_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="508" y="4" height="81" width="609"  name=part_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Required"border="0" color="0" x="1125" y="4" height="81" width="449"  name=qty_required_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Completed"border="0" color="0" x="1582" y="4" height="81" width="421"  name=qty_completed_t  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

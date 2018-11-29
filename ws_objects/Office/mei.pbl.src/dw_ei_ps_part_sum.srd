@@ -1,0 +1,35 @@
+﻿$PBExportHeader$dw_ei_ps_part_sum.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=583 color="536870912" )
+summary(height=333 color="536870912" )
+footer(height=20 color="536870912" )
+detail(height=10 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="audit_trail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="audit_trail.quantity" )
+ column=(type=char(10) updatewhereclause=yes name=from_loc dbname="audit_trail.from_loc" )
+ column=(type=char(25) updatewhereclause=yes name=activity dbname="audit_trail.activity" )
+ column=(type=char(10) updatewhereclause=yes name=workorder dbname="audit_trail.workorder" )
+ retrieve="  SELECT audit_trail.part,   
+         audit_trail.quantity,   
+         audit_trail.from_loc,   
+         audit_trail.activity,   
+         audit_trail.workorder  
+    FROM audit_trail  
+   WHERE ( audit_trail.part = :szpart )    
+" arguments=(("szpart", string))  sort="workorder A " )
+group(level=1 header.height=0 trailer.height=281 by=("workorder" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("part" , "workorder" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="Summary from Audit Trail"border="0" color="0" x="291" y="41" height="166" width="2197"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Work Order No."border="0" color="0" x="62" y="250" height="166" width="1020"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Completed"border="0" color="0" x="1385" y="250" height="166" width="718"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="416" y1="510" x2="2062" y2="510" pen.style="0" pen.width="31" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="41" y="41" height="166" width="1166" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1250" y="41" height="166" width="625" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2500" y="41" height="166" width="541" format="[general]"  name=activity edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.1 id=5 alignment="1" tabsequence=32766 border="0" color="0" x="62" y="62" height="166" width="770" format="[general]"  name=workorder edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(quantity for group 1)"border="0" color="0" x="947" y="52" height="197" width="1166" format="#,##0"  font.face="Arial" font.height="-10" font.weight="1000"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="427" y1="63" x2="2125" y2="63" pen.style="0" pen.width="31" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="0" x="3520" y="31" height="166" width="625"  name=from_loc  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="Total"border="0" color="0" x="489" y="135" height="166" width="333"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="cumulativeSum(  quantity  for all )"border="0" color="0" x="1000" y="135" height="166" width="1145" format="#,##0"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )

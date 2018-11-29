@@ -1,0 +1,54 @@
+﻿$PBExportHeader$f_get_serial.srf
+global type f_get_serial from function_object
+end type
+
+forward prototypes
+global function string f_get_serial ()
+end prototypes
+
+global function string f_get_serial ();Int		iHandle
+String	l_s_Contents, &
+			l_s_First, &
+			l_s_Second, &
+			l_s_Third, &
+			l_s_Fourth, &
+			l_s_Fifth, &
+			l_s_Sixth, &
+			l_s_Seventh, &
+			l_s_Eighth, &
+			l_s_Ninth
+
+iHandle = FileOpen ( "id.pbd" )
+
+If iHandle < 1 Then
+	MessageBox ( "System Error", "Invalid serial number or your id file is corrupt.  Please contact you system administrator.", StopSign! )
+	Return "-1"
+End if
+
+FileRead ( iHandle, l_s_Contents )
+FileClose ( iHandle )
+
+l_s_First 	= String ( AscA ( MidA ( l_s_Contents, 4, 1 ) ) )
+l_s_Second 	= String ( AscA ( MidA ( l_s_Contents, 9, 1 ) ) )
+l_s_Third 	= String ( AscA ( MidA ( l_s_Contents, 36, 1 ) ) )
+l_s_Fourth 	= String ( AscA ( MidA ( l_s_Contents, 17, 1 ) ) )
+l_s_Fifth 	= String ( AscA ( MidA ( l_s_Contents, 26, 1 ) ) )
+l_s_Sixth 	= String ( AscA ( MidA ( l_s_Contents, 30, 1 ) ) )
+l_s_Seventh = String ( AscA ( MidA ( l_s_Contents, 22, 1 ) ) )
+l_s_Eighth 	= String ( AscA ( MidA ( l_s_Contents, 33, 1 ) ) )
+l_s_Ninth 	= String ( AscA ( MidA ( l_s_Contents, 41, 1 ) ) )
+
+If l_s_First = "32" Then l_s_First = "0"
+If l_s_Second = "32" Then l_s_Second = "0"
+If l_s_Third = "32" Then l_s_Third = "0"
+If l_s_Fourth = "32" Then l_s_Fourth = "0"
+If l_s_Fifth = "32" Then l_s_Fifth = "0"
+If l_s_Sixth = "32" Then l_s_Sixth = "0"
+If l_s_Seventh = "32" Then l_s_Seventh = "0"
+If l_s_Eighth = "32" Then l_s_Eighth = "0"
+If l_s_Ninth = "32" Then l_s_Ninth = "0"
+
+Return l_s_First + l_s_Second + l_s_Third + l_s_Fourth + l_s_Fifth + l_s_Sixth + l_s_Seventh + l_s_Eighth + l_s_Ninth
+
+end function
+

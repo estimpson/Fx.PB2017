@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_execute_custom_menu.srf
+global type f_execute_custom_menu from function_object
+end type
+
+forward prototypes
+global function boolean f_execute_custom_menu (string as_module)
+end prototypes
+
+global function boolean f_execute_custom_menu (string as_module);
+//Int		li_Count
+//Window 	lw_Instance
+//
+//For li_Count = 1 to gi_MenuArrayUpper
+//	If gs_Module[li_Count] = as_Module Then
+//		Choose Case Upper ( gs_MenuType[li_Count] )
+//			Case 'S'
+//				SQLCA.autocommit = True
+//				EXECUTE IMMEDIATE :gs_MenuCommand[li_Count] ;
+//				SQLCA.autocommit = False
+//			Case 'C'
+//				RUN ( gs_MenuCommand[li_Count] )
+//			Case 'W'
+//				Open ( lw_Instance, gs_MenuCommand[li_Count] )
+//			Case 'M'
+//				OpenSheet ( lw_Instance, gs_MenuCommand[li_Count], wMainScreen, 0, Layered! )
+//		End Choose
+//		li_Count = gi_MenuArrayUpper
+//	End if
+//Next
+
+Return True
+end function
+

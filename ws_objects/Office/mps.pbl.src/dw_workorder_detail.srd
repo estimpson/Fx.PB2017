@@ -1,0 +1,41 @@
+﻿$PBExportHeader$dw_workorder_detail.srd
+$PBExportComments$Retrieve detail information from work order
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="-1" )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=92 color="-1" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="workorder_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_required dbname="workorder_detail.qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_completed dbname="workorder_detail.qty_completed" )
+ column=(type=decimal(6) updatewhereclause=yes name=balance dbname="workorder_detail.balance" )
+ column=(type=decimal(6) updatewhereclause=yes name=run_time dbname="workorder_detail.run_time" )
+ column=(type=decimal(6) updatewhereclause=yes name=parts_per_cycle dbname="workorder_detail.parts_per_cycle" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ retrieve="  SELECT workorder_detail.part,   
+         workorder_detail.qty_required,   
+         workorder_detail.qty_completed,   
+         workorder_detail.balance,   
+         workorder_detail.run_time,   
+         workorder_detail.parts_per_cycle,   
+         part.name  
+    FROM workorder_detail,   
+         part  
+   WHERE ( workorder_detail.part = part.part ) and  
+         ( workorder_detail.workorder = :szWorkorder )
+" arguments=(("szWorkorder", string)) )
+text(band=header alignment="2" text="Part"border="6" color="33554432" x="9" y="8" height="64" width="453"  name=part_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Description"border="6" color="33554432" x="471" y="8" height="64" width="722"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Qty Required"border="6" color="33554432" x="1202" y="8" height="64" width="379"  name=qty_required_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Qty Comp"border="6" color="33554432" x="1591" y="8" height="64" width="320"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Balance"border="6" color="33554432" x="1920" y="8" height="64" width="338"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Run Time"border="6" color="33554432" x="2267" y="8" height="64" width="334"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="72" width="453" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="471" y="8" height="72" width="722" format="[general]"  name=part_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="1202" y="8" height="72" width="379" format="[general]"  name=qty_required editmask.mask="#,###,###.00" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="1" tabsequence=10 border="0" color="33554432" x="1591" y="8" height="72" width="320" format="[general]"  name=qty_completed editmask.mask="#,###,###.00"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="0" color="33554432" x="1920" y="8" height="72" width="338" format="[general]"  name=balance editmask.mask="#,###,###.00"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="1" tabsequence=30 border="0" color="33554432" x="2267" y="8" height="72" width="334" format="[general]"  name=run_time editmask.mask="#,###,###.00"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="0" color="33554432" x="2610" y="8" height="72" width="9" format="[general]"  name=parts_per_cycle edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

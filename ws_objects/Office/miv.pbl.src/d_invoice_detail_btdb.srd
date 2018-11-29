@@ -1,0 +1,90 @@
+﻿$PBExportHeader$d_invoice_detail_btdb.srd
+$PBExportComments$*
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=char(35) updatewhereclause=yes name=part dbname="shipper_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="shipper_detail.price" )
+ column=(type=long updatewhereclause=yes name=shipper dbname="shipper_detail.shipper" )
+ column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="shipper_detail.order_no" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_detail_type dbname="shipper_detail.type" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_freight dbname="shipper.freight" )
+ column=(type=char(254) updatewhereclause=yes name=shipper_detail_note dbname="shipper_detail.note" )
+ column=(type=char(75) updatewhereclause=yes name=account_code dbname="shipper_detail.account_code" )
+ column=(type=char(1) updatewhereclause=yes name=taxable dbname="shipper_detail.taxable" )
+ column=(type=decimal(6) updatewhereclause=yes name=tax_rate dbname="shipper.tax_rate" )
+ column=(type=char(25) updatewhereclause=yes name=cross_reference dbname="shipper_detail.cross_reference" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_alternative_qty dbname="shipper_detail.alternative_qty" )
+ column=(type=char(15) updatewhereclause=yes name=shipper_detail_alternative_unit dbname="shipper_detail.alternative_unit" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="shipper_detail.customer_part" )
+ column=(type=char(25) updatewhereclause=yes name=part_original dbname="shipper_detail.part_original" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_gross_weight dbname="shipper_detail.gross_weight" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="shipper_detail.part_name" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_customer_po dbname="shipper_detail.customer_po" )
+ retrieve="  SELECT shipper_detail.qty_packed,   
+         shipper_detail.part,   
+         shipper_detail.alternate_price as price,   
+         shipper_detail.shipper,   
+         shipper_detail.order_no,   
+         shipper_detail.type,   
+         shipper.freight,   
+         shipper_detail.note,   
+         shipper_detail.account_code,   
+         shipper_detail.taxable,   
+         shipper.tax_rate,   
+         shipper_detail.cross_reference,   
+         shipper_detail.alternative_qty,   
+         shipper_detail.alternative_unit,   
+         shipper_detail.customer_part,   
+         shipper_detail.part_original,   
+         shipper_detail.gross_weight,   
+         shipper_detail.part_name,
+			shipper_detail.customer_po  
+    FROM shipper_detail,   
+         shipper  
+   WHERE ( shipper.id = shipper_detail.shipper ) and  
+         ( ( shipper_detail.shipper = :lShipper ) )    
+" arguments=(("lShipper", number)) )
+text(band=header alignment="2" text="Qty Packed"border="0" color="0" x="9" y="8" height="68" width="315"  name=shipper_detail_qty_packed_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="334" y="8" height="68" width="695"  name=shipper_detail_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Price"border="0" color="0" x="1038" y="8" height="68" width="274"  name=shipper_detail_price_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Detail Shipper"border="0" color="0" x="1321" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Order No"border="0" color="0" x="2217" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Type"border="0" color="0" x="3113" y="4" height="56" width="14"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Freight"border="0" color="0" x="3136" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Note"border="0" color="0" x="4032" y="4" height="56" width="2290"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Account Code"border="0" color="0" x="6331" y="4" height="56" width="1714"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Taxable"border="0" color="0" x="8055" y="4" height="56" width="14"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Tax Rate"border="0" color="0" x="8078" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Cross Reference"border="0" color="0" x="8974" y="4" height="56" width="562"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Alternative Qty"border="0" color="0" x="9545" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Alternative Unit"border="0" color="0" x="10441" y="4" height="56" width="329"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Customer Part"border="0" color="0" x="10779" y="4" height="56" width="562"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Part Original"border="0" color="0" x="11351" y="4" height="56" width="448"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail gross Weight"border="0" color="0" x="11808" y="20" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Shipper Detail Part Name"border="0" color="0" x="12704" y="4" height="52" width="1093"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="68" width="315" format="[General]"  name=qty_packed edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="334" y="8" height="68" width="695" format="[general]"  name=part edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1038" y="8" height="68" width="274" format="[general]"  name=price edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="0" x="1321" y="4" height="56" width="887" format="[general]"  name=shipper edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="0" x="2217" y="4" height="56" width="887" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="0" x="3113" y="4" height="56" width="14" format="[general]"  name=shipper_detail_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="0" x="3136" y="4" height="56" width="887" format="[general]"  name=shipper_freight edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="0" color="0" x="4032" y="4" height="56" width="2290" format="[general]"  name=shipper_detail_note edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=60 border="0" color="0" x="6331" y="4" height="56" width="1714" format="[general]"  name=account_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=10 alignment="0" tabsequence=70 border="0" color="0" x="8055" y="4" height="56" width="14" format="[general]"  name=taxable edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=80 border="0" color="0" x="8078" y="4" height="56" width="887" format="[general]"  name=tax_rate edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=12 alignment="0" tabsequence=90 border="0" color="0" x="8974" y="4" height="56" width="562" format="[general]"  name=cross_reference edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=13 alignment="0" tabsequence=100 border="0" color="0" x="9545" y="4" height="56" width="887" format="[general]"  name=shipper_detail_alternative_qty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="0" tabsequence=110 border="0" color="0" x="10441" y="4" height="56" width="329" format="[general]"  name=shipper_detail_alternative_unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="0" tabsequence=120 border="0" color="0" x="10779" y="4" height="56" width="562" format="[general]"  name=shipper_detail_customer_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="11351" y="4" height="56" width="448" format="[general]"  name=part_original edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="11808" y="8" height="56" width="887" format="[general]"  name=shipper_detail_gross_weight visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="12704" y="0" height="52" width="1093" format="[general]"  name=part_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=19 alignment="0" tabsequence=0 border="0" color="0" x="13810" y="0" height="64" width="667"  name=shipper_detail_customer_po  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Detail Customer Po"border="0" color="0" x="13806" y="4" height="76" width="672"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

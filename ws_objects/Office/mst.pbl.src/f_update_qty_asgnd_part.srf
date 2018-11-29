@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_update_qty_asgnd_part.srf
+$PBExportComments$eventually this should be a u_tr_base function
+global type f_update_qty_asgnd_part from function_object
+end type
+
+forward prototypes
+global subroutine f_update_qty_asgnd_part (string as_part)
+end prototypes
+
+global subroutine f_update_qty_asgnd_part (string as_part);/* function to update mps qty asgnd_part */
+
+datastore  lds_updatemps
+
+lds_updatemps = create datastore
+		
+lds_updatemps.dataobject = 'd_update_qty_asgnd_part'
+lds_updatemps.settransobject ( sqlca )
+
+if lds_updatemps.retrieve ( as_part ) > 0 then
+	if lds_updatemps.object.#1[1] = 1 then
+		commit ;
+	else
+		rollback ;
+	end if
+end if
+
+destroy lds_updatemps
+
+
+
+
+end subroutine
+

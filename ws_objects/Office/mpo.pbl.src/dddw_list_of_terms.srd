@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dddw_list_of_terms.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=description dbname="term.description" )
+ column=(type=char(25) updatewhereclause=yes name=type dbname="term.type" )
+ column=(type=number updatewhereclause=yes name=due_day dbname="term.due_day" )
+ column=(type=decimal(2) updatewhereclause=yes name=discount_percentage dbname="term.discount_percentage" )
+ column=(type=number updatewhereclause=yes name=discount_days dbname="term.discount_days" )
+ column=(type=number updatewhereclause=yes name=eom_cut_off dbname="term.eom_cut_off" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"term~" ) COLUMN(NAME=~"term.description~") COLUMN(NAME=~"term.type~") COLUMN(NAME=~"term.due_day~") COLUMN(NAME=~"term.discount_percentage~") COLUMN(NAME=~"term.discount_days~") COLUMN(NAME=~"term.eom_cut_off~")) " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="4" height="64" width="1120" format="[general]"  name=description edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

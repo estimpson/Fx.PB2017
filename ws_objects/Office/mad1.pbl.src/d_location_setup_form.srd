@@ -1,0 +1,43 @@
+﻿$PBExportHeader$d_location_setup_form.srd
+$PBExportComments$mad1
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=952 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="location.code" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=name dbname="location.name" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=type dbname="location.type" values="Machine	MC/Storage	ST/" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=group_no dbname="location.group_no" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=sequence dbname="location.sequence" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="location.plant" )
+ column=(type=char(1) updatewhereclause=yes name=status dbname="location.status" values="ISO Approved:	Y/ISO Approved:	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=secured_location dbname="location.secured_location" values="Secured:	Y/Secured:	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=label_on_transfer dbname="location.label_on_transfer" values="Print Label on Tranfer	Y/Print Label on Tranfer	N" )
+ retrieve="  SELECT location.code,   
+         location.name,   
+         location.type,   
+         location.group_no,   
+         location.sequence,   
+         location.plant,   
+         location.status,   
+         location.secured_location,
+		 location.label_on_transfer  
+    FROM location  
+   WHERE location.code = :szLocation    
+" update="location" updatewhere=0 updatekeyinplace=yes arguments=(("szLocation", string)) )
+text(band=detail alignment="1" text="Location Code:"border="0" color="37234728" x="27" y="16" height="52" width="439"  name=code_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Name:"border="0" color="37234728" x="274" y="144" height="52" width="192"  name=name_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Type:"border="0" color="37234728" x="302" y="268" height="52" width="165"  name=type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Group:"border="0" color="37234728" x="270" y="400" height="52" width="197"  name=group_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="IPA Sequence:"border="0" color="37234728" x="41" y="528" height="52" width="425"  name=sequence_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Plant:"border="0" color="37234728" x="297" y="656" height="52" width="169"  name=plant_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="37234728" x="274" y="756" height="64" width="274" format="[general]"  name=secured_location checkbox.text="Secured:" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=yes checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="37234728" x="503" y="16" height="64" width="622" format="[general]" protect="0~tif(code> '',1,0)"  name=code edit.limit=10 edit.case=upper edit.focusrectangle=no edit.autoselect=yes edit.required=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="37234728" x="503" y="144" height="64" width="622" format="[general]"  name=name  tag="Description of the Location" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.required=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="37234728" x="503" y="272" height="64" width="622" format="[general]"  name=type ddlb.limit=5 ddlb.sorted=yes ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="37234728" x="503" y="400" height="64" width="622" format="[general]"  name=group_no dddw.name=d_dddw_group_technology dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=225 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="37234728" x="503" y="528" height="64" width="622" format="[general]"  name=sequence editmask.mask="###" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="5" color="37234728" x="503" y="656" height="64" width="622" format="[general]"  name=plant dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=10 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="0" color="37234728" x="18" y="852" height="52" width="530"  name=label_on_transfer checkbox.text="Print Label on Tranfer" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

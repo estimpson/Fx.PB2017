@@ -1,0 +1,217 @@
+﻿$PBExportHeader$d_1050_compl.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=136 color="536870912" )
+summary(height=8 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=360 color="536870912" )
+table(column=(type=char(10) updatewhereclause=no name=wo_number dbname="wo_number" )
+ column=(type=number updatewhereclause=no name=machine_count dbname="machine_count" )
+ column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=number updatewhereclause=no name=box_per_square dbname="box_per_square" )
+ column=(type=number updatewhereclause=no name=required dbname="required" )
+ column=(type=number updatewhereclause=no name=cycles dbname="cycles" )
+ column=(type=number updatewhereclause=no name=complete dbname="complete" )
+ column=(type=number updatewhereclause=no name=defects dbname="defects" )
+ procedure="1 begin
+execute msp_get_1050_compl_data :a_s_machine, :a_s_part
+end
+commit transaction
+" arguments=(("a_s_machine", string),("a_s_part", string)) )
+text(band=header alignment="1" text="Wo Number:"border="0" color="0" x="5285" y="52" height="64" width="457"  name=wo_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=10 border="1" color="0" x="5778" y="52" height="76" width="274" format="[general]"  name=wo_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Machine Count:"border="0" color="0" x="3035" y="184" height="64" width="457"  name=machine_count_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="1" tabsequence=20 border="1" color="0" x="3529" y="184" height="76" width="219" format="[general]"  name=machine_count edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=header x="384" y="4" height="48" width="55" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Required"border="0" color="0" x="457" y="4" height="56" width="229"  name=required_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=header x="1170" y="4" height="48" width="55" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+text(band=header alignment="0" text="Defects"border="0" color="0" x="1243" y="4" height="56" width="192"  name=defects_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="0" text="OUT"border="0" color="0" x="18" y="20" height="92" width="187"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=header x="384" y="68" height="48" width="55" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+text(band=header alignment="0" text="Complete"border="0" color="0" x="457" y="68" height="56" width="247"  name=complete_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=header x="1170" y="68" height="48" width="55" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=header alignment="0" text="Cycles"border="0" color="0" x="1243" y="68" height="56" width="169"  name=cycles_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="16777215" x="4736" y="68" height="60" width="768" format="[general]"  name=required visible="1~t0" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="255" x="4736" y="148" height="64" width="768" format="[general]"  name=defects visible="1~t0" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="32768" x="4736" y="228" height="64" width="768" format="[general]"  name=complete visible="1~t0" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="8388608" x="4736" y="308" height="64" width="768" format="[general]"  name=cycles visible="1~t0" editmask.mask="######.00####" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" required  *  total "border="0" color="16777215" x="1445" y="36" height="56" width="347" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" complete  *  total "border="0" color="32768" x="1445" y="100" height="56" width="347" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" defects  *  total "border="0" color="255" x="1445" y="164" height="56" width="347" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" cycles  *  total "border="0" color="8388608" x="1445" y="228" height="56" width="347" format="######.00####"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1189" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="1061" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="549" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="293" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="165" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="6" color="33554432" x="183" y="4" height="64" width="878" format="[general]"  name=part edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="2" text="Part:"border="0" color="33554432" x="18" y="4" height="64" width="137"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="1" expression=" defects  +  complete "border="0" color="33554432" x="1920" y="692" height="64" width="768" format="[GENERAL]"  name=defect_end  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="1" color="0" x="1920" y="772" height="76" width="768" format="[general]"  name=box_per_square edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="37"border="0" color="33554432" x="110" y="804" height="64" width="110" format="[GENERAL]"  name=one  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="165"border="0" color="33554432" x="238" y="804" height="64" width="110" format="[GENERAL]"  name=two  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="293"border="0" color="33554432" x="366" y="804" height="64" width="110" format="[GENERAL]"  name=three  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="421"border="0" color="33554432" x="489" y="804" height="64" width="110" format="[GENERAL]"  name=four  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="549"border="0" color="33554432" x="622" y="804" height="64" width="110" format="[GENERAL]"  name=five  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="677"border="0" color="33554432" x="750" y="804" height="64" width="110" format="[GENERAL]"  name=six  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="805"border="0" color="33554432" x="878" y="804" height="64" width="110" format="[GENERAL]"  name=seven  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="933"border="0" color="33554432" x="1006" y="804" height="64" width="110" format="[GENERAL]"  name=eight  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="1061"border="0" color="33554432" x="1134" y="804" height="64" width="110" format="[GENERAL]"  name=nine  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="1189"border="0" color="33554432" x="1262" y="804" height="64" width="110" format="[GENERAL]"  name=ten  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=detail x1="37" y1="116" x2="37" y2="276" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="37" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="37" y="116" height="32" width="110~tIF ( 	required < .1,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="37~tIF ( 	complete < .1,
+	one + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	one + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .1,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end = complete OR complete >= .1, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="165" y="116" height="32" width="110~tIF ( 	required < .2 AND required > .1,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .1, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="37" y="180" height="32" width="110~tIF ( 	cycles < .1,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles = 0, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+rectangle(band=detail x="165~tIF ( 	complete < .2 and complete > .1,
+	two + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	two + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .2 and defect_end > .1,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .1 OR defect_end = complete OR complete >= .2, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="165" y="148" height="32" width="110~tIF ( 	complete < .2 and complete > .1,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .1, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="293" y="116" height="32" width="110~tIF ( 	required < .3 AND required > .2,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .2, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="293~tIF ( 	complete < .3 and complete > .2,
+	three + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	three + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .3 and defect_end > .2,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .2 OR defect_end = complete OR complete >= .3, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="293" y="148" height="32" width="110~tIF ( 	complete < .3 and complete > .2,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .2, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="421" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="421" y="116" height="32" width="110~tIF ( 	required < .3 AND required > .4,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .3, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="293" y="180" height="32" width="110~tIF ( 	cycles < .3 and cycles > .2,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .2, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="421~tIF ( 	complete < .4 and complete > .3,
+	four + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	four + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .4 and defect_end > .3,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .3 OR defect_end = complete OR complete >= .4, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="421" y="180" height="32" width="110~tIF ( 	cycles < .4 and cycles > .3,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .3, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="549" y="116" height="32" width="110~tIF ( 	required < .4 AND required > .5,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .4, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="549~tIF ( 	complete < .5 and complete > .4,
+	five + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	five + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .5 and defect_end > .4,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .4 OR defect_end = complete OR complete >= .5, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="677" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="677" y="116" height="32" width="110~tIF ( 	required < .6 AND required > .5,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .5, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="549" y="180" height="32" width="110~tIF ( 	cycles < .5 and cycles > .4,
+
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .4, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="677~tIF ( 	complete < .6 and complete > .5,
+	six + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	six + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .6 and defect_end > .5,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .5 OR defect_end = complete OR complete >= .6, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="677" y="148" height="32" width="110~tIF ( 	complete < .6 and complete > .5,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .5, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="805" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="805" y="116" height="32" width="110~tIF ( 	required < .7 AND required > .6,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .6, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="677" y="180" height="32" width="110~tIF ( 	cycles < .6 and cycles > .5,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .5, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="805~tIF ( 	complete < .7 and complete > .6,
+	seven + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	seven + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .7 and defect_end > .6,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .6 OR defect_end = complete OR complete >= .7, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="805" y="180" height="32" width="110~tIF ( 	cycles < .7 and cycles > .6,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .6, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="933" y="116" height="96" width="110" brush.hatch="5" brush.color="0" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="12632256" )
+rectangle(band=detail x="933" y="116" height="32" width="110~tIF ( 	required < .8 AND required > .7,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .7, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="933~tIF ( 	complete < .8 and complete > .7,
+	eight + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	eight + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .8 and defect_end > .7,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .7 OR defect_end = complete OR complete >= .8, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1061" y="116" height="32" width="110~tIF ( 	required < .9 AND required > .8,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .8, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="1061~tIF ( 	complete < .9 and complete > .8,
+	nine + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	nine + 110)" y="148" height="32" width="110~tIF ( 	defect_end < .9 and defect_end > .8,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .8 OR defect_end = complete OR complete >= .9, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1189" y="116" height="32" width="110~tIF ( 	required < 1 AND required > .9,
+	110 * ( required - Int ( 10 * required ) / 10 ) * 10,
+	110 )" visible="1~tIF ( required <= .9, 0, 1 )" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="165" y="180" height="32" width="110~tIF ( 	cycles < .2 and cycles > .1,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .1, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="933" y="180" height="32" width="110~tIF ( 	cycles < .8 and cycles > .7,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .7, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="1061" y="180" height="32" width="110~tIF ( 	cycles < .9 and cycles > .8,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .8, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+rectangle(band=detail x="1189~tIF ( 	complete < 1 and complete > .9,
+	ten + 110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	ten + 110)" y="148" height="32" width="110~tIF ( 	defect_end < 1 and defect_end > .9,
+	110 * ( defect_end - Int ( 10 * defect_end ) / 10 ) * 10,
+	110)" visible="1~tIF ( defect_end < .9 OR defect_end = complete OR complete >= 1, 0, 1 )" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1189" y="180" height="32" width="110~tIF ( 	cycles < 1 and cycles > .9,
+	110 * ( cycles - Int ( 10 * cycles ) / 10 ) * 10,
+	110)" visible="1~tIF ( cycles < .9, 0, 1 )" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="8421504" )
+text(band=detail alignment="2" text="0"border="0" color="0" x="18" y="292" height="56" width="27"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="1" expression=" box_per_square * 10"border="0" color="0" x="1061" y="292" height="56" width="238" format="[GENERAL]"  name=total  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+rectangle(band=detail x="37" y="148" height="32" width="110~tIF ( 	complete < .1,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete = 0, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="421" y="148" height="32" width="110~tIF ( 	complete < .4 and complete > .3,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .3, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="549" y="148" height="32" width="110~tIF ( 	complete < .5 and complete > .4,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .4, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="805" y="148" height="32" width="110~tIF ( 	complete < .7 and complete > .6,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .6, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="933" y="148" height="32" width="110~tIF ( 	complete < .8 and complete > .7,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .7, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="1061" y="148" height="32" width="110~tIF ( 	complete < .9 and complete > .8,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .8, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="1189" y="148" height="32" width="110~tIF ( 	complete < 1 and complete > .9,
+	110 * ( complete - Int ( 10 * complete ) / 10 ) * 10,
+	110)" visible="1~tIF ( complete < .9, 0, 1 )" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+line(band=detail x1="1298" y1="116" x2="1298" y2="276" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="1371" y="36" height="48" width="55" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+rectangle(band=detail x="1371" y="100" height="48" width="55" brush.hatch="6" brush.color="32768" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="32768" )
+rectangle(band=detail x="1371" y="164" height="48" width="55" brush.hatch="6" brush.color="255" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="255" )
+rectangle(band=detail x="1371" y="228" height="48" width="55" brush.hatch="6" brush.color="8388608" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="65535" )
+text(band=detail alignment="2" text="Completions / Square = "border="0" color="33554432" x="91" y="212" height="56" width="599"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="713" y="212" height="64" width="439" format="#" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,17 @@
+﻿$PBExportHeader$dw_activity_process_mfg_part.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=312 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_mfg.part" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=process_id dbname="part_mfg.process_id" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=parts_per_cycle dbname="part_mfg.parts_per_cycle" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=parts_per_hour dbname="part_mfg.parts_per_hour" )
+ retrieve="SELECT part_mfg.part , part_mfg.process_id , part_mfg.parts_per_cycle , part_mfg.parts_per_hour FROM part_mfg WHERE ( part_mfg.part = :szPart ) " update="part_mfg" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+text(band=detail alignment="1" text="Standard Pack:"border="0" color="0" x="2286" y="164" height="52" width="443"  name=standard_pack_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=40 border="5" color="0" x="512" y="124" height="64" width="512" format="#,##0"  name=parts_per_cycle edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="1" tabsequence=50 border="5" color="0" x="512" y="220" height="64" width="512" format="#,##0"  name=parts_per_hour edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Parts Per Hour:"border="0" color="0" x="9" y="220" height="52" width="453"  name=parts_per_hour_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Parts Per Cycle:"border="0" color="0" x="0" y="124" height="52" width="475"  name=parts_per_cycle_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

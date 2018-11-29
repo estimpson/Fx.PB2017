@@ -1,0 +1,107 @@
+﻿$PBExportHeader$f_get_order_info.srf
+$PBExportComments$Get information from sales order header
+global type f_get_order_info from function_object
+end type
+
+forward prototypes
+global function string f_get_order_info (long isalesorder, string szinfoname)
+end prototypes
+
+global function string f_get_order_info (long isalesorder, string szinfoname);String  szInfoValue
+Decimal nInfoValue
+
+SetNull(szInfoValue)
+
+CHOOSE CASE szInfoName
+
+	CASE "ORDER TYPE"
+  		SELECT  order_header.order_type  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "DESTINATION"
+  		SELECT  order_header.destination  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "CUSTOMER PART"
+		SELECT  order_header.customer_part  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "SHIPPING UNIT"
+		SELECT  order_header.shipping_unit  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "PACKAGE TYPE"
+		SELECT  order_header.package_type  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "OUR CUM"
+		SELECT  order_header.our_cum  
+    	INTO :nInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+		szInfoValue	= String(nInfoValue)
+
+	CASE "MODEL YEAR"
+		SELECT  order_header.model_year  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "BLANKET PART"
+		SELECT  order_header.blanket_part  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "BOX LABEL"
+		SELECT  order_header.box_label  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "DOCK CODE"
+		SELECT  order_header.dock_code  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "LINE FEED"
+		SELECT  order_header.line_feed_code  
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "PLANT"
+		SELECT  order_header.plant
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "CUSTOMER PO"
+		SELECT  order_header.customer_po
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+	CASE "ZONE CODE"
+		SELECT  order_header.zone_code
+    	INTO :szInfoValue  
+    	FROM  order_header  
+   	WHERE  order_header.order_no = :iSalesOrder   ;
+
+END CHOOSE
+
+Return szInfoValue
+end function
+

@@ -1,0 +1,621 @@
+﻿$PBExportHeader$m_vendor_destination_menu.srm
+forward
+global type m_vendor_destination_menu from menu
+end type
+type m_file from menu within m_vendor_destination_menu
+end type
+type m_addvendor from menu within m_file
+end type
+type m_deletevendor from menu within m_file
+end type
+type m_savevendor from menu within m_file
+end type
+type m_adddestination from menu within m_file
+end type
+type m_delete from menu within m_file
+end type
+type m_savedestination from menu within m_file
+end type
+type m_saveshippinginfo from menu within m_file
+end type
+type m_acctsync from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_vendor_destination_menu
+m_addvendor m_addvendor
+m_deletevendor m_deletevendor
+m_savevendor m_savevendor
+m_adddestination m_adddestination
+m_delete m_delete
+m_savedestination m_savedestination
+m_saveshippinginfo m_saveshippinginfo
+m_acctsync m_acctsync
+m__ m__
+m_close m_close
+end type
+type m_edit from menu within m_vendor_destination_menu
+end type
+type m_copy from menu within m_edit
+end type
+type m_edit from menu within m_vendor_destination_menu
+m_copy m_copy
+end type
+type m_window from menu within m_vendor_destination_menu
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_vendor_destination_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_vendor_destination_menu
+end type
+global type m_vendor_destination_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_vendor_destination_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_vendor_destination_menu m_vendor_destination_menu
+
+type variables
+String szDestination
+end variables
+
+forward prototypes
+public function boolean wf_check_for_orphans (string ls_string, string ls_mode)
+end prototypes
+
+public function boolean wf_check_for_orphans (string ls_string, string ls_mode);Long		ll_Dummy
+String	ls_Dummy
+
+If ls_Mode = "vendor" Then
+
+	DECLARE valid_vendors CURSOR FOR  
+	 SELECT destination.destination  
+      FROM destination  
+     WHERE destination.vendor = :ls_String   ;
+
+	Open valid_vendors ;
+	Fetch valid_vendors Into :ls_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_vendors ;
+		Return True
+	End if
+	Close valid_vendors ;
+
+	DECLARE valid_order_vendor CURSOR FOR  
+	 SELECT order_header.order_no  
+	   FROM order_header  
+	  WHERE order_header.vendor = :ls_String  ;
+	
+	Open valid_order_vendor ;
+	Fetch valid_order_vendor Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_order_vendor ;
+		Return True
+	End if
+	Close valid_order_vendor ;
+	
+	
+	DECLARE valid_shipper_vendor CURSOR FOR  
+	 SELECT shipper.id  
+	   FROM shipper  
+	  WHERE shipper.vendor = :ls_String  ;
+	
+	Open valid_shipper_vendor ;
+	Fetch valid_shipper_vendor Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_vendor ;
+		Return True
+	End if
+	Close valid_shipper_vendor ;
+	
+	DECLARE valid_part_vendor CURSOR FOR  
+	 SELECT part_vendor.vendor_standard_pack  
+	   FROM part_vendor  
+	  WHERE part_vendor.vendor = :ls_String   ;
+
+	Open valid_part_vendor ;
+	Fetch valid_part_vendor Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_vendor ;
+		Return True
+	End if
+	Close valid_shipper_vendor ;
+
+Elseif ls_Mode = "Destination" Then
+
+	DECLARE valid_order_destination CURSOR FOR  
+	 SELECT order_header.order_no  
+	   FROM order_header  
+	  WHERE order_header.destination = :ls_String   ;
+
+	Open valid_order_destination ;
+	Fetch valid_order_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_order_destination ;
+		Return True
+	End if
+	Close valid_order_destination ;
+
+
+	DECLARE valid_shipper_destination CURSOR FOR  
+	 SELECT shipper.id  
+	   FROM shipper  
+	  WHERE shipper.destination = :ls_String   ;
+
+	Open valid_shipper_destination ;
+	Fetch valid_shipper_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_shipper_destination ;
+		Return True
+	End if
+	Close valid_shipper_destination ;
+
+
+	DECLARE valid_po_destination CURSOR FOR  
+	 SELECT po_header.po_number  
+	   FROM po_header  
+	  WHERE po_header.ship_to_destination = :ls_String   ;
+
+	Open valid_po_destination ;
+	Fetch valid_po_destination Into :ll_Dummy ;
+	If SQLCA.SQLCode = 0 Then
+		Close valid_po_destination ;
+		Return True
+	End if
+	Close valid_po_destination ;
+
+
+End if
+
+Return False
+end function
+
+on m_vendor_destination_menu.create
+m_vendor_destination_menu=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_vendor_destination_menu.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_vendor_destination_menu
+m_addvendor m_addvendor
+m_deletevendor m_deletevendor
+m_savevendor m_savevendor
+m_adddestination m_adddestination
+m_delete m_delete
+m_savedestination m_savedestination
+m_saveshippinginfo m_saveshippinginfo
+m_acctsync m_acctsync
+m__ m__
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_addvendor=create m_addvendor
+this.m_deletevendor=create m_deletevendor
+this.m_savevendor=create m_savevendor
+this.m_adddestination=create m_adddestination
+this.m_delete=create m_delete
+this.m_savedestination=create m_savedestination
+this.m_saveshippinginfo=create m_saveshippinginfo
+this.m_acctsync=create m_acctsync
+this.m__=create m__
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_addvendor
+this.Item[UpperBound(this.Item)+1]=this.m_deletevendor
+this.Item[UpperBound(this.Item)+1]=this.m_savevendor
+this.Item[UpperBound(this.Item)+1]=this.m_adddestination
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_savedestination
+this.Item[UpperBound(this.Item)+1]=this.m_saveshippinginfo
+this.Item[UpperBound(this.Item)+1]=this.m_acctsync
+this.Item[UpperBound(this.Item)+1]=this.m__
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_addvendor)
+destroy(this.m_deletevendor)
+destroy(this.m_savevendor)
+destroy(this.m_adddestination)
+destroy(this.m_delete)
+destroy(this.m_savedestination)
+destroy(this.m_saveshippinginfo)
+destroy(this.m_acctsync)
+destroy(this.m__)
+destroy(this.m_close)
+end on
+
+type m_addvendor from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "add_vendor" )
+
+end event
+
+on m_addvendor.create
+call super::create
+this.text = "&Add Vendor"
+this.microhelp = "Add Vendor..."
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "Add Vend"
+this.toolbaritemorder = 1
+end on
+
+on m_addvendor.destroy
+call super::destroy
+end on
+
+type m_deletevendor from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "delete_vendor" )
+
+end event
+
+on m_deletevendor.create
+call super::create
+this.text = "Delete &Vendor"
+this.microhelp = "Delete Vendor..."
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del Vend"
+this.toolbaritemorder = 2
+end on
+
+on m_deletevendor.destroy
+call super::destroy
+end on
+
+type m_savevendor from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "save_vendor" )
+
+
+end event
+
+on m_savevendor.create
+call super::create
+this.text = "&Save Vendor"
+this.microhelp = "Save Vendor..."
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save Vend"
+this.toolbaritemorder = 3
+end on
+
+on m_savevendor.destroy
+call super::destroy
+end on
+
+type m_adddestination from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "Add_Destination" )
+end event
+
+on m_adddestination.create
+call super::create
+this.text = "Add Des&tination"
+this.microhelp = "Add Destination..."
+this.toolbaritemname = "InsertReturn!"
+this.toolbaritemtext = "Add Dest"
+this.toolbaritemorder = 5
+end on
+
+on m_adddestination.destroy
+call super::destroy
+end on
+
+type m_delete from menu within m_file
+end type
+
+event clicked;ParentWindow.triggerEvent ( "delete_destination" )
+
+
+end event
+
+on m_delete.create
+call super::create
+this.text = "&Delete Destination"
+this.microhelp = "Delete Destination..."
+this.toolbaritemname = "Clear!"
+this.toolbaritemtext = "Del Dest"
+this.toolbaritemorder = 6
+end on
+
+on m_delete.destroy
+call super::destroy
+end on
+
+type m_savedestination from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "save_destination" )
+
+end event
+
+on m_savedestination.create
+call super::create
+this.text = "Sa&ve Destination"
+this.microhelp = "Save Destination"
+this.toolbaritemname = "UpdateReturn!"
+this.toolbaritemtext = "Save Dest"
+this.toolbaritemorder = 7
+end on
+
+on m_savedestination.destroy
+call super::destroy
+end on
+
+type m_saveshippinginfo from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().SetMicroHelp ( "Saving setup..." )
+
+ParentWindow.TriggerEvent ( "save_shipper" )
+
+
+end event
+
+on m_saveshippinginfo.create
+call super::create
+this.text = "Save Shipping Info"
+this.microhelp = "Save Shipping Info"
+this.toolbaritemname = "custom046!"
+this.toolbaritemtext = "Save Ship"
+this.toolbaritemorder = 8
+end on
+
+on m_saveshippinginfo.destroy
+call super::destroy
+end on
+
+type m_acctsync from menu within m_file
+end type
+
+event clicked;ParentWindow.TriggerEvent ( "ue_sync_vend" )
+end event
+
+on m_acctsync.create
+call super::create
+this.visible = false
+this.text = "Acct Sync"
+this.microhelp = "Synchronize vendor list with accounting system"
+this.toolbaritemvisible = false
+this.toolbaritemname = "PasteStatement!"
+this.toolbaritemtext = "Sync vend"
+this.toolbaritemorder = 10
+end on
+
+on m_acctsync.destroy
+call super::destroy
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+call super::create
+this.text = "-"
+end on
+
+on m__.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+this.toolbaritemname = "Close!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 1
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+event clicked;ParentWindow.TriggerEvent ( "ue_exit" )
+end event
+
+type m_edit from menu within m_vendor_destination_menu
+m_copy m_copy
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_copy=create m_copy
+this.Item[UpperBound(this.Item)+1]=this.m_copy
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_copy)
+end on
+
+type m_copy from menu within m_edit
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent ( "copy_vendor" )
+end event
+
+on m_copy.create
+call super::create
+this.text = "&Copy"
+this.microhelp = "Copy vendor to Destination..."
+this.toolbaritemname = "Copy!"
+this.toolbaritemtext = "Copy"
+this.toolbaritemorder = 4
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_vendor_destination_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_line31
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+call super::create
+this.text = "-"
+end on
+
+on m_line31.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Windows..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_vendor_destination_menu
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

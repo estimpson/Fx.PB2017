@@ -1,0 +1,70 @@
+﻿$PBExportHeader$d_changepovendor.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=492 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=ponumber dbname="PONumber" )
+ column=(type=char(10) updatewhereclause=yes name=currentvendor dbname="CurrentVendor" )
+ column=(type=char(10) updatewhereclause=no name=newvendor dbname="NewVendor" )
+ column=(type=long updatewhereclause=yes name=hasreceipts dbname="HasReceipts" values=" Has receipts:	1/ Has receipts:	0" )
+ column=(type=long updatewhereclause=yes name=hasreceivers dbname="HasReceivers" values=" Has receivers:	1/ Has receivers:	0" )
+ retrieve="select
+	PONumber = po_number
+,	CurrentVendor = vendor_code
+,	NewVendor = convert(varchar(10), null)
+,	HasReceipts =
+		case
+			when exists
+				(	select
+						*
+					from
+						dbo.audit_trail at
+					where
+						type = 'R'
+						and po_number = :PONumber
+				) then 1
+			else 0
+		end
+,	HasReceivers =
+		case
+			when exists
+				(	select
+						*
+					from
+						dbo.ReceiverLines rl
+						join dbo.ReceiverHeaders rh
+							on rh.ReceiverID = rl.ReceiverID
+					where
+						rl.PONumber = :PONumber
+						and rh.Status not in
+							(	5 --(select dbo.udf_StatusValue('ReceiverHeaders', 'Put Away'))
+							,	-1 --(select dbo.udf_StatusValue('ReceiverHeaders', 'Cancelled'))
+							)
+				) then 1
+			else 0
+		end
+from
+	dbo.po_header ph
+where
+	po_number = :PONumber
+" arguments=(("PONumber", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="503" y="8" height="76" width="480" format="[general]" html.valueishtml="0"  name=ponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text=" PO number:" border="0" color="33554432" x="9" y="8" height="64" width="471" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="104" height="76" width="553" format="[general]" html.valueishtml="0"  name=hasreceipts visible="1" checkbox.text=" Has receipts:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="212" height="64" width="553" format="[general]" html.valueishtml="0"  name=hasreceivers visible="1" checkbox.text=" Has receivers:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text=" Current vendor:" border="0" color="33554432" x="9" y="308" height="64" width="471" html.valueishtml="0"  name=currentvendor_t visible="1"  slideup=allabove  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="503" y="308" height="76" width="462" format="[general]" html.valueishtml="0"  name=currentvendor visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text=" New vendor:" border="0" color="134217742" x="9" y="404" height="64" width="471" html.valueishtml="0"  name=substitutionrate_t visible="1"  slideup=allabove  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="503" y="404" height="76" width="462" format="[general]" html.valueishtml="0" protect="0~t0 /*if (hasreceipts + hasreceivers > 0, 1, 0)*/"  name=newvendor visible="1" dddw.name=d_dddw_vendors dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

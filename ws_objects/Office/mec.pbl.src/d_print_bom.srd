@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_print_bom.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(75) updatewhereclause=no name=part dbname="part" )
+ column=(type=number updatewhereclause=no name=level dbname="level" )
+ column=(type=long updatewhereclause=no name=picture dbname="picture" )
+ )
+text(band=header alignment="0" text="Visual Bill Of Material"border="0" color="0" x="9" y="12" height="64" width="645"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="2194" y="8" height="68" width="133" format="[general]"  name=level visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2359" y="12" height="64" width="133" format="[general]"  name=picture visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(case(picture when 1 then ('absolute.bmp') when 2 then ('activity.bmp') when 3 then
+('bom_mat.bmp') when 4 then ('bom_tool.bmp') when 5 then ('bom_sub.bmp') when 6 then
+('mach_pri.bmp') when 7 then ('mach_alt.bmp') when 8 then ('tool.bmp') when 9 then
+('outsidep.bmp')))
+"border="0" color="0" x="18~tlevel" y="4" height="68" width="110" format="[general]"  name=picture1  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="155~tlevel*3" y="4" height="68" width="1371" format="[general]"  name=part edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' +  Page() + ' of ' + PageCount()"border="0" color="0" x="2807" y="8" height="64" width="699" format="[general]"  name=pageno  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

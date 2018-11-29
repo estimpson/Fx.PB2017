@@ -1,0 +1,454 @@
+﻿$PBExportHeader$m_fmcustom_frame.srm
+$PBExportComments$Extension/Example of frame menu
+forward
+global type m_fmcustom_frame from m_frame
+end type
+end forward
+
+global type m_fmcustom_frame from m_frame
+end type
+global m_fmcustom_frame m_fmcustom_frame
+
+on m_fmcustom_frame.create
+m_fmcustom_frame=this
+call super::create
+end on
+
+on m_fmcustom_frame.destroy
+call super::destroy
+end on
+
+on m_new.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_open.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_close.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash11.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_save.create
+call super::create
+this.Text="&Save~tCtrl+S"
+this.MergeOption=Exclude!
+this.Shortcut=339
+end on
+
+on m_saveas.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash12.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_print.create
+call super::create
+this.Text="&Print...~tCtrl+P"
+this.MergeOption=Exclude!
+this.Shortcut=336
+end on
+
+on m_printpreview.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pagesetup.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_printimmediate.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash13.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_delete.create
+call super::create
+this.Text="&Delete~tCtrl+D"
+this.MergeOption=Exclude!
+this.Shortcut=324
+end on
+
+on m_properties.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash14.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_exit.create
+call super::create
+this.MergeOption=Exclude!
+this.MenuItemType=MenuItemTypeExit!
+end on
+
+on m_pfcmrudash1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pfcmru1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pfcmru2.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pfcmru3.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pfcmru4.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_pfcmru5.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_edit.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_undo.create
+call super::create
+this.Text="&Undo~tCtrl+Z"
+this.MergeOption=Exclude!
+this.Shortcut=346
+end on
+
+on m_dash21.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_cut.create
+call super::create
+this.Text="Cu&t~tCtrl+X"
+this.MergeOption=Exclude!
+this.Shortcut=344
+end on
+
+on m_copy.create
+call super::create
+this.Text="&Copy~tCtrl+C"
+this.MergeOption=Exclude!
+this.Shortcut=323
+end on
+
+on m_paste.create
+call super::create
+this.Text="&Paste~tCtrl+V"
+this.MergeOption=Exclude!
+this.Shortcut=342
+end on
+
+on m_pastespecial.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_clear.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash22.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_selectall.create
+call super::create
+this.Text="Select A&ll~tCtrl+A"
+this.MergeOption=Exclude!
+this.Shortcut=321
+end on
+
+on m_dash23.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_find.create
+call super::create
+this.Text="&Find...~tCtrl+F"
+this.MergeOption=Exclude!
+this.Shortcut=326
+end on
+
+on m_replace.create
+call super::create
+this.Text="&Replace...~tCtrl+H"
+this.MergeOption=Exclude!
+this.Shortcut=328
+end on
+
+on m_dash24.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_updatelinks.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_object1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_edit1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_open1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_view.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_ruler.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash31.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_largeicon.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_smallicons.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_list.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_details.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash32.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_arrangeicons.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_by1.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash33.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_autoarrange.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash34.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_first.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_nextpage.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_priorpage.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_lastpage.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash35.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_sort.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_filter.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash36.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_zoom.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_refresh.create
+call super::create
+this.Text="&Refresh~tF5"
+this.MergeOption=Exclude!
+this.Shortcut=116
+end on
+
+on m_insert.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_insertfile.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_picture.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash41.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_object.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_tools.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_toolbars.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_window.create
+call super::create
+this.MergeOption=WindowMenu!
+end on
+
+on m_cascade.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_tilehorizontal.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_tilevertical.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_layer.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash51.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_minimizeall.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_undoarrange.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_help.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_helptopics.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_dash61.create
+call super::create
+this.MergeOption=Exclude!
+end on
+
+on m_about.create
+call super::create
+this.MergeOption=Exclude!
+this.MenuItemType=MenuItemTypeAbout!
+end on
+

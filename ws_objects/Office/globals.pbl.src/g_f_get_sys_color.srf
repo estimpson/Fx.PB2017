@@ -1,0 +1,34 @@
+﻿$PBExportHeader$g_f_get_sys_color.srf
+global type g_f_get_sys_color from function_object
+end type
+
+forward prototypes
+global function long g_f_get_sys_color (string a_s_color_name)
+end prototypes
+
+global function long g_f_get_sys_color (string a_s_color_name);INTEGER	l_i_red, &
+					l_i_green, &
+					l_i_blue, &
+					l_i_space_pos
+
+STRING	l_s_color, &
+				l_s_red, &
+				l_s_green, &
+				l_s_blue
+
+RegistryGet ( "HKEY_CURRENT_USER\Control Panel\Colors", a_s_color_name, l_s_color )
+
+l_i_space_pos = PosA ( l_s_color, ' ', 1 )
+l_s_red = MidA ( l_s_color, 1, l_i_space_pos - 1 )
+l_i_red = Integer ( l_s_red )
+l_s_color = RightA ( l_s_color, LenA ( l_s_color ) - l_i_space_pos )
+l_i_space_pos = PosA ( l_s_color, ' ', 1 )
+l_s_green = MidA ( l_s_color, 1, l_i_space_pos - 1 )
+l_i_green = Integer ( l_s_green )
+l_s_color = RightA ( l_s_color, LenA ( l_s_color ) - l_i_space_pos )
+l_s_blue = l_s_color
+l_i_blue = Integer ( l_s_blue )
+
+Return ( RGB ( l_i_red, l_i_green, l_i_blue ) )
+end function
+

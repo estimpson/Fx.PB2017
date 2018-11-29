@@ -1,0 +1,7 @@
+﻿$PBExportHeader$s_powerfilter_restore_parms.srs
+global type s_powerfilter_restore_parms from structure
+	boolean		buttonpressed
+	boolean		restoresort
+	boolean		restorefilter
+end type
+

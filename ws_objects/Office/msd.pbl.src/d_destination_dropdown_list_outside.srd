@@ -1,0 +1,34 @@
+﻿$PBExportHeader$d_destination_dropdown_list_outside.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="destination.destination" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="destination.name" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="destination.customer" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=vendor dbname="destination.vendor" )
+ column=(type=char(1) updatewhereclause=yes name=vendor_outside_processor dbname="vendor.outside_processor" )
+ retrieve="  SELECT destination.destination,   
+         destination.name,   
+         destination.customer,   
+         destination.vendor,   
+         vendor.outside_processor  
+    FROM destination,   
+         vendor,
+			customer_service_status  
+   WHERE ( destination.vendor = vendor.code ) and  
+         ( ( Vendor.outside_processor = 'Y' ) AND  
+         ( destination.vendor > ' ') )  and
+			( isnull(status_type,'') <> 'C' and
+			destination.cs_status = customer_service_status.status_name )  
+ORDER BY destination" )
+text(band=header alignment="2" text="Destination"border="0" color="33554432" x="0" y="4" height="52" width="338"  name=destination_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="0" color="33554432" x="704" y="4" height="52" width="174"  name=name_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer"border="0" color="33554432" x="1266" y="4" height="52" width="283"  name=customer_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Vendor"border="0" color="33554432" x="1559" y="4" height="52" width="206"  name=vendor_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1902" y="4" height="64" width="238" format="[general]"  name=customer edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="2158" y="4" height="64" width="242" format="[general]"  name=vendor edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="5" y="4" height="64" width="288" format="[general]"  name=destination edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="306" y="4" height="64" width="969" format="[general]"  name=name edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

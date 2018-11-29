@@ -1,0 +1,10 @@
+﻿$PBExportHeader$dw_query.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=yes print.preview.buttons=yes )
+header(height=40 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=12 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=version dbname="admin.version" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"admin~" ) COLUMN(NAME=~"admin.version~")) " )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

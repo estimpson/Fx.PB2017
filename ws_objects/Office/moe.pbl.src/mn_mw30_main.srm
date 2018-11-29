@@ -1,0 +1,594 @@
+﻿$PBExportHeader$mn_mw30_main.srm
+forward
+global type mn_mw30_main from menu
+end type
+type m_file from menu within mn_mw30_main
+end type
+type m_salesordermanagement from menu within m_file
+end type
+type m_globalshippingscheduler from menu within m_file
+end type
+type m_dropship from menu within m_file
+end type
+type m_printinvoice from menu within m_file
+end type
+type m_editranslator from menu within m_file
+end type
+type m_asnbuilder from menu within m_file
+end type
+type m_ediasnparameters from menu within m_file
+end type
+type m_rmasystem from menu within m_file
+end type
+type m_customerservice from menu within m_file
+end type
+type m_custom1 from menu within m_file
+end type
+type m_custom2 from menu within m_file
+end type
+type m_custom3 from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within mn_mw30_main
+m_salesordermanagement m_salesordermanagement
+m_globalshippingscheduler m_globalshippingscheduler
+m_dropship m_dropship
+m_printinvoice m_printinvoice
+m_editranslator m_editranslator
+m_asnbuilder m_asnbuilder
+m_ediasnparameters m_ediasnparameters
+m_rmasystem m_rmasystem
+m_customerservice m_customerservice
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+m__ m__
+m_exit m_exit
+end type
+type m_edit from menu within mn_mw30_main
+end type
+type m_edit from menu within mn_mw30_main
+end type
+type m_window from menu within mn_mw30_main
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within mn_mw30_main
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within mn_mw30_main
+end type
+type m_helpcontents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within mn_mw30_main
+m_helpcontents m_helpcontents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type mn_mw30_main from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global mn_mw30_main mn_mw30_main
+
+type variables
+Boolean bAscOrder
+Boolean bScreenOpen
+end variables
+
+on mn_mw30_main.create
+mn_mw30_main=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on mn_mw30_main.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within mn_mw30_main
+m_salesordermanagement m_salesordermanagement
+m_globalshippingscheduler m_globalshippingscheduler
+m_dropship m_dropship
+m_printinvoice m_printinvoice
+m_editranslator m_editranslator
+m_asnbuilder m_asnbuilder
+m_ediasnparameters m_ediasnparameters
+m_rmasystem m_rmasystem
+m_customerservice m_customerservice
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+m__ m__
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_salesordermanagement=create m_salesordermanagement
+this.m_globalshippingscheduler=create m_globalshippingscheduler
+this.m_dropship=create m_dropship
+this.m_printinvoice=create m_printinvoice
+this.m_editranslator=create m_editranslator
+this.m_asnbuilder=create m_asnbuilder
+this.m_ediasnparameters=create m_ediasnparameters
+this.m_rmasystem=create m_rmasystem
+this.m_customerservice=create m_customerservice
+this.m_custom1=create m_custom1
+this.m_custom2=create m_custom2
+this.m_custom3=create m_custom3
+this.m__=create m__
+this.m_exit=create m_exit
+this.Item[]={this.m_salesordermanagement, &
+this.m_globalshippingscheduler, &
+this.m_dropship, &
+this.m_printinvoice, &
+this.m_editranslator, &
+this.m_asnbuilder, &
+this.m_ediasnparameters, &
+this.m_rmasystem, &
+this.m_customerservice, &
+this.m_custom1, &
+this.m_custom2, &
+this.m_custom3, &
+this.m__, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_salesordermanagement)
+destroy(this.m_globalshippingscheduler)
+destroy(this.m_dropship)
+destroy(this.m_printinvoice)
+destroy(this.m_editranslator)
+destroy(this.m_asnbuilder)
+destroy(this.m_ediasnparameters)
+destroy(this.m_rmasystem)
+destroy(this.m_customerservice)
+destroy(this.m_custom1)
+destroy(this.m_custom2)
+destroy(this.m_custom3)
+destroy(this.m__)
+destroy(this.m_exit)
+end on
+
+type m_salesordermanagement from menu within m_file
+end type
+
+event clicked;
+
+
+int	li_retval
+li_retval = f_moduleaccess('0102','01') 
+if li_retval = 0 then 
+	OpenSheet ( w_order_entry_inquiry, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+
+end event
+
+on m_salesordermanagement.create
+this.Text="Sales &Order Management"
+this.Microhelp="Sales Order Management"
+this.ToolBarItemName="Custom048!"
+this.ToolBarItemText="Sales"
+this.ToolBarItemOrder=2
+end on
+
+type m_globalshippingscheduler from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','02') 
+if li_retval = 0 then 
+	gnv_App.of_GetFrame().SetMicroHelp ( "Global Shipping" )
+	OpenSheet(w_global_shipping_version2, gnv_App.of_GetFrame(), 3, Original!)
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_globalshippingscheduler.create
+this.Text="&Global Shipping Scheduler"
+this.Microhelp="Global Shipping Scheduler"
+this.ToolBarItemName="custom059!"
+this.ToolBarItemText="Glbl Ship"
+this.ToolBarItemOrder=3
+end on
+
+type m_dropship from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','03') 
+if li_retval = 0 then 
+	OpenSheet(w_smart_dropship_processor, gnv_App.of_GetFrame(), 3, Original!)
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+end event
+
+on m_dropship.create
+this.Text="&DropShip"
+this.Microhelp="Dropship Processor"
+this.ToolBarItemName="truck.bmp"
+this.ToolBarItemText="DropShip"
+this.ToolBarItemOrder=4
+end on
+
+type m_printinvoice from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','04') 
+if li_retval = 0 then 
+	OpenSheet ( w_invoice_inquiry, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_printinvoice.create
+this.Text="&Print Invoice"
+this.Microhelp="Print invoices"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Invoice"
+this.ToolBarItemOrder=5
+end on
+
+type m_editranslator from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','05') 
+if li_retval = 0 then 
+	OpenSheet(w_edi_text_translator, gnv_App.of_GetFrame(), 3, Original!)
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_editranslator.create
+this.Text="&EDI Translator"
+this.Microhelp="Translate EDI data into releases"
+this.ToolBarItemName="Custom079!"
+this.ToolBarItemText="EDI"
+this.ToolBarItemOrder=6
+end on
+
+type m_asnbuilder from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','06') 
+if li_retval = 0 then 
+	OpenSheet ( w_asn_version2, gnv_App.of_GetFrame(), 0, Original! )
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_asnbuilder.create
+this.Text="&ASN Builder"
+this.Microhelp="Builder ASN Flat File Structure"
+this.ToolBarItemName="run!"
+this.ToolBarItemText="ASN"
+this.ToolBarItemOrder=7
+end on
+
+type m_ediasnparameters from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','07') 
+if li_retval = 0 then 
+	OpenSheet(w_edi_asn_parameter_setups, gnv_App.of_GetFrame(), 3, Original!)
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+
+end event
+
+on m_ediasnparameters.create
+this.Text="ED&I/ASN Parameters"
+this.Microhelp="EDI / ASN Parameter Setups"
+this.ToolBarItemName="Custom041!"
+this.ToolBarItemText="EDI Parm"
+this.ToolBarItemOrder=8
+end on
+
+type m_rmasystem from menu within m_file
+end type
+
+on clicked;OpenSheet ( w_rma_admin, gnv_App.of_GetFrame(), 3, Original! )
+end on
+
+on m_rmasystem.create
+this.Text="&RMA System"
+this.Microhelp="Return to Inventory"
+this.ToolBarItemName="CheckIn!"
+this.ToolBarItemText="RMA"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=9
+end on
+
+type m_customerservice from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('0102','08') 
+if li_retval = 0 then 
+	OpenSheet ( w_customerservice, gnv_App.of_GetFrame(), 0, Original! )
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+//Open ( w_explorer_test )
+end event
+
+on m_customerservice.create
+this.Text="&Customer Service"
+this.Microhelp="Customer service screen"
+this.ToolBarItemName="Custom020!"
+this.ToolBarItemText="Service"
+this.ToolBarItemOrder=10
+end on
+
+type m_custom1 from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.oemain1" )
+end on
+
+on m_custom1.create
+this.Text="Custom&1"
+this.Microhelp="f_execute_custom_menu ( ~"monitor.main1~" )"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=11
+end on
+
+type m_custom2 from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.oemain2" )
+end on
+
+on m_custom2.create
+this.Text="Custom&2"
+this.Microhelp="f_execute_custom_menu ( ~"monitor.main1~" )"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=12
+end on
+
+type m_custom3 from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.oemain3" )
+end on
+
+on m_custom3.create
+this.Text="Custom&3"
+this.Microhelp="f_execute_custom_menu ( ~"monitor.main1~" )"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=13
+end on
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Window szActiveSheet
+szActiveSheet = gnv_App.of_GetFrame().GetActiveSheet ( )
+
+If IsValid ( szActiveSheet ) Then
+	gnv_App.of_GetFrame().SetMicroHelp ( "Close Window" )
+	Close ( szActiveSheet )
+	gnv_App.of_GetFrame().SetMicroHelp ( "" )
+Else
+	close ( w_mpsw30_main )
+End if
+
+
+
+end on
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit Customer Service"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=1
+this.Shortcut=600
+end on
+
+type m_edit from menu within mn_mw30_main
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within mn_mw30_main
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_line31, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end on
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Tile Windows..."
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+this.Text="&Layer"
+this.Microhelp="Layer Windows..."
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Cascade Windows..."
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+this.Text="&Arrange Icons"
+this.Microhelp="Arrange Icons..."
+end on
+
+type m_help from menu within mn_mw30_main
+m_helpcontents m_helpcontents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_helpcontents=create m_helpcontents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_helpcontents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_helpcontents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_helpcontents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4 )
+end event
+
+on m_helpcontents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

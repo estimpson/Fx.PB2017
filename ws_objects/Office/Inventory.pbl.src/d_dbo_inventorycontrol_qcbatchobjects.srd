@@ -1,0 +1,108 @@
+﻿$PBExportHeader$d_dbo_inventorycontrol_qcbatchobjects.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(IsSelected=1,rgb(192,192,255),536870912)" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=qualitybatchnumber dbname="InventoryControl_QualityBatchObjects.QualityBatchNumber" )
+ column=(type=number update=yes updatewhereclause=yes name=line dbname="InventoryControl_QualityBatchObjects.Line" )
+ column=(type=long update=yes updatewhereclause=yes name=serial dbname="InventoryControl_QualityBatchObjects.Serial" )
+ column=(type=decimal(0) updatewhereclause=yes name=palletserial dbname="PalletSerial" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="InventoryControl_QualityBatchObjects.Status" values="Hold (not sorted)	0/Good	1/<< Scrapped >>	-1/<< Rejected >>	-2/Good (-scrap)	2/Good (-reject)	3/Hold	4/Rework	5/" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="InventoryControl_QualityBatchObjects.Type" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="InventoryControl_QualityBatchObjects.Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=originalquantity dbname="InventoryControl_QualityBatchObjects.OriginalQuantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=scrappedquantity dbname="ScrappedQuantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=remainingquantity dbname="RemainingQuantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="InventoryControl_QualityBatchObjects.Unit" )
+ column=(type=char(30) updatewhereclause=yes name=originalstatus dbname="InventoryControl_QualityBatchObjects.OriginalStatus" )
+ column=(type=char(30) updatewhereclause=yes name=currentstatus dbname="CurrentStatus" )
+ column=(type=char(30) updatewhereclause=yes name=newstatus dbname="InventoryControl_QualityBatchObjects.NewStatus" )
+ column=(type=decimal(6) updatewhereclause=yes name=scrapquantity dbname="InventoryControl_QualityBatchObjects.ScrapQuantity" )
+ column=(type=char(32766) updatewhereclause=no name=notes dbname="InventoryControl_QualityBatchObjects.Notes" )
+ column=(type=long updatewhereclause=yes identity=yes name=rowid dbname="InventoryControl_QualityBatchObjects.RowID" )
+ column=(type=char(30) updatewhereclause=yes name=boxlabelformat dbname="BoxLabelFormat" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=markall dbname="MarkAll" values="All	1/All	0/All	-1" )
+ retrieve="
+select
+	icqbo.QualityBatchNumber
+,	icqbo.Line
+,	icqbo.Serial
+,	PalletSerial = o.parent_serial
+,	icqbo.Status
+,	icqbo.Type
+,	icqbo.Part
+,	icqbo.OriginalQuantity
+,	ScrappedQuantity = (select sum(at.std_quantity) from dbo.audit_trail at where at.serial = icqbo.Serial and at.date_stamp between icqbh.SortBeginDT and coalesce(icqbh.SortEndDT, getdate()) and at.type = 'Q' and to_loc in ('S'))
+,	RemainingQuantity = coalesce(o.std_quantity, 0)
+,	icqbo.Unit
+,	icqbo.OriginalStatus
+,	CurrentStatus = o.user_defined_status
+,	icqbo.NewStatus
+,	icqbo.ScrapQuantity
+,	icqbo.Notes
+,	icqbo.RowID
+,	BoxLabelFormat = pi.label_format
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+,	MarkAll = 0
+from
+	dbo.InventoryControl_QualityBatchObjects icqbo
+	join dbo.InventoryControl_QualityBatchHeaders icqbh
+		on icqbh.QualityBatchNumber = icqbo.QualityBatchNumber
+	left join dbo.object o
+		on o.serial = icqbo.Serial
+	left join dbo.part_inventory pi
+		on pi.part = icqbo.Part
+where
+	icqbo.QualityBatchNumber = :QualityBatchNumber
+order by
+	icqbo.QualityBatchNumber
+,	icqbo.Line
+" arguments=(("QualityBatchNumber", string)) )
+column(band=header id=21 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="72" width="210" format="[general]" html.valueishtml="0"  name=markall visible="1" checkbox.text="All" checkbox.on="1" checkbox.off="0" checkbox.other="-1" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Line" border="6" color="33554432" x="229" y="8" height="72" width="137" html.valueishtml="0"  name=line_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="375" y="8" height="72" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Status" border="6" color="33554432" x="713" y="8" height="72" width="613" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="1335" y="8" height="72" width="713" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. original" border="6" color="33554432" x="2057" y="8" height="72" width="475" html.valueishtml="0"  name=originalquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. scrapped" border="6" color="33554432" x="2542" y="8" height="72" width="475" html.valueishtml="0"  name=scrappedquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. remaining" border="6" color="33554432" x="3026" y="8" height="72" width="503" html.valueishtml="0"  name=remainingquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Unit" border="6" color="33554432" x="3538" y="8" height="72" width="192" html.valueishtml="0"  name=unit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Original status" border="6" color="33554432" x="3739" y="8" height="72" width="471" html.valueishtml="0"  name=originalstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Current status" border="6" color="33554432" x="4219" y="8" height="72" width="498" html.valueishtml="0"  name=currentstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="bitmap(~"noteyesw.bmp~")"border="6" color="134217742" x="5646" y="8" height="72" width="69" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="New status" border="6" color="134217742" x="4727" y="8" height="72" width="425" html.valueishtml="0"  name=newstatus_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Qty. to scrap" border="6" color="134217742" x="5161" y="8" height="72" width="475" html.valueishtml="0"  name=scrapquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Notes" border="6" color="134217742" x="5723" y="8" height="72" width="887" html.valueishtml="0"  name=notes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Pallet serial" border="6" color="33554432" x="6619" y="8" height="76" width="329" html.valueishtml="0"  name=palletserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="229" y="8" height="76" width="137" format="0. " html.valueishtml="0"  name=line visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=20 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="210" format="[general]" html.valueishtml="0"  name=selected visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="375" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="713" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.codetable=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif (status in (0, -2), 1, 0)"  background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1335" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2057" y="8" height="76" width="475" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=originalquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="33554432" x="3026" y="8" height="76" width="503" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=remainingquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="3538" y="8" height="76" width="192" format="[general]" html.valueishtml="0"  name=unit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3739" y="8" height="76" width="471" format="[general]" html.valueishtml="0"  name=originalstatus visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="4219" y="8" height="76" width="498" format="[general]" html.valueishtml="0"  name=currentstatus visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=20 border="0" color="33554432" x="4727" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=newstatus visible="1" dddw.name=d_inventory_userdefinedstatuslist dddw.displaycolumn=status dddw.datacolumn=status dddw.percentwidth=132 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],13,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=15 alignment="1" tabsequence=30 border="0" color="33554432" x="5161" y="8" height="76" width="475" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=scrapquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],14,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+compute(band=detail alignment="0" expression="bitmap(if(Notes>~"~", ~"noteyesw.bmp~", ~"~"))"border="0" color="33554432" x="5646" y="12" height="64" width="69" format="[GENERAL]" html.valueishtml="0"  name=noteicon visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="1" tabsequence=10 border="0" color="33554432" x="2542" y="8" height="76" width="475" format="[general]" html.valueishtml="0"  name=scrappedquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=16 alignment="0" tabsequence=40 border="0" color="33554432" x="5723" y="8" height="76" width="887" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],15,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=50 border="0" color="33554432" x="6619" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=palletserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,82 @@
+﻿$PBExportHeader$f_update_onhand.srf
+global type f_update_onhand from function_object
+end type
+
+forward prototypes
+global function decimal f_update_onhand (string szpart, decimal nquantity, string szflag)
+end prototypes
+
+global function decimal f_update_onhand (string szpart, decimal nquantity, string szflag);String  szObjectPart
+Decimal nOnHand
+Boolean bNew
+
+SetNull(szObjectPart)
+
+SELECT part_online.on_hand,
+		 part_online.part  
+INTO :nOnHand  ,
+	  :szObjectPart			
+FROM part_online  
+WHERE part_online.part = :szPart   ;
+
+If IsNull(szObjectPart) then
+	nOnHand	= 0
+	bNew		= TRUE
+Else
+	bNew		= FALSE
+End If
+
+nOnHand		= f_get_value(nOnHand)
+
+If LeftA ( szFlag, 1 ) 	= "-" then
+	nOnHand	= nOnHand - nQuantity
+Else
+	nOnHand	= nOnHand + nQuantity
+End If
+
+If nOnHand < 0 Then 
+	SELECT std_quantity
+	  INTO :nOnHand
+	  FROM object
+	 WHERE part = :szPart	;
+End If
+ 
+If bNew then
+  INSERT INTO part_online  
+         ( part,   
+           on_hand,   
+           on_demand,   
+           on_schedule,   
+           bom_net_out )  
+  VALUES ( :szPart,   
+           :nOnHand,   
+           0,   
+           0,   
+           0 )  ;
+
+Else
+
+	UPDATE part_online  
+	SET on_hand = :nOnHand  
+	WHERE part = :szPart   ;
+
+End If
+
+
+If SQLCA.SQLCode = -1 then
+	If RightA ( szFlag, 1 ) <> "*" Then
+		Rollback;
+	End if
+	nOnHand	= -1;
+Else
+	If RightA ( szFlag, 1 ) <> "*" Then
+		Commit;
+	End if
+End If	
+
+Return nOnHand
+
+
+
+end function
+

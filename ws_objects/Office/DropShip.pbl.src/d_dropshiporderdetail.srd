@@ -1,0 +1,54 @@
+﻿$PBExportHeader$d_dropshiporderdetail.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1086312914 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="order_no" )
+ column=(type=char(25) updatewhereclause=yes name=part_number dbname="part_number" )
+ column=(type=datetime updatewhereclause=yes name=due_date dbname="due_date" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="unit" )
+ column=(type=long updatewhereclause=yes name=row_id dbname="row_id" )
+ column=(type=char(25) updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=long updatewhereclause=yes name=dropship_po dbname="dropship_po" )
+ column=(type=long updatewhereclause=yes name=dropship_po_row_id dbname="dropship_po_row_id" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="suffix" )
+ column=(type=decimal(6) updatewhereclause=yes name=balance dbname="balance" )
+ column=(type=long updatewhereclause=yes identity=yes name=id dbname="id" )
+ column=(type=char(1) updatewhereclause=yes name=order_type dbname="order_type" )
+ retrieve="select	order_detail.order_no,   
+	order_detail.part_number,   
+       	order_detail.due_date,   
+	order_detail.unit,   
+	order_detail.row_id,   
+	order_detail.destination,   
+	order_detail.dropship_po,   
+	order_detail.dropship_po_row_id,   
+	order_detail.plant,   
+	order_detail.suffix,
+	balance = quantity - IsNull ( committed_qty, 0 ),
+	order_detail.id,
+	order_header.order_type
+from	order_detail
+	join order_header on order_header.order_no = order_detail.order_no
+	join customer_service_status on order_header.cs_status = customer_service_status.status_name and
+		customer_service_status.status_type <> 'C'
+where	order_detail.ship_type = 'D'
+"  sort="order_no A part_number A destination A " )
+text(band=header alignment="2" text="Order #"border="6" color="33554432" x="9" y="12" height="52" width="192"  name=order_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Ship To Dest"border="6" color="33554432" x="210" y="12" height="52" width="325"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Part"border="6" color="33554432" x="544" y="12" height="52" width="425"  name=part_number_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Date"border="6" color="33554432" x="978" y="12" height="52" width="283"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Balance"border="6" color="33554432" x="1271" y="12" height="52" width="361"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="UM"border="6" color="33554432" x="1641" y="12" height="52" width="78"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="2" text="Suffix"border="6" color="33554432" x="1728" y="12" height="52" width="352"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="56" width="192" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="544" y="8" height="56" width="425" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="978" y="8" height="56" width="283" format="[shortdate]"  name=due_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="1275" y="8" height="56" width="357" format="0.00"  name=balance edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1641" y="8" height="56" width="78" format="[general]"  name=unit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1728" y="8" height="56" width="352" format="[general]"  name=suffix edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="210" y="8" height="56" width="325" format="[general]"  name=destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1086312914" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

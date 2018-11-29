@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_print_router.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=120 color="536870912" )
+summary(height=12 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(25) updatewhereclause=no name=type dbname="type" )
+ column=(type=char(255) updatewhereclause=no name=label dbname="label" )
+ column=(type=number updatewhereclause=no name=level dbname="level" )
+ column=(type=char(25) updatewhereclause=no name=part dbname="part" )
+ column=(type=char(25) updatewhereclause=no name=parent_item dbname="parent_item" )
+ )
+text(band=header alignment="0" text="Visual Bill Of Material:"border="0" color="0" x="14" y="12" height="64" width="599"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" parent_item "border="0" color="0" x="626" y="12" height="64" width="649" format="[general]"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap ( case(type when 'A1' then ('absolute.bmp') when 'O1' then ('absolute.bmp') when 'A2' then ('activity.bmp') when 'A3' then ('activity.bmp') when 'O2' then ('activity.bmp') when 'O3' then ('activity.bmp') when 'CM' then ('bom_mat.bmp') when 'CT' then ('bom_tool.bmp') when 'SM' then ('bom_sub.bmp') when 'ST' then ('bom_sub.bmp') when 'MP' then ('mach_pri.bmp') when 'MS' then ('mach_alt.bmp') when 'MT' then ('tool.bmp') when 'OP' then ('outsidep.bmp')))"border="0" color="0" x="18~tlevel*50" y="8" height="64" width="101" format="[general]"  name=pic1  font.face="MS Sans Serif" font.height="-2" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="case(type when 'MP', 'OP', 'MS' then label when 'ST' then label else string (left(label, pos(label,'Eng.Level',1)) + ' Desc: '  + (CASE(type when 'A1', 'A2', 'A3', 'O1', 'O2', 'O3', 'CM', 'CT', 'SM' THEN f_get_part_info(part, 'NAME')ELSE '') ) + ' ' + Right(label, (len(label) - pos(label, 'Eng.Level',1)+1))))"border="0" color="0" x="137~tlevel*150" y="8" height="68" width="2528" format="[general]"  name=description  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

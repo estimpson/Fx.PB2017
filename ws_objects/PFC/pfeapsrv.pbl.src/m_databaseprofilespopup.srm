@@ -1,0 +1,139 @@
+﻿$PBExportHeader$m_databaseprofilespopup.srm
+forward
+global type m_databaseprofilespopup from menu
+end type
+type m_sqllabel from menu within m_databaseprofilespopup
+end type
+type m_new from menu within m_sqllabel
+end type
+type m_sqllabel from menu within m_databaseprofilespopup
+m_new m_new
+end type
+type m_sqlprofile from menu within m_databaseprofilespopup
+end type
+type m_delete from menu within m_sqlprofile
+end type
+type m_edit from menu within m_sqlprofile
+end type
+type m_sqlprofile from menu within m_databaseprofilespopup
+m_delete m_delete
+m_edit m_edit
+end type
+type m_odbclabel from menu within m_databaseprofilespopup
+end type
+type m_edit1 from menu within m_odbclabel
+end type
+type m_odbclabel from menu within m_databaseprofilespopup
+m_edit1 m_edit1
+end type
+end forward
+
+global type m_databaseprofilespopup from menu
+m_sqllabel m_sqllabel
+m_sqlprofile m_sqlprofile
+m_odbclabel m_odbclabel
+end type
+global m_databaseprofilespopup m_databaseprofilespopup
+
+on m_databaseprofilespopup.create
+m_databaseprofilespopup=this
+this.m_sqllabel=create m_sqllabel
+this.m_sqlprofile=create m_sqlprofile
+this.m_odbclabel=create m_odbclabel
+this.Item[]={this.m_sqllabel, &
+this.m_sqlprofile, &
+this.m_odbclabel}
+end on
+
+on m_databaseprofilespopup.destroy
+destroy(this.m_sqllabel)
+destroy(this.m_sqlprofile)
+destroy(this.m_odbclabel)
+end on
+
+type m_sqllabel from menu within m_databaseprofilespopup
+m_new m_new
+end type
+
+on m_sqllabel.create
+this.Text="SQLLabel"
+this.m_new=create m_new
+this.Item[]={this.m_new}
+end on
+
+on m_sqllabel.destroy
+destroy(this.m_new)
+end on
+
+type m_new from menu within m_sqllabel
+end type
+
+on m_new.create
+this.Text="&New"
+end on
+
+event clicked;ParentWindow.Dynamic Event ue_new ( )
+end event
+
+type m_sqlprofile from menu within m_databaseprofilespopup
+m_delete m_delete
+m_edit m_edit
+end type
+
+on m_sqlprofile.create
+this.Text="SQLProfile"
+this.m_delete=create m_delete
+this.m_edit=create m_edit
+this.Item[]={this.m_delete, &
+this.m_edit}
+end on
+
+on m_sqlprofile.destroy
+destroy(this.m_delete)
+destroy(this.m_edit)
+end on
+
+type m_delete from menu within m_sqlprofile
+end type
+
+on m_delete.create
+this.Text="&Delete"
+end on
+
+event clicked;ParentWindow.Dynamic Event ue_delete ( )
+end event
+
+type m_edit from menu within m_sqlprofile
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+event clicked;ParentWindow.Dynamic Event ue_edit ( )
+end event
+
+type m_odbclabel from menu within m_databaseprofilespopup
+m_edit1 m_edit1
+end type
+
+on m_odbclabel.create
+this.Text="ODBCLabel"
+this.m_edit1=create m_edit1
+this.Item[]={this.m_edit1}
+end on
+
+on m_odbclabel.destroy
+destroy(this.m_edit1)
+end on
+
+type m_edit1 from menu within m_odbclabel
+end type
+
+event clicked;ParentWindow.Dynamic Event ue_edit ( )
+end event
+
+on m_edit1.create
+this.Text="&Config ODBC"
+end on
+

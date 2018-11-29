@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_at_bom_part_for_display.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=77 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=90 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=parent_part dbname="bill_of_material.parent_part" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="bill_of_material.part" )
+ column=(type=decimal(8) updatewhereclause=yes name=quantity dbname="bill_of_material.quantity" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"bill_of_material~" ) COLUMN(NAME=~"bill_of_material.parent_part~") COLUMN(NAME=~"bill_of_material.part~") COLUMN(NAME=~"bill_of_material.quantity~")WHERE(    EXP1 =~"bill_of_material.parent_part~"   OP =~"=~"    EXP2 =~":arg_s_part~" ) ) ARG(NAME = ~"arg_s_part~" TYPE = string) " arguments=(("arg_s_part", string)) )
+text(band=header alignment="2" text="Parent Part"border="0" color="0" x="4" y="3" height="67" width="717"  name=parent_part_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part"border="0" color="0" x="724" y="3" height="67" width="713"  name=part_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="0" x="1441" y="3" height="67" width="329"  name=quantity_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="4" y="3" height="77" width="717" format="[general]"  name=parent_part edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="724" y="3" height="77" width="713" format="[general]"  name=part edit.limit=25 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1441" y="3" height="77" width="329" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

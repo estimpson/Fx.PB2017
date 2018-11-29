@@ -1,0 +1,58 @@
+﻿$PBExportHeader$f_dddw_um.srf
+$PBExportComments$To create a drop down datawindow for unit of measurement.
+global type f_dddw_um from function_object
+end type
+
+forward prototypes
+global function boolean f_dddw_um (string as_part, datawindowchild adw_dddw_um)
+end prototypes
+
+global function boolean f_dddw_um (string as_part, datawindowchild adw_dddw_um);/*
+Description	:To create the the dropdown datawindow for Unit of Measurements.
+Author		:Jim Wu
+Start Date	:02/17/96
+Modification:
+*/
+
+
+/* Declaration */
+integer	li_count, &
+			li_total
+
+string	ls_um, &
+			ls_std_um
+
+/* Initialization */
+ls_std_um	= f_get_part_info(as_part, "STANDARD UNIT")
+
+DECLARE cur_unit_list CURSOR FOR  
+ SELECT unit_conversion.unit2  
+   FROM part_unit_conversion,   
+        unit_conversion  
+  WHERE ( part_unit_conversion.code = unit_conversion.code ) and  
+        ( ( part_unit_conversion.part = :as_Part ) AND  
+        ( unit_conversion.unit1 = :ls_std_um ) )   
+ORDER BY unit_conversion.unit2 ASC  ;
+
+/* Main Process */
+
+adw_dddw_um.reset()
+
+OPEN cur_unit_list ;
+
+Do
+
+	Fetch cur_unit_list into :ls_um ;
+
+	If SQLCA.SQLCode = 0 Then
+		adw_dddw_um.InsertRow(1)
+		adw_dddw_um.SetItem(1, 1, ls_um )
+	End if
+
+Loop While SQLCA.SQLCode = 0
+
+CLOSE cur_unit_list ;
+
+Return TRUE
+end function
+

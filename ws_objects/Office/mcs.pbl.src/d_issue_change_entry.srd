@@ -1,0 +1,27 @@
+﻿$PBExportHeader$d_issue_change_entry.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=536 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=issue_number dbname="issue_detail.issue_number" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=status_new dbname="issue_detail.status_new" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=status_old dbname="issue_detail.status_old" )
+ column=(type=datetime update=yes updatewhereclause=yes key=yes name=date_stamp dbname="issue_detail.date_stamp" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=notes dbname="issue_detail.notes" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=origin dbname="issue_detail.origin" )
+ retrieve="  SELECT issue_detail.issue_number,   
+         issue_detail.status_new,   
+         issue_detail.status_old,   
+         issue_detail.date_stamp,   
+         issue_detail.notes,   
+         issue_detail.origin  
+    FROM issue_detail  
+   WHERE ( issue_detail.issue_number = :al_issue ) AND  
+         ( issue_detail.date_stamp = :adt_date_stamp )    
+" update="issue_detail" updatewhere=0 updatekeyinplace=yes arguments=(("al_issue", number),("adt_date_stamp", datetime)) )
+text(band=detail alignment="0" text="Description:"border="0" color="0" x="18" y="100" height="64" width="357"  name=notes_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="0" x="421" y="100" height="416" width="2066" format="[general]"  name=notes edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Changed By:"border="0" color="0" x="18" y="4" height="64" width="379"  name=origin_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="5" color="0" x="421" y="4" height="76" width="914" format="[general]"  name=origin dddw.name=d_issues_employee_list dddw.displaycolumn=name dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

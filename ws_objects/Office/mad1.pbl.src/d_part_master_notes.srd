@@ -1,0 +1,13 @@
+﻿$PBExportHeader$d_part_master_notes.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=432 color="536870912" )
+table(column=(type=char(32766) update=yes updatewhereclause=yes name=description_long dbname="part.description_long" )
+ column=(type=char(25) updatewhereclause=yes key=yes name=part dbname="part.part" )
+ retrieve="SELECT part.description_long, part.part FROM part WHERE part.part = :szPart " update="part" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="412" width="1536" format="[general]"  name=description_long edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Number:"border="0" color="0" x="4206" y="488" height="64" width="462"  name=number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="1" color="0" x="4695" y="488" height="64" width="512" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

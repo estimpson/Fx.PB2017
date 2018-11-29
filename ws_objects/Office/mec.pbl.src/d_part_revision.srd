@@ -1,0 +1,27 @@
+﻿$PBExportHeader$d_part_revision.srd
+$PBExportComments$part revision maintenance datawindow.
+release 5;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=261 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=85 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_revision.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=revision dbname="part_revision.revision" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=engineering_level dbname="part_revision.engineering_level" )
+ column=(type=datetime update=yes updatewhereclause=yes name=effective_datetime dbname="part_revision.effective_datetime" initial="'07/31/97 12:00:00'" validation="datetime(gettext()) >= today()" validationmsg="'effective date / time must be equal or greater than current date / time!'" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="part_revision.notes" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_revision~" ) COLUMN(NAME=~"part_revision.part~") COLUMN(NAME=~"part_revision.revision~") COLUMN(NAME=~"part_revision.engineering_level~") COLUMN(NAME=~"part_revision.effective_datetime~") COLUMN(NAME=~"part_revision.notes~")WHERE(    EXP1 =~"part_revision.part~"   OP =~"=~"    EXP2 =~":a_part~" ) ) ARG(NAME = ~"a_part~" TYPE = string) " update="part_revision" updatewhere=1 updatekeyinplace=no arguments=(("a_part", string)) )
+text(band=header alignment="2" text="Part Revision Information for: "border="0" color="0" x="14" y="4" height="65" width="869"  name=part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Revision"border="0" color="0" x="19" y="124" height="65" width="247"  name=revision_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Eng.
+Level"border="0" color="0" x="362" y="124" height="129" width="161"  name=engineering_level_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Effective
+Datetime"border="0" color="0" x="778" y="124" height="129" width="261"  name=effective_datetime_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes"border="0" color="0" x="1687" y="128" height="65" width="161"  name=notes_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" a_part "border="0" color="0" x="887" y="4" height="65" width="609" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="2684" y="4" height="65" width="513" format="[general]"  name=part visible="1~t0" edit.limit=25 edit.case=any edit.autoselect=yes edit.required=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="311" y="4" height="65" width="238" format="[general]"  name=engineering_level edit.limit=10 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="604" y="4" height="65" width="581" format="[shortdate] [time]"  name=effective_datetime editmask.spin=yes editmask.mask="mm/dd/yy hh:mm" editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="1235" y="4" height="65" width="1395" format="[general]"  name=notes edit.limit=255 edit.case=any edit.autoselect=no edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="19" y="4" height="65" width="238" format="[general]"  name=revision edit.limit=10 edit.case=any edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

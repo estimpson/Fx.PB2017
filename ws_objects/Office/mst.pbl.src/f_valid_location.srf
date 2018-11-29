@@ -1,0 +1,24 @@
+﻿$PBExportHeader$f_valid_location.srf
+global type f_valid_location from function_object
+end type
+
+forward prototypes
+global function boolean f_valid_location (string szlocation)
+end prototypes
+
+global function boolean f_valid_location (string szlocation);String szThisLocation
+
+  SELECT location.code  
+    INTO :szThisLocation  
+    FROM location  
+   WHERE location.code = :szLocation   ;
+
+
+If IsNull(szThisLocation) or (szThisLocation = "") then
+	Return FALSE
+Else
+	Return TRUE
+End If
+
+end function
+

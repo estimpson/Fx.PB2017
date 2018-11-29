@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_column_header.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=97 color="536870912")
+table(column=(type=char(254) name=pbc_hdr dbname="pbcatcol.pbc_hdr" )
+ column=(type=char(129) name=pbc_cnam dbname="pbcatcol.pbc_cnam" )
+ retrieve="SELECT pbcatcol.pbc_hdr, pbcatcol.pbc_cnam FROM pbcatcol WHERE pbcatcol.pbc_tnam = :szTable " arguments=(("szTable", string)) )
+text(band=header color="0" alignment="2" border="0" x="10" y="8" height="65" width="2190" text="Pbc Hdr" name=pbc_hdr_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+text(band=header color="0" alignment="0" border="0" x="2209" y="4" height="57" width="2958" text="Pbc Cnam" font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")
+column(band=detail id=1 border="0" alignment="0" color="0" height="77" tabsequence=32766 width="2190" x="10" y="8"  name=pbc_hdr format="[general]" edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=2 border="0" alignment="0" color="0" height="57" tabsequence=10 width="2958" x="2209" y="0"  name=pbc_cnam format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127")

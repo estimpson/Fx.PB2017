@@ -1,0 +1,12 @@
+﻿$PBExportHeader$st_dda_parmlist_mit_sf.srs
+global type st_dda_parmlist_mit_sf from structure
+	string		s_arg_part
+	string		s_arg_module
+	string		s_rtn_qtystr
+	decimal {2}	s_rtn_qty
+	string		s_parent_unit
+	string		s_parent_qty
+	string		s_parent_dimqtystr
+	integer		s_nonconstantdim
+end type
+

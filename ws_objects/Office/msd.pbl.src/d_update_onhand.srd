@@ -1,0 +1,30 @@
+﻿$PBExportHeader$d_update_onhand.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=148 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=decimal(6) update=yes updatewhereclause=yes name=part_online_on_hand dbname="part_online.on_hand" )
+ column=(type=decimal(6) updatewhereclause=yes name=compute_0002 dbname="compute_0002" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_part_original dbname="shipper_detail.part_original" )
+ column=(type=char(25) updatewhereclause=yes key=yes name=part_online_part dbname="part_online.part" )
+ retrieve="SELECT 	part_online.on_hand, 
+			sum( shipper_detail.qty_packed), 
+			shipper_detail.part_original, 
+			part_online.part 
+FROM 		part_online, 
+			shipper_detail 
+WHERE 	( part_online.part = shipper_detail.part_original ) and 
+			( ( shipper_detail.shipper = :ishipper ) ) 
+GROUP BY part_online.part, part_online.on_hand, shipper_detail.qty_packed, shipper_detail.part_original " update="part_online" updatewhere=0 updatekeyinplace=yes arguments=(("ishipper", number)) )
+text(band=header alignment="2" text="Part Online
+On Hand"border="0" color="0" x="9" y="8" height="128" width="622"  name=part_online_on_hand_t  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper Detail Part Original"border="0" color="0" x="640" y="4" height="56" width="562"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Part Online Part"border="0" color="0" x="1211" y="4" height="56" width="562"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Compute 0002"border="0" color="0" x="1783" y="4" height="56" width="887"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="622" format="[general]"  name=part_online_on_hand edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial             " font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="640" y="4" height="96" width="562" format="[general]"  name=shipper_detail_part_original edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1211" y="0" height="56" width="562" format="[general]"  name=part_online_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1783" y="0" height="56" width="887" format="[general]"  name=compute_0002 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

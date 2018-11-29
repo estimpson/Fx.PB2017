@@ -1,0 +1,84 @@
+﻿$PBExportHeader$f_loop_for_units.srf
+global type f_loop_for_units from function_object
+end type
+
+forward prototypes
+global function string f_loop_for_units (string sznewunit, string szunit, int iorder)
+end prototypes
+
+global function string f_loop_for_units (string sznewunit, string szunit, int iorder);//  Declare Variables
+
+String     szCurrentUnit
+String     szCode
+String     szTemp
+
+Long       lCount
+Long       lItem
+
+
+//  Initialize Variables
+
+If iOrder = 1 Then
+	dw1.SetFilter ( "unit1 = ~"" + szUnit + "~"" )
+	dw1.SetSort ( "unit2 A" )
+Else
+	dw1.SetFilter ( "unit2 = ~"" + szUnit + "~"" )
+	dw1.SetSort ( "unit1 A" )
+End if
+
+dw1.Filter ( )
+dw1.Sort ( )
+ 
+//  Loop through the possible units and check each one
+
+For lCount = 1 to dw1.RowCount ( )
+
+	If iOrder = 1 Then
+		szCurrentUnit = dw1.GetItemString ( lCount, "unit2" )
+	Else
+		szCurrentUnit = dw1.GetItemString ( lCount, "unit1" )
+	End if
+
+	If szCurrentUnit = szNewUnit Then
+		szCode = dw1.GetItemString ( lCount, "code" )
+		Return szCode
+	End if					
+
+	If w_unit_conversion_list_per_part.lb_list.FindItem ( szCurrentUnit, 1 ) < 1 Then
+		w_unit_conversion_list_per_part.lb_list.AddItem ( szCurrentUnit )
+		szTemp = f_loop_for_units ( szNewUnit, szCurrentUnit, iOrder )
+	Else
+		szTemp = ""
+	End if
+	
+	If iOrder = 1 Then
+		dw1.SetFilter ( "unit1 = ~"" + szUnit + "~"" )
+		dw1.SetSort ( "unit2 A" )
+	Else
+		dw1.SetFilter ( "unit2 = ~"" + szUnit + "~"" )
+		dw1.SetSort ( "unit1 A" )
+	End if
+	
+	dw1.Filter ( )
+	dw1.Sort ( )
+ 
+	If szTemp <> "" Then
+
+		szCode = dw1.GetItemString ( lCount, "code" )
+		szCode = szCode + "~t" + szTemp
+		Return szCode
+
+	Else
+
+		lItem = w_unit_conversion_list_per_part.lb_list.FindItem ( szCurrentUnit, 1 )
+		If lItem > 0 Then
+			w_unit_conversion_list_per_part.lb_list.DeleteItem ( lItem )
+		End if
+
+	End if
+
+Next
+
+Return ""
+end function
+

@@ -1,0 +1,66 @@
+﻿$PBExportHeader$f_update_part_vendor_cum.srf
+$PBExportComments$Add qty to the cum_shipped in the table PART/VENDOR table
+global type f_update_part_vendor_cum from function_object
+end type
+
+forward prototypes
+global function boolean f_update_part_vendor_cum (string as_part, string as_destination, decimal an_qty)
+end prototypes
+
+global function boolean f_update_part_vendor_cum (string as_part, string as_destination, decimal an_qty);Decimal 	nCumShipped				//Cum shipped
+String	szCurrentPart, &
+			ls_vendor
+
+SetNull(szCurrentPart)
+
+// Included vendor column from destination 
+// also argument was changed to get destination instead of vendor
+
+SELECT 	part_vendor.accum_shipped,   
+			part_vendor.part ,
+			destination.vendor 
+INTO 		:nCumShipped,   
+			:szCurrentPart,
+			:ls_vendor
+from		part_vendor,
+			destination
+where		part_vendor.vendor = destination.vendor and
+			destination.destination = :as_destination and
+			part_vendor.part = :as_part  ; 
+   
+If IsNull(szCurrentPart) then
+
+	  INSERT INTO part_vendor  
+         ( part,   
+           vendor,   
+           vendor_part,   
+           vendor_standard_pack,   
+           accum_received,   
+           accum_shipped,   
+           outside_process )  
+ 		VALUES ( :as_part,   
+           :ls_vendor,   
+           null,   
+           null,   
+           null,   
+           :an_qty,   
+           'Y' )  ;
+
+Else
+
+		nCumShipped	= f_get_value(nCumShipped) + an_qty
+
+		UPDATE part_vendor  
+     	SET accum_shipped = :nCumShipped
+   	WHERE ( part 	= :as_part ) AND  
+         	( vendor = :ls_vendor )   ;
+
+End If
+
+If SQLCA.SQLCode = -1 then
+	Return FALSE
+Else
+	Return TRUE
+End If
+end function
+

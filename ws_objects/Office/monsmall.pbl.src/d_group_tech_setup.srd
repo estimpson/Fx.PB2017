@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_group_tech_setup.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=id dbname="group_technology.id" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="group_technology.notes" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=source_type dbname="group_technology.source_type" values="Defects	Defects/Downtime	Downtime/NULL	NULL/" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"group_technology~" ) COLUMN(NAME=~"group_technology.id~") COLUMN(NAME=~"group_technology.notes~") COLUMN(NAME=~"group_technology.source_type~")) ORDER(NAME=~"group_technology.id~" ASC=yes ) " update="group_technology" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Group Tech"border="6" color="0" x="9" y="8" height="52" width="795"  name=id_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Description"border="6" color="0" x="814" y="8" height="52" width="1216"  name=notes_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Source Type"border="6" color="0" x="2039" y="4" height="56" width="320"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="64" width="795" format="[general]"  name=id edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="814" y="4" height="64" width="1216" format="[general]"  name=notes edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="2039" y="4" height="64" width="320" format="[general]"  name=source_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

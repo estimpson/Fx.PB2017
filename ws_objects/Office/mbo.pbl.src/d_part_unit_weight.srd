@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_part_unit_weight.srd
+$PBExportComments$Used to get the unit weight of a part.
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=1 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_inventory.part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=unit_weight dbname="part_inventory.unit_weight" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part_inventory~" ) COLUMN(NAME=~"part_inventory.part~") COLUMN(NAME=~"part_inventory.unit_weight~")WHERE(    EXP1 =~"part_inventory.part~"   OP =~"=~"    EXP2 =~":part~" ) ) ARG(NAME = ~"part~" TYPE = string) " update="part_inventory" updatewhere=1 updatekeyinplace=no arguments=(("part", string)) )
+text(band=header alignment="2" text="Unit Weight"border="6" color="0" x="732" y="8" height="65" width="330"  name=unit_weight_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Part"border="6" color="0" x="10" y="8" height="65" width="714"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="2" color="0" x="732" y="8" height="77" width="330" format="[general]"  name=unit_weight edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="0" x="10" y="8" height="77" width="714" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

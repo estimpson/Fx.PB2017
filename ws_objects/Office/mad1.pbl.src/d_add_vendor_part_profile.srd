@@ -1,0 +1,65 @@
+﻿$PBExportHeader$d_add_vendor_part_profile.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=648 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_vendor.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=vendor dbname="part_vendor.vendor" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=vendor_part dbname="part_vendor.vendor_part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=vendor_standard_pack dbname="part_vendor.vendor_standard_pack" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=accum_received dbname="part_vendor.accum_received" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=accum_shipped dbname="part_vendor.accum_shipped" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=outside_process dbname="part_vendor.outside_process" values="Outside Process:	Y/Outside Process:	N" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty_over_received dbname="part_vendor.qty_over_received" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=receiving_um dbname="part_vendor.receiving_um" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=part_name dbname="part_vendor.part_name" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=lead_time dbname="part_vendor.lead_time" validation="Number (GetText()) > 0 " validationmsg="~"Lead time cannot be negative!~"" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=min_on_order dbname="part_vendor.min_on_order" validation="Number (GetText()) > 0 " validationmsg="~"Miniimum on order cannot be negative!~"" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=note dbname="part_vendor.note" )
+ retrieve="  SELECT part_vendor.part,   
+         part_vendor.vendor,   
+         part_vendor.vendor_part,   
+         part_vendor.vendor_standard_pack,   
+         part_vendor.accum_received,   
+         part_vendor.accum_shipped,   
+         part_vendor.outside_process,   
+         part_vendor.qty_over_received,   
+         part_vendor.receiving_um,   
+         part_vendor.part_name,   
+         part_vendor.lead_time,   
+         part_vendor.min_on_order,
+	 part_vendor.note  
+    FROM part_vendor  
+   WHERE ( vendor = :ls_vendor ) and
+			( part = :ls_part )
+          
+" update="part_vendor" updatewhere=0 updatekeyinplace=yes arguments=(("ls_vendor", string),("ls_part", string)) )
+text(band=header alignment="1" text="Part:" border="0" color="0" x="4288" y="0" height="52" width="512" html.valueishtml="0"  name=part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="5" color="0" x="4823" y="0" height="64" width="512" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Note:" border="0" color="0" x="1106" y="208" height="52" width="119" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=13 alignment="0" tabsequence=60 border="5" color="0" x="1248" y="8" height="492" width="1262" format="[general]" html.valueishtml="0"  name=note visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Vendor:" border="0" color="0" x="37" y="4" height="52" width="521" html.valueishtml="0"  name=vendor_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Receiving Unit:" border="0" color="0" x="37" y="196" height="52" width="521" html.valueishtml="0"  name=receiving_um_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Lead Time:" border="0" color="0" x="37" y="292" height="52" width="521" html.valueishtml="0"  name=lead_time_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Min On Order:" border="0" color="0" x="37" y="388" height="52" width="521" html.valueishtml="0"  name=min_on_order_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Vendor Standard Pack:" border="0" color="0" x="37" y="484" height="52" width="521" html.valueishtml="0"  name=vendor_standard_pack_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Vendor Part:" border="0" color="0" x="37" y="100" height="52" width="521" html.valueishtml="0"  name=vendor_part_t visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="594" y="8" height="64" width="622" format="[general]" html.valueishtml="0"  name=vendor visible="1" dddw.name=d_dddw_vendors dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=200 dddw.lines=0 dddw.limit=10 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="594" y="100" height="64" width="622" format="[general]" html.valueishtml="0"  name=vendor_part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=30 border="5" color="0" x="741" y="192" height="64" width="274" format="[general]" html.valueishtml="0"  name=receiving_um visible="1" dddw.name=d_external_drop_down_datawindow dddw.displaycolumn=data dddw.datacolumn=data dddw.percentwidth=100 dddw.lines=0 dddw.limit=10 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=80 border="0" color="0" x="37" y="560" height="64" width="974" format="[general]" html.valueishtml="0"  name=outside_process  tag="Flag for outside process. Y or N" visible="1" checkbox.text="Outside Process:" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="1" tabsequence=50 border="5" color="0" x="741" y="376" height="64" width="274" format="#,##0.0#####" html.valueishtml="0"  name=min_on_order visible="1" edit.limit=0 edit.case=any edit.format="#" edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="1" tabsequence=40 border="5" color="0" x="741" y="284" height="64" width="274" format="#,##0.0#####" html.valueishtml="0"  name=lead_time  tag="Purchase lead time" visible="1" edit.limit=0 edit.case=any edit.format="#" edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="1" tabsequence=70 border="5" color="0" x="741" y="468" height="64" width="274" format="#,##0.0#####" html.valueishtml="0"  name=vendor_standard_pack visible="1" edit.limit=0 edit.case=any edit.format="#" edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 
