@@ -82,6 +82,9 @@ window ParentWO
 //	Resize behavior.
 boolean Autoscroll = false
 
+//	Selection behavior.
+long IsSelected[]
+
 
 end variables
 
@@ -96,6 +99,7 @@ public function integer showtooltip (string dwoname, integer xpos, integer ypos)
 public function integer showcolumncomments (string dwoname, long row)
 public function integer measuredw ()
 public function long getsinglerowheight ()
+public function boolean isselected (long r)
 end prototypes
 
 event fx_definitionchanged(string newdataobject);
@@ -542,6 +546,18 @@ return HeaderHeight + DetailHeight + SummaryHeight + FooterHeight + groupHeaders
 
 end function
 
+public function boolean isselected (long r);if UpperBound(IsSelected) > 0 then
+	if	r > 0 and r < UpperBound(IsSelected) then
+		return (IsSelected[r] = 1)
+	else
+		return false
+	end if
+else
+	return this.IsSelected(r)
+end if
+
+end function
+
 on u_fxdw.create
 call super::create
 end on
@@ -705,10 +721,9 @@ if	Describe("IsSelected.ID") = "!" then
 	end if
 else
 	int selectedCount = 0
-	long isSelected[]
 //	string lsIsSelected
 //	lsIsSelected = Describe("IsSelected.Primary")
-	isSelected = object.IsSelected.Primary
+	IsSelected = object.IsSelected.Primary
 	long rowI, rows
 	rows = UpperBound (isSelected)
 	NoneSelected = true
