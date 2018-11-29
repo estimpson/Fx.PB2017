@@ -7,7 +7,6 @@ end forward
 global type w_inventory_inquiry from w_inquiry_ancestor
 string title = "Object Inquiry"
 string menuname = "m_object_inquiry"
-long backcolor = 78682240
 event ue_correct ( )
 event ue_label pbm_custom11
 end type
@@ -57,6 +56,7 @@ end event
 
 on w_inventory_inquiry.create
 call super::create
+if IsValid(this.MenuID) then destroy(this.MenuID)
 if this.MenuName = "m_object_inquiry" then this.MenuID = create m_object_inquiry
 end on
 
@@ -178,52 +178,4 @@ type dw_inquiry from w_inquiry_ancestor`dw_inquiry within w_inventory_inquiry
 string dataobject = "dw_object_inquiry"
 boolean hsplitscroll = true
 end type
-
-event dw_inquiry::clicked;/*  Declare Variables  */
-Long	l_l_Count
-Long	l_l_Row
-Long  l_l_PrevRow
-
-/*  Initialize Variables  */
-
-l_l_Row = row
-i_l_Row   = l_l_Row
-
-If l_l_Row < 1 Then Return
-
-If KeyDown ( keyShift! ) Then
-
-   l_l_PrevRow = dw_inquiry.GetRow()
-
-	If l_l_PrevRow < l_l_Row Then
-
-		For l_l_Count = l_l_PrevRow to l_l_Row
-			SelectRow ( This, l_l_Count, True )
-		Next
-
-   Else
-
-		For l_l_Count = l_l_Row to l_l_PrevRow
-			SelectRow ( This, l_l_Count, True )
-		Next
-   
-	End If 
-
-Elseif KeyDown ( keyControl! ) Then
-
-	If This.IsSelected ( l_l_Row ) Then
-		This.SelectRow ( l_l_Row, False )
-	Else
-		This.SelectRow ( l_l_Row, True )
-	End if
-
-Else
-
-	SelectRow ( This, 0, False )
-	SelectRow ( This, l_l_Row, True )
-
-End if
-
-l_l_PrevRow = l_l_Row
-end event
 
