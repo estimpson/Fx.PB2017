@@ -84,6 +84,7 @@ boolean Autoscroll = false
 
 //	Selection behavior.
 long IsSelected[]
+boolean MouseSelectionEnabled = false
 
 
 end variables
@@ -632,6 +633,14 @@ end if
 end event
 
 event clicked;call super::clicked;
+if	IsValid(ColumnComments) then
+	ColumnComments.event post ue_dwlbuttonup(dwo.Type, dwo.Name, row)
+end if
+
+if	IsValid(PowerFilter) then
+	PowerFilter.event post ue_buttonclicked(dwo.Type, dwo.Name)
+end if
+
 if IsValid( inv_rowselect ) then
 	post SetRedraw(true)
 end if
@@ -680,20 +689,15 @@ end if
 end event
 
 event retrieveend;call super::retrieveend;
+//	Set mouse selection.
+if	MouseSelectionEnabled then
+	this.Object.DataWindow.Selected.Mouse = "Yes"
+else
+	this.Object.DataWindow.Selected.Mouse = "No"
+end if
+
 //	Ensure that grid is visible after retrieval.
 post SetRedraw(true)
-end event
-
-event dwlbuttonup;call super::dwlbuttonup;
-if	IsValid(ColumnComments) then
-	ColumnComments.event post ue_dwlbuttonup(dwo.Type, dwo.Name, row)
-end if
-
-if	IsValid(PowerFilter) then
-	PowerFilter.event post ue_buttonclicked(dwo.Type, dwo.Name)
-end if
-
-
 end event
 
 event itemfocuschanged;call super::itemfocuschanged;

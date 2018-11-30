@@ -156,6 +156,10 @@ dw_inquiry.SetFocus ( )
 
 end event
 
+event pfc_preopen;call super::pfc_preopen;TableNames[] = {"cdivw_so_inquiry"}
+
+end event
+
 type st_1 from w_inquiry_ancestor`st_1 within w_order_entry_inquiry
 end type
 

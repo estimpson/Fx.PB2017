@@ -301,6 +301,10 @@ dw_inquiry.SetFocus ( )
 
 end event
 
+event pfc_preopen;call super::pfc_preopen;TableNames = {"part"}
+
+end event
+
 type st_1 from w_inquiry_ancestor`st_1 within w_part_inquiry
 end type
 

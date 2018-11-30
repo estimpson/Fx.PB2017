@@ -46,9 +46,9 @@ Boolean	ib_freeform = FALSE //set to True if datawindow headerheight = 0, moves 
 PUBLIC:
 Long		MaxItems = 100000 //default number of Items to allow in the dropdown
 Long		MaxTime = 5000 //default number of milliseconds to loop while populating the dropdown
-Integer	ButtonHeight = 64 //default button height
-Integer	ButtonWidth = 73 //default button width
-Integer	ButtonXOffset = -9 //pixels to shift horizontally from default position +/-
+Integer	ButtonHeight = 52//76// 64 //default button height
+Integer	ButtonWidth = 59//91//73 //default button width
+Integer	ButtonXOffset = 0//-9 //pixels to shift horizontally from default position +/-
 Integer	ButtonYOffset = -21 //pixels to shift vertically from default position +/-
 Integer	DropdownXOffset = 0 //pixels to shift horizontally from default position +/-
 Integer	DropdownYOffset = 0 //pixels to shift vertically from default position +/-
@@ -119,7 +119,6 @@ Constant Long TooltipText				=	134217751
 String		is_postfilterevent	//string to load with post filter event name to process
 powerobject	ipo_parent		//parent object to fire post filter event on
 end variables
-
 forward prototypes
 public function integer of_buildfilter (string as_columnfilter, integer ai_columnnumber)
 public function integer of_setbuttonpics ()
@@ -280,7 +279,7 @@ event ue_buttonclicked(string dwotype, string dwoname);/*=======================
 .============================================================*/
 Integer li_colnum
 
-IF dwotype = 'button' and left(string(dwoname),13) = 'b_powerfilter' THEN
+IF (dwotype = 'button' or dwotype = 'bitmap' or dwotype = 'compute') and left(string(dwoname),13) = 'b_powerfilter' THEN
 //	make sure it was a powerfilter button that was pressed
 	li_colnum = integer(mid(string(dwoname),14))
 ELSE
@@ -808,16 +807,32 @@ IF mid(ls_visible,1,1) = '"' THEN
 	of_replace(ls_visible,"'","~~~'")
 END IF
 of_replace(as_title,"'","~~'")
-ls_modstring = &
-"create button(band=Foreground text='' filename='PF_DownArrow_PF6.bmp' suppresseventprocessing=yes enabled=yes action='0' border='0' color='33554432' "  +  &
+//ls_modstring = &
+//"create button(band=Foreground text='' filename='PF_DownArrow_PF6.bmp' suppresseventprocessing=yes enabled=yes action='0' border='0' color='33554432' "  +  &
+//"x='" +string(ll_xpos)+ "' "  +  &
+//"y='" +string(li_ypos)+ "' "  +  &
+//"height='" +string(li_height)+ "' width='" +string(li_width)+ "' "  +  &
+//"vtextalign='0' htextalign='0' "  +  &
+//"name=" + "bb_powerfilter" + string(ai_colnum) +&
+//" visible='"+ ls_visible + "'"  +&
+//"font.face='Tahoma' font.height='-10' font.weight='400'  font.family='2' font.pitch='2' font.charset='0' "  +  &
+//"background.mode='2' background.color='67108864' ) "
+
+ls_modstring += &
+"create bitmap(band=Foreground filename='PF_DownArrow_PF6.bmp' border='0' "  +  &
 "x='" +string(ll_xpos)+ "' "  +  &
 "y='" +string(li_ypos)+ "' "  +  &
 "height='" +string(li_height)+ "' width='" +string(li_width)+ "' "  +  &
-"vtextalign='0' htextalign='0' "  +  &
 "name=" + "b_powerfilter" + string(ai_colnum) +&
-" visible='"+ ls_visible + "'"  +&
-"font.face='Tahoma' font.height='-10' font.weight='400'  font.family='2' font.pitch='2' font.charset='0' "  +  &
-"background.mode='2' background.color='67108864' )"
+" visible='"+ ls_visible + "' ) "
+
+//ls_modstring += &
+//"create compute(band=Foreground expression='bitmap(~"PF_DownArrow_PF6.bmp~")' border='0' "  +  &
+//"x='" +string(ll_xpos)+ "' "  +  &
+//"y='" +string(li_ypos)+ "' "  +  &
+//"height='" +string(li_height)+ "' width='" +string(li_width)+ "' "  +  &
+//"name=" + "b_powerfilter" + string(ai_colnum) +&
+//" visible='"+ ls_visible + "' ) "
 
 return ls_modstring
 end function
