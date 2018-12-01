@@ -1,0 +1,57 @@
+﻿$PBExportHeader$d_prepottingassembly_todayproductionsum.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=392 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=mes_joblist_workordernumber dbname="MES_JobList.WorkOrderNumber" )
+ column=(type=number updatewhereclause=yes name=mes_joblist_workorderdetailline dbname="MES_JobList.WorkOrderDetailLine" )
+ column=(type=char(25) updatewhereclause=yes name=mes_joblist_partcode dbname="MES_JobList.PartCode" )
+ column=(type=char(5) updatewhereclause=yes name=operatorcode dbname="OperatorCode" )
+ column=(type=datetime updatewhereclause=yes name=productiondt dbname="ProductionDT" )
+ column=(type=decimal(6) updatewhereclause=yes name=goodqty dbname="GoodQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=badqty dbname="BadQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=scrapqty dbname="ScrapQty" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	mjl.WorkOrderNumber
+,	mjl.WorkOrderDetailLine
+,	mjl.PartCode
+,	OperatorCode = e.operator_code
+,	ProductionDT = dateadd(day, datediff(day, '2001-01-01', getdate()), '2001-01-01')
+,	GoodQty = coalesce(mdps.GoodQty, 0)
+,	BadQty = coalesce(mdps.BadQty, 0)
+,	ScrapQty = coalesce(mdps.ScrapQty, 0)
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.MES_JobList mjl
+	join dbo.employee e
+		on e.operator_code = :operatorCode
+	left join dbo.MES_TodayProductionSummary mdps
+		on mdps.WorkOrderNumber = mjl.WorkOrderNumber
+		and mdps.WorkOrderDetailLine = mjl.WorkOrderDetailLine
+		and mdps.OperatorCode = e.operator_code
+where
+	mjl.PartCode = :partCode
+" arguments=(("operatorCode", string),("partCode", string)) )
+groupbox(band=detail text="Production Summary"border="5" color="33554432" x="37" y="4" height="384" width="1573"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Production date:" border="0" color="33554432" x="73" y="132" height="64" width="549" html.valueishtml="0"  name=productiondt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="132" height="76" width="914" format="[shortdate]" html.valueishtml="0"  name=productiondt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Good qty:" border="0" color="33554432" x="73" y="260" height="64" width="293" html.valueishtml="0"  name=goodqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Bad qty:" border="0" color="33554432" x="1024" y="260" height="64" width="293" html.valueishtml="0"  name=badqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="402" y="260" height="76" width="219" format="#,##0.0#####" html.valueishtml="0"  name=goodqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="badqty + scrapqty"border="0" color="33554432" x="1353" y="260" height="76" width="219" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

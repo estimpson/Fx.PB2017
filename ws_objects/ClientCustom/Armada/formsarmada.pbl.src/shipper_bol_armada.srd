@@ -1,0 +1,367 @@
+﻿$PBExportHeader$shipper_bol_armada.srd
+$PBExportComments$BOL Alternate form
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=1309 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=1213 color="536870912" )
+detail(height=227 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_aetc_number dbname="shipper.aetc_number" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="shipper.ship_via" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_objs dbname="shipper.staged_objs" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_pallets dbname="shipper.staged_pallets" )
+ column=(type=char(50) updatewhereclause=yes name=customer_name dbname="customer.name" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_1 dbname="customer.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_2 dbname="customer.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_3 dbname="customer.address_3" )
+ column=(type=char(10) updatewhereclause=yes name=customer_customer dbname="customer.customer" )
+ column=(type=char(50) updatewhereclause=yes name=destname dbname="destination.destname" )
+ column=(type=char(50) updatewhereclause=yes name=address_1 dbname="destination.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=address_2 dbname="destination.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=address_3 dbname="destination.address_3" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="order_header.location" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="destination.destination" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_supplier_code dbname="edi_setups.supplier_code" )
+ column=(type=char(20) updatewhereclause=yes name=destination_shipping_fob dbname="destination_shipping.fob" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_freight_type dbname="destination_shipping.freight_type" )
+ column=(type=char(25) updatewhereclause=yes name=order_header_customer_po dbname="shipper_detail.customer_po" )
+ column=(type=char(254) updatewhereclause=yes name=shipper_detail_note dbname="shipper_detail.note" )
+ column=(type=long updatewhereclause=yes name=shipper_detail_boxes_staged dbname="shipper_detail.boxes_staged" )
+ column=(type=char(25) updatewhereclause=yes name=part_original dbname="shipper_detail.part_original" )
+ column=(type=long updatewhereclause=yes name=suffix dbname="shipper_detail.suffix" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_alternative_qty dbname="shipper_detail.alternative_qty" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum_shipped dbname="shipper_detail.accum_shipped" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_gross_weight dbname="shipper.gross_weight" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_net_weight dbname="shipper.net_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_tare_weight dbname="shipper.tare_weight" )
+ column=(type=char(50) updatewhereclause=yes name=cross_ref dbname="part.cross_ref" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(25) updatewhereclause=yes name=part_part dbname="part.part" )
+ column=(type=char(35) updatewhereclause=yes name=order_header_customer_part dbname="order_header.customer_part" )
+ column=(type=decimal(6) updatewhereclause=yes name=order_header_our_cum dbname="order_header.our_cum" )
+ column=(type=datetime updatewhereclause=yes name=order_header_order_date dbname="order_header.order_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=the_cum dbname="order_header.the_cum" )
+ column=(type=char(10) updatewhereclause=yes name=dock_code dbname="order_header.dock_code" )
+ column=(type=char(100) updatewhereclause=yes name=container_message dbname="shipper.container_message" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_terms dbname="shipper.terms" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_freight_type dbname="shipper.freight_type" )
+ column=(type=char(15) updatewhereclause=yes name=shipper_shipping_dock dbname="shipper.shipping_dock" )
+ column=(type=char(15) updatewhereclause=yes name=alternative_unit dbname="shipper_detail.alternative_unit" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_release_no dbname="shipper_detail.release_no" )
+ column=(type=char(35) updatewhereclause=yes name=carrier_name dbname="carrier.name" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message1 dbname="destination_message_file.message1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message2 dbname="destination_message_file.message2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message3 dbname="destination_message_file.message3" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message4 dbname="destination_message_file.message4" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message5 dbname="destination_message_file.message5" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message6 dbname="destination_message_file.message6" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message7 dbname="destination_message_file.message7" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message8 dbname="destination_message_file.message8" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message9 dbname="destination_message_file.message9" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message10 dbname="destination_message_file.message10" )
+ column=(type=char(50) updatewhereclause=yes name=parmsname dbname="parameters.parmsname" )
+ column=(type=char(30) updatewhereclause=yes name=parmsadd1 dbname="parameters.parmsadd1" )
+ column=(type=char(30) updatewhereclause=yes name=parmsadd2 dbname="parameters.parmsadd2" )
+ column=(type=char(30) updatewhereclause=yes name=parmsadd3 dbname="parameters.parmsadd3" )
+ column=(type=char(50) updatewhereclause=yes name=destination_dockname dbname="destination.dockname" )
+ column=(type=char(20) updatewhereclause=yes name=dockdestination dbname="destination.dockdestination" )
+ column=(type=char(50) updatewhereclause=yes name=dockadd1 dbname="destination.dockadd1" )
+ column=(type=char(50) updatewhereclause=yes name=dockadd2 dbname="destination.dockadd2" )
+ column=(type=char(50) updatewhereclause=yes name=dockadd3 dbname="destination.dockadd3" )
+ column=(type=char(30) updatewhereclause=yes name=order_header_custom02 dbname="order_header.custom02" )
+ column=(type=char(35) updatewhereclause=yes name=order_header_line11 dbname="order_header.line11" )
+ column=(type=datetime updatewhereclause=yes name=date_stamp dbname="shipper.date_stamp" )
+ column=(type=char(1183) updatewhereclause=yes name=bolnote dbname="bolnote" )
+ column=(type=char(868) updatewhereclause=yes name=bolnote2 dbname="bolnote2" )
+ retrieve="SELECT shipper.id,	 
+		 aetc_number,	 
+		 ship_via,	 
+		 staged_objs,	 
+		 staged_pallets,	 
+		 customer.name,	 
+		 customer.address_1,	 
+		 customer.address_2,	 
+		 customer.address_3,	 
+		 customer.customer,	 
+		 destination.name destname,	 
+		 destination.address_1,	 
+		 destination.address_2,	 
+		 destination.address_3,	
+		 order_header.location, 
+		 destination.destination,	 
+		 edi_setups.supplier_code,	 	
+		 destination_shipping.fob,	 
+		 destination_shipping.freight_type,	 
+		 shipper_detail.customer_po,	 
+		 shipper_detail.note,	 
+		 shipper_detail.boxes_staged,	 
+		 shipper_detail.part_original,	 
+		 shipper_detail.suffix,	 	
+		 shipper_detail.qty_packed,	 	
+		 shipper_detail.alternative_qty,	 
+		 shipper_detail.accum_shipped,	 
+		 shipper.gross_weight,	 
+		 shipper.net_weight,	 
+		 shipper.tare_weight,	 
+		 part.cross_ref,	 	
+		 part.name,	 
+		 part.part,	 	
+		 order_header.customer_part,	 	
+		 order_header.our_cum,	 
+		 order_header.order_date,	 
+		 order_header.the_cum,	 
+		 order_header.dock_code,	 
+		 shipper.container_message,	 
+		 shipper.terms,	 	
+		 shipper.freight_type,	 
+		 shipper.shipping_dock,	 
+		 shipper_detail.alternative_unit,	 
+	    shipper_detail.release_no,	 
+		 carrier.name,	 
+		 destination_message_file.message1,	 
+		 destination_message_file.message2,	 
+		 destination_message_file.message3, 	 
+		 destination_message_file.message4,	 
+		 destination_message_file.message5,	 
+		 destination_message_file.message6,	 
+		 destination_message_file.message7,	 
+		 destination_message_file.message8,	 
+		 destination_message_file.message9,	 
+		 destination_message_file.message10,	 
+		 parameters.company_name parmsname,	 	
+		 parameters.address_1 parmsadd1,	 
+		 parameters.address_2 parmsadd2,	 
+		 parameters.address_3 parmsadd3,	 
+		 dockcode.name dockname,
+		 dockcode.destination dockdestination, 	
+		 dockcode.address_1 dockadd1, 	 
+		 dockcode.address_2 dockadd2,	 
+		 dockcode.address_3 dockadd3,
+		 order_header.custom02,
+		 order_header.line11	,
+		 shipper.date_stamp,
+		'The property described below, in apparent good order, except as noted (contents and condition of contents of packages unknown), marked, consigned, and destined as indicated below, which said carrier (the word carrier being understood throughout this contract as meaning any person or corporation in possession of the property under the contract) agrees to carry to its usual place of delivery at said destination, if on its route, otherwise to deliver to said property, that every service to be performed hereunder shall be subject to all the terms and conditions of the Uniform-Domestic Straight Bill of Lading set forth (1) in Uniform Freight Classification in effect on the date herof, if this is a rail or a rail-water shipment, or (2) in the applicable motor carrier classification or tariff if this is a motor carrier shipment.      Shipper hereby certifies that he is familiar with all the terms and conditions of said bill of lading, including those on the back thereof, set forth in the classification or tariff which governs the transportation of this shipment, and the said terms and conditions are hereby agreed to by the shipper and accepted for himself and his assigns.'  as BOLNote,
+     'This is to certify that the above articles are properly classified, described, packaged, marked and labeled, and are in proper condition for transportation according to regulations by the Department of Transportation.   * If the shipment moves between two ports by a carrier by water, the law requires that the bill of lading shall state whether it is carrier or shipper weight. Shipper imprints in lieu of stamp not a part of Bill Of Lading approved by the Department of Transportation.   NOTE--Where the rate is dependent on value, shippers are required to state specifically in writing the agreed or declared value of the property.   * The fibre boxes used for this shipment conform to the specifications set forth in the box makers certificate thereon, and all other requirements of Uniform Freight Classififcation and of the National Motor Freight Classification.' as BOLNote2
+		 
+From
+	shipper
+join 
+	shipper_detail on shipper_detail.shipper =  shipper.id
+join
+	order_header on order_header.order_no = shipper_detail.order_no 
+join
+	destination on destination.destination = shipper.destination
+left join 
+	destination as dockcode on order_header.location = dockcode.destination  
+left join
+	destination_message_file on destination_message_file.destination =  destination.destination
+left join 
+	carrier on carrier.scac = shipper.ship_via			 	 
+join
+	edi_setups on edi_setups.destination = destination.destination				 
+join
+	customer on customer.customer = shipper.customer				 
+join
+	destination_shipping on 	destination_shipping.destination = destination.destination		 
+join
+	part on part.part = shipper_detail.part_original	 
+cross join		 
+	parameters 
+Where
+	shipper.id =  :iShipper 
+" arguments=(("iShipper", string)) )
+text(band=header alignment="0" text="Boxes:" border="0" color="0" x="315" y="1744" height="64" width="212" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="TARE WEIGHT" border="0" color="0" x="2128" y="1706" height="64" width="410" html.valueishtml="0"  name=t_30 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="/* sum(  shipper_staged_objs  for all distinct shipper_id  ) */"border="0" color="0" x="508" y="1744" height="64" width="212" format="#,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="round(sum(  shipper_net_weight  for all ),0)"border="0" color="0" x="987" y="1738" height="67" width="691" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="D-U-N-S NO : 005372040" border="0" color="0" x="2202" y="173" height="77" width="541" html.valueishtml="0"  name=t_31 visible="1"  slideleft=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="1905" y1="522" x2="2838" y2="522"  name=l_26 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=header x1="0" y1="992" x2="3547" y2="992"  name=l_3 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+rectangle(band=header x="2940" y="16" height="189" width="585"  name=r_3 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="7" pen.color="10789024"  background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SHIPPER NUMBER" border="0" color="16777215" x="2948" y="26" height="86" width="563" html.valueishtml="0"  name=t_39 visible="1"  font.face="Tw Cen MT Condensed" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+column(band=header id=1 alignment="2" tabsequence=32766 border="0" color="0" x="2951" y="115" height="77" width="552" format="[general]" html.valueishtml="0"  name=shipper_id_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=header x="2940" y="205" height="189" width="585"  name=r_1 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="7" pen.color="10789024"  background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="DATE" border="0" color="16777215" x="2948" y="211" height="90" width="563" html.valueishtml="0"  name=t_15 visible="1"  font.face="Tw Cen MT Condensed" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+column(band=header id=67 alignment="2" tabsequence=32766 border="0" color="0" x="2948" y="307" height="77" width="560" format="mm/dd/yyyy" html.valueishtml="0"  name=date_stamp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="2918" y1="525" x2="3474" y2="525"  name=l_30 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="TITLE" border="0" color="0" x="2911" y="445" height="77" width="578" html.valueishtml="0"  name=t_35 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=68 alignment="0" tabsequence=32766 border="0" color="0" x="4" y="592" height="403" width="2110" format="[general]" html.valueishtml="0"  name=bolnote visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="CONSIGNEE AND DESTINATION  /  SHIPPER LOAD AND/OR CONSIGNEE UNLOAD" border="0" color="0" x="2125" y="544" height="51" width="1390" html.valueishtml="0"  name=t_9 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="(MAIL OR STREET ADDRESS OF CONSIGNEE - FORPURPOSES OF NOTIFICATION ONLY)" border="0" color="0" x="2125" y="602" height="51" width="1335" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if( isNull(  destination_dockname  ),  destname,  destination_dockname  ) "border="0" color="0" x="2125" y="656" height="61" width="1335" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="if( isNull(  destination_dockname  ),   address_1 ,   dockadd1   ) "border="0" color="0" x="2125" y="723" height="61" width="1335" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="if( isNull(  destination_dockname  ),   address_2 ,   dockadd2   ) "border="0" color="0" x="2125" y="787" height="61" width="1335" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="if( isNull(  destination_dockname  ),   address_3 ,   dockadd3   ) "border="0" color="0" x="2125" y="851" height="61" width="1335" format="[general]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="CUST. SOURCE CODE " border="0" color="0" x="7" y="992" height="67" width="556" html.valueishtml="0"  name=t_40 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="F.O.B." border="0" color="0" x="2344" y="992" height="64" width="490" html.valueishtml="0"  name=t_27 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=10 alignment="2" tabsequence=32766 border="0" color="0" x="22" y="1075" height="86" width="538" format="[general]" html.valueishtml="0"  name=customer_customer visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="CARRIER (SHIP VIA)" border="0" color="0" x="581" y="989" height="67" width="819" html.valueishtml="0"  name=t_26 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="SUPPLIER CODE " border="0" color="0" x="1408" y="989" height="67" width="512" html.valueishtml="0"  name=t_10 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="FREIGHT" border="0" color="0" x="1938" y="989" height="67" width="384" html.valueishtml="0"  name=t_11 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="0" y1="1059" x2="3547" y2="1059"  name=l_1 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=header id=3 alignment="2" tabsequence=32766 border="0" color="0" x="581" y="1059" height="64" width="808" format="[general]" html.valueishtml="0"  name=shipper_ship_via_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="DOCK" border="0" color="0" x="2853" y="992" height="64" width="205" html.valueishtml="0"  name=t_12 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="AETC NO." border="0" color="0" x="3072" y="992" height="67" width="479" html.valueishtml="0"  name=t_28 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=45 alignment="2" tabsequence=32766 border="0" color="0" x="581" y="1107" height="54" width="808" format="[general]" html.valueishtml="0"  name=carrier_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=17 alignment="2" tabsequence=32766 border="0" color="0" x="1415" y="1082" height="74" width="497" format="[general]" html.valueishtml="0"  name=edi_setups_supplier_code_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="59" y1="1168" x2="3551" y2="1168"  name=l_2 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=header id=19 alignment="2" tabsequence=32766 border="0" color="0" x="1935" y="1082" height="74" width="388" format="[general]" html.valueishtml="0"  name=shipper_freight_type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=18 alignment="0" tabsequence=32766 border="0" color="0" x="2344" y="1069" height="77" width="464" format="[general]" html.valueishtml="0"  name=destination_shipping_fob visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=42 alignment="2" tabsequence=32766 border="0" color="0" x="2853" y="1085" height="77" width="216" format="[general]" html.valueishtml="0"  name=shipper_shipping_dock visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=2 alignment="2" tabsequence=32766 border="0" color="0" x="3079" y="1075" height="86" width="464" format="[general]" html.valueishtml="0"  name=shipper_aetc_number visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="0" y1="1168" x2="3547" y2="1168"  name=l_7 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="P.O. NUMBER" border="0" color="0" x="7" y="1178" height="67" width="633" html.valueishtml="0"  name=t_48 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="PRIOR ACCUM" border="0" color="0" x="3251" y="1181" height="61" width="296" html.valueishtml="0"  name=t_50 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="0" y1="1306" x2="3547" y2="1306"  name=l_8 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="INT. PART NO." border="0" color="0" x="7" y="1245" height="67" width="633" html.valueishtml="0"  name=t_49 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="CUSTOMER PART NUMBER" border="0" color="0" x="662" y="1181" height="67" width="1020" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="DESCRIPTION" border="0" color="0" x="662" y="1245" height="67" width="1020" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="QUANTITY" border="0" color="0" x="1704" y="1181" height="67" width="293" html.valueishtml="0"  name=t_52 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="SHIPPED" border="0" color="0" x="1712" y="1245" height="67" width="282" html.valueishtml="0"  name=t_53 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="CONT.
+CNT." border="0" color="0" x="2022" y="1178" height="118" width="91" html.valueishtml="0"  name=t_23 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="CONTAINER SERIAL(S)" border="0" color="0" x="2128" y="1178" height="118" width="903" html.valueishtml="0"  name=t_24 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="TOTAL ACCUM" border="0" color="0" x="3251" y="1245" height="61" width="296" html.valueishtml="0"  name=t_51 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if( isNull(  destination_dockname  ),    destination ,    dockdestination    ) "border="0" color="0" x="2125" y="915" height="61" width="1335" format="[general]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="STRAIGHT BILL OF LADING ----" border="0" color="0" x="37" y="29" height="77" width="805" html.valueishtml="0"  name=t_8 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="SHORT FORM ----- " border="0" color="0" x="819" y="29" height="77" width="464" html.valueishtml="0"  name=t_33 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Original ----" border="0" color="0" x="1284" y="29" height="77" width="402" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Not Negotiable" border="0" color="0" x="1595" y="29" height="77" width="523" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="RECEIVED," border="0" color="0" x="33" y="112" height="58" width="325" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="FROM :" border="0" color="0" x="33" y="173" height="77" width="190" html.valueishtml="0"  name=t_84 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="ARMADA RUBBER MFG. CO." border="0" color="0" x="208" y="173" height="77" width="1152" html.valueishtml="0"  name=t_85 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="subject to the classifications and lawfully filed tariffs in effect on the date of issue of this Original Bill of Lading." border="0" color="0" x="263" y="112" height="61" width="2267" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="AT :" border="0" color="0" x="1371" y="173" height="77" width="150" html.valueishtml="0"  name=t_29 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="ARMADA, MI 48005-0579" border="0" color="0" x="1521" y="173" height="77" width="669" html.valueishtml="0"  name=t_32 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=69 alignment="0" tabsequence=32766 border="0" color="0" x="33" y="256" height="192" width="2896" format="[general]" html.valueishtml="0"  name=bolnote2 visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="CARRIER'S NO :" border="0" color="0" x="80" y="458" height="74" width="325" html.valueishtml="0"  name=t_25 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="406" y="458" height="74" width="464" format="[general]" html.valueishtml="0"  name=shipper_ship_via visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="CAR OR VEHICLE INITIALS & NO." border="0" color="0" x="878" y="461" height="77" width="655" html.valueishtml="0"  name=t_86 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="SIGNATURE" border="0" color="0" x="1660" y="461" height="77" width="651" html.valueishtml="0"  name=t_34 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="143" y="243" height="374" width="3478" format="[general]" html.valueishtml="0"  name=shipper_detail_note visible="1"  slideup=allabove height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="143" y1="649" x2="3602" y2="649"  name=l_25 visible="1"  slideup=directlyabove pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=20 alignment="2" tabsequence=32766 border="0" color="0" x="7" y="3" height="77" width="625" format="[general]" html.valueishtml="0"  name=order_header_customer_po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=34 alignment="2" tabsequence=32766 border="0" color="0" x="662" y="0" height="77" width="1002" format="[general]" html.valueishtml="0"  name=order_header_customer_part visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=35 alignment="1" tabsequence=32766 border="0" color="33554432" x="3251" y="9" height="67" width="296" format="#,##0" html.valueishtml="0"  name=order_header_our_cum visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=33 alignment="2" tabsequence=32766 border="0" color="0" x="7" y="83" height="70" width="633" format="[general]" html.valueishtml="0"  name=part_part_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="2" tabsequence=32766 border="0" color="0" x="1712" y="9" height="74" width="282" format="#,##0" html.valueishtml="0"  name=shipper_detail_alternative_qty_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=32 alignment="2" tabsequence=32766 border="0" color="0" x="662" y="89" height="67" width="1020" format="[general]" html.valueishtml="0"  name=part_name_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="2" tabsequence=32766 border="0" color="0" x="2022" y="13" height="67" width="91" format="[general]" html.valueishtml="0"  name=shipper_detail_boxes_staged visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=detail dataobject="nest_shipper_objects_armada" x="2125" y="0" height="227" width="1115" border="0"  height.autosize=yes criteria="" nest_arguments=((" part_part "),("string( iShipper )")) trail_footer = yes  name=dw_1 visible="1"  slideup=directlyabove )
+compute(band=detail alignment="1" expression=" order_header_our_cum + shipper_detail_qty_packed "border="0" color="33554432" x="3240" y="80" height="70" width="307" format="#,##0" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=44 alignment="2" tabsequence=32766 border="0" color="0" x="15" y="163" height="74" width="625" format="[general]" html.valueishtml="0"  name=shipper_detail_release_no_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=65 alignment="2" tabsequence=32766 border="0" color="0" x="662" y="163" height="74" width="490" format="[general]" html.valueishtml="0"  name=order_header_custom02 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=66 alignment="2" tabsequence=32766 border="0" color="0" x="1712" y="163" height="74" width="285" format="[general]" html.valueishtml="0"  name=order_header_line11 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="4" y1="2979" x2="3522" y2="2979"  name=l_37 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="563" y1="1002" x2="563" y2="1168"  name=l_58 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="1401" y1="1002" x2="1401" y2="1168"  name=l_9 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="1920" y1="995" x2="1920" y2="1165"  name=l_5 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2330" y1="995" x2="2330" y2="1165"  name=l_15 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2838" y1="1002" x2="2838" y2="1168"  name=l_16 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="3072" y1="1002" x2="3072" y2="1168"  name=l_10 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="640" y1="1168" x2="640" y2="2979"  name=l_14 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="1690" y1="1168" x2="1690" y2="2979"  name=l_23 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2000" y1="1168" x2="2000" y2="2979"  name=l_29 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2117" y1="1168" x2="2117" y2="2979"  name=l_24 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="3248" y1="1168" x2="3248" y2="2979"  name=l_28 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=46 alignment="0" tabsequence=32766 border="0" color="0" x="15" y="3008" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=51 alignment="0" tabsequence=32766 border="0" color="0" x="1178" y="3008" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message6 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="2" text="GROSS (LBS)" border="0" color="0" x="2344" y="2986" height="67" width="377" html.valueishtml="0"  name=t_45 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="NET (LBS)" border="0" color="0" x="2725" y="2986" height="67" width="377" html.valueishtml="0"  name=t_46 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="TARE (LBS)" border="0" color="0" x="3105" y="2986" height="67" width="388" html.valueishtml="0"  name=t_47 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="2344" y1="3056" x2="3496" y2="3056"  name=l_39 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=47 alignment="0" tabsequence=32766 border="0" color="0" x="15" y="3085" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=52 alignment="0" tabsequence=32766 border="0" color="0" x="1178" y="3085" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message7 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="2341" y1="2976" x2="2341" y2="3117"  name=l_41 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=28 alignment="2" tabsequence=32766 border="0" color="0" x="2344" y="3056" height="58" width="377" format="#,##0" html.valueishtml="0"  name=shipper_gross_weight_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="2725" y1="2976" x2="2725" y2="3117"  name=l_20 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=29 alignment="2" tabsequence=32766 border="0" color="0" x="2736" y="3056" height="58" width="373" format="#,##0" html.valueishtml="0"  name=shipper_net_weight_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="3105" y1="2976" x2="3105" y2="3104"  name=l_38 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=30 alignment="2" tabsequence=32766 border="0" color="0" x="3123" y="3056" height="58" width="373" format="#,##0" html.valueishtml="0"  name=shipper_tare_weight_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="2344" y1="3117" x2="3522" y2="3117"  name=l_40 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="3522" y1="2976" x2="3522" y2="3117"  name=l_42 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=foreground id=48 alignment="0" tabsequence=32766 border="0" color="0" x="15" y="3162" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=53 alignment="0" tabsequence=32766 border="0" color="0" x="1178" y="3162" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message8 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="0" text="CHARGES ADVANCED :" border="0" color="0" x="2341" y="3152" height="45" width="424" html.valueishtml="0"  name=t_54 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="REMIT C.O.D. TO: (ADDRESS)" border="0" color="0" x="2820" y="3130" height="42" width="677" html.valueishtml="0"  name=t_61 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=49 alignment="0" tabsequence=32766 border="0" color="0" x="15" y="3235" height="70" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=54 alignment="0" tabsequence=32766 border="0" color="0" x="1178" y="3235" height="70" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message9 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="0" text="C.O.D AMT." border="0" color="0" x="2341" y="3197" height="45" width="424" html.valueishtml="0"  name=t_58 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="COLLECTION FEE" border="0" color="0" x="2341" y="3242" height="42" width="424" html.valueishtml="0"  name=t_59 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=50 alignment="0" tabsequence=32766 border="0" color="0" x="15" y="3312" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=55 alignment="0" tabsequence=32766 border="0" color="0" x="1178" y="3312" height="67" width="1152" format="[general]" html.valueishtml="0"  name=destination_message_file_message10 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="0" text="TOTAL CHARGES" border="0" color="0" x="2341" y="3283" height="45" width="424" html.valueishtml="0"  name=t_60 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="   C.O.D. CHARGE TO BE PAID BY" border="0" color="0" x="2940" y="3283" height="45" width="424" html.valueishtml="0"  name=t_36 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="SHIPPER" border="0" color="0" x="2951" y="3331" height="45" width="143" html.valueishtml="0"  name=t_43 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=foreground x="3127" y="3328" height="48" width="69"  name=r_2 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="4" pen.color="0"  background.mode="2" background.color="0" )
+text(band=foreground alignment="2" text="QTY OF
+CONT." border="0" color="0" x="4" y="3389" height="86" width="157" html.valueishtml="0"  name=t_20 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="4" y1="3392" x2="2099" y2="3392"  name=l_22 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="4" y1="3917" x2="3522" y2="3917"  name=l_31 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="4" y1="3917" x2="2096" y2="3917"  name=l_19 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="161" y1="3395" x2="161" y2="3920"  name=l_18 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="DESCRIPTION OF ARTICLES, SPECIAL MARKS & EXCEPTIONS" border="0" color="0" x="179" y="3402" height="67" width="1375" html.valueishtml="0"  name=t_16 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="1558" y1="3395" x2="1558" y2="3920"  name=l_17 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="WEIGHT" border="0" color="0" x="1558" y="3402" height="67" width="355" html.valueishtml="0"  name=t_17 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="CLASS
+RATE" border="0" color="0" x="1916" y="3389" height="86" width="110" html.valueishtml="0"  name=t_18 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Shipper" border="0" color="0" x="1872" y="3933" height="45" width="263" html.valueishtml="0"  name=t_105 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="1916" y1="3395" x2="1916" y2="3920"  name=l_13 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2026" y1="3395" x2="2026" y2="3920"  name=l_6 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="CK" border="0" color="0" x="2044" y="3389" height="45" width="48" html.valueishtml="0"  name=t_19 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="2099" y1="3395" x2="2099" y2="3920"  name=l_12 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="CONSIGNEE" border="0" color="0" x="2944" y="3373" height="45" width="161" html.valueishtml="0"  name=t_62 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=foreground x="3127" y="3373" height="48" width="69"  name=r_4 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="4" pen.color="0"  background.mode="2" background.color="0" )
+line(band=foreground x1="4" y1="3472" x2="2099" y2="3472"  name=l_11 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="THIS SHIPMENT IS CORRECTLY DESCRIBED." border="0" color="0" x="2143" y="3437" height="45" width="658" html.valueishtml="0"  name=t_74 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=foreground id=4 alignment="2" tabsequence=32766 border="0" color="0" x="4" y="3485" height="77" width="146" format="[general]" html.valueishtml="0"  name=shipper_staged_objs visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=foreground alignment="0" text="Total Pallets :" border="0" color="0" x="183" y="3488" height="77" width="424" html.valueishtml="0"  name=t_21 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=5 alignment="2" tabsequence=32766 border="0" color="0" x="618" y="3488" height="77" width="325" format="[general]" html.valueishtml="0"  name=shipper_staged_pallets visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=foreground id=28 alignment="2" tabsequence=32766 border="0" color="0" x="1569" y="3482" height="67" width="336" format="#,##0" html.valueishtml="0"  name=shipper_gross_weight_2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="2809" y1="3491" x2="3474" y2="3491"  name=l_36 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2107" y1="3530" x2="3507" y2="3530"  name=l_4 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="    Subject to Section 7 of conditions of
+ applicable bill of lading. If this shipment
+ is to be delivered to the consignee
+ without recourse on the consignor, the
+ consignor shall sign the following statement:" border="0" color="0" x="2117" y="3523" height="221" width="702" html.valueishtml="0"  name=t_44 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="  Received $" border="0" color="0" x="2823" y="3536" height="45" width="190" html.valueishtml="0"  name=t_38 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="3017" y1="3571" x2="3478" y2="3571"  name=l_32 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="RBR ARTICLES OTHER THAN EXP., DENSITY 15# OR MORE/CUBIC FOOT" border="0" color="0" x="168" y="3619" height="214" width="1382" html.valueishtml="0"  name=t_14 visible="1"  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="  to apply in prepayment of the charges on the property described hereon." border="0" color="0" x="2831" y="3581" height="93" width="699" html.valueishtml="0"  name=t_41 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="2834" y1="3709" x2="3493" y2="3709"  name=l_34 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="    The carrier shall not make delivery of this shipment without payment of freight and all other lawful charges." border="0" color="0" x="2117" y="3731" height="141" width="709" html.valueishtml="0"  name=t_56 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Per" border="0" color="0" x="2834" y="3731" height="45" width="187" html.valueishtml="0"  name=t_95 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="( The signature here acknowledges only the amounts prepaid)" border="0" color="0" x="2834" y="3773" height="96" width="673" html.valueishtml="0"  name=t_98 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Agent or Cashier" border="0" color="0" x="3277" y="3709" height="45" width="197" html.valueishtml="0"  name=t_97 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=4 alignment="2" tabsequence=32766 border="0" color="0" x="4" y="3837" height="77" width="146" format="[general]" html.valueishtml="0"  name=shipper_staged_objs_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="4" y1="3840" x2="1554" y2="3840"  name=l_21 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="TOTAL" border="0" color="0" x="168" y="3840" height="67" width="252" html.valueishtml="0"  name=t_13 visible="1"  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=28 alignment="2" tabsequence=32766 border="0" color="0" x="1569" y="3843" height="70" width="336" format="#,##0" html.valueishtml="0"  name=shipper_gross_weight visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="2128" y1="3901" x2="2721" y2="3901"  name=l_33 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Per" border="0" color="0" x="2136" y="3869" height="45" width="48" html.valueishtml="0"  name=t_67 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="(Signature of Consignor)" border="0" color="0" x="2450" y="3866" height="42" width="358" html.valueishtml="0"  name=t_37 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="PERMANENT POST OFFICE ADDRESS OF SHIPPER" border="0" color="0" x="0" y="3923" height="45" width="706" html.valueishtml="0"  name=t_101 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=foreground alignment="0" text="Agent" border="0" color="0" x="4" y="3949" height="51" width="110" html.valueishtml="0"  name=t_106 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="24586 ARMADA RIDGE ROAD,  P.O. Box 579 " border="0" color="0" x="706" y="3923" height="45" width="720" html.valueishtml="0"  name=t_102 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=foreground alignment="0" text="Per" border="0" color="0" x="764" y="3949" height="51" width="110" html.valueishtml="0"  name=t_108 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="ARMADA, MI 48005" border="0" color="0" x="1441" y="3923" height="45" width="293" html.valueishtml="0"  name=t_103 visible="1"  font.face="Tw Cen MT Condensed" font.height="-7" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=foreground alignment="0" text="Per" border="0" color="0" x="2673" y="3933" height="45" width="263" html.valueishtml="0"  name=t_107 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="2026" y1="3981" x2="2783" y2="3981"  name=l_35 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2739" y1="3981" x2="3496" y2="3981"  name=l_46 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="113" y1="4000" x2="750" y2="4000"  name=l_43 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="878" y1="4000" x2="1514" y2="4000"  name=l_53 visible="1" pen.style="0" pen.width="4" pen.color="0"  background.mode="1" background.color="553648127" )
+compute(band=foreground alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="2245" y="3987" height="54" width="677" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Tw Cen MT Condensed" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen()
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

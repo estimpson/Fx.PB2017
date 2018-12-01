@@ -1,0 +1,94 @@
+﻿$PBExportHeader$d_lot_trace_bu_sourcedetails.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes name=lot_tracebottomup_tracenumber dbname="TraceNumber" )
+ column=(type=long updatewhereclause=yes name=level dbname="Level" )
+ column=(type=char(4000) updatewhereclause=yes name=bottomupid dbname="BottomUpID" )
+ column=(type=long updatewhereclause=yes name=serial dbname="Serial" )
+ column=(type=char(50) updatewhereclause=yes name=part dbname="Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="Quantity" )
+ column=(type=datetime updatewhereclause=yes name=trandt dbname="TranDT" )
+ column=(type=char(1) updatewhereclause=yes name=lot_tracebottomup_linktype dbname="LinkType" )
+ column=(type=char(10) updatewhereclause=yes name=description dbname="Description" )
+ column=(type=char(10) updatewhereclause=yes name=source dbname="Source" )
+ column=(type=char(9) updatewhereclause=yes name=sourcetype dbname="SourceType" )
+ column=(type=char(5) updatewhereclause=yes name=usercode dbname="UserCode" )
+ column=(type=char(40) updatewhereclause=yes name=username dbname="UserName" )
+ column=(type=char(32766) updatewhereclause=no name=lot_tracebottomup_chain dbname="Chain" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	TraceNumber = ltbu.TraceNumber
+,	Level=ltbu.BottomUpID.GetLevel()-1
+,	BottomUpID = ltbu.BottomUpID.ToString()
+,	Serial = ltbu.Serial
+,	Part = ltbu.Part
+,	Quantity = ltbu.Quantity
+,	TranDT = ltbu.TranDT
+,	LinkType = ltbu.LinkType
+,	Description = at.remarks
+,	Source = at.from_loc
+,	SourceType =
+		case
+			when ltbu.LinkType in ('O', 'R') then 'Supplier'
+			when ltbu.LinkType in ('B', 'C') then 'Inventory'
+			when ltbu.LinkType in ('D', 'J') then 'Machine'
+		end
+,	UserCode = at.operator
+,	UserName = e.name
+,	Chain = ltbu.Chain
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.LOT_TraceBottomUp ltbu
+	left join dbo.audit_trail at
+		on at.serial = ltbu.Serial
+		and at.date_stamp = ltbu.TranDT
+		and at.type =
+			case ltbu.LinkType
+				when 'O' then 'R'
+				else ltbu.LinkType
+			end
+	left join dbo.employee e
+		on e.operator_code = at.operator
+where
+	ltbu.TraceNumber= :TraceNumber
+	and :BottomUpID like ltbu.BottomUpID.ToString() + '%'
+order by
+	ltbu.BottomUpID
+" arguments=(("TraceNumber", string),("BottomUpID", string)) )
+text(band=header alignment="2" text="Level" border="6" color="33554432" x="82" y="8" height="76" width="210" html.valueishtml="0"  name=level_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serial" border="6" color="33554432" x="302" y="8" height="76" width="283" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part" border="6" color="33554432" x="594" y="8" height="76" width="357" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity" border="6" color="33554432" x="960" y="8" height="76" width="320" html.valueishtml="0"  name=quantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tran DT." border="6" color="33554432" x="1289" y="8" height="76" width="581" html.valueishtml="0"  name=trandt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Transaction" border="6" color="33554432" x="1879" y="8" height="76" width="352" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Source" border="6" color="33554432" x="2240" y="8" height="76" width="283" html.valueishtml="0"  name=source_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Source type" border="6" color="33554432" x="2533" y="8" height="76" width="357" html.valueishtml="0"  name=sourcetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="User" border="6" color="33554432" x="2898" y="8" height="76" width="169" html.valueishtml="0"  name=usercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name" border="6" color="33554432" x="3077" y="8" height="76" width="571" html.valueishtml="0"  name=username_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="82" y="8" height="76" width="210" format="[general]" html.valueishtml="0"  name=level visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="302" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="594" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="960" y="8" height="76" width="320" format="#,##0.0##### " html.valueishtml="0"  name=quantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1289" y="8" height="76" width="581" format="[shortdate] [time]" html.valueishtml="0"  name=trandt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1879" y="8" height="76" width="352" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2240" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=source visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="2898" y="8" height="76" width="169" format="[general]" html.valueishtml="0"  name=usercode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="3077" y="8" height="76" width="571" format="[general]" html.valueishtml="0"  name=username visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2533" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=sourcetype visible="1" edit.limit=9 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

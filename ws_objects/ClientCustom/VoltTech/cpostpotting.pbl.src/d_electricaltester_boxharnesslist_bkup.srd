@@ -1,0 +1,64 @@
+﻿$PBExportHeader$d_electricaltester_boxharnesslist_bkup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=boxserial dbname="MES_ElectricalTesterBoxObjects.BoxSerial" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="MES_ElectricalTesterBoxObjects.PartCode" )
+ column=(type=char(25) updatewhereclause=yes name=packagetype dbname="MES_ElectricalTesterBoxObjects.PackageType" )
+ column=(type=char(50) updatewhereclause=no name=location dbname="MES_ElectricalTesterBoxObjects.Location" )
+ column=(type=long updatewhereclause=yes name=serial dbname="MES_ElectricalTesterBoxObjects.Serial" )
+ column=(type=char(5) updatewhereclause=no name=operatorcode dbname="MES_ElectricalTesterBoxObjects.OperatorCode" )
+ column=(type=long updatewhereclause=yes name=wodid dbname="MES_ElectricalTesterBoxObjects.WODID" )
+ column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="MES_ElectricalTesterBoxObjects.WorkOrderNumber" )
+ column=(type=number updatewhereclause=yes name=workorderdetailline dbname="MES_ElectricalTesterBoxObjects.WorkOrderDetailLine" )
+ column=(type=long updatewhereclause=yes name=status dbname="MES_ElectricalTesterBoxObjects.Status" )
+ column=(type=long updatewhereclause=yes name=type dbname="MES_ElectricalTesterBoxObjects.Type" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="MES_ElectricalTesterBoxObjects.Quantity" )
+ column=(type=datetime updatewhereclause=yes name=completiondt dbname="MES_ElectricalTesterBoxObjects.CompletionDT" )
+ column=(type=char(50) updatewhereclause=yes name=backflushnumber dbname="MES_ElectricalTesterBoxObjects.BackflushNumber" )
+ column=(type=char(50) updatewhereclause=yes name=undobackflushnumber dbname="MES_ElectricalTesterBoxObjects.UndoBackflushNumber" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	metbo.BoxSerial
+,	metbo.PartCode
+,	metbo.PackageType
+,	metbo.Location
+,	metbo.Serial
+,	metbo.OperatorCode
+,	metbo.WODID
+,	metbo.WorkOrderNumber
+,	metbo.WorkOrderDetailLine
+,	metbo.Status
+,	metbo.Type
+,	metbo.Quantity
+,	metbo.CompletionDT
+,	metbo.BackflushNumber
+,	metbo.UndoBackflushNumber
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custom.MES_ElectricalTesterBoxObjects metbo
+where
+	metbo.BoxSerial = :boxSerial
+order by
+	metbo.CompletionDT desc
+" arguments=(("boxSerial", number)) )
+text(band=header alignment="0" text="Harness Serial" border="6" color="33554432" x="9" y="8" height="76" width="430" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Completion DT" border="6" color="33554432" x="448" y="8" height="76" width="594" html.valueishtml="0"  name=completiondt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="448" y="8" height="76" width="594" format="[shortdate] [time]" html.valueishtml="0"  name=completiondt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

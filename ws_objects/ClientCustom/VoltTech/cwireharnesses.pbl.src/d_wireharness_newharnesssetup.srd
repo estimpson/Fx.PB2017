@@ -1,0 +1,42 @@
+﻿$PBExportHeader$d_wireharness_newharnesssetup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=808 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=wireharnesspartcode dbname="WireHarnessPartCode" )
+ column=(type=char(100) updatewhereclause=yes name=wireharnesspartdescription dbname="WireHarnessPartDescription" )
+ column=(type=char(50) updatewhereclause=yes name=customerpart dbname="CustomerPart" )
+ column=(type=long updatewhereclause=yes name=numberoflabels dbname="NumberOfLabels" )
+ column=(type=char(25) updatewhereclause=yes name=initialpartcode dbname="InitialPartCode" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=number updatewhereclause=yes name=isselected dbname="IsSelected" )
+ procedure="1 execute
+	custom.usp_MES_WireHarnesses_GetNewHarnessSetup
+	@WireHarnessPartCode=:WireHarnessPartCode
+,	@InitialPartCode = :InitialPartCode
+,	@NumberOfLabels = :NumberOfLabels" arguments=(("WireHarnessPartCode", string),("InitialPartCode", string),("NumberOfLabels", number)) )
+groupbox(band=detail text="New Wire Harness labels"border="5" color="33554432" x="37" y="4" height="800" width="1573"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=detail filename="ok-32.bmp" x="1646" y="36" height="128" width="146" border="0"  name=p_ok  tag="Create new wire harness labels..." visible="1~tif ( wireharnesspartcode > ~"~" and  initialpartcode > ~"~" and  numberoflabels > 0, 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1646" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel changes..." visible="1" )
+text(band=detail alignment="0" text="Wire harness part:" border="0" color="33554432" x="73" y="164" height="64" width="622" html.valueishtml="0"  name=wireharnesspartcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Description:" border="0" color="33554432" x="73" y="292" height="64" width="622" html.valueishtml="0"  name=wireharnesspartdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer part:" border="0" color="33554432" x="73" y="388" height="64" width="622" html.valueishtml="0"  name=customerpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Number of labels:" border="0" color="33554432" x="73" y="516" height="64" width="622" html.valueishtml="0"  name=numberoflabels_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Initial part:" border="0" color="33554432" x="73" y="676" height="64" width="622" html.valueishtml="0"  name=initialpartcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="134217742" x="731" y="164" height="76" width="841" format="[general]" html.valueishtml="0"  name=wireharnesspartcode visible="1" dddw.name=d_wireharness_partlist dddw.displaycolumn=wireharnesspartcode dddw.datacolumn=wireharnesspartcode dddw.percentwidth=275 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="731" y="292" height="76" width="841" format="[general]" html.valueishtml="0"  name=wireharnesspartdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="731" y="388" height="76" width="841" format="[general]" html.valueishtml="0"  name=customerpart visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="0" color="134217742" x="731" y="516" height="76" width="841" format="[general]" html.valueishtml="0"  name=numberoflabels visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="134217742" x="731" y="676" height="76" width="841" format="[general]" html.valueishtml="0"  name=initialpartcode visible="1" dddw.name=d_wireharness_componentactivitylist dddw.displaycolumn=partcode dddw.datacolumn=partcode dddw.percentwidth=290 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

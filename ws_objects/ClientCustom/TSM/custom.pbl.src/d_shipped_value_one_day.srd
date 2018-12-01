@@ -1,0 +1,63 @@
+﻿$PBExportHeader$d_shipped_value_one_day.srd
+$PBExportComments$REPORT 07:  Value Shipped for Selected Day
+release 10;
+datawindow(units=2 timer_interval=60000 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 0 print.margin.top = 500 print.margin.bottom = 500 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=656 color="536870912" )
+summary(height=281 color="536870912" )
+footer(height=197 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(35) updatewhereclause=yes name=part dbname="shipper_detail.part" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=datetime updatewhereclause=yes name=date_shipped dbname="shipper_detail.date_shipped" )
+ column=(type=decimal(6) updatewhereclause=yes name=order_header_price dbname="order_header.price" )
+ column=(type=long updatewhereclause=yes name=shipper_detail_week_no dbname="shipper_detail.week_no" )
+ column=(type=char(35) updatewhereclause=yes name=order_header_customer_part dbname="order_header.customer_part" )
+ retrieve="  SELECT shipper_detail.part,   
+         shipper_detail.qty_packed,   
+         shipper_detail.date_shipped,   
+         order_header.price,   
+         shipper_detail.week_no,   
+         order_header.customer_part  
+    FROM shipper_detail,   
+         order_header  
+   WHERE ( shipper_detail.order_no = order_header.order_no ) 
+	and shipper_detail.date_shipped >= :Date_of_Shipment
+	and shipper_detail.date_shipped < :Date_of_Shipment + 1
+ORDER BY shipper_detail.part ASC   
+" arguments=(("Date_of_Shipment", datetime))  sort="part A " )
+group(level=1 header.height=10 trailer.height=156 by=("part" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Part" border="4" color="0" x="354" y="416" height="166" width="270" html.valueishtml="0"  name=part_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Quantity" border="4" color="0" x="1458" y="437" height="166" width="552" html.valueishtml="0"  name=qty_packed_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Value Shipped for Selected Day" border="0" color="0" x="812" y="0" height="166" width="2114" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shipped Value" border="4" color="0" x="2239" y="427" height="166" width="979" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Unit Price" border="4" color="0" x="3593" y="437" height="166" width="645" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Customer Part Number" border="4" color="0" x="4614" y="427" height="166" width="1500" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1083" y="187" height="166" width="593" format="[general]" html.valueishtml="0"  name=date_shipped visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Run on:" border="0" color="0" x="1739" y="177" height="166" width="510" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression="today()"border="0" color="0" x="2270" y="177" height="166" width="583" format="[shortdate]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1666" y="41" height="166" width="625" format="[General]" html.valueishtml="0"  name=qty_packed visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2427" y="41" height="166" width="458" format="[general]" html.valueishtml="0"  name=date_shipped_1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="3281" y="0" height="166" width="2416" format="[general]" html.valueishtml="0"  name=order_header_price visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" qty_packed  *  order_header_price "border="0" color="0" x="812" y="62" height="166" width="500" format="[GENERAL]" html.valueishtml="0"  name=v visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="5697" y="0" height="166" width="2416" format="[general]" html.valueishtml="0"  name=shipper_detail_week_no visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="8114" y="0" height="166" width="2166" format="[general]" html.valueishtml="0"  name=order_header_customer_part visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=1 alignment="2" tabsequence=32766 border="0" color="0" x="20" y="0" height="166" width="1093" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(qty_packed for group 1)"border="0" color="0" x="1270" y="0" height="197" width="625" format="[General]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum(qty_packed  *  order_header_price  for group 1)"border="0" color="0" x="2260" y="0" height="166" width="885" format="[currency]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=trailer.1 id=4 alignment="1" tabsequence=32766 border="0" color="0" x="3416" y="10" height="145" width="1000" format="$#,##0.000000;($#,##0.000000)" html.valueishtml="0"  name=order_header_price_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=6 alignment="0" tabsequence=32766 border="0" color="0" x="4812" y="0" height="166" width="2625" format="[general]" html.valueishtml="0"  name=order_header_customer_part_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Total Value Shipped:" border="0" color="0" x="562" y="105" height="166" width="1395" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(round(qty_packed  *  order_header_price,2) for all)"border="0" color="0" x="2208" y="105" height="166" width="927" format="[currency]" html.valueishtml="0"  name=sumv visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=summary x1="2229" y1="53" x2="3197" y2="53"  name=l_1 visible="1" pen.style="0" pen.width="10" pen.color="0"  background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pagecount()"border="0" color="0" x="10" y="10" height="166" width="1270" format="[general]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

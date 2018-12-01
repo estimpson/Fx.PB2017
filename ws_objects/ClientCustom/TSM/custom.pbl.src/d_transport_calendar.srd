@@ -1,0 +1,89 @@
+﻿$PBExportHeader$d_transport_calendar.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=140 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=236 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=yr dbname="yr" )
+ column=(type=long updatewhereclause=yes name=mo dbname="mo" )
+ column=(type=long updatewhereclause=yes name=weekno dbname="weekno" )
+ column=(type=datetime updatewhereclause=yes name=day1 dbname="Day1" )
+ column=(type=datetime updatewhereclause=yes name=day2 dbname="Day2" )
+ column=(type=datetime updatewhereclause=yes name=day3 dbname="Day3" )
+ column=(type=datetime updatewhereclause=yes name=day4 dbname="Day4" )
+ column=(type=datetime updatewhereclause=yes name=day5 dbname="Day5" )
+ column=(type=datetime updatewhereclause=yes name=day6 dbname="Day6" )
+ column=(type=datetime updatewhereclause=yes name=day7 dbname="Day7" )
+ column=(type=long updatewhereclause=yes name=dw1 dbname="dw1" )
+ column=(type=long updatewhereclause=yes name=dw2 dbname="dw2" )
+ column=(type=long updatewhereclause=yes name=dw3 dbname="dw3" )
+ column=(type=long updatewhereclause=yes name=dw4 dbname="dw4" )
+ column=(type=long updatewhereclause=yes name=dw5 dbname="dw5" )
+ column=(type=long updatewhereclause=yes name=dw6 dbname="dw6" )
+ column=(type=long updatewhereclause=yes name=dw7 dbname="dw7" )
+ retrieve="select
+	yr = datepart(year, fc.EntryDT + 6)
+,	mo = datepart(month, fc.EntryDT + 6)
+,	weekno = datepart(week, fc.EntryDT)
+,	Day1 = fc.EntryDT
+,	Day2 = fc.EntryDT + 1
+,	Day3 = fc.EntryDT + 2
+,	Day4 = fc.EntryDT + 3
+,	Day5 = fc.EntryDT + 4
+,	Day6 = fc.EntryDT + 5
+,	Day7 = fc.EntryDT + 6
+,	dw1 = datepart(dw,fc.EntryDT)
+,	dw2 = datepart(dw, fc.EntryDT + 1)
+,	dw3 = datepart(dw, fc.EntryDT + 2)
+,	dw4 = datepart(dw, fc.EntryDT + 3)
+,	dw5 = datepart(dw, fc.EntryDT + 4)
+,	dw6 = datepart(dw, fc.EntryDT + 5)
+,	dw7 = datepart(dw, fc.EntryDT + 6)
+from
+	FT.fn_Calendar('2013-04-07', null, 'week', 1, 1000) fc
+order by
+	1
+,	2
+" )
+groupbox(band=detail text=""border="5" color="33554432" x="4242" y="4" height="256" width="622"  name=gb_7 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="3621" y="4" height="256" width="622"  name=gb_6 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="2999" y="4" height="256" width="622"  name=gb_5 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="2377" y="4" height="256" width="622"  name=gb_4 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="1755" y="4" height="256" width="622"  name=gb_3 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="1134" y="4" height="256" width="622"  name=gb_2 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=""border="5" color="33554432" x="512" y="4" height="256" width="622"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="37" y="4" height="108" width="183" format="[general]" html.valueishtml="0"  name=yr visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-14" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="256" y="132" height="76" width="219" format="[general]" html.valueishtml="0"  name=weekno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="case(mo when 1 then 'Jan' when 2 then 'Feb' when 3 then 'Mar' when 4 then 'Apr' when 5 then 'May' when 6 then 'Jun' when 7 then 'Jul' when 8 then 'Aug' when 9 then 'Sep' when 10 then 'Oct' when 11 then 'Nov' when 12 then 'Dec')"border="0" color="33554432" x="329" y="4" height="96" width="142" format="[GENERAL]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="C:\Data\GIT2\PB10\SourceCode\Office\alphaD.bmp" x="4096" y="132" height="80" width="91" border="0"  name=p_1 visible="1" )
+bitmap(band=detail filename="alphaA.bmp" x="3657" y="132" height="80" width="91" border="0"  name=p_2 visible="1" )
+text(band=header alignment="1" text="Yr:" border="0" color="33554432" x="37" y="68" height="64" width="160" html.valueishtml="0"  name=yr_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Mo:" border="0" color="33554432" x="329" y="4" height="64" width="160" html.valueishtml="0"  name=mo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Week #:" border="0" color="33554432" x="256" y="68" height="64" width="233" html.valueishtml="0"  name=weekno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw1 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217745" x="512" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw7 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217745" x="4242" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw2 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217747" x="1134" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw3 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217747" x="1755" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw4 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217747" x="2377" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw5 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217747" x="2999" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="case(dw6 when 1 then 'Su' when 2 then 'Mo' when 3 then 'Tu' when 4 then 'We' when 5 then 'Th' when 6 then 'Fr' when 7 then 'Sa')"border="0" color="134217747" x="3621" y="36" height="96" width="603" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="134217747" x="951" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="134217747" x="1573" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="134217747" x="2194" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="134217747" x="2816" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day4 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="134217747" x="3438" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day5 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="134217747" x="4059" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day6 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="134217747" x="4681" y="4" height="128" width="146" format="dd" html.valueishtml="0"  name=day7 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217750" )
+
+sparse(names="yr	compute_8")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

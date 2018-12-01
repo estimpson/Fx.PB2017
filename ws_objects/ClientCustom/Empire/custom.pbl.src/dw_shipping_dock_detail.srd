@@ -1,0 +1,119 @@
+﻿$PBExportHeader$dw_shipping_dock_detail.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=120 color="553648127"  height.autosize=yes)
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=id dbname="id" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_stamp dbname="date_stamp" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="ship_via" )
+ column=(type=long update=yes updatewhereclause=yes name=bill_of_lading_number dbname="bill_of_lading_number" )
+ column=(type=long update=yes updatewhereclause=yes name=staged_objs dbname="staged_objs" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=printed dbname="printed" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=customer dbname="customer" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=gross_weight dbname="gross_weight" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=pro_number dbname="pro_number" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="status" )
+ column=(type=char(254) updatewhereclause=yes name=notes dbname="notes" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="type" )
+ column=(type=char(50) updatewhereclause=yes name=destination_name dbname="name" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=shipper_net_weight dbname="net_weight" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=shipper_picklist_printed dbname="picklist_printed" )
+ column=(type=long update=yes updatewhereclause=yes name=shipper_invoice_number dbname="invoice_number" )
+ column=(type=datetime updatewhereclause=yes name=shipper_scheduled_ship_time dbname="scheduled_ship_time" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_cs_status dbname="cs_status" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_part_original dbname="part_original" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="customer_part" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_customer_po dbname="customer_po" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_pallets dbname="staged_pallets" )
+ column=(type=long updatewhereclause=yes name=shipper_detail_boxes_staged dbname="boxes_staged" )
+ column=(type=decimal(0) updatewhereclause=yes name=shipper_detail_order_no dbname="order_no" )
+ column=(type=char(1) updatewhereclause=yes name=bol_printed dbname="bol_printed" )
+ column=(type=char(1) updatewhereclause=yes name=non_ship dbname="non_ship" )
+ retrieve="  SELECT shipper.id,   
+         shipper.destination,   
+         shipper.date_stamp,   
+         shipper.ship_via,   
+         shipper.bill_of_lading_number,   
+         shipper.staged_objs,   
+         shipper.plant,   
+         shipper.printed,   
+         shipper.customer,   
+         shipper.gross_weight,   
+         shipper.pro_number,   
+         shipper.status,   
+         shipper.notes,   
+         shipper.type,   
+         destination.name,   
+         shipper.net_weight,   
+         shipper.picklist_printed,   
+         shipper.invoice_number,   
+         shipper.scheduled_ship_time,   
+         shipper.cs_status,   
+         shipper_detail.part_original,   
+         shipper_detail.customer_part,   
+         shipper_detail.customer_po,   
+         shipper.staged_pallets,   
+         shipper_detail.boxes_staged,   
+         shipper_detail.order_no,
+			isnull(bill_of_lading.printed,'N') bol_printed,
+	 pol.non_ship
+    FROM shipper
+	 join part_eecustom pol on pol.part = shipper_detail.part_original
+				left outer join bill_of_lading on shipper.bill_of_lading_number = bill_of_lading.bol_number,   
+
+         destination,   
+         customer_service_status,   
+         shipper_detail  
+   WHERE ( shipper.destination = destination.destination ) and  
+         ( shipper.cs_status = customer_service_status.status_name ) and  
+         ( shipper_detail.shipper = shipper.id ) and  
+         ( ( shipper.status = 'O' ) OR  
+         ( shipper.status = 'S' ) ) AND  
+         customer_service_status.status_type <> 'C'and
+			( shipper.type = 'V' or shipper.type = 'O' or shipper.type = 'Q'  or shipper.type is null ) 
+
+" update="shipper" updatewhere=0 updatekeyinplace=yes  sort="id A " )
+text(band=header alignment="0" text="Shipper"border="6" color="37234728" x="9" y="4" height="52" width="238"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="BOL No"border="6" color="37234728" x="256" y="4" height="52" width="256"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Date"border="6" color="37234728" x="521" y="4" height="52" width="581"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Ship Time"border="6" color="37234728" x="1111" y="4" height="52" width="320"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Dest Code"border="6" color="37234728" x="1440" y="4" height="52" width="288"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Ship Via"border="6" color="37234728" x="1737" y="4" height="52" width="297"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Plant"border="6" color="37234728" x="2043" y="4" height="52" width="384"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Tp"border="6" color="37234728" x="2437" y="4" height="52" width="137"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Nt"border="6" color="37234728" x="2583" y="4" height="52" width="137"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="St"border="6" color="37234728" x="2729" y="4" height="52" width="133"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Prt"border="6" color="37234728" x="2871" y="4" height="52" width="142"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="BOL"border="6" color="37234728" x="3022" y="4" height="52" width="123"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Sc"border="6" color="37234728" x="3154" y="4" height="52" width="142"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Pallets"border="6" color="37234728" x="3305" y="4" height="52" width="206"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Boxes"border="6" color="37234728" x="3520" y="4" height="52" width="187"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Part"border="6" color="37234728" x="3717" y="4" height="52" width="466"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Customer Part"border="6" color="37234728" x="4192" y="4" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Customer Po"border="6" color="37234728" x="4645" y="4" height="52" width="425"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Order No"border="6" color="0" x="5079" y="4" height="52" width="398"  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="4" height="52" width="238" format="[general]"  name=id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (non_ship ='Y' , 255, 12632256)" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="37234728" x="256" y="4" height="52" width="256" format="[general]"  name=bill_of_lading_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="37234728" x="521" y="4" height="52" width="581" format="[general]"  name=date_stamp edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="37234728" x="1111" y="4" height="52" width="320" format="h:mm AM/PM"  name=shipper_scheduled_ship_time edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="37234728" x="1440" y="4" height="52" width="288" format="[general]"  name=destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="37234728" x="1737" y="4" height="52" width="297" format="[general]"  name=ship_via edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="37234728" x="2043" y="4" height="52" width="384" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap ( If(type = ~"O~", ~"OUTSIDE.BMP~", If (type = ~"V~", ~"RTNVEND.BMP~", ~"~" )))"border="0" color="37234728" x="2437" y="4" height="88" width="137" format="[GENERAL]"  name=obj_12457423  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (If(Trim( notes ) > ~" ~", ~"noteyes.bmp~", ~"~"))"border="0" color="37234728" x="2583" y="4" height="88" width="137" format="[GENERAL]"  name=obj_12459092  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (If(status=~"S~", ~"logo2.bmp~", ~"~")) "border="0" color="37234728" x="2729" y="4" height="88" width="133" format="[GENERAL]"  name=status_bmp  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap (if(printed= ~"Y~", ~"printer.bmp~",  
+if( shipper_picklist_printed = ~"Y~", ~"pick.bmp~", ~"~"))) "border="0" color="37234728" x="2871" y="4" height="88" width="142" format="[GENERAL]"  name=print_bmp  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" bitmap ( If(bol_printed = 'Y', ~"truck.bmp~", ~"~") )"border="0" color="37234728" x="3022" y="4" height="88" width="123" format="[general]"  name=obj_12465616  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="bitmap ( if ( isnull (  shipper_scheduled_ship_time ), '', ~"clock.bmp~" ) )"border="0" color="37234728" x="3154" y="4" height="88" width="142" format="[general]"  name=sched_time  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="37234728" x="3305" y="4" height="52~t0" width="206" format="[general]"  name=shipper_staged_pallets edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="37234728" x="3520" y="4" height="52" width="187" format="[general]"  name=staged_objs edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="37234728" x="3717" y="4" height="52" width="466" format="[general]"  name=shipper_detail_part_original edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (non_ship ='Y' , 255, 12632256)" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="37234728" x="4192" y="4" height="52" width="443" format="[general]"  name=shipper_detail_customer_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="37234728" x="4645" y="4" height="52" width="425" format="[general]"  name=shipper_detail_customer_po edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="37234728" x="5079" y="4" height="64" width="398" format="[general]"  name=shipper_detail_order_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

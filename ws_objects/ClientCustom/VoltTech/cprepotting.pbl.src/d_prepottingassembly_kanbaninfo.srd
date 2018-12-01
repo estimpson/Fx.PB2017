@@ -1,0 +1,72 @@
+﻿$PBExportHeader$d_prepottingassembly_kanbaninfo.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=904 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=kanbannumber dbname="MES_PrePottingKanbans.KanbanNumber" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="MES_PrePottingKanbans.PartCode" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="MES_PrePottingKanbans.PackageType" )
+ column=(type=long updatewhereclause=yes name=objectserial dbname="MES_PrePottingKanbans.ObjectSerial" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="MES_PrePottingKanbans.Location" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalquantity dbname="MES_PrePottingKanbans.TotalQuantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="MES_PrePottingKanbans.Unit" )
+ column=(type=long updatewhereclause=yes name=objectcount dbname="MES_PrePottingKanbans.ObjectCount" )
+ column=(type=char(25) updatewhereclause=yes name=firstpart dbname="MES_PrePottingKanbans.FirstPart" )
+ column=(type=char(25) updatewhereclause=yes name=lastpart dbname="MES_PrePottingKanbans.LastPart" )
+ column=(type=char(25) updatewhereclause=yes name=childpart dbname="MES_PrePottingKanbans.ChildPart" )
+ column=(type=long updatewhereclause=yes name=routesequence dbname="MES_PrePottingKanbans.RouteSequence" )
+ column=(type=long updatewhereclause=yes name=machinesequence dbname="MES_PrePottingKanbans.MachineSequence" )
+ column=(type=char(15) updatewhereclause=yes name=machinecode dbname="MES_PrePottingKanbans.MachineCode" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="MES_PrePottingKanbans.GroupTechnology" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	mppk.KanbanNumber
+,	mppk.PartCode
+,	mppk.PackageType
+,	mppk.ObjectSerial
+,	mppk.Location
+,	mppk.TotalQuantity
+,	mppk.Unit
+,	mppk.ObjectCount
+,	mppk.FirstPart
+,	mppk.LastPart
+,	mppk.ChildPart
+,	mppk.RouteSequence
+,	mppk.MachineSequence
+,	mppk.MachineCode
+,	mppk.GroupTechnology
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custom.MES_PrePottingKanbans mppk
+where
+	mppk.KanbanNumber = :KanbanNumber
+" arguments=(("KanbanNumber", string)) )
+groupbox(band=detail text="Kanban Info"border="5" color="33554432" x="37" y="4" height="896" width="1573"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=detail filename="ok-32.bmp" x="1646" y="36" height="128" width="146" border="0"  name=p_ok  tag="Kanban in use..." visible="1~tif (kanbannumber > ~"~", 1, 0)" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="132" height="76" width="914" format="[general]" html.valueishtml="0"  name=kanbannumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="260" height="76" width="914" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="658" y="388" height="76" width="914" format="[general]" html.valueishtml="0"  name=objectcount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="516" height="76" width="914" format="[general]" html.valueishtml="0"  name=childpart visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="644" height="76" width="914" format="[general]" html.valueishtml="0"  name=machinecode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="772" height="76" width="914" format="[general]" html.valueishtml="0"  name=grouptechnology visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Kanban number:" border="0" color="33554432" x="73" y="132" height="64" width="549" html.valueishtml="0"  name=kanbannumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Finished part:" border="0" color="33554432" x="73" y="260" height="64" width="549" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Harness count:" border="0" color="33554432" x="73" y="388" height="64" width="549" html.valueishtml="0"  name=objectcount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Process part:" border="0" color="33554432" x="73" y="516" height="64" width="549" html.valueishtml="0"  name=childpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Machine code:" border="0" color="33554432" x="73" y="644" height="64" width="549" html.valueishtml="0"  name=machinecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Group technology:" border="0" color="33554432" x="73" y="772" height="64" width="549" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

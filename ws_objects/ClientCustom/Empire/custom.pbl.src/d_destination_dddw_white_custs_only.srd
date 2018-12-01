@@ -1,0 +1,25 @@
+﻿$PBExportHeader$d_destination_dddw_white_custs_only.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=destination dbname="destination.destination" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="destination.name" )
+ column=(type=char(10) updatewhereclause=yes name=customer dbname="destination.customer" )
+ retrieve="SELECT 	destination.destination, 
+			destination.name, 
+			destination.customer 
+FROM 		destination, customer_service_status  
+WHERE		customer is not null and
+			customer > '' and
+			( isnull( status_type, '' ) <> 'C' and
+			destination.cs_status = customer_service_status.status_name ) and
+			( isnull ( destination.custom2, '' ) )<> 'I'
+ORDER BY destination.destination ASC " update="destination" updatewhere=0 updatekeyinplace=yes  sort="destination A " )
+text(band=header alignment="2" text="Destination"border="0" color="0" x="18" y="4" height="56" width="283"  name=destination_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="0" color="0" x="722" y="4" height="56" width="142"  name=name_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="0" y="4" height="64" width="361" format="[general]"  name=destination edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="384" y="4" height="64" width="969" format="[general]"  name=name edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="12632256" x="1390" y="4" height="56" width="229" format="[general]"  name=customer visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

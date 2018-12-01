@@ -1,0 +1,20 @@
+﻿$PBExportHeader$st_newquote.srs
+global type st_newquote from structure
+	string		QuoteNumber
+	integer		Quotetype
+	long		ParentQuoteID
+	integer		QuoteYear
+	integer		QuoteYearOrdinal
+	integer		ECNOrdinal
+	integer		RevisionOrdinal
+	datetime		QuoteDate
+	string		Customer
+	string		PartDescription
+	string		Program
+	long		EAU
+	datetime		SOP
+	datetime		EOP
+	string		OEM
+	integer		ModelYear
+end type
+

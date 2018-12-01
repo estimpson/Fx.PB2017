@@ -1,0 +1,98 @@
+﻿$PBExportHeader$d_order_header_additional.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=2012 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes key=yes name=order_no dbname="order_header.order_no" )
+ column=(type=datetime updatewhereclause=yes name=order_date dbname="order_header.order_date" )
+ column=(type=char(25) updatewhereclause=yes name=blanket_part dbname="order_header.blanket_part" )
+ column=(type=char(10) updatewhereclause=yes name=customer dbname="order_header.customer" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="order_header.destination" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="order_header.model_year" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=customer_part dbname="order_header.customer_part" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom01 dbname="order_header.custom01" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom02 dbname="order_header.custom02" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom03 dbname="order_header.custom03" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=contact dbname="order_header.contact" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit dbname="order_header.unit" )
+ column=(type=char(6) update=yes updatewhereclause=yes name=begin_kanban_number dbname="order_header.begin_kanban_number" )
+ column=(type=char(6) update=yes updatewhereclause=yes name=end_kanban_number dbname="order_header.end_kanban_number" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line11 dbname="order_header.line11" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line12 dbname="order_header.line12" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line13 dbname="order_header.line13" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line14 dbname="order_header.line14" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line15 dbname="order_header.line15" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line16 dbname="order_header.line16" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line17 dbname="order_header.line17" )
+ retrieve="select
+	order_no
+,	order_date
+,	blanket_part
+,	customer
+,	destination
+,	model_year
+,	customer_part
+,	custom01
+,	custom02
+,	custom03
+,	contact
+,	unit
+,	begin_kanban_number
+,	end_kanban_number
+,	line11
+,	line12
+,	line13
+,	line14
+,	line15
+,	line16
+,	line17
+from
+	order_header
+where
+	order_no = :orderNo
+" update="order_header" updatewhere=0 updatekeyinplace=no arguments=(("orderNo", number)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1984" y="20" height="64" width="503" format="[shortdate]"  name=order_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Order Date:"border="0" color="0" x="1605" y="20" height="64" width="338"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Order No:"border="0" color="0" x="37" y="20" height="64" width="283"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer:"border="0" color="0" x="37" y="220" height="64" width="722"  name=customer_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Destination:"border="0" color="0" x="37" y="320" height="64" width="722"  name=destination_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Model Year:"border="0" color="0" x="37" y="420" height="64" width="763"  name=model_year_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer Part:"border="0" color="0" x="37" y="520" height="64" width="763"  name=customer_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom01         DOCK CODE:"border="0" color="0" x="37" y="620" height="64" width="846"  name=custom01_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom02                     Ref #:"border="0" color="0" x="37" y="720" height="64" width="855"  name=custom02_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Contact:"border="0" color="0" x="37" y="920" height="64" width="722"  name=contact_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Enter DA for Dock Audit:"border="0" color="0" x="37" y="1020" height="64" width="699"  name=unit_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Beginning Kanban Number:"border="0" color="0" x="37" y="1120" height="64" width="722"  name=begin_kanban_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ending Kanban Number:"border="0" color="0" x="37" y="1220" height="64" width="722"  name=end_kanban_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line11:"border="0" color="0" x="37" y="1320" height="64" width="722"  name=line11_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line12:"border="0" color="0" x="37" y="1420" height="64" width="722"  name=line12_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line13:"border="0" color="0" x="37" y="1520" height="64" width="722"  name=line13_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line14:"border="0" color="0" x="37" y="1620" height="64" width="722"  name=line14_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line15:"border="0" color="0" x="37" y="1720" height="64" width="722"  name=line15_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line16:"border="0" color="0" x="37" y="1820" height="64" width="722"  name=line16_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line17:"border="0" color="0" x="37" y="1920" height="64" width="722"  name=line17_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Blanket Part:"border="0" color="0" x="37" y="120" height="64" width="722"  name=blanket_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="20" height="64" width="512" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="120" height="64" width="512" format="[general]"  name=blanket_part  tag="blanket part number " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="220" height="64" width="512" format="[general]"  name=customer  tag="customer code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="320" height="64" width="512" format="[general]"  name=destination  tag="destination code " edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="0" x="960" y="420" height="64" width="315" format="[general]"  name=model_year  tag="model year " edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=20 border="5" color="0" x="960" y="520" height="64" width="695" format="[general]"  name=customer_part  tag="customer part number " edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="5" color="0" x="960" y="620" height="64" width="850" format="[general]"  name=custom01  tag="custom01" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="5" color="0" x="960" y="720" height="64" width="850" format="[general]"  name=custom02 edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=60 border="5" color="0" x="960" y="920" height="64" width="695" format="[general]"  name=contact  tag="contact " edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=70 border="5" color="0" x="960" y="1020" height="64" width="91" format="[general]"  name=unit  tag="Unit of measure" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=80 border="5" color="0" x="960" y="1120" height="64" width="434" format="[general]"  name=begin_kanban_number  tag="Beginning number for objects ordered" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=90 border="5" color="0" x="960" y="1220" height="64" width="434" format="[general]"  name=end_kanban_number  tag="Ending number for objects ordered" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=100 border="5" color="0" x="960" y="1320" height="64" width="439" format="[general]"  name=line11  tag="Line 11 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=110 border="5" color="0" x="960" y="1420" height="64" width="439" format="[general]"  name=line12  tag="Line 12 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=120 border="5" color="0" x="960" y="1520" height="64" width="439" format="[general]"  name=line13  tag="Line 13 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=130 border="5" color="0" x="960" y="1620" height="64" width="439" format="[general]"  name=line14  tag="Line 14 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=140 border="5" color="0" x="960" y="1720" height="64" width="439" format="[general]"  name=line15  tag="Line 15 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=150 border="5" color="0" x="960" y="1820" height="64" width="439" format="[general]"  name=line16  tag="Line 16 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=160 border="5" color="0" x="960" y="1920" height="64" width="439" format="[general]"  name=line17  tag="Line 17 for kanban" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom03  GM PLANT CODE:"border="0" color="0" x="37" y="820" height="64" width="859"  name=custom03_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=50 border="5" color="0" x="960" y="820" height="64" width="850" format="[general]"  name=custom03 edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Note for Ship Schedule"border="0" color="0" x="1879" y="820" height="64" width="677"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

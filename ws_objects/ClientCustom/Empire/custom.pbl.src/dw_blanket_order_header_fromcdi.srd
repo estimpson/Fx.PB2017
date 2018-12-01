@@ -1,0 +1,155 @@
+﻿$PBExportHeader$dw_blanket_order_header_fromcdi.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=4 color="536870912" )
+detail(height=668 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes name=order_no dbname="order_no" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="customer" )
+ column=(type=datetime update=yes updatewhereclause=yes name=order_date dbname="order_date" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=blanket_part dbname="blanket_part" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="model_year" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=customer_part dbname="customer_part" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=pallet_label dbname="pallet_label" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=standard_pack dbname="standard_pack" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=our_cum dbname="our_cum" validation="Number(GetText())>0" validationmsg="~"Accum cannot be negative!~"" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=artificial_cum dbname="artificial_cum" values="Net	N/Accum	A/" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=order_type dbname="order_type" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=price dbname="alternate_price" validation="Number(GetText())>=0" validationmsg="~"Price must be number!~"" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=price_unit dbname="price_unit" values="Piece	P/Lot	L/Thousand	T/" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=salesman dbname="salesman" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=line_feed_code dbname="line_feed_code" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=zone_code dbname="zone_code" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=term dbname="term" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=package_type dbname="package_type" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=notes dbname="notes" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=box_label dbname="box_label" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=shipping_unit dbname="shipping_unit" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=ship_type dbname="ship_type" values="Normal	N/Drop Ship	D/" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=customer_po dbname="customer_po" )
+ column=(type=datetime update=yes updatewhereclause=yes name=po_expiry_date dbname="po_expiry_date" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=dock_code dbname="dock_code" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=fab_cum dbname="fab_cum" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=raw_cum dbname="raw_cum" )
+ column=(type=datetime update=yes updatewhereclause=yes name=fab_date dbname="fab_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=raw_date dbname="raw_date" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=engineering_level dbname="engineering_level" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=currency_unit dbname="currency_unit" )
+ column=(type=long update=yes updatewhereclause=yes name=show_euro_amount dbname="show_euro_amount" values="Yes	0/No	1/" )
+ column=(type=long updatewhereclause=yes name=euro_enabled dbname="euro_enabled" )
+ column=(type=char(10) updatewhereclause=yes name=currency_display_symbol dbname="currency_display_symbol" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=cs_status dbname="cs_status" )
+ column=(type=char(1) updatewhereclause=yes name=status_type dbname="status_type" )
+ column=(type=decimal(6) updatewhereclause=yes name=base_price dbname="base_price" )
+ column=(type=char(1) updatewhereclause=yes name=check_standard_pack dbname="check_standard_pack" )
+ retrieve="  SELECT order_header.order_no,   
+         order_header.customer,   
+         order_header.order_date,   
+         order_header.destination,   
+         order_header.blanket_part,   
+         order_header.model_year,   
+         order_header.customer_part,   
+         order_header.pallet_label,   
+         order_header.standard_pack,   
+         order_header.our_cum,   
+         order_header.artificial_cum,   
+         order_header.order_type,   
+         order_header.alternate_price,   
+         order_header.price_unit,   
+         order_header.salesman,   
+         order_header.line_feed_code,   
+         order_header.zone_code,   
+         order_header.term,   
+         order_header.package_type,   
+         order_header.plant,   
+         order_header.notes,   
+         order_header.box_label,   
+         order_header.shipping_unit,   
+         order_header.ship_type,   
+         order_header.customer_po,   
+         order_header.po_expiry_date,   
+         order_header.dock_code,   
+         order_header.fab_cum,   
+         order_header.raw_cum,   
+         order_header.fab_date,   
+         order_header.raw_date,   
+         order_header.engineering_level,   
+         order_header.currency_unit,   
+         isnull(order_header.show_euro_amount,1) as show_euro_amount,   
+         parameters.euro_enabled,   
+         currency_conversion.currency_display_symbol,
+			order_header.cs_status,
+			customer_service_status.status_type,
+			order_header.price as base_price,
+			customer.check_standard_pack
+	
+    FROM order_header
+				join customer on customer.customer = order_header.customer,   
+         parameters,   
+         currency_conversion,
+			customer_service_status  
+   WHERE ( order_header.order_no = :iorder ) AND  
+         ( ( currency_conversion.currency_code = order_header.currency_unit ) and  
+         currency_conversion.effective_date = (select max ( a.effective_date ) from currency_conversion a where a.currency_code = order_header.currency_unit and a.effective_date <= getdate ( ) ) OR  
+         IsNull ( order_header.currency_unit, '' ) = '' ) and
+			customer_service_status.status_name = order_header.cs_status
+" update="order_header" updatewhere=0 updatekeyinplace=yes arguments=(("iOrder", number)) )
+column(band=detail id=20 alignment="0" tabsequence=140 border="5" color="37234728" x="2341" y="4" height="52" width="402" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=plant dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+column(band=detail id=38 alignment="0" tabsequence=32766 border="0" color="37234728" x="4133" y="4" height="56" width="23" format="[general]"  name=status_type visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=8 alignment="0" tabsequence=150 border="5" color="37234728" x="2341" y="68" height="52" width="402" format="[general]"  name=pallet_label dddw.name=d_label_library_white_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=12 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=22 alignment="0" tabsequence=160 border="5" color="37234728" x="2341" y="132" height="52" width="402" format="[general]"  name=box_label dddw.name=d_label_library_white_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=100 dddw.lines=0 dddw.limit=12 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=39 alignment="0" tabsequence=32766 border="0" color="37234728" x="3438" y="68" height="76" width="512" format="[general]"  name=base_price visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=170 border="5" color="37234728" x="2341" y="196" height="52" width="402" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=model_year edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+column(band=detail id=11 alignment="0" tabsequence=180 border="5" color="37234728" x="2341" y="260" height="52" width="402" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=artificial_cum ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+column(band=detail id=35 alignment="0" tabsequence=32766 border="0" color="37234728" x="3145" y="244" height="56" width="992" format="[general]"  name=euro_enabled visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=10 alignment="0" tabsequence=190 border="5" color="37234728" x="2341" y="324" height="52" width="402" format="######0" protect="0~tif ( order_no > 0, 1, 0 )"  name=our_cum edit.limit=0 edit.case=any edit.format="#######" edit.focusrectangle=no edit.autoselect=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+column(band=detail id=37 alignment="0" tabsequence=32766 border="5" color="37234728" x="2341" y="388" height="52" width="407" format="[general]" protect="0~t1"  name=cs_status edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=34 alignment="0" tabsequence=210 border="0" color="37234728" x="2341" y="516" height="52" width="402" format="[general]" protect="0~tif ( euro_enabled = 0, 0, 1 )"  name=show_euro_amount visible="1~tif ( euro_enabled = 0, 1, 0 )" radiobuttons.columns=2 radiobuttons.scale=yes radiobuttons.threed=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Expiration Date:"border="0" color="37234728" x="0" y="564" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Order Number:"border="0" color="37234728" x="0" y="4" height="52" width="347"  name=order_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Destination:"border="0" color="37234728" x="0" y="84" height="52" width="347"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Customer:"border="0" color="37234728" x="0" y="164" height="52" width="347"  name=customer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Part Number:"border="0" color="37234728" x="0" y="244" height="52" width="347"  name=blanket_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Customer Part:"border="0" color="37234728" x="0" y="324" height="52" width="347"  name=customer_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Customer P.O. :"border="0" color="37234728" x="0" y="404" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Cust.Eng.Level:"border="0" color="37234728" x="0" y="484" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Plant:"border="0" color="37234728" x="1865" y="4" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Cust. Pallet Label:"border="0" color="37234728" x="1865" y="68" height="52" width="443"  name=pallet_label_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Cust. Box Label:"border="0" color="37234728" x="1865" y="132" height="52" width="443"  name=box_label_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Model Year:"border="0" color="37234728" x="1865" y="196" height="52" width="443"  name=model_year_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Release Control:"border="0" color="37234728" x="1865" y="260" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Currency Unit:"border="0" color="37234728" x="1865" y="452" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Package Type:"border="0" color="37234728" x="1079" y="4" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=19 alignment="0" tabsequence=70 border="5" color="37234728" x="1481" y="4" height="52" width="352" format="[general]"  name=package_type dddw.name=d_packaging_for_part_white_8 dddw.displaycolumn=code dddw.datacolumn=code dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+text(band=detail alignment="0" text="Std Pack:"border="0" color="37234728" x="1079" y="84" height="52" width="347"  name=standard_pack_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="37234728" x="1481" y="84" height="52" width="352" format="[general]" protect="0~t1"  name=standard_pack editmask.mask="###,###" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Price:"border="0" color="37234728" x="1079" y="164" height="52" width="187"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=36 alignment="1" tabsequence=32766 border="0" color="37234728" x="1280" y="164" height="56" width="183" format="[general]"  name=currency_display_symbol edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=13 alignment="1" tabsequence=80 border="5" color="37234728" x="1481" y="164" height="52" width="352" format="[general]"  name=price edit.limit=0 edit.case=any edit.format="##########.00####" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+text(band=detail alignment="0" text="Price Unit:"border="0" color="37234728" x="1079" y="244" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=14 alignment="0" tabsequence=90 border="5" color="37234728" x="1481" y="244" height="52" width="352" format="[general]"  name=price_unit ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.nilisnull=yes ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+text(band=detail alignment="0" text="Terms:"border="0" color="37234728" x="1079" y="324" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=18 alignment="0" tabsequence=100 border="5" color="37234728" x="1481" y="324" height="52" width="352" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=term dddw.name=d_terms_dddw_grey_10 dddw.displaycolumn=description dddw.datacolumn=description dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1090519039~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+text(band=detail alignment="0" text="Sales Rep:"border="0" color="37234728" x="1079" y="404" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=15 alignment="0" tabsequence=110 border="5" color="37234728" x="1481" y="404" height="52" width="352" format="[general]"  name=salesman dddw.name=d_sales_rep_dddw_white_8 dddw.displaycolumn=name dddw.datacolumn=salesrep dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+text(band=detail alignment="0" text="Unit Measure:"border="0" color="37234728" x="1079" y="484" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=23 alignment="0" tabsequence=120 border="5" color="37234728" x="1481" y="484" height="52" width="352" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=shipping_unit dddw.name=d_msp_unit_list dddw.displaycolumn=unit dddw.datacolumn=unit dddw.percentwidth=150 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+text(band=detail alignment="0" text="Ship Type:"border="0" color="37234728" x="1079" y="564" height="52" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="37234728" x="366" y="4" height="52" width="695" format="[general]"  name=order_no editmask.mask="########0" editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="37234728" x="366" y="84" height="52" width="695" format="[general]"  name=destination dddw.name=d_destination_dddw_white_custs_only dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="37234728" x="366" y="164" height="52" width="695" format="[general]" protect="0~t1"  name=customer edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="5" color="37234728" x="366" y="244" height="52" width="695" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=blanket_part dddw.name=dw_part_list_white_8 dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=250 dddw.lines=0 dddw.limit=25 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+column(band=detail id=7 alignment="0" tabsequence=30 border="5" color="33554432" x="366" y="324" height="52" width="695" format="[general]"  name=customer_part dddw.name=d_oe_customer_part_list dddw.displaycolumn=customer_part dddw.datacolumn=customer_part dddw.percentwidth=250 dddw.lines=0 dddw.limit=25 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.autohscroll=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=25 alignment="0" tabsequence=40 border="5" color="37234728" x="366" y="404" height="52" width="695" format="[general]"  name=customer_po editmask.mask="XXXXXXXXXXXXXXXXXXXX"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=32 alignment="0" tabsequence=50 border="5" color="37234728" x="366" y="484" height="52" width="695" format="[general]"  name=engineering_level edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=40 alignment="0" tabsequence=32766 border="0" color="37234728" x="3986" y="84" height="52" width="23" format="[general]"  name=check_standard_pack visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=33 alignment="0" tabsequence=200 border="5" color="37234728" x="2341" y="452" height="52" width="407" format="[general]"  name=currency_unit dddw.name=d_currency_list dddw.displaycolumn=currency_code dddw.datacolumn=currency_code dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090517208" )
+column(band=detail id=26 alignment="0" tabsequence=60 border="5" color="37234728" x="366" y="564" height="52" width="695" format="[general]"  name=po_expiry_date editmask.spin=yes editmask.mask="mm/dd/yy" editmask.spinrange="~~" editmask.spinincr=1 editmask.focusrectangle=no  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1085847800" )
+column(band=detail id=24 alignment="0" tabsequence=130 border="5" color="37234728" x="1481" y="564" height="52" width="352" format="[general]" protect="0~tif ( order_no > 0, 1, 0 )"  name=ship_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.useasborder=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1085847800~tif ( order_no > 0, f_get_color_value ( ~"buttonface~" ), f_get_color_value ( ~"window~" ) )" )
+text(band=detail alignment="0" text="Accum Shipped:"border="0" color="37234728" x="1865" y="324" height="52" width="443"  name=our_cum_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Customer Status:"border="0" color="37234728" x="1865" y="388" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Show Euro Amount:"border="0" color="37234728" x="1865" y="516" height="52" width="443" visible="1~tif ( euro_enabled = 0, 1, 0 )"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=detail alignment="0" text="Order Status:"border="0" color="37234728" x="1865" y="580" height="52" width="443"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

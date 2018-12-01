@@ -1,0 +1,501 @@
+﻿$PBExportHeader$m_part_master.srm
+$PBExportComments$*
+forward
+global type m_part_master from menu
+end type
+type m_file from menu within m_part_master
+end type
+type m_unitsofmeasure from menu within m_file
+end type
+type m_sales from menu within m_file
+end type
+type m_purchasing from menu within m_file
+end type
+type m_flowrouter from menu within m_file
+end type
+type m_notes from menu within m_file
+end type
+type m_characteristics from menu within m_file
+end type
+type m_packaging from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_new from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_fastcopy from menu within m_file
+end type
+type m_line12 from menu within m_file
+end type
+type m_rollup from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_part_master
+m_unitsofmeasure m_unitsofmeasure
+m_sales m_sales
+m_purchasing m_purchasing
+m_flowrouter m_flowrouter
+m_notes m_notes
+m_characteristics m_characteristics
+m_packaging m_packaging
+m_line11 m_line11
+m_new m_new
+m_save m_save
+m_fastcopy m_fastcopy
+m_line12 m_line12
+m_rollup m_rollup
+m_exit m_exit
+end type
+type m_edit from menu within m_part_master
+end type
+type m_edit from menu within m_part_master
+end type
+type m_window from menu within m_part_master
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_line31 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_part_master
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_part_master
+end type
+type m_help from menu within m_part_master
+end type
+end forward
+
+global type m_part_master from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_part_master m_part_master
+
+type variables
+
+end variables
+
+forward prototypes
+public subroutine wf_reset ()
+end prototypes
+
+public subroutine wf_reset ();If m_part_master.Text <> "Units of Measure" Then
+
+   Close ( w_conversion_part_link )
+
+End If
+
+If m_part_master.Text <> "Characteristics" Then
+
+   Close ( w_part_char )
+
+End If
+
+If m_part_master.Text <> "Notes" Then
+
+   Close ( w_notes )
+
+End If
+
+
+end subroutine
+
+on m_part_master.create
+m_part_master=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_part_master.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_part_master
+m_unitsofmeasure m_unitsofmeasure
+m_sales m_sales
+m_purchasing m_purchasing
+m_flowrouter m_flowrouter
+m_notes m_notes
+m_characteristics m_characteristics
+m_packaging m_packaging
+m_line11 m_line11
+m_new m_new
+m_save m_save
+m_fastcopy m_fastcopy
+m_line12 m_line12
+m_rollup m_rollup
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_unitsofmeasure=create m_unitsofmeasure
+this.m_sales=create m_sales
+this.m_purchasing=create m_purchasing
+this.m_flowrouter=create m_flowrouter
+this.m_notes=create m_notes
+this.m_characteristics=create m_characteristics
+this.m_packaging=create m_packaging
+this.m_line11=create m_line11
+this.m_new=create m_new
+this.m_save=create m_save
+this.m_fastcopy=create m_fastcopy
+this.m_line12=create m_line12
+this.m_rollup=create m_rollup
+this.m_exit=create m_exit
+this.Item[]={this.m_unitsofmeasure, &
+this.m_sales, &
+this.m_purchasing, &
+this.m_flowrouter, &
+this.m_notes, &
+this.m_characteristics, &
+this.m_packaging, &
+this.m_line11, &
+this.m_new, &
+this.m_save, &
+this.m_fastcopy, &
+this.m_line12, &
+this.m_rollup, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_unitsofmeasure)
+destroy(this.m_sales)
+destroy(this.m_purchasing)
+destroy(this.m_flowrouter)
+destroy(this.m_notes)
+destroy(this.m_characteristics)
+destroy(this.m_packaging)
+destroy(this.m_line11)
+destroy(this.m_new)
+destroy(this.m_save)
+destroy(this.m_fastcopy)
+destroy(this.m_line12)
+destroy(this.m_rollup)
+destroy(this.m_exit)
+end on
+
+type m_unitsofmeasure from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+OpenSheetWithParm ( w_conversion_part_link, w_part_master.i_s_part, gnv_App.of_GetFrame(), 3, Layered! )
+end event
+
+on m_unitsofmeasure.create
+this.Text="&Units of Measure"
+this.Microhelp="Configure Units of Measure..."
+this.ToolBarItemName="Application!"
+this.ToolBarItemText="Units"
+this.ToolBarItemOrder=1
+end on
+
+type m_sales from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+OpenSheetWithParm ( w_customer_price_matrix, w_part_master.i_s_part, gnv_App.of_GetFrame(), 3, Layered! )
+
+end event
+
+on m_sales.create
+this.Text="&Sales"
+this.ToolBarItemName="Custom048!"
+this.ToolBarItemText="Sales"
+this.ToolBarItemOrder=2
+end on
+
+type m_purchasing from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+OpenSheetWithParm ( w_vendor_price_matrix, w_part_master.i_s_part, gnv_App.of_GetFrame(), 3, Layered! )
+
+end event
+
+on m_purchasing.create
+this.Text="&Purchasing"
+this.Microhelp="Purchasing"
+this.ToolBarItemName="Custom048!"
+this.ToolBarItemText="Purchasing"
+this.ToolBarItemOrder=3
+end on
+
+type m_flowrouter from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+
+OpenSheetWithParm ( w_router_maintenance, w_part_master.i_s_part, gnv_App.of_GetFrame(), 0, Layered! )
+
+end event
+
+on m_flowrouter.create
+this.Text="&Flow Router"
+this.Microhelp="Flow Router..."
+this.ToolBarItemName="Parameter!"
+this.ToolBarItemText="Flow Router"
+this.ToolBarItemOrder=4
+end on
+
+type m_notes from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+
+OpenSheetWithParm ( w_notes, w_part_master.i_s_part, gnv_App.of_GetFrame(), 3, Layered! )
+end event
+
+on m_notes.create
+this.Text="&Notes"
+this.Microhelp="Part Notes..."
+this.ToolBarItemName="DataWindow!"
+this.ToolBarItemText="Notes"
+this.ToolBarItemOrder=5
+end on
+
+type m_characteristics from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+
+OpenSheetWithParm ( w_part_char, w_part_master.i_s_part, gnv_App.of_GetFrame(), 3, Layered! )
+
+end event
+
+on m_characteristics.create
+this.Text="C&haracteristics"
+this.Microhelp="Part Characteristics..."
+this.ToolBarItemName="RunReport!"
+this.ToolBarItemText="Char"
+this.ToolBarItemOrder=6
+end on
+
+type m_packaging from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+
+OpenSheetWithParm ( w_part_package_materials, w_part_master.i_s_part, gnv_App.of_GetFrame(), 0, Layered! )
+end event
+
+on m_packaging.create
+this.Text="&Packaging"
+this.Microhelp="Packaging Material..."
+this.ToolBarItemName="UserObject!"
+this.ToolBarItemText="Package"
+this.ToolBarItemOrder=7
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+this.Text="-"
+this.ToolBarItemText="Fast Copy"
+this.ToolBarItemOrder=10
+end on
+
+type m_new from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+
+w_part_master.TriggerEvent ( "new_part" )
+end event
+
+on m_new.create
+this.Text="&New"
+this.Microhelp="Reset Screen, Add New Part..."
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="New"
+this.ToolBarItemOrder=8
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;w_part_master.TriggerEvent ( "save_part" )
+end event
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save Contents of Window..."
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=9
+end on
+
+type m_fastcopy from menu within m_file
+end type
+
+event clicked;w_part_master.TriggerEvent ( "Copy_part" )
+end event
+
+on m_fastcopy.create
+this.Text="FastCopy"
+this.ToolBarItemName="Custom092!"
+this.ToolBarItemText="Fast Copy"
+this.ToolBarItemOrder=10
+end on
+
+type m_line12 from menu within m_file
+end type
+
+on m_line12.create
+this.Text="-"
+end on
+
+type m_rollup from menu within m_file
+end type
+
+event clicked;w_part_master.TriggerEvent ( "ue_rollup" )
+end event
+
+on m_rollup.create
+this.Text="&Rollup"
+this.Microhelp="Cost Rollup"
+this.ToolBarItemName="Regenerate5!"
+this.ToolBarItemText="Rollup"
+this.ToolBarItemOrder=11
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;wf_reset ( )
+w_part_master.TriggerEvent ( "exit_routine" )
+
+end event
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit Part Master..."
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_part_master
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_part_master
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_line31 m_line31
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_line31=create m_line31
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_line31, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_line31)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+
+end on
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end on
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end on
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m_line31 from menu within m_window
+end type
+
+on m_line31.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end on
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_part_master
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

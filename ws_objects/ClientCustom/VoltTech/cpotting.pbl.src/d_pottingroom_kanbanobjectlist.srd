@@ -1,0 +1,85 @@
+﻿$PBExportHeader$d_pottingroom_kanbanobjectlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(6) updatewhereclause=yes name=kanbannumber dbname="MES_KanbanObjects.KanbanNumber" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="MES_KanbanObjects.PartCode" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="MES_KanbanObjects.PackageType" )
+ column=(type=long updatewhereclause=yes name=objectserial dbname="MES_KanbanObjects.ObjectSerial" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="MES_KanbanObjects.Location" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalquantity dbname="MES_KanbanObjects.TotalQuantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="MES_KanbanObjects.Unit" )
+ column=(type=long updatewhereclause=yes name=objectcount dbname="MES_KanbanObjects.ObjectCount" )
+ column=(type=char(25) updatewhereclause=yes name=firstpart dbname="MES_KanbanObjects.FirstPart" )
+ column=(type=char(25) updatewhereclause=yes name=lastpart dbname="MES_KanbanObjects.LastPart" )
+ column=(type=char(25) updatewhereclause=yes name=childpart dbname="MES_KanbanObjects.ChildPart" )
+ column=(type=long updatewhereclause=yes name=routesequence dbname="MES_KanbanObjects.RouteSequence" )
+ column=(type=long updatewhereclause=yes name=machinesequence dbname="MES_KanbanObjects.MachineSequence" )
+ column=(type=char(15) updatewhereclause=yes name=machinecode dbname="MES_KanbanObjects.MachineCode" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="MES_KanbanObjects.GroupTechnology" )
+ column=(type=long updatewhereclause=yes name=serial dbname="MES_KanbanObjects.Serial" )
+ column=(type=long updatewhereclause=yes name=wodid dbname="MES_KanbanObjects.WODID" )
+ column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="MES_KanbanObjects.WorkOrderNumber" )
+ column=(type=number updatewhereclause=yes name=workorderdetailline dbname="MES_KanbanObjects.WorkOrderDetailLine" )
+ column=(type=long updatewhereclause=yes name=status dbname="MES_KanbanObjects.Status" )
+ column=(type=long updatewhereclause=yes name=type dbname="MES_KanbanObjects.Type" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="MES_KanbanObjects.Quantity" )
+ column=(type=datetime updatewhereclause=yes name=completiondt dbname="MES_KanbanObjects.CompletionDT" )
+ column=(type=char(50) updatewhereclause=yes name=backflushnumber dbname="MES_KanbanObjects.BackflushNumber" )
+ column=(type=char(50) updatewhereclause=yes name=undobackflushnumber dbname="MES_KanbanObjects.UndoBackflushNumber" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	mko.KanbanNumber
+,	mko.PartCode
+,	mko.PackageType
+,	mko.ObjectSerial
+,	mko.Location
+,	mko.TotalQuantity
+,	mko.Unit
+,	mko.ObjectCount
+,	mko.FirstPart
+,	mko.LastPart
+,	mko.ChildPart
+,	mko.RouteSequence
+,	mko.MachineSequence
+,	mko.MachineCode
+,	mko.GroupTechnology
+,	mko.Serial
+,	mko.WODID
+,	mko.WorkOrderNumber
+,	mko.WorkOrderDetailLine
+,	mko.Status
+,	mko.Type
+,	mko.Quantity
+,	mko.CompletionDT
+,	mko.BackflushNumber
+,	mko.UndoBackflushNumber
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.MES_KanbanObjects mko
+where
+	mko.KanbanNumber = :kanbanNumber
+order by
+	mko.CompletionDT desc
+" arguments=(("kanbanNumber", string)) )
+text(band=header alignment="0" text="Harness Serial" border="6" color="33554432" x="9" y="8" height="76" width="425" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Completion DT" border="6" color="33554432" x="443" y="8" height="76" width="603" html.valueishtml="0"  name=completiondt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="425" format="[general] " html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="443" y="8" height="76" width="603" format=" [shortdate] [time]" html.valueishtml="0"  name=completiondt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

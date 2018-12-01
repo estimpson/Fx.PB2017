@@ -1,0 +1,9 @@
+﻿$PBExportHeader$st_print_preview_generic.srs
+global type st_print_preview_generic from structure
+	string		form_type
+	long		document_number
+	window		calling_window
+	listbox		lblistofdocuments
+	string		additional_formname
+end type
+

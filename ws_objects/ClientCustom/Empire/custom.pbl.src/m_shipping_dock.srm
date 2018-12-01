@@ -1,0 +1,724 @@
+﻿$PBExportHeader$m_shipping_dock.srm
+forward
+global type m_shipping_dock from menu
+end type
+type m_operation from menu within m_shipping_dock
+end type
+type m_createpallet from menu within m_operation
+end type
+type m_manulscan from menu within m_operation
+end type
+type m_delete from menu within m_operation
+end type
+type m_reconcile from menu within m_operation
+end type
+type m_note from menu within m_operation
+end type
+type m_relable from menu within m_operation
+end type
+type m_printsetup from menu within m_operation
+end type
+type m_shippinginfo from menu within m_operation
+end type
+type m_print from menu within m_operation
+end type
+type m_certs from menu within m_print
+end type
+type m_destinationlabel from menu within m_print
+end type
+type m_picklist from menu within m_print
+end type
+type m_packlist from menu within m_print
+end type
+type m_pltlabel from menu within m_print
+end type
+type m_customform from menu within m_print
+end type
+type m_print from menu within m_operation
+m_certs m_certs
+m_destinationlabel m_destinationlabel
+m_picklist m_picklist
+m_packlist m_packlist
+m_pltlabel m_pltlabel
+m_customform m_customform
+end type
+type m_scantruck from menu within m_operation
+end type
+type m_verifyscan from menu within m_operation
+end type
+type m_custom1 from menu within m_operation
+end type
+type m_custom2 from menu within m_operation
+end type
+type m_custom3 from menu within m_operation
+end type
+type m_exit from menu within m_operation
+end type
+type m_operation from menu within m_shipping_dock
+m_createpallet m_createpallet
+m_manulscan m_manulscan
+m_delete m_delete
+m_reconcile m_reconcile
+m_note m_note
+m_relable m_relable
+m_printsetup m_printsetup
+m_shippinginfo m_shippinginfo
+m_print m_print
+m_scantruck m_scantruck
+m_verifyscan m_verifyscan
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+m_exit m_exit
+end type
+type m_edit from menu within m_shipping_dock
+end type
+type m_edit from menu within m_shipping_dock
+end type
+type m_window from menu within m_shipping_dock
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_shipping_dock
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_shipping_dock
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_shipping_dock
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_shipping_dock from menu
+m_operation m_operation
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_shipping_dock m_shipping_dock
+
+type variables
+Boolean bPalletVisible    //Whether to show pallet datawin
+end variables
+
+on m_shipping_dock.create
+m_shipping_dock=this
+this.m_operation=create m_operation
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_operation, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_shipping_dock.destroy
+destroy(this.m_operation)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_operation from menu within m_shipping_dock
+m_createpallet m_createpallet
+m_manulscan m_manulscan
+m_delete m_delete
+m_reconcile m_reconcile
+m_note m_note
+m_relable m_relable
+m_printsetup m_printsetup
+m_shippinginfo m_shippinginfo
+m_print m_print
+m_scantruck m_scantruck
+m_verifyscan m_verifyscan
+m_custom1 m_custom1
+m_custom2 m_custom2
+m_custom3 m_custom3
+m_exit m_exit
+end type
+
+on m_operation.create
+this.Text="&File"
+this.m_createpallet=create m_createpallet
+this.m_manulscan=create m_manulscan
+this.m_delete=create m_delete
+this.m_reconcile=create m_reconcile
+this.m_note=create m_note
+this.m_relable=create m_relable
+this.m_printsetup=create m_printsetup
+this.m_shippinginfo=create m_shippinginfo
+this.m_print=create m_print
+this.m_scantruck=create m_scantruck
+this.m_verifyscan=create m_verifyscan
+this.m_custom1=create m_custom1
+this.m_custom2=create m_custom2
+this.m_custom3=create m_custom3
+this.m_exit=create m_exit
+this.Item[]={this.m_createpallet, &
+this.m_manulscan, &
+this.m_delete, &
+this.m_reconcile, &
+this.m_note, &
+this.m_relable, &
+this.m_printsetup, &
+this.m_shippinginfo, &
+this.m_print, &
+this.m_scantruck, &
+this.m_verifyscan, &
+this.m_custom1, &
+this.m_custom2, &
+this.m_custom3, &
+this.m_exit}
+end on
+
+on m_operation.destroy
+destroy(this.m_createpallet)
+destroy(this.m_manulscan)
+destroy(this.m_delete)
+destroy(this.m_reconcile)
+destroy(this.m_note)
+destroy(this.m_relable)
+destroy(this.m_printsetup)
+destroy(this.m_shippinginfo)
+destroy(this.m_print)
+destroy(this.m_scantruck)
+destroy(this.m_verifyscan)
+destroy(this.m_custom1)
+destroy(this.m_custom2)
+destroy(this.m_custom3)
+destroy(this.m_exit)
+end on
+
+type m_createpallet from menu within m_operation
+end type
+
+event clicked;If w_shipping_dock.dw_pallet_info.Visible = TRUE then
+	m_createpallet.ToolbarItemText         = "Crt Plt"
+	m_createpallet.ToolbarItemName         = "CreateRunTime!"
+	m_delete.ToolbarItemVISIBLE            = TRUE
+	m_scantruck.ToolbarItemVisible         = TRUE
+	m_print.ToolbarItemVISIBLE             = TRUE
+	m_print.Item[1].ToolBarItemVisible     = TRUE
+	m_print.Item[2].ToolBarItemVisible     = TRUE
+	m_print.Item[3].ToolBarItemVisible     = TRUE
+	m_print.Item[4].ToolBarItemVisible     = TRUE
+	w_shipping_dock.dw_pallet_info.Visible = FALSE
+	w_shipping_dock.dw_view_boxes_on_pallet.visible = FALSE
+	w_shipping_dock.st_pallet.visible      			= FALSE
+// the below 1 line inc by gph on 5/28 at 2.16 pm for deactivating exit button
+	w_shipping_dock.p_1.visible      		= FALSE
+	w_shipping_dock.bPalletVisible         			= FALSE
+	w_shipping_dock.sle_orig_pallet_tare.visible 	= FALSE
+Else
+	w_shipping_dock.dw_pallet_info.Visible = TRUE
+// the below 2 lines rem'd by gph on 5/28 at 2.16 pm as it was not required
+//	m_createpallet.ToolbarItemText         = "Finish"
+//	m_createpallet.ToolbarItemName         = "custom071!"
+	m_delete.ToolbarItemVISIBLE            = FALSE
+	m_print.ToolbarItemVISIBLE             = FALSE
+	m_print.Item[1].ToolBarItemVisible     = FALSE
+	m_print.Item[2].ToolBarItemVisible     = FALSE
+	m_print.Item[3].ToolBarItemVisible     = FALSE
+	m_print.Item[4].ToolBarItemVisible     = FALSE
+	w_shipping_dock.st_pallet.visible      = TRUE
+	w_shipping_dock.TriggerEvent("create_new_pallet")
+	w_shipping_dock.bPalletVisible         = TRUE
+End If
+end event
+
+on m_createpallet.create
+this.Text="&Create Pallet~tAlt+C"
+this.Microhelp="Create a pallet (super object)"
+this.ToolBarItemDownName="Custom071!"
+this.ToolBarItemName="CreateRuntime!"
+this.ToolBarItemText="Crt Pallet"
+this.ToolBarItemOrder=20
+this.Shortcut=579
+end on
+
+type m_manulscan from menu within m_operation
+end type
+
+event clicked;w_shipping_dock.TriggerEvent("manul_scan")
+
+//w_shipping_dock.bManualScanObj	= (Not w_shipping_dock.bManualScanObj)
+
+If w_shipping_dock.bManualScanObj then
+	m_manulscan.ToolbarItemText = "StopScan"
+	m_scantruck.ToolbarItemVisible				= FALSE
+	m_delete.ToolbarItemVISIBLE            	= FALSE
+	m_print.ToolbarItemVISIBLE             	= FALSE
+	m_print.Item[1].ToolBarItemVisible     	= FALSE
+	m_print.Item[2].ToolBarItemVisible     	= FALSE
+	m_print.Item[3].ToolBarItemVisible     	= FALSE
+	m_print.Item[4].ToolBarItemVisible     	= FALSE
+	m_operation.m_reconcile.ToolBarItemVisible= FALSE
+Else
+	m_manulscan.ToolbarItemText = "ScanBox"
+	m_delete.ToolbarItemVISIBLE            = TRUE
+	m_scantruck.ToolbarItemVisible			= TRUE
+	m_print.ToolbarItemVISIBLE             = TRUE
+	m_print.Item[1].ToolBarItemVisible     = TRUE
+	m_print.Item[2].ToolBarItemVisible     = TRUE
+	m_print.Item[3].ToolBarItemVisible     = TRUE
+	m_print.Item[4].ToolBarItemVisible     = TRUE
+	m_reconcile.ToolBarItemVisible			= TRUE
+End If
+
+
+end event
+
+on m_manulscan.create
+this.Text="&Manual Stage~tAlt+M"
+this.Microhelp="Manully Stage boxes"
+this.ToolBarItemName="Custom040!"
+this.ToolBarItemText="ScanBox"
+this.ToolBarItemOrder=30
+this.Shortcut=589
+end on
+
+type m_delete from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("edit_qty")
+end on
+
+on m_delete.create
+this.Text="C&hange Qty~tAlt+H"
+this.Microhelp="Change quantity required"
+this.ToolBarItemName="EditStops!"
+this.ToolBarItemText="Edit"
+this.ToolBarItemOrder=40
+this.Shortcut=584
+end on
+
+type m_reconcile from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("reconcile")
+end on
+
+on m_reconcile.create
+this.Text="&Reconcile~tAlt+R"
+this.Microhelp="Reconcile quantity on shipper detail"
+this.ToolBarItemName="Custom045!"
+this.ToolBarItemText="Reconcile"
+this.ToolBarItemOrder=10
+this.Shortcut=594
+end on
+
+type m_note from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("show_note")
+end on
+
+on m_note.create
+this.Text="Part &Note~tAlt+N"
+this.Microhelp="Display Note for Line Item"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=45
+this.Shortcut=590
+end on
+
+type m_relable from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("relabel")
+end on
+
+on m_relable.create
+this.Text="Re&label~tAlt+L"
+this.Shortcut=588
+end on
+
+type m_printsetup from menu within m_operation
+end type
+
+on clicked;PrintSetup()
+end on
+
+on m_printsetup.create
+this.Text="Print &Setup~tAlt+P"
+this.Microhelp="Printer Setup"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Setup"
+this.ToolBarItemOrder=60
+this.Shortcut=592
+end on
+
+on m_printsetup.destroy
+end on
+
+type m_shippinginfo from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("edit_shipper_header")
+end on
+
+on m_shippinginfo.create
+this.Text="Shipping &Info~tAlt+I"
+this.Microhelp="Edit Shipping Information in Header Section"
+this.ToolBarItemName="truck.bmp"
+this.ToolBarItemText="Info"
+this.ToolBarItemOrder=50
+this.Shortcut=585
+end on
+
+type m_print from menu within m_operation
+m_certs m_certs
+m_destinationlabel m_destinationlabel
+m_picklist m_picklist
+m_packlist m_packlist
+m_pltlabel m_pltlabel
+m_customform m_customform
+end type
+
+on m_print.create
+this.Text="&Print~tAlt+P"
+this.ToolBarItemText="Print "
+this.ToolBarItemOrder=50
+this.Shortcut=592
+this.m_certs=create m_certs
+this.m_destinationlabel=create m_destinationlabel
+this.m_picklist=create m_picklist
+this.m_packlist=create m_packlist
+this.m_pltlabel=create m_pltlabel
+this.m_customform=create m_customform
+this.Item[]={this.m_certs, &
+this.m_destinationlabel, &
+this.m_picklist, &
+this.m_packlist, &
+this.m_pltlabel, &
+this.m_customform}
+end on
+
+on m_print.destroy
+destroy(this.m_certs)
+destroy(this.m_destinationlabel)
+destroy(this.m_picklist)
+destroy(this.m_packlist)
+destroy(this.m_pltlabel)
+destroy(this.m_customform)
+end on
+
+type m_certs from menu within m_print
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("print_certs")
+end on
+
+on m_certs.create
+this.Text="Certs"
+end on
+
+type m_destinationlabel from menu within m_print
+end type
+
+on clicked;OpenWithParm(w_std_ship_label, w_shipping_dock.szDestination)
+end on
+
+on m_destinationlabel.create
+this.Text="Destination Label"
+end on
+
+type m_picklist from menu within m_print
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("print_picklist")
+//OpenWithParm(w_print_picklist, w_shipping_dock.iShipper)
+end on
+
+on m_picklist.create
+this.Text="Pick List"
+this.Microhelp="Print Pick List"
+this.ToolBarItemName="Custom004!"
+this.ToolBarItemText="PickList"
+this.ToolBarItemOrder=70
+end on
+
+type m_packlist from menu within m_print
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("print_shipper")
+end on
+
+on m_packlist.create
+this.Text="Pack List"
+this.Microhelp="Print shipper"
+this.ToolBarItemName="Copy!"
+this.ToolBarItemText="PackList"
+this.ToolBarItemOrder=90
+end on
+
+type m_pltlabel from menu within m_print
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("print_pallet_label")
+end on
+
+on m_pltlabel.create
+this.Text="Pallet Label"
+this.Microhelp="Print Pallet Labe"
+this.ToolBarItemName="Center!"
+this.ToolBarItemText="Plt Label"
+this.ToolBarItemOrder=80
+end on
+
+type m_customform from menu within m_print
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("print_custom_form")
+end on
+
+on m_customform.create
+this.Text="Custom Form"
+this.Microhelp="Print custom form"
+this.ToolBarItemName="Custom003!"
+this.ToolBarItemText="Custom"
+this.ToolBarItemOrder=100
+end on
+
+on m_customform.destroy
+end on
+
+type m_scantruck from menu within m_operation
+end type
+
+on clicked;w_shipping_dock.TriggerEvent("Scan_to_truck")
+end on
+
+on m_scantruck.create
+this.Text="Ship &Out~tAlt+T"
+this.Microhelp="Scan shipment to truck"
+this.ToolBarItemName="Export!"
+this.ToolBarItemText="ShipOut"
+this.ToolBarItemOrder=110
+this.Shortcut=596
+end on
+
+type m_verifyscan from menu within m_operation
+end type
+
+event clicked;w_shipping_dock.TriggerEvent("ue_verifyScan")
+end event
+
+on m_verifyscan.create
+this.Text="&VerifyScan~tAlt+V"
+this.Microhelp="Verify the Scanned objects"
+this.ToolBarItemName="Custom038!"
+this.ToolBarItemText="Verify Scan"
+this.ToolBarItemOrder=115
+this.Shortcut=598
+end on
+
+type m_custom1 from menu within m_operation
+end type
+
+on m_custom1.create
+this.Text="Custom&1"
+this.ToolBarItemName="Custom042!"
+this.ToolBarItemText="Custom"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=120
+end on
+
+event clicked;f_execute_custom_menu ("monitor.shipdock1")
+end event
+
+type m_custom2 from menu within m_operation
+end type
+
+on m_custom2.create
+this.Text="Custom&2"
+this.ToolBarItemName="Custom042!"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=130
+end on
+
+event clicked;f_execute_custom_menu ("monitor.shipdock2")
+end event
+
+type m_custom3 from menu within m_operation
+end type
+
+on m_custom3.create
+this.Text="Custom&3"
+this.ToolBarItemName="Custom042!"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=140
+end on
+
+event clicked;f_execute_custom_menu ("monitor.shipdock3")
+end event
+
+type m_exit from menu within m_operation
+end type
+
+on clicked;SetPointer ( Hourglass! )
+
+w_shipping_mdi_screen.ChangeMenu(m_list_of_shippers)
+Close(w_shipping_dock)
+end on
+
+on m_exit.create
+this.Text="&Exit~tAlt+E"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=581
+end on
+
+type m_edit from menu within m_shipping_dock
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_shipping_dock
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Tile WIndows..."
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+this.Text="&Layer"
+this.Microhelp="Layer Windows..."
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Cascade Windows..."
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+this.Microhelp="Arrange Icons..."
+end on
+
+type m_help from menu within m_shipping_dock
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 4001 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays Help Contents..."
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;open (w_about)
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright..."
+end on
+

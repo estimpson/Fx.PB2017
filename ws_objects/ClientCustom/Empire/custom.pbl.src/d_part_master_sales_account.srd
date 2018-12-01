@@ -1,0 +1,45 @@
+﻿$PBExportHeader$d_part_master_sales_account.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=part_part dbname="part.part" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(50) updatewhereclause=yes name=part_cross_ref dbname="part.cross_ref" )
+ column=(type=char(1) updatewhereclause=yes name=part_class dbname="part.class" )
+ column=(type=char(1) updatewhereclause=yes name=part_type dbname="part.type" )
+ column=(type=char(25) updatewhereclause=yes name=part_product_line dbname="part.product_line" )
+ column=(type=char(30) updatewhereclause=yes name=part_commodity dbname="part.commodity" )
+ column=(type=char(1) updatewhereclause=yes name=part_quality_alert dbname="part.quality_alert" )
+ column=(type=char(1) updatewhereclause=yes name=part_serial_type dbname="part.serial_type" )
+ column=(type=char(30) updatewhereclause=yes name=part_user_defined_1 dbname="part.user_defined_1" )
+ column=(type=char(30) updatewhereclause=yes name=part_user_defined_2 dbname="part.user_defined_2" )
+ column=(type=char(25) updatewhereclause=yes name=part_group_technology dbname="part.group_technology" )
+ column=(type=char(10) updatewhereclause=yes name=part_engineering_level dbname="part.engineering_level" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=part_gl_account_code dbname="part.gl_account_code" )
+ column=(type=datetime updatewhereclause=yes name=part_eng_effective_date dbname="part.eng_effective_date" )
+ column=(type=char(25) updatewhereclause=yes name=part_drawing_number dbname="part.drawing_number" )
+ retrieve="  SELECT part.part,   
+         part.name,   
+         part.cross_ref,   
+         part.class,   
+         part.type,   
+         part.product_line,   
+         part.commodity,   
+         part.quality_alert,   
+         part.serial_type,   
+         part.user_defined_1,   
+         part.user_defined_2,   
+         part.group_technology,   
+         part.engineering_level,           
+         part.gl_account_code,   
+         part.eng_effective_date,
+			part.drawing_number  
+    FROM part  
+   WHERE part.part = :szPart    
+" update="part" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string)) )
+column(band=detail id=14 alignment="0" tabsequence=10 border="5" color="0" x="608" y="4" height="64" width="530" format="[general]"  name=part_gl_account_code edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="1" text="Sales Account Code:"border="0" color="33554432" x="119" y="4" height="52" width="466"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="0" text="(Cr/Sale)"border="0" color="33554432" x="1170" y="4" height="52" width="251"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

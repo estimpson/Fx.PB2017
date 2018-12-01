@@ -1,0 +1,53 @@
+﻿$PBExportHeader$d_customer_links.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=8 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=732 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=customer dbname="customer_links.customer" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link1 dbname="customer_links.link1" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link2 dbname="customer_links.link2" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link3 dbname="customer_links.link3" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link4 dbname="customer_links.link4" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link5 dbname="customer_links.link5" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link6 dbname="customer_links.link6" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link7 dbname="customer_links.link7" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link8 dbname="customer_links.link8" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link9 dbname="customer_links.link9" )
+ column=(type=char(254) update=yes updatewhereclause=yes name=link10 dbname="customer_links.link10" )
+ retrieve="  SELECT customer_links.customer,   
+         customer_links.link1,   
+         customer_links.link2,   
+         customer_links.link3,   
+         customer_links.link4,   
+         customer_links.link5,   
+         customer_links.link6,   
+         customer_links.link7,   
+         customer_links.link8,   
+         customer_links.link9,   
+         customer_links.link10  
+    FROM customer_links  
+   WHERE customer_links.customer = :a_customer    
+" update="customer_links" updatewhere=0 updatekeyinplace=yes arguments=(("a_customer", string)) )
+text(band=detail alignment="0" text="Link1:"border="0" color="0" x="32" y="16" height="52" width="178"  name=link1_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link2:"border="0" color="0" x="32" y="88" height="52" width="178"  name=link2_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link3:"border="0" color="0" x="32" y="160" height="52" width="178"  name=link3_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link4:"border="0" color="0" x="32" y="232" height="52" width="178"  name=link4_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link5:"border="0" color="0" x="32" y="304" height="52" width="178"  name=link5_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link6:"border="0" color="0" x="32" y="376" height="52" width="178"  name=link6_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link7:"border="0" color="0" x="32" y="448" height="52" width="178"  name=link7_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link8:"border="0" color="0" x="32" y="520" height="52" width="178"  name=link8_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link9:"border="0" color="0" x="32" y="592" height="52" width="178"  name=link9_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Link10:"border="0" color="0" x="32" y="664" height="52" width="178"  name=link10_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="238" y="16" height="52" width="1367" format="[general]"  name=link1 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="238" y="88" height="52" width="1367" format="[general]"  name=link2 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="238" y="160" height="52" width="1367" format="[general]"  name=link3 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="238" y="232" height="52" width="1367" format="[general]"  name=link4 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=6 alignment="0" tabsequence=50 border="5" color="0" x="238" y="304" height="52" width="1367" format="[general]"  name=link5 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=60 border="5" color="0" x="238" y="376" height="52" width="1367" format="[general]"  name=link6 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="5" color="0" x="238" y="448" height="52" width="1367" format="[general]"  name=link7 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="5" color="0" x="238" y="520" height="52" width="1367" format="[general]"  name=link8 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=90 border="5" color="0" x="238" y="592" height="52" width="1367" format="[general]"  name=link9 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=11 alignment="0" tabsequence=100 border="5" color="0" x="238" y="664" height="52" width="1367" format="[general]"  name=link10 edit.limit=254 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

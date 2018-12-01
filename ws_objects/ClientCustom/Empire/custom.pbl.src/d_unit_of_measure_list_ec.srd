@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_unit_of_measure_list_ec.srd
+$PBExportComments$List of units of measure.
+release 6;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=char(2) update=yes updatewhereclause=yes key=yes name=unit dbname="unit_measure.unit" )
+ column=(type=char(35) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(30) updatewhereclause=yes name=description dbname="unit_measure.description" )
+ retrieve="  SELECT unit_measure.unit,   
+         name = rtrim(unit_measure.unit) + '   ' + rtrim(unit_measure.description),   
+         unit_measure.description  
+    FROM unit_measure
+where		unit in (select distinct standard_unit from part_inventory)
+	
+" update="unit_measure" updatewhere=0 updatekeyinplace=no )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="0" y="4" height="76" width="494" format="[general]"  name=name edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="512" y="4" height="76" width="1317" format="[general]"  name=description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

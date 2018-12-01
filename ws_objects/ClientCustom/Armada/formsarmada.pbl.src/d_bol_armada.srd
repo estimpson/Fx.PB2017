@@ -1,0 +1,92 @@
+﻿$PBExportHeader$d_bol_armada.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=1128 color="536870912" )
+summary(height=120 color="536870912" )
+footer(height=1560 color="536870912" )
+detail(height=72 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=shipper_bill_of_lading_number dbname="shipper.bill_of_lading_number" initial="spaces" )
+ column=(type=char(10) updatewhereclause=yes name=bill_of_lading_scac_transfer dbname="bill_of_lading.scac_transfer" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_supplier_code dbname="edi_setups.supplier_code" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_freight_type dbname="shipper.freight_type" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_truck_number dbname="shipper.truck_number" )
+ column=(type=long updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_gross_weight dbname="shipper.gross_weight" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_net_weight dbname="shipper.net_weight" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_tare_weight dbname="shipper.tare_weight" initial="0" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_objs dbname="shipper.staged_objs" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="shipper.destination" )
+ column=(type=char(50) updatewhereclause=yes name=destination_name dbname="destination.name" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_1 dbname="destination.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_2 dbname="destination.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_3 dbname="destination.address_3" )
+ column=(type=char(35) updatewhereclause=yes name=carrier_name dbname="carrier.name" )
+ column=(type=char(20) updatewhereclause=yes name=destination_shipping_freigt_type dbname="destination_shipping.freigt_type" )
+ retrieve="SELECT ~"dba~".~"shipper~".~"bill_of_lading_number~", 
+~"dba~".~"bill_of_lading~".~"scac_transfer~", 
+~"dba~".~"edi_setups~".~"supplier_code~", 
+~"dba~".~"shipper~".~"freight_type~", 
+~"dba~".~"shipper~".~"truck_number~", 
+~"dba~".~"shipper~".~"id~", 
+~"dba~".~"shipper~".~"gross_weight~", 
+~"dba~".~"shipper~".~"net_weight~", 
+~"dba~".~"shipper~".~"tare_weight~", 
+~"dba~".~"shipper~".~"staged_objs~", 
+~"dba~".~"shipper~".~"destination~", 
+~"dba~".~"destination~".~"name~", 
+~"dba~".~"destination~".~"address_1~", 
+~"dba~".~"destination~".~"address_2~", 
+~"dba~".~"destination~".~"address_3~", 
+~"dba~".~"carrier~".~"name~", 
+~"dba~".~"destination_shipping~".~"freigt_type~" 
+
+FROM ~"dba~".~"bill_of_lading~", 
+~"dba~".~"destination~", 
+~"dba~".~"edi_setups~", 
+~"dba~".~"shipper~", 
+~"dba~".~"carrier~", 
+~"dba~".~"destination_shipping~" 
+
+WHERE ( ~"dba~".~"destination~".~"destination~" = ~"dba~".~"edi_setups~".~"destination~" ) and 
+( ~"dba~".~"bill_of_lading~".~"bol_number~" = ~"dba~".~"shipper~".~"bill_of_lading_number~" ) and 
+( ~"dba~".~"shipper~".~"destination~" = ~"dba~".~"edi_setups~".~"destination~" ) and 
+( ~"dba~".~"bill_of_lading~".~"scac_transfer~" = ~"dba~".~"carrier~".~"scac~" ) and 
+( ~"dba~".~"destination~".~"destination~" = ~"dba~".~"shipper~".~"destination~" ) and 
+( ~"dba~".~"destination_shipping~".~"destination~" = ~"dba~".~"bill_of_lading~".~"destination~" ) and 
+( ~"dba~".~"shipper~".~"bill_of_lading_number~" = :BOL_NO ) " arguments=(("BOL_NO", string)) )
+column(band=header id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2981" y="1156" height="64" width="338" format="[general]"  name=shipper_truck_number  tag="truck number " edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+report(band=header dataobject="d_bol_armada_address" x="311" y="580" height="352" width="1435" border="0"  height.autosize=yes criteria="" nest_arguments=((" BOL_NO ")) trail_footer = yes  slideup=directlyabove )
+text(band=header alignment="0" text="ARMADA, MI"border="0" color="0" x="238" y="100" height="56" width="306"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=16 alignment="0" tabsequence=32766 border="0" color="0" x="347" y="36" height="48" width="878" format="[general]"  name=carrier_name  tag="Carrier name " edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="3054" y="836" height="64" width="293" format="mm/dd/yy  "  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="293" y="4" height="64" width="274" format="[general]"  name=shipper_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="1152" y="4" height="64" width="274" format="0"  name=shipper_gross_weight  tag="Gross weight " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="1573" y="4" height="64" width="274" format="0"  name=shipper_net_weight  tag="Net weight " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="0" x="1957" y="4" height="64" width="274" format="0"  name=shipper_tare_weight  tag="tare weight " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=32766 border="0" color="0" x="2322" y="4" height="64" width="165" format="0"  name=shipper_staged_objs  tag="Staged objects " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="left(  destination_name , 11 )"border="0" color="0" x="585" y="4" height="64" width="475" format="[GENERAL]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="4" height="64" width="311" format="[general]"  name=shipper_id  tag="Shipper identification" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="FOR CONSOLIDATION ASSY SERVICE REQUESTED"border="0" color="0" x="421" y="68" height="60" width="1275"  font.face="Arial Narrow" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  shipper_gross_weight  for all )"border="0" color="0" x="1106" y="8" height="60" width="256" format="0"  name=gr_weight  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  shipper_net_weight  for all )"border="0" color="0" x="1554" y="4" height="60" width="293" format="0"  name=net_weight  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  shipper_tare_weight  for all )"border="0" color="0" x="1938" y="4" height="60" width="293" format="0"  name=tare_weight  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=summary alignment="1" expression="sum(  shipper_staged_objs  for all )"border="0" color="0" x="2281" y="4" height="60" width="206" format="0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="TOTALS "border="0" color="0" x="37" y="4" height="60" width="224"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=summary x1="1115" y1="4" x2="2688" y2="4" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=footer alignment="0" text="RBR ARTICLES OTHER THAN EXP.,"border="0" color="0" x="859" y="212" height="60" width="873"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="0" text="DENSITY 15 # OR MORE / CUBIC FOOT"border="0" color="0" x="859" y="276" height="60" width="960"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="1" expression="sum(  shipper_staged_objs  for all )"border="0" color="0" x="603" y="212" height="60" width="201" format="[GENERAL]"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="1" expression="sum(  shipper_gross_weight  for all )"border="0" color="0" x="2213" y="212" height="60" width="256" format="0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="0" text="24586 ARMADA RDG RD"border="0" color="0" x="110" y="1092" height="60" width="613"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="0" text="ARMADA, MI 48005"border="0" color="0" x="110" y="1156" height="60" width="489"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression="if( destination_shipping_freigt_type  = 'COLLECT' , 'X', string(''))"border="0" color="0" x="3017" y="708" height="64" width="165" format="[GENERAL]"  name=collect  font.face="Arial" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if( (left( destination_shipping_freigt_type ,7)) ='PREPAID', 'X',string ('') )"border="0" color="0" x="3273" y="708" height="64" width="165" format="[GENERAL]"  name=prepaid  font.face="Arial" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=2 alignment="0" tabsequence=32766 border="0" color="0" x="2999" y="564" height="64" width="421" format="[general]"  name=bill_of_lading_scac_transfer  tag="Scac transfer code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=3 alignment="0" tabsequence=32766 border="0" color="0" x="3017" y="180" height="64" width="421" format="[general]"  name=edi_setups_supplier_code  tag="Supplier code " edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="005372040"border="0" color="0" x="2450" y="184" height="64" width="329"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="ARMADA RUBBER MFG. CO. "border="0" color="0" x="2277" y="68" height="56" width="677"  font.face="Arial Narrow" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=2 alignment="0" tabsequence=32766 border="0" color="0" x="2350" y="4" height="48" width="402" format="[general]"  tag="Scac transfer code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="0" tabsequence=32766 border="0" color="0" x="3017" y="4" height="64" width="421" format="[general]"  name=shipper_bill_of_lading_number  tag="bill of lading number " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="1" expression="sum(  shipper_staged_objs  for all )"border="0" color="0" x="599" y="788" height="60" width="201" format="[GENERAL]"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="1" expression="sum(  shipper_gross_weight  for all )"border="0" color="0" x="2208" y="788" height="60" width="256" format="0"  font.face="Arial" font.height="-9" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

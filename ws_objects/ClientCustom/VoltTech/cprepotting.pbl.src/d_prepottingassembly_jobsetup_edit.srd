@@ -1,0 +1,34 @@
+﻿$PBExportHeader$d_prepottingassembly_jobsetup_edit.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=392 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=operator dbname="Operator" )
+ column=(type=long updatewhereclause=yes name=assemblyboardserial dbname="AssemblyBoardSerial" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	Operator = convert(varchar(50), null)
+,	AssemblyBoardSerial = convert(int, null)
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+" )
+groupbox(band=detail text="Job Setup"border="5" color="33554432" x="37" y="4" height="384" width="1573"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Operator:" border="0" color="33554432" x="73" y="132" height="64" width="562" html.valueishtml="0"  name=operator_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Assembly board:" border="0" color="33554432" x="73" y="260" height="64" width="562" html.valueishtml="0"  name=assemblyboardserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="ok-32.bmp" x="1646" y="36" height="128" width="146" border="0"  name=p_ok  tag="Job setup complete..." visible="1~tif (Operator > ~"~" and assemblyBoardSerial > 0, 1, 0)" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="132" height="76" width="914" format="[general]" html.valueishtml="0"  name=operator visible="1" dddw.name=d_prepottingassembly_operatorlist dddw.displaycolumn=operatordisplay dddw.datacolumn=operatorcode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="260" height="76" width="914" format="[general]" html.valueishtml="0"  name=assemblyboardserial visible="1" dddw.name=d_prepottingassembly_toollist dddw.displaycolumn=tooldisplay dddw.datacolumn=toolserial dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

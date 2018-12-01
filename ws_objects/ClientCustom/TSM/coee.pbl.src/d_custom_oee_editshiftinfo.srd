@@ -1,0 +1,60 @@
+﻿$PBExportHeader$d_custom_oee_editshiftinfo.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=904 color="536870912" )
+table(column=(type=char(5) updatewhereclause=yes name=supervisoruser dbname="SupervisorUser" )
+ column=(type=char(40) updatewhereclause=yes name=supervisorname dbname="SupervisorName" )
+ column=(type=decimal(7) updatewhereclause=yes name=shiftminutes dbname="ShiftMinutes" )
+ column=(type=char(32766) updatewhereclause=no name=shiftnotes dbname="ShiftNotes" )
+ column=(type=char(1) updatewhereclause=yes name=newsupervisoruser dbname="NewSupervisorUser" )
+ column=(type=char(40) updatewhereclause=yes name=newsupervisorname dbname="NewSupervisorName" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	SupervisorUser = max(si.SupervisorUser)
+,	SupervisorName = max(eSup.name)
+,	ShiftMinutes = max(coalesce(si.ShiftHours, 8)) * 60.0
+,	ShiftNotes = max(si.ShiftNotes)
+,	NewSupervisorUser = max(:UserCode)
+,	NewSupervisorName = max(eSupNew.name)
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	FxTSM_Training.custom.MES_ShiftHistory msh
+	left join custom.OEE_ShiftInfo si
+		on si.ShiftDate = :ShiftDate
+		and si.Shift = :Shift
+	left join dbo.employee eSup
+		on eSup.operator_code = si.SupervisorUser
+	left join dbo.employee eSupNew
+		on eSupNew.operator_code = :UserCode
+where
+	msh.ShiftDate = :ShiftDate
+	and msh.Shift = :Shift
+group by
+	msh.ShiftDate
+,	msh.Shift" arguments=(("UserCode", string),("ShiftDate", datetime),("Shift", number)) )
+groupbox(band=detail text="Enter Shift Info"border="2" color="33554432" x="37" y="4" height="896" width="1280"  name=gb_2 visible="1~tif (IsNull(SupervisorUser), 1, 0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text="Edit Shift Info"border="2" color="33554432" x="37" y="4" height="896" width="1280"  name=gb_1 visible="1~tif (IsNull(SupervisorUser), 0, 1)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Notes:" border="0" color="33554432" x="73" y="452" height="64" width="448" html.valueishtml="0"  name=shiftnotes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Shift Minutes:" border="0" color="33554432" x="73" y="324" height="64" width="448" html.valueishtml="0"  name=shifthours_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Supervisor:" border="0" color="33554432" x="73" y="100" height="64" width="448" html.valueishtml="0"  name=supervisoruser_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=10 border="0" color="134217742" x="878" y="324" height="64" width="402" format="[general]" html.valueishtml="0"  name=shiftminutes visible="1" editmask.mask="###" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="134217742" x="73" y="580" height="288" width="1207" format="[general]" html.valueishtml="0"  name=shiftnotes visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="585" y="100" height="64" width="695" format="[general]" html.valueishtml="0"  name=newsupervisorname visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="if (SupervisorName <> NewSupervisorName, ~"Replaces ~" + SupervisorName, ~"~")"border="0" color="128" x="73" y="196" height="64" width="1207" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="ok-32.bmp" x="1390" y="36" height="128" width="146" border="0"  name=p_ok  tag="Save shift info" visible="1~tif(shiftNotes > ~"~", 1, 0)"  hidesnaked=1 )
+bitmap(band=detail filename="not_ok-32.bmp" x="1390" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel" visible="1" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

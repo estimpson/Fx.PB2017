@@ -1,0 +1,19 @@
+﻿$PBExportHeader$d_armada_freight_bol.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=180 color="536870912" )
+footer(height=248 color="536870912" )
+detail(height=292 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=shipper_freight_type dbname="shipper.freight_type" )
+ retrieve="  SELECT ~"shipper~".~"freight_type~"  
+    FROM ~"bill_of_lading~",   
+         ~"shipper~"  
+   WHERE ( ~"bill_of_lading~".~"trans_mode~" = ~"shipper~".~"trans_mode~" ) and  
+         ( ( ~"shipper~".~"bill_of_lading_number~" = convert ( integer,:ibill_of_lading ) ) )  
+GROUP BY ~"shipper~".~"freight_type~"   
+" arguments=(("ibill_of_lading", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="0" x="2048" y="4" height="64" width="585" format="[general]"  name=shipper_freight_type  tag="freight type " visible="1~t0" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="If ( shipper_freight_type = 'Collect', 'C', '')"border="0" color="0" x="18" y="4" height="64" width="73" format="[GENERAL]"  name=collect  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if (  shipper_freight_type  = 'prepaid', 'P', '')"border="0" color="0" x="128" y="4" height="64" width="73" format="[GENERAL]"  name=prepaid  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if ( shipper_freight_type  = 'Prepaid-Billed', 'P', '' )"border="0" color="0" x="238" y="4" height="64" width="73" format="[GENERAL]"  name=ppb  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

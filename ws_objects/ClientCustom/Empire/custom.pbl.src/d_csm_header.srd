@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_csm_header.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=basepart dbname="basepart" )
+ column=(type=char(200) updatewhereclause=yes name=family dbname="family" )
+ column=(type=char(30) updatewhereclause=yes name=customer dbname="customer" )
+ column=(type=char(250) updatewhereclause=yes name=marketsegment dbname="marketsegment" )
+ column=(type=char(500) updatewhereclause=yes name=partapplication dbname="partapplication" )
+ retrieve="
+select
+	BasePart = BASE_PART
+,	Family = min(FAMILY)
+,	Customer = min(CUSTOMER)
+,	MarketSegment = min(EMPIRE_MARKET_SEGMENT)
+,	PartApplication = min(EMPIRE_APPLICATION)
+from
+	eeiuser.acctg_csm_base_part_mnemonic acbpm
+where
+	BASE_PART = :basePart
+group by
+	BASE_PART
+order by
+	BASE_PART
+" arguments=(("basePart", string)) )
+text(band=header alignment="2" text="Basepart"border="6" color="0" x="9" y="8" height="64" width="466"  name=basepart_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Family"border="6" color="0" x="485" y="8" height="64" width="768"  name=family_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Customer"border="6" color="0" x="1262" y="8" height="64" width="585"  name=customer_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Market Segment"border="6" color="0" x="1856" y="8" height="64" width="699"  name=marketsegment_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Part Application"border="6" color="0" x="2565" y="8" height="64" width="882"  name=partapplication_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="466" format="[general]"  name=basepart edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="485" y="8" height="64" width="768" format="[general]"  name=family edit.limit=200 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1262" y="8" height="64" width="585" format="[general]"  name=customer edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="0" x="1856" y="8" height="64" width="699" format="[general]"  name=marketsegment dddw.name=d_dddw_marketsegments dddw.displaycolumn=marketsegment dddw.datacolumn=marketsegment dddw.percentwidth=100 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="0" x="2565" y="8" height="64" width="882" format="[general]"  name=partapplication accelerator=" " dddw.name=d_dddw_partapplications dddw.displaycolumn=partapplication dddw.datacolumn=partapplication dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

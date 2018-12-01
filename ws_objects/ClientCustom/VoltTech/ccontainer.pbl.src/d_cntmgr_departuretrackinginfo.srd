@@ -1,0 +1,60 @@
+﻿$PBExportHeader$d_cntmgr_departuretrackinginfo.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=744 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=aetcnumber dbname="AETCNumber" )
+ column=(type=char(50) updatewhereclause=yes name=pronumber dbname="ProNumber" )
+ column=(type=char(50) updatewhereclause=yes name=trucknumber dbname="TruckNumber" )
+ column=(type=char(50) updatewhereclause=yes name=sealnumber dbname="SealNumber" )
+ column=(type=char(32766) updatewhereclause=no name=trackingcodes dbname="TrackingCodes" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	AETCNumber = convert(varchar(50), nullif(:aetcNumber, ''))
+,	ProNumber = convert(varchar(50), nullif(:proNumber, ''))
+,	TruckNumber = convert(varchar(50), nullif(:truckNumber, ''))
+,	SealNumber = convert(varchar(50), nullif(:sealNumber, ''))
+,	TrackingCodes = coalesce(Fx.ToList(tc.TrackingCodes), 'None')
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	(	select
+			TrackingCodes = 'aetc_number = ''' + nullif(:aetcNumber, '') + ''''
+		union
+		select
+			'pro_number = ''' + nullif(:proNumber, '') + ''''
+		union
+		select
+			'truck_number = ''' + nullif(:truckNumber, '') + ''''
+		union
+		select
+			'seal_number = ''' + nullif(:sealNumber, '') + ''''
+	) tc
+" arguments=(("aetcNumber", string),("proNumber", string),("truckNumber", string),("sealNumber", string)) )
+groupbox(band=detail text="Tracking Codes"border="5" color="33554432" x="37" y="4" height="736" width="1280"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="A.E.T.C. number:" border="0" color="33554432" x="73" y="100" height="64" width="475" html.valueishtml="0"  name=aetcnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Pro number:" border="0" color="33554432" x="73" y="196" height="64" width="475" html.valueishtml="0"  name=pronumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Truck number:" border="0" color="33554432" x="73" y="292" height="64" width="475" html.valueishtml="0"  name=trucknumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Seal number:" border="0" color="33554432" x="73" y="388" height="64" width="475" html.valueishtml="0"  name=sealnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Tracking codes:" border="0" color="33554432" x="73" y="484" height="64" width="475" html.valueishtml="0"  name=trackingcodes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="73" y="580" height="128" width="1207" format="[general]" html.valueishtml="0"  name=trackingcodes visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="ok-32.bmp" x="1353" y="36" height="128" width="146" border="0"  name=p_ok  tag="Finish departure" visible="1~tif (aetcnumber > '' or pronumber > '' or trucknumber > '' or sealnumber > '', 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1353" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel departure" visible="1" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="134217742" x="622" y="100" height="64" width="658" format="[general];N/A" html.valueishtml="0"  name=aetcnumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="134217742" x="622" y="196" height="64" width="658" format="[general];N/A" html.valueishtml="0"  name=pronumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="134217742" x="622" y="292" height="64" width="658" format="[general];N/A" html.valueishtml="0"  name=trucknumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="134217742" x="622" y="388" height="64" width="658" format="[general];N/A" html.valueishtml="0"  name=sealnumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

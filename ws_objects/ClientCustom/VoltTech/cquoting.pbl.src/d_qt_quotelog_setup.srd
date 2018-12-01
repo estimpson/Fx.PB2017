@@ -1,0 +1,275 @@
+﻿$PBExportHeader$d_qt_quotelog_setup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no pointer="" grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(39) updatewhereclause=yes key=yes name=quoteguid dbname="QT_QuoteLog_Setup.QuoteGUID" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=quotenumber dbname="QT_QuoteLog_Setup.QuoteNumber" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="QT_QuoteLog_Setup.Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="QT_QuoteLog_Setup.Type" )
+ column=(type=long update=yes updatewhereclause=yes name=parentquoteid dbname="QT_QuoteLog_Setup.ParentQuoteID" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=customerrfqnumber dbname="QT_QuoteLog_Setup.CustomerRFQNumber" )
+ column=(type=datetime update=yes updatewhereclause=yes name=receiptdate dbname="QT_QuoteLog_Setup.ReceiptDate" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=customer dbname="QT_QuoteLog_Setup.Customer" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=customercontact dbname="QT_QuoteLog_Setup.CustomerContact" )
+ column=(type=datetime update=yes updatewhereclause=yes name=requestedduedate dbname="QT_QuoteLog_Setup.RequestedDueDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=promisedduedate dbname="QT_QuoteLog_Setup.PromisedDueDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=delivereddate dbname="QT_QuoteLog_Setup.DeliveredDate" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=requote dbname="QT_QuoteLog_Setup.Requote" )
+ column=(type=long update=yes updatewhereclause=yes name=islate dbname="QT_QuoteLog_Setup.IsLate" values="	0/	1" )
+ column=(type=long update=yes updatewhereclause=yes name=awarded dbname="QT_QuoteLog_Setup.Awarded" values="	1/	0" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=customerpartnumber dbname="QT_QuoteLog_Setup.CustomerPartNumber" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=partnumber dbname="QT_QuoteLog_Setup.PartNumber" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=partdescription dbname="QT_QuoteLog_Setup.PartDescription" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=notes dbname="QT_QuoteLog_Setup.Notes" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=applicationname dbname="QT_QuoteLog_Setup.ApplicationName" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=applicationcode dbname="QT_QuoteLog_Setup.ApplicationCode" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=functionname dbname="QT_QuoteLog_Setup.FunctionName" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=program dbname="QT_QuoteLog_Setup.Program" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=oem dbname="QT_QuoteLog_Setup.OEM" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=nameplate dbname="QT_QuoteLog_Setup.Nameplate" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=modelyear dbname="QT_QuoteLog_Setup.ModelYear" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=salesperson dbname="QT_QuoteLog_Setup.SalesPerson" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=engineering dbname="QT_QuoteLog_Setup.Engineering" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=programmanager dbname="QT_QuoteLog_Setup.ProgramManager" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=engineeringmaterials dbname="QT_QuoteLog_Setup.EngineeringMaterials" )
+ column=(type=datetime update=yes updatewhereclause=yes name=engineeringmaterialsdate dbname="QT_QuoteLog_Setup.EngineeringMaterialsDate" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=quotereview dbname="QT_QuoteLog_Setup.QuoteReview" )
+ column=(type=datetime update=yes updatewhereclause=yes name=quotereviewdate dbname="QT_QuoteLog_Setup.QuoteReviewDate" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=quotepricing dbname="QT_QuoteLog_Setup.QuotePricing" )
+ column=(type=datetime update=yes updatewhereclause=yes name=quotepricingdate dbname="QT_QuoteLog_Setup.QuotePricingDate" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=eau dbname="QT_QuoteLog_Setup.EAU" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=qtypervehicle dbname="QT_QuoteLog_Setup.QtyPerVehicle" )
+ column=(type=datetime update=yes updatewhereclause=yes name=sop dbname="QT_QuoteLog_Setup.SOP" )
+ column=(type=datetime update=yes updatewhereclause=yes name=eop dbname="QT_QuoteLog_Setup.EOP" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=quoteprice dbname="QT_QuoteLog_Setup.QuotePrice" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=targetprice dbname="QT_QuoteLog_Setup.TargetPrice" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=tooling dbname="QT_QuoteLog_Setup.Tooling" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=prototypeprice dbname="QT_QuoteLog_Setup.PrototypePrice" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=ltapercentage dbname="QT_QuoteLog_Setup.LTAPercentage" )
+ column=(type=long update=yes updatewhereclause=yes name=ltayears dbname="QT_QuoteLog_Setup.LTAYears" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=straightmaterialcost dbname="QT_QuoteLog_Setup.StraightMaterialCost" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=programlife dbname="QT_QuoteLog_Setup.ProgramLife" )
+ column=(type=decimal(9) update=yes updatewhereclause=yes name=totalquotedsales dbname="QT_QuoteLog_Setup.TotalQuotedSales" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=programvalue dbname="QT_QuoteLog_Setup.ProgramValue" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=productionlevel dbname="QT_QuoteLog_Setup.ProductionLevel" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=totalwirelength dbname="QT_QuoteLog_Setup.TotalWireLength" )
+ column=(type=long update=yes updatewhereclause=yes name=circuitscount dbname="QT_QuoteLog_Setup.CircuitsCount" )
+ column=(type=decimal(17) update=yes updatewhereclause=yes name=averagewirelength dbname="QT_QuoteLog_Setup.AverageWireLength" )
+ column=(type=long update=yes updatewhereclause=yes name=terminaltypescount dbname="QT_QuoteLog_Setup.TerminalTypesCount" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=terminalsetuptime dbname="QT_QuoteLog_Setup.TerminalSetupTime" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=extendedterminalsetuptime dbname="QT_QuoteLog_Setup.ExtendedTerminalSetupTime" )
+ column=(type=long update=yes updatewhereclause=yes name=wireguagescount dbname="QT_QuoteLog_Setup.WireGuagesCount" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=wireguagessetuptime dbname="QT_QuoteLog_Setup.WireGuagesSetupTime" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=extendedwireguagessetuptime dbname="QT_QuoteLog_Setup.ExtendedWireGuagesSetupTime" )
+ column=(type=long update=yes updatewhereclause=yes name=wirecolorscount dbname="QT_QuoteLog_Setup.WireColorsCount" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=wirecolorssetuptime dbname="QT_QuoteLog_Setup.WireColorsSetupTime" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=extendedwirecolorssetuptime dbname="QT_QuoteLog_Setup.ExtendedWireColorsSetupTime" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=revlevel dbname="QT_QuoteLog_Setup.RevLevel" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=productionmaterialrollup dbname="QT_QuoteLog_Setup.ProductionMaterialRollup" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=manufacturingplant dbname="QT_QuoteLog_Setup.ManufacturingPlant" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=deliveryplant dbname="QT_QuoteLog_Setup.DeliveryPlant" )
+ column=(type=long update=yes updatewhereclause=yes name=quoteheaderrowid dbname="QT_QuoteLog_Setup.QuoteHeaderRowID" )
+ column=(type=long update=yes updatewhereclause=yes name=partdatarowid dbname="QT_QuoteLog_Setup.PartDataRowID" )
+ column=(type=long update=yes updatewhereclause=yes name=assignmentdatarowid dbname="QT_QuoteLog_Setup.AssignmentDataRowID" )
+ column=(type=long update=yes updatewhereclause=yes name=volumeandpricingdatarowid dbname="QT_QuoteLog_Setup.VolumeAndPricingDataRowID" )
+ column=(type=long update=yes updatewhereclause=yes name=productiondatarowid dbname="QT_QuoteLog_Setup.ProductionDataRowID" )
+ column=(type=long update=yes updatewhereclause=yes name=supplychaindatarowid dbname="QT_QuoteLog_Setup.SupplyChainDataRowID" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ column=(type=char(254) updatewhereclause=no name=rowcomments dbname="RowComments" )
+ column=(type=char(39) updatewhereclause=yes name=datarowguid dbname="DataRowGUID" )
+ column=(type=char(6) updatewhereclause=yes name=schemaname dbname="SchemaName" )
+ retrieve="select
+	qqls.QuoteGUID
+,	qqls.QuoteNumber
+,	qqls.Status
+,	qqls.Type
+,	qqls.ParentQuoteID
+,	qqls.CustomerRFQNumber
+,	qqls.ReceiptDate
+,	qqls.Customer
+,	qqls.CustomerContact
+,	qqls.RequestedDueDate
+,	qqls.PromisedDueDate
+,	qqls.DeliveredDate
+,	qqls.Requote
+,	qqls.IsLate
+,	qqls.Awarded
+,	qqls.CustomerPartNumber
+,	qqls.PartNumber
+,	qqls.PartDescription
+,	qqls.Notes
+,	qqls.ApplicationName
+,	qqls.ApplicationCode
+,	qqls.FunctionName
+,	qqls.Program
+,	qqls.OEM
+,	qqls.Nameplate
+,	qqls.ModelYear
+,	qqls.SalesPerson
+,	qqls.Engineering
+,	qqls.ProgramManager
+,	qqls.EngineeringMaterials
+,	qqls.EngineeringMaterialsDate
+,	qqls.QuoteReview
+,	qqls.QuoteReviewDate
+,	qqls.QuotePricing
+,	qqls.QuotePricingDate
+,	qqls.EAU
+,	qqls.QtyPerVehicle
+,	qqls.SOP
+,	qqls.EOP
+,	qqls.QuotePrice
+,	qqls.TargetPrice
+,	qqls.Tooling
+,	qqls.PrototypePrice
+,	qqls.LTAPercentage
+,	qqls.LTAYears
+,	qqls.StraightMaterialCost
+,	qqls.ProgramLife
+,	qqls.TotalQuotedSales
+,	qqls.ProgramValue
+,	qqls.ProductionLevel
+,	qqls.TotalWireLength
+,	qqls.CircuitsCount
+,	qqls.AverageWireLength
+,	qqls.TerminalTypesCount
+,	qqls.TerminalSetupTime
+,	qqls.ExtendedTerminalSetupTime
+,	qqls.WireGuagesCount
+,	qqls.WireGuagesSetupTime
+,	qqls.ExtendedWireGuagesSetupTime
+,	qqls.WireColorsCount
+,	qqls.WireColorsSetupTime
+,	qqls.ExtendedWireColorsSetupTime
+,	qqls.RevLevel
+,	qqls.ProductionMaterialRollup
+,	qqls.ManufacturingPlant
+,	qqls.DeliveryPlant
+,	qqls.QuoteHeaderRowID
+,	qqls.PartDataRowID
+,	qqls.AssignmentDataRowID
+,	qqls.VolumeAndPricingDataRowID
+,	qqls.ProductionDataRowID
+,	qqls.SupplyChainDataRowID
+,	Changed = convert(char(1000), '')
+,	IsSelected = convert(int, 0)
+,	RowComments = Fx.udf_GetRowCommentsBitField('custom', 'QT_QuoteLog_Setup', qqls.QuoteGUID)
+,	DataRowGUID = qqls.QuoteGUID
+,	SchemaName = 'custom'
+from
+	custom.QT_QuoteLog_Setup qqls
+order by
+	qqls.QuoteNumber
+" update="custom.QT_QuoteLog_Setup" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="0" text="Quote #" border="6" color="33554432" x="96" y="8" height="76" width="379" html.valueishtml="0"  name=quotenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="RFQ" border="6" color="33554432" x="485" y="8" height="76" width="535" html.valueishtml="0"  name=customerrfqnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Receipt dt." border="6" color="33554432" x="1029" y="8" height="76" width="466" html.valueishtml="0"  name=receiptdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer" border="6" color="33554432" x="1504" y="8" height="76" width="357" html.valueishtml="0"  name=customer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Contact" border="6" color="33554432" x="1870" y="8" height="76" width="503" html.valueishtml="0"  name=customercontact_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Requested due dt." border="6" color="33554432" x="2382" y="8" height="76" width="466" html.valueishtml="0"  name=requestedduedate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Promised due dt." border="6" color="33554432" x="2857" y="8" height="76" width="466" html.valueishtml="0"  name=promisedduedate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Delivered dt." border="6" color="33554432" x="3333" y="8" height="76" width="471" html.valueishtml="0"  name=delivereddate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Requote" border="6" color="33554432" x="3813" y="8" height="76" width="247" html.valueishtml="0"  name=requote_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="On time" border="6" color="33554432" x="4069" y="8" height="76" width="247" html.valueishtml="0"  name=islate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Awarded" border="6" color="33554432" x="4325" y="8" height="76" width="247" html.valueishtml="0"  name=awarded_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer part" border="6" color="33554432" x="4581" y="8" height="76" width="613" html.valueishtml="0"  name=customerpartnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part number" border="6" color="33554432" x="5202" y="8" height="76" width="539" html.valueishtml="0"  name=partnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="5751" y="8" height="76" width="905" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Notes" border="6" color="33554432" x="6665" y="8" height="76" width="1234" html.valueishtml="0"  name=notes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Application" border="6" color="33554432" x="7909" y="8" height="76" width="686" html.valueishtml="0"  name=applicationname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Application code" border="6" color="33554432" x="8603" y="8" height="76" width="466" html.valueishtml="0"  name=applicationcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Function name" border="6" color="33554432" x="9079" y="8" height="76" width="466" html.valueishtml="0"  name=functionname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Program" border="6" color="33554432" x="9554" y="8" height="76" width="503" html.valueishtml="0"  name=program_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="OEM" border="6" color="33554432" x="10066" y="8" height="76" width="466" html.valueishtml="0"  name=oem_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Nameplate" border="6" color="33554432" x="10542" y="8" height="76" width="503" html.valueishtml="0"  name=nameplate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Model year" border="6" color="33554432" x="11054" y="8" height="76" width="320" html.valueishtml="0"  name=modelyear_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sales person" border="6" color="33554432" x="11383" y="8" height="76" width="503" html.valueishtml="0"  name=salesperson_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Engineering" border="6" color="33554432" x="11895" y="8" height="76" width="613" html.valueishtml="0"  name=engineering_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Program manager" border="6" color="33554432" x="12517" y="8" height="76" width="539" html.valueishtml="0"  name=programmanager_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Engineering materials" border="6" color="33554432" x="13065" y="8" height="76" width="613" html.valueishtml="0"  name=engineeringmaterials_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Engineering mat. dt." border="6" color="33554432" x="13687" y="8" height="76" width="539" html.valueishtml="0"  name=engineeringmaterialsdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quote review" border="6" color="33554432" x="14235" y="8" height="76" width="686" html.valueishtml="0"  name=quotereview_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quote review dt." border="6" color="33554432" x="14930" y="8" height="76" width="576" html.valueishtml="0"  name=quotereviewdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quote pricing" border="6" color="33554432" x="15515" y="8" height="76" width="466" html.valueishtml="0"  name=quotepricing_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quote pricing dt." border="6" color="33554432" x="15991" y="8" height="76" width="576" html.valueishtml="0"  name=quotepricingdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="EAU" border="6" color="33554432" x="16576" y="8" height="76" width="357" html.valueishtml="0"  name=eau_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. / vehicle" border="6" color="33554432" x="16942" y="8" height="76" width="352" html.valueishtml="0"  name=qtypervehicle_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="SOP" border="6" color="33554432" x="17303" y="8" height="76" width="398" html.valueishtml="0"  name=sop_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="EOP" border="6" color="33554432" x="17710" y="8" height="76" width="393" html.valueishtml="0"  name=eop_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quote price" border="6" color="33554432" x="18112" y="8" height="76" width="320" html.valueishtml="0"  name=quoteprice_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Target price" border="6" color="33554432" x="18441" y="8" height="76" width="320" html.valueishtml="0"  name=targetprice_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Tooling" border="6" color="33554432" x="18770" y="8" height="76" width="320" html.valueishtml="0"  name=tooling_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Prototype price" border="6" color="33554432" x="19099" y="8" height="76" width="393" html.valueishtml="0"  name=prototypeprice_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="LTA %" border="6" color="33554432" x="19502" y="8" height="76" width="357" html.valueishtml="0"  name=ltapercentage_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="LTA years" border="6" color="33554432" x="19867" y="8" height="76" width="320" html.valueishtml="0"  name=ltayears_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Material cost" border="6" color="33554432" x="20197" y="8" height="76" width="503" html.valueishtml="0"  name=straightmaterialcost_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Program life" border="6" color="33554432" x="20709" y="8" height="76" width="320" html.valueishtml="0"  name=programlife_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Total quoted sales" border="6" color="33554432" x="21038" y="8" height="76" width="503" html.valueishtml="0"  name=totalquotedsales_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Program value" border="6" color="33554432" x="21550" y="8" height="76" width="393" html.valueishtml="0"  name=programvalue_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Revlevel" border="6" color="33554432" x="21952" y="8" height="76" width="393" html.valueishtml="0"  name=revlevel_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Mfg plant" border="6" color="33554432" x="22354" y="8" height="76" width="466" html.valueishtml="0"  name=manufacturingplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="FOB" border="6" color="33554432" x="22830" y="8" height="76" width="320" html.valueishtml="0"  name=deliveryplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="96" y="8" height="76" width="379" format="[general]" html.valueishtml="0"  name=quotenumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="78" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="0" color="33554432" x="485" y="8" height="76" width="535" format="[general]" html.valueishtml="0"  name=customerrfqnumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=8 alignment="0" tabsequence=40 border="0" color="33554432" x="1504" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=customer visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=9 alignment="0" tabsequence=50 border="0" color="33554432" x="1870" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=customercontact visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=13 alignment="0" tabsequence=90 border="0" color="33554432" x="3813" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=requote visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=14 alignment="2" tabsequence=100 border="0" color="33554432" x="4069" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=islate visible="1" checkbox.text="" checkbox.on="0" checkbox.off="1" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=15 alignment="2" tabsequence=110 border="0" color="33554432" x="4325" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=awarded visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=16 alignment="0" tabsequence=120 border="0" color="33554432" x="4581" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=customerpartnumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=17 alignment="0" tabsequence=130 border="0" color="33554432" x="5202" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=partnumber visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=18 alignment="0" tabsequence=140 border="0" color="33554432" x="5751" y="8" height="76" width="905" format="[general]" html.valueishtml="0"  name=partdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=19 alignment="0" tabsequence=150 border="0" color="33554432" x="6665" y="8" height="76" width="1234" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=20 alignment="0" tabsequence=160 border="0" color="33554432" x="7909" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=applicationname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=21 alignment="0" tabsequence=170 border="0" color="33554432" x="8603" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=applicationcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=22 alignment="0" tabsequence=180 border="0" color="33554432" x="9079" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=functionname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=23 alignment="0" tabsequence=190 border="0" color="33554432" x="9554" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=program visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=24 alignment="0" tabsequence=200 border="0" color="33554432" x="10066" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=oem visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=25 alignment="0" tabsequence=210 border="0" color="33554432" x="10542" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=nameplate visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=26 alignment="0" tabsequence=220 border="0" color="33554432" x="11054" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=modelyear visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=27 alignment="0" tabsequence=230 border="0" color="33554432" x="11383" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=salesperson visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=28 alignment="0" tabsequence=240 border="0" color="33554432" x="11895" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=engineering visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=29 alignment="0" tabsequence=250 border="0" color="33554432" x="12517" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=programmanager visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=30 alignment="0" tabsequence=260 border="0" color="33554432" x="13065" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=engineeringmaterials visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=31 alignment="0" tabsequence=270 border="0" color="33554432" x="13687" y="8" height="76" width="539" format="[shortdate] [time]" html.valueishtml="0"  name=engineeringmaterialsdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=32 alignment="0" tabsequence=280 border="0" color="33554432" x="14235" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=quotereview visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=33 alignment="0" tabsequence=290 border="0" color="33554432" x="14930" y="8" height="76" width="576" format="[shortdate] [time]" html.valueishtml="0"  name=quotereviewdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=34 alignment="0" tabsequence=300 border="0" color="33554432" x="15515" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=quotepricing visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=35 alignment="0" tabsequence=310 border="0" color="33554432" x="15991" y="8" height="76" width="576" format="[shortdate] [time]" html.valueishtml="0"  name=quotepricingdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=36 alignment="1" tabsequence=320 border="0" color="33554432" x="16576" y="8" height="76" width="357" format="#,##0.0#####" html.valueishtml="0"  name=eau visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=37 alignment="1" tabsequence=330 border="0" color="33554432" x="16942" y="8" height="76" width="352" format="[general]" html.valueishtml="0"  name=qtypervehicle visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=44 alignment="1" tabsequence=400 border="0" color="33554432" x="19502" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=ltapercentage visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=45 alignment="1" tabsequence=410 border="0" color="33554432" x="19867" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=ltayears visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=47 alignment="1" tabsequence=430 border="0" color="33554432" x="20709" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=programlife visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=63 alignment="0" tabsequence=460 border="0" color="33554432" x="21952" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=revlevel visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=65 alignment="0" tabsequence=470 border="0" color="33554432" x="22354" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=manufacturingplant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=66 alignment="0" tabsequence=480 border="0" color="33554432" x="22830" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=deliveryplant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=12 alignment="0" tabsequence=80 border="0" color="33554432" x="3333" y="8" height="76" width="471" format="[shortdate]" html.valueishtml="0"  name=delivereddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=11 alignment="0" tabsequence=70 border="0" color="33554432" x="2857" y="8" height="76" width="466" format="[shortdate]" html.valueishtml="0"  name=promisedduedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=10 alignment="0" tabsequence=60 border="0" color="33554432" x="2382" y="8" height="76" width="466" format="[shortdate]" html.valueishtml="0"  name=requestedduedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=7 alignment="0" tabsequence=30 border="0" color="33554432" x="1029" y="8" height="76" width="466" format="[shortdate]" html.valueishtml="0"  name=receiptdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=38 alignment="0" tabsequence=340 border="0" color="33554432" x="17303" y="8" height="76" width="398" format="[shortdate]" html.valueishtml="0"  name=sop visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=39 alignment="0" tabsequence=350 border="0" color="33554432" x="17710" y="8" height="76" width="393" format="[shortdate]" html.valueishtml="0"  name=eop visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=40 alignment="1" tabsequence=360 border="0" color="33554432" x="18112" y="8" height="76" width="320" format="$ #,##0.00####" html.valueishtml="0"  name=quoteprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=41 alignment="1" tabsequence=370 border="0" color="33554432" x="18441" y="8" height="76" width="320" format="$ #,##0.00####" html.valueishtml="0"  name=targetprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=42 alignment="1" tabsequence=380 border="0" color="33554432" x="18770" y="8" height="76" width="320" format="$ #,##0.00####" html.valueishtml="0"  name=tooling visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=43 alignment="1" tabsequence=390 border="0" color="33554432" x="19099" y="8" height="76" width="393" format="$ #,##0.00####" html.valueishtml="0"  name=prototypeprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=46 alignment="1" tabsequence=420 border="0" color="33554432" x="20197" y="8" height="76" width="503" format="$ #,##0.00####" html.valueishtml="0"  name=straightmaterialcost visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=48 alignment="1" tabsequence=440 border="0" color="33554432" x="21038" y="8" height="76" width="503" format="$ #,##0.00####" html.valueishtml="0"  name=totalquotedsales visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=49 alignment="1" tabsequence=450 border="0" color="33554432" x="21550" y="8" height="76" width="393" format="$ #,##0.00####" html.valueishtml="0"  name=programvalue visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Changed[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

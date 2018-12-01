@@ -1,0 +1,12 @@
+﻿$PBExportHeader$d_dddw_defect2.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="defect_codes.code" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=name dbname="defect_codes.name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"defect_codes~" ) COLUMN(NAME=~"defect_codes.code~") COLUMN(NAME=~"defect_codes.name~")) ORDER(NAME=~"defect_codes.code~" ASC=yes ) " update="defect_codes" updatewhere=1 updatekeyinplace=no  sort="code A " )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="18" y="8" height="56" width="672" format="[general]"  name=code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="704" y="8" height="56" width="846" format="[general]"  name=name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

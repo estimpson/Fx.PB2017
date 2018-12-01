@@ -1,0 +1,47 @@
+﻿$PBExportHeader$d_order_header_additional2.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=680 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes key=yes name=orderno dbname="OrderHeaderAdditional.OrderNo" )
+ column=(type=long updatewhereclause=yes name=status dbname="OrderHeaderAdditional.Status" )
+ column=(type=long updatewhereclause=yes name=type dbname="OrderHeaderAdditional.Type" )
+ column=(type=datetime update=yes updatewhereclause=yes name=ppap_duedate dbname="OrderHeaderAdditional.PPAP_DueDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=ppap_rawdate dbname="OrderHeaderAdditional.PPAP_RawDate" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=customerpartdescription dbname="OrderHeaderAdditional.CustomerPartDescription" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=custom1 dbname="OrderHeaderAdditional.Custom1" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=custom2 dbname="OrderHeaderAdditional.Custom2" )
+ column=(type=long updatewhereclause=yes key=yes identity=yes name=rowid dbname="OrderHeaderAdditional.RowID" )
+ column=(type=datetime updatewhereclause=yes name=rowcreatedt dbname="OrderHeaderAdditional.RowCreateDT" )
+ column=(type=char(128) updatewhereclause=no name=rowcreateuser dbname="OrderHeaderAdditional.RowCreateUser" )
+ column=(type=datetime updatewhereclause=yes name=rowmodifieddt dbname="OrderHeaderAdditional.RowModifiedDT" )
+ column=(type=char(128) updatewhereclause=no name=rowmodifieduser dbname="OrderHeaderAdditional.RowModifiedUser" )
+ retrieve="select
+	*
+from
+	custom.OrderHeaderAdditional oha
+where
+	oha.OrderNo = :OrderNo
+" update="custom.OrderHeaderAdditional" updatewhere=1 updatekeyinplace=no arguments=(("OrderNo", number)) )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="33554432" x="974" y="28" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=ppap_duedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="5" color="33554432" x="974" y="164" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=ppap_rawdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="5" color="33554432" x="974" y="300" height="76" width="2770" format="[general]" html.valueishtml="0"  name=customerpartdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=70 border="5" color="33554432" x="974" y="436" height="76" width="2770" format="[general]" html.valueishtml="0"  name=custom1 visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=80 border="5" color="33554432" x="974" y="572" height="76" width="2770" format="[general]" html.valueishtml="0"  name=custom2 visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customerpartdescription:" border="0" color="33554432" x="37" y="300" height="64" width="663" html.valueishtml="0"  name=customerpartdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom1:" border="0" color="33554432" x="37" y="436" height="64" width="663" html.valueishtml="0"  name=custom1_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom2:" border="0" color="33554432" x="37" y="572" height="64" width="663" html.valueishtml="0"  name=custom2_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ppap Duedate:" border="0" color="33554432" x="37" y="28" height="64" width="663" html.valueishtml="0"  name=ppap_duedate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ppap Rawdate:" border="0" color="33554432" x="37" y="164" height="64" width="663" html.valueishtml="0"  name=ppap_rawdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

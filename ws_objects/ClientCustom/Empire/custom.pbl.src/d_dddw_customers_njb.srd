@@ -1,0 +1,35 @@
+﻿$PBExportHeader$d_dddw_customers_njb.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=52 color="553648127"  height.autosize=yes)
+table(column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="customer.customer" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=name dbname="customer.name" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_1 dbname="customer.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_2 dbname="customer.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_3 dbname="customer.address_3" )
+ retrieve="  SELECT customer.customer,   
+         customer.name,
+		customer.address_1,
+		customer.address_2,
+		customer.address_3  
+    FROM customer,   
+         customer_service_status  
+   WHERE ( customer.cs_status = customer_service_status.status_name ) and  
+         ( ( customer_service_status.status_type <> 'C' ) )   AND 
+			( isnull ( customer.custom1, '' ) <> 'I' )
+ORDER BY customer.customer ASC   
+" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="37234728" x="9" y="0" height="60" width="347" format="[general]"  name=customer height.autosize=yes edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="366" y="0" height="60" width="530" format="[general]"  name=name height.autosize=yes edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="37234728" x="905" y="0" height="60" width="439" format="[general]"  name=customer_address_1 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="37234728" x="1353" y="0" height="60" width="306" format="[general]"  name=customer_address_2 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="37234728" x="1669" y="0" height="60" width="279" format="[general]"  name=customer_address_3 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Customer"border="6" color="37234728" x="9" y="8" height="52" width="347"  name=customer_t  font.face="MS Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="2" text="Name"border="6" color="37234728" x="366" y="8" height="52" width="530"  name=name_t  font.face="MS Sans Serif" font.height="-7" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Address 1"border="6" color="0" x="905" y="8" height="52" width="439"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Address 2"border="6" color="0" x="1353" y="8" height="52" width="306"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+text(band=header alignment="0" text="Address 3"border="6" color="0" x="1669" y="8" height="56" width="279"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="81324524" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

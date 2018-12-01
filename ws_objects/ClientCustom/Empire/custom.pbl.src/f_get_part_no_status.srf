@@ -1,0 +1,33 @@
+﻿$PBExportHeader$f_get_part_no_status.srf
+global type f_get_part_no_status from function_object
+end type
+
+forward prototypes
+global function string f_get_part_no_status (string a_s_part)
+end prototypes
+
+global function string f_get_part_no_status (string a_s_part);string l_s_status, &
+		 l_s_note
+
+select non_order_status,
+		 non_order_note
+into	 :l_s_status,
+		 :l_s_note
+from part_eecustom
+where part = :a_s_part ;
+
+if isnull ( l_s_status ) then l_s_status = 'N'
+
+if isnull ( l_s_status, 'N' ) = 'Y' then
+
+	l_s_status = l_s_status + '/' + isnull ( l_s_note, '' )
+	
+else
+	
+	l_s_status = 'N'
+
+end if
+
+return l_s_status ;
+end function
+

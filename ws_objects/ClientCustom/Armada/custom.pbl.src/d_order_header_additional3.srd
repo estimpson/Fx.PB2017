@@ -1,0 +1,128 @@
+﻿$PBExportHeader$d_order_header_additional3.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=2504 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes key=yes name=order_no dbname="OrderHeaderAdditionalUpdateable.order_no" )
+ column=(type=datetime update=yes updatewhereclause=yes name=order_date dbname="OrderHeaderAdditionalUpdateable.order_date" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=blanket_part dbname="OrderHeaderAdditionalUpdateable.blanket_part" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=customer dbname="OrderHeaderAdditionalUpdateable.customer" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="OrderHeaderAdditionalUpdateable.destination" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=model_year dbname="OrderHeaderAdditionalUpdateable.model_year" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=customer_part dbname="OrderHeaderAdditionalUpdateable.customer_part" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom01 dbname="OrderHeaderAdditionalUpdateable.custom01" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom02 dbname="OrderHeaderAdditionalUpdateable.custom02" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=custom03 dbname="OrderHeaderAdditionalUpdateable.custom03" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=contact dbname="OrderHeaderAdditionalUpdateable.contact" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=unit dbname="OrderHeaderAdditionalUpdateable.unit" )
+ column=(type=char(6) update=yes updatewhereclause=yes name=begin_kanban_number dbname="OrderHeaderAdditionalUpdateable.begin_kanban_number" )
+ column=(type=char(6) update=yes updatewhereclause=yes name=end_kanban_number dbname="OrderHeaderAdditionalUpdateable.end_kanban_number" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line11 dbname="OrderHeaderAdditionalUpdateable.line11" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line12 dbname="OrderHeaderAdditionalUpdateable.line12" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line13 dbname="OrderHeaderAdditionalUpdateable.line13" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line14 dbname="OrderHeaderAdditionalUpdateable.line14" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line15 dbname="OrderHeaderAdditionalUpdateable.line15" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line16 dbname="OrderHeaderAdditionalUpdateable.line16" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=line17 dbname="OrderHeaderAdditionalUpdateable.line17" )
+ column=(type=datetime update=yes updatewhereclause=yes name=ppap_duedate dbname="OrderHeaderAdditionalUpdateable.PPAP_DueDate" )
+ column=(type=datetime update=yes updatewhereclause=yes name=ppap_rawdate dbname="OrderHeaderAdditionalUpdateable.PPAP_RawDate" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=customerpartdescription dbname="OrderHeaderAdditionalUpdateable.CustomerPartDescription" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=custom1 dbname="OrderHeaderAdditionalUpdateable.Custom1" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=custom2 dbname="OrderHeaderAdditionalUpdateable.Custom2" )
+ retrieve="select
+	ohau.order_no
+,	ohau.order_date
+,	ohau.blanket_part
+,	ohau.customer
+,	ohau.destination
+,	ohau.model_year
+,	ohau.customer_part
+,	ohau.custom01
+,	ohau.custom02
+,	ohau.custom03
+,	ohau.contact
+,	ohau.unit
+,	ohau.begin_kanban_number
+,	ohau.end_kanban_number
+,	ohau.line11
+,	ohau.line12
+,	ohau.line13
+,	ohau.line14
+,	ohau.line15
+,	ohau.line16
+,	ohau.line17
+,	ohau.PPAP_DueDate
+,	ohau.PPAP_RawDate
+,	ohau.CustomerPartDescription
+,	ohau.Custom1
+,	ohau.Custom2
+from
+	custom.OrderHeaderAdditionalUpdateable ohau
+where
+	ohau.order_no = :OrderNo
+" update="custom.OrderHeaderAdditionalUpdateable" updatewhere=0 updatekeyinplace=no arguments=(("OrderNo", number)) )
+text(band=detail alignment="0" text="Customer:" border="0" color="0" x="37" y="220" height="64" width="722" html.valueishtml="0"  name=customer_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Destination:" border="0" color="0" x="37" y="320" height="64" width="722" html.valueishtml="0"  name=destination_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Model Year:" border="0" color="0" x="37" y="420" height="64" width="763" html.valueishtml="0"  name=model_year_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer Part:" border="0" color="0" x="37" y="520" height="64" width="763" html.valueishtml="0"  name=customer_part_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom01         DOCK CODE:" border="0" color="0" x="37" y="620" height="64" width="846" html.valueishtml="0"  name=custom01_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom02                     Ref #:" border="0" color="0" x="37" y="720" height="64" width="855" html.valueishtml="0"  name=custom02_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Contact:" border="0" color="0" x="37" y="920" height="64" width="722" html.valueishtml="0"  name=contact_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Enter DA for Dock Audit:" border="0" color="0" x="37" y="1020" height="64" width="699" html.valueishtml="0"  name=unit_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Beginning Kanban Number:" border="0" color="0" x="37" y="1120" height="64" width="722" html.valueishtml="0"  name=begin_kanban_number_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ending Kanban Number:" border="0" color="0" x="37" y="1220" height="64" width="722" html.valueishtml="0"  name=end_kanban_number_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Blanket Part:" border="0" color="0" x="37" y="120" height="64" width="722" html.valueishtml="0"  name=blanket_part_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="120" height="64" width="512" format="[general]" html.valueishtml="0"  name=blanket_part  tag="blanket part number " visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="220" height="64" width="512" format="[general]" html.valueishtml="0"  name=customer  tag="customer code " visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="320" height="64" width="512" format="[general]" html.valueishtml="0"  name=destination  tag="destination code " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=10 border="5" color="0" x="960" y="420" height="64" width="315" format="[general]" html.valueishtml="0"  name=model_year  tag="model year " visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=20 border="5" color="0" x="960" y="520" height="64" width="695" format="[general]" html.valueishtml="0"  name=customer_part  tag="customer part number " visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="5" color="0" x="960" y="620" height="64" width="850" format="[general]" html.valueishtml="0"  name=custom01  tag="custom01" visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="5" color="0" x="960" y="720" height="64" width="850" format="[general]" html.valueishtml="0"  name=custom02 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=60 border="5" color="0" x="960" y="920" height="64" width="695" format="[general]" html.valueishtml="0"  name=contact  tag="contact " visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=70 border="5" color="0" x="960" y="1020" height="64" width="91" format="[general]" html.valueishtml="0"  name=unit  tag="Unit of measure" visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=80 border="5" color="0" x="960" y="1120" height="64" width="434" format="[general]" html.valueishtml="0"  name=begin_kanban_number  tag="Beginning number for objects ordered" visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=90 border="5" color="0" x="960" y="1220" height="64" width="434" format="[general]" html.valueishtml="0"  name=end_kanban_number  tag="Ending number for objects ordered" visible="1" edit.limit=6 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom03  GM PLANT CODE:" border="0" color="0" x="37" y="820" height="64" width="859" html.valueishtml="0"  name=custom03_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=50 border="5" color="0" x="960" y="820" height="64" width="850" format="[general]" html.valueishtml="0"  name=custom03 visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Note for Ship Schedule" border="0" color="0" x="1879" y="820" height="64" width="677" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1984" y="20" height="64" width="503" format="[shortdate]" html.valueishtml="0"  name=order_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Order Date:" border="0" color="0" x="1605" y="20" height="64" width="338" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Order No:" border="0" color="0" x="37" y="20" height="64" width="283" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="960" y="20" height="64" width="512" format="[general]" html.valueishtml="0"  name=order_no visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line11:" border="0" color="0" x="37" y="1320" height="64" width="722" html.valueishtml="0"  name=line11_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line12:" border="0" color="0" x="37" y="1420" height="64" width="722" html.valueishtml="0"  name=line12_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line13:" border="0" color="0" x="37" y="1520" height="64" width="722" html.valueishtml="0"  name=line13_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line14:" border="0" color="0" x="37" y="1620" height="64" width="722" html.valueishtml="0"  name=line14_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line15:" border="0" color="0" x="37" y="1720" height="64" width="722" html.valueishtml="0"  name=line15_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=100 border="5" color="0" x="960" y="1320" height="64" width="439" format="[general]" html.valueishtml="0"  name=line11  tag="Line 11 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=110 border="5" color="0" x="960" y="1420" height="64" width="439" format="[general]" html.valueishtml="0"  name=line12  tag="Line 12 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line16:" border="0" color="0" x="37" y="1820" height="64" width="722" html.valueishtml="0"  name=line16_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Line17:" border="0" color="0" x="37" y="1920" height="64" width="722" html.valueishtml="0"  name=line17_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ppap Duedate:" border="0" color="33554432" x="37" y="2020" height="64" width="722" html.valueishtml="0"  name=ppap_duedate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ppap Rawdate:" border="0" color="33554432" x="37" y="2120" height="64" width="722" html.valueishtml="0"  name=ppap_rawdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customerpartdescription:" border="0" color="33554432" x="37" y="2220" height="64" width="722" html.valueishtml="0"  name=customerpartdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom1:" border="0" color="33554432" x="37" y="2320" height="64" width="722" html.valueishtml="0"  name=custom1_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Custom2:" border="0" color="33554432" x="37" y="2420" height="64" width="722" html.valueishtml="0"  name=custom2_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=120 border="5" color="0" x="960" y="1520" height="64" width="439" format="[general]" html.valueishtml="0"  name=line13  tag="Line 13 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=130 border="5" color="0" x="960" y="1620" height="64" width="439" format="[general]" html.valueishtml="0"  name=line14  tag="Line 14 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=140 border="5" color="0" x="960" y="1720" height="64" width="439" format="[general]" html.valueishtml="0"  name=line15  tag="Line 15 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=150 border="5" color="0" x="960" y="1820" height="64" width="439" format="[general]" html.valueishtml="0"  name=line16  tag="Line 16 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=160 border="5" color="0" x="960" y="1920" height="64" width="439" format="[general]" html.valueishtml="0"  name=line17  tag="Line 17 for kanban" visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=170 border="5" color="33554432" x="960" y="2020" height="64" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=ppap_duedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=180 border="5" color="33554432" x="960" y="2120" height="64" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=ppap_rawdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=24 alignment="0" tabsequence=190 border="5" color="33554432" x="960" y="2220" height="64" width="2770" format="[general]" html.valueishtml="0"  name=customerpartdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=25 alignment="0" tabsequence=200 border="5" color="33554432" x="960" y="2320" height="64" width="2770" format="[general]" html.valueishtml="0"  name=custom1 visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=26 alignment="0" tabsequence=210 border="5" color="33554432" x="960" y="2420" height="64" width="2770" format="[general]" html.valueishtml="0"  name=custom2 visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,102 @@
+﻿$PBExportHeader$d_csm_selectedmnemonics.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="16777215~tif (IsNull (c_mnemonic), rgb(128,128,128), rgb(255, 255, 255))" )
+table(column=(type=char(15) update=yes updatewhereclause=no key=yes name=forecast_id dbname="forecast_id" )
+ column=(type=char(50) update=yes updatewhereclause=no key=yes name=mnemonic dbname="mnemonic" )
+ column=(type=char(30) update=yes updatewhereclause=no key=yes name=base_part dbname="base_part" )
+ column=(type=decimal(0) update=yes updatewhereclause=no name=qty_per dbname="qty_per" )
+ column=(type=decimal(6) update=yes updatewhereclause=no name=take_rate dbname="take_rate" )
+ column=(type=decimal(6) update=yes updatewhereclause=no name=family_allocation dbname="family_allocation" )
+ column=(type=datetime update=yes updatewhereclause=no name=empire_sop dbname="empire_sop" )
+ column=(type=datetime update=yes updatewhereclause=no name=empire_eop dbname="empire_eop" )
+ column=(type=datetime updatewhereclause=no name=sop dbname="sop" )
+ column=(type=datetime updatewhereclause=no name=eop dbname="eop" )
+ column=(type=char(50) updatewhereclause=no name=c_mnemonic dbname="c_mnemonic" )
+ column=(type=char(15) updatewhereclause=no name=platform_mnemonic dbname="platform_mnemonic" )
+ column=(type=char(30) updatewhereclause=no name=badge dbname="badge" )
+ column=(type=char(30) updatewhereclause=no name=nameplate dbname="nameplate" )
+ column=(type=char(30) updatewhereclause=no name=program dbname="program" )
+ column=(type=char(30) updatewhereclause=no name=platform dbname="platform" )
+ column=(type=char(30) updatewhereclause=no name=product_type dbname="product_type" )
+ column=(type=char(30) updatewhereclause=no name=source_plant dbname="source_plant" )
+ column=(type=char(30) updatewhereclause=no name=source_plant_country dbname="source_plant_country" )
+ column=(type=char(200) update=yes updatewhereclause=no name=family dbname="family" )
+ column=(type=char(30) update=yes updatewhereclause=no name=customer dbname="customer" )
+ column=(type=char(250) update=yes updatewhereclause=no name=empire_market_segment dbname="empire_market_segment" )
+ column=(type=char(500) update=yes updatewhereclause=no name=empire_application dbname="empire_application" )
+ procedure="1 
+select
+	acbpm.FORECAST_ID
+,	acbpm.MNEMONIC
+,	acbpm.BASE_PART
+,	acbpm.QTY_PER
+,	acbpm.TAKE_RATE
+,	acbpm.FAMILY_ALLOCATION
+,	acbpm.EMPIRE_SOP
+,	acbpm.EMPIRE_EOP
+,	SOP = convert(datetime,case when acn.SOP like '%/%' then left(acn.SOP, 2) + '/01/' + right(acn.SOP,4) end)
+,	EOP = convert(datetime,case when acn.EOP like '%/%' then left(acn.EOP, 2) + '/01/' + right(acn.EOP,4) end)
+,	C_MNEMONIC = acn.MNEMONIC
+,	acn.PLATFORM_MNEMONIC
+,	acn.BADGE
+,	acn.NAMEPLATE
+,	acn.PROGRAM
+,	acn.PLATFORM
+,	acn.PRODUCT_TYPE
+,	acn.SOURCE_PLANT
+,	acn.SOURCE_PLANT_COUNTRY
+,	acbpm.FAMILY
+,	acbpm.CUSTOMER
+,	acbpm.EMPIRE_MARKET_SEGMENT
+,	acbpm.EMPIRE_APPLICATION
+from
+	eeiuser.acctg_csm_base_part_mnemonic acbpm
+	left join eeiuser.acctg_csm_NACSM acn on
+		acbpm.MNEMONIC = acn.MNEMONIC
+and
+		RELEASE_ID =
+		(	select max(RELEASE_ID) from eeiuser.acctg_csm_NACSM where MNEMONIC = acn.MNEMONIC)
+where
+	acbpm.BASE_PART = :basePart
+order by
+	acbpm.MNEMONIC
+" update="eeiuser.acctg_csm_base_part_mnemonic" updatewhere=0 updatekeyinplace=no arguments=(("basePart", string)) )
+text(band=header alignment="2" text="Forecast Id"border="6" color="0" x="9" y="8" height="64" width="325"  name=forecast_id_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mnemonic"border="6" color="0" x="343" y="8" height="64" width="320"  name=mnemonic_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty Per"border="6" color="0" x="672" y="8" height="64" width="329"  name=qty_per_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Take Rate"border="6" color="0" x="1010" y="8" height="64" width="329"  name=take_rate_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Family Allocation"border="6" color="0" x="1349" y="8" height="64" width="457"  name=family_allocation_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="CSM SOP"border="6" color="0" x="2533" y="8" height="64" width="315"  name=sop_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="CSM EOP"border="6" color="0" x="2857" y="8" height="64" width="338"  name=eop_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Platform Mnemonic"border="6" color="0" x="3205" y="8" height="64" width="466"  name=platform_mnemonic_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Badge"border="6" color="0" x="3680" y="8" height="64" width="389"  name=badge_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Nameplate"border="6" color="0" x="4078" y="8" height="64" width="512"  name=nameplate_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Program"border="6" color="0" x="4599" y="8" height="64" width="338"  name=program_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Platform"border="6" color="0" x="4946" y="8" height="64" width="361"  name=platform_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Product Type"border="6" color="0" x="5317" y="8" height="64" width="320"  name=product_type_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Source Plant"border="6" color="0" x="5646" y="8" height="64" width="302"  name=source_plant_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Country"border="6" color="0" x="5957" y="8" height="64" width="361"  name=source_plant_country_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Empire SOP"border="6" color="0" x="1815" y="8" height="64" width="352"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+text(band=header alignment="2" text="Empire EOP"border="6" color="0" x="2176" y="8" height="64" width="347"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15780518" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="325" format="[general]"  name=forecast_id edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="343" y="8" height="76" width="320" format="[general]"  name=mnemonic edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=10 border="0" color="0" x="672" y="8" height="76" width="329" format="[general]"  name=qty_per edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=20 border="0" color="0" x="1010" y="8" height="76" width="329" format="[general]"  name=take_rate edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=30 border="0" color="0" x="1349" y="8" height="76" width="457" format="[general]"  name=family_allocation edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2533" y="8" height="76" width="315" format="[shortdate]"  name=sop edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2857" y="8" height="76" width="338" format="[shortdate]"  name=eop edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="3205" y="8" height="76" width="466" format="[general]"  name=platform_mnemonic edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3680" y="8" height="76" width="389" format="[general]"  name=badge edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="4078" y="8" height="76" width="512" format="[general]"  name=nameplate edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="4599" y="8" height="76" width="338" format="[general]"  name=program edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="4946" y="8" height="76" width="361" format="[general]"  name=platform edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="5317" y="8" height="76" width="320" format="[general]"  name=product_type edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="5646" y="8" height="76" width="302" format="[general]"  name=source_plant edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="5957" y="8" height="76" width="361" format="[general]"  name=source_plant_country edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="0" x="1815" y="8" height="76" width="352" format="[shortdate]"  name=empire_sop edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="0" color="0" x="2176" y="8" height="76" width="347" format="[shortdate]"  name=empire_eop edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

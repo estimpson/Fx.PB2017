@@ -1,0 +1,111 @@
+﻿$PBExportHeader$d_mrp_purchasingcontracts.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=purchasedpart dbname="PurchasedPart" )
+ column=(type=char(100) updatewhereclause=yes name=partname dbname="PartName" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=defaultvendor dbname="DefaultVendor" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=vendorleadtime dbname="VendorLeadTime" )
+ column=(type=char(15) update=yes updatewhereclause=yes name=frozentype dbname="FrozenType" values="Allow Changes	Allow Changes/No Changes	No Changes/Allow Increases	Allow Increases/Allow Decreases	Allow Decreases/" )
+ column=(type=char(79) update=yes updatewhereclause=yes name=roundingmethod dbname="RoundingMethod" values="Up	Up/Down	Down/Nearest	Nearest/" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=minimumorderquantity dbname="MinimumOrderQuantity" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=vendorstandardpack dbname="VendorStandardPack" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=vendoruom dbname="VendorUOM" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=vendorpart dbname="VendorPart" )
+ column=(type=long update=yes updatewhereclause=yes name=defaultponumber dbname="DefaultPONumber" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=shiptoplant dbname="ShipToPlant" )
+ column=(type=long update=yes updatewhereclause=yes name=enabled dbname="Enabled" values="	1/	0" )
+ column=(type=char(50) updatewhereclause=yes name=currentreleasenumber dbname="CurrentReleaseNumber" )
+ column=(type=long updatewhereclause=yes name=currentrelease dbname="CurrentRelease" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	mpc.PurchasedPart
+,	mpc.PartName
+,	mpc.DefaultVendor
+,	mpc.VendorLeadTime
+,	mpc.FrozenType
+,	mpc.RoundingMethod
+,	mpc.MinimumOrderQuantity
+,	mpc.VendorStandardPack
+,	mpc.VendorUOM
+,	mpc.VendorPart
+,	mpc.DefaultPONumber
+,	mpc.ShipToPlant
+,	mpc.Enabled
+,	CurrentReleaseNumber = mfps.ReleaseNumber
+,	CurrentRelease =
+		case
+			when pd.ReleaseNumber = mfps.ReleaseNumber then 1
+			else 0
+		end
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.MRP_PurchasingContracts mpc
+	outer apply
+		(	select top 1
+				pd.ReleaseNumber
+			from
+				dbo.po_detail pd
+			where
+				pd.po_number = mpc.DefaultPONumber
+			order by
+				pd.date_due
+		) pd
+	cross apply
+		(	select top 1
+				ReleaseNumber
+			from
+				dbo.MRP_FirmPOSchedules mfps
+			order by
+				mfps.RowCreateDT desc
+		) mfps
+order by
+	mpc.PurchasedPart
+" update="MRP_PurchasingContracts" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="0" text="Purchased part" border="6" color="33554432" x="69" y="8" height="76" width="576" html.valueishtml="0"  name=purchasedpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part name" border="6" color="33554432" x="654" y="8" height="76" width="1490" html.valueishtml="0"  name=partname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Default vendor" border="6" color="33554432" x="2153" y="8" height="76" width="430" html.valueishtml="0"  name=defaultvendor_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Lead time (days)" border="6" color="33554432" x="2592" y="8" height="76" width="466" html.valueishtml="0"  name=vendorleadtime_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Frozen type" border="6" color="33554432" x="3067" y="8" height="76" width="430" html.valueishtml="0"  name=frozentype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Rounding method" border="6" color="33554432" x="3506" y="8" height="76" width="498" html.valueishtml="0"  name=roundingmethod_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="MOQ" border="6" color="33554432" x="4014" y="8" height="76" width="320" html.valueishtml="0"  name=minimumorderquantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Std. pack" border="6" color="33554432" x="4343" y="8" height="76" width="535" html.valueishtml="0"  name=vendorstandardpack_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="UOM" border="6" color="33554432" x="4887" y="8" height="76" width="178" html.valueishtml="0"  name=vendoruom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Vendor part" border="6" color="33554432" x="5074" y="8" height="76" width="430" html.valueishtml="0"  name=vendorpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Default PO" border="6" color="33554432" x="5513" y="8" height="76" width="448" html.valueishtml="0"  name=defaultponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to plant" border="6" color="33554432" x="5970" y="8" height="76" width="411" html.valueishtml="0"  name=shiptoplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Enabled" border="6" color="33554432" x="6391" y="8" height="76" width="247" html.valueishtml="0"  name=enabled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Current release #" border="6" color="33554432" x="6647" y="8" height="76" width="489" html.valueishtml="0"  name=currentreleasenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="50" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="69" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=purchasedpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="654" y="8" height="76" width="1490" format="[general]" html.valueishtml="0"  name=partname visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="2153" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=defaultvendor visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="0" color="33554432" x="2592" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=vendorleadtime visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="33554432" x="3067" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=frozentype visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="0" color="33554432" x="3506" y="8" height="76" width="498" format="[general]" html.valueishtml="0"  name=roundingmethod visible="1" ddlb.limit=0 ddlb.allowedit=yes ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="1" tabsequence=50 border="0" color="33554432" x="4014" y="8" height="76" width="320" format="#,##0.0#####" html.valueishtml="0"  name=minimumorderquantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=60 border="0" color="33554432" x="4343" y="8" height="76" width="535" format="#,##0.0#####" html.valueishtml="0"  name=vendorstandardpack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=70 border="0" color="33554432" x="4887" y="8" height="76" width="178" format="[general]" html.valueishtml="0"  name=vendoruom visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=80 border="0" color="33554432" x="5074" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=vendorpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="1" tabsequence=90 border="0" color="33554432" x="5513" y="8" height="76" width="448" format="[general]" html.valueishtml="0"  name=defaultponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=100 border="0" color="33554432" x="5970" y="8" height="76" width="411" format="[general]" html.valueishtml="0"  name=shiptoplant visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="1" tabsequence=110 border="0" color="33554432" x="6391" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=enabled visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=120 border="0" color="33554432" x="6647" y="8" height="76" width="489" format="[general]" html.valueishtml="0"  name=currentreleasenumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="bitmap(if( currentrelease = 1, ~"ok-16.bmp~",~"~"))"border="0" color="33554432" x="7145" y="8" height="60" width="59" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

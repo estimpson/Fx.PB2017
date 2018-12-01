@@ -1,0 +1,79 @@
+﻿$PBExportHeader$d_custom_oee_shiftreport.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=680 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912"  height.autosize=yes)
+table(column=(type=datetime updatewhereclause=no name=shiftdate dbname="ShiftDate" )
+ column=(type=number updatewhereclause=no name=shift dbname="Shift" )
+ column=(type=char(5) updatewhereclause=no name=supervisoruser dbname="SupervisorUser" )
+ column=(type=char(50) updatewhereclause=no name=supervisorname dbname="SupervisorName" )
+ column=(type=decimal(0) updatewhereclause=no name=shifthours dbname="ShiftHours" )
+ column=(type=char(32765) updatewhereclause=no name=shiftnotes dbname="ShiftNotes" )
+ column=(type=datetime updatewhereclause=no name=shiftstartdt dbname="ShiftStartDT" )
+ column=(type=datetime updatewhereclause=no name=shiftenddt dbname="ShiftEndDT" )
+ column=(type=decimal(0) updatewhereclause=no name=meanoee dbname="MeanOEE" )
+ procedure="1 select
+	ShiftDate = convert(datetime, msh.ShiftDate)
+,	Shift = msh.Shift
+,	SupervisorUser = si.SupervisorUser
+,	SupervisorName = eSup.name
+,	ShiftHours = coalesce(si.ShiftHours, 8)
+,	ShiftNotes = si.ShiftNotes
+,	ShiftStartDT = msh.ShiftStartDT
+,	ShiftEndDT = msh.ShiftEndDT
+,	oeeHist.MeanOEE
+from
+	FxTSM_Training.custom.MES_ShiftHistory msh
+	left join custom.OEE_ShiftInfo si
+		on convert(datetime, si.ShiftDate) = :shiftDate
+		and si.Shift = :Shift
+	left join
+		(	select
+				omch.ShiftDate
+			,	omch.Shift
+			,	SupervisorUser = min(omch.SupervisorUser)
+			,	SupervisorName = min(omch.SupervisorName)
+			,	ShiftHours = min(omch.ShiftHours)
+			,	ShiftNotes = min(omch.ShiftNotes)
+			,	ShiftStartDT = min(omch.ShiftStartDT)
+			,	ShiftEndDT = min(omch.ShiftEndDT)
+			,	MeanOEE = avg(omch.OEE)
+			from
+				custom.OEE_ManufacturingCellHistory omch
+			group by
+				omch.ShiftDate
+			,	omch.Shift
+		) oeeHist
+	on oeeHist.ShiftDate = msh.ShiftDate
+		and oeeHist.Shift = msh.Shift
+	left join dbo.employee eSup
+		on eSup.operator_code = si.SupervisorUser
+where
+	convert(datetime, msh.ShiftDate) = :shiftDate
+	and msh.Shift = :Shift
+" arguments=(("ShiftDate", datetime),("Shift", number)) )
+text(band=header alignment="0" text="Shift Report OEE (Overal Equipment Effectiveness)" border="0" color="33554432" x="37" y="4" height="100" width="2423" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-16" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Supervisor:" border="0" color="33554432" x="3694" y="36" height="76" width="320" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Date:" border="0" color="33554432" x="3694" y="292" height="64" width="430" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Shift:" border="0" color="33554432" x="3694" y="388" height="64" width="430" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Average OEE:" border="0" color="33554432" x="3694" y="484" height="64" width="430" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=4 alignment="1" tabsequence=20 border="0" color="33554432" x="4023" y="36" height="76" width="475" format="[general]" html.valueishtml="0"  name=supervisorname visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=1 alignment="1" tabsequence=30 border="0" color="33554432" x="4174" y="292" height="64" width="325" format="[shortdate]" html.valueishtml="0"  name=shiftdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=2 alignment="1" tabsequence=30 border="0" color="33554432" x="4174" y="388" height="64" width="325" format="[general]" html.valueishtml="0"  name=shift visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=header id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="4174" y="484" height="64" width="325" format="0.00%" html.valueishtml="0"  name=meanoee visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+report(band=detail dataobject="d_custom_oee_shiftreportdetails" x="37" y="4" height="64" width="4498" border="0"  height.autosize=yes criteria="" nest_arguments=(("shiftdate"),(" shift ")) trail_footer = yes  name=dw_1 visible="1"  slideleft=yes  slideup=directlyabove )
+column(band=header id=6 alignment="0" tabsequence=20 border="0" color="33554432" x="37" y="196" height="480" width="3474" format="[general]" html.valueishtml="0"  name=shiftnotes visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Supervisor Notes:" border="0" color="33554432" x="37" y="132" height="64" width="466" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

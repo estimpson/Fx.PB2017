@@ -1,0 +1,88 @@
+﻿$PBExportHeader$d_qt_getnewquoteheader.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1576 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=quotenumber dbname="QuoteNumber" )
+ column=(type=long updatewhereclause=yes name=quotetype dbname="QuoteType" values="New Quote	0/New ECN	1/Requote	2/" )
+ column=(type=long updatewhereclause=yes name=parentquoteid dbname="ParentQuoteID" )
+ column=(type=long updatewhereclause=yes name=quoteyear dbname="QuoteYear" )
+ column=(type=long updatewhereclause=yes name=quoteyearordinal dbname="QuoteYearOrdinal" )
+ column=(type=long updatewhereclause=yes name=ecnordinal dbname="ECNOrdinal" )
+ column=(type=long updatewhereclause=yes name=revisionordinal dbname="RevisionOrdinal" )
+ column=(type=char(50) updatewhereclause=yes name=customer dbname="Customer" )
+ column=(type=char(100) updatewhereclause=yes name=partdescription dbname="PartDescription" )
+ column=(type=char(50) updatewhereclause=yes name=program dbname="Program" )
+ column=(type=long updatewhereclause=yes name=eau dbname="EAU" )
+ column=(type=datetime updatewhereclause=yes name=sop dbname="SOP" )
+ column=(type=datetime updatewhereclause=yes name=eop dbname="EOP" )
+ column=(type=char(50) updatewhereclause=yes name=oem dbname="OEM" )
+ column=(type=long updatewhereclause=yes name=modelyear dbname="ModelYear" )
+ column=(type=datetime updatewhereclause=yes name=quotedate dbname="QuoteDate" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ procedure="1 declare
+	@QuoteNumber varchar(50) = nullif(Coalesce(:QuoteNumber, ''), '')
+,	@QuoteType int = :QuoteType
+,	@ParentQuoteID int = nullif(coalesce(:ParentQuoteID, ''), '')
+,	@Customer varchar(10) = nullif(coalesce(:Customer, ''), '')
+,	@PartDescription varchar(100) = nullif(coalesce(:PartDescription, ''), '')
+,	@Program varchar(50) = nullif(coalesce(:Program, ''), '')
+,	@EAU int = nullif(coalesce(:EAU, 0), 0)
+,	@SOP datetime = nullif(coalesce(:SOP, ''), '')
+,	@EOP datetime = nullif(coalesce(:EOP, ''), '')
+,	@OEM varchar(50)  = nullif(coalesce(:OEM, ''), '')
+,	@ModelYear smallint  = nullif(coalesce(:ModelYear, 0), 0)
+
+execute custom.usp_QT_GetNewQuoteHeader
+	@QuoteNumber = @QuoteNumber
+,	@QuoteType = @QuoteType
+,	@ParentQuoteID = @ParentQuoteID
+,	@Customer = @Customer
+,	@PartDescription = @PartDescription
+,	@Program = @Program
+,	@EAU = @EAU
+,	@SOP = @SOP
+,	@EOP = @EOP
+,	@OEM = @OEM
+,	@ModelYear = @ModelYear
+" arguments=(("QuoteNumber", string),("QuoteType", number),("ParentQuoteID", string),("Customer", string),("PartDescription", string),("Program", string),("EAU", number),("SOP", string),("EOP", string),("OEM", string),("ModelYear", number)) )
+groupbox(band=detail text=" General Information"border="5" color="33554432" x="37" y="484" height="1088" width="1426"  name=gb_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text=" "border="5" color="33554432" x="37" y="4" height="448" width="1426"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="73" y="4" height="76" width="366" format="[general]" html.valueishtml="0"  name=quotetype visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Parent quote #:" border="0" color="33554432" x="73" y="228" height="64" width="471" html.valueishtml="0"  name=parentquoteid_t visible="1~tif (QuoteType in (1, 2), 1, 0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="134217856" x="658" y="228" height="76" width="768" format="[general]" html.valueishtml="0"  name=parentquoteid visible="1~tif (QuoteType in (1, 2), 1, 0)" dddw.name=d_qt_quotelog_parentquotenumberlist dddw.displaycolumn=quotenumber dddw.datacolumn=quoteheaderrowid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=16 alignment="0" tabsequence=20 border="0" color="33554432" x="658" y="356" height="76" width="768" format="[shortdate]" html.valueishtml="0"  name=quotedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=8 alignment="0" tabsequence=30 border="0" color="33554432" x="658" y="580" height="76" width="768" format="[general]" html.valueishtml="0"  name=customer visible="1" dddw.name=d_qt_quotelog_customerlist dddw.displaycolumn=customer dddw.datacolumn=customer dddw.percentwidth=210 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="0" color="33554432" x="658" y="708" height="76" width="768" format="[general];<Enter description>" html.valueishtml="0"  name=partdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=11 alignment="1" tabsequence=60 border="0" color="33554432" x="658" y="964" height="76" width="768" format="[general]" html.valueishtml="0"  name=eau visible="1" editmask.mask="###,###,###,###" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=12 alignment="0" tabsequence=70 border="0" color="33554432" x="658" y="1092" height="76" width="768" format="[shortdate]" html.valueishtml="0"  name=sop visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=13 alignment="0" tabsequence=80 border="0" color="33554432" x="658" y="1220" height="76" width="768" format="[shortdate]" html.valueishtml="0"  name=eop visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=14 alignment="0" tabsequence=90 border="0" color="33554432" x="658" y="1348" height="76" width="768" format="[general]" html.valueishtml="0"  name=oem visible="1" dddw.name=d_qt_quotelog_oemlist dddw.displaycolumn=oem dddw.datacolumn=oem dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=15 alignment="1" tabsequence=100 border="0" color="33554432" x="658" y="1476" height="76" width="768" format="[general]" html.valueishtml="0"  name=modelyear visible="1" editmask.mask="2000" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Quote number:" border="0" color="33554432" x="73" y="100" height="64" width="471" html.valueishtml="0"  name=quotenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="658" y="100" height="76" width="768" format="[general]" html.valueishtml="0"  name=quotenumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=detail alignment="0" text="Quote date:" border="0" color="33554432" x="73" y="356" height="64" width="457" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Customer:" border="0" color="33554432" x="73" y="580" height="64" width="457" html.valueishtml="0"  name=customer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Part description:" border="0" color="33554432" x="73" y="708" height="64" width="457" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Program:" border="0" color="33554432" x="73" y="836" height="64" width="457" html.valueishtml="0"  name=program_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EAU:" border="0" color="33554432" x="73" y="964" height="64" width="457" html.valueishtml="0"  name=eau_t  tag="Estimated Annual Usage" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="SOP:" border="0" color="33554432" x="73" y="1092" height="64" width="457" html.valueishtml="0"  name=sop_t  tag="Start of Production" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EOP:" border="0" color="33554432" x="73" y="1220" height="64" width="457" html.valueishtml="0"  name=eop_t  tag="End of Production" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="OEM:" border="0" color="33554432" x="73" y="1348" height="64" width="457" html.valueishtml="0"  name=oem_t  tag="Original Equipment Manufacturer" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Model year:" border="0" color="33554432" x="73" y="1476" height="64" width="457" html.valueishtml="0"  name=modelyear_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=50 border="0" color="33554432" x="658" y="836" height="76" width="768" format="[general]" html.valueishtml="0"  name=program visible="1" dddw.name=d_qt_quotelog_programlist dddw.displaycolumn=program dddw.datacolumn=program dddw.percentwidth=155 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+bitmap(band=detail filename="ok-32.bmp" x="1499" y="36" height="128" width="146" border="0"  name=p_ok  tag="Create new quote." visible="1~tif (QuoteYear > 0 and QuoteYearOrdinal > 0 and ECNOrdinal >= 0 and RevisionOrdinal >= 0, 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1499" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel changes..." visible="1" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

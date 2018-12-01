@@ -1,0 +1,59 @@
+﻿$PBExportHeader$d_lot_trace_headers.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) update=yes updatewhereclause=yes name=tracenumber dbname="LOT_TraceHeaders.TraceNumber" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="LOT_TraceHeaders.Status" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="LOT_TraceHeaders.Type" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=description dbname="LOT_TraceHeaders.Description" )
+ column=(type=char(1000) update=yes updatewhereclause=yes name=creator dbname="LOT_TraceHeaders.Creator" )
+ column=(type=datetime update=yes updatewhereclause=yes name=opendt dbname="LOT_TraceHeaders.OpenDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=closedt dbname="LOT_TraceHeaders.CloseDT" )
+ column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=rowid dbname="LOT_TraceHeaders.RowID" )
+ column=(type=char(1000) update=yes updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long update=yes updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	lth.TraceNumber
+,	lth.Status
+,	lth.Type
+,	lth.Description
+,	lth.Creator
+,	lth.OpenDT
+,	lth.CloseDT
+,	lth.RowID
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.LOT_TraceHeaders lth
+order by
+	lth.RowID
+" update="LOT_TraceHeaders" updatewhere=1 updatekeyinplace=no )
+text(band=header alignment="2" text="Tracenumber" border="0" color="33554432" x="82" y="8" height="64" width="379" html.valueishtml="0"  name=tracenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status" border="0" color="33554432" x="471" y="8" height="64" width="329" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Type" border="0" color="33554432" x="809" y="8" height="64" width="329" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Description" border="0" color="33554432" x="1147" y="8" height="64" width="983" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Creator" border="0" color="33554432" x="2139" y="8" height="64" width="581" html.valueishtml="0"  name=creator_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Opendt" border="0" color="33554432" x="2729" y="8" height="64" width="603" html.valueishtml="0"  name=opendt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Closedt" border="0" color="33554432" x="3342" y="8" height="64" width="603" html.valueishtml="0"  name=closedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="82" y="8" height="76" width="379" format="[general]" html.valueishtml="0"  name=tracenumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="471" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=status visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="809" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=type visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1147" y="8" height="76" width="983" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2139" y="8" height="76" width="581" format="[general]" html.valueishtml="0"  name=creator visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="2729" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=opendt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="3342" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=closedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

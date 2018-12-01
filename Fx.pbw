@@ -2,6 +2,12 @@ Save Format v3.0(19990112)
 @begin Targets
  0 "Office\\Fx.pbt";
  1 "ClientCustom\\21st\\Fx.21st.pbt";
+ 2 "ClientCustom\\Aztec\\Fx.Aztec.pbt";
+ 3 "ClientCustom\\Armada\\Fx.Armada.pbt";
+ 4 "ClientCustom\\Empire\\Fx.Empire.pbt";
+ 5 "ClientCustom\\Torca\\Fx.Torca.pbt";
+ 6 "ClientCustom\\TSM\\Fx.TSM.pbt";
+ 7 "ClientCustom\\VoltTech\\Fx.VoltTech.pbt";
 @end;
-DefaultTarget "ClientCustom\\21st\\Fx.21st.pbt";
-DefaultRemoteTarget "ClientCustom\\21st\\Fx.21st.pbt";
+DefaultTarget "ClientCustom\\TSM\\Fx.TSM.pbt";
+DefaultRemoteTarget "ClientCustom\\TSM\\Fx.TSM.pbt";

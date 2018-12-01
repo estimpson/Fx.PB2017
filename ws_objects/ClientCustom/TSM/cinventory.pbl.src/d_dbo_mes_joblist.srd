@@ -1,0 +1,151 @@
+﻿$PBExportHeader$d_dbo_mes_joblist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long updatewhereclause=yes name=wodid dbname="WODID" )
+ column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="WorkOrderNumber" )
+ column=(type=long updatewhereclause=yes name=workorderstatus dbname="WorkOrderStatus" )
+ column=(type=long updatewhereclause=yes name=workordertype dbname="WorkOrderType" )
+ column=(type=char(50) updatewhereclause=yes name=machinecode dbname="MachineCode" )
+ column=(type=number updatewhereclause=yes name=workorderdetailline dbname="WorkOrderDetailLine" )
+ column=(type=long updatewhereclause=yes name=workorderdetailstatus dbname="WorkOrderDetailStatus" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=long updatewhereclause=yes name=workorderdetailsequence dbname="WorkOrderDetailSequence" )
+ column=(type=datetime updatewhereclause=yes name=duedt dbname="DueDT" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyrequired dbname="QtyRequired" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtylabelled dbname="QtyLabelled" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtycompleted dbname="QtyCompleted" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtydefect dbname="QtyDefect" )
+ column=(type=decimal(6) updatewhereclause=yes name=newqtytolabel dbname="NewQtyToLabel" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="PackageType" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardpack dbname="StandardPack" )
+ column=(type=decimal(2) updatewhereclause=yes name=newboxesrequired dbname="NewBoxesRequired" )
+ column=(type=char(20) updatewhereclause=no name=lotnumber dbname="LotNumber" )
+ column=(type=char(30) updatewhereclause=no name=boxlabelformat dbname="BoxLabelFormat" )
+ column=(type=long updatewhereclause=yes name=boxeslabelled dbname="BoxesLabelled" )
+ column=(type=long updatewhereclause=yes name=boxescompleted dbname="BoxesCompleted" )
+ column=(type=char(20) updatewhereclause=yes name=palletpackagetype dbname="PalletPackageType" )
+ column=(type=char(30) updatewhereclause=no name=palletlabelformat dbname="PalletLabelformat" )
+ column=(type=datetime updatewhereclause=yes name=startdt dbname="StartDT" )
+ column=(type=datetime updatewhereclause=yes name=enddt dbname="EndDT" )
+ column=(type=long updatewhereclause=yes name=shipperid dbname="ShipperID" )
+ column=(type=char(20) updatewhereclause=yes name=billtocode dbname="BillToCode" )
+ column=(type=long updatewhereclause=yes name=salesordernumber dbname="SalesOrderNumber" )
+ column=(type=char(35) updatewhereclause=yes name=customerpart dbname="CustomerPart" )
+ column=(type=char(20) updatewhereclause=yes name=customerpo dbname="CustomerPO" )
+ column=(type=long updatewhereclause=yes name=isfinishedpart dbname="IsFinishedPart" )
+ column=(type=long updatewhereclause=yes name=istempwip dbname="IsTempWIP" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	mjl.WODID
+,	mjl.WorkOrderNumber
+,	mjl.WorkOrderStatus
+,	mjl.WorkOrderType
+,	mjl.MachineCode
+,	mjl.WorkOrderDetailLine
+,	mjl.WorkOrderDetailStatus
+,	mjl.PartCode
+,	mjl.WorkOrderDetailSequence
+,	mjl.DueDT
+,	mjl.QtyRequired
+,	mjl.QtyLabelled
+,	mjl.QtyCompleted
+,	mjl.QtyDefect
+,	NewQtyToLabel = case when coalesce(nullif(mjl.StandardPack, 1), -1) > 0 and mjl.QtyRequired - mjl.QtyLabelled > 0 then mjl.QtyRequired - mjl.QtyLabelled else 0 end
+,	mjl.PackageType
+,	StandardPack = coalesce(nullif(mjl.StandardPack, 1), -1)
+,	NewBoxesRequired = case when coalesce(nullif(mjl.StandardPack, 1), -1) > 0 then convert(numeric(10,2), case when mjl.QtyRequired - mjl.QtyLabelled > 0 then mjl.QtyRequired - mjl.QtyLabelled else 0 end / coalesce(nullif(mjl.StandardPack, 1), -1)) else 1 end
+,	LotNumber = convert(varchar(20), right(datepart(year, getdate()), 1) + right('00' + datepart(dayofyear, getdate()), 3))
+,	mjl.BoxLabelFormat
+,	mjl.BoxesLabelled
+,	mjl.BoxesCompleted
+,	mjl.PalletPackageType
+,	mjl.PalletLabelformat
+,	mjl.StartDT
+,	mjl.EndDT
+,	mjl.ShipperID
+,	mjl.BillToCode
+,	mjl.SalesOrderNumber
+,	mjl.CustomerPart
+,	mjl.CustomerPO
+,	mjl.IsFinishedPart
+,	mjl.IsTempWIP
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.MES_JobList mjl
+	join
+		(	select
+				xr.ChildPart
+			,	BOMLevel = max(xr.BOMLevel)
+			from
+				FT.XRt xr
+			where
+				xr.TopPart =:FinishedPartCode
+			group by
+				xr.ChildPart
+		) bom
+		on bom.ChildPart = mjl.PartCode
+order by
+	bom.BOMLevel
+" arguments=(("FinishedPartCode", string)) )
+text(band=header alignment="0" text="Machine code" border="6" color="134217742" x="114" y="8" height="80" width="393" html.valueishtml="0"  name=machinecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Part code" border="6" color="33554432" x="517" y="8" height="80" width="421" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. labelled" border="6" color="33554432" x="946" y="8" height="80" width="366" html.valueishtml="0"  name=qtylabelled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. completed" border="6" color="33554432" x="1321" y="8" height="80" width="389" html.valueishtml="0"  name=qtycompleted_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty. defect" border="6" color="33554432" x="1719" y="8" height="80" width="343" html.valueishtml="0"  name=qtydefect_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="New qty. to label" border="6" color="134217742" x="2071" y="8" height="80" width="475" html.valueishtml="0"  name=newqtytolabel_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Standard pack" border="6" color="134217742" x="2953" y="8" height="80" width="402" html.valueishtml="0"  name=standardpack_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Package type" border="6" color="134217742" x="2555" y="8" height="80" width="389" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="New boxes" border="6" color="134217742" x="3365" y="8" height="80" width="311" html.valueishtml="0"  name=newboxesrequired_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Lot number" border="6" color="134217742" x="3685" y="8" height="80" width="448" html.valueishtml="0"  name=lotnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Box label format" border="6" color="134217742" x="4142" y="8" height="80" width="539" html.valueishtml="0"  name=boxlabelformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Boxes labelled" border="6" color="33554432" x="4690" y="8" height="80" width="379" html.valueishtml="0"  name=boxeslabelled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Boxes completed" border="6" color="33554432" x="5079" y="8" height="80" width="457" html.valueishtml="0"  name=boxescompleted_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper ID" border="6" color="33554432" x="6555" y="8" height="80" width="329" html.valueishtml="0"  name=shipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="End dt." border="6" color="33554432" x="6043" y="8" height="80" width="503" html.valueishtml="0"  name=enddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Start dt." border="6" color="33554432" x="5545" y="8" height="80" width="489" html.valueishtml="0"  name=startdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bill to code" border="6" color="33554432" x="6894" y="8" height="80" width="576" html.valueishtml="0"  name=billtocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pallet package type" border="6" color="134217742" x="8896" y="8" height="80" width="539" html.valueishtml="0"  name=palletpackagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Pallet label format" border="6" color="134217742" x="9445" y="8" height="80" width="539" html.valueishtml="0"  name=palletlabelformat_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Customer PO" border="6" color="33554432" x="7945" y="8" height="80" width="530" html.valueishtml="0"  name=customerpo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Customer part" border="6" color="33554432" x="7479" y="8" height="80" width="457" html.valueishtml="0"  name=customerpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Sales order #" border="6" color="33554432" x="8485" y="8" height="80" width="402" html.valueishtml="0"  name=salesordernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="96" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432~tif(IsTempWIP = 1, 134217731, 33554432)" x="517" y="8" height="76" width="421" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400~tif (IsFinishedPart = 1, 700, 400)"  font.family="2" font.pitch="2" font.charset="0"font.italic="0~tif(IsTempWIP = 1, 1, 0)"  background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="114" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=machinecode visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=16 alignment="0" tabsequence=20 border="0" color="33554432" x="2555" y="8" height="76" width="389" format="[general]" html.valueishtml="0"  name=packagetype visible="1" dddw.name=d_dbo_package_type__part dddw.displaycolumn=packagecode dddw.datacolumn=packagecode dddw.percentwidth=750 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="1" tabsequence=10 border="0" color="33554432" x="2071" y="8" height="76" width="475" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=newqtytolabel visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=17 alignment="1" tabsequence=30 border="0" color="33554432" x="2953" y="8" height="76" width="402" format="#,##0.0##### ;[red]- ;- ;<Null>" html.valueishtml="0"  name=standardpack visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="1" tabsequence=32766 border="0" color="33554432" x="946" y="8" height="76" width="366" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=qtylabelled visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="1321" y="8" height="76" width="389" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=qtycompleted visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="1" tabsequence=32766 border="0" color="33554432" x="1719" y="8" height="76" width="343" format="#,##0.0##### ;[red](#,##0.0#####) ;- ;<Null>" html.valueishtml="0"  name=qtydefect visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=18 alignment="1" tabsequence=40 border="0" color="33554432" x="3365" y="8" height="76" width="311" format="#,##0 ;[red]- ;- ;<Null>" html.valueishtml="0"  name=newboxesrequired visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=19 alignment="0" tabsequence=50 border="0" color="33554432" x="3685" y="8" height="76" width="448" format="[general]" html.valueishtml="0"  name=lotnumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="4690" y="8" height="76" width="379" format="[general]" html.valueishtml="0"  name=boxeslabelled visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=22 alignment="1" tabsequence=32766 border="0" color="33554432" x="5079" y="8" height="76" width="457" format="[general]" html.valueishtml="0"  name=boxescompleted visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=25 alignment="0" tabsequence=32766 border="0" color="33554432" x="5545" y="8" height="76" width="489" format="[shortdate] [time]" html.valueishtml="0"  name=startdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=26 alignment="0" tabsequence=32766 border="0" color="33554432" x="6043" y="8" height="76" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=enddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="4142" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=boxlabelformat visible="1" dddw.name=d_dbo_mes_inventorylabels dddw.displaycolumn=labelname dddw.datacolumn=labelname dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=27 alignment="1" tabsequence=32766 border="0" color="33554432" x="6555" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=shipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="6894" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=billtocode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="8896" y="8" height="76" width="539" format="[general];<None>" html.valueishtml="0"  name=palletpackagetype visible="1" dddw.name=d_dbo_pallet_package_type__part dddw.displaycolumn=packagecode dddw.datacolumn=packagecode dddw.percentwidth=550 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=24 alignment="0" tabsequence=90 border="0" color="33554432" x="9445" y="8" height="76" width="539" format="[general];<No Label>" html.valueishtml="0"  name=palletlabelformat visible="1" dddw.name=d_dbo_mes_inventorylabels dddw.displaycolumn=labelname dddw.datacolumn=labelname dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=29 alignment="0" tabsequence=80 border="0" color="33554432" x="8485" y="8" height="76" width="402" format="[general]" html.valueishtml="0"  name=salesordernumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=30 alignment="0" tabsequence=60 border="0" color="33554432" x="7479" y="8" height="76" width="457" format="[general]" html.valueishtml="0"  name=customerpart visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=31 alignment="0" tabsequence=70 border="0" color="33554432" x="7945" y="8" height="76" width="530" format="[general]" html.valueishtml="0"  name=customerpo visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

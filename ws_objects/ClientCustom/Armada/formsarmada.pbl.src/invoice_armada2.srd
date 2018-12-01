@@ -1,0 +1,162 @@
+﻿$PBExportHeader$invoice_armada2.srd
+$PBExportComments$Invoice Form
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 10 print.margin.right = 10 print.margin.top = 10 print.margin.bottom = 10 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=1700 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=176 color="536870912"  height.autosize=yes)
+table(column=(type=long updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=long updatewhereclause=yes name=shipper_invoice_number dbname="shipper.invoice_number" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_shipped dbname="shipper.date_shipped" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="shipper.ship_via" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_terms dbname="shipper.terms" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_tax_rate dbname="shipper.tax_rate" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_freight dbname="shipper.freight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_gross_weight dbname="shipper.gross_weight" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_net_weight dbname="shipper.net_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_tare_weight dbname="shipper.tare_weight" )
+ column=(type=char(50) updatewhereclause=yes name=customer_name dbname="customer.name" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_1 dbname="customer.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_2 dbname="customer.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=customer_address_3 dbname="customer.address_3" )
+ column=(type=char(40) updatewhereclause=yes name=customer_address_4 dbname="customer.address_4" )
+ column=(type=char(10) updatewhereclause=yes name=customer_customer dbname="customer.customer" )
+ column=(type=char(50) updatewhereclause=yes name=destination_destinationname dbname="destination.destinationname" )
+ column=(type=char(50) updatewhereclause=yes name=destination_destinationaddress_1 dbname="destination.destinationaddress_1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_destinationaddress_2 dbname="destination.destinationaddress_2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_destinationaddress_3 dbname="destination.destinationaddress_3" )
+ column=(type=char(20) updatewhereclause=yes name=destination_destinationdestination dbname="destination.destinationdestination" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_supplier_code dbname="edi_setups.supplier_code" )
+ column=(type=char(20) updatewhereclause=yes name=destination_shipping_fob dbname="destination_shipping.fob" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(25) updatewhereclause=yes name=part_part dbname="part.part" )
+ column=(type=char(35) updatewhereclause=yes name=order_header_customer_part dbname="order_header.customer_part" )
+ column=(type=datetime updatewhereclause=yes name=order_header_order_date dbname="order_header.order_date" )
+ column=(type=char(20) updatewhereclause=yes name=order_header_customer_po dbname="order_header.customer_po" )
+ column=(type=decimal(6) updatewhereclause=yes name=order_header_our_cum dbname="order_header.our_cum" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_release_no dbname="shipper_detail.release_no" )
+ column=(type=char(254) updatewhereclause=yes name=shipper_detail_note dbname="shipper_detail.note" )
+ column=(type=long updatewhereclause=yes name=shipper_detail_boxes_staged dbname="shipper_detail.boxes_staged" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_alternative_qty dbname="shipper_detail.alternative_qty" )
+ column=(type=char(10) updatewhereclause=yes name=shipper_detail_salesman dbname="shipper_detail.salesman" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_price dbname="shipper_detail.price" )
+ column=(type=char(1) updatewhereclause=yes name=shipper_detail_taxable dbname="shipper_detail.taxable" )
+ column=(type=datetime updatewhereclause=yes name=shipper_detail_release_date dbname="shipper_detail.release_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="shipper_detail.customer_part" )
+ column=(type=char(35) updatewhereclause=yes name=carrier_name dbname="carrier.name" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message1 dbname="destination_message_file.message1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message2 dbname="destination_message_file.message2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message3 dbname="destination_message_file.message3" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message4 dbname="destination_message_file.message4" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message5 dbname="destination_message_file.message5" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message6 dbname="destination_message_file.message6" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message7 dbname="destination_message_file.message7" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message8 dbname="destination_message_file.message8" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message9 dbname="destination_message_file.message9" )
+ column=(type=char(50) updatewhereclause=yes name=destination_message_file_message10 dbname="destination_message_file.message10" )
+ column=(type=char(20) updatewhereclause=yes name=destination_dockdestination dbname="destination.dockdestination" )
+ column=(type=char(50) updatewhereclause=yes name=destination_dockname dbname="destination.dockname" )
+ column=(type=char(50) updatewhereclause=yes name=destination_dockaddress_1 dbname="destination.dockaddress_1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_dockaddress_2 dbname="destination.dockaddress_2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_dockaddress_3 dbname="destination.dockaddress_3" )
+ column=(type=char(30) updatewhereclause=yes name=order_header_custom02 dbname="order_header.custom02" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_shipperfob dbname="shipper.shipperfob" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_sdcustomerpo dbname="shipper_detail.sdcustomerpo" )
+ column=(type=decimal(6) updatewhereclause=yes name=prioraccum dbname="prioraccum" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_currentaccum dbname="shipper_detail.currentaccum" )
+ retrieve="SELECT
+	shipper.id, 
+	shipper.invoice_number, 
+	shipper.date_shipped, 
+	shipper.ship_via, 
+	shipper.terms,	 
+	shipper.tax_rate, 
+	shipper.freight, 
+	shipper.gross_weight, 
+	shipper.net_weight, 
+	shipper.tare_weight, 
+	customer.name, 
+	customer.address_1, 
+	customer.address_2, 
+	customer.address_3,
+     customer.address_4,
+	customer.customer, 
+	destination.name as DestinationName, 
+	destination.address_1 as DestinationAddress_1, 
+	destination.address_2 as DestinationAddress_2, 
+	destination.address_3 as DestinationAddress_3,
+     destination.destination as DestinationDestination , 
+	edi_setups.supplier_code, 
+	destination_shipping.fob, 
+	part.name, 
+	part.part, 
+	order_header.customer_part, 
+	order_header.order_date, 
+	order_header.customer_po, 
+	order_header.our_cum, 
+	shipper_detail.release_no, 
+	shipper_detail.note, 
+	shipper_detail.boxes_staged, 
+	shipper_detail.alternative_qty, 
+	shipper_detail.salesman, 
+	shipper_detail.price, 
+	shipper_detail.taxable, 
+	shipper_detail.release_date, 
+	shipper_detail.qty_packed, 
+	shipper_detail.customer_part, 
+	carrier.name, 
+	destination_message_file.message1, 
+	destination_message_file.message2, 
+	destination_message_file.message3, 
+	destination_message_file.message4, 
+	destination_message_file.message5, 
+	destination_message_file.message6, 
+	destination_message_file.message7, 
+	destination_message_file.message8, 
+	destination_message_file.message9, 
+	destination_message_file.message10, 
+	dockcode.destination as DockDestination, 
+	dockcode.name as DockName, 
+	dockcode.address_1 as DockAddress_1, 
+	dockcode.address_2 as DockAddress_2, 
+	dockcode.address_3 as DockAddress_3,
+	order_header.custom02,
+	shipper.location as ShipperFOB,
+	shipper_detail.customer_po as SDCustomerPO,
+	FT.fn_PriorAccum (shipper.id, shipper_detail.order_no) as PriorAccum,
+	shipper_detail.accum_shipped as CurrentAccum
+	
+ FROM
+	shipper
+	JOIN shipper_detail on shipper.id = shipper_detail.shipper
+	JOIN carrier on shipper.ship_via = carrier.scac
+	JOIN customer on shipper.customer = customer.customer
+	JOIN destination on shipper.destination = destination.destination
+	JOIN order_header on shipper_detail.order_no = order_header.order_no
+	LEFT OUTER JOIN destination as dockcode ON order_header.location = dockcode.destination
+	JOIN destination_shipping on shipper.destination = destination_shipping.destination
+	JOIN destination_message_file on shipper.destination = destination_message_file.destination
+	JOIN edi_setups on shipper.destination = edi_setups.destination
+	JOIN part on shipper_detail.part_original = part.part
+ WHERE
+	shipper.id = convert (integer, :iInvoice)
+
+" arguments=(("iInvoice", string)) )
+text(band=header alignment="0" text="Boxes:" border="0" color="0" x="315" y="1744" height="64" width="210" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="TARE WEIGHT" border="0" color="0" x="2130" y="1704" height="64" width="407" html.valueishtml="0"  name=t_30 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="/* sum(  shipper_staged_objs  for all distinct shipper_id  ) */"border="0" color="0" x="507" y="1744" height="64" width="215" format="#,##0" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="round(sum(  shipper_net_weight  for all ),0)"border="0" color="0" x="987" y="1736" height="68" width="690" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="0" x="142" y="244" height="180" width="3474" format="[general]" html.valueishtml="0"  name=shipper_detail_note visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tw Cen MT Condensed" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen()
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

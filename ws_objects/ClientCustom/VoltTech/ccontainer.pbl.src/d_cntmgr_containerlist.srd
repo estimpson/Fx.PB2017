@@ -1,0 +1,98 @@
+﻿$PBExportHeader$d_cntmgr_containerlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes name=deliverynumber dbname="Trans_ActiveDeliveries.DeliveryNumber" )
+ column=(type=long updatewhereclause=yes name=status dbname="Trans_ActiveDeliveries.Status" )
+ column=(type=long updatewhereclause=yes name=type dbname="Trans_ActiveDeliveries.Type" )
+ column=(type=char(20) updatewhereclause=yes name=departureplant dbname="Trans_ActiveDeliveries.DeparturePlant" )
+ column=(type=char(20) updatewhereclause=yes name=arrivalplant dbname="Trans_ActiveDeliveries.ArrivalPlant" )
+ column=(type=char(4) updatewhereclause=yes name=carrier dbname="Trans_ActiveDeliveries.Carrier" )
+ column=(type=char(2) updatewhereclause=yes name=transportmode dbname="Trans_ActiveDeliveries.TransportMode" )
+ column=(type=long updatewhereclause=yes name=shipperid dbname="Trans_ActiveDeliveries.ShipperID" )
+ column=(type=long updatewhereclause=yes name=printed dbname="Printed" )
+ column=(type=char(50) updatewhereclause=yes name=receivernumber dbname="Trans_ActiveDeliveries.ReceiverNumber" )
+ column=(type=datetime updatewhereclause=yes name=manifestclosingdt dbname="Trans_ActiveDeliveries.ManifestClosingDT" )
+ column=(type=datetime updatewhereclause=yes name=scheduleddeparturedt dbname="Trans_ActiveDeliveries.ScheduledDepartureDT" )
+ column=(type=datetime updatewhereclause=yes name=scheduledarrivaldt dbname="Trans_ActiveDeliveries.ScheduledArrivalDT" )
+ column=(type=datetime updatewhereclause=yes name=actualdeparturedt dbname="Trans_ActiveDeliveries.ActualDepartureDT" )
+ column=(type=datetime updatewhereclause=yes name=actualarrivaldt dbname="Trans_ActiveDeliveries.ActualArrivalDT" )
+ column=(type=char(32766) updatewhereclause=no name=trackingcodes dbname="Trans_ActiveDeliveries.TrackingCodes" )
+ column=(type=char(32766) updatewhereclause=no name=notes dbname="Trans_ActiveDeliveries.Notes" )
+ column=(type=long updatewhereclause=yes identity=yes name=rowid dbname="Trans_ActiveDeliveries.RowID" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	tad.DeliveryNumber
+,	tad.Status
+,	tad.Type
+,	tad.DeparturePlant
+,	tad.ArrivalPlant
+,	tad.Carrier
+,	tad.TransportMode
+,	tad.ShipperID
+,	Printed = case s.printed when 'Y' then 1 else 0 end
+,	tad.ReceiverNumber
+,	tad.ManifestClosingDT
+,	tad.ScheduledDepartureDT
+,	tad.ScheduledArrivalDT
+,	tad.ActualDepartureDT
+,	tad.ActualArrivalDT
+,	tad.TrackingCodes
+,	tad.Notes
+,	tad.RowID
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = convert(int, 0)
+from
+	dbo.Trans_ActiveDeliveries tad
+	left join dbo.shipper s
+		on s.id = tad.ShipperID
+order by
+	tad.DeliveryNumber
+" )
+text(band=header alignment="2" text="Delivery number" border="6" color="33554432" x="73" y="8" height="76" width="503" html.valueishtml="0"  name=deliverynumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Status" border="6" color="33554432" x="585" y="8" height="76" width="210" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Departure" border="6" color="33554432" x="805" y="8" height="76" width="315" html.valueishtml="0"  name=departureplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Arrival" border="6" color="33554432" x="1129" y="8" height="76" width="283" html.valueishtml="0"  name=arrivalplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Carrier" border="6" color="33554432" x="1422" y="8" height="76" width="247" html.valueishtml="0"  name=carrier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Mode" border="6" color="33554432" x="1678" y="8" height="76" width="210" html.valueishtml="0"  name=transportmode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Shipper ID" border="6" color="33554432" x="1970" y="8" height="76" width="357" html.valueishtml="0"  name=shipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Receiver number" border="6" color="33554432" x="2336" y="8" height="76" width="613" html.valueishtml="0"  name=receivernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Manifest closing DT" border="6" color="33554432" x="2958" y="8" height="76" width="603" html.valueishtml="0"  name=manifestclosingdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sched. departure DT" border="6" color="33554432" x="3570" y="8" height="76" width="603" html.valueishtml="0"  name=scheduleddeparturedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sched arrival DT" border="6" color="33554432" x="4183" y="8" height="76" width="603" html.valueishtml="0"  name=scheduledarrivaldt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Actual departure DT" border="6" color="33554432" x="4795" y="8" height="76" width="603" html.valueishtml="0"  name=actualdeparturedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Actual arrival DT" border="6" color="33554432" x="5408" y="8" height="76" width="603" html.valueishtml="0"  name=actualarrivaldt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tracking codes" border="6" color="33554432" x="6021" y="8" height="76" width="731" html.valueishtml="0"  name=trackingcodes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes" border="6" color="33554432" x="6761" y="8" height="76" width="1015" html.valueishtml="0"  name=notes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="55" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="73" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=deliverynumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="585" y="8" height="76" width="210" format="[general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_cntmgr_containerstatuslist dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="805" y="8" height="76" width="315" format="[general]" html.valueishtml="0"  name=departureplant visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1129" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=arrivalplant visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1422" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=carrier visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1678" y="8" height="76" width="210" format="[general]" html.valueishtml="0"  name=transportmode visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="1970" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=shipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="2336" y="8" height="76" width="613" format="[general]" html.valueishtml="0"  name=receivernumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="2958" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=manifestclosingdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="3570" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=scheduleddeparturedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="4183" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=scheduledarrivaldt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="4795" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=actualdeparturedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="5408" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=actualarrivaldt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="6021" y="8" height="76" width="731" format="[general]" html.valueishtml="0"  name=trackingcodes visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="6761" y="8" height="76" width="1015" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="bitmap(if(printed=1, ~"printer-16.bmp~", ~"~"))"border="0" color="33554432" x="1897" y="8" height="64" width="64" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -57,12 +57,12 @@ Else
 	szWhereClause = "object.serial = " + String ( lSerialHold[1] ) 
 End if
 
-szNewSQL = w_inventory_inquiry.i_s_original_syntax + " WHERE " + szWhereClause
+szNewSQL = w_object_inquiry.i_s_original_syntax + " WHERE " + szWhereClause
 
-iRtnCode = w_inventory_inquiry.dw_inquiry.SetSQLSelect ( szNewSQL )
+iRtnCode = w_object_inquiry.dw_inquiry.SetSQLSelect ( szNewSQL )
 
 If iRtnCode = 1 Then
-	w_inventory_inquiry.dw_inquiry.Retrieve ( )
+	w_object_inquiry.dw_inquiry.Retrieve ( )
 	Return True
 Else
 	Return False
@@ -631,6 +631,26 @@ end event
 
 event itemchanged;choose  case dwo.name
 	case "part"
+		//	Don't allow correction of WIP, FIN.
+		string pType
+		
+		select
+			p.type
+		into
+			:pType
+		from
+			dbo.part p
+		where
+			p.part = :data;
+		
+		if	pType = 'W' then
+			MsgBox("You cannot add WIP inventory from here.  Perform a cycle count.")
+			return 1
+		elseif	pType = 'F' then
+			MsgBox("You cannot add finished inventory from here.  Perform a cycle count.")
+			return 1
+		end if
+		
 		string	ls_LabelFormat
 		
 		select	part_inventory.label_format 
@@ -643,7 +663,7 @@ event itemchanged;choose  case dwo.name
 			MessageBox (monsys.msg_title, "Invalid part.  Please choose a valid part number!", StopSign!, Ok!)
 			return 1
 		end if
-
+		
 		SetItem (row, "field1", ls_LabelFormat)
 	case "location"
 		string	ls_LocationCode
