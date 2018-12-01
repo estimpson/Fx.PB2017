@@ -3,6 +3,8 @@ $PBExportComments$PFC TreeView class
 forward
 global type pfc_u_tv from treeview
 end type
+type os_datasource from structure within pfc_u_tv
+end type
 end forward
 
 type os_datasource from structure
@@ -23,18 +25,19 @@ type os_datasource from structure
 end type
 
 global type pfc_u_tv from treeview
-int Width=343
-int Height=248
-int TabOrder=1
-BorderStyle BorderStyle=StyleLowered!
-long PictureMaskColor=553648127
-long StatePictureMaskColor=536870912
-long TextColor=33554432
-int TextSize=-8
-int Weight=400
-string FaceName="MS Sans Serif"
-FontFamily FontFamily=Swiss!
-FontPitch FontPitch=Variable!
+integer width = 343
+integer height = 248
+integer taborder = 1
+integer textsize = -10
+integer weight = 400
+fontcharset fontcharset = ansi!
+fontpitch fontpitch = variable!
+fontfamily fontfamily = swiss!
+string facename = "Tahoma"
+long textcolor = 33554432
+borderstyle borderstyle = stylelowered!
+long picturemaskcolor = 553648127
+long statepicturemaskcolor = 536870912
 event type boolean pfc_searchcompare ( long al_handle,  string as_attribute,  any aa_target,  boolean ab_respectcase,  boolean ab_fullcompare )
 end type
 global pfc_u_tv pfc_u_tv
@@ -3181,4 +3184,10 @@ If gnv_app.of_GetMicrohelp() Then
 End If
 
 end event
+
+on pfc_u_tv.create
+end on
+
+on pfc_u_tv.destroy
+end on
 

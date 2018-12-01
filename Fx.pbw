@@ -1,6 +1,7 @@
 Save Format v3.0(19990112)
 @begin Targets
  0 "Office\\Fx.pbt";
+ 1 "ClientCustom\\21st\\Fx.21st.pbt";
 @end;
-DefaultTarget "Office\\Fx.pbt";
-DefaultRemoteTarget "Office\\Fx.pbt";
+DefaultTarget "ClientCustom\\21st\\Fx.21st.pbt";
+DefaultRemoteTarget "ClientCustom\\21st\\Fx.21st.pbt";
