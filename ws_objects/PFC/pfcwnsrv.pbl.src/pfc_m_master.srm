@@ -260,6 +260,15 @@ m_helptopics m_helptopics
 m_dash61 m_dash61
 m_about m_about
 end type
+global type pfc_m_master from menu
+m_file m_file
+m_edit m_edit
+m_view m_view
+m_insert m_insert
+m_tools m_tools
+m_window m_window
+m_help m_help
+end type
 end forward
 
 global type pfc_m_master from menu
@@ -325,6 +334,24 @@ end function
 
 on pfc_m_master.create
 pfc_m_master=this
+call super::create
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_file=create m_file
 this.m_edit=create m_edit
 this.m_view=create m_view
@@ -332,16 +359,17 @@ this.m_insert=create m_insert
 this.m_tools=create m_tools
 this.m_window=create m_window
 this.m_help=create m_help
-this.Item[]={this.m_file, &
-this.m_edit, &
-this.m_view, &
-this.m_insert, &
-this.m_tools, &
-this.m_window, &
-this.m_help}
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_view
+this.Item[UpperBound(this.Item)+1]=this.m_insert
+this.Item[UpperBound(this.Item)+1]=this.m_tools
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
 end on
 
 on pfc_m_master.destroy
+call super::destroy
 destroy(this.m_file)
 destroy(this.m_edit)
 destroy(this.m_view)
@@ -377,8 +405,26 @@ m_pfcmru5 m_pfcmru5
 end type
 
 on m_file.create
-this.Text="&File"
-this.MergeOption=FileMenu!
+call super::create
+this.text = "&File"
+this.mergeoption = filemenu!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_new=create m_new
 this.m_open=create m_open
 this.m_close=create m_close
@@ -401,31 +447,32 @@ this.m_pfcmru2=create m_pfcmru2
 this.m_pfcmru3=create m_pfcmru3
 this.m_pfcmru4=create m_pfcmru4
 this.m_pfcmru5=create m_pfcmru5
-this.Item[]={this.m_new, &
-this.m_open, &
-this.m_close, &
-this.m_dash11, &
-this.m_save, &
-this.m_saveas, &
-this.m_dash12, &
-this.m_print, &
-this.m_printpreview, &
-this.m_pagesetup, &
-this.m_printimmediate, &
-this.m_dash13, &
-this.m_delete, &
-this.m_properties, &
-this.m_dash14, &
-this.m_exit, &
-this.m_pfcmrudash1, &
-this.m_pfcmru1, &
-this.m_pfcmru2, &
-this.m_pfcmru3, &
-this.m_pfcmru4, &
-this.m_pfcmru5}
+this.Item[UpperBound(this.Item)+1]=this.m_new
+this.Item[UpperBound(this.Item)+1]=this.m_open
+this.Item[UpperBound(this.Item)+1]=this.m_close
+this.Item[UpperBound(this.Item)+1]=this.m_dash11
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_saveas
+this.Item[UpperBound(this.Item)+1]=this.m_dash12
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_printpreview
+this.Item[UpperBound(this.Item)+1]=this.m_pagesetup
+this.Item[UpperBound(this.Item)+1]=this.m_printimmediate
+this.Item[UpperBound(this.Item)+1]=this.m_dash13
+this.Item[UpperBound(this.Item)+1]=this.m_delete
+this.Item[UpperBound(this.Item)+1]=this.m_properties
+this.Item[UpperBound(this.Item)+1]=this.m_dash14
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmrudash1
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmru1
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmru2
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmru3
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmru4
+this.Item[UpperBound(this.Item)+1]=this.m_pfcmru5
 end on
 
 on m_file.destroy
+call super::destroy
 destroy(this.m_new)
 destroy(this.m_open)
 destroy(this.m_close)
@@ -458,11 +505,33 @@ of_SendMessage ("pfc_new")
 end event
 
 on m_new.create
-this.Text="&New"
-this.Microhelp="New"
-this.ToolBarItemName="ScriptNo!"
-this.ToolBarItemText="New"
-this.ToolBarItemOrder=10
+call super::create
+this.text = "&New"
+this.microhelp = "New"
+this.toolbaritemname = "scriptno!"
+this.toolbaritemtext = "New"
+this.toolbaritemorder = 10
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_new.destroy
+call super::destroy
 end on
 
 type m_open from menu within m_file
@@ -473,11 +542,33 @@ of_SendMessage ("pfc_open")
 end event
 
 on m_open.create
-this.Text="&Open"
-this.Microhelp="Open"
-this.ToolBarItemName="Custom050!"
-this.ToolBarItemText="Open"
-this.ToolBarItemOrder=15
+call super::create
+this.text = "&Open"
+this.microhelp = "Open"
+this.toolbaritemname = "custom050!"
+this.toolbaritemtext = "Open"
+this.toolbaritemorder = 15
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_open.destroy
+call super::destroy
 end on
 
 type m_close from menu within m_file
@@ -487,19 +578,63 @@ on clicked;of_SendMessage ("pfc_close")
 end on
 
 on m_close.create
-this.Text="&Close"
-this.Microhelp="Close"
-this.ToolBarItemName="Custom039!"
-this.ToolBarItemText="Close"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=20
+call super::create
+this.text = "&Close"
+this.microhelp = "Close"
+this.toolbaritemvisible = false
+this.toolbaritemname = "custom039!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 20
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_close.destroy
+call super::destroy
 end on
 
 type m_dash11 from menu within m_file
 end type
 
 on m_dash11.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash11.destroy
+call super::destroy
 end on
 
 type m_save from menu within m_file
@@ -509,12 +644,34 @@ on clicked;of_SendMessage ("pfc_save")
 end on
 
 on m_save.create
-this.Text="&Save~tCtrl+S"
-this.Microhelp="Save"
-this.ToolBarItemName="Save!"
-this.ToolBarItemText="Save"
-this.ToolBarItemOrder=25
-this.Shortcut=339
+call super::create
+this.text = "&Save~tCtrl+S"
+this.shortcut = 339
+this.microhelp = "Save"
+this.toolbaritemname = "save!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 25
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_save.destroy
+call super::destroy
 end on
 
 type m_saveas from menu within m_file
@@ -525,19 +682,63 @@ of_SendMessage ("pfc_saveas")
 end event
 
 on m_saveas.create
-this.Text="Save &As..."
-this.Microhelp="Save As"
-this.ToolBarItemName="SaveAs!"
-this.ToolBarItemText="Save As"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=30
+call super::create
+this.text = "Save &As..."
+this.microhelp = "Save As"
+this.toolbaritemvisible = false
+this.toolbaritemname = "saveas!"
+this.toolbaritemtext = "Save As"
+this.toolbaritemorder = 30
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_saveas.destroy
+call super::destroy
 end on
 
 type m_dash12 from menu within m_file
 end type
 
 on m_dash12.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash12.destroy
+call super::destroy
 end on
 
 type m_print from menu within m_file
@@ -548,9 +749,31 @@ of_SendMessage ("pfc_print")
 end event
 
 on m_print.create
-this.Text="&Print...~tCtrl+P"
-this.Microhelp="Prints the item"
-this.Shortcut=336
+call super::create
+this.text = "&Print...~tCtrl+P"
+this.shortcut = 336
+this.microhelp = "Prints the item"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_print.destroy
+call super::destroy
 end on
 
 type m_printpreview from menu within m_file
@@ -560,11 +783,33 @@ on clicked;of_SendMessage ("pfc_printpreview")
 end on
 
 on m_printpreview.create
-this.Text="Print Pre&view"
-this.Microhelp="View pages as they will be printed"
-this.ToolBarItemName="EditDataFreeform!"
-this.ToolBarItemText="Print Preview"
-this.ToolBarItemOrder=40
+call super::create
+this.text = "Print Pre&view"
+this.microhelp = "View pages as they will be printed"
+this.toolbaritemname = "editdatafreeform!"
+this.toolbaritemtext = "Print Preview"
+this.toolbaritemorder = 40
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printpreview.destroy
+call super::destroy
 end on
 
 type m_pagesetup from menu within m_file
@@ -575,8 +820,30 @@ of_SendMessage ("pfc_pagesetup")
 end event
 
 on m_pagesetup.create
-this.Text="Page Set&up..."
-this.Microhelp="Changes page layout settings"
+call super::create
+this.text = "Page Set&up..."
+this.microhelp = "Changes page layout settings"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pagesetup.destroy
+call super::destroy
 end on
 
 type m_printimmediate from menu within m_file
@@ -586,61 +853,171 @@ event clicked;of_SendMessage ("pfc_printimmediate")
 end event
 
 on m_printimmediate.create
-this.Text="Print Immediate"
-this.Microhelp="Prints the item"
-this.ToolBarItemName="Print!"
-this.ToolBarItemText="Print"
-this.Visible=false
-this.ToolBarItemOrder=35
-this.ToolBarItemSpace=2
+call super::create
+this.visible = false
+this.text = "Print Immediate"
+this.microhelp = "Prints the item"
+this.toolbaritemname = "print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 35
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printimmediate.destroy
+call super::destroy
 end on
 
 type m_dash13 from menu within m_file
 end type
 
 on m_dash13.create
-this.Text="-"
-this.Visible=false
+call super::create
+this.visible = false
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash13.destroy
+call super::destroy
 end on
 
 type m_delete from menu within m_file
 end type
 
 on m_delete.create
-this.Text="&Delete~tCtrl+D"
-this.Microhelp="Deletes the item"
-this.ToolBarItemName="Custom009!"
-this.ToolBarItemText="Delete"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=60
-this.ToolBarItemSpace=2
-this.Enabled=false
-this.Shortcut=324
+call super::create
+this.visible = false
+this.text = "&Delete~tCtrl+D"
+this.enabled = false
+this.shortcut = 324
+this.microhelp = "Deletes the item"
+this.toolbaritemvisible = false
+this.toolbaritemname = "custom009!"
+this.toolbaritemtext = "Delete"
+this.toolbaritemorder = 60
+this.toolbaritemspace = 2
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_delete.destroy
+call super::destroy
 end on
 
 type m_properties from menu within m_file
 end type
 
 on m_properties.create
-this.Text="P&roperties"
-this.Microhelp="Displays or changes properties of the item"
-this.ToolBarItemName="Properties!"
-this.ToolBarItemText="Properties"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=65
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "P&roperties"
+this.enabled = false
+this.microhelp = "Displays or changes properties of the item"
+this.toolbaritemvisible = false
+this.toolbaritemname = "properties!"
+this.toolbaritemtext = "Properties"
+this.toolbaritemorder = 65
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_properties.destroy
+call super::destroy
 end on
 
 type m_dash14 from menu within m_file
 end type
 
 on m_dash14.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash14.destroy
+call super::destroy
 end on
 
 type m_exit from menu within m_file
@@ -650,24 +1027,68 @@ event clicked;gnv_app.event pfc_exit()
 end event
 
 on m_exit.create
-this.Text="E&xit"
-this.Microhelp="Quits the application"
-this.ToolBarItemName="Exit!"
-this.ToolBarItemText="Exit"
-this.ShiftToRight=true
-this.MenuItemType=MenuItemTypeExit!
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=9999
-this.ToolBarItemSpace=2
+call super::create
+this.text = "E&xit"
+this.microhelp = "Quits the application"
+this.toolbaritemvisible = false
+this.toolbaritemname = "exit!"
+this.toolbaritemtext = "Exit"
+this.toolbaritemorder = 9999
+this.toolbaritemspace = 2
+this.shifttoright = true
+this.menuitemtype = menuitemtypeexit!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
 end on
 
 type m_pfcmrudash1 from menu within m_file
 end type
 
 on m_pfcmrudash1.create
-this.Text="-"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmrudash1.destroy
+call super::destroy
 end on
 
 type m_pfcmru1 from menu within m_file
@@ -705,9 +1126,31 @@ of_sendmessage("pfc_mruclicked")
 end event
 
 on m_pfcmru1.create
-this.Text="pfcmru1"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "pfcmru1"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmru1.destroy
+call super::destroy
 end on
 
 type m_pfcmru2 from menu within m_file
@@ -745,9 +1188,31 @@ of_sendmessage("pfc_mruclicked")
 end event
 
 on m_pfcmru2.create
-this.Text="pfcmru2"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "pfcmru2"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmru2.destroy
+call super::destroy
 end on
 
 type m_pfcmru3 from menu within m_file
@@ -785,9 +1250,31 @@ of_sendmessage("pfc_mruclicked")
 end event
 
 on m_pfcmru3.create
-this.Text="pfcmru3"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "pfcmru3"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmru3.destroy
+call super::destroy
 end on
 
 type m_pfcmru4 from menu within m_file
@@ -825,9 +1312,31 @@ of_sendmessage("pfc_mruclicked")
 end event
 
 on m_pfcmru4.create
-this.Text="pfcmru4"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "pfcmru4"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmru4.destroy
+call super::destroy
 end on
 
 type m_pfcmru5 from menu within m_file
@@ -865,9 +1374,31 @@ of_sendmessage("pfc_mruclicked")
 end event
 
 on m_pfcmru5.create
-this.Text="pfcmru5"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "pfcmru5"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pfcmru5.destroy
+call super::destroy
 end on
 
 type m_edit from menu within pfc_m_master
@@ -889,7 +1420,25 @@ m_object1 m_object1
 end type
 
 on m_edit.create
-this.Text="&Edit"
+call super::create
+this.text = "&Edit"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_undo=create m_undo
 this.m_dash21=create m_dash21
 this.m_cut=create m_cut
@@ -905,24 +1454,25 @@ this.m_replace=create m_replace
 this.m_dash24=create m_dash24
 this.m_updatelinks=create m_updatelinks
 this.m_object1=create m_object1
-this.Item[]={this.m_undo, &
-this.m_dash21, &
-this.m_cut, &
-this.m_copy, &
-this.m_paste, &
-this.m_pastespecial, &
-this.m_clear, &
-this.m_dash22, &
-this.m_selectall, &
-this.m_dash23, &
-this.m_find, &
-this.m_replace, &
-this.m_dash24, &
-this.m_updatelinks, &
-this.m_object1}
+this.Item[UpperBound(this.Item)+1]=this.m_undo
+this.Item[UpperBound(this.Item)+1]=this.m_dash21
+this.Item[UpperBound(this.Item)+1]=this.m_cut
+this.Item[UpperBound(this.Item)+1]=this.m_copy
+this.Item[UpperBound(this.Item)+1]=this.m_paste
+this.Item[UpperBound(this.Item)+1]=this.m_pastespecial
+this.Item[UpperBound(this.Item)+1]=this.m_clear
+this.Item[UpperBound(this.Item)+1]=this.m_dash22
+this.Item[UpperBound(this.Item)+1]=this.m_selectall
+this.Item[UpperBound(this.Item)+1]=this.m_dash23
+this.Item[UpperBound(this.Item)+1]=this.m_find
+this.Item[UpperBound(this.Item)+1]=this.m_replace
+this.Item[UpperBound(this.Item)+1]=this.m_dash24
+this.Item[UpperBound(this.Item)+1]=this.m_updatelinks
+this.Item[UpperBound(this.Item)+1]=this.m_object1
 end on
 
 on m_edit.destroy
+call super::destroy
 destroy(this.m_undo)
 destroy(this.m_dash21)
 destroy(this.m_cut)
@@ -947,20 +1497,64 @@ on clicked;of_SendMessage ("pfc_undo")
 end on
 
 on m_undo.create
-this.Text="&Undo~tCtrl+Z"
-this.Microhelp="Reverses last action"
-this.ToolBarItemName="Undo!"
-this.ToolBarItemText="Undo"
-this.ToolBarItemOrder=95
-this.ToolBarItemSpace=2
-this.Shortcut=346
+call super::create
+this.text = "&Undo~tCtrl+Z"
+this.shortcut = 346
+this.microhelp = "Reverses last action"
+this.toolbaritemname = "undo!"
+this.toolbaritemtext = "Undo"
+this.toolbaritemorder = 95
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_undo.destroy
+call super::destroy
 end on
 
 type m_dash21 from menu within m_edit
 end type
 
 on m_dash21.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash21.destroy
+call super::destroy
 end on
 
 type m_cut from menu within m_edit
@@ -970,13 +1564,35 @@ on clicked;of_SendMessage ("pfc_cut")
 end on
 
 on m_cut.create
-this.Text="Cu&t~tCtrl+X"
-this.Microhelp="Moves the selection to the Clipboard"
-this.ToolBarItemName="Cut!"
-this.ToolBarItemText="Cut"
-this.ToolBarItemOrder=70
-this.ToolBarItemSpace=2
-this.Shortcut=344
+call super::create
+this.text = "Cu&t~tCtrl+X"
+this.shortcut = 344
+this.microhelp = "Moves the selection to the Clipboard"
+this.toolbaritemname = "cut!"
+this.toolbaritemtext = "Cut"
+this.toolbaritemorder = 70
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_cut.destroy
+call super::destroy
 end on
 
 type m_copy from menu within m_edit
@@ -986,12 +1602,34 @@ on clicked;of_SendMessage ("pfc_copy")
 end on
 
 on m_copy.create
-this.Text="&Copy~tCtrl+C"
-this.Microhelp="Copies the selection to the Clipboard"
-this.ToolBarItemName="Copy!"
-this.ToolBarItemText="Copy"
-this.ToolBarItemOrder=75
-this.Shortcut=323
+call super::create
+this.text = "&Copy~tCtrl+C"
+this.shortcut = 323
+this.microhelp = "Copies the selection to the Clipboard"
+this.toolbaritemname = "copy!"
+this.toolbaritemtext = "Copy"
+this.toolbaritemorder = 75
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_copy.destroy
+call super::destroy
 end on
 
 type m_paste from menu within m_edit
@@ -1001,12 +1639,34 @@ on clicked;of_SendMessage ("pfc_paste")
 end on
 
 on m_paste.create
-this.Text="&Paste~tCtrl+V"
-this.Microhelp="Inserts Clipboard contents at current insertion point"
-this.ToolBarItemName="Paste!"
-this.ToolBarItemText="Paste"
-this.ToolBarItemOrder=80
-this.Shortcut=342
+call super::create
+this.text = "&Paste~tCtrl+V"
+this.shortcut = 342
+this.microhelp = "Inserts Clipboard contents at current insertion point"
+this.toolbaritemname = "paste!"
+this.toolbaritemtext = "Paste"
+this.toolbaritemorder = 80
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_paste.destroy
+call super::destroy
 end on
 
 type m_pastespecial from menu within m_edit
@@ -1016,8 +1676,30 @@ on clicked;of_SendMessage ("pfc_pastespecial")
 end on
 
 on m_pastespecial.create
-this.Text="Paste &Special..."
-this.Microhelp="Inserts the clipboard contents as a link, object, or other format"
+call super::create
+this.text = "Paste &Special..."
+this.microhelp = "Inserts the clipboard contents as a link, object, or other format"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pastespecial.destroy
+call super::destroy
 end on
 
 type m_clear from menu within m_edit
@@ -1027,19 +1709,63 @@ on clicked;of_SendMessage ("pfc_clear")
 end on
 
 on m_clear.create
-this.Text="Cle&ar"
-this.Microhelp="Removes the selection"
-this.ToolBarItemName="Clear!"
-this.ToolBarItemText="Clear"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=85
+call super::create
+this.text = "Cle&ar"
+this.microhelp = "Removes the selection"
+this.toolbaritemvisible = false
+this.toolbaritemname = "clear!"
+this.toolbaritemtext = "Clear"
+this.toolbaritemorder = 85
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_clear.destroy
+call super::destroy
 end on
 
 type m_dash22 from menu within m_edit
 end type
 
 on m_dash22.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash22.destroy
+call super::destroy
 end on
 
 type m_selectall from menu within m_edit
@@ -1049,74 +1775,206 @@ on clicked;of_SendMessage ("pfc_selectall")
 end on
 
 on m_selectall.create
-this.Text="Select A&ll~tCtrl+A"
-this.Microhelp="Selects all items or information"
-this.ToolBarItemName="SelectAll!"
-this.ToolBarItemText="Select All"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=90
-this.Shortcut=321
+call super::create
+this.text = "Select A&ll~tCtrl+A"
+this.shortcut = 321
+this.microhelp = "Selects all items or information"
+this.toolbaritemvisible = false
+this.toolbaritemname = "selectall!"
+this.toolbaritemtext = "Select All"
+this.toolbaritemorder = 90
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_selectall.destroy
+call super::destroy
 end on
 
 type m_dash23 from menu within m_edit
 end type
 
 on m_dash23.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash23.destroy
+call super::destroy
 end on
 
 type m_find from menu within m_edit
 end type
 
 on m_find.create
-this.Text="&Find...~tCtrl+F"
-this.Microhelp="Finds the specified text"
-this.ToolBarItemName="Find!"
-this.ToolBarItemText="Find"
-this.ToolBarItemOrder=100
-this.ToolBarItemSpace=2
-this.Shortcut=326
+call super::create
+this.text = "&Find...~tCtrl+F"
+this.shortcut = 326
+this.microhelp = "Finds the specified text"
+this.toolbaritemname = "find!"
+this.toolbaritemtext = "Find"
+this.toolbaritemorder = 100
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_finddlg")
 end event
 
+on m_find.destroy
+call super::destroy
+end on
+
 type m_replace from menu within m_edit
 end type
 
 on m_replace.create
-this.Text="&Replace...~tCtrl+H"
-this.Microhelp="Replaces specific text with different text"
-this.ToolBarItemName="Replace!"
-this.ToolBarItemText="Replace"
-this.ToolBarItemOrder=105
-this.Shortcut=328
+call super::create
+this.text = "&Replace...~tCtrl+H"
+this.shortcut = 328
+this.microhelp = "Replaces specific text with different text"
+this.toolbaritemname = "replace!"
+this.toolbaritemtext = "Replace"
+this.toolbaritemorder = 105
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_replacedlg")
 end event
 
+on m_replace.destroy
+call super::destroy
+end on
+
 type m_dash24 from menu within m_edit
 end type
 
 on m_dash24.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash24.destroy
+call super::destroy
 end on
 
 type m_updatelinks from menu within m_edit
 end type
 
 on m_updatelinks.create
-this.Text="Update Lin&ks"
-this.Microhelp="Allows links to be updated"
-this.ShiftToRight=true
+call super::create
+this.text = "Update Lin&ks"
+this.microhelp = "Allows links to be updated"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_updatelinks")
 end event
+
+on m_updatelinks.destroy
+call super::destroy
+end on
 
 type m_object1 from menu within m_edit
 m_edit1 m_edit1
@@ -1124,16 +1982,35 @@ m_open1 m_open1
 end type
 
 on m_object1.create
-this.Text="&Object"
-this.Microhelp="Contains commands for activating an object"
-this.ShiftToRight=true
+call super::create
+this.text = "&Object"
+this.microhelp = "Contains commands for activating an object"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_edit1=create m_edit1
 this.m_open1=create m_open1
-this.Item[]={this.m_edit1, &
-this.m_open1}
+this.Item[UpperBound(this.Item)+1]=this.m_edit1
+this.Item[UpperBound(this.Item)+1]=this.m_open1
 end on
 
 on m_object1.destroy
+call super::destroy
 destroy(this.m_edit1)
 destroy(this.m_open1)
 end on
@@ -1142,11 +2019,30 @@ type m_edit1 from menu within m_object1
 end type
 
 on m_edit1.create
-this.Text="&Edit"
-this.Microhelp="Activates selected object"
+call super::create
+this.text = "&Edit"
+this.microhelp = "Activates selected object"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 on m_edit1.destroy
+call super::destroy
 end on
 
 event clicked;SetPointer (hourglass!)
@@ -1157,13 +2053,35 @@ type m_open1 from menu within m_object1
 end type
 
 on m_open1.create
-this.Text="&Open"
-this.Microhelp="Activates selected object"
+call super::create
+this.text = "&Open"
+this.microhelp = "Activates selected object"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_openobject")
 end event
+
+on m_open1.destroy
+call super::destroy
+end on
 
 type m_view from menu within pfc_m_master
 m_ruler m_ruler
@@ -1187,7 +2105,25 @@ m_zoom m_zoom
 end type
 
 on m_view.create
-this.Text="&View"
+call super::create
+this.text = "&View"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_ruler=create m_ruler
 this.m_dash31=create m_dash31
 this.m_largeicon=create m_largeicon
@@ -1206,27 +2142,28 @@ this.m_sort=create m_sort
 this.m_filter=create m_filter
 this.m_dash36=create m_dash36
 this.m_zoom=create m_zoom
-this.Item[]={this.m_ruler, &
-this.m_dash31, &
-this.m_largeicon, &
-this.m_smallicons, &
-this.m_list, &
-this.m_details, &
-this.m_dash32, &
-this.m_arrangeicons, &
-this.m_dash34, &
-this.m_first, &
-this.m_nextpage, &
-this.m_priorpage, &
-this.m_lastpage, &
-this.m_dash35, &
-this.m_sort, &
-this.m_filter, &
-this.m_dash36, &
-this.m_zoom}
+this.Item[UpperBound(this.Item)+1]=this.m_ruler
+this.Item[UpperBound(this.Item)+1]=this.m_dash31
+this.Item[UpperBound(this.Item)+1]=this.m_largeicon
+this.Item[UpperBound(this.Item)+1]=this.m_smallicons
+this.Item[UpperBound(this.Item)+1]=this.m_list
+this.Item[UpperBound(this.Item)+1]=this.m_details
+this.Item[UpperBound(this.Item)+1]=this.m_dash32
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_dash34
+this.Item[UpperBound(this.Item)+1]=this.m_first
+this.Item[UpperBound(this.Item)+1]=this.m_nextpage
+this.Item[UpperBound(this.Item)+1]=this.m_priorpage
+this.Item[UpperBound(this.Item)+1]=this.m_lastpage
+this.Item[UpperBound(this.Item)+1]=this.m_dash35
+this.Item[UpperBound(this.Item)+1]=this.m_sort
+this.Item[UpperBound(this.Item)+1]=this.m_filter
+this.Item[UpperBound(this.Item)+1]=this.m_dash36
+this.Item[UpperBound(this.Item)+1]=this.m_zoom
 end on
 
 on m_view.destroy
+call super::destroy
 destroy(this.m_ruler)
 destroy(this.m_dash31)
 destroy(this.m_largeicon)
@@ -1254,87 +2191,241 @@ event clicked;of_SendMessage ("pfc_ruler")
 end event
 
 on m_ruler.create
-this.Text="&Ruler"
-this.Microhelp="Shows or hides the ruler"
-this.ShiftToRight=true
+call super::create
+this.text = "&Ruler"
+this.microhelp = "Shows or hides the ruler"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_ruler.destroy
+call super::destroy
 end on
 
 type m_dash31 from menu within m_view
 end type
 
 on m_dash31.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash31.destroy
+call super::destroy
 end on
 
 type m_largeicon from menu within m_view
 end type
 
 on m_largeicon.create
-this.Text="Lar&ge Icons"
-this.Microhelp="Displays items by using large icons"
-this.ToolBarItemName="largeico.bmp"
-this.ToolBarItemText="Large Icons"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=145
-this.ToolBarItemSpace=2
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "Lar&ge Icons"
+this.enabled = false
+this.microhelp = "Displays items by using large icons"
+this.toolbaritemvisible = false
+this.toolbaritemname = "largeico.bmp"
+this.toolbaritemtext = "Large Icons"
+this.toolbaritemorder = 145
+this.toolbaritemspace = 2
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_largeicon.destroy
+call super::destroy
 end on
 
 type m_smallicons from menu within m_view
 end type
 
 on m_smallicons.create
-this.Text="S&mall Icons"
-this.Microhelp="Displays items by using small icons"
-this.ToolBarItemName="smallico.bmp"
-this.ToolBarItemText="Small Icons"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=150
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "S&mall Icons"
+this.enabled = false
+this.microhelp = "Displays items by using small icons"
+this.toolbaritemvisible = false
+this.toolbaritemname = "smallico.bmp"
+this.toolbaritemtext = "Small Icons"
+this.toolbaritemorder = 150
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_smallicons.destroy
+call super::destroy
 end on
 
 type m_list from menu within m_view
 end type
 
 on m_list.create
-this.Text="&List"
-this.Microhelp="Displays items in a list"
-this.ToolBarItemName="listv.bmp"
-this.ToolBarItemText="List"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=155
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "&List"
+this.enabled = false
+this.microhelp = "Displays items in a list"
+this.toolbaritemvisible = false
+this.toolbaritemname = "listv.bmp"
+this.toolbaritemtext = "List"
+this.toolbaritemorder = 155
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_list.destroy
+call super::destroy
 end on
 
 type m_details from menu within m_view
 end type
 
 on m_details.create
-this.Text="&Details"
-this.Microhelp="Displays information about each item"
-this.ToolBarItemName="detailsv.bmp"
-this.ToolBarItemText="Details"
-this.Visible=false
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=160
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "&Details"
+this.enabled = false
+this.microhelp = "Displays information about each item"
+this.toolbaritemvisible = false
+this.toolbaritemname = "detailsv.bmp"
+this.toolbaritemtext = "Details"
+this.toolbaritemorder = 160
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_details.destroy
+call super::destroy
 end on
 
 type m_dash32 from menu within m_view
 end type
 
 on m_dash32.create
-this.Text="-"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash32.destroy
+call super::destroy
 end on
 
 type m_arrangeicons from menu within m_view
@@ -1344,20 +2435,39 @@ m_autoarrange m_autoarrange
 end type
 
 on m_arrangeicons.create
-this.Text="Arrange &Icons"
-this.Microhelp="Contains commands for arranging items"
-this.Visible=false
-this.ShiftToRight=true
-this.Enabled=false
+call super::create
+this.visible = false
+this.text = "Arrange &Icons"
+this.enabled = false
+this.microhelp = "Contains commands for arranging items"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_by1=create m_by1
 this.m_dash33=create m_dash33
 this.m_autoarrange=create m_autoarrange
-this.Item[]={this.m_by1, &
-this.m_dash33, &
-this.m_autoarrange}
+this.Item[UpperBound(this.Item)+1]=this.m_by1
+this.Item[UpperBound(this.Item)+1]=this.m_dash33
+this.Item[UpperBound(this.Item)+1]=this.m_autoarrange
 end on
 
 on m_arrangeicons.destroy
+call super::destroy
 destroy(this.m_by1)
 destroy(this.m_dash33)
 destroy(this.m_autoarrange)
@@ -1367,34 +2477,122 @@ type m_by1 from menu within m_arrangeicons
 end type
 
 on m_by1.create
-this.Text="by"
-this.Microhelp="Arrange by"
+call super::create
+this.text = "by"
+this.microhelp = "Arrange by"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_by1.destroy
+call super::destroy
 end on
 
 type m_dash33 from menu within m_arrangeicons
 end type
 
 on m_dash33.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash33.destroy
+call super::destroy
 end on
 
 type m_autoarrange from menu within m_arrangeicons
 end type
 
 on m_autoarrange.create
-this.Text="&Auto Arrange"
-this.Microhelp="Arranges the icons automatically"
-this.ShiftToRight=true
+call super::create
+this.text = "&Auto Arrange"
+this.microhelp = "Arranges the icons automatically"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_autoarrange.destroy
+call super::destroy
 end on
 
 type m_dash34 from menu within m_view
 end type
 
 on m_dash34.create
-this.Text="-"
-this.Visible=false
-this.ShiftToRight=true
+call super::create
+this.visible = false
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash34.destroy
+call super::destroy
 end on
 
 type m_first from menu within m_view
@@ -1404,14 +2602,36 @@ event clicked;of_SendMessage ("pfc_firstpage")
 end event
 
 on m_first.create
-this.Text="&First"
-this.Microhelp="First"
-this.ToolBarItemName="VCRFirst!"
-this.ToolBarItemText="First"
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=165
-this.ToolBarItemSpace=2
+call super::create
+this.text = "&First"
+this.microhelp = "First"
+this.toolbaritemvisible = false
+this.toolbaritemname = "vcrfirst!"
+this.toolbaritemtext = "First"
+this.toolbaritemorder = 165
+this.toolbaritemspace = 2
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_first.destroy
+call super::destroy
 end on
 
 type m_nextpage from menu within m_view
@@ -1421,13 +2641,35 @@ event clicked;of_SendMessage ("pfc_nextpage")
 end event
 
 on m_nextpage.create
-this.Text="&Next"
-this.Microhelp="Next"
-this.ToolBarItemName="VCRNext!"
-this.ToolBarItemText="Next"
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=170
+call super::create
+this.text = "&Next"
+this.microhelp = "Next"
+this.toolbaritemvisible = false
+this.toolbaritemname = "vcrnext!"
+this.toolbaritemtext = "Next"
+this.toolbaritemorder = 170
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_nextpage.destroy
+call super::destroy
 end on
 
 type m_priorpage from menu within m_view
@@ -1437,13 +2679,35 @@ event clicked;of_SendMessage ("pfc_previouspage")
 end event
 
 on m_priorpage.create
-this.Text="&Prior"
-this.Microhelp="Prior"
-this.ToolBarItemName="VCRPrior!"
-this.ToolBarItemText="Prior"
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=175
+call super::create
+this.text = "&Prior"
+this.microhelp = "Prior"
+this.toolbaritemvisible = false
+this.toolbaritemname = "vcrprior!"
+this.toolbaritemtext = "Prior"
+this.toolbaritemorder = 175
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_priorpage.destroy
+call super::destroy
 end on
 
 type m_lastpage from menu within m_view
@@ -1453,57 +2717,167 @@ event clicked;of_SendMessage ("pfc_lastpage")
 end event
 
 on m_lastpage.create
-this.Text="L&ast"
-this.Microhelp="Last"
-this.ToolBarItemName="VCRLast!"
-this.ToolBarItemText="Last"
-this.ShiftToRight=true
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=180
+call super::create
+this.text = "L&ast"
+this.microhelp = "Last"
+this.toolbaritemvisible = false
+this.toolbaritemname = "vcrlast!"
+this.toolbaritemtext = "Last"
+this.toolbaritemorder = 180
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_lastpage.destroy
+call super::destroy
 end on
 
 type m_dash35 from menu within m_view
 end type
 
 on m_dash35.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash35.destroy
+call super::destroy
 end on
 
 type m_sort from menu within m_view
 end type
 
 on m_sort.create
-this.Text="&Sort..."
-this.Microhelp="Sorts items"
-this.ToolBarItemText="Sort"
-this.ShiftToRight=true
+call super::create
+this.text = "&Sort..."
+this.microhelp = "Sorts items"
+this.toolbaritemtext = "Sort"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_sortdlg")
 end event
 
+on m_sort.destroy
+call super::destroy
+end on
+
 type m_filter from menu within m_view
 end type
 
 on m_filter.create
-this.Text="Fil&ter..."
-this.Microhelp="Filters items"
-this.ToolBarItemText="Filter"
-this.ShiftToRight=true
+call super::create
+this.text = "Fil&ter..."
+this.microhelp = "Filters items"
+this.toolbaritemtext = "Filter"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_filterdlg")
 end event
 
+on m_filter.destroy
+call super::destroy
+end on
+
 type m_dash36 from menu within m_view
 end type
 
 on m_dash36.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash36.destroy
+call super::destroy
 end on
 
 type m_zoom from menu within m_view
@@ -1514,9 +2888,31 @@ of_SendMessage ("pfc_zoom")
 end event
 
 on m_zoom.create
-this.Text="&Zoom..."
-this.Microhelp="Scales the display of the print preview"
-this.ShiftToRight=true
+call super::create
+this.text = "&Zoom..."
+this.microhelp = "Scales the display of the print preview"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_zoom.destroy
+call super::destroy
 end on
 
 type m_insert from menu within pfc_m_master
@@ -1527,18 +2923,37 @@ m_object m_object
 end type
 
 on m_insert.create
-this.Text="&Insert"
+call super::create
+this.text = "&Insert"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_insertfile=create m_insertfile
 this.m_picture=create m_picture
 this.m_dash41=create m_dash41
 this.m_object=create m_object
-this.Item[]={this.m_insertfile, &
-this.m_picture, &
-this.m_dash41, &
-this.m_object}
+this.Item[UpperBound(this.Item)+1]=this.m_insertfile
+this.Item[UpperBound(this.Item)+1]=this.m_picture
+this.Item[UpperBound(this.Item)+1]=this.m_dash41
+this.Item[UpperBound(this.Item)+1]=this.m_object
 end on
 
 on m_insert.destroy
+call super::destroy
 destroy(this.m_insertfile)
 destroy(this.m_picture)
 destroy(this.m_dash41)
@@ -1549,60 +2964,167 @@ type m_insertfile from menu within m_insert
 end type
 
 on m_insertfile.create
-this.Text="&File..."
-this.Microhelp="Inserts the text of another file"
-this.ShiftToRight=true
+call super::create
+this.text = "&File..."
+this.microhelp = "Inserts the text of another file"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_insertfile")
 end event
 
+on m_insertfile.destroy
+call super::destroy
+end on
+
 type m_picture from menu within m_insert
 end type
 
 on m_picture.create
-this.Text="&Picture..."
-this.Microhelp="Inserts a picture from a graphics file"
-this.ShiftToRight=true
+call super::create
+this.text = "&Picture..."
+this.microhelp = "Inserts a picture from a graphics file"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_insertpicture")
 end event
 
+on m_picture.destroy
+call super::destroy
+end on
+
 type m_dash41 from menu within m_insert
 end type
 
 on m_dash41.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash41.destroy
+call super::destroy
 end on
 
 type m_object from menu within m_insert
 end type
 
 on m_object.create
-this.Text="&Object..."
-this.Microhelp="Inserts an object"
-this.ShiftToRight=true
+call super::create
+this.text = "&Object..."
+this.microhelp = "Inserts an object"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_insertobject")
 end event
 
+on m_object.destroy
+call super::destroy
+end on
+
 type m_tools from menu within pfc_m_master
 m_toolbars m_toolbars
 end type
 
 on m_tools.create
-this.Text="&Tools"
+call super::create
+this.text = "&Tools"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_toolbars=create m_toolbars
-this.Item[]={this.m_toolbars}
+this.Item[UpperBound(this.Item)+1]=this.m_toolbars
 end on
 
 on m_tools.destroy
+call super::destroy
 destroy(this.m_toolbars)
 end on
 
@@ -1610,14 +3132,36 @@ type m_toolbars from menu within m_tools
 end type
 
 on m_toolbars.create
-this.Text="&Customize Toolbars..."
-this.Microhelp="Arranges toolbar buttons"
-this.ShiftToRight=true
+call super::create
+this.text = "&Customize Toolbars..."
+this.microhelp = "Arranges toolbar buttons"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;SetPointer (hourglass!)
 of_SendMessage ("pfc_toolbars")
 end event
+
+on m_toolbars.destroy
+call super::destroy
+end on
 
 type m_window from menu within pfc_m_master
 m_cascade m_cascade
@@ -1630,9 +3174,27 @@ m_undoarrange m_undoarrange
 end type
 
 on m_window.create
-this.Text="&Window"
-this.ShiftToRight=true
-this.MergeOption=WindowMenu!
+call super::create
+this.text = "&Window"
+this.shifttoright = true
+this.mergeoption = windowmenu!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_cascade=create m_cascade
 this.m_tilehorizontal=create m_tilehorizontal
 this.m_tilevertical=create m_tilevertical
@@ -1640,16 +3202,17 @@ this.m_layer=create m_layer
 this.m_dash51=create m_dash51
 this.m_minimizeall=create m_minimizeall
 this.m_undoarrange=create m_undoarrange
-this.Item[]={this.m_cascade, &
-this.m_tilehorizontal, &
-this.m_tilevertical, &
-this.m_layer, &
-this.m_dash51, &
-this.m_minimizeall, &
-this.m_undoarrange}
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_tilehorizontal
+this.Item[UpperBound(this.Item)+1]=this.m_tilevertical
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_dash51
+this.Item[UpperBound(this.Item)+1]=this.m_minimizeall
+this.Item[UpperBound(this.Item)+1]=this.m_undoarrange
 end on
 
 on m_window.destroy
+call super::destroy
 destroy(this.m_cascade)
 destroy(this.m_tilehorizontal)
 destroy(this.m_tilevertical)
@@ -1763,91 +3326,245 @@ type m_cascade from menu within m_window
 end type
 
 on m_cascade.create
-this.Text="&Cascade"
-this.Microhelp="Cascade windows so that each title bar is visible"
-this.ToolBarItemName="Cascade!"
-this.ToolBarItemText="Cascade"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=220
-this.ToolBarItemSpace=2
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade windows so that each title bar is visible"
+this.toolbaritemvisible = false
+this.toolbaritemname = "cascade!"
+this.toolbaritemtext = "Cascade"
+this.toolbaritemorder = 220
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_cascade")
 end event
 
+on m_cascade.destroy
+call super::destroy
+end on
+
 type m_tilehorizontal from menu within m_window
 end type
 
 on m_tilehorizontal.create
-this.Text="Tile &Horizontal"
-this.Microhelp="Tile windows horizontally so that none are overlapping"
-this.ToolBarItemName="Horizontal!"
-this.ToolBarItemText="Tile Horizontal"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=225
+call super::create
+this.text = "Tile &Horizontal"
+this.microhelp = "Tile windows horizontally so that none are overlapping"
+this.toolbaritemvisible = false
+this.toolbaritemname = "horizontal!"
+this.toolbaritemtext = "Tile Horizontal"
+this.toolbaritemorder = 225
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_tilehorizontal")
 end event
 
+on m_tilehorizontal.destroy
+call super::destroy
+end on
+
 type m_tilevertical from menu within m_window
 end type
 
 on m_tilevertical.create
-this.Text="Tile &Vertical"
-this.Microhelp="Tile windows vertically so that none are overlapping"
-this.ToolBarItemName="Tile!"
-this.ToolBarItemText="Tile Vertical"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=230
+call super::create
+this.text = "Tile &Vertical"
+this.microhelp = "Tile windows vertically so that none are overlapping"
+this.toolbaritemvisible = false
+this.toolbaritemname = "tile!"
+this.toolbaritemtext = "Tile Vertical"
+this.toolbaritemorder = 230
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_tilevertical")
 end event
 
+on m_tilevertical.destroy
+call super::destroy
+end on
+
 type m_layer from menu within m_window
 end type
 
 on m_layer.create
-this.Text="&Layer"
-this.Microhelp="Layer windows so that each one completely covers the one below it"
-this.ToolBarItemName="Layer!"
-this.ToolBarItemText="Layer"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=235
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer windows so that each one completely covers the one below it"
+this.toolbaritemvisible = false
+this.toolbaritemname = "layer!"
+this.toolbaritemtext = "Layer"
+this.toolbaritemorder = 235
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_layer")
 end event
 
+on m_layer.destroy
+call super::destroy
+end on
+
 type m_dash51 from menu within m_window
 end type
 
 on m_dash51.create
-this.Text="-"
+call super::create
+this.text = "-"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash51.destroy
+call super::destroy
 end on
 
 type m_minimizeall from menu within m_window
 end type
 
 on m_minimizeall.create
-this.Text="&Minimize All Windows"
-this.Microhelp="Minimizes all windows"
+call super::create
+this.text = "&Minimize All Windows"
+this.microhelp = "Minimizes all windows"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_minimizeall")
 end event
 
+on m_minimizeall.destroy
+call super::destroy
+end on
+
 type m_undoarrange from menu within m_window
 end type
 
 on m_undoarrange.create
-this.Text="&Undo"
-this.Microhelp="Undo"
+call super::create
+this.text = "&Undo"
+this.microhelp = "Undo"
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 end on
 
 event clicked;of_SendMessage ("pfc_undoarrange")
 end event
+
+on m_undoarrange.destroy
+call super::destroy
+end on
 
 type m_help from menu within pfc_m_master
 m_helptopics m_helptopics
@@ -1856,17 +3573,36 @@ m_about m_about
 end type
 
 on m_help.create
-this.Text="&Help"
-this.ShiftToRight=true
+call super::create
+this.text = "&Help"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
 this.m_helptopics=create m_helptopics
 this.m_dash61=create m_dash61
 this.m_about=create m_about
-this.Item[]={this.m_helptopics, &
-this.m_dash61, &
-this.m_about}
+this.Item[UpperBound(this.Item)+1]=this.m_helptopics
+this.Item[UpperBound(this.Item)+1]=this.m_dash61
+this.Item[UpperBound(this.Item)+1]=this.m_about
 end on
 
 on m_help.destroy
+call super::destroy
 destroy(this.m_helptopics)
 destroy(this.m_dash61)
 destroy(this.m_about)
@@ -1879,21 +3615,65 @@ on clicked;of_SendMessage ("pfc_help")
 end on
 
 on m_helptopics.create
-this.Text="&Help Topics"
-this.Microhelp="Displays help topics"
-this.ToolBarItemName="helptop.bmp"
-this.ToolBarItemText="Help Topics"
-this.ToolBarItemVisible=false
-this.ToolBarItemOrder=255
-this.ToolBarItemSpace=2
+call super::create
+this.text = "&Help Topics"
+this.microhelp = "Displays help topics"
+this.toolbaritemvisible = false
+this.toolbaritemname = "helptop.bmp"
+this.toolbaritemtext = "Help Topics"
+this.toolbaritemorder = 255
+this.toolbaritemspace = 2
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_helptopics.destroy
+call super::destroy
 end on
 
 type m_dash61 from menu within m_help
 end type
 
 on m_dash61.create
-this.Text="-"
-this.ShiftToRight=true
+call super::create
+this.text = "-"
+this.shifttoright = true
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_dash61.destroy
+call super::destroy
 end on
 
 type m_about from menu within m_help
@@ -1905,9 +3685,31 @@ gnv_app.of_about()
 end event
 
 on m_about.create
-this.Text="&About"
-this.Microhelp="Displays program information"
-this.ShiftToRight=true
-this.MenuItemType=MenuItemTypeAbout!
+call super::create
+this.text = "&About"
+this.microhelp = "Displays program information"
+this.shifttoright = true
+this.menuitemtype = menuitemtypeabout!
+this.menustyle = contemporarymenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 1073741824
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbarstyle = contemporarytoolbar!
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 1073741824
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_about.destroy
+call super::destroy
 end on
 

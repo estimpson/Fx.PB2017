@@ -554,7 +554,7 @@ public function boolean isselected (long r);if UpperBound(IsSelected) > 0 then
 		return false
 	end if
 else
-	return this.IsSelected(r)
+	return super::IsSelected(r)
 end if
 
 end function

@@ -33,6 +33,7 @@ end event
 
 on w_po_inquiry.create
 call super::create
+if IsValid(this.MenuID) then destroy(this.MenuID)
 if this.MenuName = "m_po_inquiry" then this.MenuID = create m_po_inquiry
 end on
 
@@ -135,7 +136,7 @@ string dataobject = "d_po_inquiry"
 boolean hsplitscroll = true
 end type
 
-event dw_inquiry::doubleclicked;string	l_s_type
+event dw_inquiry::doubleclicked;call super::doubleclicked;string	l_s_type
 Long 	   l_l_po_number
 
 dw_inquiry.DBcancel()
@@ -153,14 +154,14 @@ else
 end if
 end event
 
-event dw_inquiry::clicked;call super::clicked;Long 	   l_l_po_number
-
-dw_inquiry.DBcancel()
+event dw_inquiry::clicked;call super::clicked;//Long 	   l_l_po_number
+//
+//dw_inquiry.DBcancel()
 
 if row < 1 then return
 
-l_l_po_number = GetItemNumber ( row, "po_number" )
-i_l_po_number = l_l_po_number
+i_l_po_number = GetItemNumber ( row, "po_number" )
+
 
 end event
 
