@@ -10,13 +10,13 @@ type gb_2 from u_gb_dropship within w_dropship_main
 end type
 type gb_1 from u_gb_dropship within w_dropship_main
 end type
-type dw_orderdetail from u_dw within w_dropship_main
+type dw_orderdetail from u_fxdw within w_dropship_main
 end type
-type dw_podetail from u_dw within w_dropship_main
+type dw_podetail from u_fxdw within w_dropship_main
 end type
-type dw_shipperdetail from u_dw within w_dropship_main
+type dw_shipperdetail from u_fxdw within w_dropship_main
 end type
-type dw_shipper from u_dw within w_dropship_main
+type dw_shipper from u_fxdw within w_dropship_main
 end type
 type st_hsplit1 from u_st_splitbar within w_dropship_main
 end type
@@ -933,7 +933,7 @@ is_Message = { "Drag to PO or Shipper", "Drop to delete PO", "Drop to delete Shi
 
 end event
 
-type dw_orderdetail from u_dw within w_dropship_main
+type dw_orderdetail from u_fxdw within w_dropship_main
 string tag = "orders"
 integer x = 37
 integer y = 72
@@ -1030,7 +1030,7 @@ end choose
 
 end event
 
-type dw_podetail from u_dw within w_dropship_main
+type dw_podetail from u_fxdw within w_dropship_main
 string tag = "podetail"
 integer x = 1253
 integer y = 72
@@ -1113,7 +1113,7 @@ end choose
 
 end event
 
-type dw_shipperdetail from u_dw within w_dropship_main
+type dw_shipperdetail from u_fxdw within w_dropship_main
 string tag = "shipperdetail"
 integer x = 1253
 integer y = 728
@@ -1174,7 +1174,7 @@ end choose
 
 end event
 
-type dw_shipper from u_dw within w_dropship_main
+type dw_shipper from u_fxdw within w_dropship_main
 string tag = "shipperhead"
 integer x = 32
 integer y = 728
