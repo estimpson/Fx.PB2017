@@ -1,0 +1,93 @@
+﻿$PBExportHeader$customreport_inventory_value.srd
+$PBExportComments$Same report as above but with the detail to trouble shoot problem. "A" OK SA 5/27/99
+release 10;
+datawindow(units=2 timer_interval=0 color=12632256 processing=0 HTMLDW=no print.printername="" print.documentname="Inventory Value" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=875 color="536870912" )
+summary(height=375 color="536870912" )
+footer(height=229 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="quantity" )
+ column=(type=char(2) updatewhereclause=yes name=unit dbname="unit" )
+ column=(type=decimal(9) updatewhereclause=yes name=weight dbname="weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=cost dbname="cost" )
+ column=(type=decimal(6) updatewhereclause=yes name=price dbname="price" )
+ column=(type=long updatewhereclause=yes name=serial dbname="serial" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="plant" )
+ column=(type=char(100) updatewhereclause=yes name=name dbname="name" )
+ column=(type=char(50) updatewhereclause=yes name=cross_ref dbname="cross_ref" )
+ column=(type=char(1) updatewhereclause=yes name=part_class dbname="class" )
+ column=(type=char(1) updatewhereclause=yes name=part_type dbname="type" )
+ column=(type=decimal(6) updatewhereclause=yes name=price1 dbname="price1" )
+ retrieve="
+select
+	part = object.PartCode
+,	quantity = object.StdQty
+,	unit = object.UnitMeasure
+,	weight = object.StdQty * pi.unit_weight
+,	part_standard.cost
+,	part_standard.price
+,	serial = object.ObjectSerial
+,	plant = upper(coalesce(location.plant,'PLANT 1'))
+,	part.name
+,	part.cross_ref
+,	part.class
+,	part.type
+,	Best1PiecePrice.Price as price1
+from
+	part
+	join dbo.udf_GetInventory_FromDT (:InventoryDate) object
+		on object.PartCode = part.part
+	left outer join location
+		on object.LocationCode = location.code
+	join part_standard
+		on part.part = part_standard.part
+	join dbo.part_inventory pi
+		on pi.part = part.part
+	left join REPORT_Best1PiecePrice Best1PiecePrice
+		on part.part = Best1PiecePrice.Part
+where
+	object.LocationCode != 'PRE-OBJECT'
+	and part.class = left(:classType, 1)
+	and part.type = right(:classType, 1)
+
+" arguments=(("inventoryDate", datetime),("classType", string))  sort="plant A part A " )
+group(level=1 header.height=406 trailer.height=10 by=("plant" ) newpage=yes header.color="553648127" trailer.color="536870912" )
+group(level=2 header.height=166 trailer.height=0 by=("part" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="Inventory List" border="0" color="33554432" x="10" y="218" height="250" width="1833" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" font.underline="1" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="InventoryDate"border="0" color="33554432" x="1885" y="250" height="187" width="1541" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="1" text="Quantity" border="0" color="33554432" x="4520" y="198" height="166" width="1093" html.valueishtml="0"  name=quantity_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Price" border="0" color="33554432" x="5760" y="198" height="166" width="843" html.valueishtml="0"  name=cost_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Value" border="0" color="33554432" x="7156" y="198" height="166" width="375" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text=" Value:" border="0" color="33554432" x="895" y="10" height="166" width="718" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="sum( quantity  *   price1   for group 1) "border="0" color="33554432" x="1677" y="21" height="166" width="833" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="65% of Value:" border="0" color="33554432" x="2677" y="21" height="166" width="979" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="sum( quantity  *  price1   for group 1)*.65 "border="0" color="33554432" x="3750" y="21" height="166" width="833" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="41" y="10" height="156" width="833" format="[general]" html.valueishtml="0"  name=plant visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.2 alignment="1" expression="sum(quantity for group 2)"border="0" color="33554432" x="4677" y="11" height="166" width="937" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=13 alignment="1" tabsequence=32766 border="0" color="33554432" x="5750" y="11" height="145" width="927" format="#,##0.0000" html.valueishtml="0"  name=price1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.2 alignment="1" expression=" sum( quantity  *  price1   for group 2) "border="0" color="33554432" x="6718" y="11" height="166" width="812" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="218" y="11" height="145" width="1135" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1385" y="11" height="145" width="500" format="[general]" html.valueishtml="0"  name=cross_ref visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1927" y="11" height="145" width="2697" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial Narrow" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="/*  quantity  *  part_standard_price  */"border="0" color="33554432" x="7020" y="0" height="166" width="500" format="[general]" html.valueishtml="0"  name=object_value visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="7531" y="0" height="166" width="125" format="[general]" html.valueishtml="0"  name=unit visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="7656" y="0" height="166" width="62" format="[general]" html.valueishtml="0"  name=part_class visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="7718" y="0" height="166" width="62" format="[general]" html.valueishtml="0"  name=part_type visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="531" y1="21" x2="7104" y2="11"  name=l_1 visible="1" pen.style="0" pen.width="20" pen.color="33554432"  background.mode="2" background.color="0" )
+text(band=summary alignment="1" text="TOTAL INVENTORY DOLLARS" border="0" color="33554432" x="4625" y="52" height="145" width="2000" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( quantity  *   price1   for all)"border="0" color="33554432" x="6718" y="42" height="166" width="812" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="1" text="65% of TOTAL INVENTORY DOLLARS" border="0" color="33554432" x="4125" y="219" height="145" width="2489" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( quantity  *   price1   for all)*.65 "border="0" color="33554432" x="6718" y="209" height="166" width="812" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="93" y="52" height="166" width="1760" format="[general]" html.valueishtml="0"  name=compute_8 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

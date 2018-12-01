@@ -1,0 +1,67 @@
+﻿$PBExportHeader$customreport_unitsales_in_date_range.srd
+$PBExportComments$Same report as above but with the detail to trouble shoot problem. "A" OK SA 5/27/99
+release 10;
+datawindow(units=2 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="Unit Sales In Date Range" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=1333 color="536870912" )
+summary(height=708 color="536870912" )
+footer(height=364 color="536870912" )
+detail(height=229 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=customer_customer dbname="customer.customer" )
+ column=(type=char(50) updatewhereclause=yes name=customer_name dbname="customer.name" )
+ column=(type=decimal(6) updatewhereclause=yes name=compute_0003 dbname="compute_0003" )
+ column=(type=char(50) updatewhereclause=yes name=parameters_company_name dbname="parameters.company_name" )
+ column=(type=decimal(6) updatewhereclause=yes name=compute_0005 dbname="compute_0005" )
+ retrieve="select	customer.customer,
+	customer.name,
+	sum(shipper_detail.qty_packed),
+	parameters.company_name,
+	sum(shipper_detail.alternative_qty*isnull(alternate_price,0))
+from	shipper
+	join shipper_detail on shipper.id = shipper_detail.shipper
+	join customer on shipper.customer = customer.customer
+	join part on shipper_detail.part_original = part.part
+	cross join parameters
+where	shipper.date_shipped >= :from_date and
+	shipper.date_shipped < :to_date + 1 and
+	shipper_detail.alternate_price > 0 and
+	isnull(part.gl_account_code, '0') like '3030%' and
+	shipper_detail.part_original not like '%MISCELLANEOUS%' and
+	shipper_detail.part_original not like '%TOOLING%'
+group by
+	customer.customer,
+	customer.name,
+	parameters.company_name   
+" arguments=(("from_date", datetime),("to_date", datetime))  sort="customer_customer A " )
+compute(band=header alignment="0" expression="today()"border="0" color="33554432" x="187" y="312" height="166" width="750" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Customer:" border="0" color="33554432" x="104" y="1114" height="166" width="687" html.valueishtml="0"  name=customer_customer_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Name:" border="0" color="33554432" x="1583" y="1114" height="166" width="437" html.valueishtml="0"  name=customer_name_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Quantity Shipped" border="0" color="33554432" x="4531" y="1114" height="166" width="1156" html.valueishtml="0"  name=compute_0003_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Sales" border="0" color="33554432" x="6552" y="1114" height="166" width="385" html.valueishtml="0"  name=compute_0004_t visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="2906" y="156" height="166" width="2083" format="[general]" html.valueishtml="0"  name=parameters_company_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Number of Parts Shipped" border="0" color="33554432" x="3041" y="375" height="166" width="1843" html.valueishtml="0"  name=t_1 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="From : " border="0" color="33554432" x="3270" y="604" height="166" width="531" html.valueishtml="0"  name=t_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" from_date "border="0" color="33554432" x="3885" y="604" height="166" width="1197" format="mm-dd-yyyy" html.valueishtml="0"  name=compute_2 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="To : " border="0" color="33554432" x="3447" y="833" height="166" width="354" html.valueishtml="0"  name=t_3 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" to_date "border="0" color="33554432" x="3885" y="833" height="166" width="1197" format="mm-dd-yyyy" html.valueishtml="0"  name=compute_3 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="104" y="31" height="166" width="1187" format="[general]" html.valueishtml="0"  name=customer_customer  tag="Customer code " visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1583" y="31" height="166" width="2614" format="[general]" html.valueishtml="0"  name=customer_name  tag="name of the customer " visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="4739" y="31" height="197" width="958" format="#,##0" html.valueishtml="0"  name=compute_0003 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="5989" y="21" height="166" width="1135" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_0005 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Totals : " border="0" color="33554432" x="3927" y="156" height="166" width="541" html.valueishtml="0"  name=t_4 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(compute_0003 for all)"border="0" color="33554432" x="4739" y="145" height="197" width="958" format="#,##0" html.valueishtml="0"  name=compute_4 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=summary x1="4614" y1="62" x2="7125" y2="62"  name=l_1 visible="1" pen.style="0" pen.width="10" pen.color="33554432"  background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum(compute_0005 for all) "border="0" color="33554432" x="5989" y="145" height="197" width="1135" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=two visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=summary x1="4614" y1="437" x2="7125" y2="437"  name=l_2 visible="1" pen.style="0" pen.width="10" pen.color="33554432"  background.mode="2" background.color="16777215" )
+line(band=summary x1="4614" y1="406" x2="7125" y2="406"  name=l_3 visible="1" pen.style="0" pen.width="10" pen.color="33554432"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="3531" y="83" height="166" width="1760" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="MS Sans Serif" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,64 @@
+﻿$PBExportHeader$d_custom_moldingcolorletdown.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=no hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) update=yes updatewhereclause=no key=yes name=moldapplication dbname="MoldApplication" initial="" values="" )
+ column=(type=char(25) update=yes updatewhereclause=no key=yes name=basematerialcode dbname="BaseMaterialCode" initial="" values="" )
+ column=(type=char(5) update=yes updatewhereclause=no key=yes name=colorcode dbname="ColorCode" initial="" values="" )
+ column=(type=char(30) update=yes updatewhereclause=no name=colorname dbname="ColorName" initial="" values="" )
+ column=(type=char(25) update=yes updatewhereclause=no name=colorantcode dbname="ColorantCode" initial="" values="" )
+ column=(type=decimal(2) update=yes updatewhereclause=no name=letdownrate dbname="LetDownRate" initial="0" values="" )
+ column=(type=long updatewhereclause=no name=status dbname="Status" initial="0" values="" )
+ column=(type=long updatewhereclause=no name=type dbname="Type" initial="0" values="" )
+ column=(type=long updatewhereclause=no name=rowid dbname="RowID" initial="0" values="" )
+ column=(type=datetime updatewhereclause=no name=rowcreatedt dbname="RowCreateDT" initial="Today()" values="" )
+ column=(type=char(128) updatewhereclause=no name=rowcreateuser dbname="RowCreateUser" initial="" values="" )
+ column=(type=datetime updatewhereclause=no name=rowmodifieddt dbname="RowModifiedDT" initial="Today()" values="" )
+ column=(type=char(128) updatewhereclause=no name=rowmodifieduser dbname="RowModifiedUser" initial="" values="" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" initial="" values="" )
+ column=(type=long updatewhereclause=no name=isselected dbname="IsSelected" initial="" values="" )
+ retrieve="select
+	MoldApplication
+,	BaseMaterialCode
+,	ColorCode
+,	ColorName
+,	ColorantCode
+,	LetDownRate
+,	Status
+,	Type
+,	RowID
+,	RowCreateDT
+,	RowCreateUser
+,	RowModifiedDT
+,	RowModifiedUser
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	custom.MoldingColorLetdown" update="custom.MoldingColorLetdown" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="0" text="Mold application" border="6" color="33554432" x="9" y="12" height="72" width="567" html.valueishtml="0"  name=moldapplication_t  tag="Mold application" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Base material" border="6" color="33554432" x="585" y="12" height="72" width="462" html.valueishtml="0"  name=basematerialcode_t  tag="Base material" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Color code" border="6" color="33554432" x="1056" y="12" height="72" width="347" html.valueishtml="0"  name=colorcode_t  tag="Color code" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Color name" border="6" color="33554432" x="1413" y="12" height="72" width="411" html.valueishtml="0"  name=colorname_t  tag="Color name" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Colorant material" border="6" color="33554432" x="1833" y="12" height="72" width="416" html.valueishtml="0"  name=colorantcode_t  tag="Colorant material" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Let down rate" border="6" color="33554432" x="2258" y="12" height="72" width="293" html.valueishtml="0"  name=letdownrate_t  tag="Let down rate" visible="1"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+button(band=header text="Save" filename="" enabled=yes action="13" border="0" color="33554432" x="2688" y="4" height="84" width="229" vtextalign="0" htextalign="0"  name=b_save visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="12" height="76" width="567" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=moldapplication  tag="String value..." visible="1" dddw.name=d_Soofktikyj dddw.displaycolumn=id dddw.datacolumn=id dddw.percentwidth=284 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],1,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="585" y="12" height="76" width="462" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=basematerialcode  tag="Part number..." visible="1" dddw.name=d_Tktjmtbktp dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=251 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1056" y="12" height="76" width="347" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=colorcode  tag="The color code must match the color code suffix of the finished part (e.g. B, BUR, GB, etc.)" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],3,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="1413" y="12" height="76" width="411" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=colorname  tag="Name of the color..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],4,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="33554432" x="1833" y="12" height="76" width="416" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=colorantcode  tag="Part number..." visible="1" dddw.name=d_Tktjmtbktp dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=251 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=6 alignment="1" tabsequence=60 border="0" color="33554432" x="2258" y="12" height="76" width="293" format="#,##0.000000 ;[red](#,##0.000000) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=letdownrate  tag="The rate by which the base material will be decreased and colorant will be used..." visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],6,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

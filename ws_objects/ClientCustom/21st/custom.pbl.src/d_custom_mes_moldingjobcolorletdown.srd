@@ -1,0 +1,66 @@
+﻿$PBExportHeader$d_custom_mes_moldingjobcolorletdown.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=no hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(50) updatewhereclause=yes name=workordernumber dbname="MES_MoldingJobColorLetDown.WorkOrderNumber" initial="" values="" )
+ column=(type=long updatewhereclause=yes key=yes name=wodid dbname="MES_MoldingJobColorLetDown.WODID" initial="0" values="" )
+ column=(type=number updatewhereclause=yes name=workorderdetailline dbname="MES_MoldingJobColorLetDown.WorkOrderDetailLine" initial="0" values="" )
+ column=(type=char(25) updatewhereclause=yes name=basematerialcode dbname="MES_MoldingJobColorLetDown.BaseMaterialCode" initial="" values="" )
+ column=(type=char(25) updatewhereclause=yes name=colorantcode dbname="MES_MoldingJobColorLetDown.ColorantCode" initial="" values="" )
+ column=(type=decimal(2) updatewhereclause=yes name=stdletdownrate dbname="MES_MoldingJobColorLetDown.StdLetDownRate" initial="0" values="" )
+ column=(type=decimal(18) update=yes updatewhereclause=yes name=jobletdownrate dbname="MES_MoldingJobColorLetDown.JobLetDownRate" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=pieceweight dbname="MES_MoldingJobColorLetDown.PieceWeight" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=basematerialweight dbname="MES_MoldingJobColorLetDown.BaseMaterialWeight" initial="0" values="" )
+ column=(type=decimal(6) updatewhereclause=yes name=colorantweight dbname="MES_MoldingJobColorLetDown.ColorantWeight" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=basematerialwodbomid dbname="MES_MoldingJobColorLetDown.BaseMaterialWODBOMID" initial="0" values="" )
+ column=(type=long updatewhereclause=yes name=colorantmaterialwodbomid dbname="MES_MoldingJobColorLetDown.ColorantMaterialWODBOMID" initial="0" values="" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" initial="" values="" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" initial="" values="" )
+ retrieve="select
+	WorkOrderNumber
+,	WODID
+,	WorkOrderDetailLine
+,	BaseMaterialCode
+,	ColorantCode
+,	StdLetDownRate
+,	JobLetDownRate
+,	PieceWeight
+,	BaseMaterialWeight
+,	ColorantWeight
+,	BaseMaterialWODBOMID
+,	ColorantMaterialWODBOMID
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	custom.MES_MoldingJobColorLetDown
+where
+	WODID = :WODID
+" update="custom.MES_MoldingJobColorLetDown" updatewhere=0 updatekeyinplace=no arguments=(("WODID", number)) )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="33554432" x="9" y="12" height="76" width="475" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=basematerialcode  tag="Part number..." visible="1" dddw.name=d_Ufzuznzczy dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=251 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],4,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="494" y="12" height="76" width="366" format=" [general] ; <Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=colorantcode  tag="Part number..." visible="1" dddw.name=d_Ufzuznzczy dddw.displaycolumn=part dddw.datacolumn=part dddw.percentwidth=251 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=6 alignment="1" tabsequence=30 border="0" color="33554432" x="869" y="12" height="76" width="489" format="#,##0.000000% ;[red](#,##0.000000%) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=stdletdownrate  tag="stdletdownrate" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],6,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=7 alignment="1" tabsequence=40 border="0" color="33554432" x="1367" y="12" height="76" width="475" format="#,##0.000000% ;[red](#,##0.000000%) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,0)"  name=jobletdownrate  tag="jobletdownrate" visible="1" editmask.mask="##.00##%" editmask.focusrectangle=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],7,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=8 alignment="1" tabsequence=50 border="0" color="33554432" x="1851" y="12" height="76" width="384" format="#,##0.00#### ;(#,##0.00####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=pieceweight  tag="pieceweight" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],8,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=9 alignment="1" tabsequence=60 border="0" color="33554432" x="2245" y="12" height="76" width="585" format="#,##0.00#### ;(#,##0.00####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=basematerialweight  tag="basematerialweight" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],9,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=10 alignment="1" tabsequence=70 border="0" color="33554432" x="2839" y="12" height="76" width="425" format="#,##0.00#### ;(#,##0.00####) ;- ;<Null>" html.valueishtml="0" protect="0~tif(isRowNew(),0,1)"  name=colorantweight  tag="colorantweight" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(mid(Change[0],10,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+text(band=header alignment="0" text="Base material" border="6" color="33554432" x="9" y="12" height="76" width="475" html.valueishtml="0"  name=basematerialcode_t  tag="Base material" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Colorant" border="6" color="33554432" x="494" y="12" height="76" width="366" html.valueishtml="0"  name=colorantcode_t  tag="Colorant" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Std. let down rate" border="6" color="33554432" x="869" y="12" height="76" width="489" html.valueishtml="0"  name=stdletdownrate_t  tag="Std. let down rate" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Job let down rate" border="6" color="33554432" x="1367" y="12" height="76" width="475" html.valueishtml="0"  name=jobletdownrate_t  tag="Job let down rate" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Piece weight" border="6" color="33554432" x="1851" y="12" height="76" width="384" html.valueishtml="0"  name=pieceweight_t  tag="Piece weight" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Base material weight" border="6" color="33554432" x="2245" y="12" height="76" width="585" html.valueishtml="0"  name=basematerialweight_t  tag="Base material weight" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Colorant weight" border="6" color="33554432" x="2839" y="12" height="76" width="425" html.valueishtml="0"  name=colorantweight_t  tag="Colorant weight" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 
