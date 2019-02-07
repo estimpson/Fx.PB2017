@@ -1,0 +1,2 @@
+﻿$PBExportHeader$master_prod_schedule_query.srq
+PBSELECT( VERSION(400) TABLE(NAME="dbo.master_prod_sched" ) COLUMN(NAME="dbo.master_prod_sched.part") COLUMN(NAME="dbo.master_prod_sched.due") COLUMN(NAME="dbo.master_prod_sched.source") COLUMN(NAME="dbo.master_prod_sched.origin") COLUMN(NAME="dbo.master_prod_sched.source2") COLUMN(NAME="dbo.master_prod_sched.qnty") COLUMN(NAME="dbo.master_prod_sched.qty_completed") COLUMN(NAME="dbo.master_prod_sched.qty_assigned") COLUMN(NAME="dbo.master_prod_sched.id") COLUMN(NAME="dbo.master_prod_sched.parent_id"))

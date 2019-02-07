@@ -1,0 +1,57 @@
+﻿$PBExportHeader$d_emp_poheaders.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=ponumber dbname="Empower_EditPOs_POHeaders.PONumber" )
+ column=(type=char(25) updatewhereclause=yes name=vendor dbname="Empower_EditPOs_POHeaders.Vendor" )
+ column=(type=datetime updatewhereclause=yes name=gldate dbname="Empower_EditPOs_POHeaders.GLDate" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=terms dbname="Empower_EditPOs_POHeaders.Terms" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=crledgeracct dbname="Empower_EditPOs_POHeaders.CRLedgerAcct" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=buyunit dbname="Empower_EditPOs_POHeaders.BuyUnit" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=payunit dbname="Empower_EditPOs_POHeaders.PayUnit" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	eepph.PONumber
+,	eepph.Vendor
+,	eepph.GLDate
+,	eepph.Terms
+,	eepph.CRLedgerAcct
+,	eepph.BuyUnit
+,	eepph.PayUnit
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	FT.Empower_EditPOs_POHeaders eepph
+order by
+	eepph.PONumber
+" update="FT.Empower_EditPOs_POHeaders" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="0" text="PO number" border="6" color="33554432" x="69" y="8" height="76" width="713" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Vendor" border="6" color="33554432" x="791" y="8" height="76" width="713" html.valueishtml="0"  name=vendor_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="GL date" border="6" color="33554432" x="1513" y="8" height="76" width="608" html.valueishtml="0"  name=gldate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="50" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="69" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=ponumber visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="791" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=vendor visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1513" y="8" height="76" width="608" format="[shortdate] [time]" html.valueishtml="0"  name=gldate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="0" color="33554432" x="2130" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=terms visible="1" dddw.name=d_emp_poheader_termslist dddw.displaycolumn=terms dddw.datacolumn=terms dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="33554432" x="3301" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=buyunit visible="1" dddw.name=d_emp_poheader_buyunitlist dddw.displaycolumn=buyunit dddw.datacolumn=buyunit dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="33554432" x="3886" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=payunit visible="1" dddw.name=d_emp_poheader_payunitlist dddw.displaycolumn=payunit dddw.datacolumn=payunit dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="2715" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=crledgeracct visible="1" dddw.name=d_emp_poheader_cracctlist dddw.displaycolumn=crledgeracct dddw.datacolumn=crledgeracct dddw.percentwidth=140 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Terms" border="6" color="134217742" x="2130" y="8" height="76" width="576" html.valueishtml="0"  name=terms_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Cr. Acct." border="6" color="134217742" x="2715" y="8" height="76" width="576" html.valueishtml="0"  name=crledgeracct_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Buy unit" border="6" color="134217742" x="3301" y="8" height="76" width="576" html.valueishtml="0"  name=buyunit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+text(band=header alignment="0" text="Pay unit" border="6" color="134217742" x="3886" y="8" height="76" width="576" html.valueishtml="0"  name=payunit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

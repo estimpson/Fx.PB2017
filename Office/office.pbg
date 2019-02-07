@@ -1,0 +1,9 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Office.pbl" "";
+@end;
+@begin Objects
+ "office\\d_scanbox.srd" "office\\Office.pbl";
+ "office\\u_scannerbox.sru" "office\\Office.pbl";
+ "office\\n_cst_fxframe_controller.sru" "office\\Office.pbl";
+@end;

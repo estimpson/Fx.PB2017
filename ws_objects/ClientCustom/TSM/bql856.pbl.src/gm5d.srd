@@ -1,0 +1,45 @@
+﻿$PBExportHeader$gm5d.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=504 color="-1" )
+table(column=(type=char(35) updatewhereclause=yes name=part dbname="order_header.customer_part" )
+ column=(type=char(25) updatewhereclause=yes name=po dbname="shipper_detail.customer_po" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum_shipped dbname="shipper_detail.accum_shipped" )
+ column=(type=long updatewhereclause=yes name=boxes_staged dbname="shipper_detail.boxes_staged" )
+ retrieve="select
+    order_header.customer_part
+,   shipper_detail.customer_po
+,   shipper_detail.qty_packed
+,   shipper_detail.accum_shipped
+,   shipper_detail.boxes_staged
+from
+    shipper_detail
+	left join order_header on order_header.order_no = shipper_detail.order_no
+where
+    shipper_detail.shipper = :ishipper" arguments=(("iShipper", number)) )
+compute(band=detail alignment="0" expression="string ( boxes_staged)"border="0" color="0" x="37" y="36" height="64" width="974" format="[GENERAL]" html.valueishtml="0"  name=item_boxes_staged visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="116" height="80" width="974" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String ( Truncate ( qty_packed, 0 ) )"border="0" color="0" x="37" y="212" height="72" width="974" format="[GENERAL]" html.valueishtml="0"  name=quantity_packed visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="String ( accum_shipped )"border="0" color="0" x="37" y="300" height="72" width="974" format="[GENERAL]" html.valueishtml="0"  name=accum visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="item_boxes_staged" border="0" color="0" x="1029" y="36" height="64" width="663" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="part" border="0" color="0" x="1029" y="116" height="80" width="663" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="quantity_packed" border="0" color="0" x="1029" y="212" height="72" width="663" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="accum" border="0" color="0" x="1029" y="300" height="72" width="663" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="string(getrow())"border="0" color="0" x="1906" y="192" height="64" width="457" format="[GENERAL]" html.valueishtml="0"  name=loop_generator visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="loop generator" border="0" color="0" x="1906" y="268" height="68" width="457" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="388" height="64" width="974" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="po" border="0" color="0" x="1029" y="388" height="64" width="667" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

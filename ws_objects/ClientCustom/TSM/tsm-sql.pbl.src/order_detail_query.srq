@@ -1,0 +1,2 @@
+﻿$PBExportHeader$order_detail_query.srq
+PBSELECT( VERSION(400) TABLE(NAME="order_detail" ) COLUMN(NAME="order_detail.part_number") COLUMN(NAME="order_detail.destination") COLUMN(NAME="order_detail.due_date") COLUMN(NAME="order_detail.quantity")WHERE(    EXP1 ="dbo.order_detail.part_number"   OP ="like"    EXP2 =":Enter_Part_Number" ) ) ORDER(NAME="order_detail.part_number" ASC=yes )  ORDER(NAME="order_detail.due_date" ASC=yes ) ARG(NAME = "Enter_Part_Number" TYPE = string)

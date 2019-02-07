@@ -1,0 +1,154 @@
+﻿$PBExportHeader$m_soft_queue.srm
+forward
+global type m_soft_queue from menu
+end type
+type m_file from menu within m_soft_queue
+end type
+type m_create from menu within m_file
+end type
+type m_reset from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_soft_queue
+m_create m_create
+m_reset m_reset
+m_exit m_exit
+end type
+type m_edit from menu within m_soft_queue
+end type
+type m_edit from menu within m_soft_queue
+end type
+type m_window from menu within m_soft_queue
+end type
+type m_window from menu within m_soft_queue
+end type
+type m_help from menu within m_soft_queue
+end type
+type m_help from menu within m_soft_queue
+end type
+end forward
+
+global type m_soft_queue from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_soft_queue m_soft_queue
+
+on m_soft_queue.create
+m_soft_queue=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_soft_queue.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_soft_queue
+m_create m_create
+m_reset m_reset
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_create=create m_create
+this.m_reset=create m_reset
+this.m_exit=create m_exit
+this.Item[]={this.m_create, &
+this.m_reset, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_create)
+destroy(this.m_reset)
+destroy(this.m_exit)
+end on
+
+type m_create from menu within m_file
+end type
+
+on m_create.create
+this.Text="&Create~tAlt+C"
+this.Microhelp="Create Work Order"
+this.ToolBarItemName="Open!"
+this.ToolBarItemText="Create"
+this.ToolBarItemOrder=20
+this.Shortcut=579
+end on
+
+event clicked;w_create_jobs_from_soft_queue.Triggerevent ( 'ue_create' )
+end event
+
+type m_reset from menu within m_file
+end type
+
+on m_reset.create
+this.Text="&Reset~tAlt+R"
+this.Microhelp="Reset "
+this.ToolBarItemName="Prior5!"
+this.ToolBarItemText="Reset"
+this.ToolBarItemOrder=30
+this.Shortcut=594
+end on
+
+event clicked;w_create_jobs_from_soft_queue.Triggerevent ( 'ue_reset' )
+end event
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+event clicked;CLOSE ( w_create_jobs_from_soft_queue )
+end event
+
+type m_edit from menu within m_soft_queue
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_soft_queue
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_soft_queue
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

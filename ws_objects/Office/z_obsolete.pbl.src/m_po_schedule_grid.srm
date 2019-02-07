@@ -1,0 +1,402 @@
+﻿$PBExportHeader$m_po_schedule_grid.srm
+$PBExportComments$(mrs) New menu for PO schedule grid.
+forward
+global type m_po_schedule_grid from menu
+end type
+type m_file from menu within m_po_schedule_grid
+end type
+type m_viewdate from menu within m_file
+end type
+type m_netout from menu within m_file
+end type
+type m_rebuild from menu within m_file
+end type
+type m_visualbom from menu within m_file
+end type
+type m_savedata from menu within m_file
+end type
+type m_file from menu within m_po_schedule_grid
+m_viewdate m_viewdate
+m_netout m_netout
+m_rebuild m_rebuild
+m_visualbom m_visualbom
+m_savedata m_savedata
+end type
+type m_edit from menu within m_po_schedule_grid
+end type
+type m_window from menu within m_po_schedule_grid
+end type
+type m_tile from menu within m_window
+end type
+type m_layered from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_po_schedule_grid
+m_tile m_tile
+m_layered m_layered
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_po_schedule_grid
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_po_schedule_grid
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_po_schedule_grid from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_po_schedule_grid from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_po_schedule_grid m_po_schedule_grid
+
+forward prototypes
+public subroutine mf_unflash ()
+end prototypes
+
+public subroutine mf_unflash ();w_plant_monitor.bFlash	= FALSE
+m_plant_monitor.m_file.m_flashscreen.ToolBarItemText	= "FlashScn"
+m_plant_monitor.m_file.m_flashscreen.MicroHelp			= "Flash jobs with material shortage / order orgin."
+
+
+
+end subroutine
+
+on m_po_schedule_grid.create
+m_po_schedule_grid=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_po_schedule_grid.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_po_schedule_grid
+m_viewdate m_viewdate
+m_netout m_netout
+m_rebuild m_rebuild
+m_visualbom m_visualbom
+m_savedata m_savedata
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_viewdate=create m_viewdate
+this.m_netout=create m_netout
+this.m_rebuild=create m_rebuild
+this.m_visualbom=create m_visualbom
+this.m_savedata=create m_savedata
+this.Item[UpperBound(this.Item)+1]=this.m_viewdate
+this.Item[UpperBound(this.Item)+1]=this.m_netout
+this.Item[UpperBound(this.Item)+1]=this.m_rebuild
+this.Item[UpperBound(this.Item)+1]=this.m_visualbom
+this.Item[UpperBound(this.Item)+1]=this.m_savedata
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_viewdate)
+destroy(this.m_netout)
+destroy(this.m_rebuild)
+destroy(this.m_visualbom)
+destroy(this.m_savedata)
+end on
+
+type m_viewdate from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_view_calendar")
+end event
+
+on m_viewdate.create
+call super::create
+this.text = "&View Date"
+this.microhelp = "Change view date"
+this.toolbaritemname = "Custom023!"
+this.toolbaritemtext = "ViewDate"
+this.toolbaritemorder = 10
+end on
+
+on m_viewdate.destroy
+call super::destroy
+end on
+
+type m_netout from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().Triggerevent ( 'ue_netout' )
+end event
+
+on m_netout.create
+call super::create
+this.text = "&Netout"
+this.microhelp = "Netout "
+this.toolbaritemname = "scales.bmp"
+this.toolbaritemtext = "Netout"
+this.toolbaritemorder = 30
+end on
+
+on m_netout.destroy
+call super::destroy
+end on
+
+type m_rebuild from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().Triggerevent ( 'ue_build_crosstab' )
+end event
+
+on m_rebuild.create
+call super::create
+this.text = "&Rebuild"
+this.microhelp = "Rebuild Crosstab"
+this.toolbaritemname = "Custom059!"
+this.toolbaritemtext = "Rebuild "
+this.toolbaritemorder = 20
+end on
+
+on m_rebuild.destroy
+call super::destroy
+end on
+
+type m_visualbom from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_visual_bom")
+end event
+
+on m_visualbom.create
+call super::create
+this.text = "&Visual BOM"
+this.toolbaritemname = "vbom.bmp"
+this.toolbaritemtext = "Visual BOM"
+this.toolbaritemorder = 40
+end on
+
+on m_visualbom.destroy
+call super::destroy
+end on
+
+type m_savedata from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().Triggerevent ( 'ue_savedata' )
+end event
+
+on m_savedata.create
+call super::create
+this.text = "&Save Data"
+this.toolbaritemname = "CreateTable!"
+this.toolbaritemtext = "Save Data"
+this.toolbaritemorder = 55
+end on
+
+on m_savedata.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_po_schedule_grid
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_po_schedule_grid
+m_tile m_tile
+m_layered m_layered
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layered=create m_layered
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layered
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layered)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layered from menu within m_window
+end type
+
+on m_layered.create
+call super::create
+this.text = "&Layered"
+this.microhelp = "Layer Windows..."
+end on
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layered.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_po_schedule_grid
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 5 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays Help Contents..."
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright..."
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

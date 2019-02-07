@@ -1,0 +1,39 @@
+HA$PBExportHeader$isnull_alt.srf
+$PBExportComments$This function is like the sql function with the following syntax:~r~n   value/default_value (any)  isnull ( value(any), default_value(any) )
+global type isnull_alt from function_object
+end type
+
+forward prototypes
+global function any isnull_alt (any value, any default_value)
+end prototypes
+
+global function any isnull_alt (any value, any default_value);
+if	isnull(value) then
+	return default_value
+else
+	if ClassName(value) = ClassName(default_value) then
+		return value
+	end if
+	choose case true
+		case ClassName(default_value) = "string" or ClassName(default_value) = "blob"
+			return String(value)
+		case ClassName(value) = "string" and (ClassName(default_value) = "integer" or ClassName(default_value) = "long" or ClassName(default_value) = "real" or ClassName(default_value) = "decimal" or ClassName(default_value) = "double")
+			return Dec(value)
+		case else
+			return value
+	end choose
+	
+	/*
+	Blob  	LongLong 
+	Boolean  	Long 
+	Char or character 	Real  
+	Date  	String 
+	DateTime	Time 
+	Decimal or Dec 	UnsignedInteger, UnsignedInt, or UInt 
+	Double 	UnsignedLong or ULong 
+	Integer or Int
+	*/
+end if
+
+end function
+

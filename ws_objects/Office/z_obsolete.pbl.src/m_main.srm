@@ -1,0 +1,144 @@
+﻿$PBExportHeader$m_main.srm
+forward
+global type m_main from menu
+end type
+type m_file from menu within m_main
+end type
+type m_start from menu within m_file
+end type
+type m_stop from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_main
+m_start m_start
+m_stop m_stop
+m_save m_save
+m_print m_print
+m_exit m_exit
+end type
+end forward
+
+global type m_main from menu
+m_file m_file
+end type
+global m_main m_main
+
+on m_main.create
+m_main=this
+this.m_file=create m_file
+this.Item[]={this.m_file}
+end on
+
+on m_main.destroy
+destroy(this.m_file)
+end on
+
+type m_file from menu within m_main
+m_start m_start
+m_stop m_stop
+m_save m_save
+m_print m_print
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_start=create m_start
+this.m_stop=create m_stop
+this.m_save=create m_save
+this.m_print=create m_print
+this.m_exit=create m_exit
+this.Item[]={this.m_start, &
+this.m_stop, &
+this.m_save, &
+this.m_print, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_start)
+destroy(this.m_stop)
+destroy(this.m_save)
+destroy(this.m_print)
+destroy(this.m_exit)
+end on
+
+type m_start from menu within m_file
+end type
+
+on clicked;w_bomcheck.triggerevent ( 'ue_start' )
+end on
+
+on m_start.create
+this.Text="S&tart~tAlt+T"
+this.Microhelp="Start processing"
+this.ToolBarItemName="Run!"
+this.ToolBarItemText="Start"
+this.ToolBarItemOrder=20
+this.Shortcut=596
+end on
+
+type m_stop from menu within m_file
+end type
+
+on clicked;w_bomcheck.triggerevent ( 'ue_stop' )
+end on
+
+on m_stop.create
+this.Text="Sto&p~tAlt+P"
+this.ToolBarItemName="RetrieveCancel!"
+this.ToolBarItemText="Stop"
+this.ToolBarItemOrder=30
+this.Shortcut=592
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;w_bomcheck.triggerevent( 'ue_save' )
+end on
+
+on m_save.create
+this.Text="&Save~tAlt+S"
+this.Microhelp="Save the error report to text file"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.ToolBarItemOrder=40
+this.Shortcut=595
+end on
+
+type m_print from menu within m_file
+end type
+
+on clicked;w_bomcheck.triggerevent( 'ue_print' )
+end on
+
+on m_print.create
+this.Text="&Print~tAlt+P"
+this.Microhelp="Print the error report"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.ToolBarItemOrder=50
+this.Shortcut=592
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;close ( w_main_ilop )
+end event
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.Microhelp="Exit"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=10
+this.Shortcut=600
+end on
+

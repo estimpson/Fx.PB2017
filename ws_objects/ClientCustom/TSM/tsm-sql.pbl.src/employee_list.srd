@@ -1,0 +1,19 @@
+﻿$PBExportHeader$employee_list.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=4 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=175 color="536870912" )
+header[2](height=175 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=200 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=operator_code dbname="operator_code" )
+ column=(type=char(20) updatewhereclause=yes name=val dbname="val" )
+ retrieve="PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME=~"dbo.employee~" ) COLUMN(NAME=~"dbo.employee.operator_code~") COLUMN(NAME=~"dbo.employee.password~") COLUMN(NAME=~"dbo.employee.name~")) "  sort="operator_code A " )
+text(band=header[1] alignment="0" text=" "border="0" color="0" x="16" y="0" height="166" width="1166"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="obj_1569128449"border="0" color="0" x="1200" y="0" height="166" width="1825"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Operator Code"border="0" color="0" x="16" y="0" height="166" width="1166"  name=operator_code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="@col"border="0" color="0" x="1200" y="0" height="166" width="1825"  name=val_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="16" y="0" height="166" width="1166" format="[general]"  name=operator_code edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1200" y="0" height="166" width="1825" format="[general]"  name=val edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "'Operator'" rows = "operator_code" values = " name" sourcenames = "operator_code, password, name") 

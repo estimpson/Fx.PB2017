@@ -1,0 +1,378 @@
+﻿$PBExportHeader$m_utility_menu.srm
+$PBExportComments$main menu for utility applications
+forward
+global type m_utility_menu from menu
+end type
+type m_file from menu within m_utility_menu
+end type
+type m_synchronizeparttables from menu within m_file
+end type
+type m_synchronizedestinations from menu within m_file
+end type
+type m_reconcileonhand from menu within m_file
+end type
+type m_rollupcost from menu within m_file
+end type
+type m_infiniteloops from menu within m_file
+end type
+type m_scvalidate from menu within m_file
+end type
+type m_synchronizepartdesc from menu within m_file
+end type
+type m_chgpartinfr from menu within m_file
+end type
+type m_msql from menu within m_file
+end type
+type m_atarchive from menu within m_file
+end type
+type m__ from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_utility_menu
+m_synchronizeparttables m_synchronizeparttables
+m_synchronizedestinations m_synchronizedestinations
+m_reconcileonhand m_reconcileonhand
+m_rollupcost m_rollupcost
+m_infiniteloops m_infiniteloops
+m_scvalidate m_scvalidate
+m_synchronizepartdesc m_synchronizepartdesc
+m_chgpartinfr m_chgpartinfr
+m_msql m_msql
+m_atarchive m_atarchive
+m__ m__
+m_exit m_exit
+end type
+type m_edit from menu within m_utility_menu
+end type
+type m_edit from menu within m_utility_menu
+end type
+type m_window from menu within m_utility_menu
+end type
+type m_window from menu within m_utility_menu
+end type
+type m_help from menu within m_utility_menu
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_utility_menu
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_utility_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_utility_menu m_utility_menu
+
+on m_utility_menu.create
+m_utility_menu=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_utility_menu.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_utility_menu
+m_synchronizeparttables m_synchronizeparttables
+m_synchronizedestinations m_synchronizedestinations
+m_reconcileonhand m_reconcileonhand
+m_rollupcost m_rollupcost
+m_infiniteloops m_infiniteloops
+m_scvalidate m_scvalidate
+m_synchronizepartdesc m_synchronizepartdesc
+m_chgpartinfr m_chgpartinfr
+m_msql m_msql
+m_atarchive m_atarchive
+m__ m__
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_synchronizeparttables=create m_synchronizeparttables
+this.m_synchronizedestinations=create m_synchronizedestinations
+this.m_reconcileonhand=create m_reconcileonhand
+this.m_rollupcost=create m_rollupcost
+this.m_infiniteloops=create m_infiniteloops
+this.m_scvalidate=create m_scvalidate
+this.m_synchronizepartdesc=create m_synchronizepartdesc
+this.m_chgpartinfr=create m_chgpartinfr
+this.m_msql=create m_msql
+this.m_atarchive=create m_atarchive
+this.m__=create m__
+this.m_exit=create m_exit
+this.Item[]={this.m_synchronizeparttables, &
+this.m_synchronizedestinations, &
+this.m_reconcileonhand, &
+this.m_rollupcost, &
+this.m_infiniteloops, &
+this.m_scvalidate, &
+this.m_synchronizepartdesc, &
+this.m_chgpartinfr, &
+this.m_msql, &
+this.m_atarchive, &
+this.m__, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_synchronizeparttables)
+destroy(this.m_synchronizedestinations)
+destroy(this.m_reconcileonhand)
+destroy(this.m_rollupcost)
+destroy(this.m_infiniteloops)
+destroy(this.m_scvalidate)
+destroy(this.m_synchronizepartdesc)
+destroy(this.m_chgpartinfr)
+destroy(this.m_msql)
+destroy(this.m_atarchive)
+destroy(this.m__)
+destroy(this.m_exit)
+end on
+
+type m_synchronizeparttables from menu within m_file
+end type
+
+on clicked;Open(w_synchronize_parts)
+end on
+
+on m_synchronizeparttables.create
+this.Text="Synchronize Part Tables~tAlt+P"
+this.Microhelp="Synchronize parts"
+this.ToolBarItemName="TabOrder!"
+this.ToolBarItemText="Sync. Parts"
+this.ToolBarItemOrder=1
+this.Shortcut=592
+end on
+
+type m_synchronizedestinations from menu within m_file
+end type
+
+on clicked;Open(w_synchronize_destinations)
+end on
+
+on m_synchronizedestinations.create
+this.Text="Synchronize Destinations~tAlt+D"
+this.Microhelp="Synchronize Destinations"
+this.ToolBarItemName="ArrangeIcons!"
+this.ToolBarItemText="Sync Dest."
+this.ToolBarItemOrder=2
+this.Shortcut=580
+end on
+
+type m_reconcileonhand from menu within m_file
+end type
+
+on clicked;Open ( w_recalc_objects_onhand )
+end on
+
+on m_reconcileonhand.create
+this.Text="Reconcile &Onhand~tAlt+O"
+this.Microhelp="Reconcile on hand"
+this.ToolBarItemName="Continue!"
+this.ToolBarItemText="Reconcile O-H"
+this.ToolBarItemOrder=3
+this.Shortcut=591
+end on
+
+type m_rollupcost from menu within m_file
+end type
+
+on clicked;Open(w_roll_up_part_cost)
+end on
+
+on m_rollupcost.create
+this.Text="Roll Up Part Cost~tAlt+R"
+this.Microhelp="Roll up costs"
+this.ToolBarItemName="Globals!"
+this.ToolBarItemText="Roll up"
+this.ToolBarItemOrder=4
+this.Shortcut=594
+end on
+
+type m_infiniteloops from menu within m_file
+end type
+
+on m_infiniteloops.create
+this.Text="Infinite Loops~tAlt+I"
+this.Microhelp="Identify Infinite loops in bills"
+this.ToolBarItemName="Structure5!"
+this.ToolBarItemText="Infinite Loops"
+this.ToolBarItemOrder=5
+this.Shortcut=585
+end on
+
+event clicked;Open(w_main_ilop)
+end event
+
+type m_scvalidate from menu within m_file
+end type
+
+event clicked;Open(w_scdatavalidation)
+end event
+
+on m_scvalidate.create
+this.Text="SC Validate~tAlt+S"
+this.ToolBarItemName="Start!"
+this.ToolBarItemText="SC Validation"
+this.ToolBarItemOrder=6
+this.Shortcut=595
+end on
+
+type m_synchronizepartdesc from menu within m_file
+end type
+
+event clicked;w_main.triggerevent('ue_syncpartdesc')
+end event
+
+on m_synchronizepartdesc.create
+this.Text="Synchronize Part Desc"
+this.Microhelp="Synchronize part description in multiple tables"
+this.ToolBarItemName="UnionReturn!"
+this.ToolBarItemText="Sync. Desc."
+this.ToolBarItemOrder=7
+end on
+
+type m_chgpartinfr from menu within m_file
+end type
+
+event clicked;w_main.triggerevent('ue_chgpartinfr')
+end event
+
+on m_chgpartinfr.create
+this.Text="Chg Part in FR"
+this.Microhelp="Change part in multiple flowrouters"
+this.ToolBarItemName="SetDefaultClass!"
+this.ToolBarItemText="Chg Part"
+this.ToolBarItemOrder=8
+end on
+
+type m_msql from menu within m_file
+end type
+
+event clicked;//OpenSheet ( w_exequery, gnv_App.of_GetFrame(), 3, Layered! )
+Open( w_exequery )
+end event
+
+on m_msql.create
+this.Text="MSQL"
+this.ToolBarItemName="SQL!"
+this.ToolBarItemText="MSQL"
+this.ToolBarItemOrder=9
+end on
+
+type m_atarchive from menu within m_file
+end type
+
+on m_atarchive.create
+this.Text="AT Archive"
+this.ToolBarItemName="Query5!"
+this.ToolBarItemText="AT Archive"
+this.ToolBarItemOrder=10
+end on
+
+event clicked;
+Open( w_atarchive)
+end event
+
+type m__ from menu within m_file
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;If MessageBox ( monsys.msg_title, "Are you sure you want to exit?", Question!, YesNo!, 1 ) = 1 Then
+	Close(parentwindow)
+End If
+end event
+
+on m_exit.create
+this.Text="E&xit~tAlt+X"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.Shortcut=600
+end on
+
+type m_edit from menu within m_utility_menu
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_utility_menu
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_utility_menu
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 2501 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\aam.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\desadv.srd" "ClientCustom\\TSM\\aam.pbl";
+@end;

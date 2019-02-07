@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dw_shop_machine_select.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=200 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=machine_no dbname="machine.machine_no" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=mach_descp dbname="machine.mach_descp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=cell dbname="machine.cell" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=status dbname="machine.status" )
+ retrieve="SELECT machine.machine_no, machine.mach_descp, machine.cell, machine.status FROM machine WHERE machine.status = :szStatus " update="machine" updatewhere=0 updatekeyinplace=yes arguments=(("szStatus", string))  sort="machine_no A " )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="4315" y="84" height="56" width="23" format="[general]"  name=status edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="6" color="33554432" x="23" y="8" height="184" width="869" format="[general]"  name=machine_no edit.limit=10 edit.case=any edit.autoselect=yes edit.displayonly=yes  font.face="MS Sans Serif" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="6" color="33554432" x="905" y="8" height="184" width="1874" format="[general]"  name=mach_descp edit.limit=35 edit.case=any edit.autoselect=yes edit.displayonly=yes  font.face="MS Sans Serif" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

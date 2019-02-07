@@ -1,0 +1,41 @@
+﻿$PBExportHeader$system_tables_with_columns.srd
+$PBExportComments$TSM IS - Report showing tables and their columns - MONITOR database (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=562 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=197 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=sysobjects_name dbname="sysobjects.name" )
+ column=(type=long updatewhereclause=yes name=sysobjects_id dbname="sysobjects.id" )
+ column=(type=char(30) updatewhereclause=yes name=syscolumns_name dbname="syscolumns.name" )
+ column=(type=ulong updatewhereclause=yes name=syscolumns_type dbname="syscolumns.type" )
+ column=(type=ulong updatewhereclause=yes name=syscolumns_length dbname="syscolumns.length" )
+ column=(type=long updatewhereclause=yes name=syscolumns_number dbname="syscolumns.number" )
+ column=(type=ulong updatewhereclause=yes name=syscolumns_colid dbname="syscolumns.colid" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.syscolumns~" )  TABLE(NAME=~"dbo.sysobjects~" ) COLUMN(NAME=~"dbo.sysobjects.name~") COLUMN(NAME=~"dbo.sysobjects.id~") COLUMN(NAME=~"dbo.syscolumns.name~") COLUMN(NAME=~"dbo.syscolumns.type~") COLUMN(NAME=~"dbo.syscolumns.length~") COLUMN(NAME=~"dbo.syscolumns.number~") COLUMN(NAME=~"dbo.syscolumns.colid~")    JOIN (LEFT=~"dbo.syscolumns.id~"    OP =~"=~"RIGHT=~"dbo.sysobjects.id~" )) "  sort="sysobjects_id A syscolumns_colid A " )
+group(level=1 header.height=218 trailer.height=0 by=("sysobjects_id" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="2" text="Monitor Database - System Tables and Columns"border="0" color="33554432" x="72" y="20" height="166" width="3145"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="33554432" x="83" y="21" height="166" width="666" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="5239" y="21" height="166" width="1656" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="52" y="11" height="197" width="1177" format="[general]"  name=sysobjects_name edit.limit=30 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="1270" y="11" height="197" width="750" format="[general]"  name=sysobjects_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="2020" y="0" height="197" width="1937" format="[general]"  name=syscolumns_name edit.limit=30 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sysobjects
+Name"border="0" color="33554432" x="302" y="218" height="333" width="697"  name=sysobjects_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Sysobjects
+Id"border="0" color="33554432" x="1312" y="218" height="333" width="697"  name=sysobjects_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syscolumns
+Name"border="0" color="33554432" x="2614" y="218" height="333" width="781"  name=syscolumns_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syscolumns
+Colid"border="0" color="33554432" x="6468" y="218" height="333" width="781"  name=syscolumns_colid_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="6468" y="0" height="197" width="750" format="[general]"  name=syscolumns_colid edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syscolumns
+Number"border="0" color="33554432" x="5645" y="218" height="333" width="781"  name=syscolumns_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="5645" y="0" height="197" width="750" format="[general]"  name=syscolumns_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syscolumns
+Length"border="0" color="33554432" x="4843" y="218" height="333" width="781"  name=syscolumns_length_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=32766 border="0" color="33554432" x="4843" y="0" height="197" width="750" format="[general]"  name=syscolumns_length edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syscolumns
+Type"border="0" color="33554432" x="4020" y="218" height="333" width="781"  name=syscolumns_type_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="4020" y="0" height="197" width="750" format="[general]"  name=syscolumns_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

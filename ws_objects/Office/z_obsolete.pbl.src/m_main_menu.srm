@@ -1,0 +1,616 @@
+﻿$PBExportHeader$m_main_menu.srm
+forward
+global type m_main_menu from menu
+end type
+type m_file from menu within m_main_menu
+end type
+type m_inventorycontrol from menu within m_file
+end type
+type m_orderentry from menu within m_file
+end type
+type m_purchasing from menu within m_file
+end type
+type m_productionscheduling from menu within m_file
+end type
+type m_administrativesetups from menu within m_file
+end type
+type m_stdreports from menu within m_file
+end type
+type m_msql from menu within m_file
+end type
+type m_custom from menu within m_file
+end type
+type m_custom2 from menu within m_file
+end type
+type m_custom3 from menu within m_file
+end type
+type m_line11 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_main_menu
+m_inventorycontrol m_inventorycontrol
+m_orderentry m_orderentry
+m_purchasing m_purchasing
+m_productionscheduling m_productionscheduling
+m_administrativesetups m_administrativesetups
+m_stdreports m_stdreports
+m_msql m_msql
+m_custom m_custom
+m_custom2 m_custom2
+m_custom3 m_custom3
+m_line11 m_line11
+m_exit m_exit
+end type
+type m_edit from menu within m_main_menu
+end type
+type m_window from menu within m_main_menu
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_main_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_main_menu
+end type
+type m_helpcontents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_main_menu
+m_helpcontents m_helpcontents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_main_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_main_menu from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_main_menu m_main_menu
+
+on m_main_menu.create
+m_main_menu=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_main_menu.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_main_menu
+m_inventorycontrol m_inventorycontrol
+m_orderentry m_orderentry
+m_purchasing m_purchasing
+m_productionscheduling m_productionscheduling
+m_administrativesetups m_administrativesetups
+m_stdreports m_stdreports
+m_msql m_msql
+m_custom m_custom
+m_custom2 m_custom2
+m_custom3 m_custom3
+m_line11 m_line11
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_inventorycontrol=create m_inventorycontrol
+this.m_orderentry=create m_orderentry
+this.m_purchasing=create m_purchasing
+this.m_productionscheduling=create m_productionscheduling
+this.m_administrativesetups=create m_administrativesetups
+this.m_stdreports=create m_stdreports
+this.m_msql=create m_msql
+this.m_custom=create m_custom
+this.m_custom2=create m_custom2
+this.m_custom3=create m_custom3
+this.m_line11=create m_line11
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_inventorycontrol
+this.Item[UpperBound(this.Item)+1]=this.m_orderentry
+this.Item[UpperBound(this.Item)+1]=this.m_purchasing
+this.Item[UpperBound(this.Item)+1]=this.m_productionscheduling
+this.Item[UpperBound(this.Item)+1]=this.m_administrativesetups
+this.Item[UpperBound(this.Item)+1]=this.m_stdreports
+this.Item[UpperBound(this.Item)+1]=this.m_msql
+this.Item[UpperBound(this.Item)+1]=this.m_custom
+this.Item[UpperBound(this.Item)+1]=this.m_custom2
+this.Item[UpperBound(this.Item)+1]=this.m_custom3
+this.Item[UpperBound(this.Item)+1]=this.m_line11
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_inventorycontrol)
+destroy(this.m_orderentry)
+destroy(this.m_purchasing)
+destroy(this.m_productionscheduling)
+destroy(this.m_administrativesetups)
+destroy(this.m_stdreports)
+destroy(this.m_msql)
+destroy(this.m_custom)
+destroy(this.m_custom2)
+destroy(this.m_custom3)
+destroy(this.m_line11)
+destroy(this.m_exit)
+end on
+
+type m_inventorycontrol from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('01','01') 
+if li_retval = 0 then 
+	OpenSheet ( w_ic_main, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+end event
+
+on m_inventorycontrol.create
+call super::create
+this.text = "&Inventory Control"
+this.microhelp = "Inventory Inquiries..."
+this.toolbaritemname = "CreateRuntime!"
+this.toolbaritemtext = "Inventory"
+this.toolbaritemorder = 1
+end on
+
+on m_inventorycontrol.destroy
+call super::destroy
+end on
+
+type m_orderentry from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('01','02') 
+if li_retval = 0 then 
+	OpenSheet ( w_oe_main, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then 
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+end event
+
+on m_orderentry.create
+call super::create
+this.text = "&Order Entry"
+this.microhelp = "Sales Order Management..."
+this.toolbaritemname = "Custom048!"
+this.toolbaritemtext = "Orders"
+this.toolbaritemorder = 2
+end on
+
+on m_orderentry.destroy
+call super::destroy
+end on
+
+type m_purchasing from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('01','03') 
+if li_retval = 0 then 
+	OpenSheet ( w_po_main, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then 
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_purchasing.create
+call super::create
+this.text = "&Purchasing"
+this.microhelp = "Purchasing..."
+this.toolbaritemname = "Custom076!"
+this.toolbaritemtext = "Purchase"
+this.toolbaritemorder = 3
+end on
+
+on m_purchasing.destroy
+call super::destroy
+end on
+
+type m_productionscheduling from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('01','04') 
+if li_retval = 0 then 
+	OpenSheet ( w_ps_main, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then 
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+end event
+
+on m_productionscheduling.create
+call super::create
+this.text = "P&roduction Scheduling"
+this.toolbaritemname = "ArrangeIcons!"
+this.toolbaritemtext = "Prd Schdl"
+this.toolbaritemorder = 4
+end on
+
+on m_productionscheduling.destroy
+call super::destroy
+end on
+
+type m_administrativesetups from menu within m_file
+end type
+
+event clicked;int	li_retval
+li_retval = f_moduleaccess('01','05') 
+if li_retval = 0 then 
+	OpenSheet ( w_ad_main, gnv_App.of_GetFrame(), 3, Original! )
+elseif li_retval > 0 then 
+	Messagebox ( Monsys.msg_title, "Sorry, access denied to the selected Menu")
+end if 	
+
+
+
+end event
+
+on m_administrativesetups.create
+call super::create
+this.text = "&Administrative Setups"
+this.microhelp = "Administrative Setups..."
+this.toolbaritemname = "logobtn.bmp"
+this.toolbaritemtext = "Setups"
+this.toolbaritemorder = 5
+end on
+
+on m_administrativesetups.destroy
+call super::destroy
+end on
+
+type m_stdreports from menu within m_file
+end type
+
+on m_stdreports.create
+call super::create
+this.text = "Std  Reports"
+this.toolbaritemname = "RunReport!"
+this.toolbaritemtext = "Std Reports"
+this.toolbaritemorder = 6
+end on
+
+event clicked;run("reports_listings.exe")
+end event
+
+on m_stdreports.destroy
+call super::destroy
+end on
+
+type m_msql from menu within m_file
+end type
+
+event clicked;OpenSheet ( w_exequery, gnv_App.of_GetFrame(), 3, Original! )
+end event
+
+on m_msql.create
+call super::create
+this.text = "MSQL"
+this.toolbaritemname = "SQL!"
+this.toolbaritemtext = "MSQL"
+this.toolbaritemorder = 7
+end on
+
+on m_msql.destroy
+call super::destroy
+end on
+
+type m_custom from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.main1" )
+
+end on
+
+on m_custom.create
+call super::create
+this.visible = false
+this.text = "Custom&1"
+this.microhelp = "Chain to custom application..."
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemtext = "Custom"
+this.toolbaritemorder = 10
+end on
+
+on m_custom.destroy
+call super::destroy
+end on
+
+type m_custom2 from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.main2" )
+
+end on
+
+on m_custom2.create
+call super::create
+this.visible = false
+this.text = "Custom&2"
+this.microhelp = "Chain to custom application..."
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemtext = "Custom"
+this.toolbaritemorder = 11
+end on
+
+on m_custom2.destroy
+call super::destroy
+end on
+
+type m_custom3 from menu within m_file
+end type
+
+on clicked;f_execute_custom_menu ( "monitor.main3" )
+
+end on
+
+on m_custom3.create
+call super::create
+this.visible = false
+this.text = "Custom&3"
+this.microhelp = "Chain to custom application..."
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom042!"
+this.toolbaritemtext = "Custom"
+this.toolbaritemorder = 12
+end on
+
+on m_custom3.destroy
+call super::destroy
+end on
+
+type m_line11 from menu within m_file
+end type
+
+on m_line11.create
+call super::create
+this.text = "-"
+end on
+
+on m_line11.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;If MessageBox ( monsys.msg_title, "Are you sure you want to exit?", Question!, YesNo!, 1 ) = 1 Then
+	Close(gnv_App.of_GetFrame())
+End If
+
+//Close ( gnv_App.of_GetFrame() )
+end event
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Exit"
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_main_menu
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_main_menu
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Tile!)
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Layer!)
+end on
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Cascade!)
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;gnv_App.of_GetFrame().ArrangeSheets (Icons!)
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_main_menu
+m_helpcontents m_helpcontents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_helpcontents=create m_helpcontents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_helpcontents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_helpcontents)
+destroy(this.m_aboutthemonitor)
+end on
+
+event clicked;//ShowHelp ( "monitor.hlp", Index! )
+end event
+
+type m_helpcontents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 2 )
+
+end event
+
+on m_helpcontents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays help contents"
+end on
+
+on m_helpcontents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright"
+end on
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

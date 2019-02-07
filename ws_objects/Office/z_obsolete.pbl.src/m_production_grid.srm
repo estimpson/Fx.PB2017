@@ -1,0 +1,303 @@
+﻿$PBExportHeader$m_production_grid.srm
+$PBExportComments$(mps.pbl) Changed the menu to point to the new 'prod schedule' program.
+forward
+global type m_production_grid from menu
+end type
+type m_file from menu within m_production_grid
+end type
+type m_viewcalendar from menu within m_file
+end type
+type m_rebuildcrosstab from menu within m_file
+end type
+type m_netout from menu within m_file
+end type
+type m_visualbillofmaterial from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_savedata from menu within m_file
+end type
+type m_file from menu within m_production_grid
+m_viewcalendar m_viewcalendar
+m_rebuildcrosstab m_rebuildcrosstab
+m_netout m_netout
+m_visualbillofmaterial m_visualbillofmaterial
+m_exit m_exit
+m_savedata m_savedata
+end type
+type m_edit from menu within m_production_grid
+end type
+type m_edit from menu within m_production_grid
+end type
+type m_window from menu within m_production_grid
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_- from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_production_grid
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_production_grid
+end type
+type m_help from menu within m_production_grid
+end type
+end forward
+
+global type m_production_grid from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_production_grid m_production_grid
+
+on m_production_grid.create
+m_production_grid=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_production_grid.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_production_grid
+m_viewcalendar m_viewcalendar
+m_rebuildcrosstab m_rebuildcrosstab
+m_netout m_netout
+m_visualbillofmaterial m_visualbillofmaterial
+m_exit m_exit
+m_savedata m_savedata
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_viewcalendar=create m_viewcalendar
+this.m_rebuildcrosstab=create m_rebuildcrosstab
+this.m_netout=create m_netout
+this.m_visualbillofmaterial=create m_visualbillofmaterial
+this.m_exit=create m_exit
+this.m_savedata=create m_savedata
+this.Item[]={this.m_viewcalendar, &
+this.m_rebuildcrosstab, &
+this.m_netout, &
+this.m_visualbillofmaterial, &
+this.m_exit, &
+this.m_savedata}
+end on
+
+on m_file.destroy
+destroy(this.m_viewcalendar)
+destroy(this.m_rebuildcrosstab)
+destroy(this.m_netout)
+destroy(this.m_visualbillofmaterial)
+destroy(this.m_exit)
+destroy(this.m_savedata)
+end on
+
+type m_viewcalendar from menu within m_file
+end type
+
+event clicked;w_production_schedule_grid.TriggerEvent("ue_view_calendar")
+
+end event
+
+on m_viewcalendar.create
+this.Text="View Date"
+this.Microhelp="View Date"
+this.ToolBarItemName="Custom023!"
+this.ToolBarItemText="View Date"
+this.ToolBarItemOrder=10
+end on
+
+type m_rebuildcrosstab from menu within m_file
+end type
+
+event clicked;w_production_schedule_grid.TriggerEvent("ue_build_crosstab")
+end event
+
+on m_rebuildcrosstab.create
+this.Text="Rebuild &Crosstab"
+this.Microhelp="Rebuild Crosstab"
+this.ToolBarItemName="Custom059!"
+this.ToolBarItemText="Rebuild"
+this.ToolBarItemOrder=20
+end on
+
+type m_netout from menu within m_file
+end type
+
+event clicked;w_production_schedule_grid.TriggerEvent( "ue_netout" )
+
+end event
+
+on m_netout.create
+this.Text="&Netout"
+this.Microhelp="Netout "
+this.ToolBarItemName="scales.bmp"
+this.ToolBarItemText="Netout"
+this.ToolBarItemOrder=30
+end on
+
+type m_visualbillofmaterial from menu within m_file
+end type
+
+event clicked;w_production_schedule_grid.TriggerEvent("ue_visual_bom")
+end event
+
+on m_visualbillofmaterial.create
+this.Text="&Visual Bill of Material"
+this.Microhelp="View the visual bill of material"
+this.ToolBarItemName="vbom.bmp"
+this.ToolBarItemText="VBOM"
+this.ToolBarItemOrder=40
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;/* 02-24-2000 KAZ Modified to set the 'cancel' boolean to true to abort the build of the
+						PO grid and exit without a watchdog error message.  Issue # 13223 */
+
+bcancel = true																											// ADD 02/24/2000 KAZ
+
+Close(w_production_schedule_grid)
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit this window"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+end on
+
+type m_savedata from menu within m_file
+end type
+
+event clicked;w_production_schedule_grid.TriggerEvent("ue_savedata")
+end event
+
+on m_savedata.create
+this.Text="&Save Data"
+this.ToolBarItemName="CreateTable!"
+this.ToolBarItemText="Save Data"
+this.ToolBarItemOrder=55
+end on
+
+type m_edit from menu within m_production_grid
+end type
+
+on m_edit.create
+this.Text="&Edit"
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_production_grid
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets (Tile!)
+end event
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets (Layer!)
+end event
+
+on m_layer.create
+this.Text="&Layer"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets (Cascade!)
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m_- from menu within m_window
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets (Icons!)
+end event
+
+on m_arrangeicons.create
+this.Text="&Arrange Icons"
+end on
+
+type m_help from menu within m_production_grid
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

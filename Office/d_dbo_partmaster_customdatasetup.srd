@@ -1,0 +1,47 @@
+HA$PBExportHeader$d_dbo_partmaster_customdatasetup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=partcode dbname="PartMaster_CustomDataSetup.PartCode" )
+ column=(type=char(50) updatewhereclause=yes name=customfieldname dbname="PartMaster_CustomDataSetup.CustomFieldName" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=stringvalue dbname="PartMaster_CustomDataSetup.StringValue" )
+ column=(type=long update=yes updatewhereclause=yes name=valueselected dbname="PartMaster_CustomDataSetup.ValueSelected" values="	0/	1/" )
+ column=(type=number updatewhereclause=yes name=allowmultiplevalues dbname="PartMaster_CustomDataSetup.AllowMultipleValues" )
+ column=(type=number updatewhereclause=yes name=onlydefinedvalues dbname="PartMaster_CustomDataSetup.OnlyDefinedValues" )
+ column=(type=long updatewhereclause=yes key=yes name=valueid dbname="PartMaster_CustomDataSetup.ValueID" )
+ retrieve="
+select
+	pmcds.PartCode
+,	pmcds.CustomFieldName
+,	pmcds.StringValue
+,	pmcds.ValueSelected
+,	pmcds.AllowMultipleValues
+,	pmcds.OnlyDefinedValues
+,	pmcds.ValueID
+from
+	dbo.PartMaster_CustomDataSetup pmcds
+where
+	pmcds.PartCode = :partCode
+	and pmcds.CustomFieldName = :customFieldName
+order by
+	1
+,	2
+,	3
+" update="PartMaster_CustomDataSetup" updatewhere=0 updatekeyinplace=no arguments=(("partCode", string),("customFieldName", string)) )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="119" y="8" height="76" width="713" format="[general]" html.valueishtml="0" protect="0~tonlydefinedvalues"  name=stringvalue visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="9" y="16" height="44" width="101" format="[general]" html.valueishtml="0"  name=valueselected visible="1" radiobuttons.columns=1 radiobuttons.scale=no radiobuttons.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="customfieldname"border="6" color="33554432" x="119" y="8" height="76" width="713" format="[GENERAL]" html.valueishtml="0"  name=stringvalue_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

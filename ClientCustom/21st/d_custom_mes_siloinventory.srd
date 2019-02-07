@@ -1,0 +1,56 @@
+HA$PBExportHeader$d_custom_mes_siloinventory.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(10) updatewhereclause=yes name=silo dbname="MES_SiloInventory.Silo" )
+ column=(type=long updatewhereclause=yes name=active dbname="MES_SiloInventory.Active" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=serial dbname="MES_SiloInventory.Serial" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="MES_SiloInventory.Part" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="MES_SiloInventory.Quantity" )
+ column=(type=datetime updatewhereclause=yes name=datereceived dbname="MES_SiloInventory.DateReceived" )
+ column=(type=decimal(6) updatewhereclause=yes name=receivedqty dbname="MES_SiloInventory.ReceivedQty" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	msi.Silo
+,	msi.Active
+,	msi.Serial
+,	msi.Part
+,	msi.Quantity
+,	msi.DateReceived
+,	msi.ReceivedQty
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	custom.MES_SiloInventory msi
+" )
+text(band=header alignment="2" text="Silo" border="6" color="33554432" x="105" y="8" height="80" width="302" html.valueishtml="0"  name=silo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Active" border="6" color="33554432" x="416" y="8" height="80" width="201" html.valueishtml="0"  name=active_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Serial" border="6" color="33554432" x="626" y="8" height="80" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Part" border="6" color="33554432" x="965" y="8" height="80" width="553" html.valueishtml="0"  name=part_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity" border="6" color="33554432" x="1527" y="8" height="80" width="366" html.valueishtml="0"  name=quantity_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date received" border="6" color="33554432" x="1902" y="8" height="80" width="603" html.valueishtml="0"  name=datereceived_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qty received" border="6" color="33554432" x="2514" y="8" height="80" width="366" html.valueishtml="0"  name=receivedqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="105" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=silo visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="416" y="8" height="76" width="201" format="[general]" html.valueishtml="0"  name=active visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="626" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="965" y="8" height="76" width="553" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="87" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1527" y="8" height="76" width="366" format="###,##0.0" html.valueishtml="0"  name=quantity visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1902" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=datereceived visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2514" y="8" height="76" width="366" format="###,##0.0" html.valueishtml="0"  name=receivedqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="silo")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

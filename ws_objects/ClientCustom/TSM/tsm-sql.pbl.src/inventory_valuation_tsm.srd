@@ -1,0 +1,22 @@
+﻿$PBExportHeader$inventory_valuation_tsm.srd
+$PBExportComments$Inventory valuation based on Raw (R) - WIP (W) - Finished (F) parts
+release 6;
+datawindow(units=2 timer_interval=60000 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=697 color="536870912" )
+summary(height=406 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=decimal(6) updatewhereclause=yes name=object_std_quantity dbname="object.std_quantity" )
+ column=(type=char(25) updatewhereclause=yes name=part_part dbname="part.part" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(2) updatewhereclause=yes name=part_inventory_standard_unit dbname="part_inventory.standard_unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=part_standard_cost dbname="part_standard.cost" initial="0" )
+ column=(type=char(1) updatewhereclause=yes name=object_status dbname="object.status" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"object~" )  TABLE(NAME=~"part~" )  TABLE(NAME=~"part_inventory~" )  TABLE(NAME=~"part_standard~" ) COLUMN(NAME=~"object.std_quantity~") COLUMN(NAME=~"part.part~") COLUMN(NAME=~"part.name~") COLUMN(NAME=~"part_inventory.standard_unit~") COLUMN(NAME=~"part_standard.cost~") COLUMN(NAME=~"object.status~")    JOIN (LEFT=~"object.part~"    OP =~"=~"RIGHT=~"part.part~" )    JOIN (LEFT=~"part_inventory.part~"    OP =~"=~"RIGHT=~"part.part~" )    JOIN (LEFT=~"part_standard.part~"    OP =~"=~"RIGHT=~"part.part~" )WHERE(    EXP1 =~"part.type~"   OP =~"=~"    EXP2 =~":Type~" ) ) ARG(NAME = ~"Type~" TYPE = string) " filter=" object_status ='A'" arguments=(("Type", string))  sort="part_part A " )
+group(level=1 header.height=0 trailer.height=239 by=("part_part" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="TSM Corporation"border="0" color="0" x="437" y="83" height="197" width="1250"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="6791" y="52" height="197" width="833" format="[general]"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=trailer.1 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="41" y="21" height="166" width="1166" format="[general]"  name=part_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=trailer.1 alignment="1" expression="sum(object_std_quantity for group 1)"border="0" color="33554432" x="1072" y="42" height="166" width="1052" format="0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="33554432" x="7625" y="0" height="166" width="62"  name=object_status  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

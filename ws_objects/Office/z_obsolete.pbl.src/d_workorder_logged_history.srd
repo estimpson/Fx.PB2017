@@ -1,0 +1,47 @@
+﻿$PBExportHeader$d_workorder_logged_history.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=88 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes name=operator dbname="shop_floor_time_log.operator" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=activity dbname="shop_floor_time_log.activity" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=location dbname="shop_floor_time_log.location" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=part dbname="shop_floor_time_log.part" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty dbname="shop_floor_time_log.qty" )
+ column=(type=decimal(2) update=yes updatewhereclause=yes name=labor_hours dbname="shop_floor_time_log.labor_hours" )
+ column=(type=long update=yes updatewhereclause=yes name=shift dbname="shop_floor_time_log.shift" )
+ column=(type=datetime update=yes updatewhereclause=yes name=transaction_date_time dbname="shop_floor_time_log.transaction_date_time" )
+ column=(type=char(25) updatewhereclause=yes name=part_machine_labor_code dbname="part_machine.labor_code" )
+ retrieve="  SELECT shop_floor_time_log.operator,   
+         shop_floor_time_log.activity,   
+         shop_floor_time_log.location,   
+         shop_floor_time_log.part,   
+         shop_floor_time_log.qty,   
+         shop_floor_time_log.labor_hours,   
+         shop_floor_time_log.shift,   
+         shop_floor_time_log.transaction_date_time,   
+         part_machine.labor_code  
+    FROM shop_floor_time_log,   
+         part_machine  
+   WHERE ( shop_floor_time_log.part = part_machine.part ) and  
+	 ( shop_floor_time_log.location = part_machine.machine ) and 
+         ( shop_floor_time_log.work_order = :a_s_workorder ) AND  
+         ( shop_floor_time_log.status = 'C' )
+ORDER BY shop_floor_time_log.location ASC,   
+         shop_floor_time_log.operator ASC   
+" arguments=(("a_s_workorder", string)) )
+text(band=header alignment="2" text="Date/Time"border="6" color="33554432" x="9" y="12" height="64" width="594"  name=transaction_date_time_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Operator"border="6" color="33554432" x="613" y="12" height="64" width="283"  name=operator_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Labor Hours"border="6" color="33554432" x="905" y="12" height="64" width="338"  name=labor_hours_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Activity"border="6" color="33554432" x="1253" y="12" height="64" width="306"  name=activity_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Part"border="6" color="33554432" x="1568" y="12" height="64" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Labor Code"border="6" color="33554432" x="2089" y="12" height="64" width="896"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="64" width="594" format="[shortdate] [time]"  name=transaction_date_time  tag="Transaction date time " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="613" y="8" height="64" width="283" format="[general]"  name=operator  tag="Operator code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="5" color="33554432" x="905" y="8" height="64" width="338" format="[General]"  name=labor_hours  tag="Labour hours" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="1253" y="8" height="64" width="306" format="[general]"  name=activity  tag="Activity code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="5" color="33554432" x="1568" y="8" height="64" width="512" format="[general]"  name=part  tag="Part code " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="33554432" x="2089" y="8" height="64" width="896" format="[general]"  name=part_machine_labor_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

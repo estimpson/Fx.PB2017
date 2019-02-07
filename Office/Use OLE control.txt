@@ -1,0 +1,22 @@
+
+OLEObject example
+int returnCode
+
+example = create OLEObject
+
+returnCode = example.ConnectToNewObject("PB_COM_Example.Example")
+
+if	returnCode <> 0 then
+	destroy example
+	MessageBox("Error", "Component installation error")
+	return
+else
+	example.SayHi()
+	int variable = 20
+	variable = example.AddTenToParameter(variable)
+	messagebox("Result", variable)
+	string variable2
+	variable2 = example.GiveMeDate()
+	messagebox("result", variable2)
+	destroy example
+end if

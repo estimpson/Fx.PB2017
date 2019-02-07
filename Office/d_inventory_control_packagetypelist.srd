@@ -1,0 +1,51 @@
+HA$PBExportHeader$d_inventory_control_packagetypelist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=packagecode dbname="PackageCode" )
+ column=(type=char(25) updatewhereclause=yes name=packagedescription dbname="PackageDescription" )
+ retrieve="select distinct
+	PackageCode = pp.code
+,	PackageDescription = pm.name
+from
+	dbo.InventoryControl_Objects ico
+	join dbo.part_packaging pp
+		join dbo.package_materials pm
+			on pm.code = pp.code
+		on pp.part = ico.part
+where
+	ico.Serial in
+	(	select
+			convert(int, rtrim(fsstr.Value))
+		from
+			dbo.fn_SplitStringToRows(:breakoutSerialList, ',') fsstr
+		where
+			convert(int, rtrim(fsstr.Value)) > 0
+	)
+	and ico.ObjectType is null
+	and ico.Shipper is null
+	and ico.Status != 'P'
+union all
+select distinct
+	PackageCode = ' '
+,	PackageDescription = 'N/A'
+order by
+	1" arguments=(("breakoutSerialList", string)) )
+text(band=header alignment="0" text="Pack code" border="6" color="33554432" x="9" y="8" height="76" width="320" html.valueishtml="0"  name=packagecode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Pack description" border="6" color="33554432" x="338" y="8" height="76" width="754" html.valueishtml="0"  name=packagedescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=packagecode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="338" y="8" height="76" width="754" format="[general]" html.valueishtml="0"  name=packagedescription visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "pfc\\win32api.pbl" "";
+@end;
+@begin Objects
+ "pfc\\n_cst_winspool32.sru" "pfc\\win32api.pbl";
+@end;

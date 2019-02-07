@@ -1,0 +1,8 @@
+﻿$PBExportHeader$st_laborhrs.srs
+global type st_laborhrs from structure
+	string		workorder
+	string		part
+	string		activity
+	string		location
+end type
+

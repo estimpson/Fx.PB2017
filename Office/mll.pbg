@@ -1,0 +1,33 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\mll.pbl" "";
+@end;
+@begin Objects
+ "office\\w_aztec_dana.srw" "office\\mll.pbl";
+ "office\\w_yorozu_shipper.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford_sd.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford.srw" "office\\mll.pbl";
+ "office\\w_aztec_fin.srw" "office\\mll.pbl";
+ "office\\w_aztec_ppap.srw" "office\\mll.pbl";
+ "office\\w_21cent_seven.srw" "office\\mll.pbl";
+ "office\\w_aztec_patt.srw" "office\\mll.pbl";
+ "office\\n_runandwait.sru" "office\\mll.pbl";
+ "office\\w_aztec_raw.srw" "office\\mll.pbl";
+ "office\\w_tsm_generate_label_from_prn.srw" "office\\mll.pbl";
+ "office\\w_aztec_proto.srw" "office\\mll.pbl";
+ "office\\w_aztec_wip.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford_2d_05.srw" "office\\mll.pbl";
+ "office\\w_bartender.srw" "office\\mll.pbl";
+ "office\\w_yorozu_master.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford_2d.srw" "office\\mll.pbl";
+ "office\\w_print_monlabel.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford_nirvana_pallet.srw" "office\\mll.pbl";
+ "office\\w_testrunwait.srw" "office\\mll.pbl";
+ "office\\w_std_label_for_wip_test.srw" "office\\mll.pbl";
+ "office\\w_21cent_allsteel.srw" "office\\mll.pbl";
+ "office\\w_aztec_ford_nirvana.srw" "office\\mll.pbl";
+ "office\\w_tsm_printlabel.srw" "office\\mll.pbl";
+ "office\\w_aztec_inter_truck_quick.srw" "office\\mll.pbl";
+ "office\\w_21cent_internal.srw" "office\\mll.pbl";
+ "office\\w_aztec_chrysler_fin.srw" "office\\mll.pbl";
+@end;

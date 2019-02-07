@@ -1,0 +1,2 @@
+﻿$PBExportHeader$part_mfg_query.srq
+PBSELECT( VERSION(400) TABLE(NAME="dbo.part_mfg" ) COLUMN(NAME="dbo.part_mfg.part") COLUMN(NAME="dbo.part_mfg.mfg_lot_size") COLUMN(NAME="dbo.part_mfg.process_id") COLUMN(NAME="dbo.part_mfg.parts_per_cycle") COLUMN(NAME="dbo.part_mfg.parts_per_hour") COLUMN(NAME="dbo.part_mfg.cycle_unit") COLUMN(NAME="dbo.part_mfg.cycle_time") COLUMN(NAME="dbo.part_mfg.setup_time") COLUMN(NAME="dbo.part_mfg.activity"))

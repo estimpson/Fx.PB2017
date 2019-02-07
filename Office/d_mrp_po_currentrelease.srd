@@ -1,0 +1,60 @@
+HA$PBExportHeader$d_mrp_po_currentrelease.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=ponumber dbname="PONumber" )
+ column=(type=datetime updatewhereclause=yes name=porequireddt dbname="PORequiredDT" )
+ column=(type=datetime updatewhereclause=yes name=lastreceiveddt dbname="LastReceivedDT" )
+ column=(type=decimal(6) updatewhereclause=yes name=lastreceivedamount dbname="LastReceivedAmount" )
+ column=(type=decimal(6) updatewhereclause=yes name=originalqty dbname="OriginalQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=receivedqty dbname="ReceivedQty" )
+ column=(type=decimal(6) updatewhereclause=yes name=openbalance dbname="OpenBalance" )
+ column=(type=long updatewhereclause=yes identity=yes name=rowid dbname="po_detail.RowID" )
+ column=(type=char(50) updatewhereclause=yes name=releasenumber dbname="po_detail.ReleaseNumber" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	PONumber = pd.po_number
+,	PORequiredDT = pd.date_due
+,	LastReceivedDT = pd.last_recvd_date
+,	LastReceivedAmount = pd.last_recvd_amount
+,	OriginalQty = pd.quantity
+,	ReceivedQty = pd.received
+,	OpenBalance = pd.balance
+,	pd.RowID
+,	pd.ReleaseNumber
+,	IsSelected = 0
+from
+	dbo.po_detail pd
+where
+	pd.po_number = :PONumber
+" arguments=(("PONumber", number)) )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=ponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="265" y="8" height="76" width="393" format="[shortdate]" html.valueishtml="0"  name=porequireddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="2647" y="8" height="76" width="535" format="[general]" html.valueishtml="0"  name=releasenumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="667" y="8" height="76" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=lastreceiveddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1179" y="8" height="76" width="357" format="#,##0.0#####;(#,##0.0####)[RED];-;-" html.valueishtml="0"  name=lastreceivedamount visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1545" y="8" height="76" width="357" format="#,##0.0#####;(#,##0.0####)[RED];-;-" html.valueishtml="0"  name=originalqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="1911" y="8" height="76" width="357" format="#,##0.0#####;(#,##0.0####)[RED];-;-" html.valueishtml="0"  name=receivedqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="2277" y="8" height="76" width="357" format="#,##0.0#####;(#,##0.0####)[RED];-;-" html.valueishtml="0"  name=openbalance visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PO #" border="6" color="33554432" x="9" y="8" height="76" width="247" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Required DT" border="6" color="33554432" x="265" y="8" height="76" width="393" html.valueishtml="0"  name=porequireddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Last received DT" border="6" color="33554432" x="667" y="8" height="76" width="503" html.valueishtml="0"  name=lastreceiveddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Last receipt" border="6" color="33554432" x="1179" y="8" height="76" width="357" html.valueishtml="0"  name=lastreceivedamount_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Original qty." border="6" color="33554432" x="1545" y="8" height="76" width="357" html.valueishtml="0"  name=originalqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Received qty." border="6" color="33554432" x="1911" y="8" height="76" width="357" html.valueishtml="0"  name=receivedqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Open balance" border="6" color="33554432" x="2277" y="8" height="76" width="357" html.valueishtml="0"  name=openbalance_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Release #" border="6" color="33554432" x="2647" y="8" height="76" width="535" html.valueishtml="0"  name=releasenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

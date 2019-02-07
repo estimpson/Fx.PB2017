@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dw_check_part_vendor_relation.srd
+$PBExportComments$Check the part and vendor relation
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part_vendor.part" )
+ column=(type=char(10) update=yes updatewhereclause=yes key=yes name=vendor dbname="part_vendor.vendor" )
+ retrieve="PBSELECT(TABLE(NAME=~"part_vendor~" ) COLUMN(NAME=~"part_vendor.part~") COLUMN(NAME=~"part_vendor.vendor~")WHERE( EXP1 =~"( part_vendor.part~" OP =~"=~" EXP2 =~":szPart )~" LOGIC =~"and~" ) WHERE( EXP1 =~"( part_vendor.vendor~" OP =~"=~" EXP2 =~":szVendor )~" ) ) ARG(NAME = ~"szPart~" TYPE = string) ARG(NAME = ~"szVendor~" TYPE = string) " update="part_vendor" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string),("szVendor", string))  sort="vendor D " )
+text(band=header alignment="2" text="Part"border="6" color="0" x="9" y="8" height="60" width="512"  name=part_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Vendor"border="6" color="0" x="530" y="8" height="60" width="421"  name=vendor_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="64" width="512" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="530" y="8" height="64" width="421" format="[general]"  name=vendor edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

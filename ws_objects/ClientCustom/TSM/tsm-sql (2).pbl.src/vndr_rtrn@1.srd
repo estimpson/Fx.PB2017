@@ -1,0 +1,19 @@
+﻿$PBExportHeader$vndr_rtrn@1.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.orientation=0 print.margin.left=110 print.margin.right=110 print.margin.top=96 print.margin.bottom=96 print.paper.size=0 print.paper.source=0 selected.mouse=no)
+header(height=0 )
+summary(height=0 )
+footer(height=0 )
+detail(height=2400 )
+table(column=(type=long key=yes update=yes updatewhereclause=yes name=object_serial dbname="object.serial"  )
+column=(type=char(25) update=yes updatewhereclause=yes name=object_part dbname="object.part"  )
+column=(type=char(30) update=yes updatewhereclause=yes name=object_po_number dbname="object.po_number"  )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"object~" ) COLUMN(NAME=~"object.serial~") COLUMN(NAME=~"object.part~") COLUMN(NAME=~"object.po_number~")) "
+  update="object" updatewhere=1 updatekeyinplace=no
+ )
+text(name=object_serial_t band=detail font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" background.mode="1" background.color="536870912" color="33554432" alignment="1" border="0" x="0" y="108" height="64" width="315" text="Serial:" )
+column(name=object_serial band=detail id=1 x="389" y="80" height="76" width="329" color="33554432" border="5" alignment="1" format="[general]" edit.focusrectangle=no edit.autohscroll=yes edit.autoselect=yes edit.autovscroll=no edit.codetable=no edit.displayonly=no edit.hscrollbar=no edit.imemode=0 edit.limit=0 edit.password=no edit.vscrollbar=no edit.validatecode=no edit.nilisnull=no edit.required=no criteria.required=no criteria.override_edit=no crosstab.repeat=no background.mode="0" background.color="67108864" font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" tabsequence=10 )
+text(name=object_part_t band=detail font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" background.mode="1" background.color="536870912" color="33554432" alignment="1" border="0" x="0" y="232" height="64" width="315" text="Part:" )
+column(name=object_part band=detail id=2 x="375" y="216" height="76" width="713" color="33554432" border="5" alignment="0" format="[general]" edit.focusrectangle=no edit.autohscroll=yes edit.autoselect=yes edit.autovscroll=no edit.codetable=no edit.displayonly=no edit.hscrollbar=no edit.imemode=0 edit.limit=25 edit.password=no edit.vscrollbar=no edit.validatecode=no edit.nilisnull=no edit.required=no criteria.required=no criteria.override_edit=no crosstab.repeat=no background.mode="0" background.color="67108864" font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" tabsequence=20 )
+text(name=object_po_number_t band=detail font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" background.mode="1" background.color="536870912" color="33554432" alignment="1" border="0" x="0" y="380" height="64" width="315" text="Po Number:" )
+column(name=object_po_number band=detail id=3 x="347" y="372" height="76" width="850" color="33554432" border="5" alignment="0" format="[general]" edit.focusrectangle=no edit.autohscroll=yes edit.autoselect=yes edit.autovscroll=no edit.codetable=no edit.displayonly=no edit.hscrollbar=no edit.imemode=0 edit.limit=30 edit.password=no edit.vscrollbar=no edit.validatecode=no edit.nilisnull=no edit.required=no criteria.required=no criteria.override_edit=no crosstab.repeat=no background.mode="0" background.color="67108864" font.charset="0" font.face="Arial" font.family="2" font.height="-10" font.italic="0" font.pitch="2" font.weight="400" font.underline="0" tabsequence=30 )

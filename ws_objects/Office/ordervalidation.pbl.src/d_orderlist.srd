@@ -1,0 +1,46 @@
+﻿$PBExportHeader$d_orderlist.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 selected.mouse=no )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="553648127~tif ( reviewed_by > '', if ( review_date > Date ( '1990-01-01' ), 255 * 256, 255 ),  g_f_get_sys_color ( 'Buttonface' ) )" )
+table(column=(type=decimal(0) updatewhereclause=yes name=order_no dbname="order_no" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="destination" )
+ column=(type=char(35) updatewhereclause=yes name=customer_part dbname="customer_part" )
+ column=(type=char(25) updatewhereclause=yes name=blanket_part dbname="blanket_part" )
+ column=(type=datetime updatewhereclause=yes name=order_date dbname="order_date" )
+ column=(type=datetime updatewhereclause=yes name=review_date dbname="review_date" )
+ column=(type=char(25) updatewhereclause=yes name=reviewed_by dbname="reviewed_by" )
+ retrieve="SELECT	oh.order_no,
+	oh.destination,
+	oh.customer_part,   
+	oh.blanket_part,   
+	ohi.order_date,
+	ohi.review_date,
+	ohi.reviewed_by
+  FROM	order_header oh
+	JOIN order_header_inserted ohi ON oh.order_no = ohi.order_no AND
+		ohi.order_date IN (
+			SELECT	Max ( ohi2.order_date )
+			  FROM	order_header_inserted ohi2
+			 WHERE	ohi2.order_no = oh.order_no )
+	JOIN customer cm ON oh.customer = cm.customer
+ WHERE	oh.order_type = 'B' AND
+	( cm.salesrep = :salesrep )
+ORDER BY 1" arguments=(("salesrep", string)) )
+text(band=header alignment="2" text="Order No"border="6" color="0" x="9" y="8" height="52" width="256"  name=order_no_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Destination"border="6" color="0" x="274" y="8" height="52" width="306"  name=destination_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer Part"border="6" color="0" x="590" y="8" height="52" width="457"  name=customer_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Blanket Part"border="6" color="0" x="1056" y="8" height="52" width="443"  name=blanket_part_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="EDI Sched Date"border="6" color="0" x="1509" y="8" height="52" width="439"  name=order_date_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Review Date"border="6" color="0" x="1957" y="8" height="52" width="530"  name=review_date_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Reviewed By"border="6" color="0" x="2496" y="8" height="52" width="402"  name=reviewed_by_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="52" width="256" format="[general]"  name=order_no edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="274" y="8" height="52" width="306" format="[general]"  name=destination edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="590" y="8" height="52" width="457" format="[general]"  name=customer_part edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1056" y="8" height="52" width="443" format="[general]"  name=blanket_part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="1509" y="8" height="52" width="439" format="[general]"  name=order_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1957" y="8" height="52" width="530" format="[shortdate] [time]"  name=review_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="2496" y="8" height="52" width="402" format="[general]"  name=reviewed_by edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

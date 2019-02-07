@@ -1,0 +1,25 @@
+﻿$PBExportHeader$vendor_purchases_sum_tsm.srd
+$PBExportComments$CrossTab sums vendor purchases
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=4 print.documentname="" print.orientation = 0 print.margin.left = 0 print.margin.right = 0 print.margin.top = 0 print.margin.bottom = 0 print.paper.source = 0 print.paper.size = 0 print.prompt=no  crosstab.dynamic = yes grid.lines=0 grid.columnmove=no selected.mouse=no )
+header[1](height=177 color="536870912" )
+header[2](height=177 color="536870912" )
+summary(height=250 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=vendor dbname="vendor" )
+ column=(type=number updatewhereclause=yes name=cost dbname="cost" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"audit_trail~" ) COLUMN(NAME=~"audit_trail.serial~") COLUMN(NAME=~"audit_trail.date_stamp~") COLUMN(NAME=~"audit_trail.part~") COLUMN(NAME=~"audit_trail.quantity~") COLUMN(NAME=~"audit_trail.vendor~") COLUMN(NAME=~"audit_trail.cost~") COLUMN(NAME=~"audit_trail.type~")) " )
+text(band=header[1] alignment="0" text="Sum Of Cost"border="0" color="8388608" x="20" y="0" height="166" width="1114"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[1] alignment="0" text="obj_75694081"border="0" color="8388608" x="1156" y="0" height="166" width="875"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="0" text="Vendor"border="0" color="8388608" x="20" y="0" height="166" width="1114"  name=vendor_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="@col"border="0" color="8388608" x="1156" y="0" height="166" width="875"  name=cost_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header[2] alignment="2" text="Grand Total "border="0" color="8388608" x="2052" y="0" height="166" width="1562"  name=grand_sum_cost_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="8388608" x="20" y="0" height="166" width="1114" format="[general]"  name=vendor edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="8388608" x="1156" y="0" height="197" width="875" format="#,##0.00"  name=cost edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes crosstab.repeat=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="1" expression="crosstabsum(1)"border="0" color="8388608" x="2052" y="0" height="197" width="1562" format="#,##0.00"  name=grand_sum_cost  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="~"Grand Total~""border="0" color="8388608" x="20" y="0" height="166" width="1114" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(cost for all )"border="0" color="8388608" x="1156" y="0" height="166" width="875" format="#,##0.00"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(grand_sum_cost for all )"border="0" color="8388608" x="2052" y="0" height="166" width="1562" format="#,##0.00"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ crosstab(band = foreground  crosstabonly = yes 
+ columns = "month( date )" rows = "vendor" values = "sum(cost for crosstab)" sourcenames = "serial, date, part, quantity, vendor, cost, status")

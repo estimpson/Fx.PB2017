@@ -1,0 +1,12 @@
+﻿$PBExportHeader$dw_sf_defects_right.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=244 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=code dbname="defect_codes.code" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=name dbname="defect_codes.name" )
+ retrieve="SELECT defect_codes.code, defect_codes.name FROM defect_codes " update="defect_codes" updatewhere=0 updatekeyinplace=yes  sort="code D " )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="255" x="0" y="4" height="236" width="1339" format="[general]"  name=code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-36" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="255" x="1367" y="4" height="232" width="2743" format="[general]"  name=name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-36" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

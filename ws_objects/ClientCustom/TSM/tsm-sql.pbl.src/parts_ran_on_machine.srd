@@ -1,0 +1,33 @@
+﻿$PBExportHeader$parts_ran_on_machine.srd
+$PBExportComments$Manf. - Parts ran on what Machines (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=437 color="536870912" )
+summary(height=208 color="536870912" )
+footer(height=229 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part_part dbname="part" )
+ column=(type=char(50) updatewhereclause=yes name=part_name dbname="name" )
+ column=(type=long updatewhereclause=yes name=part_machine_sequence dbname="sequence" )
+ column=(type=char(15) updatewhereclause=yes name=part_machine_machine dbname="machine" )
+ column=(type=char(35) updatewhereclause=yes name=machine_mach_descp dbname="mach_descp" )
+ retrieve="  SELECT  part.part ,           part.name ,           part_machine.sequence ,           part_machine.machine ,           machine.mach_descp     
+        FROM part ,           part_machine ,           machine     
+        WHERE ( part.part = part_machine.part ) and          ( part_machine.machine = machine.machine_no ) and          ( ( part_machine.machine like :Enter_Machine_Number ) )  " arguments=(("Enter_Machine_Number", string))  sort="part_part A part_machine_sequence A part_machine_machine A " )
+text(band=header alignment="0" text="Torca Products, Inc. - Which Machines can specified Part run on"border="0" color="33554432" x="83" y="52" height="166" width="4218"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part"border="0" color="33554432" x="83" y="260" height="166" width="270"  name=part_part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Name"border="0" color="33554432" x="1250" y="260" height="166" width="385"  name=part_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Sequence"border="0" color="33554432" x="5750" y="260" height="166" width="666"  name=part_machine_sequence_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Machine"border="0" color="33554432" x="6489" y="260" height="166" width="562"  name=part_machine_machine_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Mach Descp"border="0" color="33554432" x="7333" y="260" height="166" width="791"  name=machine_mach_descp_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="83" y="0" height="166" width="1166" format="[general]"  name=part_part  tag="Part code" edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1250" y="0" height="166" width="4437" format="[general]"  name=part_name  tag="Name of the part or desciption of the part" edit.limit=50 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="5781" y="0" height="166" width="375" format="[general]"  name=part_machine_sequence  tag="Sequence " edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="6489" y="0" height="166" width="750" format="[general]"  name=part_machine_machine  tag="Machine code " edit.limit=15 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="7333" y="0" height="166" width="2687" format="[general]"  name=machine_mach_descp  tag="machine description " edit.limit=35 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Number of Parts Machine can run:"border="0" color="33554432" x="1145" y="10" height="166" width="2062"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="count(part_part for all)"border="0" color="33554432" x="3291" y="10" height="166" width="1166" format="#,##0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="33554432" x="83" y="32" height="166" width="666" format="[general]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="5677" y="32" height="166" width="1562" format="[general]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="part_part	part_name") 

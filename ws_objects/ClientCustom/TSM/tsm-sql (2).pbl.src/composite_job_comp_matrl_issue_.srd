@@ -1,0 +1,16 @@
+﻿$PBExportHeader$composite_job_comp_matrl_issue_.srd
+$PBExportComments$Matl. Mngmt. - Composite Report Designed to summarize Job Completions and Material Issues for date time range (Composite - Report) - Ok to be used with SQL Server DB
+release 6;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=5 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=302 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=239 color="536870912" )
+detail(height=416 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes")
+text(band=header alignment="0" text="Torca Products, Inc. - Job Completion - Material Issue Summary Composite Report"border="0" color="0" x="72" y="62" height="208" width="6500"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="material_issue_rpt_for_range_sum" x="52" y="52" height="312" width="4291" border="2"  height.autosize=yes criteria="" trail_footer = yes  slideup=directlyabove )
+report(band=detail dataobject="job_comp_rpt_for_range_sum" x="4666" y="52" height="312" width="4520" border="2"  height.autosize=yes criteria="" trail_footer = yes  slideup=directlyabove )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="83" y="31" height="208" width="833" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="4906" y="21" height="208" width="1947" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

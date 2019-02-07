@@ -1,0 +1,49 @@
+HA$PBExportHeader$d_partmaster_partcrossreflist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(25) updatewhereclause=yes key=yes name=partcode dbname="PartMaster_PartCrossReferenceList.PartCode" )
+ column=(type=long updatewhereclause=yes name=isnew dbname="PartMaster_PartCrossReferenceList.IsNew" )
+ column=(type=char(50) update=yes updatewhereclause=yes key=yes name=categoryname dbname="PartMaster_PartCrossReferenceList.CategoryName" )
+ column=(type=char(255) updatewhereclause=yes name=categorydescription dbname="PartMaster_PartCrossReferenceList.CategoryDescription" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=crossreference dbname="PartMaster_PartCrossReferenceList.CrossReference" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	pmpcrl.PartCode
+,	pmpcrl.IsNew
+,	pmpcrl.CategoryName
+,	pmpcrl.CategoryDescription
+,	pmpcrl.CrossReference
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.PartMaster_PartCrossReferenceList pmpcrl
+where
+	pmpcrl.PartCode = :PartCode
+order by
+	1
+,	2
+,	3" update="dbo.PartMaster_PartCrossReferenceList" updatewhere=0 updatekeyinplace=yes arguments=(("PartCode", string)) )
+text(band=header alignment="0" text="Category name" border="6" color="134217742" x="146" y="8" height="72" width="549" html.valueishtml="0"  name=categoryname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="704" y="8" height="72" width="759" html.valueishtml="0"  name=categorydescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Cross reference" border="6" color="134217742" x="1472" y="8" height="72" width="759" html.valueishtml="0"  name=crossreference_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="33554432" x="146" y="4" height="76" width="549" format="[general];<New Category>" html.valueishtml="0"  name=categoryname  tag="Enter a new category name..." visible="1" edit.limit=0 edit.case=upper edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="704" y="4" height="76" width="759" format="[general]" html.valueishtml="0"  name=categorydescription  tag="Category description..." visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="1472" y="8" height="76" width="759" format="[general]" html.valueishtml="0"  name=crossreference  tag="Cross reference..." visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(~"New.bmp~")"border="0" color="33554432" x="9" y="8" height="64" width="59" format="[GENERAL]" html.valueishtml="0"  name=c_newcrossreference  tag="New cross reference..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(~"Delete.bmp~")"border="0" color="33554432" x="78" y="8" height="64" width="59" format="[GENERAL]" html.valueishtml="0"  name=c_deletecrossreference  tag="Delete cross reference..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

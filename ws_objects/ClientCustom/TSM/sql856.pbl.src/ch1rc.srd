@@ -1,0 +1,14 @@
+﻿$PBExportHeader$ch1rc.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="536870912" )
+summary(height=5 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=201 color="536870912" )
+table(column=(type=number name=rc dbname="compute_0001" )
+ column=(type=char(20) name=package_type dbname="audit_trail.package_type" )
+ retrieve="SELECT count(audit_trail.serial), audit_trail.package_type FROM {oj audit_trail LEFT OUTER JOIN package_materials ON audit_trail.package_type = package_materials.code}, shipper_detail WHERE ( convert (varchar(20), shipper_detail.shipper) = audit_trail.shipper ) and ( ( shipper_detail.shipper = :ishipper ) AND ( package_materials.returnable = 'Y' ) ) GROUP BY audit_trail.package_type" arguments=(("ishipper", number)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="19" y="116" height="77" width="1093" format="[general]"  name=package_type edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="rc_count"border="0" color="0" x="1116" y="36" height="65" width="769"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+text(band=detail alignment="0" text="package_type"border="0" color="0" x="1116" y="116" height="65" width="769"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16776960" )
+compute(band=detail alignment="0" expression="string(  rc  )"border="0" color="0" x="19" y="36" height="65" width="1079" format="[GENERAL]"  name=rc_count  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )

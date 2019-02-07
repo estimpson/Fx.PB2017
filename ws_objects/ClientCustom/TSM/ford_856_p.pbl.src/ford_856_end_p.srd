@@ -1,0 +1,38 @@
+﻿$PBExportHeader$ford_856_end_p.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=8 color="-1" )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=488 color="-1" )
+table(column=(type=char(20) updatewhereclause=yes name=package_type dbname="audit_trail.package_type" )
+ column=(type=long updatewhereclause=yes name=rc_count dbname="rc_count" )
+ column=(type=char(2) updatewhereclause=yes name=returncontainer dbname="returncontainer" )
+ column=(type=char(4) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(2) updatewhereclause=yes name=um dbname="um" )
+ retrieve="SELECT 	audit_trail.package_type, 
+			count(audit_trail.package_type) as rc_count, 
+			'RC' as returncontainer, 
+			'NONE' as po, 
+			'PC' as um
+FROM 		audit_trail, 
+			package_materials, 
+			shipper 
+WHERE ( audit_trail.package_type = package_materials.code ) and 
+		( audit_trail.shipper = convert (varchar, shipper.id )) and 
+		( (shipper.id = :ishipper ) AND 
+		( (audit_trail.type = 'S')) and
+		( package_materials.returnable = 'Y' ) )	 
+		GROUP BY audit_trail.package_type" arguments=(("ishipper", number))  sort="returncontainer A " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="180" height="64" width="713" format="[general]"  name=package_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="340" height="64" width="713" format="[general]"  name=um edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="420" height="64" width="713" format="[general]"  name=po edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="returnable_container"border="0" color="0" x="782" y="260" height="64" width="613"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="returnables"border="0" color="0" x="786" y="100" height="64" width="338"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="package_type"border="0" color="0" x="786" y="180" height="64" width="393"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="um"border="0" color="0" x="786" y="340" height="64" width="393"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="po"border="0" color="0" x="786" y="420" height="64" width="393"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="if( left(  package_type , 2 )='ZE', left(  package_type , 5 ), if( left(  package_type , 7 )='#4801 ~"', '4801E', if( left( package_type , 7 )='#4801 C', '4801', package_type ) ) )
+/*used for Titan Tool & Die only*/"border="0" color="0" x="46" y="252" height="76" width="722" format="[general]"  name=returnable_container  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15789311" )
+compute(band=detail alignment="0" expression="string( rc_count )"border="0" color="0" x="46" y="100" height="64" width="709" format="[general]"  name=returnables  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

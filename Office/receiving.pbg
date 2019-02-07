@@ -1,0 +1,20 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Receiving.pbl" "";
+@end;
+@begin Objects
+ "office\\w_receivingdockv2.srw" "office\\Receiving.pbl";
+ "office\\n_cst_receivingdock_controller.sru" "office\\Receiving.pbl";
+ "office\\u_tabpg_receivingdock_headers.sru" "office\\Receiving.pbl";
+ "office\\u_tabpg_receivingdock_lines.sru" "office\\Receiving.pbl";
+ "office\\u_tabpg_receiving_licnplateinq_list.sru" "office\\Receiving.pbl";
+ "office\\w_receiving_licnplateinq.srw" "office\\Receiving.pbl";
+ "office\\d_openreceiverheaderlist.srd" "office\\Receiving.pbl";
+ "office\\n_receiving_licnplateinq_controller.sru" "office\\Receiving.pbl";
+ "office\\d_receiverobjectlist.srd" "office\\Receiving.pbl";
+ "office\\u_tabpg_receivingdock_objects.sru" "office\\Receiving.pbl";
+ "office\\d_receiving_objectstatus.srd" "office\\Receiving.pbl";
+ "office\\d_receiving_supplierlicenseplatelist.srd" "office\\Receiving.pbl";
+ "office\\n_cst_receivingdocktrans.sru" "office\\Receiving.pbl";
+ "office\\d_receiverlinelist.srd" "office\\Receiving.pbl";
+@end;

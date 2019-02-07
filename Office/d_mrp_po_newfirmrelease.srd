@@ -1,0 +1,57 @@
+HA$PBExportHeader$d_mrp_po_newfirmrelease.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=ponumber dbname="PONumber" )
+ column=(type=datetime updatewhereclause=yes name=porequireddt dbname="PORequiredDT" )
+ column=(type=decimal(6) updatewhereclause=yes name=poqty dbname="POQty" )
+ column=(type=char(50) updatewhereclause=yes name=releasenumber dbname="ReleaseNumber" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	PONumber = mppo.DefaultPONumber
+,	PORequiredDT = mppo.PORequiredDT
+,	POQty = dbo.udf_GetQtyFromStdQty(mpc.PurchasedPart, mppo.POQty, mpc.VendorUOM)
+,	mfps.ReleaseNumber
+,	IsSelected = 0
+from
+	dbo.MRP_PlanningPurchaseOrders mppo
+	join dbo.MRP_PurchasingContracts mpc
+		on mpc.DefaultPONumber = mppo.DefaultPONumber
+	join dbo.part_inventory pInv
+		on mppo.PurchasedPart = pinv.part
+	join dbo.po_header ph
+		on ph.po_number = mppo.DefaultPONumber
+	cross apply
+		(	select top 1
+				ReleaseNumber
+			from
+				dbo.MRP_FirmPOSchedules mfps
+			order by
+				mfps.RowCreateDT desc
+		) mfps
+where
+	mppo.DefaultPONumber = :PONumber
+	and mppo.POQty > 0
+" arguments=(("PONumber", number)) )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="283" format="[general]" html.valueishtml="0"  name=ponumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="302" y="8" height="76" width="393" format="[shortdate]" html.valueishtml="0"  name=porequireddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="704" y="8" height="76" width="247" format="#,##0.0####" html.valueishtml="0"  name=poqty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="960" y="8" height="76" width="649" format="[general]" html.valueishtml="0"  name=releasenumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="PO #" border="6" color="33554432" x="9" y="8" height="76" width="283" html.valueishtml="0"  name=ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Required DT" border="6" color="33554432" x="302" y="8" height="76" width="393" html.valueishtml="0"  name=porequireddt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Qty" border="6" color="33554432" x="704" y="8" height="76" width="247" html.valueishtml="0"  name=poqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Release #" border="6" color="33554432" x="960" y="8" height="76" width="649" html.valueishtml="0"  name=releasenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

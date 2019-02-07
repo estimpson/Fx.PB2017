@@ -1,0 +1,17 @@
+.21st (2K8R2)	(LOCAL)\SQL2008R2	Fx21st	1			
+.TSM - 2013.03.25	FTEESW520\SQL2012	FxTSm		sa	)Kc0mput3r	
+21st - Live	192.168.0.200	FIS_EMPOWER_21st		estimpson	)Kc0mput3r	
+21st - Live - New	192.168.0.200	FIS_Empower_21st		estimpson	$Th0ught	
+Andre - Demo	10.0.0.12\sqlexpressft	FxDemo		sa	abcb7988&	
+Armada - Live	192.0.0.2\FX	FxArmada		estimpson	)Kc0mput3r	
+Armada - Test	192.0.0.2\FX	FxArmada_Testing		sa	$Th0ught	
+Aztec - Live	aztec	FxAztec		estimpson	)Kc0mput3r	
+Aztec - Test	aztecsql2.aztecmfgcorp.local\fx	fxAztecTraining		sa	$Th0ught	
+Empire - Troy	192.168.1.102	monitor		Andre		
+FT.Armada	10.98.0.24\Armada_2kb	FxArmada	1			
+FT.VoltTech	10.98.0.24\VoltTech_2ke	FxVoltTech	1			
+Torca - Live	sql.torca.biz	mon42000	1	sa	monitor	
+TSM - Live	fxsql.tsm.local,1433	FxTSM		FxTestUser	$Th0ught	
+TSM - Live Testing	fxsql.tsm.local,1433	FxTSM_Testing		sa	$Th0ught	
+TSM - Live Training	fxsql.tsm.local\sql2012	FxTSM_Training		Eric	)Kc0mput3r	
+VoltTech - Dev	Data.VoltTech	FxVoltTech	1	Eric	@Kc0mput3r	

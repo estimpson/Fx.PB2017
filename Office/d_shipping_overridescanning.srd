@@ -1,0 +1,44 @@
+HA$PBExportHeader$d_shipping_overridescanning.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=456 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=operatorpassword dbname="OperatorPassword" )
+ column=(type=char(5) updatewhereclause=yes name=operatorcode dbname="OperatorCode" )
+ column=(type=char(100) updatewhereclause=yes name=operatorname dbname="OperatorName" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=objectcount dbname="Shipping_DepartingTruckList.ObjectCount" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	OperatorPassword = convert(varchar(25), null)
+,	OperatorCode = convert(varchar(5), null)
+,	OperatorName = convert(varchar(100), null)
+,	Change = convert(char(1000), '')
+,	sdtl.ObjectCount
+,	IsSelected = 0
+from
+	dbo.Shipping_DepartingTruckList sdtl
+where
+	sdtl.ShipperNumberList = :ShipperList
+
+" arguments=(("shipperList", string)) )
+groupbox(band=detail text="Override Scanning"border="5" color="33554432" x="37" y="4" height="448" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Password:" border="0" color="33554432" x="73" y="100" height="64" width="434" html.valueishtml="0"  name=operatorpassword_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Name:" border="0" color="33554432" x="73" y="228" height="64" width="434" html.valueishtml="0"  name=operatorname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="33554432" x="549" y="228" height="76" width="841" format="[general]" html.valueishtml="0"  name=operatorname visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="134217742" x="549" y="100" height="76" width="841" format="*********" html.valueishtml="0"  name=operatorpassword visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.password=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+bitmap(band=detail filename="ok-32.bmp" x="1463" y="36" height="128" width="146" border="0"  name=p_ok  tag="Override scanning" visible="1~tif(operatorname > ~"~", 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1463" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel" visible="1" )
+compute(band=detail alignment="0" expression="~"Login to skip scanning ~" + string(ObjectCount) + ~" objects to truck.~""border="0" color="255" x="73" y="356" height="64" width="1317" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

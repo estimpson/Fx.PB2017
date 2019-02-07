@@ -1,0 +1,22 @@
+﻿$PBExportHeader$f_machine_schedule_mode.srf
+$PBExportComments$Schedule Mode (Machine Policy) per machine
+global type f_machine_schedule_mode from function_object
+end type
+
+forward prototypes
+global function string f_machine_schedule_mode (string as_machine)
+end prototypes
+
+global function string f_machine_schedule_mode (string as_machine);/* This function will return the schedule mode for machine. */
+/* H: Hard Queue     S: Soft Queue    D: Shipping Dock*/
+
+String szScheduleMode
+
+SELECT machine_policy.schedule_queue  
+  INTO :szScheduleMode  
+  FROM machine_policy  
+ WHERE machine_policy.machine = :as_Machine   ;
+
+Return szScheduleMode
+end function
+

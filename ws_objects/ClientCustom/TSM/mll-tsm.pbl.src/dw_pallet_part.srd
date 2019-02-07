@@ -1,0 +1,44 @@
+﻿$PBExportHeader$dw_pallet_part.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=box_count dbname="compute_0001" )
+ column=(type=decimal(6) updatewhereclause=yes name=object_quantity dbname="object.quantity" )
+ column=(type=char(35) updatewhereclause=yes name=customer_part dbname="order_header.customer_part" )
+ column=(type=char(35) updatewhereclause=yes name=line11 dbname="compute_0004" )
+ column=(type=char(20) updatewhereclause=yes name=customer_po dbname="compute_0005" )
+ column=(type=decimal(6) updatewhereclause=yes name=totalqty dbname="totalqty" )
+ retrieve="  SELECT count(1),
+			~"object~".~"quantity~",   
+         ~"order_header~".~"customer_part~",   
+         max( ~"order_header~".~"line11~" ),
+			max( ~"order_header~".~"customer_po~" ),
+			sum(~"object~".~"quantity~") totalqty
+    FROM ~"object~",   
+         ~"order_header~",   
+         ~"shipper_detail~"  
+   WHERE ( ~"object~".~"part~" = ~"shipper_detail~".~"part_original~" ) and  
+         ( ~"object~".~"shipper~" = ~"shipper_detail~".~"shipper~" ) and  
+         ( ~"order_header~".~"order_no~" = ~"shipper_detail~".~"order_no~" ) and
+			( ~"object~".~"parent_serial~" = :pallet_serial )    
+GROUP BY	~"order_header~".~"customer_part~",   
+			~"object~".~"quantity~"
+ORDER BY	~"order_header~".~"customer_part~",   
+			~"object~".~"quantity~"
+" arguments=(("pallet_serial", number)) )
+text(band=header alignment="2" text="~"count~"(1)"border="0" color="0" x="5" y="4" height="64" width="329"  name=compute_0001_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="0" x="338" y="4" height="64" width="274"  name=object_quantity_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer Part"border="0" color="0" x="617" y="4" height="64" width="695"  name=order_header_customer_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="~"max~"(order Header.line11)"border="0" color="0" x="1317" y="4" height="64" width="987"  name=compute_0004_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="~"sum~"(quantity)"border="0" color="0" x="2309" y="4" height="64" width="457"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="2" color="0" x="1317" y="4" height="76" width="987" format="[general]"  name=line11 edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="2" color="0" x="5" y="4" height="76" width="329" format="[general]"  name=box_count edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="2" color="0" x="338" y="4" height="76" width="274" format="[general]"  name=object_quantity  tag="quantity " edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="2" color="0" x="617" y="4" height="76" width="695" format="[general]"  name=customer_part  tag="customer part number " edit.limit=35 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="0" x="2309" y="4" height="76" width="462" format="[general]"  name=totalqty edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=0 border="2" color="0" x="2775" y="4" height="76" width="544"  name=customer_po  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Customer PO"border="0" color="0" x="2770" y="4" height="64" width="389"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

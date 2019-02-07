@@ -1,0 +1,19 @@
+﻿$PBExportHeader$s_powerfilter_parms.srs
+$PBExportComments$structure for passing multiple powerfilter parameters between windows
+global type s_powerfilter_parms from structure
+	string		parm1
+	string		parm2
+	string		parm3
+	string		parm4
+	string		parm5
+	string		parm6
+	datastore		parm7
+	string		parm8
+	boolean		parm9
+	string		parm10
+	string		parm11
+	string		parm12
+	string		parm13
+	integer		parm14
+end type
+

@@ -9,5 +9,5 @@ Save Format v3.0(19990112)
  6 "ClientCustom\\TSM\\Fx.TSM.pbt";
  7 "ClientCustom\\VoltTech\\Fx.VoltTech.pbt";
 @end;
-DefaultTarget "ClientCustom\\TSM\\Fx.TSM.pbt";
-DefaultRemoteTarget "ClientCustom\\TSM\\Fx.TSM.pbt";
+DefaultTarget "Office\\Fx.pbt";
+DefaultRemoteTarget "Office\\Fx.pbt";

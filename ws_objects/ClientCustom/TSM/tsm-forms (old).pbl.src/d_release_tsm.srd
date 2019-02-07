@@ -1,0 +1,120 @@
+﻿$PBExportHeader$d_release_tsm.srd
+release 6;
+datawindow(units=0 timer_interval=60000 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 0 print.margin.bottom = 100 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=1452 color="536870912" )
+summary(height=236 color="-1" )
+footer(height=76 color="-1" )
+detail(height=108 color="-1"  height.autosize=yes)
+table(column=(type=char(50) updatewhereclause=yes name=destination_name dbname="destination.name" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_1 dbname="destination.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_2 dbname="destination.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_3 dbname="destination.address_3" )
+ column=(type=long updatewhereclause=yes name=po_header_po_number dbname="po_header.po_number" )
+ column=(type=char(15) updatewhereclause=yes name=po_header_ship_via dbname="po_header.ship_via" )
+ column=(type=char(20) updatewhereclause=yes name=po_header_terms dbname="po_header.terms" )
+ column=(type=char(20) updatewhereclause=yes name=po_header_fob dbname="po_header.fob" )
+ column=(type=char(10) updatewhereclause=yes name=po_header_vendor_code dbname="po_header.vendor_code" )
+ column=(type=char(25) updatewhereclause=yes name=po_detail_part_number dbname="po_detail.part_number" )
+ column=(type=datetime updatewhereclause=yes name=po_detail_date_due dbname="po_detail.date_due" )
+ column=(type=char(2) updatewhereclause=yes name=po_detail_unit_of_measure dbname="po_detail.unit_of_measure" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_balance dbname="po_detail.balance" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_received dbname="po_detail.received" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_quantity dbname="po_detail.quantity" )
+ column=(type=char(255) updatewhereclause=yes name=po_detail_notes dbname="po_detail.notes" )
+ column=(type=char(255) updatewhereclause=yes name=po_header_notes dbname="po_header.notes" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_1 dbname="vendor.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_2 dbname="vendor.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_3 dbname="vendor.address_3" )
+ column=(type=char(35) updatewhereclause=yes name=vendor_name dbname="vendor.name" )
+ column=(type=datetime updatewhereclause=yes name=po_header_date_due dbname="po_header.date_due" )
+ column=(type=char(1) updatewhereclause=yes name=po_detail_deleted dbname="po_detail.deleted" )
+ column=(type=char(25) updatewhereclause=yes name=part_part dbname="part.part" )
+ column=(type=datetime updatewhereclause=yes name=po_detail_last_recvd_date dbname="po_detail.last_recvd_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_price dbname="po_detail.price" )
+ column=(type=char(50) updatewhereclause=yes name=parameters_company_name dbname="parameters.company_name" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_1 dbname="parameters.address_1" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_2 dbname="parameters.address_2" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_3 dbname="parameters.address_3" )
+ column=(type=char(1) updatewhereclause=yes name=po_detail_selected_for_print dbname="po_detail.selected_for_print" )
+ column=(type=long updatewhereclause=yes name=po_detail_po_number dbname="po_detail.po_number" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(255) updatewhereclause=yes name=part_description_long dbname="part.description_long" )
+ retrieve="SELECT DISTINCT	destination.name,
+						destination.address_1, 
+						destination.address_2,
+						destination.address_3,
+						po_header.po_number,
+						po_header.ship_via,
+						po_header.terms,
+						po_header.fob,
+						po_header.vendor_code,
+						po_detail.part_number,
+						po_detail.date_due,
+						po_detail.unit_of_measure,
+						po_detail.balance,
+						po_detail.received,
+						po_detail.quantity,
+						po_detail.notes,
+						po_header.notes,
+						vendor.address_1,
+						vendor.address_2,
+						vendor.address_3,
+						vendor.name,
+						po_header.date_due,
+						po_detail.deleted,
+						part.part,
+						po_detail.last_recvd_date,
+						po_detail.price,
+						parameters.company_name,
+						parameters.address_1,
+						parameters.address_2,
+						parameters.address_3,
+						po_detail.selected_for_print,
+						po_detail.po_number,
+						part.name, part.description_long
+	FROM 				destination,
+						part,
+						po_detail,
+						po_header,
+						vendor,
+						parameters
+	WHERE				( destination.destination =* po_header.ship_to_destination) and
+						( po_header.po_number = po_detail.po_number ) and
+						( vendor.code = po_header.vendor_code ) and
+						( po_detail.part_number = part.part ) and
+						( ( po_header.po_number = ( convert ( int, :S_PO ) ) ) )" filter=" po_detail_selected_for_print = 'Y'" arguments=(("S_PO", string)) )
+group(level=1 header.height=316 trailer.height=0 by=("po_detail_part_number" , "po_detail_po_number" ) header.color="-1" trailer.color="-1" )
+column(band=header id=9 alignment="2" tabsequence=32766 border="0" color="0" x="96" y="1236" height="80" width="416" format="[general]"  name=po_header_vendor_code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="VENDOR"border="0" color="0" x="183" y="1172" height="64" width="247"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="617" y="1236" height="64" width="357" format="mm/dd/yy"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="DATE"border="0" color="0" x="713" y="1172" height="64" width="160"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+column(band=header id=6 alignment="2" tabsequence=32766 border="0" color="0" x="1061" y="1236" height="80" width="622" format="[general]"  name=po_header_ship_via edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="SHIP VIA"border="0" color="0" x="1239" y="1172" height="64" width="265"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+column(band=header id=8 alignment="2" tabsequence=32766 border="0" color="0" x="1719" y="1236" height="80" width="631" format="[general]"  name=po_header_fob edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="FOB"border="0" color="0" x="1975" y="1172" height="64" width="123"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+column(band=header id=7 alignment="2" tabsequence=32766 border="0" color="0" x="2505" y="1236" height="80" width="791" format="[general]"  name=po_header_terms edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="TERMS"border="0" color="0" x="2793" y="1172" height="64" width="210"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127" )
+column(band=header id=21 alignment="0" tabsequence=32766 border="0" color="0" x="361" y="760" height="80" width="992" format="[general]"  name=vendor_name edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="IF ( IsNull (  destination_name  ), parameters_company_name,   destination_name )"border="0" color="0" x="2249" y="744" height="88" width="1157" format="[GENERAL]"  name=name  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=18 alignment="0" tabsequence=32766 border="0" color="0" x="361" y="840" height="80" width="1403" format="[general]"  name=vendor_address_1 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="IF ( IsNull (  destination_address_1   ) , parameters_address_1,   destination_address_1  )"border="0" color="0" x="2249" y="824" height="88" width="1157" format="[GENERAL]"  name=add_1  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=19 alignment="0" tabsequence=32766 border="0" color="0" x="361" y="920" height="80" width="1403" format="[general]"  name=vendor_address_2 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="IF ( IsNull (  destination_address_2   ) ,parameters_address_2 ,  destination_address_2  )"border="0" color="0" x="2249" y="904" height="88" width="1157" format="[GENERAL]"  name=add_2  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=20 alignment="0" tabsequence=32766 border="0" color="0" x="361" y="1000" height="80" width="1403" format="[general]"  name=vendor_address_3 edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression="IF ( IsNull (  destination_address_3   ),parameters_address_3 ,  destination_address_3   )"border="0" color="0" x="2249" y="984" height="88" width="1157" format="[GENERAL]"  name=add_3  font.face="Arial Narrow" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="2761" y="28" height="72" width="526" format="[general]"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Release No.:"border="0" color="0" x="2363" y="168" height="68" width="384"  font.face="Arial" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=5 alignment="1" tabsequence=32766 border="0" color="0" x="2775" y="168" height="72" width="535" format="[general]"  name=po_header_po_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-11" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Part No."border="0" color="0" x="576" y="20" height="68" width="238"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=24 alignment="0" tabsequence=32766 border="0" color="0" x="823" y="20" height="68" width="1376" format="[general]"  name=part_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=26 alignment="0" tabsequence=32766 border="0" color="0" x="2277" y="20" height="68" width="494" format="#,##0.00000"  name=po_detail_price edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header.1 id=33 alignment="0" tabsequence=32766 border="0" color="0" x="823" y="108" height="80" width="1426" format="[general]"  name=part_name height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header.1 alignment="0" text="DATE"border="0" color="0" x="544" y="240" height="72" width="160"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127"  height.autosize=yes)
+text(band=header.1 alignment="0" text="QUANTITY"border="0" color="0" x="1280" y="240" height="72" width="302"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="553648127"  height.autosize=yes)
+compute(band=header.1 alignment="0" expression="today()"border="0" color="0" x="2167" y="236" height="68" width="357" format="mm/dd/yy"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127"  height.autosize=yes)
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="535" y="24" height="68" width="402" format="mm/dd/yy"  name=po_detail_date_due height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="1623" y="20" height="80" width="238" format="[general]"  name=po_detail_unit_of_measure height.autosize=yes edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="535" y="104" height="384" width="2194" format="[general]"  name=po_detail_notes height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="1" tabsequence=32766 border="0" color="0" x="1143" y="24" height="64" width="448" format="0"  name=po_detail_balance edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=summary id=17 alignment="0" tabsequence=32766 border="0" color="0" x="27" y="16" height="204" width="3273" format="[general]"  name=po_header_notes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

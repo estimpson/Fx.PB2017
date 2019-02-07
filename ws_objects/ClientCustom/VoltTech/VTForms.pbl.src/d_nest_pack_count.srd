@@ -1,0 +1,23 @@
+﻿$PBExportHeader$d_nest_pack_count.srd
+release 6;
+datawindow(units=2 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=yes )
+header(height=229 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=197 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=compute_0001 dbname="compute_0001" )
+ column=(type=decimal(6) updatewhereclause=yes name=std_quantity dbname="object.std_quantity" )
+ retrieve="select	count(object.serial),
+	object.std_quantity
+from	object
+where	object.part = :part and
+	object.shipper = :shipper
+group by 
+	object.std_quantity
+" arguments=(("part", string),("shipper", number)) )
+text(band=header alignment="2" text="No. of Boxes"border="0" color="33554432" x="62" y="52" height="135" width="875"  name=compute_0001_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="33554432" x="1395" y="52" height="135" width="562"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="@"border="0" color="33554432" x="1041" y="21" height="135" width="145"  name=std_quantity_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="2" tabsequence=32766 border="0" color="33554432" x="1395" y="10" height="166" width="666" format="#,##0"  name=std_quantity  tag="Quantity in standard unit of measurement" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="2" tabsequence=32766 border="0" color="33554432" x="52" y="21" height="197" width="875" format="#,##0"  name=compute_0001 edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

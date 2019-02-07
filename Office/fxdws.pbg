@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\fxdws.pbd" "";
+@end;
+@begin Objects
+ "office\\d_fdrsinevob.srd" "office\\fxdws.pbd";
+@end;

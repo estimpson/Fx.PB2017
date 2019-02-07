@@ -1,0 +1,85 @@
+﻿$PBExportHeader$f_reset_po_for_862_mode.srf
+$PBExportComments$(mrs) Reset the PO detail for 862 mode.
+global type f_reset_po_for_862_mode from function_object
+end type
+
+forward prototypes
+global subroutine f_reset_po_for_862_mode (long al_po, string as_part, decimal ac_qty, date ad_date, transaction atransaction)
+end prototypes
+
+global subroutine f_reset_po_for_862_mode (long al_po, string as_part, decimal ac_qty, date ad_date, transaction atransaction);/*
+Description	:	To reset the PO detail for 862 qty.
+Author		:	Jim Wu
+Start Date	:	07/04/96
+Modification:
+*/
+
+
+/* Declaration */
+decimal	lc_quantity, &
+			lc_received, &
+			lc_balance, &
+			lc_qty_left, &
+			lc_standard_qty
+
+long		ll_row_id
+
+date		ld_date
+datetime ldt_date
+
+/* Initialization */
+lc_qty_left	= ac_qty
+
+/* Main Process */
+
+DECLARE 	cursor_po_detail CURSOR FOR  
+SELECT 	po_detail.quantity,   
+        	po_detail.received,   
+        	po_detail.balance,   
+        	po_detail.row_id, 
+			po_detail.date_due
+FROM 		po_detail  
+WHERE 	( po_detail.po_number 		= :al_po ) AND  
+        	( po_detail.part_number 	= :as_part ) AND
+			( po_detail.release_type	<> '1' )
+ORDER BY po_detail.date_due
+USING		atransaction;
+
+OPEN cursor_po_detail;
+
+FETCH cursor_po_detail INTO 	:lc_quantity, :lc_received, :lc_balance,
+										:ll_row_id, :ldt_date;
+
+ld_date = date(ldt_date)
+
+do while (atransaction.SQLCode = 0) and (lc_qty_left) > 0 
+
+	if lc_qty_left	> lc_quantity then
+		lc_qty_left	-= lc_quantity
+		lc_quantity	= 0
+	else
+		lc_quantity	-= lc_qty_left
+		lc_qty_left	= 0
+	end if
+
+	UPDATE po_detail SET quantity	= :lc_quantity
+	WHERE CURRENT OF cursor_po_detail ;
+	
+
+	FETCH cursor_po_detail INTO 	:lc_quantity, :lc_received, :lc_balance,
+											:ll_row_id, :ld_date;
+	ld_date = date(ldt_date)
+
+loop
+
+COMMIT USING atransaction;
+
+CLOSE cursor_po_detail;
+
+
+
+
+
+
+end subroutine
+

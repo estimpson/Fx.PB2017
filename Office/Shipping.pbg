@@ -1,0 +1,27 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Shipping.pbl" "";
+@end;
+@begin Objects
+ "office\\u_tabpg_shipping_showlistedshippers.sru" "office\\Shipping.pbl";
+ "office\\w_shippingdock.srw" "office\\Shipping.pbl";
+ "office\\u_fxdw_shipping_beginshipoutedit.sru" "office\\Shipping.pbl";
+ "office\\n_shipping_expeditecodes_controller.sru" "office\\Shipping.pbl";
+ "office\\d_shipping_expeditecodes_setup.srd" "office\\Shipping.pbl";
+ "office\\u_tabpg_shipping_expeditecodes_setup.sru" "office\\Shipping.pbl";
+ "office\\w_shipping_expeditecodes.srw" "office\\Shipping.pbl";
+ "office\\u_fxdw_shipping_departingshippers.sru" "office\\Shipping.pbl";
+ "office\\u_fxdw_shipping_overridescanning.sru" "office\\Shipping.pbl";
+ "office\\d_shipping_overridescanning.srd" "office\\Shipping.pbl";
+ "office\\d_shipping_expeditecodeslist.srd" "office\\Shipping.pbl";
+ "office\\u_tabpg_shipping_openshipperlist.sru" "office\\Shipping.pbl";
+ "office\\n_shipping_expedite_trans.sru" "office\\Shipping.pbl";
+ "office\\n_cst_trans_shipping.sru" "office\\Shipping.pbl";
+ "office\\n_cst_shipping_controller.sru" "office\\Shipping.pbl";
+ "office\\d_shipping_departingshippers.srd" "office\\Shipping.pbl";
+ "office\\d_shipping_beginshipoutedit.srd" "office\\Shipping.pbl";
+ "office\\d_shipping_openshipperlist.srd" "office\\Shipping.pbl";
+ "office\\d_shipping_departingshippers_bytruck.srd" "office\\Shipping.pbl";
+ "office\\d_shipping_viewlistedshippers.srd" "office\\Shipping.pbl";
+ "office\\w_shippingdock_edittruckpronumbers.srw" "office\\Shipping.pbl";
+@end;

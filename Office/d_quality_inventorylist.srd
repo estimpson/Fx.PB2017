@@ -1,0 +1,66 @@
+HA$PBExportHeader$d_quality_inventorylist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 grid.columnmove=no selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=8 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=serial dbname="Serial" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="PartCode" )
+ column=(type=char(10) updatewhereclause=yes name=locationcode dbname="LocationCode" )
+ column=(type=char(10) updatewhereclause=yes name=plantcode dbname="PlantCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=standardqty dbname="StandardQty" )
+ column=(type=char(2) updatewhereclause=yes name=standardunit dbname="StandardUnit" )
+ column=(type=char(20) updatewhereclause=yes name=lot dbname="Lot" )
+ column=(type=char(20) updatewhereclause=yes name=shipperid dbname="ShipperID" )
+ column=(type=datetime updatewhereclause=yes name=origindt dbname="OriginDT" )
+ column=(type=char(10) updatewhereclause=yes name=origintype dbname="OriginType" )
+ retrieve="
+select
+	dbo.Inventory_QualityInventoryList.Serial
+,	dbo.Inventory_QualityInventoryList.PartCode
+,	dbo.Inventory_QualityInventoryList.LocationCode
+,	dbo.Inventory_QualityInventoryList.PlantCode
+,	dbo.Inventory_QualityInventoryList.StandardQty
+,	dbo.Inventory_QualityInventoryList.StandardUnit
+,	dbo.Inventory_QualityInventoryList.Lot
+,	dbo.Inventory_QualityInventoryList.ShipperID
+,	dbo.Inventory_QualityInventoryList.OriginDT
+,	dbo.Inventory_QualityInventoryList.OriginType
+from
+	dbo.Inventory_QualityInventoryList
+order by
+	2, 9
+" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="224" y="8" height="76" width="293" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part code" border="6" color="33554432" x="526" y="8" height="76" width="471" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Location" border="6" color="33554432" x="1006" y="8" height="76" width="398" html.valueishtml="0"  name=locationcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="1413" y="8" height="76" width="261" html.valueishtml="0"  name=plantcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Quantity" border="6" color="33554432" x="1682" y="8" height="76" width="279" html.valueishtml="0"  name=standardqty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Unit" border="6" color="33554432" x="1970" y="8" height="76" width="197" html.valueishtml="0"  name=standardunit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Lot" border="6" color="33554432" x="2176" y="8" height="76" width="297" html.valueishtml="0"  name=lot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Shipper ID" border="6" color="33554432" x="2482" y="8" height="76" width="306" html.valueishtml="0"  name=shipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Origin DT." border="6" color="33554432" x="2798" y="8" height="76" width="645" html.valueishtml="0"  name=origindt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Origin Type" border="6" color="33554432" x="3451" y="8" height="76" width="453" html.valueishtml="0"  name=origintype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="1" expression="getrow()"border="0" color="33554432" x="9" y="8" height="76" width="206" format="#,##0. " html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="224" y="8" height="76" width="293" format="[general]  " html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="526" y="8" height="76" width="471" format="  [general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1006" y="8" height="76" width="398" format="  [general]" html.valueishtml="0"  name=locationcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1413" y="4" height="76" width="261" format="  [general]" html.valueishtml="0"  name=plantcode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1970" y="8" height="76" width="197" format="  [general]" html.valueishtml="0"  name=standardunit visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2176" y="8" height="76" width="297" format="  [general]" html.valueishtml="0"  name=lot visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="2482" y="8" height="76" width="306" format="[general]  " html.valueishtml="0"  name=shipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="2" tabsequence=32766 border="0" color="33554432" x="3451" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=origintype visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="1682" y="8" height="76" width="279" format="#,##0.0  " html.valueishtml="0"  name=standardqty visible="1" edit.limit=0 edit.case=any edit.format="" edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="2798" y="8" height="76" width="645" format="[shortdate] [time]  " html.valueishtml="0"  name=origindt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,95 @@
+﻿$PBExportHeader$d_requisition_report.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=968 color="536870912" )
+summary(height=88 color="536870912" )
+footer(height=188 color="536870912" )
+detail(height=528 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=requisition_header_requisition_number dbname="requisition_header.requisition_number" )
+ column=(type=char(10) updatewhereclause=yes name=requisition_detail_vendor_code dbname="requisition_detail.vendor_code" )
+ column=(type=char(25) updatewhereclause=yes name=requisition_header_ship_to_destination dbname="requisition_header.ship_to_destination" )
+ column=(type=char(20) updatewhereclause=yes name=requisition_header_terms dbname="requisition_header.terms" )
+ column=(type=char(20) updatewhereclause=yes name=requisition_header_fob dbname="requisition_header.fob" )
+ column=(type=datetime updatewhereclause=yes name=requisition_header_creation_date dbname="requisition_header.creation_date" )
+ column=(type=char(5) updatewhereclause=yes name=requisition_header_requisitioner dbname="requisition_header.requisitioner" )
+ column=(type=char(15) updatewhereclause=yes name=requisition_header_ship_via dbname="requisition_header.ship_via" )
+ column=(type=char(32766) updatewhereclause=no name=requisition_header_notes dbname="requisition_header.notes" )
+ column=(type=char(1) updatewhereclause=yes name=requisition_header_approved dbname="requisition_header.approved" )
+ column=(type=char(5) updatewhereclause=yes name=requisition_header_approver dbname="requisition_header.approver" )
+ column=(type=char(25) updatewhereclause=yes name=requisition_detail_part_number dbname="requisition_detail.part_number" )
+ column=(type=char(50) updatewhereclause=yes name=requisition_detail_description dbname="requisition_detail.description" )
+ column=(type=char(50) updatewhereclause=yes name=requisition_detail_account_no dbname="requisition_detail.account_no" )
+ column=(type=decimal(6) updatewhereclause=yes name=requisition_detail_quantity dbname="requisition_detail.quantity" )
+ column=(type=datetime updatewhereclause=yes name=requisition_detail_date_required dbname="requisition_detail.date_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=requisition_detail_extended_cost dbname="requisition_detail.extended_cost" )
+ column=(type=char(32766) updatewhereclause=no name=requisition_detail_notes dbname="requisition_detail.notes" )
+ column=(type=char(35) updatewhereclause=yes name=vendor_name dbname="vendor.name" )
+ retrieve="select	requisition_header.requisition_number,
+	requisition_detail.vendor_code,
+	requisition_header.ship_to_destination,
+	requisition_header.terms,
+	requisition_header.fob,
+	requisition_header.creation_date,
+	requisition_header.requisitioner,
+	requisition_header.ship_via,
+	requisition_header.notes,
+	requisition_header.approved,
+	requisition_header.approver,
+	requisition_detail.part_number,
+	requisition_detail.description,
+	requisition_detail.account_no,
+	requisition_detail.quantity,
+	requisition_detail.date_required,
+	requisition_detail.extended_cost,
+	requisition_detail.notes,
+	vendor.name
+from	requisition_header
+	join requisition_detail on requisition_header.requisition_number = requisition_detail.requisition_number
+	join vendor on requisition_detail.vendor_code = vendor.code
+where	requisition_detail.requisition_number = convert(int, :requsition)
+" arguments=(("requsition", string)) )
+group(level=1 header.height=0 trailer.height=0 by=("requisition_header_requisition_number" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+column(band=header id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="46" y="672" height="224" width="3438" format="[general]"  name=requisition_header_notes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=3 alignment="2" tabsequence=32766 border="0" color="0" x="46" y="584" height="76" width="1170" format="[general]"  name=requisition_header_ship_to_destination edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=8 alignment="2" tabsequence=32766 border="0" color="0" x="2560" y="584" height="76" width="919" format="[general]"  name=requisition_header_ship_via edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ship Via"border="6" color="0" x="2560" y="500" height="64" width="919"  name=requisition_header_ship_via_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Fob"border="6" color="0" x="1874" y="500" height="64" width="667"  name=requisition_header_fob_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=5 alignment="2" tabsequence=32766 border="0" color="0" x="1874" y="584" height="76" width="667" format="[general]"  name=requisition_header_fob edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Terms"border="6" color="0" x="1234" y="500" height="64" width="622"  name=requisition_header_terms_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=4 alignment="2" tabsequence=32766 border="0" color="0" x="1234" y="584" height="76" width="626" format="[general]"  name=requisition_header_terms edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ship To Destination"border="6" color="0" x="46" y="500" height="64" width="1175"  name=requisition_header_ship_to_destination_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="41" y1="664" x2="3479" y2="664" pen.style="0" pen.width="9" pen.color="33554432"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Description"border="6" color="0" x="613" y="900" height="64" width="809"  name=requisition_detail_description_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date Required"border="6" color="0" x="1440" y="900" height="64" width="425"  name=requisition_detail_date_required_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Job Number"border="6" color="0" x="1883" y="900" height="64" width="384"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Account No"border="6" color="0" x="2286" y="900" height="64" width="361"  name=requisition_detail_account_no_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="2665" y="900" height="64" width="315"  name=requisition_detail_quantity_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Extended Cost"border="6" color="0" x="2999" y="900" height="64" width="480"  name=requisition_detail_expected_cost_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=header x="37" y="488" height="404" width="3456" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=header alignment="2" text="Part Number"border="6" color="0" x="46" y="900" height="64" width="549"  name=requisition_detail_part_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=header x="37" y="572" height="404" width="3456" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=detail x="37" y="0" height="532" width="3456" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="9" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="1262" y="92" height="428" width="2213" format="[general]"  name=requisition_detail_notes height.autosize=yes edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=17 alignment="1" tabsequence=32766 border="0" color="0" x="2999" y="8" height="76" width="480" format="$#,##0.00"  name=requisition_detail_extended_cost edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="2" tabsequence=32766 border="0" color="0" x="1431" y="8" height="76" width="443" format="[shortdate] [time]"  name=requisition_detail_date_required editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="2" tabsequence=32766 border="0" color="0" x="2286" y="8" height="76" width="361" format="[general]"  name=requisition_detail_account_no edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="2" tabsequence=32766 border="0" color="0" x="2665" y="8" height="76" width="315" format="#,##0"  name=requisition_detail_quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="0" x="613" y="8" height="76" width="809" format="[general]"  name=requisition_detail_description edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="0" x="46" y="8" height="76" width="549" format="[general]"  name=requisition_detail_part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Vendor Code / Name"border="4" color="0" x="55" y="136" height="64" width="672"  name=requisition_header_vendor_code_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="216" height="64" width="663" format="[general]"  name=requisition_detail_vendor_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="284" height="64" width="1198" format="[general]"  name=vendor_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum (  requisition_detail_extended_cost  FOR 1  )"border="2" color="0" x="3031" y="4" height="64" width="448" format="$#,##0.00"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="2" text="TOTAL :"border="0" color="0" x="2144" y="4" height="64" width="430"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum (  requisition_detail_quantity FOR 1 )"border="2" color="0" x="2578" y="4" height="64" width="439" format="#,##0"  name=total_qty  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Requsition  No"border="2" color="0" x="2587" y="224" height="64" width="535"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Date"border="2" color="0" x="3127" y="224" height="64" width="343"  name=requisition_header_requisition_date_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=1 alignment="2" tabsequence=32766 border="2" color="0" x="2587" y="296" height="76" width="535" format="[general]"  name=requisition_header_requisition_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=6 alignment="2" tabsequence=32766 border="2" color="0" x="3127" y="296" height="76" width="343" format="[shortdate] [time]"  name=requisition_header_creation_date editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Requisition Report "border="0" color="0" x="41" y="8" height="148" width="3429"  font.face="Arial" font.height="-24" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="23" y1="0" x2="3479" y2="0" pen.style="2" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=footer alignment="2" text="Approvals:"border="0" color="0" x="9" y="108" height="56" width="315"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="320" y1="152" x2="1312" y2="152" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=footer x1="1390" y1="152" x2="2382" y2="152" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=footer x1="2459" y1="152" x2="3451" y2="152" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

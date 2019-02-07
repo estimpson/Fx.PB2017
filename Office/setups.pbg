@@ -1,0 +1,15 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Setups.pbl" "";
+@end;
+@begin Objects
+ "office\\d_reportlibrary_reportedit.srd" "office\\Setups.pbl";
+ "office\\d_reportlibrary_reportlist.srd" "office\\Setups.pbl";
+ "office\\w_reportlibrary_reportedit.srw" "office\\Setups.pbl";
+ "office\\u_tabpg_reportlibrary_reportedit_reports.sru" "office\\Setups.pbl";
+ "office\\d_reportlibrary_reporttypelist.srd" "office\\Setups.pbl";
+ "office\\w_select_pbobject.srw" "office\\Setups.pbl";
+ "office\\n_reportlibrary_reportedit_controller.sru" "office\\Setups.pbl";
+ "office\\n_reportlibrary_trans.sru" "office\\Setups.pbl";
+ "office\\u_fxdw_reportlibrary_reportedit.sru" "office\\Setups.pbl";
+@end;

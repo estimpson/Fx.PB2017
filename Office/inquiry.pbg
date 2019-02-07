@@ -1,0 +1,8 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Inquiry.pbl" "";
+@end;
+@begin Objects
+ "office\\d_dbo_locationlabelformats.srd" "office\\Inquiry.pbl";
+ "office\\d_chooselocationlabelformat.srd" "office\\Inquiry.pbl";
+@end;

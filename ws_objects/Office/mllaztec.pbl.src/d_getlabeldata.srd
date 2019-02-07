@@ -1,0 +1,53 @@
+﻿$PBExportHeader$d_getlabeldata.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=number updatewhereclause=no name=errorcode dbname="ErrorCode" )
+ column=(type=number updatewhereclause=no name=procreturn dbname="ProcReturn" )
+ column=(type=char(8000) updatewhereclause=no name=labeldata dbname="LabelData" )
+ column=(type=number updatewhereclause=no name=procresult dbname="ProcResult" )
+ procedure="1 
+declare
+	@boxSerial int
+, @labelName varchar(255)
+,	@printerType varhar(255)
+,	@numberOfLabels int
+,	@labelData varchar(8000)
+
+set	@boxSerial = :boxSerial
+set @labelName = :labelName
+set @printerType = :printerType
+set @numberOfLabels = :numberOfLabels
+
+declare
+	@ProcReturn integer
+,	@TranDT datetime
+,	@ProcResult integer
+,	@Error integer
+
+execute
+	@ProcReturn = ft.usp_GetLabelCode
+	@BoxSerial = @boxSerial
+,	@LabelName = @labelName
+,	@PrinterType = @printerType
+,	@NumberOfLabes = @numberOfLabels
+,	@LabelData = @labelData out
+,	@Result = @ProcResult out
+
+set	@Error = @@error
+
+select
+	@Error, @ProcReturn, @labelData, @ProcResult
+" arguments=(("boxSerial", number),("LabelName", string),("PrinterType", string),("NumberOfLabels", number)) )
+text(band=header alignment="2" text="Labeldata"border="0" color="0" x="9" y="8" height="64" width="4681"  name=labeldata_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Errorcode"border="0" color="0" x="4699" y="4" height="76" width="247"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Procreturn"border="0" color="0" x="4955" y="4" height="76" width="247"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Procresult"border="0" color="0" x="5211" y="4" height="76" width="247"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="4681" format="[general]"  name=labeldata edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="4699" y="0" height="76" width="247" format="[general]"  name=errorcode edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="4955" y="0" height="76" width="247" format="[general]"  name=procreturn edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="5211" y="0" height="76" width="247" format="[general]"  name=procresult edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

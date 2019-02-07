@@ -1,0 +1,17 @@
+﻿$PBExportHeader$sa2e.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=1 color="-1" )
+summary(height=1 color="-1" )
+footer(height=1 color="-1" )
+detail(height=429 color="-1" )
+table(column=(type=char(25) name=po dbname="customer_po" )
+ column=(type=char(30) name=part dbname="customer_part" )
+ column=(type=decimal(6) name=qty_packed dbname="qty_packed" )
+ retrieve="SELECT shipper_detail.customer_po, shipper_detail.customer_part, shipper_detail.qty_packed FROM shipper, shipper_detail WHERE ( shipper_detail.shipper = shipper.id ) and			( shipper.id = :ishipper )" arguments=(("iShipper", number)) )
+text(band=detail alignment="0" text="part"border="0" color="0" x="1074" y="38" height="71" width="662"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="quantity_packed"border="0" color="0" x="1074" y="128" height="74" width="662"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="po"border="0" color="0" x="1074" y="233" height="74" width="662"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="61" y="41" height="77" width="971" format="[general]"  name=part edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String ( Truncate ( qty_packed, 0 ) )"border="0" color="0" x="61" y="137" height="81" width="971" format="[GENERAL]"  name=quantity_packed  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="61" y="236" height="77" width="971" format="[general]"  name=po edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

@@ -1,0 +1,67 @@
+﻿$PBExportHeader$d_ntdnpepwni.srd
+$PBExportComments$V2011.01.03.01,5174
+release 10;
+datawindow(Units=0 Timer_interval=0 Color=1073741824 Processing=1 HTMLDW=no HideGrayLine=no print.PrinterName="" print.DocumentName="" print.Orientation=0 print.margin.left=110 print.margin.right=110 print.margin.top=96 print.margin.bottom=96 print.paper.source=0 print.paper.size=0 print.CanUseDefaultPrinter=yes print.Prompt=no print.Buttons=no print.preview.buttons=no print.ClipText=no print.OverridePrintJob=no print.Collate=no  Grid.Lines=1073741824 Selected.Mouse=no )
+header(Height=96 Color="536870912" )
+summary(Height=0 Color="536870912" )
+footer(Height=0 Color="536870912" )
+detail(Height=92 Color="536870912	if(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(Type=char(10) Update=no UpdateWhereClause=no Key=yes Identity=no Name=machine_no DBName="machine_no" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(35) Update=no UpdateWhereClause=no Key=no Identity=no Name=mach_descp DBName="mach_descp" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=status DBName="status" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(10) Update=no UpdateWhereClause=no Key=no Identity=no Name=cell DBName="cell" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=speed DBName="speed" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=redraw_graph DBName="redraw_graph" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=current_rate DBName="current_rate" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=standard_rate DBName="standard_rate" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=varying_rate_1 DBName="varying_rate_1" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=varying_rate_2 DBName="varying_rate_2" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=indirect DBName="indirect" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=sga DBName="sga" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=qted_rate DBName="qted_rate" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=qted_variable DBName="qted_variable" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=qted_indirect DBName="qted_indirect" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=qted_sga DBName="qted_sga" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=plnd_rate DBName="plnd_rate" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=plnd_variable DBName="plnd_variable" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=plnd_indirect DBName="plnd_indirect" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=plnd_sga DBName="plnd_sga" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=frzn_rate DBName="frzn_rate" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=frzn_variable DBName="frzn_variable" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=frzn_indirect DBName="frzn_indirect" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=decimal(6) Update=no UpdateWhereClause=no Key=no Identity=no Name=frzn_sga DBName="frzn_sga" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=burden_type DBName="burden_type" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(50) Update=no UpdateWhereClause=no Key=no Identity=no Name=gl_segment DBName="gl_segment" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1000) Update=no UpdateWhereClause=no Key=no Identity=no Name=Change DBName="Change" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=long Update=no UpdateWhereClause=no Key=no Identity=no Name=IsSelected DBName="IsSelected" Initial="" Criteria.Dialog=no Values="" )
+retrieve="select
+	machine_no
+,	mach_descp
+,	status
+,	cell
+,	speed
+,	redraw_graph
+,	current_rate
+,	standard_rate
+,	varying_rate_1
+,	varying_rate_2
+,	indirect
+,	sga
+,	qted_rate
+,	qted_variable
+,	qted_indirect
+,	qted_sga
+,	plnd_rate
+,	plnd_variable
+,	plnd_indirect
+,	plnd_sga
+,	frzn_rate
+,	frzn_variable
+,	frzn_indirect
+,	frzn_sga
+,	burden_type
+,	gl_segment
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.machine" Update="dbo.machine" UpdateWhere=0 UpdateKeyInPlace=no )

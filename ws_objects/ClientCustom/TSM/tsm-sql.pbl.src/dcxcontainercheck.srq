@@ -1,0 +1,2 @@
+﻿$PBExportHeader$dcxcontainercheck.srq
+PBSELECT( VERSION(400) TABLE(NAME="dbo.object" ) COLUMN(NAME="dbo.object.shipper") COLUMN(NAME="dbo.object.destination") COLUMN(NAME="dbo.object.part") COLUMN(NAME="dbo.object.package_type") COLUMN(NAME="dbo.object.parent_serial") COLUMN(NAME="dbo.object.serial")WHERE(    EXP1 ="dbo.object.shipper"   OP ="="    EXP2 =":Enter_Shipper_Number" ) ) ORDER(NAME="dbo.object.shipper" ASC=yes )  ORDER(NAME="dbo.object.part" ASC=yes ) ARG(NAME = "Enter_Shipper_Number" TYPE = number)

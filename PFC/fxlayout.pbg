@@ -1,0 +1,33 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "pfc\\FxLayout.pbl" "";
+@end;
+@begin Objects
+ "pfc\\w_response_4t.srw" "pfc\\fxlayout.pbl";
+ "pfc\\u_resizeablepanel.sru" "pfc\\FxLayout.pbl";
+ "pfc\\n_customdropdownattrib.sru" "pfc\\FxLayout.pbl";
+ "pfc\\u_customdropdowncontrol.sru" "pfc\\FxLayout.pbl";
+ "PFC\\m_sheet_4t.srm" "PFC\\fxlayout.pbl";
+ "PFC\\u_tabpg_dwchild.sru" "PFC\\fxlayout.pbl";
+ "pfc\\u_tabpg_4t.sru" "pfc\\FxLayout.pbl";
+ "PFC\\w_sheet_4t.srw" "PFC\\fxlayout.pbl";
+ "PFC\\u_sheet_tabpg.sru" "PFC\\fxlayout.pbl";
+ "pfc\\u_panel_leftright.sru" "pfc\\fxlayout.pbl";
+ "PFC\\m_sheet_grid.srm" "PFC\\fxlayout.pbl";
+ "pfc\\u_tabpg_browser.sru" "pfc\\FxLayout.pbl";
+ "PFC\\w_sheet_headerdetail_4t.srw" "PFC\\fxlayout.pbl";
+ "pfc\\u_customdropdown.sru" "pfc\\FxLayout.pbl";
+ "PFC\\u_tabpg_headerdetail.sru" "PFC\\fxlayout.pbl";
+ "pfc\\u_panel_headerdetail.sru" "pfc\\fxlayout.pbl";
+ "PFC\\m_sheet_4t_updateablenew.srm" "PFC\\fxlayout.pbl";
+ "PFC\\m_sheet_4t_updateable.srm" "PFC\\fxlayout.pbl";
+ "PFC\\u_tabpg_dw.sru" "PFC\\fxlayout.pbl";
+ "pfc\\w_sheet_headerdetailpanels_4t.srw" "pfc\\fxlayout.pbl";
+ "PFC\\u_panel.sru" "PFC\\fxlayout.pbl";
+ "PFC\\w_sheet_headerdetail_editpanel_4t.srw" "PFC\\fxlayout.pbl";
+ "PFC\\w_sheet_tab_4t.srw" "PFC\\fxlayout.pbl";
+ "pfc\\m_context.srm" "pfc\\FxLayout.pbl";
+ "pfc\\w_sheet_panel_4t.srw" "pfc\\fxlayout.pbl";
+ "pfc\\u_browser.sru" "pfc\\FxLayout.pbl";
+ "pfc\\n_cst_virtual_controller.sru" "pfc\\FxLayout.pbl";
+@end;

@@ -1,0 +1,35 @@
+﻿$PBExportHeader$p_powerfilterdemo.srj
+EXE:PowerFilterDemo.exe,,1,1,1
+CMP:0,0,0,2,0,0
+COM:James R. Reese
+DES:PowerFilter DataWindow Filter Demo
+CPY:Copyright © 2010 James R. Reese.  All Rights Reserved.
+PRD:PowerFilter Demo
+PVS:1,6,0,0
+PVN:1,6,0,0
+FVS:1,6,0,0
+FVN:1,6,0,0
+PBD:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,,1
+PBD:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,c:\users\reesejr\documents\my pb apps\pb9\powerfilterpb9\powerfilterdemo.pbr,1
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_ddbuttons,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_customparm,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,powerfilterdemo,a
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,u_powerfilter_monthopts,u
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,u_powerfilter_checkbox,u
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,w_powerfilterdemo_about,w
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,w_powerfilter_custom,w
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,u_powerfilter_predeffilters,u
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_customfilter,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,d_testdata,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_monthopts,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_pictureparm,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,w_powerfilter_prompt_to_restore,w
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,n_cst_powerfilter,u
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,u_powerfilter_dropdown,u
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,m_powerfilterdemo_main,m
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,w_powerfilterdemo_main,w
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,d_powerfilter_filteropts,d
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,s_powerfilter_restore_parms,s
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilter.pbl,s_powerfilter_parms,s
+OBJ:C:\Users\Reesejr\Documents\My PB Apps\PB9\PowerFilterPB9\powerfilterdemo.pbl,d_testdatashortheaders,d

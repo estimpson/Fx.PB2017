@@ -1,0 +1,31 @@
+﻿$PBExportHeader$rgb.srf
+global type rgb from function_object
+end type
+
+forward prototypes
+global function long rgb (string as_color)
+end prototypes
+
+global function long rgb (string as_color);//Declarations.
+CONSTANT LONG	red = 1
+CONSTANT LONG	green = 256
+CONSTANT LONG	blue = 65536
+
+INTEGER	li_spacepos1
+INTEGER	li_spacepos2
+
+LONG	ll_color = -1
+
+//Compute color.
+li_spacepos1 = Pos ( as_color, ' ' )
+li_spacepos2 = Pos ( as_color, ' ', li_spacepos1 + 1 )
+
+IF li_spacepos1 > 0 AND li_spacepos2 > 0 THEN
+	ll_color = Long ( Left ( as_color, li_spacepos1 - 1 ) ) * red
+	ll_color += Long ( Mid ( as_color, li_spacepos1 + 1, li_spacepos2 - li_spacepos1 - 1 ) ) * green
+	ll_color += Long ( Mid ( as_color, li_spacepos2 + 1 ) ) * blue
+END IF
+
+Return  ll_color
+end function
+

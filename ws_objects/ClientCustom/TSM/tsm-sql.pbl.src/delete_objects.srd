@@ -1,0 +1,14 @@
+﻿$PBExportHeader$delete_objects.srd
+release 6;
+datawindow(units=2 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=yes )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=197 color="536870912" )
+table(column=(type=char(10) updatewhereclause=no name=ok dbname="ok" )
+ procedure="1 Begin transaction
+delete object where shipper = :shipper
+Commit transaction
+select 'OK'" arguments=(("shipper", number)) )
+text(band=detail alignment="1" text="Ok:"border="0" color="33554432" x="83" y="0" height="166" width="229"  name=ok_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="395" y="0" height="197" width="625" format="[general]"  name=ok edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

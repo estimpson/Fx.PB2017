@@ -1,0 +1,92 @@
+HA$PBExportHeader$d_nalrannumbersshipped.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=88 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=orderno dbname="NALRanNumbersShipped.OrderNo" )
+ column=(type=datetime update=yes updatewhereclause=yes name=shipdate dbname="NALRanNumbersShipped.ShipDate" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=qty dbname="NALRanNumbersShipped.Qty" )
+ column=(type=char(50) update=yes updatewhereclause=yes key=yes name=rannumber dbname="NALRanNumbersShipped.RanNumber" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=shipper dbname="NALRanNumbersShipped.Shipper" )
+ retrieve="select
+	nrns.OrderNo
+,   nrns.ShipDate
+,   nrns.Qty
+,   nrns.RanNumber
+,   nrns.Shipper
+from
+	dbo.NALRanNumbersShipped nrns
+where
+	OrderNo in
+	(	select
+			AlternateOrderNo = ohAlternate.order_no
+		from
+			dbo.order_header ohActive
+			join dbo.edi_setups es
+				on es.destination = ohActive.destination
+			join dbo.order_header ohAlternate
+				on ohAlternate.customer_part = ohActive.customer_part
+				and ohAlternate.destination = ohActive.destination
+				and
+				(	coalesce(es.check_po, 'N') != 'Y' or
+					ohAlternate.customer_po = ohActive.customer_po
+				)
+				and
+				(	coalesce(es.check_model_year, 'N') != 'Y' or
+					ohAlternate.model_year = ohActive.model_year
+				)
+			join dbo.order_header ohAlternate2
+				on ohAlternate2.customer_part = ohActive.customer_part
+				and ohAlternate2.destination = ohActive.destination
+				and
+				(	coalesce(es.check_po, 'N') != 'Y' or
+					ohAlternate2.customer_po = ohActive.customer_po
+				)
+				and
+				(	coalesce(es.check_model_year, 'N') != 'Y' or
+					ohAlternate2.model_year = ohActive.model_year
+				)
+		where
+			ohActive.status = 'A'
+			--and ohActive.blanket_part like 'NAL%'
+			and ohActive.destination != 'EMPIREALABAMA'
+			and ohActive.blanket_part not like '%-PT%'
+			and ohAlternate.destination != 'EMPIREALABAMA'
+			and ohAlternate.blanket_part not like '%-PT%'
+			and ohAlternate2.destination != 'EMPIREALABAMA'
+			and ohAlternate2.blanket_part not like '%-PT%'
+			and ohActive.order_no = :activeOrderNo
+		group by
+			coalesce(ohAlternate.status, 'O')
+		,	ohActive.order_no
+		,	ohActive.blanket_part
+		,	ohAlternate.order_no
+		,	ohAlternate.blanket_part
+	)
+order by
+	nrns.ShipDate desc
+,	nrns.RanNumber desc
+" update="NALRanNumbersShipped" updatewhere=0 updatekeyinplace=no arguments=(("activeOrderNo", number))  sort="rannumber D " )
+text(band=header alignment="0" text="Order no." border="6" color="33554432" x="9" y="8" height="72" width="338" html.valueishtml="0"  name=orderno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship date" border="6" color="33554432" x="357" y="8" height="72" width="379" html.valueishtml="0"  name=shipdate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Qty." border="6" color="33554432" x="745" y="8" height="72" width="320" html.valueishtml="0"  name=qty_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="RAN Number" border="6" color="33554432" x="1074" y="8" height="72" width="754" html.valueishtml="0"  name=rannumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+text(band=header alignment="0" text="Shipper" border="6" color="33554432" x="1838" y="8" height="72" width="357" html.valueishtml="0"  name=shipper_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217731" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="357" y="8" height="76" width="379" format="[shortdate]  " html.valueishtml="0"  name=shipdate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=30 border="0" color="33554432" x="745" y="8" height="76" width="320" format="#,##0.0#####  " html.valueishtml="0"  name=qty visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="0" color="33554432" x="9" y="8" height="76" width="338" format="0  " html.valueishtml="0" protect="0~tif (IsRowNew(), 0, 1)"  name=orderno visible="1" dddw.name=d_blanketorder_alternateorders dddw.displaycolumn=alternateorderno dddw.datacolumn=alternateorderno dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="33554432" x="1074" y="8" height="76" width="754" format="  [general]" html.valueishtml="0"  name=rannumber visible="1" dddw.name=d_blanketorder_rans dddw.displaycolumn=rannumber dddw.datacolumn=rannumber dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=50 border="0" color="33554432" x="1838" y="8" height="76" width="357" format="[general]  " html.valueishtml="0"  name=shipper visible="1" dddw.name=d_blanketorder_shippers dddw.displaycolumn=shipper dddw.datacolumn=shipper dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.autohscroll=yes dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

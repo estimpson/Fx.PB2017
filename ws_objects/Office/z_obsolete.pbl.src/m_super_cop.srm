@@ -1,0 +1,232 @@
+﻿$PBExportHeader$m_super_cop.srm
+forward
+global type m_super_cop from menu
+end type
+type m_file from menu within m_super_cop
+end type
+type m_run from menu within m_file
+end type
+type m_stop from menu within m_file
+end type
+type m_reset from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_startnow from menu within m_file
+end type
+type m_file from menu within m_super_cop
+m_run m_run
+m_stop m_stop
+m_reset m_reset
+m_exit m_exit
+m_startnow m_startnow
+end type
+type m_edit from menu within m_super_cop
+end type
+type m_edit from menu within m_super_cop
+end type
+type m_window from menu within m_super_cop
+end type
+type m_window from menu within m_super_cop
+end type
+type m_help from menu within m_super_cop
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_super_cop
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+end forward
+
+global type m_super_cop from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_super_cop m_super_cop
+
+on m_super_cop.create
+m_super_cop=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_super_cop.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_super_cop
+m_run m_run
+m_stop m_stop
+m_reset m_reset
+m_exit m_exit
+m_startnow m_startnow
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_run=create m_run
+this.m_stop=create m_stop
+this.m_reset=create m_reset
+this.m_exit=create m_exit
+this.m_startnow=create m_startnow
+this.Item[]={this.m_run, &
+this.m_stop, &
+this.m_reset, &
+this.m_exit, &
+this.m_startnow}
+end on
+
+on m_file.destroy
+destroy(this.m_run)
+destroy(this.m_stop)
+destroy(this.m_reset)
+destroy(this.m_exit)
+destroy(this.m_startnow)
+end on
+
+type m_run from menu within m_file
+end type
+
+on clicked;w_super_cop.triggerevent ('Run')
+end on
+
+on m_run.create
+this.Text="&Run"
+this.Microhelp="Run cop"
+this.ToolBarItemName="Run!"
+this.ToolBarItemText="Run "
+this.ToolBarItemOrder=20
+end on
+
+type m_stop from menu within m_file
+end type
+
+on clicked;w_super_cop.triggerevent('Stop')
+end on
+
+on m_stop.create
+this.Text="&Stop"
+this.Microhelp="Stop Processing"
+this.ToolBarItemName="RetrieveCancel!"
+this.ToolBarItemText="Stop"
+this.ToolBarItemOrder=30
+end on
+
+type m_reset from menu within m_file
+end type
+
+on clicked;w_super_cop.Triggerevent('Reset')
+end on
+
+on m_reset.create
+this.Text="R&eset"
+this.Microhelp="Reset the flags"
+this.ToolBarItemName="ViewPainter!"
+this.ToolBarItemText="Reset "
+this.ToolBarItemOrder=40
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//close(w_super_cop)
+close (w_msc_mdi_screen)
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit Application"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemOrder=10
+end on
+
+type m_startnow from menu within m_file
+end type
+
+event clicked;w_super_cop.TriggerEvent('start_now')
+end event
+
+on m_startnow.create
+this.Text="Start Now"
+this.Microhelp="Start Now"
+this.ToolBarItemName="start!"
+this.ToolBarItemText="Start Now"
+this.ToolBarItemOrder=15
+end on
+
+type m_edit from menu within m_super_cop
+end type
+
+on m_edit.create
+this.Text="&Edit "
+end on
+
+on m_edit.destroy
+end on
+
+type m_window from menu within m_super_cop
+end type
+
+on m_window.create
+this.Text="&Window"
+end on
+
+on m_window.destroy
+end on
+
+type m_help from menu within m_super_cop
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+this.Text="&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[]={this.m_contents, &
+this.m_aboutthemonitor}
+end on
+
+on m_help.destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 3001 )
+end event
+
+on m_contents.create
+this.Text="&Contents~tF1"
+this.Microhelp="Displays help contents"
+this.Shortcut=112
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;Open ( w_about )
+end event
+
+on m_aboutthemonitor.create
+this.Text="&About The Monitor..."
+this.Microhelp="Displays the program information and copyright"
+end on
+

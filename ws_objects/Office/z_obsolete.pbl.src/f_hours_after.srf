@@ -1,0 +1,19 @@
+﻿$PBExportHeader$f_hours_after.srf
+global type f_hours_after from function_object
+end type
+
+forward prototypes
+global function decimal f_hours_after (datetime a_dt_start, datetime a_dt_stop)
+end prototypes
+
+global function decimal f_hours_after (datetime a_dt_start, datetime a_dt_stop);dec		l_dec_seconds,&
+			l_dec_hours
+long		l_l_days
+
+l_l_days 	= DaysAfter ( Date ( a_dt_start ), Date ( a_dt_stop ) )
+l_dec_seconds	= SecondsAfter ( Time ( a_dt_start ), Time ( a_dt_stop ) )
+
+l_dec_hours = ( l_l_days * 24 ) + ( l_dec_seconds / 3600 )
+return l_dec_hours
+end function
+

@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dw_check_part_commodity_relation.srd
+$PBExportComments$Check the part commodity relation
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=220 color="536870912" )
+table(column=(type=char(25) update=yes updatewhereclause=yes key=yes name=part dbname="part.part" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=commodity dbname="part.commodity" )
+ retrieve="PBSELECT(TABLE(NAME=~"part~" ) COLUMN(NAME=~"part.part~") COLUMN(NAME=~"part.commodity~")WHERE( EXP1 =~"( part.part~" OP =~"=~" EXP2 =~":szPart )~" LOGIC =~"and~" ) WHERE( EXP1 =~"( part.commodity~" OP =~"=~" EXP2 =~":szCommodity )~" ) ) ARG(NAME = ~"szPart~" TYPE = string) ARG(NAME = ~"szCommodity~" TYPE = string) " update="part" updatewhere=0 updatekeyinplace=yes arguments=(("szPart", string),("szCommodity", string)) )
+text(band=detail alignment="1" text="Number:"border="0" color="0" x="105" y="4" height="52" width="251"  name=number_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Commodity:"border="0" color="0" x="5" y="132" height="52" width="352"  name=commodity_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="389" y="4" height="64" width="512" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="384" y="128" height="64" width="238" format="[general]"  name=commodity edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

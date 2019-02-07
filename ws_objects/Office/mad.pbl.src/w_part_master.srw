@@ -100,6 +100,7 @@ end variables
 global type w_part_master from w_sheet_4t
 string title = "Part Master"
 string menuname = "m_part_master"
+integer transparency = 21
 event new_part ( )
 event save_part ( )
 event exit_routine ( )

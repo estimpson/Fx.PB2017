@@ -1,0 +1,9 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\bql856.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\gm3d.srd" "ClientCustom\\TSM\\bql856.pbl";
+ "ClientCustom\\TSM\\gm5d.srd" "ClientCustom\\TSM\\bql856.pbl";
+ "ClientCustom\\TSM\\gm5rc.srd" "ClientCustom\\TSM\\bql856.pbl";
+@end;

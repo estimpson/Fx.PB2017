@@ -1,0 +1,2 @@
+﻿$PBExportHeader$work_order_detail.srq
+PBSELECT( VERSION(400) TABLE(NAME="dbo.workorder_detail" ) COLUMN(NAME="dbo.workorder_detail.workorder") COLUMN(NAME="dbo.workorder_detail.part") COLUMN(NAME="dbo.workorder_detail.qty_required") COLUMN(NAME="dbo.workorder_detail.qty_completed") COLUMN(NAME="dbo.workorder_detail.balance"))

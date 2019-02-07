@@ -1,0 +1,77 @@
+﻿$PBExportHeader$shipping_history_destination.srd
+$PBExportComments$TSM Shpg. - Shipping History for a Customer based on destination (Report) - Okto be used with SQL Server DB
+release 6;
+datawindow(units=2 timer_interval=60000 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=437 color="536870912" )
+summary(height=229 color="536870912" )
+footer(height=208 color="536870912" )
+detail(height=218 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=shipper_date_shipped dbname="shipper.date_shipped" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_customer dbname="shipper.customer" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="shipper.destination" )
+ column=(type=long updatewhereclause=yes name=shipper_id dbname="shipper.id" )
+ column=(type=char(10) updatewhereclause=yes name=shipper_bill_of_lading_number dbname="shipper.bill_of_lading_number" )
+ column=(type=long updatewhereclause=yes name=shipper_invoice_number dbname="shipper.invoice_number" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_ship_via dbname="shipper.ship_via" )
+ column=(type=char(35) updatewhereclause=yes name=shipper_pro_number dbname="shipper.pro_number" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_truck_number dbname="shipper.truck_number" )
+ column=(type=char(35) updatewhereclause=yes name=shipper_detail_part dbname="shipper_detail.part" criteria.dialog=yes)
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_customer_po dbname="shipper_detail.customer_po" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="shipper_detail.customer_part" criteria.dialog=yes)
+ retrieve="  SELECT shipper.date_shipped,   
+         shipper.customer,   
+         shipper.destination,   
+         shipper.id,   
+         shipper.bill_of_lading_number,   
+         shipper.invoice_number,   
+         shipper.ship_via,   
+         shipper.pro_number,   
+         shipper.truck_number,   
+         shipper_detail.part,   
+         shipper_detail.qty_packed,   
+         shipper_detail.customer_po,   
+         shipper_detail.customer_part  
+    FROM shipper,   
+         shipper_detail  
+   WHERE ( shipper_detail.shipper = shipper.id ) and  
+   	 ( shipper.date_shipped is not null ) and 
+         ( shipper.date_shipped between :Enter_From_Datetime and :Enter_To_Datetime ) AND  
+         ( shipper.destination like :Enter_Destination ) AND  
+         ( shipper.customer <> '' )    
+" arguments=(("Enter_From_Datetime", date),("Enter_To_Datetime", date),("Enter_Destination", string))  sort="shipper_date_shipped A shipper_customer A shipper_destination A shipper_id A " )
+group(level=1 header.height=218 trailer.height=0 by=("shipper_date_shipped" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=0 by=("shipper_customer" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=458 trailer.height=0 by=("shipper_id" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="TSM - Shipping History Report"border="0" color="0" x="93" y="31" height="208" width="2406"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Date Shipped"border="0" color="33554432" x="104" y="260" height="166" width="895"  name=shipper_date_shipped_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Customer"border="0" color="33554432" x="1020" y="260" height="166" width="625"  name=shipper_customer_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Destination"border="0" color="33554432" x="2104" y="260" height="166" width="739"  name=shipper_destination_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper #"border="0" color="33554432" x="3114" y="260" height="166" width="635"  name=shipper_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="BOL Number"border="0" color="33554432" x="4020" y="260" height="166" width="843"  name=shipper_bill_of_lading_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Invoice #"border="0" color="33554432" x="4916" y="260" height="166" width="593"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="SCAC Code"border="0" color="33554432" x="6010" y="260" height="166" width="760"  name=shipper_ship_via_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Pro Number"border="0" color="33554432" x="6833" y="260" height="166" width="791"  name=shipper_pro_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Truck Number"border="0" color="33554432" x="8062" y="260" height="166" width="927"  name=shipper_truck_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=header.1 id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="62" y="11" height="197" width="906" format="[shortdate] [time]"  name=shipper_date_shipped edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1020" y="31" height="197" width="1010" format="[general]"  name=shipper_customer edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="2104" y="31" height="197" width="927" format="[general]"  name=shipper_destination edit.limit=20 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="3114" y="31" height="197" width="843" format="[general]"  name=shipper_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="4020" y="31" height="197" width="843" format="[general]"  name=shipper_bill_of_lading_number edit.limit=10 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4916" y="31" height="197" width="1010" format="[general]"  name=shipper_invoice_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="6010" y="31" height="197" width="760" format="[general]"  name=shipper_ship_via edit.limit=20 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="6833" y="31" height="197" width="1187" format="[general]"  name=shipper_pro_number edit.limit=35 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="8062" y="31" height="197" width="843" format="[general]"  name=shipper_truck_number edit.limit=30 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Torca Part"border="0" color="33554432" x="1020" y="281" height="166" width="687"  name=shipper_detail_part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Customer PO"border="0" color="33554432" x="4520" y="281" height="166" width="1656"  name=shipper_detail_customer_po_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header.3 alignment="2" text="Customer Part"border="0" color="33554432" x="6260" y="281" height="166" width="1937"  name=shipper_detail_customer_part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+line(band=header.3 x1="739" y1="0" x2="9072" y2="0" pen.style="0" pen.width="10" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header.3 alignment="2" text="Qty Packed"border="0" color="33554432" x="3333" y="281" height="166" width="1093"  name=shipper_detail_qty_packed_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="1020" y="11" height="197" width="2250" format="[general]"  name=shipper_detail_part edit.limit=35 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="2" tabsequence=32766 border="0" color="33554432" x="4520" y="11" height="197" width="1656" format="[general]"  name=shipper_detail_customer_po edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=32766 border="0" color="33554432" x="6260" y="11" height="197" width="1937" format="[general]"  name=shipper_detail_customer_part edit.limit=30 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="2" tabsequence=32766 border="0" color="33554432" x="3333" y="11" height="197" width="1083" format="0"  name=shipper_detail_qty_packed edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(shipper_detail_qty_packed for all)"border="0" color="33554432" x="3333" y="10" height="197" width="1083" format="0"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="6583" y="11" height="166" width="1656" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="33554432" x="83" y="11" height="166" width="666" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

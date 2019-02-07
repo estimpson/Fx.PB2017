@@ -1,0 +1,80 @@
+﻿$PBExportHeader$f_build_custom_menu.srf
+global type f_build_custom_menu from function_object
+end type
+
+forward prototypes
+global subroutine f_build_custom_menu (ref menu am_menuname, window aw_mainwindow)
+end prototypes
+
+global subroutine f_build_custom_menu (ref menu am_menuname, window aw_mainwindow);Menu		lm_MenuItemLevel1[], &
+			lm_MenuItemLevel2[]
+Int		li_Count, &
+			li_Counter, &
+			li_MenuItems, &
+			li_Custom
+String	ls_Module[], &
+			ls_MicroHelp[], &
+			ls_ButtonText[], &
+			ls_MenuText[], &
+			ls_ButtonPic[], &
+			ls_Text
+
+lm_MenuItemLevel1 = aw_MainWindow.MenuID.Item[] //am_MenuName.Item[]
+lm_MenuItemLevel2 = lm_MenuItemLevel1[1].Item[]
+
+For li_Counter = 1 to gi_MenuArrayUpper
+
+	If IsNumber ( RightA ( gs_Module[li_Counter], 1 ) ) Then
+
+		li_Custom = Integer ( RightA ( gs_Module[li_Counter], 1 ) )
+
+		For li_MenuItems = 1 to UpperBound ( lm_MenuItemLevel2 )
+
+			ls_Text = lm_MenuItemLevel2[li_MenuItems].Text
+	
+			If PosA ( ls_Text, "Custom" ) > 0 and PosA ( ls_Text, String ( li_Custom ) ) > 0 Then
+				lm_MenuItemLevel2[li_MenuItems].Text = gs_MenuText[li_Counter]
+				lm_MenuItemLevel2[li_MenuItems].MicroHelp = gs_MicroHelp[li_Counter]
+				If gs_ButtonPic[li_Counter] <> "" Then &
+					lm_MenuItemLevel2[li_MenuItems].ToolBarItemName = gs_ButtonPic[li_Counter]
+				lm_MenuItemLevel2[li_MenuItems].ToolBarItemText = gs_ButtonText[li_Counter]
+				lm_MenuItemLevel2[li_MenuItems].Enabled = True
+				lm_MenuItemLevel2[li_MenuItems].Visible = True
+				lm_MenuItemLevel2[li_MenuItems].ToolBarItemVisible = True
+				li_MenuItems = UpperBound ( lm_MenuItemLevel2 )
+			End if 
+
+//				Case 2
+//					If Pos ( ls_Text, "Custom" ) > 0 and Pos ( ls_Text, "2" ) > 0 Then
+//						lm_MenuItemLevel2[li_MenuItems].Text = ls_MenuText[2]
+//						lm_MenuItemLevel2[li_MenuItems].MicroHelp = ls_MicroHelp[2]
+//						If f_get_string_value ( ls_ButtonPic[2] ) <> "" Then &
+//							lm_MenuItemLevel2[li_MenuItems].ToolBarItemName = ls_ButtonPic[2]
+//						lm_MenuItemLevel2[li_MenuItems].ToolBarItemText = ls_ButtonText[2]
+//						lm_MenuItemLevel2[li_MenuItems].Enabled = True
+//						lm_MenuItemLevel2[li_MenuItems].Visible = True
+//						lm_MenuItemLevel2[li_MenuItems].ToolBarItemVisible = True
+//						li_MenuItems = UpperBound ( lm_MenuItemLevel2 )
+//					End if 
+//				Case 3
+//					If Pos ( ls_Text, "Custom" ) > 0 and Pos ( ls_Text, "3" ) > 0 Then
+//						lm_MenuItemLevel2[li_MenuItems].Text = ls_MenuText[3]
+//						lm_MenuItemLevel2[li_MenuItems].MicroHelp = ls_MicroHelp[3]
+//						If f_get_string_value ( ls_ButtonPic[3] ) <> "" Then &
+//							lm_MenuItemLevel2[li_MenuItems].ToolBarItemName = ls_ButtonPic[3]
+//						lm_MenuItemLevel2[li_MenuItems].ToolBarItemText = ls_ButtonText[3]
+//						lm_MenuItemLevel2[li_MenuItems].Enabled = True
+//						lm_MenuItemLevel2[li_MenuItems].Visible = True
+//						lm_MenuItemLevel2[li_MenuItems].ToolBarItemVisible = True
+//						li_MenuItems = UpperBound ( lm_MenuItemLevel2 )
+//					End if 
+//			End Choose
+
+		Next
+
+	End if
+
+Next
+
+end subroutine
+

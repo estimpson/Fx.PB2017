@@ -1,0 +1,124 @@
+﻿$PBExportHeader$d_outproc_maint_validation.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=840 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=outputpart dbname="OutProc_SETUP_HeaderSetupValidation.OutputPart" )
+ column=(type=char(100) updatewhereclause=yes name=partdescription dbname="OutProc_SETUP_HeaderSetupValidation.PartDescription" )
+ column=(type=long updatewhereclause=yes name=status dbname="OutProc_SETUP_HeaderSetupValidation.Status" )
+ column=(type=char(32766) updatewhereclause=no name=inputpartlist dbname="OutProc_SETUP_HeaderSetupValidation.InputPartList" )
+ column=(type=long updatewhereclause=yes name=inputpartcount dbname="OutProc_SETUP_HeaderSetupValidation.InputPartCount" )
+ column=(type=long updatewhereclause=yes name=isdefaultsupplier dbname="OutProc_SETUP_HeaderSetupValidation.IsDefaultSupplier" values="	1/	0" )
+ column=(type=char(10) updatewhereclause=yes name=suppliercode dbname="OutProc_SETUP_HeaderSetupValidation.SupplierCode" )
+ column=(type=char(35) updatewhereclause=yes name=suppliername dbname="OutProc_SETUP_HeaderSetupValidation.SupplierName" )
+ column=(type=long updatewhereclause=yes name=isdefaultpo dbname="OutProc_SETUP_HeaderSetupValidation.IsDefaultPO" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=activeblanketponumber dbname="OutProc_SETUP_HeaderSetupValidation.ActiveBlanketPONumber" )
+ column=(type=char(20) updatewhereclause=yes name=suppliershipfrom dbname="OutProc_SETUP_HeaderSetupValidation.SupplierShipFrom" )
+ column=(type=char(50) updatewhereclause=yes name=shipfromname dbname="OutProc_SETUP_HeaderSetupValidation.ShipFromName" )
+ column=(type=long updatewhereclause=yes name=isoutputdropship dbname="OutProc_SETUP_HeaderSetupValidation.IsOutputDropShip" values="	1/	0" )
+ column=(type=char(25) updatewhereclause=yes name=nextpart dbname="OutProc_SETUP_HeaderSetupValidation.NextPart" )
+ column=(type=char(100) updatewhereclause=yes name=nextpartdescription dbname="OutProc_SETUP_HeaderSetupValidation.NextPartDescription" )
+ column=(type=char(10) updatewhereclause=yes name=shiptosupplier dbname="OutProc_SETUP_HeaderSetupValidation.ShipToSupplier" )
+ column=(type=char(35) updatewhereclause=yes name=shiptosuppliername dbname="OutProc_SETUP_HeaderSetupValidation.ShipToSupplierName" )
+ column=(type=char(20) updatewhereclause=yes name=shiptoplant dbname="OutProc_SETUP_HeaderSetupValidation.ShipToPlant" )
+ column=(type=char(50) updatewhereclause=yes name=shiptoplantname dbname="OutProc_SETUP_HeaderSetupValidation.ShipToPlantName" )
+ column=(type=long updatewhereclause=yes name=exception_inputpartdefined dbname="OutProc_SETUP_HeaderSetupValidation.Exception_InputPartDefined" )
+ column=(type=long updatewhereclause=yes name=warning_singleinputpartdefined dbname="OutProc_SETUP_HeaderSetupValidation.Warning_SingleInputPartDefined" )
+ column=(type=long updatewhereclause=yes name=exception_partvendordefined dbname="OutProc_SETUP_HeaderSetupValidation.Exception_PartVendorDefined" )
+ column=(type=long updatewhereclause=yes name=exception_partvendormfgdefined dbname="OutProc_SETUP_HeaderSetupValidation.Exception_PartVendorMFGDefined" )
+ column=(type=long updatewhereclause=yes name=exception_shipfromsdefined dbname="OutProc_SETUP_HeaderSetupValidation.Exception_ShipFromsDefined" )
+ column=(type=long updatewhereclause=yes name=exception_shipfromselected dbname="OutProc_SETUP_HeaderSetupValidation.Exception_ShipFromSelected" )
+ column=(type=long updatewhereclause=yes name=exception_shipfrompomatch dbname="OutProc_SETUP_HeaderSetupValidation.Exception_ShipFromPOMatch" )
+ column=(type=long updatewhereclause=yes name=exception_activeblanketpo dbname="OutProc_SETUP_HeaderSetupValidation.Exception_ActiveBlanketPO" )
+ column=(type=long updatewhereclause=yes name=exception_shipfromonactiveblanketpo dbname="OutProc_SETUP_HeaderSetupValidation.Exception_ShipFromOnActiveBlanketPO" )
+ column=(type=long updatewhereclause=yes name=exception_plantonactiveblanketponondropship dbname="OutProc_SETUP_HeaderSetupValidation.Exception_PlantOnActiveBlanketPONonDropShip" )
+ column=(type=long updatewhereclause=yes name=exception_plantonactiveblanketpodropship dbname="OutProc_SETUP_HeaderSetupValidation.Exception_PlantOnActiveBlanketPODropShip" )
+ column=(type=long updatewhereclause=yes name=exception_nextpartfordropship dbname="OutProc_SETUP_HeaderSetupValidation.Exception_NextPartForDropShip" )
+ column=(type=long updatewhereclause=yes name=exception_nextshipplierfordropship dbname="OutProc_SETUP_HeaderSetupValidation.Exception_NextShipplierForDropShip" )
+ column=(type=long updatewhereclause=yes name=exception_nextshiptofordropship dbname="OutProc_SETUP_HeaderSetupValidation.Exception_NextShipToForDropShip" )
+ column=(type=long updatewhereclause=yes name=rowid dbname="OutProc_SETUP_HeaderSetupValidation.RowID" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	opshsv.OutputPart
+,	opshsv.PartDescription
+,	opshsv.Status
+,	opshsv.InputPartList
+,	opshsv.InputPartCount
+,	opshsv.IsDefaultSupplier
+,	opshsv.SupplierCode
+,	opshsv.SupplierName
+,	opshsv.IsDefaultPO
+,	opshsv.ActiveBlanketPONumber
+,	opshsv.SupplierShipFrom
+,	opshsv.ShipFromName
+,	opshsv.IsOutputDropShip
+,	opshsv.NextPart
+,	opshsv.NextPartDescription
+,	opshsv.ShipToSupplier
+,	opshsv.ShipToSupplierName
+,	opshsv.ShipToPlant
+,	opshsv.ShipToPlantName
+,	opshsv.Exception_InputPartDefined
+,	opshsv.Warning_SingleInputPartDefined
+,	opshsv.Exception_PartVendorDefined
+,	opshsv.Exception_PartVendorMFGDefined
+,	opshsv.Exception_ShipFromsDefined
+,	opshsv.Exception_ShipFromSelected
+,	opshsv.Exception_ShipFromPOMatch
+,	opshsv.Exception_ActiveBlanketPO
+,	opshsv.Exception_ShipFromOnActiveBlanketPO
+,	opshsv.Exception_PlantOnActiveBlanketPONonDropShip
+,	opshsv.Exception_PlantOnActiveBlanketPODropShip
+,	opshsv.Exception_NextPartForDropShip
+,	opshsv.Exception_NextShipplierForDropShip
+,	opshsv.Exception_NextShipToForDropShip
+,	opshsv.RowID
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.OutProc_SETUP_HeaderSetupValidation opshsv
+where
+	opshsv.RowID = :OPDefRowID
+" arguments=(("OPDefRowID", number)) )
+groupbox(band=detail text="Back to Back"border="5" color="33554432" x="3182" y="36" height="800" width="1536"  name=gb_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+groupbox(band=detail text="Part Numbers"border="5" color="33554432" x="37" y="36" height="800" width="1536"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="73" y="388" height="160" width="1463" format="[general]" html.valueishtml="0"  name=partdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="73" y="708" height="64" width="1463" format="[general]" html.valueishtml="0"  name=inputpartlist visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="1" tabsequence=60 border="0" color="33554432" x="4608" y="36" height="76" width="73" format="[general]" html.valueishtml="0"  name=isoutputdropship visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="3218" y="260" height="96" width="1463" format="[general]" html.valueishtml="0"  name=nextpartdescription visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="3218" y="708" height="76" width="1463" format="[general]" html.valueishtml="0"  name=shiptoplantname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Output part:" border="0" color="33554432" x="73" y="164" height="64" width="402" html.valueishtml="0"  name=outputpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Description:" border="0" color="33554432" x="73" y="292" height="64" width="329" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Input part list:" border="0" color="33554432" x="73" y="612" height="64" width="402" html.valueishtml="0"  name=inputpartlist_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Next part:" border="0" color="33554432" x="3218" y="164" height="64" width="439" html.valueishtml="0"  name=nextpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ship to plant:" border="0" color="33554432" x="3218" y="612" height="64" width="439" html.valueishtml="0"  name=shiptoplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+groupbox(band=detail text="Blanket PO"border="5" color="33554432" x="1609" y="36" height="800" width="1536"  name=gb_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="1646" y="644" height="76" width="1463" format="[general]" html.valueishtml="0"  name=shipfromname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Supplier plant:" border="0" color="33554432" x="1646" y="548" height="64" width="439" html.valueishtml="0"  name=suppliershipfrom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=40 border="0" color="33554432" x="2999" y="164" height="76" width="110" format="[general]" html.valueishtml="0"  name=isdefaultpo visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="PO number:" border="0" color="33554432" x="1646" y="164" height="64" width="439" html.valueishtml="0"  name=activeblanketponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=50 border="0" color="33554432" x="2999" y="292" height="76" width="110" format="[general]" html.valueishtml="0"  name=isdefaultsupplier  tag="Default" visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="1646" y="388" height="76" width="1463" format="[general]" html.valueishtml="0"  name=suppliername visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Supplier:" border="0" color="33554432" x="1646" y="292" height="64" width="439" html.valueishtml="0"  name=suppliercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ship to supplier:" border="0" color="33554432" x="3218" y="388" height="64" width="439" html.valueishtml="0"  name=shiptosupplier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="3218" y="484" height="76" width="1463" format="[general]" html.valueishtml="0"  name=shiptosuppliername visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="549" y="164" height="76" width="987" format="[general]" html.valueishtml="0"  name=outputpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=10 border="0" color="33554432" x="2194" y="164" height="76" width="731" format="[general]" html.valueishtml="0"  name=activeblanketponumber visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=20 border="0" color="33554432" x="2194" y="292" height="76" width="731" format="[general]" html.valueishtml="0"  name=suppliercode visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=30 border="0" color="33554432" x="2194" y="548" height="76" width="731" format="[general]" html.valueishtml="0"  name=suppliershipfrom visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="1" tabsequence=70 border="0" color="33554432" x="3730" y="164" height="76" width="951" format="[general]" html.valueishtml="0"  name=nextpart visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="1" tabsequence=80 border="0" color="33554432" x="3730" y="388" height="76" width="951" format="[general]" html.valueishtml="0"  name=shiptosupplier visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="1" tabsequence=90 border="0" color="33554432" x="3730" y="612" height="76" width="951" format="[general]" html.valueishtml="0"  name=shiptoplant visible="1" dddw.name=none dddw.displaycolumn=none dddw.datacolumn=none dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

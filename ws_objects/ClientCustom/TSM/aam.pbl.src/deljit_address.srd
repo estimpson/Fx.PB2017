@@ -1,0 +1,17 @@
+﻿$PBExportHeader$deljit_address.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=255 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=416 color="536870912" )
+table(column=(type=char(35) update=yes updatewhereclause=yes key=yes name=releaseno dbname="aam_deljit_address.releaseno" )
+ column=(type=char(3) update=yes updatewhereclause=yes key=yes name=addresstype dbname="aam_deljit_address.addresstype" )
+ column=(type=char(35) update=yes updatewhereclause=yes key=yes name=addressid dbname="aam_deljit_address.addressid" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"aam_deljit_address~" ) COLUMN(NAME=~"aam_deljit_address.releaseno~") COLUMN(NAME=~"aam_deljit_address.addresstype~") COLUMN(NAME=~"aam_deljit_address.addressid~")) " update="aam_deljit_address" updatewhere=0 updatekeyinplace=no )
+text(band=detail alignment="1" text="Releaseno:"border="0" color="16777215" x="50" y="4" height="64" width="338"  name=releaseno_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="1" color="16777215" x="407" y="4" height="76" width="987" format="[general]"  name=releaseno edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+text(band=detail alignment="1" text="Addresstype:"border="0" color="16777215" x="0" y="140" height="64" width="389"  name=addresstype_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="1" color="16777215" x="407" y="140" height="76" width="1010" format="[general]"  name=addresstype edit.limit=3 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+text(band=detail alignment="1" text="Addressid:"border="0" color="16777215" x="73" y="276" height="64" width="315"  name=addressid_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="1" color="16777215" x="407" y="276" height="76" width="987" format="[general]"  name=addressid edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711680" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

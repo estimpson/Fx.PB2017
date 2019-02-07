@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_part_onhand.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=97 color="536870912" )
+table(column=(type=char(25) update=yes key=yes name=part dbname="part_online.part" )
+ column=(type=decimal(6) update=yes name=on_hand dbname="part_online.on_hand" initial="0" )
+ retrieve="SELECT part_online.part, part_online.on_hand FROM part_online ORDER BY part_online.part ASC " update="part_online" updatewhere=0 updatekeyinplace=yes )
+text(band=header alignment="2" text="Part"border="0" color="33554432" x="10" y="8" height="65" width="513"  name=part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Onhand"border="0" color="33554432" x="531" y="8" height="65" width="275"  name=on_hand_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="10" y="8" height="65" width="513" format="[general]"  name=part edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=20 border="0" color="33554432" x="531" y="8" height="65" width="275" format="[general]"  name=on_hand edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

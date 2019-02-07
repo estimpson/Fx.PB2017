@@ -1,0 +1,2 @@
+﻿$PBExportHeader$bom_query.srq
+PBSELECT( VERSION(400) TABLE(NAME="dbo.bill_of_material" ) COLUMN(NAME="dbo.bill_of_material.parent_part") COLUMN(NAME="dbo.bill_of_material.part") COLUMN(NAME="dbo.bill_of_material.type") COLUMN(NAME="dbo.bill_of_material.quantity") COLUMN(NAME="dbo.bill_of_material.unit_measure") COLUMN(NAME="dbo.bill_of_material.reference_no") COLUMN(NAME="dbo.bill_of_material.std_qty"))

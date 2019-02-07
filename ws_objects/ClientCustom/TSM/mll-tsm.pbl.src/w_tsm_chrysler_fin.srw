@@ -1,0 +1,242 @@
+﻿$PBExportHeader$w_tsm_chrysler_fin.srw
+forward
+global type w_tsm_chrysler_fin from Window
+end type
+end forward
+
+global type w_tsm_chrysler_fin from Window
+int X=1051
+int Y=468
+int Width=2578
+int Height=1536
+boolean TitleBar=true
+string Title="Untitled"
+long BackColor=67108864
+boolean ControlMenu=true
+boolean MinBox=true
+boolean MaxBox=true
+boolean Resizable=true
+end type
+global w_tsm_chrysler_fin w_tsm_chrysler_fin
+
+event open;///////////////////////////////////////////////
+//  Chrysler Finished Label for TSM Corp.
+//  Created 11/24/99 By J.T.M.
+//
+
+//////////////////////////////////////////////
+//  Declaration of Variables
+//
+
+St_Generic_Structure St_Parm	
+St_Parm = Message.PowerObjectParm
+
+LONG		l_l_serial
+LONG		l_l_label
+
+STRING	l_s_customer_part
+STRING	l_s_supplier_code
+STRING	l_s_description
+STRING	l_s_description_1
+STRING	l_s_description_2
+STRING	l_s_description_3
+STRING	l_s_dock_code
+STRING	l_s_change_level
+STRING	l_s_company
+STRING	l_s_address_1
+STRING	l_S_address_2
+STRING	l_s_address_3
+STRING	l_s_drop_zone
+STRING	l_s_safety_item
+STRING	l_s_phone
+STRING	l_s_number_of_labels
+STRING	c_esc 
+STRING	l_s_part
+
+DATETIME	d_t_date_time
+DATE		d_d_date
+
+DEC {0}	dec_quantity
+
+////////////////////////////////////////////////
+//  Populate the Variables
+//
+
+l_l_serial = LONG ( St_Parm.Value1 )
+
+SELECT	object.last_date,
+			object.quantity,
+			part.description_long,
+			object.part
+  INTO	:d_t_date_time,
+  			:dec_quantity,
+			:l_s_Description,
+			:l_s_part
+  FROM	object,
+  			part
+ WHERE	object.part = part.part  AND
+ 			object.serial = :l_l_serial	;
+			 
+d_d_date = DATE ( d_t_date_time )
+			 
+SELECT	order_header.customer_part,
+			order_header.engineering_level,
+			order_header.dock_code,
+			order_header.zone_code,
+			edi_setups.supplier_code
+  INTO	:l_s_customer_part,
+  			:l_s_change_level,
+			:l_s_dock_code,
+			:l_s_drop_zone,
+			:l_s_supplier_code
+  FROM	order_header,
+  			shipper,
+			shipper_detail,
+			edi_setups,
+			object			
+ WHERE	shipper.id = shipper_detail.shipper  AND
+			shipper_detail.order_no = order_header.order_no and
+			shipper.id = CONVERT ( INT, object.origin )  AND
+			object.shipper = shipper.id  AND
+			edi_setups.destination = order_header.destination  AND
+			order_header.blanket_part = object.part  AND
+			object.serial = :l_l_serial	;
+			
+SELECT	company_name,
+			address_1,
+			address_2,
+			address_3,
+			phone_number
+  INTO	:l_s_company,
+  			:l_s_address_1,
+			:l_s_address_2,
+			:l_s_address_3,
+			:l_s_phone
+  FROM	parameters			;
+  
+SELECT 	safety_part
+  INTO 	:l_s_safety_item
+  FROM 	part_inventory
+ WHERE 	part = :l_s_part ;
+  
+If St_parm.value11 = "" Then 
+	l_s_number_of_labels = "Q1"
+Else
+	l_s_number_of_labels = "Q" + St_parm.value11
+End If
+
+l_s_description_1 = MID ( l_s_description, 1, 20 )
+l_s_description_2 = MID ( l_s_description, 21, 20 )
+l_s_description_3 = MID ( l_s_description, 41, 20 )
+
+c_esc = "~h1B"
+
+/////////////////////////////////////////////////
+//  Print Label
+//
+
+l_l_label = PrintOpen ()
+
+//  Start Print Job
+PrintSend ( l_l_label, c_esc + "A" + c_esc + "R" )
+
+//  Part Number Info
+PrintSend ( l_l_label, c_esc + "V050" + c_esc + "H220" + c_Esc + "S" + "PART #" )
+PrintSend ( l_l_label, c_esc + "V070" + c_esc + "H220" + c_esc + "S" + "CUST (P)" )
+PrintSend ( l_l_label, c_esc + "V050" + c_esc + "H340" + c_esc + "WL1" + l_s_customer_part )
+PrintSend ( l_l_label, c_esc + "V110" + c_Esc + "H220" + c_Esc + "B103100" + "*" + "P" + l_s_customer_part + "*" )
+
+//  Quantity Information
+PrintSend ( l_l_label, c_esc + "V250" + c_esc + "H220" + c_esc + "S" + "QTY" )
+PrintSend ( l_l_label, c_Esc + "V270" + c_esc + "H220" + c_esc + "S" + "(Q)" )
+PrintSend ( l_l_label, c_esc + "V250" + c_esc + "H340" + c_esc + "WL1" + STRING ( dec_quantity ) )
+PrintSend ( l_l_label, c_esc + "V310" + c_esc + "H220" + c_Esc + "B103100" + "*" + "Q" + STRING ( dec_quantity ) + "*" )
+
+//  Supplier Information
+PrintSend ( l_l_label, c_esc + "V440" + c_esc + "H220" + c_esc + "S" + "SUPLR. ID" )
+PrintSend ( l_l_label, c_esc + "V460" + c_esc + "H220" + c_esc + "S" + "ASGN (V)" )
+PrintSend ( l_l_label, c_esc + "V440" + c_esc + "H370" + c_esc + "WL1" + l_s_supplier_code )
+PrintSend ( l_l_label, c_esc + "V510" + c_esc + "H220" + c_esc + "B103090" + "*" + "V" + l_s_supplier_code + "*" )
+
+//  Serial Number Information
+PrintSend ( l_l_label, c_esc + "V620" + c_Esc + "H220" + c_esc + "S" + "SERIAL #" )
+PrintSend ( l_l_label, c_Esc + "V640" + c_esc + "H220" + c_esc + "S" + "(3S)" )
+PrintSend ( l_l_label, c_esc + "V620" + c_Esc + "H340" + c_esc + "WL1" + STRING ( l_l_serial ) )
+PrintSend ( l_l_label, c_esc + "V690" + c_esc + "H220" + c_esc + "B103080" + "*" + "3S" + STRING ( l_l_serial ) + "*" )
+
+//  Company Address Information
+PrintSend ( l_l_label, c_Esc + "V050" + c_esc + "H1150" + c_Esc + "S" + "SHIP FROM:" )
+PrintSend ( l_l_label, c_esc + "V070" + c_esc + "H1200" + c_esc + "S" + l_s_company )
+PrintSend ( l_l_label, c_Esc + "V090" + c_esc + "H1200" + c_Esc + "S" + l_s_address_1 )
+PrintSend ( l_l_label, c_Esc + "V110" + c_esc + "H1200" + c_Esc + "S" + l_s_address_2 )
+PrintSend ( l_l_label, c_Esc + "V130" + c_esc + "H1200" + c_Esc + "S" + l_s_address_3 )
+PrintSend ( l_l_label, c_Esc + "V150" + c_esc + "H1200" + c_Esc + "S" + l_s_phone )
+
+//  Part Description Information
+PrintSend ( l_l_label, c_esc + "V250" + c_esc + "H950" + c_esc + "M" + "PART NUMBER DESCRIPTION" )
+PrintSend ( l_l_label, c_Esc + "V285" + c_esc + "H950" + c_Esc + "WB1" + l_s_description_1 )
+PrintSend ( l_l_label, c_Esc + "V325" + c_esc + "H950" + c_Esc + "WB1" + l_s_description_2 )
+PrintSend ( l_l_label, c_esc + "V365" + c_esc + "H950" + c_esc + "WB1" + l_s_description_3 )
+
+//  Engineering Change Level Information
+PrintSend ( l_l_label, c_esc + "V440" + c_esc + "H930" + c_esc + "M" + "CHANGE" )
+PrintSend ( l_l_label, c_esc + "V470" + c_esc + "H930" + c_esc + "M" + "LETTER" )
+PrintSend ( l_l_label, c_esc + "V480" + c_esc + "H930" + c_esc + "$A,075,075,0" + c_esc + "$A=" + l_s_change_level )
+
+//  Safety Item Information
+IF l_s_safety_item = 'Y' THEN
+	PrintSend ( l_l_label, c_esc + "V460" + c_esc + "H1100" + c_esc + "M" + "SAFETY" )
+	PrintSend ( l_l_label, c_Esc + "V490" + c_esc + "H1115" + c_esc + "M" + "ITEM" )
+ELSE
+
+END IF
+
+//  Date Information
+PrintSend ( l_l_label, c_esc + "V440" + c_esc + "H1265" + c_esc + "M" + "DATE" )
+PrintSend ( l_l_label, c_esc + "V470" + c_esc + "H1275" + c_esc + "M" + "MFG" )
+PrintSend ( l_l_label, c_esc + "V510" + c_Esc + "H1240" + c_esc + "M" + STRING ( d_d_date, "mm/dd/yy" ) )
+
+//  Dock Location Information
+PrintSend ( l_l_label, c_esc + "V620" + c_esc + "H1120" + c_esc + "S" + "DOCK" )
+PrintSend ( l_l_label, c_esc + "V640" + c_esc + "H1125" + c_esc + "S" + "LOC" )
+PrintSend ( l_l_label, c_esc + "V655" + c_esc + "H1115" + c_esc + "$A,050,050,0" + c_esc + "$A=" + l_s_dock_code )
+
+//  Drop Zone Information
+PrintSend ( l_l_label, c_esc + "V620" + c_esc + "H1250" + c_esc + "S" + "DROP" )
+PrintSend ( l_l_label, c_esc + "V640" + c_esc + "H1250" + c_esc + "S" + "ZONE" )
+PrintSend ( l_l_label, c_esc + "V655" + c_esc + "H1230" + c_esc + "WL1" + l_s_drop_zone )
+
+//  Draw Lines
+PrintSend ( l_l_label, c_esc + "V245" + c_esc + "H205" + c_esc + "FW02H1200" )
+PrintSend ( l_l_label, c_esc + "V435" + c_esc + "H205" + c_esc + "FW02H1200" )
+PrintSend ( l_l_label, c_Esc + "V615" + c_esc + "H205" + c_Esc + "FW02H1200" )
+PrintSend ( l_l_label, c_esc + "V045" + c_esc + "H1140" + c_esc + "FW02V0201" )
+PrintSend ( l_l_label, c_esc + "V245" + c_esc + "H940" + c_esc + "FW02V0191" )
+PrintSend ( l_l_label, c_esc + "V435" + c_esc + "H870" + c_Esc + "FW02V0181" )
+PrintSend ( l_l_label, c_esc + "V435" + c_esc + "H1070" + c_esc + "FW02V0181" )
+PrintSend ( l_l_label, c_esc + "V435" + c_esc + "H1230" + c_esc + "FW02V0181" )
+PrintSend ( l_l_label, c_Esc + "V615" + c_esc + "H1060" + c_esc + "FW02V0165" )
+PrintSend ( l_l_label, c_esc + "V615" + c_esc + "H1200" + c_esc + "FW02V0165" )
+
+PrintSend ( l_l_label, c_esc + l_s_number_of_labels )
+PrintSend ( l_l_label, c_esc + "Z" )
+PrintClose ( l_l_label )
+
+Close ( This )
+
+
+
+
+
+
+			
+			
+			
+
+end event
+on w_tsm_chrysler_fin.create
+end on
+
+on w_tsm_chrysler_fin.destroy
+end on
+

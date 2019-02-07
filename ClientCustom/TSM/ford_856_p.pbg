@@ -1,0 +1,9 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\ford_856_p.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\ford_856_header_p.srd" "ClientCustom\\TSM\\ford_856_p.pbl";
+ "ClientCustom\\TSM\\ford_856_end_p.srd" "ClientCustom\\TSM\\ford_856_p.pbl";
+ "ClientCustom\\TSM\\ford_856_detail_p.srd" "ClientCustom\\TSM\\ford_856_p.pbl";
+@end;

@@ -1,0 +1,71 @@
+HA$PBExportHeader$d_reportlibrary_reportlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(25) updatewhereclause=yes name=reportname dbname="ReportLibrary.ReportName" )
+ column=(type=char(25) updatewhereclause=yes name=reporttype dbname="ReportLibrary.ReportType" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="ReportLibrary.Type" )
+ column=(type=char(255) updatewhereclause=yes name=objectname dbname="ReportLibrary.ObjectName" )
+ column=(type=char(255) updatewhereclause=yes name=libraryname dbname="ReportLibrary.LibraryName" )
+ column=(type=char(1) updatewhereclause=yes name=preview dbname="ReportLibrary.Preview" values="	Y/	N" )
+ column=(type=char(1) updatewhereclause=yes name=printsetup dbname="ReportLibrary.PrintSetup" values="	Y/	N" )
+ column=(type=char(255) updatewhereclause=yes name=printer dbname="ReportLibrary.Printer" )
+ column=(type=number updatewhereclause=yes name=copies dbname="ReportLibrary.Copies" )
+ column=(type=char(50) updatewhereclause=yes name=labelformat dbname="ReportLibrary.LabelFormat" )
+ column=(type=char(250) updatewhereclause=yes name=labelpath dbname="ReportLibrary.LabelPath" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	rl.ReportName
+,	rl.ReportType
+,	rl.Type
+,	rl.ObjectName
+,	rl.LibraryName
+,	rl.Preview
+,	rl.PrintSetup
+,	rl.Printer
+,	rl.Copies
+,	rl.LabelFormat
+,	rl.LabelPath
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.ReportLibrary rl
+order by
+	rl.ReportName
+" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="101" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=reportname visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="562" y="8" height="76" width="320" format="[general]" html.valueishtml="0"  name=reporttype visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="891" y="8" height="76" width="155" format="[general]" html.valueishtml="0"  name=type visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="1056" y="8" height="76" width="937" format="[general]" html.valueishtml="0"  name=objectname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="2002" y="8" height="76" width="1582" format="[general]" html.valueishtml="0"  name=libraryname visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="33554432" x="3598" y="8" height="76" width="261" format="[general]" html.valueishtml="0"  name=preview visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=32766 border="0" color="33554432" x="3872" y="8" height="76" width="334" format="[general]" html.valueishtml="0"  name=printsetup visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="4215" y="8" height="76" width="960" format="[general]" html.valueishtml="0"  name=printer visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=32766 border="0" color="33554432" x="5184" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=copies visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="5527" y="8" height="76" width="1655" format="[general]" html.valueishtml="0"  name=labelpath visible="1" edit.limit=250 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="76" width="82" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Report name" border="6" color="33554432" x="101" y="8" height="76" width="453" html.valueishtml="0"  name=reportname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Report type" border="6" color="33554432" x="562" y="8" height="76" width="320" html.valueishtml="0"  name=report_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="891" y="8" height="76" width="155" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Object name" border="6" color="33554432" x="1056" y="8" height="76" width="937" html.valueishtml="0"  name=objectname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Library name" border="6" color="33554432" x="2002" y="8" height="76" width="1582" html.valueishtml="0"  name=libraryname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Preview ?" border="6" color="33554432" x="3593" y="8" height="76" width="265" html.valueishtml="0"  name=preview_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Print setup ?" border="6" color="33554432" x="3867" y="8" height="76" width="338" html.valueishtml="0"  name=printsetup_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Printer" border="6" color="33554432" x="4215" y="8" height="76" width="960" html.valueishtml="0"  name=printer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Copies" border="6" color="33554432" x="5184" y="8" height="76" width="329" html.valueishtml="0"  name=copies_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Label path" border="6" color="33554432" x="5527" y="8" height="76" width="1655" html.valueishtml="0"  name=labelpath_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()

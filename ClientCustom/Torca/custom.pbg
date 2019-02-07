@@ -1,0 +1,17 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "..\\clientCustom\\Torca\\custom.pbl" "";
+@end;
+@begin Objects
+ "..\\ClientCustom\\torca\\n_cst_cs_orders.sru" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\d_dbo_cs_orderstatuslog.srd" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\u_tabpg_cs_orderstatuslog.sru" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\u_tabpg_cs_orderpendingapprovaldetails.sru" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\u_tabpg_cs_orderspendingapproval.sru" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\clientCustom\\Torca\\w_test.srw" "..\\clientCustom\\Torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\w_cs_orderstatuslog.srw" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\d_dbo_cs_orderpendingapprovaldetails.srd" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\w_cs_orderspendingapproval_old.srw" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\w_cs_orderspendingapproval.srw" "..\\ClientCustom\\torca\\custom.pbl";
+ "..\\ClientCustom\\torca\\d_dbo_cs_orderspendingapproval.srd" "..\\ClientCustom\\torca\\custom.pbl";
+@end;

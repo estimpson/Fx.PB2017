@@ -1,0 +1,54 @@
+﻿$PBExportHeader$gmvrc.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=8 color="-1" )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=488 color="-1" )
+table(column=(type=char(20) updatewhereclause=yes name=package_type dbname="audit_trail.package_type" )
+ column=(type=long updatewhereclause=yes name=row_count dbname="compute_0002" )
+ column=(type=char(2) updatewhereclause=yes name=returncontainer dbname="returncontainer" )
+ column=(type=char(4) updatewhereclause=yes name=po dbname="po" )
+ column=(type=char(2) updatewhereclause=yes name=um dbname="um" )
+ column=(type=char(4) updatewhereclause=yes name=model_year dbname="shipper.model_year" )
+ retrieve="select
+    audit_trail.package_type
+,   count(audit_trail.package_type)
+,   'RC' as returncontainer
+,   'NONE' as po
+,   'PC' as um
+,   shipper.model_year
+from
+	shipper
+	join audit_trail on convert(varchar(10),shipper.id) = audit_trail.shipper
+	join package_materials
+		on audit_trail.package_type = package_materials.code
+		and package_materials.returnable = 'Y'
+where
+    shipper.id = :ishipper
+group by
+    audit_trail.package_type
+,   shipper.model_year " arguments=(("ishipper", number))  sort="returncontainer A " )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="20" height="64" width="713" format="[general]" html.valueishtml="0"  name=returncontainer visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="180" height="64" width="713" format="[general]" html.valueishtml="0"  name=package_type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="260" height="64" width="713" format="[general]" html.valueishtml="0"  name=model_year visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="340" height="64" width="713" format="[general]" html.valueishtml="0"  name=um visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="420" height="64" width="713" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="returncontainer" border="0" color="0" x="786" y="20" height="64" width="393" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="rc_count" border="0" color="0" x="786" y="100" height="64" width="393" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="package_type" border="0" color="0" x="786" y="180" height="64" width="393" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="model_year" border="0" color="0" x="786" y="260" height="64" width="393" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="um" border="0" color="0" x="786" y="340" height="64" width="393" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="po" border="0" color="0" x="786" y="420" height="64" width="393" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="string( row_count )"border="0" color="0" x="55" y="100" height="64" width="713" format="[GENERAL]" html.valueishtml="0"  name=rc_count visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

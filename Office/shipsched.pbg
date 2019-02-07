@@ -1,0 +1,25 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\ShipSched.pbl" "";
+@end;
+@begin Objects
+ "office\\n_shipping_edimitsubishi_trans.sru" "office\\ShipSched.pbl";
+ "office\\w_dockscheduler_mitsubishi.srw" "office\\ShipSched.pbl";
+ "office\\w_dockscheduler_toyota_restoredeleted.srw" "office\\ShipSched.pbl";
+ "office\\d_editoyota_deletedmanifests.srd" "office\\ShipSched.pbl";
+ "office\\d_edimitsubishi_randetails_byranheaderid.srd" "office\\ShipSched.pbl";
+ "office\\n_cst_shippingtrans_edimitsubishi.sru" "office\\ShipSched.pbl";
+ "office\\d_edimitsubishi_unscheduledranshippers.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_unscheduledpickups.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_shippereditx3.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_manifestheaders_bypickupid.srd" "office\\ShipSched.pbl";
+ "office\\d_edimitsubishi_shippereditx3.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_shipmentdetails_forpickup.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_createtemppickupids.srd" "office\\ShipSched.pbl";
+ "office\\n_shipping_editoyota_trans.sru" "office\\ShipSched.pbl";
+ "office\\d_edimitsubishi_shipmentdetails_byran.srd" "office\\ShipSched.pbl";
+ "office\\d_editoyota_manifestdetails_bypickupid.srd" "office\\ShipSched.pbl";
+ "office\\d_edimitsubishi_createtempranheaderids.srd" "office\\ShipSched.pbl";
+ "office\\w_dockscheduler_toyota.srw" "office\\ShipSched.pbl";
+ "office\\d_dddw_freight_type.srd" "office\\ShipSched.pbl";
+@end;

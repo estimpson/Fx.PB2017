@@ -1,0 +1,31 @@
+﻿$PBExportHeader$work_order_summary.srd
+$PBExportComments$TSM Manf. - Report of Work_Order_Detail_History (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=343 color="536870912" )
+summary(height=270 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=workorder_header_history_work_order dbname="workorder_header_history.work_order" )
+ column=(type=char(10) updatewhereclause=yes name=workorder_header_history_machine_no dbname="workorder_header_history.machine_no" )
+ column=(type=char(25) updatewhereclause=yes name=workorder_detail_history_part dbname="workorder_detail_history.part" criteria.dialog=yes)
+ column=(type=decimal(6) updatewhereclause=yes name=workorder_detail_history_qty_required dbname="workorder_detail_history.qty_required" )
+ column=(type=decimal(6) updatewhereclause=yes name=workorder_detail_history_qty_completed dbname="workorder_detail_history.qty_completed" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"workorder_detail_history~" )  TABLE(NAME=~"workorder_header_history~" ) COLUMN(NAME=~"workorder_header_history.work_order~") COLUMN(NAME=~"workorder_header_history.machine_no~") COLUMN(NAME=~"workorder_detail_history.part~") COLUMN(NAME=~"workorder_detail_history.qty_required~") COLUMN(NAME=~"workorder_detail_history.qty_completed~")    JOIN (LEFT=~"workorder_detail_history.workorder~"    OP =~"=~"RIGHT=~"workorder_header_history.work_order~" )) "  sort="workorder_header_history_work_order A " )
+text(band=header alignment="2" text="Workorder Header History
+Work Order"border="0" color="33554432" x="0" y="0" height="333" width="1562"  name=workorder_header_history_work_order_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Workorder Header History
+Machine No"border="0" color="33554432" x="1572" y="0" height="333" width="1562"  name=workorder_header_history_machine_no_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Workorder Detail History
+Part"border="0" color="33554432" x="3135" y="0" height="333" width="1625"  name=workorder_detail_history_part_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Workorder Detail History
+Qty Required"border="0" color="33554432" x="4770" y="0" height="333" width="1479"  name=workorder_detail_history_qty_required_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Workorder Detail History
+Qty Completed"border="0" color="33554432" x="6250" y="0" height="333" width="1479"  name=workorder_detail_history_qty_completed_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="0" y="0" height="197" width="687" format="[general]"  name=workorder_header_history_work_order  tag="work order number " edit.limit=10 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1572" y="0" height="197" width="687" format="[general]"  name=workorder_header_history_machine_no  tag="Machine number " edit.limit=10 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="3135" y="0" height="197" width="1625" format="[general]"  name=workorder_detail_history_part  tag="Part code " edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="4791" y="0" height="197" width="750" format="#,##0"  name=workorder_detail_history_qty_required  tag="quantity required " edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="6250" y="0" height="197" width="750" format="#,##0"  name=workorder_detail_history_qty_completed  tag="quantity completed " edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(workorder_detail_history_qty_required for all)"border="0" color="33554432" x="4791" y="11" height="197" width="750" format="#,##0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum(workorder_detail_history_qty_completed for all)"border="0" color="33554432" x="6250" y="11" height="197" width="750" format="#,##0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )

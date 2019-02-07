@@ -1,0 +1,51 @@
+HA$PBExportHeader$d_setup_defectcodelist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=char(10) updatewhereclause=yes name=defectcode dbname="Setup_DefectCodes.DefectCode" )
+ column=(type=char(30) updatewhereclause=yes name=description dbname="Setup_DefectCodes.Description" )
+ column=(type=char(25) updatewhereclause=yes name=grouptechnology dbname="Setup_DefectCodes.GroupTechnology" )
+ column=(type=char(39) updatewhereclause=yes name=imageguid dbname="Setup_DefectCodes.ImageGUID" )
+ column=(type=char(32766) updatewhereclause=no name=imagefilename dbname="Setup_DefectCodes.ImageFileName" )
+ column=(type=long updatewhereclause=yes name=rowid dbname="Setup_DefectCodes.RowID" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	sdc.DefectCode
+,	sdc.Description
+,	sdc.GroupTechnology
+,	sdc.ImageGUID
+,	sdc.ImageFileName
+,	sdc.RowID
+,	Change = convert(varchar(1000), '')
+,	IsSelected = convert(int, 0)
+from
+	dbo.Setup_DefectCodes sdc
+order by
+	sdc.DefectCode
+" )
+text(band=header alignment="0" text="Defect code" border="6" color="134217742" x="101" y="8" height="76" width="393" html.valueishtml="0"  name=defectcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Description" border="6" color="134217742" x="503" y="8" height="76" width="850" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Group technology" border="6" color="134217742" x="1362" y="8" height="76" width="544" html.valueishtml="0"  name=grouptechnology_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+text(band=header alignment="0" text="Image file name" border="6" color="134217742" x="2016" y="8" height="76" width="763" html.valueishtml="0"  name=imagefilename_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217730" )
+compute(band=header alignment="0" expression="bitmap(~"camera-16.bmp~")"border="0" color="33554432" x="1915" y="8" height="76" width="91" format="[GENERAL]" html.valueishtml="0"  name=compute_3  tag="Image" visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="82" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="33554432" x="101" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=defectcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],1,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="503" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="33554432" x="1362" y="8" height="76" width="544" format="[general]" html.valueishtml="0"  name=grouptechnology visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],3,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="33554432" x="2016" y="8" height="76" width="763" format="[general];N/A" html.valueishtml="0"  name=imagefilename visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif(mid(Change[0],5,1)=~"1~",RGB(255,255,64),RGB(255,255,255))" )
+compute(band=detail alignment="0" expression="bitmap(if(ImageFileName>~"~", ~"Camera-16.bmp~", ~"fileopen-16.bmp~"))"border="0" color="33554432" x="1915" y="8" height="76" width="91" format="[GENERAL]" html.valueishtml="0"  name=p_image  tag="Click to show or select image file..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

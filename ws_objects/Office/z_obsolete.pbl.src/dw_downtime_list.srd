@@ -1,0 +1,14 @@
+﻿$PBExportHeader$dw_downtime_list.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=172 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes name=dt_code dbname="downtime_codes.dt_code" )
+ column=(type=char(35) update=yes updatewhereclause=yes name=code_description dbname="downtime_codes.code_description" )
+ column=(type=char(10) updatewhereclause=yes name=location_code dbname="location.code" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"downtime_codes~" )  TABLE(NAME=~"location~" ) COLUMN(NAME=~"downtime_codes.dt_code~") COLUMN(NAME=~"downtime_codes.code_description~") COLUMN(NAME=~"location.code~")    JOIN (LEFT=~"downtime_codes.code_group~"    OP =~"=~"RIGHT=~"location.group_no~" )WHERE(    EXP1 =~"~~~"location~~~".~~~"code~~~"~"   OP =~"=~"    EXP2 =~":arg_machine~" ) ) ARG(NAME = ~"arg_machine~" TYPE = string) " arguments=(("arg_machine", string))  sort="dt_code A " )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="0" y="4" height="164" width="640" format="[general]"  name=dt_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="658" y="4" height="164" width="2226" format="[general]"  name=code_description edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="3616" y="0" height="128" width="640" format="[general]"  name=location_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-20" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,89 @@
+HA$PBExportHeader$d_openreceiverheaderlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long updatewhereclause=yes key=yes identity=yes name=receiverid dbname="ReceiverHeaders.ReceiverID" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=receivernumber dbname="ReceiverHeaders.ReceiverNumber" initial="0" )
+ column=(type=long update=yes updatewhereclause=yes name=type dbname="ReceiverHeaders.Type" initial="1" )
+ column=(type=long update=yes updatewhereclause=yes name=status dbname="ReceiverHeaders.Status" initial="0" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=shipfrom dbname="ReceiverHeaders.ShipFrom" initial="" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="ReceiverHeaders.Plant" )
+ column=(type=datetime update=yes updatewhereclause=yes name=expectedreceivedt dbname="ReceiverHeaders.ExpectedReceiveDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=confirmedshipdt dbname="ReceiverHeaders.ConfirmedShipDT" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=confirmedsid dbname="ReceiverHeaders.ConfirmedSID" )
+ column=(type=datetime update=yes updatewhereclause=yes name=confirmedarrivaldt dbname="ReceiverHeaders.ConfirmedArrivalDT" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=trackingnumber dbname="ReceiverHeaders.TrackingNumber" )
+ column=(type=datetime update=yes updatewhereclause=yes name=actualarrivaldt dbname="ReceiverHeaders.ActualArrivalDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=receivedt dbname="ReceiverHeaders.ReceiveDT" )
+ column=(type=datetime update=yes updatewhereclause=yes name=putawaydt dbname="ReceiverHeaders.PutawayDT" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=note dbname="ReceiverHeaders.Note" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	ReceiverID
+,	ReceiverNumber
+,	Type
+,	Status
+,	ShipFrom
+,	Plant
+,	ExpectedReceiveDT
+,	ConfirmedShipDT
+,	ConfirmedSID
+,	ConfirmedArrivalDT
+,	TrackingNumber
+,	ActualArrivalDT
+,	ReceiveDT
+,	PutawayDT
+,	Note
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.ReceiverHeaders rh
+where
+	Status in (:StatusList)
+order by
+	ReceiverID asc
+" update="ReceiverHeaders" updatewhere=0 updatekeyinplace=yes arguments=(("StatusList", numberlist))  sort="receiverid A " )
+compute(band=header alignment="0" expression="bitmap(~"noteyesw.bmp~")"border="0" color="33554432" x="5198" y="4" height="68" width="78" format="[GENERAL]" html.valueishtml="0"  name=noteicon_ visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Receiver Number" border="6" color="33554432" x="119" y="8" height="80" width="416" html.valueishtml="0"  name=receivernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Type" border="6" color="33554432" x="544" y="8" height="80" width="439" html.valueishtml="0"  name=type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Receiver Status" border="6" color="33554432" x="992" y="8" height="80" width="389" html.valueishtml="0"  name=status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Ship From" border="6" color="33554432" x="1390" y="8" height="80" width="338" html.valueishtml="0"  name=shipfrom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="1737" y="8" height="80" width="265" html.valueishtml="0"  name=plant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Expected Receive DT" border="6" color="33554432" x="2011" y="8" height="80" width="503" html.valueishtml="0"  name=expectedreceivedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Confirmed SID" border="6" color="33554432" x="2523" y="8" height="80" width="338" html.valueishtml="0"  name=confirmedsid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Actual Arrival DT" border="6" color="33554432" x="2871" y="8" height="80" width="457" html.valueishtml="0"  name=actualarrivaldt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Confirmed Ship DT" border="6" color="33554432" x="3337" y="8" height="80" width="457" html.valueishtml="0"  name=confirmedshipdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Confirmed Arrival DT" border="6" color="33554432" x="3803" y="8" height="80" width="512" html.valueishtml="0"  name=confirmedarrivaldt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Tracking Number" border="6" color="33554432" x="4325" y="8" height="80" width="453" html.valueishtml="0"  name=trackingnumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Receive DT" border="6" color="33554432" x="4786" y="8" height="80" width="402" html.valueishtml="0"  name=receivedt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Note" border="6" color="33554432" x="5285" y="8" height="80" width="366" html.valueishtml="0"  name=note_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="5" y="8" height="76" width="105" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="119" y="8" height="76" width="416" format="[general]  " html.valueishtml="0"  name=receivernumber visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=10 border="0" color="33554432" x="544" y="8" height="76" width="439" format="[general]" html.valueishtml="0" protect="0~tif(IsRowNew(), 0, 1)"  name=type visible="1" dddw.name=d_dddw_type dddw.displaycolumn=typename dddw.datacolumn=typecode dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=32766 border="0" color="33554432" x="992" y="8" height="76" width="389" format="[general]" html.valueishtml="0"  name=status visible="1" dddw.name=d_dddw_status dddw.displaycolumn=statusname dddw.datacolumn=statuscode dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="33554432" x="1390" y="8" height="76" width="338" format="[general]" html.valueishtml="0" protect="0~tif(IsRowNew(), 0, 1)"  name=shipfrom visible="1" dddw.name=d_shipfromlist dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=400 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.hscrollbar=yes dddw.vscrollbar=yes dddw.autoretrieve=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="0" color="33554432" x="1737" y="8" height="76" width="265" format="[general]" html.valueishtml="0" protect="0~tif(IsRowNew(), 0, 1)"  name=plant visible="1" dddw.name=d_dddw_plants dddw.displaycolumn=destination dddw.datacolumn=destination dddw.percentwidth=600 dddw.lines=0 dddw.limit=0 dddw.allowedit=yes dddw.useasborder=no dddw.case=any dddw.required=yes dddw.hscrollbar=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="33554432" x="2011" y="8" height="76" width="503" format="[shortdate] [time]" html.valueishtml="0"  name=expectedreceivedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=70 border="0" color="33554432" x="3337" y="8" height="76" width="457" format="[shortdate] [time]" html.valueishtml="0"  name=confirmedshipdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=50 border="0" color="33554432" x="2523" y="8" height="76" width="338" format="[general]" html.valueishtml="0"  name=confirmedsid visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=80 border="0" color="33554432" x="3803" y="8" height="76" width="512" format="[shortdate] [time]" html.valueishtml="0"  name=confirmedarrivaldt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=90 border="0" color="33554432" x="4325" y="8" height="76" width="453" format="[general]" html.valueishtml="0"  name=trackingnumber visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="4786" y="8" height="76" width="402" format="[shortdate] [time]" html.valueishtml="0"  name=receivedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=60 border="0" color="33554432" x="2871" y="8" height="76" width="457" format="[shortdate] [time]" html.valueishtml="0"  name=actualarrivaldt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(if(Note>~"~", ~"noteyesw.bmp~", ~"~"))"border="0" color="33554432" x="5198" y="8" height="76" width="78" format="[GENERAL]" html.valueishtml="0"  name=noteicon visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=100 border="0" color="33554432" x="5285" y="8" height="76" width="366" format="[general]" html.valueishtml="0"  name=note visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

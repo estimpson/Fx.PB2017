@@ -1,0 +1,177 @@
+﻿$PBExportHeader$ford_856_header_p.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=8 color="-1" )
+footer(height=8 color="-1" )
+detail(height=2500 color="-1" )
+table(column=(type=char(2) update=yes updatewhereclause=yes name=purpose_code dbname="purpose_code" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=partial_complete dbname="partial_complete" )
+ column=(type=char(35) updatewhereclause=yes name=bill_of_lading_scac_transfer dbname="order_header.scac_transfer" )
+ column=(type=char(35) updatewhereclause=yes name=bill_of_lading_scac_pickup dbname="order_header.scac_pickup" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_freight_type dbname="order_header.freight_type" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_pallets dbname="order_header.staged_pallets" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_aetc_number dbname="order_header.aetc_number" )
+ column=(type=char(10) updatewhereclause=yes name=edi_setups_id_code_type dbname="order_header.id_code_type" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_parent_destination dbname="order_header.parent_destination" )
+ column=(type=char(25) updatewhereclause=yes name=edi_setups_material_issuer dbname="order_header.material_issuer" )
+ column=(type=long updatewhereclause=yes name=shipper_id dbname="order_header.id" )
+ column=(type=datetime updatewhereclause=yes name=shipper_date_shipped dbname="order_header.date_shipped" )
+ column=(type=char(20) updatewhereclause=yes name=edi_setups_pool_code dbname="order_header.pool_code" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_gross_weight dbname="order_header.gross_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_net_weight dbname="order_header.net_weight" )
+ column=(type=long updatewhereclause=yes name=shipper_staged_objs dbname="order_header.staged_objs" )
+ column=(type=char(20) updatewhereclause=yes name=ship_via dbname="order_header.ship_via" )
+ column=(type=char(10) updatewhereclause=yes name=shipper_trans_mode dbname="order_header.trans_mode" )
+ column=(type=char(30) updatewhereclause=yes name=truck_number dbname="order_header.truck_number" )
+ column=(type=char(35) updatewhereclause=yes name=pro_num dbname="order_header.pro_number" )
+ column=(type=char(25) updatewhereclause=yes name=seal_number dbname="order_header.seal_number" )
+ column=(type=char(20) updatewhereclause=yes name=destination dbname="order_header.destination" )
+ column=(type=long updatewhereclause=yes name=bill_of_lading_number dbname="order_header.bill_of_lading_number" )
+ column=(type=datetime updatewhereclause=yes name=shipper_time_shipped dbname="order_header.time_shipped" )
+ column=(type=char(10) updatewhereclause=yes name=equipment_initial dbname="order_header.equipment_initial" )
+ column=(type=char(20) updatewhereclause=yes name=equip_desc dbname="order_header.equipment_description" )
+ column=(type=char(20) updatewhereclause=yes name=trading_partner_code dbname="order_header.trading_partner_code" )
+ column=(type=char(20) updatewhereclause=yes name=supplier_code dbname="order_header.supplier_code" )
+ column=(type=char(25) updatewhereclause=yes name=edi_setups_material_issuer dbname="order_header.material_issuer" )
+ column=(type=long updatewhereclause=yes name=day_of_year dbname="day_of_year" )
+ column=(type=char(10) updatewhereclause=yes name=dock_code dbname="dock_code" )
+ column=(type=char(10) updatewhereclause=yes name=ford_consignee dbname="order_header.ford_consignee" )
+ column=(type=char(40) updatewhereclause=yes name=destination_broker_scac dbname="order_header.broker_scac" )
+ retrieve="SELECT '00' as purpose_code, 
+''as partial_complete,
+bill_of_lading.scac_transfer,
+bill_of_lading.scac_pickup,
+shipper.freight_type,
+SHIPPER.STAGED_PALLETS, 
+shipper.aetc_number,
+edi_setups.id_code_type,
+edi_setups.parent_destination, 
+edi_setups.material_issuer,
+shipper.id, 
+shipper.date_shipped,
+edi_setups.pool_code, 
+shipper.gross_weight, 
+shipper.net_weight, 
+shipper.staged_objs, 
+shipper.ship_via, 
+shipper.trans_mode, 
+shipper.truck_number, 
+shipper.pro_number, 
+shipper.seal_number, 
+shipper.destination, 
+shipper.bill_of_lading_number, 
+shipper.time_shipped, 
+bill_of_lading.equipment_initial, 
+edi_setups.equipment_description, 
+edi_setups.trading_partner_code, 
+edi_setups.supplier_code, 
+edi_setups.material_issuer,
+DATEPART(dy,getdate()) as day_of_year,
+(SELECT max(dock_code) FROM order_header,shipper_detail
+            WHERE order_header.order_no = shipper_detail.order_no and
+			         shipper_detail.shipper = :ishipper) as dock_code,
+edi_setups.id_code_type as ford_consignee,
+destination.address_5 broker_scac
+    FROM {oj shipper  LEFT OUTER JOIN bill_of_lading  ON shipper.bill_of_lading_number = bill_of_lading.bol_number},   
+         edi_setups, destination  
+   WHERE ( shipper.id = :ishipper )  and
+			( shipper.destination = destination.destination ) and 
+( shipper.destination = edi_setups.destination ) 
+ 
+" arguments=(("ishipper", number)) )
+compute(band=detail alignment="0" expression="string(shipper_id ) "border="0" color="0" x="37" y="140" height="64" width="969" format="[general]"  name=shipper  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="string(TODAY( ),'yymmdd')"border="0" color="0" x="37" y="208" height="64" width="969" format="[GENERAL]"  name=asn_date  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="string(now( ),'hhmm')"border="0" color="0" x="37" y="276" height="64" width="969" format="[GENERAL]"  name=asn_time  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if( ship_via ='EWCF', ship_via,if( shipper_trans_mode = 'AE', mid(  equipment_ini  , 1, 3 ), if(  shipper_trans_mode = 'A', mid(  equipment_ini  , 1, 3 ),  if(  shipper_trans_mode = 'E','',   edi_setups_pool_code   )  ) ) )"border="0" color="0" x="41" y="344" height="64" width="969" format="[general]"  name=pool  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if(shipper_gross_weight <1,'1', string (round(shipper_gross_weight,0)) )"border="0" color="0" x="37" y="412" height="64" width="969" format="[general]"  name=gr_wght  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if(shipper_net_weight<1,'1', string (round(shipper_net_weight,0)))"border="0" color="0" x="37" y="480" height="64" width="969" format="[general]"  name=net_wght  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" string( shipper_staged_objs )"border="0" color="0" x="37" y="548" height="64" width="969" format="[general]"  name=lading_qty  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="616" height="64" width="969" format="[general]"  name=ship_via edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="684" height="64" width="969" format="[general]"  name=shipper_trans_mode edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="752" height="64" width="969" format="[general]"  name=truck_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="820" height="64" width="969" format="[general]"  name=pro_num edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="888" height="64" width="969" format="[general]"  name=shipper_aetc_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="956" height="64" width="969" format="[general]"  name=seal_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="'LB'"border="0" color="0" x="37" y="1024" height="64" width="969" format="[GENERAL]"  name=gross_wgt_um  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" if(shipper_trans_mode = 'E', '', if(  shipper_trans_mode = 'A', 'OR', if( shipper_trans_mode = 'AE' ,'OR', if(  pool <>'' , 'PP', '' ) ) ) )"border="0" color="0" x="41" y="1092" height="64" width="969" format="[general]"  name=location_qualifier  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1160" height="64" width="969" format="[general]"  name=destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1228" height="64" width="969" format="[general]"  name=bill_of_lading_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1296" height="64" width="969" format="[general]"  name=trading_partner_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1432" height="64" width="969" format="[general]"  name=supplier_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1500" height="64" width="969" format="[general]"  name=edi_setups_material_issuer edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" if ( edi_setups_parent_destination = 'milkrun',
+mid ( edi_setups_material_issuer , daynumber ( today ( ) ) * 2 - 1 , 
+2 ) + string ( month ( today ( ) ), ~"00~" ) + string ( day ( today ( ) ) , ~"00~" ) 
+,if( isNull( bill_of_lading_number ), string( shipper_id ), string( bill_of_lading_number ) ) )
+"border="0" color="0" x="37" y="1636" height="64" width="969" format="[general]"  name=bol  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="37" y="1772" height="64" width="969" format="[general]"  name=shipper_freight_type edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if(shipper_freight_type = 'Collect', 'CC',if(  shipper_freight_type = 'Prepaid-Billed', 'PP', if(  shipper_freight_type = 'Prepaid','PP', '' ) ))"border="0" color="0" x="37" y="1840" height="64" width="969" format="[GENERAL]"  name=freight_type1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" if(   edi_setups_id_code_type  = 'F',  freight_type1 ,  '' ) "border="0" color="0" x="37" y="1908" height="64" width="969" format="[general]"  name=payment_method  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if(  payment_method = 'CC', 'DE', if(  payment_method = 'PP', 'OR', '' ) )"border="0" color="0" x="37" y="1976" height="64" width="969" format="[GENERAL]"  name=location_qual  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" if(   edi_setups_id_code_type  = 'F',  'CIF' ,  '' ) "border="0" color="0" x="37" y="2044" height="64" width="969" format="[general]"  name=trans_terms  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="string( shipper_staged_pallets )"border="0" color="0" x="37" y="2112" height="64" width="969" format="[GENERAL]"  name=pallet  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if(  shipper_staged_pallets   > 0, 'PLT90', 'CTN90' )"border="0" color="0" x="37" y="2180" height="64" width="969" format="[GENERAL]"  name=package_type  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression="if( shipper_staged_pallets > 0 , string( shipper_staged_pallets ), string(  shipper_staged_objs  ) )"border="0" color="0" x="37" y="2248" height="64" width="969" format="[general]"  name=lading_qty1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="37" y="4" height="64" width="969" format="[general]"  name=purpose_code edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="37" y="72" height="64" width="969" format="[general]"  name=partial_complete edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+text(band=detail alignment="0" text="purpose_code"border="0" color="0" x="1024" y="4" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="partial_complete"border="0" color="0" x="1024" y="72" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="shipper"border="0" color="0" x="1024" y="140" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="asn_date"border="0" color="0" x="1024" y="208" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="asn_time"border="0" color="0" x="1024" y="276" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="pool"border="0" color="0" x="1024" y="344" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="gr_wght"border="0" color="0" x="1024" y="412" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="net_wght"border="0" color="0" x="1024" y="480" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="lading_qty"border="0" color="0" x="1024" y="548" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="ship_via"border="0" color="0" x="1024" y="616" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="shipper_trans_mode"border="0" color="0" x="1019" y="684" height="64" width="974"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="truck_number"border="0" color="0" x="1024" y="752" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="pro_num"border="0" color="0" x="1024" y="820" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="aetc_number"border="0" color="0" x="1024" y="888" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="seal_number"border="0" color="0" x="1024" y="956" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="gross_wgt_um"border="0" color="0" x="1024" y="1024" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="location_qualifier"border="0" color="0" x="1024" y="1092" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="destination"border="0" color="0" x="1024" y="1160" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="bill_of_lading_number"border="0" color="0" x="1024" y="1228" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="trading_partner_code"border="0" color="0" x="1024" y="1296" height="64" width="969"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="supplier_code"border="0" color="0" x="1024" y="1432" height="64" width="969"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="material_issuer"border="0" color="0" x="1024" y="1500" height="64" width="969"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="lading_qty1"border="0" color="0" x="1024" y="2256" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="pallet"border="0" color="0" x="1024" y="2120" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="package_type"border="0" color="0" x="1024" y="2188" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="shipper_freight_type"border="0" color="0" x="1024" y="1776" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="freight_type1"border="0" color="0" x="1024" y="1844" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="payment_method"border="0" color="0" x="1024" y="1912" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="location_qual"border="0" color="0" x="1024" y="1980" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="trans_terms"border="0" color="0" x="1024" y="2048" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="bol"border="0" color="0" x="1024" y="1636" height="64" width="969"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="dock_code"border="0" color="0" x="1024" y="1708" height="56" width="960"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=detail alignment="0" text="equipment_ini"border="0" color="0" x="1024" y="1568" height="64" width="969"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression="if(  shipper_trans_mode = 'E',  ship_via , if(  shipper_trans_mode = 'A',  ship_via ,if(  shipper_trans_mode = 'AE',  ship_via ,  ''  ) ) )"border="0" color="0" x="37" y="1572" height="56" width="969" format="[general]"  name=equipment_ini  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+compute(band=detail alignment="0" expression=" if ( edi_setups_parent_destination = 'milkrun',
+mid ( edi_setups_material_issuer ,( daynumber ( today ( ) ) * 2 - 1) + 
+(daynumber ( today ( ) ) -1) ,3 ) + string(day_of_year,'000')
+,if( isNull( bill_of_lading_number ), string( shipper_id ), string( bill_of_lading_number ) ) )
+"border="0" color="0" x="37" y="2324" height="56" width="974" format="[general]"  name=bol2  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+text(band=detail alignment="0" text="bol2"border="0" color="0" x="1024" y="2324" height="56" width="974"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression="if(  shipper_trans_mode = 'E',   ship_via , if(  shipper_trans_mode = 'A', ship_via ,if(  shipper_trans_mode = 'AE',  ship_via ,  ship_via  ) ) )"border="0" color="0" x="2249" y="460" height="56" width="928" format="[general]"  name=scac  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=32 alignment="0" tabsequence=32766 border="0" color="0" x="2121" y="700" height="76" width="1193" format="[general]"  name=ford_consignee edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15789311" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2208" y="876" height="64" width="946" format="[general]"  name=bill_of_lading_scac_pickup edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2208" y="952" height="64" width="946" format="[general]"  name=bill_of_lading_scac_transfer edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression=" if(  shipper_trans_mode in ('A', 'E', 'AE'), string(shipper_id), if ( edi_setups_parent_destination = 'milkrun',
+mid ( edi_setups_material_issuer ,( daynumber ( today ( ) ) * 2 - 1) + 
+(daynumber ( today ( ) ) -1) ,3 ) + string(day_of_year,'000')
+,if( isNull( bill_of_lading_number ), string( shipper_id ), string( bill_of_lading_number ) ) )
+)"border="0" color="0" x="23" y="2392" height="56" width="974" format="[general]"  name=bol3  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+text(band=detail alignment="0" text="bol3"border="0" color="0" x="1024" y="2388" height="56" width="974"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=detail alignment="0" expression="if( destination ='AF1TA','     ',if( destination ='AF1DA','     ',if( destination ='AF1JA','     ',if( destination ='AF34A','     ',if( destination ='AF35A','     ',if( destination ='AF38A','     ',if( destination ='AF44A','     ',if( destination ='AF46A','     ',if( destination ='AF49A','     ',if( destination ='AF50A','     ',if( destination ='CA02C','     ',if( destination ='AF30A','     ', if(destination='AF31A','    ', if(destination='FM1QB','    ', if( scac ='NLMI','', bill_of_lading_scac_pickup1 )))))))))))))))"border="0" color="16777215" x="2203" y="1448" height="56" width="183" format="[general]"  name=pickup  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+compute(band=detail alignment="0" expression="if( ship_via ='NLMI' and  shipper_trans_mode ='C','',shipper_trans_mode)"border="0" color="16777215" x="2139" y="108" height="56" width="183" format="[general]"  name=correct_transfer_trans_mode  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="255" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="2016" y="24" height="64" width="539" format="[general]"  name=edi_setups_pool_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="0" x="2551" y="24" height="64" width="1161" format="[general]"  name=day_of_year edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2290" y="204" height="64" width="946" format="[general]" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+compute(band=detail alignment="0" expression="if( bill_of_lading_scac_pickup ='PSKL', 'LGSI', bill_of_lading_scac_pickup )"border="0" color="16777215" x="2185" y="1380" height="56" width="855" format="[general]"  name=bill_of_lading_scac_pickup1  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+text(band=detail alignment="0" text="The item found directly below has been inserted to cause all bill_of_lading_scac pickups that have a value of PSKL to appear as RSHQ.  The item below that is the pickup field which has been updated to take the value in bill_of_lading_scac_pickup1, "border="0" color="16777215" x="2176" y="1012" height="272" width="1376"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+text(band=detail alignment="0" text="instead of the bill_of_lading_scac_pickup field found above.  "border="0" color="16777215" x="2176" y="1288" height="56" width="1371"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="0" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="0" x="50" y="1708" height="64" width="722" format="[general]"  name=dock_code edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+column(band=detail id=33 alignment="0" tabsequence=32766 border="0" color="0" x="2107" y="312" height="64" width="649" format="[general]"  name=destination_broker_scac edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1089531135" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

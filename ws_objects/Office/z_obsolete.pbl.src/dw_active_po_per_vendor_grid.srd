@@ -1,0 +1,47 @@
+﻿$PBExportHeader$dw_active_po_per_vendor_grid.srd
+$PBExportComments$dw that the po creation from grid uses to display po's
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=76 color="536870912" )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=po_number dbname="po_header.po_number" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=plant dbname="po_header.plant" initial="spaces" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=ship_to_destination dbname="po_header.ship_to_destination" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=ship_type dbname="po_header.ship_type" values="Normal	N/DropShip	D/" )
+ column=(type=char(1) updatewhereclause=yes name=release_control dbname="po_header.release_control" values="Accum	A/Line Item	L/" )
+ column=(type=char(255) updatewhereclause=yes name=notes dbname="po_header.notes" )
+ column=(type=char(1) updatewhereclause=yes name=type dbname="po_header.type" )
+ column=(type=char(25) updatewhereclause=yes name=blanket_part dbname="po_header.blanket_part" )
+ retrieve="  SELECT ~"po_header~".~"po_number~",   
+         ~"po_header~".~"plant~",   
+         ~"po_header~".~"ship_to_destination~",   
+         ~"po_header~".~"ship_type~",   
+         ~"po_header~".~"release_control~",   
+         ~"po_header~".~"notes~",   
+         ~"po_header~".~"type~",   
+         ~"po_header~".~"blanket_part~"  
+    FROM ~"po_header~"  
+   WHERE ( ~"po_header~".~"Vendor_code~" = :szVendor ) AND  
+         ( ~"po_header~".~"status~" = 'A' ) AND  
+         ( ~"po_header~".~"blanket_part~" = :szPart OR  
+          ~"po_header~".~"type~" <> 'B' )    
+" update="po_header" updatewhere=0 updatekeyinplace=yes arguments=(("szVendor", string),("szPart", string))  sort="ship_type D plant A po_number A " )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="64" width="347" format="[general]"  name=po_number edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="366" y="8" height="64" width="667" format="[general]"  name=blanket_part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=detail alignment="2" expression="if (  type = 'B', 'B', 'N' )"border="0" color="0" x="1042" y="8" height="64" width="133" format="[general]"  name=comp_type  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1184" y="8" height="64" width="247" format="[general]"  name=ship_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1440" y="8" height="64" width="325" format="[general]"  name=plant edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1774" y="8" height="64" width="325" format="[general]"  name=ship_to_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2107" y="8" height="64" width="379" format="[general]"  name=release_control edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.codetable=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2496" y="8" height="64" width="1979" format="[general]"  name=notes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="P.O."border="6" color="0" x="9" y="8" height="60" width="347"  name=po_number_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Blanket Part"border="6" color="0" x="366" y="8" height="60" width="667"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Type"border="6" color="0" x="1042" y="8" height="60" width="133"  name=type_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Ship Type"border="6" color="0" x="1184" y="8" height="60" width="247"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Plant"border="6" color="0" x="1440" y="8" height="60" width="325"  name=plant_t  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Ship To Dest"border="6" color="0" x="1774" y="8" height="60" width="325"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Release Type"border="6" color="0" x="2107" y="8" height="60" width="379"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Notes"border="6" color="0" x="2496" y="8" height="60" width="1979"  font.face="MS Sans Serif" font.height="-9" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

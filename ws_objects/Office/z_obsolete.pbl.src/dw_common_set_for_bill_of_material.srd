@@ -1,0 +1,57 @@
+﻿$PBExportHeader$dw_common_set_for_bill_of_material.srd
+$PBExportComments$Common set for bill of material
+release 6;
+datawindow(units=0 timer_interval=0 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=168 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=132 color="536870912" )
+table(column=(type=char(100) updatewhereclause=yes name=cdescription dbname="description" )
+ column=(type=char(2) updatewhereclause=yes name=cunit dbname="unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=conhand dbname="onhand" )
+ column=(type=decimal(6) updatewhereclause=yes name=cwo_quantity dbname="wo_quantity" )
+ column=(type=decimal(6) updatewhereclause=yes name=cbatch_quantity dbname="batch_quantity" )
+ column=(type=char(25) updatewhereclause=yes name=part dbname="bom_part" )
+ column=(type=decimal(8) updatewhereclause=yes name=bom_qty dbname="bom_qty" )
+ retrieve="  SELECT Max ( name ) description,   
+         Max ( unit_measure ) unit,   
+         Max ( on_hand ) onhand,   
+         Sum ( quantity * qty_required ) wo_quantity,   
+         Sum ( mfg_lot_size * quantity ) batch_quantity,   
+         Max ( bill_of_material.part ) bom_part,
+         Sum ( quantity ) bom_qty  
+    FROM bill_of_material,   
+         workorder_detail,   
+         part,   
+         part_online,   
+         part_mfg  
+   WHERE ( bill_of_material.parent_part = workorder_detail.part ) and  
+         ( bill_of_material.part = part.part ) and  
+         ( part_online.part = part.part ) and  
+         ( workorder_detail.part = part_mfg.part ) and  
+         ( ( workorder_detail.workorder = :wo_number ) )   
+GROUP BY bill_of_material.part   
+" arguments=(("wo_number", string),("arg_qty_completed", number)) )
+text(band=header alignment="0" text="Bill of Materials"border="6" color="33554432" x="9" y="4" height="80" width="544"  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=header alignment="0" expression="'for the job:  '+ wo_number "border="6" color="33554432" x="562" y="4" height="80" width="768" format="[general]"  font.face="MS Sans Serif" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Part"border="6" color="33554432" x="9" y="92" height="64" width="544"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Description"border="6" color="33554432" x="562" y="92" height="64" width="768"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Required
+ Quantity"border="6" color="33554432" x="1339" y="4" height="152" width="384"  name=cwo_quantity_t  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Completed
+Quantity"border="6" color="33554432" x="1733" y="4" height="152" width="352"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="UM"border="6" color="33554432" x="2094" y="4" height="152" width="114"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="OnHand"border="6" color="33554432" x="2217" y="4" height="152" width="302"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Lot
+Quantity"border="6" color="33554432" x="2528" y="4" height="152" width="279"  name=cbatch_quantity_t  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="1" text="Theoretical
+ qty consumed"border="6" color="33554432" x="2816" y="4" height="152" width="466"  font.face="MS Sans Serif" font.height="-11" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="0" height="124" width="544" format="[general]"  name=part edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="562" y="0" height="124" width="768" format="[general]"  name=cdescription edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1339" y="0" height="124" width="384" format="#,###,###.0#####"  name=cwo_quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=detail alignment="1" expression="arg_qty_completed "border="0" color="33554432" x="1733" y="0" height="124" width="352" format="[general]"  name=cqty_completed  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="2094" y="0" height="124" width="114" format="[general]"  name=cunit edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432~tif (cOnHand = 0, 255, if (cOnHand < cwo_Quantity, 65535, 65280 ))" x="2217" y="0" height="124" width="302" format="#,###,###.0#####"  name=conhand edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="2528" y="0" height="124" width="279" format="#,###,###.0#####"  name=cbatch_quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+compute(band=detail alignment="1" expression=" bom_qty  *  arg_qty_completed "border="0" color="33554432" x="2816" y="0" height="124" width="466" format="[general]"  name=ctheoritical_qty  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

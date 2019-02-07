@@ -1,0 +1,103 @@
+HA$PBExportHeader$d_shipping_departedshippers.srd
+release 10;
+datawindow(units=0 timer_interval=100 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1256 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=shippernumber dbname="Shipping_DepartedShipperList.ShipperNumber" )
+ column=(type=char(25) updatewhereclause=yes name=customercode dbname="Shipping_DepartedShipperList.CustomerCode" )
+ column=(type=char(50) updatewhereclause=yes name=customername dbname="Shipping_DepartedShipperList.CustomerName" )
+ column=(type=char(20) updatewhereclause=yes name=shiptocode dbname="Shipping_DepartedShipperList.ShipToCode" )
+ column=(type=char(50) updatewhereclause=yes name=shiptoname dbname="Shipping_DepartedShipperList.ShipToName" )
+ column=(type=char(30) updatewhereclause=yes name=trucknumber dbname="Shipping_DepartedShipperList.TruckNumber" )
+ column=(type=char(35) updatewhereclause=yes name=pronumber dbname="Shipping_DepartedShipperList.PRONumber" )
+ column=(type=long updatewhereclause=yes name=legacyshipperid dbname="Shipping_DepartedShipperList.LegacyShipperID" )
+ column=(type=datetime updatewhereclause=yes name=shipdt dbname="Shipping_DepartedShipperList.ShipDT" )
+ column=(type=char(1) updatewhereclause=yes name=shippertype dbname="Shipping_DepartedShipperList.ShipperType" )
+ column=(type=long updatewhereclause=yes name=documenttype dbname="Shipping_DepartedShipperList.DocumentType" )
+ column=(type=char(3) updatewhereclause=yes name=overlaygroup dbname="Shipping_DepartedShipperList.OverlayGroup" )
+ column=(type=long updatewhereclause=yes name=legacygenerator dbname="Shipping_DepartedShipperList.LegacyGenerator" )
+ column=(type=char(128) updatewhereclause=no name=functionname dbname="Shipping_DepartedShipperList.FunctionName" )
+ column=(type=datetime updatewhereclause=yes name=filegenerationdt dbname="Shipping_DepartedShipperList.FileGenerationDT" )
+ column=(type=datetime updatewhereclause=yes name=filesenddt dbname="Shipping_DepartedShipperList.FileSendDT" )
+ column=(type=long updatewhereclause=yes name=filestatus dbname="Shipping_DepartedShipperList.FileStatus" )
+ column=(type=long updatewhereclause=yes name=edistatus dbname="Shipping_DepartedShipperList.EDIStatus" )
+ column=(type=char(8) updatewhereclause=yes name=edistatuscode dbname="Shipping_DepartedShipperList.EDIStatusCode" )
+ column=(type=datetime updatewhereclause=yes name=edidelivereddt dbname="Shipping_DepartedShipperList.EDIDeliveredDT" )
+ column=(type=datetime updatewhereclause=yes name=edirejecteddt dbname="Shipping_DepartedShipperList.EDIRejectedDT" )
+ column=(type=char(32766) updatewhereclause=no name=rejectionreason dbname="Shipping_DepartedShipperList.RejectionReason" )
+ column=(type=datetime updatewhereclause=yes name=ediresubmitteddt dbname="Shipping_DepartedShipperList.EDIResubmittedDT" )
+ column=(type=char(1000) updatewhereclause=yes name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	sdsl.ShipperNumber
+,	sdsl.CustomerCode
+,	sdsl.CustomerName
+,	sdsl.ShipToCode
+,	sdsl.ShipToName
+,	sdsl.TruckNumber
+,	sdsl.PRONumber
+,	sdsl.LegacyShipperID
+,	sdsl.ShipDT
+,	sdsl.ShipperType
+,	sdsl.DocumentType
+,	sdsl.OverlayGroup
+,	sdsl.LegacyGenerator
+,	sdsl.FunctionName
+,	sdsl.FileGenerationDT
+,	sdsl.FileSendDT
+,	sdsl.FileStatus
+,   sdsl.EDIStatus
+,   sdsl.EDIStatusCode
+,   sdsl.EDIDeliveredDT
+,   sdsl.EDIRejectedDT
+,   sdsl.RejectionReason
+,   sdsl.EDIResubmittedDT
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.Shipping_DepartedShipperList sdsl
+order by
+	sdsl.ShipDT
+" )
+groupbox(band=detail text="Departing Truck"border="5" color="33554432" x="37" y="4" height="1216" width="1390"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+bitmap(band=detail filename="ok-32.bmp" x="1463" y="36" height="128" width="146" border="0"  name=p_ok  tag="Begin shipout" visible="1~tif(isverified > 0 and trim(pronumber) > '', 1, 0)" )
+bitmap(band=detail filename="not_ok-32.bmp" x="1463" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel shipout" visible="1~tif(isverified > 0 and isoverridescanning = 0, 0, 1)" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="658" y="4" height="76" width="704" format="[general]" html.valueishtml="0"  name=trucknumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="7118" y="1220" height="76" width="2528" format="[general]" html.valueishtml="0"  name=filestatus visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="/* RelativeTime(Time(~"0:00~"), SecondsAfter(Time(edivalidateddt), now())) */"border="0" color="33554432" x="1463" y="836" height="64" width="215" format="h:mm:ss" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=19 alignment="2" tabsequence=32766 border="0" color="33554432~tif (IsNull(EDIStatus), 0, if (EDIStatus < 0, RGB(127,0,0), RGB(0,127,0)))" x="73" y="100" height="96" width="1280" format="[general]" html.valueishtml="0"  name=edistatuscode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="1073741824~tif (IsNull(EDIStatus), RGB(255,255,255), if (EDIStatus < 0, RGB(255,127,127), RGB(127,255,127)))" )
+text(band=detail alignment="0" text="Customer:" border="0" color="33554432" x="73" y="228" height="64" width="293" html.valueishtml="0"  name=customercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Ship to:" border="0" color="33554432" x="73" y="324" height="64" width="293" html.valueishtml="0"  name=shiptocode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="228" height="76" width="951" format="[general]" html.valueishtml="0"  name=customercode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="324" height="76" width="951" format="[general]" html.valueishtml="0"  name=shiptocode visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Shipper:" border="0" color="33554432" x="73" y="420" height="64" width="293" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="402" y="420" height="76" width="951" format="[general]" html.valueishtml="0"  name=legacyshipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=detail alignment="0" expression="case(DocumentType when 1 then ~"Ship Notice~" when 2 then ~"Invoice~" else string(DocumentType) + ~" : Unknown~" ) + ~" :: ~" +  overlaygroup + ~" :: ~" + case(legacygenerator when 0 then FunctionName else ~"legacy~")"border="0" color="33554432" x="402" y="548" height="160" width="951" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="878" y="740" height="64" width="475" format="[shortdate] [time]" html.valueishtml="0"  name=filesenddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="EDI Details:" border="0" color="33554432" x="73" y="548" height="64" width="302" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EDI Rejected DT:" border="0" color="33554432" x="73" y="932" height="64" width="489" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EDI Delivered DT:" border="0" color="33554432" x="73" y="836" height="64" width="462" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EDI Sent DT:" border="0" color="33554432" x="73" y="740" height="64" width="338" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="878" y="836" height="64" width="480" format="[shortdate] [time]" html.valueishtml="0"  name=edidelivereddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="33554432" x="878" y="932" height="64" width="475" format="[shortdate] [time]" html.valueishtml="0"  name=edirejecteddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=22 alignment="0" tabsequence=0 border="0" color="33554432" x="402" y="1028" height="64" width="951" html.valueishtml="0"  name=rejectionreason visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="EDI Resubmitted DT:" border="0" color="33554432" x="73" y="1124" height="64" width="544" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="33554432" x="878" y="1124" height="64" width="475" format="[shortdate] [time]" html.valueishtml="0"  name=ediresubmitteddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="Reason:" border="0" color="33554432" x="146" y="1028" height="64" width="215" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="RelativeTime(Time(~"0:00~"), if(EDIStatus < 0, SecondsAfter(Time(shipdt), now()), 
+
+SecondsAfter(Time(shipdt),Time(EDIDeliveredDT))
+
+))"border="0" color="33554432~tif (IsNull(EDIStatus), 0, if (EDIStatus < 0, RGB(127,0,0), RGB(0,127,0)))" x="1024" y="100" height="96" width="325" format="h:mm:ss" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif (IsNull(EDIStatus), RGB(255,255,255), if (EDIStatus < 0, RGB(255,127,127), RGB(127,255,127)))" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

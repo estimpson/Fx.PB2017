@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_trans_mode_nested.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no rows_per_detail = 2 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=trans_mode_description dbname="trans_mode.description" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"carrier~" )  TABLE(NAME=~"trans_mode~" )  TABLE(NAME=~"shipper~" ) COLUMN(NAME=~"trans_mode.description~")    JOIN (LEFT=~"carrier.trans_mode~"    OP =~"=~"RIGHT=~"trans_mode.code~" )    JOIN (LEFT=~"carrier.trans_mode~"    OP =~"=~"RIGHT=~"shipper.trans_mode~" )WHERE(    EXP1 =~"~~~"shipper~~~".~~~"id~~~"~"   OP =~"=~"    EXP2 =~":CUSTOMS~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"~~~"trans_mode~~~".~~~"code~~~"~"   OP =~"=~"    EXP2 =~":Trans~" ) ) ARG(NAME = ~"CUSTOMS~" TYPE = string)  ARG(NAME = ~"Trans~" TYPE = string) " arguments=(("CUSTOMS", string),("Trans", string)) )
+column(band=header id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="8" height="64" width="969" format="[general]" row_in_detail=1  name=trans_mode_description_1  tag="Description " edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Times New Roman" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

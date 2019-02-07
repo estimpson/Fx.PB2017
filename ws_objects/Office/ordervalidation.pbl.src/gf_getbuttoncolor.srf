@@ -1,0 +1,27 @@
+﻿$PBExportHeader$gf_getbuttoncolor.srf
+global type gf_getbuttoncolor from function_object
+end type
+
+forward prototypes
+global function long gf_getbuttoncolor ()
+end prototypes
+
+global function long gf_getbuttoncolor ();//Declarations.
+CONSTANT STRING	regkey = "HKEY_CURRENT_USER\Control Panel\Colors"
+CONSTANT STRING	regname = "ButtonFace"
+
+STRING	ls_buttonfacecolor = "128 128 128"
+
+LONG	ll_buttonfacecolor
+
+RegistryGet ( regkey, regname, RegString!, ls_buttonfacecolor )
+
+IF ls_buttonfacecolor = "" THEN
+	ls_buttonfacecolor = "128 128 128"
+END IF
+
+ll_buttonfacecolor = RGB ( ls_buttonfacecolor )
+
+Return ll_buttonfacecolor
+end function
+

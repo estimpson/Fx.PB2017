@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\custom.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\d_shipped_value_one_day.srd" "ClientCustom\\TSM\\custom.pbl";
+@end;

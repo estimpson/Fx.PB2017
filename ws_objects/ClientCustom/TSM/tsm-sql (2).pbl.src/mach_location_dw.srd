@@ -1,0 +1,14 @@
+﻿$PBExportHeader$mach_location_dw.srd
+release 5;
+datawindow(units=2 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=187 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=218 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=code dbname="location.code" )
+ column=(type=char(30) updatewhereclause=yes name=name dbname="location.name" )
+ retrieve="PBSELECT(TABLE(NAME=~"dbo.location~") COLUMN(NAME=~"dbo.location.code~")COLUMN(NAME=~"dbo.location.name~"))ORDER(NAME = ~"dbo.location.code~" ASC =  yes) " )
+text(band=header alignment="2" text="Code"border="0" color="33554432" x="20" y="10" height="166" width="687"  name=code_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Name"border="0" color="33554432" x="729" y="10" height="166" width="1781"  name=name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="20" y="11" height="197" width="687" format="[general]"  name=code edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="729" y="11" height="197" width="1781" format="[general]"  name=name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )

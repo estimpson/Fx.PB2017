@@ -1,0 +1,370 @@
+﻿$PBExportHeader$m_powerfilterdemo_main.srm
+$PBExportComments$Generated SDI Main Menu
+forward
+global type m_powerfilterdemo_main from menu
+end type
+type m_file from menu within m_powerfilterdemo_main
+end type
+type m_print from menu within m_file
+end type
+type m_print_query from menu within m_file
+end type
+type m_printersetup from menu within m_file
+end type
+type m_dash1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_powerfilterdemo_main
+m_print m_print
+m_print_query m_print_query
+m_printersetup m_printersetup
+m_dash1 m_dash1
+m_exit m_exit
+end type
+type m_data from menu within m_powerfilterdemo_main
+end type
+type m_powerfilter from menu within m_data
+end type
+type m_data from menu within m_powerfilterdemo_main
+m_powerfilter m_powerfilter
+end type
+type m_help from menu within m_powerfilterdemo_main
+end type
+type m_helpindex from menu within m_help
+end type
+type m_search from menu within m_help
+end type
+type m_dash2 from menu within m_help
+end type
+type m_aboutquickapp from menu within m_help
+end type
+type m_help from menu within m_powerfilterdemo_main
+m_helpindex m_helpindex
+m_search m_search
+m_dash2 m_dash2
+m_aboutquickapp m_aboutquickapp
+end type
+global type m_powerfilterdemo_main from menu
+m_file m_file
+m_data m_data
+m_help m_help
+end type
+end forward
+
+global type m_powerfilterdemo_main from menu
+m_file m_file
+m_data m_data
+m_help m_help
+end type
+global m_powerfilterdemo_main m_powerfilterdemo_main
+
+on m_powerfilterdemo_main.create
+m_powerfilterdemo_main=this
+call super::create
+this.m_file=create m_file
+this.m_data=create m_data
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_data
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_powerfilterdemo_main.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_data)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_powerfilterdemo_main
+m_print m_print
+m_print_query m_print_query
+m_printersetup m_printersetup
+m_dash1 m_dash1
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_print=create m_print
+this.m_print_query=create m_print_query
+this.m_printersetup=create m_printersetup
+this.m_dash1=create m_dash1
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_print_query
+this.Item[UpperBound(this.Item)+1]=this.m_printersetup
+this.Item[UpperBound(this.Item)+1]=this.m_dash1
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_print)
+destroy(this.m_print_query)
+destroy(this.m_printersetup)
+destroy(this.m_dash1)
+destroy(this.m_exit)
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Print Window
+//*-----------------------------------------------------------------*/
+long ll_job
+window lw_main
+
+/*  Print window  */
+lw_main = ParentWindow
+//If IsValid ( lw_main ) Then
+//	ll_job = PrintOpen ( )
+//	lw_main.Print ( ll_job, 1, 1 )
+//	PrintClose ( ll_job )
+//End If
+end event
+
+on m_print.create
+call super::create
+this.visible = false
+this.text = "Print"
+this.enabled = false
+this.shortcut = 256
+this.microhelp = "Print active sheet"
+this.toolbaritemname = "print!"
+this.toolbaritemtext = "Print"
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_print_query from menu within m_file
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Print Window and display Print Dialog before job started
+//*-----------------------------------------------------------------*/
+long ll_job
+window lw_main
+
+/*  Print window  */
+lw_main = ParentWindow
+If IsValid ( lw_main ) Then
+//	ll_job = PrintOpen ("", true )
+//	if ll_job <> -1 and not IsNull(ll_job) then
+//		lw_main.Print ( ll_job, 1, 1 )
+//		PrintClose ( ll_job )
+//	end if 
+End If
+end event
+
+on m_print_query.create
+call super::create
+this.text = "&Print...~tCtrl+P"
+this.enabled = false
+this.shortcut = 336
+this.microhelp = "Print active sheet"
+this.toolbaritemvisible = false
+this.toolbaritemname = "print!"
+this.toolbaritemtext = "Print"
+end on
+
+on m_print_query.destroy
+call super::destroy
+end on
+
+type m_printersetup from menu within m_file
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Open Print Setup Dialog
+//*-----------------------------------------------------------------*/
+PrintSetup ( )
+end event
+
+on m_printersetup.create
+call super::create
+this.text = "Print Set&up..."
+this.microhelp = "Setup printer"
+end on
+
+on m_printersetup.destroy
+call super::destroy
+end on
+
+type m_dash1 from menu within m_file
+end type
+
+on m_dash1.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash1.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Close Main Window
+//*-----------------------------------------------------------------*/
+Close ( ParentWindow )
+end event
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.microhelp = "Exit program"
+this.toolbaritemname = "exit!"
+this.toolbaritemtext = "Exit"
+this.toolbaritemspace = 2
+this.menuitemtype = menuitemtypeexit!
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_data from menu within m_powerfilterdemo_main
+m_powerfilter m_powerfilter
+end type
+
+on m_data.create
+call super::create
+this.text = "&Data"
+this.shifttoright = true
+this.m_powerfilter=create m_powerfilter
+this.Item[UpperBound(this.Item)+1]=this.m_powerfilter
+end on
+
+on m_data.destroy
+call super::destroy
+destroy(this.m_powerfilter)
+end on
+
+type m_powerfilter from menu within m_data
+end type
+
+on m_powerfilter.create
+call super::create
+this.text = "Filter"
+this.toolbaritemname = "PF_Filtered_PF.bmp"
+this.toolbaritemdownname = "PF_filtered_PF.bmp"
+this.toolbaritemtext = "powerfilter"
+end on
+
+on m_powerfilter.destroy
+call super::destroy
+end on
+
+event clicked;parentwindow.dynamic event ue_powerfilter()
+end event
+
+type m_help from menu within m_powerfilterdemo_main
+m_helpindex m_helpindex
+m_search m_search
+m_dash2 m_dash2
+m_aboutquickapp m_aboutquickapp
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.shifttoright = true
+this.m_helpindex=create m_helpindex
+this.m_search=create m_search
+this.m_dash2=create m_dash2
+this.m_aboutquickapp=create m_aboutquickapp
+this.Item[UpperBound(this.Item)+1]=this.m_helpindex
+this.Item[UpperBound(this.Item)+1]=this.m_search
+this.Item[UpperBound(this.Item)+1]=this.m_dash2
+this.Item[UpperBound(this.Item)+1]=this.m_aboutquickapp
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_helpindex)
+destroy(this.m_search)
+destroy(this.m_dash2)
+destroy(this.m_aboutquickapp)
+end on
+
+type m_helpindex from menu within m_help
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Display help contents (if uncommented)
+//*-----------------------------------------------------------------*/
+// ShowHelp ("myapp.hlp", Index!)
+end event
+
+on m_helpindex.create
+call super::create
+this.text = "Help &Index~tF1"
+this.enabled = false
+this.shortcut = 112
+this.microhelp = "Display Help index"
+end on
+
+on m_helpindex.destroy
+call super::destroy
+end on
+
+type m_search from menu within m_help
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:  Search for Help topic (if uncommented)
+//*-----------------------------------------------------------------*/
+// ShowHelp ("myapp.hlp", Keyword!, "")
+end event
+
+on m_search.create
+call super::create
+this.text = "&Search for Help on..."
+this.enabled = false
+this.microhelp = "Search for Help topic"
+end on
+
+on m_search.destroy
+call super::destroy
+end on
+
+type m_dash2 from menu within m_help
+end type
+
+on m_dash2.create
+call super::create
+this.text = "-"
+end on
+
+on m_dash2.destroy
+call super::destroy
+end on
+
+type m_aboutquickapp from menu within m_help
+end type
+
+event clicked;//*-----------------------------------------------------------------*/
+//*    clicked:   Invoke copyright response window 
+//*-----------------------------------------------------------------*/
+Open ( w_powerfilterdemo_about )
+end event
+
+on m_aboutquickapp.create
+call super::create
+this.text = "&About..."
+this.microhelp = "Display ~"About~" window"
+this.menuitemtype = menuitemtypeabout!
+end on
+
+on m_aboutquickapp.destroy
+call super::destroy
+end on
+

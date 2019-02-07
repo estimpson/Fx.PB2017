@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_workorder_logged_in.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=77897888 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes name=operator dbname="shop_floor_time_log.operator" )
+ column=(type=datetime update=yes updatewhereclause=yes name=transaction_date_time dbname="shop_floor_time_log.transaction_date_time" )
+ column=(type=char(40) updatewhereclause=yes name=employee_name dbname="employee.name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"shop_floor_time_log~" )  TABLE(NAME=~"employee~" ) COLUMN(NAME=~"shop_floor_time_log.operator~") COLUMN(NAME=~"shop_floor_time_log.transaction_date_time~") COLUMN(NAME=~"employee.name~")    JOIN (LEFT=~"shop_floor_time_log.operator~"    OP =~"=~"RIGHT=~"employee.operator_code~" )WHERE(    EXP1 =~"shop_floor_time_log.work_order~"   OP =~"=~"    EXP2 =~":a_s_workorder~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"~~~"shop_floor_time_log~~~".~~~"status~~~"~"   OP =~"=~"    EXP2 =~"'L'~" ) ) ORDER(NAME=~"shop_floor_time_log.operator~" ASC=yes ) ARG(NAME = ~"a_s_workorder~" TYPE = string) " arguments=(("a_s_workorder", string)) )
+text(band=header alignment="2" text="Date/Time"border="6" color="33554432" x="9" y="12" height="64" width="594"  name=transaction_date_time_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="2" text="Operator"border="6" color="33554432" x="613" y="12" height="64" width="485"  name=operator_t  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+text(band=header alignment="0" text="Employee Name"border="6" color="33554432" x="1106" y="12" height="64" width="1161"  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="9" y="8" height="64" width="594" format="[shortdate] [time]"  name=transaction_date_time  tag="Transaction date time " edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="613" y="8" height="64" width="485" format="[general]"  name=operator  tag="Operator code " edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="5" color="33554432" x="1106" y="8" height="64" width="1157" format="[general]"  name=employee_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77897888" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

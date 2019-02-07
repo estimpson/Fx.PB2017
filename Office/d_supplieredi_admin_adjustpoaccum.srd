@@ -1,0 +1,67 @@
+HA$PBExportHeader$d_supplieredi_admin_adjustpoaccum.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1160 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=purchaseorderaccums_ponumber dbname="PurchaseOrderAccums.PONumber" )
+ column=(type=decimal(6) updatewhereclause=yes name=purchaseorderaccums_accumreceived dbname="PurchaseOrderAccums.AccumReceived" )
+ column=(type=char(10) updatewhereclause=yes name=vendorcode dbname="VendorCode" )
+ column=(type=char(35) updatewhereclause=yes name=name dbname="Name" )
+ column=(type=char(25) updatewhereclause=yes name=blanketpart dbname="BlanketPart" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="Description" )
+ column=(type=decimal(6) updatewhereclause=yes name=adjustedaccum dbname="AdjustedAccum" )
+ column=(type=char(32766) updatewhereclause=no name=adjustmentreason dbname="AdjustmentReason" )
+ column=(type=datetime updatewhereclause=yes name=adjustmentdt dbname="AdjustmentDT" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	poa.PONumber
+,	poa.AccumReceived
+,	VendorCode = ph.vendor_code
+,	Name = v.name
+,	BlanketPart = ph.blanket_part
+,	Description = p.name
+,	AdjustedAccum = poa.AccumReceived
+,	AdjustmentReason = convert(varchar(max), null)
+,	AdjustmentDT = getdate()
+,	Changed = convert(varchar(1000), null)
+,	IsSelected = 0
+from
+	EDISupplier.PurchaseOrderAccums poa
+	join dbo.po_header ph
+		join dbo.vendor v
+			on v.code = ph.vendor_code
+		join dbo.part p
+			on p.part = ph.blanket_part
+		on ph.po_number = poa.PONumber
+where
+	poa.PONumber = :PONumber" arguments=(("PONumber", number)) )
+groupbox(band=detail text="Adjust PO Accum"border="2" color="33554432" x="37" y="4" height="1152" width="1280"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=detail alignment="0" text="PO Number:" border="0" color="33554432" x="73" y="132" height="64" width="475" html.valueishtml="0"  name=purchaseorderaccums_ponumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Vendor:" border="0" color="33554432" x="73" y="228" height="64" width="475" html.valueishtml="0"  name=vendorcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Blanketpart:" border="0" color="33554432" x="73" y="420" height="64" width="475" html.valueishtml="0"  name=blanketpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="585" y="132" height="76" width="695" format="[general]" html.valueishtml="0"  name=purchaseorderaccums_ponumber visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="768" y="228" height="76" width="521" format="[general]" html.valueishtml="0"  name=vendorcode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="73" y="292" height="64" width="1207" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="73" y="484" height="64" width="1207" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="585" y="420" height="76" width="695" format="[general]" html.valueishtml="0"  name=blanketpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Adj. Date/Time:" border="0" color="33554432" x="73" y="612" height="64" width="475" html.valueishtml="0"  name=adjustmentdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Adjusted Accum:" border="0" color="33554432" x="73" y="708" height="64" width="475" html.valueishtml="0"  name=adjustedaccum_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reason:" border="0" color="33554432" x="73" y="804" height="64" width="475" html.valueishtml="0"  name=adjustmentreason_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=30 border="0" color="134217742" x="585" y="612" height="64" width="695" format="[shortdate] [time]" html.valueishtml="0"  name=adjustmentdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=7 alignment="1" tabsequence=10 border="0" color="134217742" x="585" y="708" height="76" width="695" format="###,###" html.valueishtml="0"  name=adjustedaccum visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+column(band=detail id=8 alignment="0" tabsequence=20 border="0" color="134217742" x="73" y="900" height="224" width="1207" format="[general]" html.valueishtml="0"  name=adjustmentreason visible="1" edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="134217741" )
+bitmap(band=detail filename="ok-32.bmp" x="1390" y="36" height="128" width="146" border="0"  name=p_ok  tag="Save accum" visible="1~tif(adjustmentreason > ~"~" and adjustedaccum <>  purchaseorderaccums_accumreceived, 1, 0)"  hidesnaked=1 )
+bitmap(band=detail filename="not_ok-32.bmp" x="1390" y="196" height="128" width="146" border="0"  name=p_cancel  tag="Cancel" visible="1" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

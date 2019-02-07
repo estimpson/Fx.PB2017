@@ -1,0 +1,16 @@
+﻿$PBExportHeader$composite_shpg_perf_issues_rpt.srd
+$PBExportComments$Shpg. - Composite report using premium freight issues and late shipments as seen by monitor (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1073741824 processing=5 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=229 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=218 color="536870912" )
+detail(height=937 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes")
+report(band=detail dataobject="shipments_monitor_sees_as_late" x="41" y="52" height="312" width="3562" border="0"  height.autosize=yes criteria="" trail_footer = yes  slideup=directlyabove )
+report(band=detail dataobject="shipments_with_premium_freight" x="41" y="469" height="312" width="3562" border="0"  height.autosize=yes criteria="" trail_footer = yes  slideup=directlyabove )
+text(band=header alignment="2" text="Torca Products, Inc. - Composite Report for Shipments seen as late or with premium freight."border="0" color="0" x="177" y="31" height="208" width="7229"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="83" y="21" height="208" width="833" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="5416" y="42" height="208" width="1947" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+ 

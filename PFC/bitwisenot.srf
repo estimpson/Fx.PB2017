@@ -1,0 +1,14 @@
+HA$PBExportHeader$bitwisenot.srf
+global type bitwisenot from function_object
+end type
+
+forward prototypes
+global function long bitwisenot (long value)
+end prototypes
+
+global function long bitwisenot (long value);
+n_cst_numerical math
+return math.of_BitwiseNot (value)
+
+end function
+

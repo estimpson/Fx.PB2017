@@ -1,0 +1,9 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "pfc\\fxformviewer.pbl" "";
+@end;
+@begin Objects
+ "pfc\\n_cst_printer_windows.sru" "pfc\\fxformviewer.pbl";
+ "pfc\\n_cst_printer_winnt.sru" "pfc\\fxformviewer.pbl";
+ "pfc\\n_cst_printer.sru" "pfc\\fxformviewer.pbl";
+@end;

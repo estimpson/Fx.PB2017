@@ -1,0 +1,70 @@
+﻿$PBExportHeader$f_build_custom_arrays.srf
+global type f_build_custom_arrays from function_object
+end type
+
+forward prototypes
+global subroutine f_build_custom_arrays (string as_module)
+end prototypes
+
+global subroutine f_build_custom_arrays (string as_module);String	ls_Module, &
+			ls_MicroHelp, &
+			ls_ButtonText, &
+			ls_OpenWindow, &
+			ls_MenuText, &
+			ls_Type, &
+			ls_CommandLine, &
+			ls_SQLScript, &
+			ls_ButtonPic
+
+as_Module = "%" + as_Module + "%"
+gi_MenuArrayUpper = 0
+
+ DECLARE custom_menu CURSOR FOR  
+  SELECT custom_pbl_link.module,   
+         custom_pbl_link.mdi_microhelp,   
+         custom_pbl_link.button_text,   
+         custom_pbl_link.open_window,   
+         custom_pbl_link.menu_text,   
+         custom_pbl_link.type,   
+         custom_pbl_link.command_line,   
+         custom_pbl_link.sql_script,   
+         custom_pbl_link.button_pic  
+    FROM custom_pbl_link  
+	WHERE custom_pbl_link.module like :as_Module
+ORDER BY custom_pbl_link.module ASC  ;
+
+Open custom_menu ;
+
+Do
+	Fetch custom_menu Into 	:ls_Module, &
+									:ls_MicroHelp, &
+									:ls_ButtonText, &
+									:ls_OpenWindow, &
+									:ls_MenuText, &
+									:ls_Type, &
+									:ls_CommandLine, &
+									:ls_SQLScript, &
+									:ls_ButtonPic ;
+	If SQLCA.SQLCode = 0 Then
+		gi_MenuArrayUpper++
+		gs_Module[gi_MenuArrayUpper] = ls_Module
+		gs_ButtonText[gi_MenuArrayUpper] = ls_ButtonText
+		gs_MenuText[gi_MenuArrayUpper] = ls_MenuText
+		gs_ButtonPic[gi_MenuArrayUpper] = f_get_string_value ( ls_ButtonPic )
+		gs_MicroHelp[gi_MenuArrayUpper] = ls_MicroHelp
+		gs_MenuType[gi_MenuArrayUpper] = ls_Type
+		If Upper ( ls_Type ) = "C" Then
+			gs_MenuCommand[gi_MenuArrayUpper] = ls_CommandLine
+		Elseif Upper ( ls_Type ) = "S" Then
+			gs_MenuCommand[gi_MenuArrayUpper] = ls_SQLScript
+		Elseif Upper ( ls_Type ) = "W" Then
+			gs_MenuCommand[gi_MenuArrayUpper] = ls_OpenWindow
+		Elseif Upper ( ls_Type ) = "M" Then
+			gs_MenuCommand[gi_MenuArrayUpper] = ls_OpenWindow
+		End if
+	End if
+Loop While SQLCA.SQLCode = 0
+
+Close custom_menu ;
+end subroutine
+

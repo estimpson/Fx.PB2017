@@ -1,0 +1,20 @@
+﻿$PBExportHeader$open_order_report.srd
+$PBExportComments$Customer  Orders  from Release Data by individual part numbers. (USE CAP. LETTERS) Auth.KW
+release 6;
+datawindow(units=2 timer_interval=0 color=12632256 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=yes grid.lines=0 )
+header(height=187 color="536870912" )
+summary(height=364 color="536870912" )
+footer(height=208 color="536870912" )
+detail(height=229 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part_number dbname="order_detail.part_number" )
+ column=(type=datetime updatewhereclause=yes name=due_date dbname="order_detail.due_date" )
+ column=(type=decimal(6) updatewhereclause=yes name=quantity dbname="order_detail.quantity" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"order_detail~" ) COLUMN(NAME=~"order_detail.part_number~") COLUMN(NAME=~"order_detail.due_date~") COLUMN(NAME=~"order_detail.quantity~")WHERE(    EXP1 =~"dbo.order_detail.due_date~"   OP =~"between~"    EXP2 =~":Enter_From_Date and :Enter_To_Date~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"dbo.order_detail.part_number~"   OP =~"like~"    EXP2 =~":Enter_Part_Number~" ) ) ARG(NAME = ~"Enter_From_Date~" TYPE = date)  ARG(NAME = ~"Enter_To_Date~" TYPE = date)  ARG(NAME = ~"Enter_Part_Number~" TYPE = string) " arguments=(("Enter_From_Date", date),("Enter_To_Date", date),("Enter_Part_Number", string)) )
+text(band=header alignment="2" text="Part Number"border="0" color="33554432" x="20" y="10" height="166" width="1625"  name=part_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Due Date"border="0" color="33554432" x="1666" y="10" height="166" width="854"  name=due_date_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Quantity"border="0" color="33554432" x="2541" y="10" height="166" width="1520"  name=quantity_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="33554432" x="20" y="11" height="197" width="1625" format="[general]"  name=part_number edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="5" color="33554432" x="1666" y="11" height="197" width="854" format="[shortdate] [time]"  name=due_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="5" color="33554432" x="2541" y="11" height="197" width="1520" format="[general]"  name=quantity edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=summary alignment="0" expression="sum(  quantity  for all )"border="0" color="33554432" x="2541" y="93" height="218" width="1520"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes") 

@@ -1,0 +1,145 @@
+HA$PBExportHeader$d_purchmst_blanketorderlist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(type=long updatewhereclause=yes name=ordernumber dbname="PurchasingMaster_BlanketOrderList.OrderNumber" )
+ column=(type=char(10) updatewhereclause=yes name=suppliercode dbname="PurchasingMaster_BlanketOrderList.SupplierCode" )
+ column=(type=long updatewhereclause=yes name=isdefaultpo dbname="PurchasingMaster_BlanketOrderList.IsDefaultPO" values="	1/	0" )
+ column=(type=datetime updatewhereclause=yes name=creationdt dbname="PurchasingMaster_BlanketOrderList.CreationDT" )
+ column=(type=char(20) updatewhereclause=yes name=paymentterms dbname="PurchasingMaster_BlanketOrderList.PaymentTerms" )
+ column=(type=char(20) updatewhereclause=no name=freeonboard dbname="PurchasingMaster_BlanketOrderList.FreeOnBoard" )
+ column=(type=char(15) updatewhereclause=no name=defaultcarrier dbname="PurchasingMaster_BlanketOrderList.DefaultCarrier" )
+ column=(type=char(25) updatewhereclause=yes name=shiptoplant dbname="PurchasingMaster_BlanketOrderList.ShipToPlant" )
+ column=(type=char(7) updatewhereclause=no name=ordertype dbname="PurchasingMaster_BlanketOrderList.OrderType" )
+ column=(type=char(10) updatewhereclause=yes name=orderingplant dbname="PurchasingMaster_BlanketOrderList.OrderingPlant" )
+ column=(type=char(20) updatewhereclause=no name=freightpaymenttype dbname="PurchasingMaster_BlanketOrderList.FreightPaymentType" )
+ column=(type=char(30) updatewhereclause=no name=buyer dbname="PurchasingMaster_BlanketOrderList.Buyer" )
+ column=(type=char(1) updatewhereclause=yes name=printed dbname="PurchasingMaster_BlanketOrderList.Printed" )
+ column=(type=char(255) updatewhereclause=yes name=headernotes dbname="PurchasingMaster_BlanketOrderList.HeaderNotes" )
+ column=(type=decimal(9) updatewhereclause=yes name=ordersubtotal dbname="PurchasingMaster_BlanketOrderList.OrderSubTotal" )
+ column=(type=decimal(6) updatewhereclause=yes name=freightamount dbname="PurchasingMaster_BlanketOrderList.FreightAmount" )
+ column=(type=long updatewhereclause=yes name=taxamount dbname="PurchasingMaster_BlanketOrderList.TaxAmount" )
+ column=(type=char(25) updatewhereclause=yes name=blanketpart dbname="PurchasingMaster_BlanketOrderList.BlanketPart" )
+ column=(type=char(100) updatewhereclause=yes name=partdescription dbname="PurchasingMaster_BlanketOrderList.PartDescription" )
+ column=(type=char(25) updatewhereclause=no name=blanketsupplierpart dbname="PurchasingMaster_BlanketOrderList.BlanketSupplierPart" )
+ column=(type=decimal(6) updatewhereclause=yes name=blanketunitprice dbname="PurchasingMaster_BlanketOrderList.BlanketUnitPrice" )
+ column=(type=char(2) updatewhereclause=yes name=blanketorderunit dbname="PurchasingMaster_BlanketOrderList.BlanketOrderUnit" )
+ column=(type=long updatewhereclause=yes name=releasenumber dbname="PurchasingMaster_BlanketOrderList.ReleaseNumber" )
+ column=(type=char(9) updatewhereclause=yes name=releasecontrol dbname="PurchasingMaster_BlanketOrderList.ReleaseControl" )
+ column=(type=decimal(2) updatewhereclause=yes name=taxrate dbname="PurchasingMaster_BlanketOrderList.TaxRate" )
+ column=(type=long updatewhereclause=yes name=trusted dbname="PurchasingMaster_BlanketOrderList.Trusted" values="	1/	0" )
+ column=(type=char(3999) updatewhereclause=no name=emailto dbname="PurchasingMaster_BlanketOrderList.EmailTo" )
+ column=(type=char(3999) updatewhereclause=no name=emailcc dbname="PurchasingMaster_BlanketOrderList.EmailCC" )
+ column=(type=char(3999) updatewhereclause=no name=emailreplyto dbname="PurchasingMaster_BlanketOrderList.EmailReplyTo" )
+ column=(type=char(3999) updatewhereclause=no name=emailsubject dbname="PurchasingMaster_BlanketOrderList.EmailSubject" )
+ column=(type=char(3999) updatewhereclause=no name=emailbody dbname="PurchasingMaster_BlanketOrderList.EmailBody" )
+ column=(type=char(1000) updatewhereclause=no name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	pmbol.OrderNumber
+,	pmbol.SupplierCode
+,	pmbol.IsDefaultPO
+,	pmbol.CreationDT
+,	pmbol.PaymentTerms
+,	pmbol.FreeOnBoard
+,	pmbol.DefaultCarrier
+,	pmbol.ShipToPlant
+,	pmbol.OrderType
+,	pmbol.OrderingPlant
+,	pmbol.FreightPaymentType
+,	pmbol.Buyer
+,	pmbol.Printed
+,	pmbol.HeaderNotes
+,	pmbol.OrderSubTotal
+,	pmbol.FreightAmount
+,	pmbol.TaxAmount
+,	pmbol.BlanketPart
+,	pmbol.PartDescription
+,	pmbol.BlanketSupplierPart
+,	pmbol.BlanketUnitPrice
+,	pmbol.BlanketOrderUnit
+,	pmbol.ReleaseNumber
+,	pmbol.ReleaseControl
+,	pmbol.TaxRate
+,	pmbol.Trusted
+,	pmbol.EmailTo
+,	pmbol.EmailCC
+,	pmbol.EmailReplyTo
+,	pmbol.EmailSubject
+,	pmbol.EmailBody
+,	Changed = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.PurchasingMaster_BlanketOrderList pmbol
+order by
+	pmbol.OrderNumber
+" )
+compute(band=detail alignment="2" expression="if (getrow() = currentrow(), '>', '')"border="0" color="33554432" x="9" y="8" height="64" width="59" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="622" y="8" height="76" width="398" format="[general]" html.valueishtml="0"  name=suppliercode visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="3232" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=creationdt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="3845" y="8" height="76" width="325" format="[general]" html.valueishtml="0"  name=paymentterms visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4178" y="8" height="76" width="393" format="[general]" html.valueishtml="0"  name=freeonboard visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="4581" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=defaultcarrier visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="5029" y="8" height="76" width="416" format="[general]" html.valueishtml="0"  name=shiptoplant visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="5454" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=orderingplant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="5893" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=freightpaymenttype visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="6478" y="8" height="76" width="850" format="[general]" html.valueishtml="0"  name=buyer visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="7337" y="8" height="76" width="183" format="[general]" html.valueishtml="0"  name=printed visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="7529" y="8" height="76" width="942" format="[general]" html.valueishtml="0"  name=headernotes visible="1" edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="33554432" x="1029" y="8" height="76" width="571" format="[general]" html.valueishtml="0"  name=blanketpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="33554432" x="2720" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=blanketsupplierpart visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=21 alignment="1" tabsequence=32766 border="0" color="33554432" x="8480" y="8" height="76" width="411" format="[general]" html.valueishtml="0"  name=blanketunitprice visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="33554432" x="8901" y="8" height="76" width="425" format="[general]" html.valueishtml="0"  name=blanketorderunit visible="1" edit.limit=2 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=23 alignment="1" tabsequence=32766 border="0" color="33554432" x="9335" y="8" height="76" width="443" format="[general]" html.valueishtml="0"  name=releasenumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=24 alignment="0" tabsequence=32766 border="0" color="33554432" x="9787" y="8" height="76" width="430" format="[general]" html.valueishtml="0"  name=releasecontrol visible="1" edit.limit=1 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=25 alignment="1" tabsequence=32766 border="0" color="33554432" x="10226" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=taxrate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="366" y="8" height="76" width="247" format="[general]" html.valueishtml="0"  name=ordernumber visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="78" y="8" height="76" width="279" format="[general]" html.valueishtml="0"  name=isdefaultpo visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="33554432" x="1609" y="8" height="76" width="1102" format="[general]" html.valueishtml="0"  name=partdescription visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=26 alignment="2" tabsequence=32766 border="0" color="33554432" x="10565" y="8" height="76" width="325" format="[general]" html.valueishtml="0"  name=trusted visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=27 alignment="0" tabsequence=32766 border="0" color="33554432" x="10898" y="8" height="76" width="466" format="[general]" html.valueishtml="0"  name=emailto visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=28 alignment="0" tabsequence=32766 border="0" color="33554432" x="11374" y="8" height="76" width="1477" format="[general]" html.valueishtml="0"  name=emailcc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="33554432" x="12859" y="8" height="76" width="713" format="[general]" html.valueishtml="0"  name=emailreplyto visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=30 alignment="0" tabsequence=32766 border="0" color="33554432" x="13582" y="8" height="76" width="690" format="[general]" html.valueishtml="0"  name=emailsubject visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=31 alignment="0" tabsequence=32766 border="0" color="33554432" x="14281" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=emailbody visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+text(band=header alignment="0" text="Default ?" border="6" color="33554432" x="78" y="8" height="76" width="279" html.valueishtml="0"  name=isdefaultpo_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Order #" border="6" color="33554432" x="366" y="8" height="76" width="247" html.valueishtml="0"  name=ordernumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release control" border="6" color="33554432" x="9787" y="8" height="76" width="430" html.valueishtml="0"  name=releasecontrol_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Supplier code" border="6" color="33554432" x="622" y="8" height="76" width="398" html.valueishtml="0"  name=suppliercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Blanket part" border="6" color="33554432" x="1029" y="8" height="76" width="571" html.valueishtml="0"  name=blanketpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Supplier's part" border="6" color="33554432" x="2720" y="8" height="76" width="503" html.valueishtml="0"  name=blanketsupplierpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Printed" border="6" color="33554432" x="7337" y="8" height="76" width="183" html.valueishtml="0"  name=printed_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Creation DT" border="6" color="33554432" x="3232" y="8" height="76" width="603" html.valueishtml="0"  name=creationdt_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Terms" border="6" color="33554432" x="3845" y="8" height="76" width="325" html.valueishtml="0"  name=paymentterms_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="FOB" border="6" color="33554432" x="4178" y="8" height="76" width="393" html.valueishtml="0"  name=freeonboard_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Carrier" border="6" color="33554432" x="4581" y="8" height="76" width="439" html.valueishtml="0"  name=defaultcarrier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ship to Plant" border="6" color="33554432" x="5029" y="8" height="76" width="416" html.valueishtml="0"  name=shiptoplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Ordering plant" border="6" color="33554432" x="5454" y="8" height="76" width="430" html.valueishtml="0"  name=orderingplant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Freight payment type" border="6" color="33554432" x="5893" y="8" height="76" width="576" html.valueishtml="0"  name=freightpaymenttype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Buyer" border="6" color="33554432" x="6478" y="8" height="76" width="850" html.valueishtml="0"  name=buyer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Notes" border="6" color="33554432" x="7529" y="8" height="76" width="942" html.valueishtml="0"  name=headernotes_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Unit price" border="6" color="33554432" x="8480" y="8" height="76" width="411" html.valueishtml="0"  name=blanketunitprice_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Order UM" border="6" color="33554432" x="8901" y="8" height="76" width="425" html.valueishtml="0"  name=blanketorderunit_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Release number" border="6" color="33554432" x="9335" y="8" height="76" width="443" html.valueishtml="0"  name=releasenumber_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Tax rate" border="6" color="33554432" x="10226" y="8" height="76" width="329" html.valueishtml="0"  name=taxrate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="1609" y="8" height="76" width="1102" html.valueishtml="0"  name=partdescription_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Trusted ?" border="6" color="33554432" x="10565" y="8" height="76" width="325" html.valueishtml="0"  name=trusted_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Email to" border="6" color="33554432" x="10898" y="8" height="76" width="466" html.valueishtml="0"  name=emailto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Email cc" border="6" color="33554432" x="11374" y="8" height="76" width="1477" html.valueishtml="0"  name=emailcc_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Email reply to" border="6" color="33554432" x="12859" y="8" height="76" width="713" html.valueishtml="0"  name=emailreplyto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Email subject" border="6" color="33554432" x="13582" y="8" height="76" width="690" html.valueishtml="0"  name=emailsubject_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Email body" border="6" color="33554432" x="14281" y="8" height="76" width="361" html.valueishtml="0"  name=emailbody_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

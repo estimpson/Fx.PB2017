@@ -1,0 +1,77 @@
+HA$PBExportHeader$d_receiving_supplierlicenseplatelist.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=shipfrom dbname="ReceivingDock_SupplierLicensePlateInquiry.ShipFrom" )
+ column=(type=char(35) updatewhereclause=yes name=vendorname dbname="ReceivingDock_SupplierLicensePlateInquiry.VendorName" )
+ column=(type=char(50) updatewhereclause=yes name=supplierlicenseplate dbname="ReceivingDock_SupplierLicensePlateInquiry.SupplierLicensePlate" )
+ column=(type=long updatewhereclause=yes name=serial dbname="ReceivingDock_SupplierLicensePlateInquiry.Serial" )
+ column=(type=char(50) updatewhereclause=yes name=parentlicenseplate dbname="ReceivingDock_SupplierLicensePlateInquiry.ParentLicensePlate" )
+ column=(type=long updatewhereclause=yes name=parentserial dbname="ReceivingDock_SupplierLicensePlateInquiry.ParentSerial" )
+ column=(type=char(25) updatewhereclause=yes name=partcode dbname="ReceivingDock_SupplierLicensePlateInquiry.PartCode" )
+ column=(type=decimal(6) updatewhereclause=yes name=qtyobject dbname="ReceivingDock_SupplierLicensePlateInquiry.QtyObject" )
+ column=(type=char(20) updatewhereclause=yes name=packagetype dbname="ReceivingDock_SupplierLicensePlateInquiry.PackageType" )
+ column=(type=char(10) updatewhereclause=yes name=location dbname="ReceivingDock_SupplierLicensePlateInquiry.Location" )
+ column=(type=char(10) updatewhereclause=yes name=plant dbname="ReceivingDock_SupplierLicensePlateInquiry.Plant" )
+ column=(type=char(20) updatewhereclause=yes name=lot dbname="ReceivingDock_SupplierLicensePlateInquiry.Lot" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	rdslpi.ShipFrom
+,	rdslpi.VendorName
+,	rdslpi.SupplierLicensePlate
+,	rdslpi.Serial
+,	rdslpi.ParentLicensePlate
+,	rdslpi.ParentSerial
+,	rdslpi.PartCode
+,	rdslpi.QtyObject
+,	rdslpi.PackageType
+,	rdslpi.Location
+,	rdslpi.Plant
+,	rdslpi.Lot
+,	Changed = convert(varchar(1000), null)
+,	IsSelected = 0
+from
+	dbo.ReceivingDock_SupplierLicensePlateInquiry rdslpi
+order by
+	rdslpi.ShipFrom
+,	rdslpi.SupplierLicensePlate
+" )
+text(band=header alignment="0" text="Vendor code" border="6" color="33554432" x="9" y="8" height="76" width="357" html.valueishtml="0"  name=shipfrom_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Vendor name" border="6" color="33554432" x="375" y="8" height="76" width="686" html.valueishtml="0"  name=vendorname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="License plate" border="6" color="33554432" x="1070" y="8" height="76" width="576" html.valueishtml="0"  name=supplierlicenseplate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Serial" border="6" color="33554432" x="1655" y="8" height="76" width="329" html.valueishtml="0"  name=serial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pallet license plate" border="6" color="33554432" x="1993" y="8" height="76" width="530" html.valueishtml="0"  name=parentlicenseplate_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Pallet serial" border="6" color="33554432" x="2533" y="8" height="76" width="357" html.valueishtml="0"  name=parentserial_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part" border="6" color="33554432" x="2898" y="8" height="76" width="357" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quantity" border="6" color="33554432" x="3264" y="8" height="76" width="329" html.valueishtml="0"  name=qtyobject_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Package type" border="6" color="33554432" x="3602" y="8" height="76" width="731" html.valueishtml="0"  name=packagetype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Location" border="6" color="33554432" x="4343" y="8" height="76" width="302" html.valueishtml="0"  name=location_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Plant" border="6" color="33554432" x="4654" y="8" height="76" width="302" html.valueishtml="0"  name=plant_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Lot" border="6" color="33554432" x="4965" y="8" height="76" width="576" html.valueishtml="0"  name=lot_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=shipfrom visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="375" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=vendorname visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="1070" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=supplierlicenseplate visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="1655" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=serial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1993" y="8" height="76" width="530" format="[general]" html.valueishtml="0"  name=parentlicenseplate visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="2533" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=parentserial visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2898" y="8" height="76" width="357" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="3264" y="8" height="76" width="329" format="[general]" html.valueishtml="0"  name=qtyobject visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="3602" y="8" height="76" width="731" format="[general]" html.valueishtml="0"  name=packagetype visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="4343" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=location visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="4654" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=plant visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="4965" y="8" height="76" width="576" format="[general]" html.valueishtml="0"  name=lot visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

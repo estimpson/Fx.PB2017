@@ -1,0 +1,36 @@
+﻿$PBExportHeader$p_powerfilterdemo.srj
+EXE:c:\users\brad\desktop\powerfilter\powerfilter 2.0\powerfilterpb10\powerfilterdemo.exe,,0,1,0
+CMP:0,0,0,2,0,0
+COM:James R. Reese
+DES:PowerFilter DataWindow Filter Demo
+CPY:Copyright © 2010 James R. Reese.  All Rights Reserved.
+PRD:PowerFilter Demo
+PVS:2,0,0,0
+PVN:2,0,0,0
+FVS:2,0,0,0
+FVN:2,0,0,0
+PBD:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,,1
+PBD:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,c:\users\brad\desktop\powerfilter\powerfilter 2.0\powerfilterpb10\powerfilterdemo.pbr,1
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,w_powerfilter_prompt_to_restore,w
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,d_testdata,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,m_powerfilterdemo_main,m
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,u_powerfilter_monthopts,u
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_pictureparm,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,u_powerfilter_dropdown,u
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,s_powerfilter_parms,s
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,s_powerfilter_restore_parms,s
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_customparm,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_ddbuttons,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,u_powerfilter_predeffilters,u
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,powerfilterdemo,a
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,w_powerfilter_custom,w
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,n_cst_powerfilter,u
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,d_testdatashortheaders,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,u_powerfilter_checkbox,u
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,w_powerfilterdemo_about,w
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_warn,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilterdemo.pbl,w_powerfilterdemo_main,w
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_customfilter,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_filteropts,d
+OBJ:C:\Users\Brad\Desktop\PowerFilter\PowerFilter 2.0\PowerFilterPB10\powerfilter.pbl,d_powerfilter_monthopts,d

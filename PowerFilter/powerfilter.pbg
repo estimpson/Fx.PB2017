@@ -1,0 +1,25 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "PowerFilter\\powerfilter.pbl" "";
+@end;
+@begin Objects
+ "PowerFilter\\d_powerfilter.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\s_powerfilter_restore_parms.srs" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_customfilter.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_ddbuttons.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\u_powerfilter_checkbox.sru" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_languages.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\u_powerfilter_predeffilters.sru" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_parmlist.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\u_powerfilter_dropdown.sru" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\s_powerfilter_parms.srs" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_filterlist.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_filteropts.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_monthopts.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_pictureparm.srd" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\u_powerfilter_monthopts.sru" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\w_powerfilter_custom.srw" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\w_powerfilter_prompt_to_restore.srw" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\n_cst_powerfilter.sru" "PowerFilter\\powerfilter.pbl";
+ "PowerFilter\\d_powerfilter_customparm.srd" "PowerFilter\\powerfilter.pbl";
+@end;

@@ -1,0 +1,670 @@
+﻿$PBExportHeader$m_smart_po.srm
+forward
+global type m_smart_po from menu
+end type
+type m_file from menu within m_smart_po
+end type
+type m_new from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_closepo from menu within m_file
+end type
+type m_nonreoccuring from menu within m_file
+end type
+type m_hdrnote from menu within m_file
+end type
+type m_viewdate from menu within m_file
+end type
+type m_dtnote from menu within m_file
+end type
+type m_partmode from menu within m_file
+end type
+type m_vendmode from menu within m_file
+end type
+type m_displayactive from menu within m_file
+end type
+type m_profile from menu within m_file
+end type
+type m_-0 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_file from menu within m_smart_po
+m_new m_new
+m_print m_print
+m_save m_save
+m_closepo m_closepo
+m_nonreoccuring m_nonreoccuring
+m_hdrnote m_hdrnote
+m_viewdate m_viewdate
+m_dtnote m_dtnote
+m_partmode m_partmode
+m_vendmode m_vendmode
+m_displayactive m_displayactive
+m_profile m_profile
+m_-0 m_-0
+m_close m_close
+end type
+type m_edit from menu within m_smart_po
+end type
+type m_pricematix from menu within m_edit
+end type
+type m_dtnote2 from menu within m_edit
+end type
+type m_edit from menu within m_smart_po
+m_pricematix m_pricematix
+m_dtnote2 m_dtnote2
+end type
+type m_windows from menu within m_smart_po
+end type
+type m_tile from menu within m_windows
+end type
+type m_layer from menu within m_windows
+end type
+type m_cascade from menu within m_windows
+end type
+type m_- from menu within m_windows
+end type
+type m_arrangeicons from menu within m_windows
+end type
+type m_windows from menu within m_smart_po
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_smart_po
+end type
+type m_contents from menu within m_help
+end type
+type m_aboutthemonitor from menu within m_help
+end type
+type m_help from menu within m_smart_po
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+global type m_smart_po from menu
+m_file m_file
+m_edit m_edit
+m_windows m_windows
+m_help m_help
+end type
+end forward
+
+global type m_smart_po from menu
+m_file m_file
+m_edit m_edit
+m_windows m_windows
+m_help m_help
+end type
+global m_smart_po m_smart_po
+
+on m_smart_po.create
+m_smart_po=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_windows=create m_windows
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_windows
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_smart_po.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_windows)
+destroy(this.m_help)
+end on
+
+event clicked;
+Close(gnv_App.of_GetFrame().GetActiveSheet())
+
+end event
+
+type m_file from menu within m_smart_po
+m_new m_new
+m_print m_print
+m_save m_save
+m_closepo m_closepo
+m_nonreoccuring m_nonreoccuring
+m_hdrnote m_hdrnote
+m_viewdate m_viewdate
+m_dtnote m_dtnote
+m_partmode m_partmode
+m_vendmode m_vendmode
+m_displayactive m_displayactive
+m_profile m_profile
+m_-0 m_-0
+m_close m_close
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.m_new=create m_new
+this.m_print=create m_print
+this.m_save=create m_save
+this.m_closepo=create m_closepo
+this.m_nonreoccuring=create m_nonreoccuring
+this.m_hdrnote=create m_hdrnote
+this.m_viewdate=create m_viewdate
+this.m_dtnote=create m_dtnote
+this.m_partmode=create m_partmode
+this.m_vendmode=create m_vendmode
+this.m_displayactive=create m_displayactive
+this.m_profile=create m_profile
+this.m_-0=create m_-0
+this.m_close=create m_close
+this.Item[UpperBound(this.Item)+1]=this.m_new
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_closepo
+this.Item[UpperBound(this.Item)+1]=this.m_nonreoccuring
+this.Item[UpperBound(this.Item)+1]=this.m_hdrnote
+this.Item[UpperBound(this.Item)+1]=this.m_viewdate
+this.Item[UpperBound(this.Item)+1]=this.m_dtnote
+this.Item[UpperBound(this.Item)+1]=this.m_partmode
+this.Item[UpperBound(this.Item)+1]=this.m_vendmode
+this.Item[UpperBound(this.Item)+1]=this.m_displayactive
+this.Item[UpperBound(this.Item)+1]=this.m_profile
+this.Item[UpperBound(this.Item)+1]=this.m_-0
+this.Item[UpperBound(this.Item)+1]=this.m_close
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_new)
+destroy(this.m_print)
+destroy(this.m_save)
+destroy(this.m_closepo)
+destroy(this.m_nonreoccuring)
+destroy(this.m_hdrnote)
+destroy(this.m_viewdate)
+destroy(this.m_dtnote)
+destroy(this.m_partmode)
+destroy(this.m_vendmode)
+destroy(this.m_displayactive)
+destroy(this.m_profile)
+destroy(this.m_-0)
+destroy(this.m_close)
+end on
+
+type m_new from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("new_po")
+end on
+
+on m_new.create
+call super::create
+this.text = "&New~tAlt+N"
+this.shortcut = 590
+this.microhelp = "Create a new P.O. header"
+this.toolbaritemname = "Insert!"
+this.toolbaritemtext = "New"
+this.toolbaritemorder = 10
+end on
+
+on m_new.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("print_po")
+end on
+
+on m_print.create
+call super::create
+this.text = "&Print~tAlt+P"
+this.shortcut = 592
+this.microhelp = "Print the current P.O."
+this.toolbaritemname = "Print!"
+this.toolbaritemtext = "Print"
+this.toolbaritemorder = 20
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+type m_save from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("save_po")
+end on
+
+on m_save.create
+call super::create
+this.text = "&Save~tAlt+S"
+this.shortcut = 595
+this.microhelp = "Save the changes for current P.O."
+this.toolbaritemname = "Update!"
+this.toolbaritemtext = "Save"
+this.toolbaritemorder = 30
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+type m_closepo from menu within m_file
+end type
+
+on clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("close_po")
+end on
+
+on m_closepo.create
+call super::create
+this.text = "&Close PO~tAlt+C"
+this.shortcut = 579
+this.microhelp = "Set P.O. status to ~'Closed~'"
+this.toolbaritemname = "Custom021!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 40
+end on
+
+on m_closepo.destroy
+call super::destroy
+end on
+
+type m_nonreoccuring from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("ue_add_non_reoccurring")
+end event
+
+on m_nonreoccuring.create
+call super::create
+this.text = "N&on Reoccuring~tAlt+O"
+this.shortcut = 591
+this.microhelp = "Add Non Reoccurring Part"
+this.toolbaritemname = "Step!"
+this.toolbaritemtext = "NR Item"
+this.toolbaritemorder = 50
+end on
+
+on m_nonreoccuring.destroy
+call super::destroy
+end on
+
+type m_hdrnote from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().triggerevent ( 'ue_header_note' )
+end event
+
+on m_hdrnote.create
+call super::create
+this.text = "Hdr Note~tAlt+H"
+this.shortcut = 584
+this.microhelp = "PO Header Note"
+this.toolbaritemname = "Noteyes.bmp"
+this.toolbaritemtext = "Hdr Note"
+this.toolbaritemorder = 60
+end on
+
+on m_hdrnote.destroy
+call super::destroy
+end on
+
+type m_viewdate from menu within m_file
+end type
+
+on m_viewdate.create
+call super::create
+this.text = "View Date~tAlt+V"
+this.shortcut = 598
+this.microhelp = "Change View Date"
+this.toolbaritemname = "Custom023!"
+this.toolbaritemtext = "ViewDate"
+this.toolbaritemorder = 80
+end on
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().triggerevent ( 'ue_viewdate' )
+end event
+
+on m_viewdate.destroy
+call super::destroy
+end on
+
+type m_dtnote from menu within m_file
+end type
+
+on m_dtnote.create
+call super::create
+this.text = "Dt Note~tAlt+D"
+this.shortcut = 580
+this.microhelp = "PO Detail Note"
+this.toolbaritemname = "Noteyes.bmp"
+this.toolbaritemtext = "Dt Note"
+this.toolbaritemorder = 70
+end on
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().triggerevent ( 'ue_detail_note' )
+end event
+
+on m_dtnote.destroy
+call super::destroy
+end on
+
+type m_partmode from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().trigger dynamic event ue_mode ( 'part' ) 
+end event
+
+on m_partmode.create
+call super::create
+this.text = "Part Mode"
+this.microhelp = "Part Mode"
+this.toolbaritemname = "EditObject!"
+this.toolbaritemtext = "Part Mode"
+this.toolbaritemorder = 90
+end on
+
+on m_partmode.destroy
+call super::destroy
+end on
+
+type m_vendmode from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().trigger dynamic event ue_mode ( 'vendor' ) 
+end event
+
+on m_vendmode.create
+call super::create
+this.text = "Vend Mode"
+this.microhelp = "Vendor Mode"
+this.toolbaritemname = "Custom076!"
+this.toolbaritemtext = "Vend Mode"
+this.toolbaritemorder = 100
+end on
+
+on m_vendmode.destroy
+call super::destroy
+end on
+
+type m_displayactive from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().trigger dynamic event ue_displayactiveparts ( toolbaritemtext )
+end event
+
+on m_displayactive.create
+call super::create
+this.text = "DisplayActive"
+this.microhelp = "Display Active Parts"
+this.toolbaritemname = "BrowseObjects!"
+this.toolbaritemtext = "Display All"
+this.toolbaritemorder = 110
+end on
+
+on m_displayactive.destroy
+call super::destroy
+end on
+
+type m_profile from menu within m_file
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().TriggerEvent("dw_vendors_doubleclicked")
+end event
+
+on m_profile.create
+call super::create
+this.text = "Pro&file~tAlt+F"
+this.shortcut = 582
+this.microhelp = "Vendor Part Profile"
+this.toolbaritemname = "Custom047!"
+this.toolbaritemtext = "Profile"
+this.toolbaritemorder = 50
+end on
+
+on m_profile.destroy
+call super::destroy
+end on
+
+type m_-0 from menu within m_file
+end type
+
+on m_-0.create
+call super::create
+this.text = "-"
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on m_close.create
+call super::create
+this.text = "Close"
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_smart_po
+m_pricematix m_pricematix
+m_dtnote2 m_dtnote2
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_pricematix=create m_pricematix
+this.m_dtnote2=create m_dtnote2
+this.Item[UpperBound(this.Item)+1]=this.m_pricematix
+this.Item[UpperBound(this.Item)+1]=this.m_dtnote2
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_pricematix)
+destroy(this.m_dtnote2)
+end on
+
+type m_pricematix from menu within m_edit
+end type
+
+event clicked;gnv_App.of_GetFrame().GetActiveSheet().triggerevent ( 'ue_displaymatrix' )
+end event
+
+on m_pricematix.create
+call super::create
+this.text = "Price Matix"
+this.microhelp = "Display Price Matrix"
+end on
+
+on m_pricematix.destroy
+call super::destroy
+end on
+
+type m_dtnote2 from menu within m_edit
+end type
+
+on m_dtnote2.create
+call super::create
+this.text = "Dt Note"
+this.microhelp = "Detail Note"
+end on
+
+on m_dtnote2.destroy
+call super::destroy
+end on
+
+type m_windows from menu within m_smart_po
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_- m_-
+m_arrangeicons m_arrangeicons
+end type
+
+on m_windows.create
+call super::create
+this.text = "&Windows"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-=create m_-
+this.m_arrangeicons=create m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+end on
+
+on m_windows.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_windows
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Tile! )
+end event
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Tile Windows..."
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_windows
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Layer! )
+end event
+
+on m_layer.create
+call super::create
+this.text = "&Layer"
+this.microhelp = "Layer Windows..."
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_windows
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Cascade! )
+end event
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Cascade Windows..."
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_- from menu within m_windows
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_windows
+end type
+
+event clicked;gnv_App.of_GetFrame().ArrangeSheets ( Icons! )
+end event
+
+on m_arrangeicons.create
+call super::create
+this.text = "Arrange &Icons"
+this.microhelp = "Arrange Icons..."
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_smart_po
+m_contents m_contents
+m_aboutthemonitor m_aboutthemonitor
+end type
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_contents=create m_contents
+this.m_aboutthemonitor=create m_aboutthemonitor
+this.Item[UpperBound(this.Item)+1]=this.m_contents
+this.Item[UpperBound(this.Item)+1]=this.m_aboutthemonitor
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_contents)
+destroy(this.m_aboutthemonitor)
+end on
+
+type m_contents from menu within m_help
+end type
+
+event clicked;ShowHelp ( "monapphelp.hlp", Topic!, 5 )
+end event
+
+on m_contents.create
+call super::create
+this.text = "&Contents~tF1"
+this.shortcut = 112
+this.microhelp = "Displays Help Contents..."
+end on
+
+on m_contents.destroy
+call super::destroy
+end on
+
+type m_aboutthemonitor from menu within m_help
+end type
+
+event clicked;OPEN (w_about)
+end event
+
+on m_aboutthemonitor.create
+call super::create
+this.text = "&About The Monitor..."
+this.microhelp = "Displays the program information and copyright..."
+end on
+
+on m_aboutthemonitor.destroy
+call super::destroy
+end on
+

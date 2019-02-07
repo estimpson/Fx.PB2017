@@ -1,0 +1,4 @@
+﻿$PBExportHeader$default.srj
+EXE:c:\program files\pwrs\artgal\icons\cs_inv.exe,C:\Program Files\pwrs\ArtGal\Icons\CASHREG.ICO,Cooper Standard Invoices
+OBJ:invoice_can,r,CDN $ Only,Invoice lists Canadian Dollars Only,Watcom!,0
+OBJ:invoice_us_can,r,US & CDN $,Invoice lists Canadian & US Dollars,FormatDollar!,0

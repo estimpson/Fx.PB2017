@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\gmdesadv.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\desadvspo.srd" "ClientCustom\\TSM\\gmdesadv.pbl";
+@end;

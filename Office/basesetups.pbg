@@ -1,0 +1,9 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\basesetups.pbl" "";
+@end;
+@begin Objects
+ "office\\d_commoditydefn.srd" "office\\basesetups.pbl";
+ "office\\d_xcommoditydefn.srd" "office\\basesetups.pbl";
+ "office\\u_tabpg_commoditydefn.sru" "office\\basesetups.pbl";
+@end;

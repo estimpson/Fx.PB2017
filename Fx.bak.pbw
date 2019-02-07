@@ -1,0 +1,8 @@
+Save Format v3.0(19990112)
+@begin Targets
+ 0 "Office\\office.pbt";
+ 1 "ClientCustom\\VoltTech\\VoltTechFx.pbt";
+ 2 "ClientCustom\\21st\\Fx.21st.pbt";
+@end;
+DefaultTarget "ClientCustom\\21st\\Fx.21st.pbt";
+DefaultRemoteTarget "ClientCustom\\21st\\Fx.21st.pbt";

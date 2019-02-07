@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_dbo_scheduling_netrequirementsdetails-all.srd
+release 10;
+datawindow(Units=0 Timer_interval=0 Color=1073741824 Processing=1 HTMLDW=no HideGrayLine=no print.PrinterName="" print.DocumentName="" print.Orientation=0 print.margin.left=110 print.margin.right=110 print.margin.top=96 print.margin.bottom=96 print.paper.source=0 print.paper.size=0 print.CanUseDefaultPrinter=yes print.Prompt=no print.Buttons=no print.preview.buttons=no print.ClipText=no print.OverridePrintJob=no print.Collate=no  Grid.Lines=1073741824 Selected.Mouse=no )
+header(Height=96 Color="536870912" )
+summary(Height=0 Color="536870912" )
+footer(Height=0 Color="536870912" )
+detail(Height=92 Color="536870912	if(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(Type=char(1000) Update=no UpdateWhereClause=no Key=no Identity=no Name=Change DBName="Change" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=long Update=no UpdateWhereClause=no Key=no Identity=no Name=IsSelected DBName="IsSelected" Initial="" Criteria.Dialog=no Values="" )
+retrieve="select
+
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.Scheduling_NetRequirementsDetails" Update="dbo.Scheduling_NetRequirementsDetails" UpdateWhere=0 UpdateKeyInPlace=no )

@@ -1,0 +1,110 @@
+HA$PBExportHeader$d_supplieredi_admin_vendorsetup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=1096 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=vendorsettings_vendorcode dbname="VendorCode" )
+ column=(type=char(35) updatewhereclause=yes name=vendorname dbname="VendorName" )
+ column=(type=long updatewhereclause=yes name=vendorsettings_status dbname="Status" values="Not Enabled	0/Enabled	1/Auto	2/Disabled	-1/Undefined	-2/" )
+ column=(type=long updatewhereclause=yes name=vendorsettings_type dbname="Type" values="Disabled	-1/830s	0/862s	1/830s // 862s	2/850s	3/" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_releaseissuerqualifier dbname="VendorSettings.ReleaseIssuerQualifier" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_releaseissuertype dbname="VendorSettings.ReleaseIssuerType" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_releaseissuer dbname="VendorSettings.ReleaseIssuer" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_suppliercodequalifier dbname="VendorSettings.SupplierCodeQualifier" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_suppliercodetype dbname="VendorSettings.SupplierCodeType" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_suppliercode dbname="VendorSettings.SupplierCode" )
+ column=(type=char(50) updatewhereclause=yes name=vendorsettings_tradingpartnercode dbname="VendorSettings.TradingPartnerCode" )
+ column=(type=char(50) updatewhereclause=yes name=address1 dbname="Address1" )
+ column=(type=char(50) updatewhereclause=yes name=address2 dbname="Address2" )
+ column=(type=char(50) updatewhereclause=yes name=address3 dbname="Address3" )
+ column=(type=char(40) updatewhereclause=yes name=address4 dbname="Address4" )
+ column=(type=char(40) updatewhereclause=yes name=address5 dbname="Address5" )
+ column=(type=char(40) updatewhereclause=yes name=address6 dbname="Address6" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	VendorCode = v.code
+,	VendorName = v.name
+,	Status = coalesce(vs.Status, -2)
+,	Type = coalesce(vs.Type, -1)
+,	vs.ReleaseIssuerQualifier
+,	vs.ReleaseIssuerType
+,	vs.ReleaseIssuer
+,	vs.SupplierCodeQualifier
+,	vs.SupplierCodeType
+,	vs.SupplierCode
+,	vs.TradingPartnerCode
+,	Address1 = v.address_1
+,	Address2 = v.address_2
+,	Address3 = v.address_3
+,	Address4 = v.address_4
+,	Address5 = v.address_5
+,	Address6 = v.address_6
+,	Changed = convert(char(1000), null)
+,	IsSelected = 0
+from
+	dbo.vendor v
+	left join EDISupplier.VendorSettings vs
+		on vs.VendorCode = v.code
+where
+	v.code = :vendorCode
+" arguments=(("vendorCode", string)) )
+groupbox(band=detail text="Supplier Information"border="5" color="33554432" x="37" y="4" height="1088" width="2889"  name=gb_1 visible="1"  font.face="Tahoma" font.height="-15" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=10 alignment="1" tabsequence=60 border="0" color="33554432" x="695" y="804" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_suppliercode visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=90 border="0" color="33554432" x="2121" y="836" height="64" width="585" format="[general]" html.valueishtml="0"  name=vendorsettings_tradingpartnercode visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="vendorname + ~" (~" +  vendorsettings_vendorcode + ~")~""border="0" color="33554432" x="73" y="132" height="96" width="2816" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EDI Status:" border="0" color="33554432" x="73" y="228" height="64" width="585" html.valueishtml="0"  name=vendorsettings_status_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="EDI Release Type:" border="0" color="33554432" x="73" y="324" height="64" width="585" html.valueishtml="0"  name=vendorsettings_type_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Release Issuer:" border="0" color="33554432" x="73" y="484" height="64" width="585" html.valueishtml="0"  name=vendorsettings_releaseissuer_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Supplier Code:" border="0" color="33554432" x="73" y="804" height="64" width="585" html.valueishtml="0"  name=vendorsettings_suppliercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Trading Partner Code:" border="0" color="33554432" x="1463" y="836" height="64" width="594" html.valueishtml="0"  name=vendorsettings_tradingpartnercode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=50 border="0" color="33554432" x="695" y="676" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_releaseissuertype visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Qualifier:" border="0" color="33554432" x="183" y="580" height="64" width="448" html.valueishtml="0"  name=vendorsettings_releaseissuerqualifier_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Type:" border="0" color="33554432" x="183" y="676" height="64" width="448" html.valueishtml="0"  name=vendorsettings_releaseissuertype_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=70 border="0" color="33554432" x="695" y="900" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_suppliercodequalifier visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="1" tabsequence=80 border="0" color="33554432" x="695" y="996" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_suppliercodetype visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Qualifier:" border="0" color="33554432" x="183" y="900" height="64" width="448" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Type:" border="0" color="33554432" x="183" y="996" height="64" width="448" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Address:" border="0" color="33554432" x="1463" y="228" height="64" width="256" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=10 border="0" color="33554432" x="695" y="228" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_status visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=20 border="0" color="33554432" x="695" y="324" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_type visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=30 border="0" color="33554432" x="695" y="484" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_releaseissuer visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=40 border="0" color="33554432" x="695" y="580" height="64" width="439" format="[general]" html.valueishtml="0"  name=vendorsettings_releaseissuerqualifier visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="save_32.bmp" x="2743" y="100" height="120" width="137" border="0"  name=p_save visible="1~tif (isRowModified(), 1, 0)" )
+text(band=detail alignment="2" text="EDI Enabled" border="0" color="33554432" x="2048" y="68" height="64" width="311" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="2" expression="bitmap(
+case(vendorsettings_status
+	when -1 then ~"redcircle-16.bmp~"
+	when 0 then ~"greycircle-16.bmp~"
+	when 1 then ~"greencircle-16.bmp~"
+	when 2 then ~"greencircle-16.bmp~"
+	else ~"greycircle-16.bmp~"
+))"border="0" color="33554432" x="2194" y="164" height="64" width="73" format="[GENERAL]" html.valueishtml="0"  name=p_enabled visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="bitmap(
+case(vendorsettings_status
+	when -1 then ~"redcircle-16.bmp~"
+	when 0 then ~"greycircle-16.bmp~"
+	when 1 then ~"greycircle-16.bmp~"
+	when 2 then ~"greencircle-16.bmp~"
+	else ~"greycircle-16.bmp~"
+))"border="0" color="33554432" x="2523" y="164" height="64" width="73" format="[GENERAL]" html.valueishtml="0"  name=p_auto visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="2" text="Auto" border="0" color="33554432" x="2405" y="68" height="64" width="311" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=detail filename="reload-32.bmp" x="2743" y="260" height="128" width="146" border="0"  name=p_refresh visible="1" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="324" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address1 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="388" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address2 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="452" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address3 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="516" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address4 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="580" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address5 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="33554432" x="1463" y="644" height="64" width="1243" format="[general]" html.valueishtml="0"  name=address6 visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

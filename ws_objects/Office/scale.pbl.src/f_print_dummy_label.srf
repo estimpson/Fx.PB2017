@@ -1,0 +1,49 @@
+﻿$PBExportHeader$f_print_dummy_label.srf
+global type f_print_dummy_label from function_object
+end type
+
+forward prototypes
+global subroutine f_print_dummy_label (string as_part, string as_packagetype, decimal adec_quantity, decimal adec_weight)
+end prototypes
+
+global subroutine f_print_dummy_label (string as_part, string as_packagetype, decimal adec_quantity, decimal adec_weight);String					l_s_Label, &
+							l_s_WindowName
+Window 					w_Label
+st_generic_structure l_str_Parm
+Int 						l_i_NumberOfLabels
+
+SELECT part_packaging.label_format  
+  INTO :l_s_Label  
+  FROM part_packaging  
+ WHERE ( part_packaging.part = :as_Part ) AND  
+       ( part_packaging.code = :as_PackageType )   ;
+
+If SQLCA.SQLCode <> 0 Then
+	MessageBox ( monsys.msg_title, "Printing of label failed!", StopSign! )
+	Return
+End if
+
+  SELECT report_library.object_name,   
+         report_library.copies  
+  INTO 	:l_s_WindowName,
+		 	:l_i_NumberOfLabels
+    FROM report_library 
+	 WHERE  report_library.name = :l_s_Label   ;
+
+If SQLCA.SQLCode <> 0 Then
+	MessageBox ( monsys.msg_title, "Printing of label failed!", StopSign! )
+	Return
+End if
+
+l_str_Parm.Value1	= as_Part
+l_str_Parm.Value2	= as_PackageType
+l_str_Parm.Value3	= String ( adec_Quantity )
+l_str_Parm.Value4	= String ( adec_Weight )
+l_str_Parm.Value5 	= String ( l_i_NumberOfLabels )
+
+OpenWithParm ( w_Label, l_str_Parm, l_s_WindowName )
+
+
+
+end subroutine
+

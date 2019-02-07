@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_bmqzybzwli.srd
+$PBExportComments$V2011.01.03.01,5207
+release 10;
+datawindow(Units=0 Timer_interval=0 Color=1073741824 Processing=1 HTMLDW=no HideGrayLine=no print.PrinterName="" print.DocumentName="" print.Orientation=0 print.margin.left=110 print.margin.right=110 print.margin.top=96 print.margin.bottom=96 print.paper.source=0 print.paper.size=0 print.CanUseDefaultPrinter=yes print.Prompt=no print.Buttons=no print.preview.buttons=no print.ClipText=no print.OverridePrintJob=no print.Collate=no  Grid.Lines=1073741824 Selected.Mouse=no )
+header(Height=96 Color="536870912" )
+summary(Height=0 Color="536870912" )
+footer(Height=0 Color="536870912" )
+detail(Height=92 Color="536870912	if(isRowNew(),rgb(255,255,64),if(currentRow()=getRow(),rgb(128,128,255),if(IsSelected=1,rgb(192,192,255),536870912)))" )
+table(column=(Type=char(25) Update=no UpdateWhereClause=no Key=yes Identity=no Name=name DBName="name" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(25) Update=no UpdateWhereClause=no Key=yes Identity=no Name=report DBName="report" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=type DBName="type" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(255) Update=no UpdateWhereClause=no Key=no Identity=no Name=object_name DBName="object_name" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(255) Update=no UpdateWhereClause=no Key=no Identity=no Name=library_name DBName="library_name" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=preview DBName="preview" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1) Update=no UpdateWhereClause=no Key=no Identity=no Name=print_setup DBName="print_setup" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(255) Update=no UpdateWhereClause=no Key=no Identity=no Name=printer DBName="printer" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=number Update=no UpdateWhereClause=no Key=no Identity=no Name=copies DBName="copies" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=char(1000) Update=no UpdateWhereClause=no Key=no Identity=no Name=Change DBName="Change" Initial="" Criteria.Dialog=no Values="" )
+column=(Type=long Update=no UpdateWhereClause=no Key=no Identity=no Name=IsSelected DBName="IsSelected" Initial="" Criteria.Dialog=no Values="" )
+retrieve="select
+	name
+,	report
+,	type
+,	object_name
+,	library_name
+,	preview
+,	print_setup
+,	printer
+,	copies
+,	Change = convert(char(1000), '')
+,	IsSelected = 0
+from
+	dbo.report_library" Update="dbo.report_library" UpdateWhere=0 UpdateKeyInPlace=no )
+text(Band=header Alignment="2" Text="name" Border="6" Color="33554432" X="4" Y="12" Height="72" Width="457" html.ValueIsHtml="0" Name=name_t Tag="name" Visible="1" font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1" background.Color="536870912"  )
+text(Band=header Alignment="2" Text="report" Border="6" Color="33554432" X="461" Y="12" Height="72" Width="457" html.ValueIsHtml="0" Name=report_t Tag="report" Visible="1" font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1" background.Color="536870912"  )
+text(Band=header Alignment="2" Text="type" Border="6" Color="33554432" X="918" Y="12" Height="72" Width="457" html.ValueIsHtml="0" Name=type_t Tag="type" Visible="1" font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1" background.Color="536870912"  )
+column(band=detail id=1 alignment="2" tabsequence=1 border="0" color="33554432" x="4" y="12" height="76" width="457" format="[general]" html.ValueIsHtml="0" protect="0~tif(isRowNew(),0,0)" name=name tag="name" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=no edit.autohscroll=yes edit.displayonly=no  font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1	if(mid(Change[0],1,1)=~"1~",0,1)" background.Color="536870912	if(mid(Change[0],1,1)=~"1~",RGB(255,255,64),RGB(255,255,255))"  )
+column(band=detail id=2 alignment="2" tabsequence=2 border="0" color="33554432" x="461" y="12" height="76" width="457" format="[general]" html.ValueIsHtml="0" protect="0~tif(isRowNew(),0,0)" name=report tag="report" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=no edit.autohscroll=yes edit.displayonly=no  font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1	if(mid(Change[0],2,1)=~"1~",0,1)" background.Color="536870912	if(mid(Change[0],2,1)=~"1~",RGB(255,255,64),RGB(255,255,255))"  )
+column(band=detail id=3 alignment="2" tabsequence=3 border="0" color="33554432" x="918" y="12" height="76" width="457" format="[general]" html.ValueIsHtml="0" protect="0~tif(isRowNew(),0,0)" name=type tag="type" visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=no edit.autohscroll=yes edit.displayonly=no  font.Face="MS Sans Serif" font.Height="-8" font.Weight="400" font.Family="2" font.Pitch="2" font.CharSet="0"  background.Mode="1	if(mid(Change[0],3,1)=~"1~",0,1)" background.Color="536870912	if(mid(Change[0],3,1)=~"1~",RGB(255,255,64),RGB(255,255,255))"  )

@@ -1,0 +1,21 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\base.pbl" "";
+@end;
+@begin Objects
+ "office\\u_dw_sp_base.sru" "office\\base.pbl";
+ "office\\w_response_base.srw" "office\\base.pbl";
+ "office\\w_resize_base.srw" "office\\base.pbl";
+ "office\\u_lb_base.sru" "office\\base.pbl";
+ "office\\w_popup_base.srw" "office\\base.pbl";
+ "office\\u_lb_reg.sru" "office\\base.pbl";
+ "office\\u_tr_base.sru" "office\\base.pbl";
+ "office\\u_ds_base.sru" "office\\base.pbl";
+ "office\\u_ds_library.sru" "office\\base.pbl";
+ "office\\u_dw_library.sru" "office\\base.pbl";
+ "office\\u_dw_base.sru" "office\\base.pbl";
+ "office\\w_base.srw" "office\\base.pbl";
+ "office\\w_nonvisible_base.srw" "office\\base.pbl";
+ "office\\u_ds_db_base.sru" "office\\base.pbl";
+ "office\\u_dw_db_base.sru" "office\\base.pbl";
+@end;

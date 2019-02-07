@@ -1,0 +1,8 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\mpo.pbl" "";
+@end;
+@begin Objects
+ "office\\d_changeposhipto.srd" "office\\mpo.pbl";
+ "office\\w_changeposhipto.srw" "office\\mpo.pbl";
+@end;

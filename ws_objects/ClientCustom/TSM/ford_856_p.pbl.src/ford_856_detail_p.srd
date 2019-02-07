@@ -1,0 +1,84 @@
+﻿$PBExportHeader$ford_856_detail_p.srd
+release 6;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=4 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=88 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=audit_trail_serial dbname="audit_trail.serial" )
+ column=(type=decimal(6) updatewhereclause=yes name=audit_trail_quantity dbname="audit_trail.quantity" )
+ column=(type=char(1) updatewhereclause=yes name=edi_setups_prev_cum_in_asn dbname="edi_setups.prev_cum_in_asn" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_customer_part dbname="shipper_detail.customer_part" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_alternative_qty dbname="shipper_detail.alternative_qty" )
+ column=(type=char(15) updatewhereclause=yes name=shipper_detail_alternative_unit dbname="shipper_detail.alternative_unit" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_net_weight dbname="shipper_detail.net_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_gross_weight dbname="shipper_detail.gross_weight" )
+ column=(type=decimal(6) updatewhereclause=yes name=shipper_detail_accum_shipped dbname="shipper_detail.accum_shipped" )
+ column=(type=datetime updatewhereclause=yes name=shipper_detail_release_date dbname="shipper_detail.release_date" )
+ column=(type=long updatewhereclause=yes name=shipper_detail_shipper dbname="shipper_detail.shipper" )
+ column=(type=char(25) updatewhereclause=yes name=shipper_detail_customer_po dbname="shipper_detail.customer_po" )
+ column=(type=char(20) updatewhereclause=yes name=shipper_destination dbname="shipper.destination" )
+ column=(type=char(254) updatewhereclause=yes name=shipper_notes dbname="shipper.notes" )
+ column=(type=char(30) updatewhereclause=yes name=shipper_detail_release_no dbname="shipper_detail.release_no" )
+ column=(type=long updatewhereclause=yes name=aaa dbname="aaa" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum3 dbname="accum3" )
+ retrieve="SELECT 
+		audit_trail.serial, 
+		audit_trail.quantity, 
+		edi_setups.prev_cum_in_asn,
+		shipper_detail.customer_part, 
+		shipper_detail.alternative_qty, 
+		shipper_detail.alternative_unit, 
+		shipper_detail.net_weight, 
+		shipper_detail.gross_weight, 
+		shipper_detail.accum_shipped, 
+		shipper_detail.release_date,
+		shipper_detail.shipper, 
+		shipper_detail.customer_po,
+		shipper.destination,
+		shipper.notes,
+		shipper_detail.release_no,
+		
+	((YEAR(getdate()))-1)as aaa,
+(select accum_shipped-alternative_qty
+) as accum3
+ 
+FROM 
+		audit_trail, 
+		edi_setups, 
+		shipper_detail,
+		shipper
+
+WHERE 	shipper.id = :ishipper and 
+		 	audit_trail.shipper = shipper.id and
+		 	shipper.destination = edi_setups.destination and
+		 	audit_trail.part = shipper_detail.part_original  and 
+	    	audit_trail.type = 'S' and
+		  	shipper_detail.shipper = shipper.id
+
+ORDER BY
+		shipper_detail.customer_part,
+		audit_trail.quantity,
+		audit_trail.serial
+
+" arguments=(("ishipper", number))  sort="shipper_detail_customer_part A " )
+group(level=1 header.height=1068 trailer.height=36 by=("shipper_detail_customer_part" , "audit_trail_quantity" ) header.color="536870912" trailer.color="536870912"  sort="shipper_detail_customer_part A audit_trail_quantity A " )
+compute(band=header.1 alignment="0" expression="string( shipper_detail_shipper )"border="0" color="0" x="178" y="80" height="64" width="1824" format="[general]"  name=shipper  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=12 alignment="0" tabsequence=32766 border="0" color="0" x="169" y="164" height="64" width="1371" format="[general]"  name=shipper_detail_customer_po  tag="customer po number " edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=4 alignment="0" tabsequence=32766 border="0" color="0" x="165" y="252" height="76" width="850" format="[general]"  name=shipper_detail_customer_part  tag="customer part number " edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="String ( Truncate (  shipper_detail_alternative_qty , 0 ))"border="0" color="0" x="169" y="340" height="64" width="869" format="[general]"  name=quantity_packed  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="if(  edi_setups_prev_cum_in_asn ='Y',string(truncate(accum3,0)), string(truncate( shipper_detail_accum_shipped,0) ) )"border="0" color="0" x="169" y="432" height="64" width="2405" format="[general]"  name=accum1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" font.underline="1" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="string(truncate( audit_trail_quantity,0 ))"border="0" color="0" x="165" y="724" height="64" width="3397" format="[general]"  name=at_qty  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="string(count(  audit_trail_serial  for group 1 ))"border="0" color="0" x="160" y="816" height="64" width="3301" format="[general]"  name=count_of_pack_qty  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=10 alignment="0" tabsequence=32766 border="0" color="0" x="160" y="924" height="64" width="3525" format="[shortdate] [time]"  name=shipper_detail_release_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=17 alignment="0" tabsequence=32766 border="0" color="0" x="169" y="1016" height="64" width="1161" format="[general]"  name=accum3 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression=" string(truncate( shipper_detail_net_weight ,0))"border="0" color="0" x="160" y="556" height="64" width="3223" format="[general]"  name=net  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="string(truncate( shipper_detail_gross_weight,0))"border="0" color="0" x="165" y="632" height="64" width="3333" format="[general]"  name=gross_weight  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=13 alignment="0" tabsequence=32766 border="0" color="0" x="1435" y="156" height="64" width="539" format="[general]"  name=shipper_destination edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="String ( Truncate (   shipper_detail_accum_shipped , 0 ))"border="2" color="0" x="1701" y="268" height="76" width="256" format="[general]"  name=accum  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header.1 id=15 alignment="0" tabsequence=32766 border="0" color="0" x="1623" y="572" height="64" width="814" format="[general]"  name=shipper_detail_release_no edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="if(  shipper_notes  like 'FDD%', right(  shipper_notes ,16),'')"border="5" color="0" x="1838" y="852" height="64" width="759" format="[general]"  name=release  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=14 alignment="0" tabsequence=32766 border="0" color="0" x="1838" y="720" height="64" width="585" format="[general]"  name=shipper_notes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression="if(   shipper_detail_customer_part ='4G7V 404D76 AA' , 'RL', 'EA')"border="0" color="33554432" x="1504" y="1012" height="76" width="594" format="[general]"  name=cshipping_unit  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16711935" )
+compute(band=detail alignment="0" expression="'S' + string( audit_trail_serial )"border="0" color="0" x="32" y="8" height="64" width="1541" format="[general]"  name=serial_no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="1742" y="16" height="64" width="338" format="[general]"  name=aaa edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

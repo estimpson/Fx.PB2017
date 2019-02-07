@@ -1,0 +1,230 @@
+﻿$PBExportHeader$d_purchase_order.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=1564 color="536870912" )
+summary(height=332 color="536870912" )
+footer(height=524 color="536870912" )
+detail(height=96 color="536870912"  height.autosize=yes)
+table(column=(type=char(25) updatewhereclause=yes name=po_header_ship_to_destination dbname="po_header.ship_to_destination" )
+ column=(type=char(10) updatewhereclause=yes name=po_header_plant dbname="po_header.plant" )
+ column=(type=char(1) updatewhereclause=yes name=po_header_type dbname="po_header.type" )
+ column=(type=long updatewhereclause=yes name=po_header_release_no dbname="po_header.release_no" )
+ column=(type=char(10) updatewhereclause=yes name=vendor_company dbname="vendor.company" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_1 dbname="vendor.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_2 dbname="vendor.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=vendor_address_3 dbname="vendor.address_3" )
+ column=(type=char(20) updatewhereclause=yes name=vendor_fax dbname="vendor.fax" )
+ column=(type=char(20) updatewhereclause=yes name=po_header_fob dbname="po_header.fob" )
+ column=(type=char(50) updatewhereclause=yes name=parameters_company_name dbname="PARAMETERS.company_name" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_1 dbname="PARAMETERS.address_1" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_2 dbname="PARAMETERS.address_2" )
+ column=(type=char(30) updatewhereclause=yes name=parameters_address_3 dbname="PARAMETERS.address_3" )
+ column=(type=char(15) updatewhereclause=yes name=parameters_phone_number dbname="PARAMETERS.phone_number" )
+ column=(type=char(30) updatewhereclause=yes name=vendor_buyer dbname="vendor.buyer" )
+ column=(type=char(35) updatewhereclause=yes name=vendor_name dbname="vendor.name" )
+ column=(type=char(50) updatewhereclause=yes name=part_cross_ref dbname="part.cross_ref" )
+ column=(type=datetime updatewhereclause=yes name=po_header_po_date dbname="po_header.po_date" initial="today" )
+ column=(type=char(20) updatewhereclause=yes name=po_header_freight_type dbname="po_header.freight_type" )
+ column=(type=long updatewhereclause=yes name=po_header_po_number dbname="po_header.po_number" )
+ column=(type=char(10) updatewhereclause=yes name=po_header_vendor_code dbname="po_header.vendor_code" )
+ column=(type=char(30) updatewhereclause=yes name=po_header_buyer dbname="po_header.buyer" initial="spaces" )
+ column=(type=char(35) updatewhereclause=yes name=carrier_name dbname="carrier.name" )
+ column=(type=char(20) updatewhereclause=yes name=po_header_terms dbname="po_header.terms" )
+ column=(type=char(255) updatewhereclause=yes name=po_header_notes dbname="po_header.notes" )
+ column=(type=char(10) updatewhereclause=yes name=part_vendor_receiving_um dbname="part_vendor.receiving_um" )
+ column=(type=char(10) updatewhereclause=yes name=part_vendor_vendor dbname="part_vendor.vendor" )
+ column=(type=char(25) updatewhereclause=yes name=part_vendor_vendor_part dbname="part_vendor.vendor_part" )
+ column=(type=char(100) updatewhereclause=yes name=part_name dbname="part.name" )
+ column=(type=char(40) updatewhereclause=yes name=vendor_address_4 dbname="vendor.address_4" )
+ column=(type=char(40) updatewhereclause=yes name=vendor_address_5 dbname="vendor.address_5" )
+ column=(type=char(40) updatewhereclause=yes name=vendor_address_6 dbname="vendor.address_6" )
+ column=(type=char(50) updatewhereclause=yes name=destination_name dbname="destination.name" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_1 dbname="destination.address_1" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_2 dbname="destination.address_2" )
+ column=(type=char(50) updatewhereclause=yes name=destination_address_3 dbname="destination.address_3" )
+ column=(type=char(40) updatewhereclause=yes name=destination_address_4 dbname="destination.address_4" )
+ column=(type=char(40) updatewhereclause=yes name=destination_address_5 dbname="destination.address_5" )
+ column=(type=char(40) updatewhereclause=yes name=destination_address_6 dbname="destination.address_6" )
+ column=(type=char(35) updatewhereclause=yes name=vendor_contact dbname="vendor.contact" )
+ column=(type=decimal(6) updatewhereclause=yes name=po_detail_quantity dbname="po_detail.quantity" )
+ column=(type=char(25) updatewhereclause=yes name=part_number dbname="po_detail.part_number" )
+ column=(type=decimal(6) updatewhereclause=yes name=pd_price dbname="po_detail.pd_price" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="po_detail.description" )
+ column=(type=char(2) updatewhereclause=yes name=unit_of_measure dbname="po_detail.unit_of_measure" )
+ column=(type=char(255) updatewhereclause=yes name=notes dbname="po_detail.notes" )
+ column=(type=datetime updatewhereclause=yes name=po_detail_date_due dbname="po_detail.date_due" )
+ column=(type=char(1) updatewhereclause=yes name=taxable dbname="Taxable" values="Taxable	Y/Taxable	N" )
+ column=(type=char(10) updatewhereclause=yes name=po_header_ship_type dbname="po_header.ship_type" )
+ column=(type=char(25) updatewhereclause=yes name=vendor_custom_custom2 dbname="vendor_custom.custom2" )
+ column=(type=char(20) updatewhereclause=yes name=vendor_phone dbname="vendor.phone" )
+ retrieve="select	po_header.ship_to_destination,
+	po_header.plant,
+	po_header.type,
+	po_header.release_no,
+	vendor.company,
+	vendor.address_1,
+	vendor.address_2,
+	vendor.address_3,
+	vendor.fax,
+	po_header.fob,
+	parameters.company_name,
+	parameters.address_1,
+	parameters.address_2,
+	parameters.address_3,
+	parameters.phone_number,
+	vendor.buyer,
+	vendor.name,
+	part.cross_ref,
+	po_header.po_date,
+	po_header.freight_type,
+	po_header.po_number,
+	po_header.vendor_code,
+	po_header.buyer,
+	carrier.name,
+	po_header.terms,
+	po_header.notes,
+	part_vendor.receiving_um,
+	part_vendor.vendor,
+	part_vendor.vendor_part,
+	part.name,
+	vendor.address_4,
+	vendor.address_5,
+	vendor.address_6,
+	destination.name,
+	destination.address_1,
+	destination.address_2,
+	destination.address_3,
+	destination.address_4,
+	destination.address_5,
+	destination.address_6,
+	vendor.contact,
+	po_detail.quantity,
+	po_detail.part_number,
+	po_detail.price pd_price,
+	po_detail.description,
+	po_detail.unit_of_measure,
+	po_detail.notes,
+	po_detail.date_due,
+	isNULL(po_detail.taxable,'N') as Taxable,
+	po_header.ship_type,
+	vendor_custom.custom2,
+	vendor.phone
+from	po_header
+	left join po_detail on po_header.po_number = po_detail.po_number
+	left join destination on po_header.ship_to_destination = destination.destination
+	left join part on po_detail.part_number = part.part
+	join vendor on po_header.vendor_code = vendor.code
+	left join part_vendor on po_detail.part_number = part_vendor.part and po_header.vendor_code = part_vendor.vendor
+	left join carrier on po_header.ship_via = carrier.scac
+	left join vendor_custom on vendor.code = vendor_custom.code
+	cross join parameters
+where	po_header.po_number =  :po_number and
+		po_detail.balance>0
+" arguments=(("PO_NUMBER", number)) )
+roundrectangle(band=foreground ellipseheight="36" ellipsewidth="41"x="5" y="20" height="3872" width="3419"  name=rr_5 visible="1" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="9" pen.color="8421504"  background.mode="1" background.color="553648127" )
+roundrectangle(band=background ellipseheight="36" ellipsewidth="41"x="2071" y="140" height="184" width="1353"  name=rr_1 visible="1" brush.hatch="7" brush.color="553648127" pen.style="0" pen.width="9" pen.color="8421504"  background.mode="2" background.color="0" )
+roundrectangle(band=background ellipseheight="36" ellipsewidth="41"x="9" y="24" height="120" width="3415"  name=rr_3 visible="1" brush.hatch="6" brush.color="8421504" pen.style="5" pen.width="5" pen.color="553648127"  background.mode="2" background.color="0" )
+rectangle(band=header x="41" y="1468" height="92" width="3383"  name=r_1 visible="1" brush.hatch="6" brush.color="12632256" pen.style="5" pen.width="5" pen.color="12632256"  background.mode="2" background.color="33554432" )
+text(band=header alignment="2" text="Order No." border="0" color="0" x="2075" y="144" height="84" width="462" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Date" border="0" color="0" x="2542" y="144" height="84" width="462" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=header id=21 alignment="2" tabsequence=32766 border="0" color="0" x="2075" y="244" height="64" width="462" format="[general]" html.valueishtml="0"  name=po_header_po_number visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression="today()"border="0" color="33554432" x="2542" y="244" height="64" width="462" format="[general]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Page" border="0" color="0" x="3008" y="144" height="84" width="411" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+compute(band=header alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="3008" y="244" height="64" width="421" format="[general]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Ship To:" border="0" color="0" x="1691" y="800" height="64" width="242" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Buyer:" border="0" color="0" x="1737" y="1060" height="64" width="197" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="46" y1="1316" x2="3415" y2="1316"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="8421504"  background.mode="2" background.color="8421504" )
+text(band=header alignment="2" text="VENDOR NO." border="0" color="0" x="41" y="1320" height="56" width="425" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="P.O. DATE" border="0" color="0" x="471" y="1320" height="56" width="430" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="SHIP VIA" border="0" color="0" x="905" y="1320" height="56" width="942" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="COL" border="0" color="0" x="1851" y="1320" height="56" width="123" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="PD" border="0" color="0" x="1979" y="1320" height="56" width="119" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="F.O.B. POINT" border="0" color="0" x="2103" y="1320" height="56" width="754" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="TERMS" border="0" color="0" x="2862" y="1320" height="56" width="558" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=header id=22 alignment="2" tabsequence=32766 border="0" color="0" x="41" y="1388" height="64" width="425" format="[general]" html.valueishtml="0"  name=po_header_vendor_code visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=19 alignment="2" tabsequence=32766 border="0" color="0" x="471" y="1388" height="64" width="430" format="mm/dd/yyyy" html.valueishtml="0"  name=po_header_po_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=24 alignment="2" tabsequence=32766 border="0" color="0" x="905" y="1388" height="64" width="942" format="[general]" html.valueishtml="0"  name=carrier_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="2" expression="if(  po_header_freight_type  = ~"Collect~" , ~"X~" , ~" ~" )"border="0" color="0" x="1851" y="1388" height="64" width="123" format="[general]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="2" expression="if(   po_header_freight_type  = ~"Prepaid~" , ~"X~" , ~" ~" )"border="0" color="0" x="1979" y="1388" height="64" width="119" format="" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=10 alignment="2" tabsequence=32766 border="0" color="0" x="2103" y="1388" height="64" width="754" format="[general]" html.valueishtml="0"  name=po_header_fob visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="41" y1="1464" x2="3410" y2="1464"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="466" y1="1464" x2="466" y2="1316"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="901" y1="1464" x2="901" y2="1316"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="1847" y1="1464" x2="1847" y2="1316"  name=l_5 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="1975" y1="1464" x2="1975" y2="1316"  name=l_6 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="2098" y1="1464" x2="2098" y2="1316"  name=l_7 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+line(band=header x1="2857" y1="1464" x2="2857" y2="1316"  name=l_8 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text=" PURCHASE ORDER" border="0" color="16777215" x="1243" y="36" height="92" width="882" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="PART NO. / DESCRIPTION" border="0" color="33554432" x="64" y="1480" height="64" width="763" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="VENDOR PART" border="0" color="33554432" x="850" y="1480" height="64" width="439" html.valueishtml="0"  name=t_17 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Delivery Date" border="0" color="0" x="1673" y="1472" height="76" width="338" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Qty" border="0" color="0" x="2043" y="1472" height="76" width="315" html.valueishtml="0"  name=t_20 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="UM" border="0" color="0" x="2373" y="1472" height="76" width="169" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Price/Unit" border="0" color="0" x="2683" y="1472" height="76" width="288" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Extended" border="0" color="0" x="2976" y="1472" height="76" width="311" html.valueishtml="0"  name=t_21 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Tax" border="0" color="0" x="3305" y="1472" height="76" width="101" html.valueishtml="0"  name=t_28 visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=25 alignment="2" tabsequence=32766 border="0" color="0" x="2862" y="1388" height="64" width="553" format="[general]" html.valueishtml="0"  name=po_header_terms visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=header filename="C:\Fx\21st.bmp" x="32" y="148" height="460" width="1856" border="0"  name=p_2 visible="1" )
+column(band=detail id=49 alignment="0" tabsequence=32766 border="2" color="0" x="3337" y="40" height="44" width="55" format="[general]" html.valueishtml="0"  name=taxable visible="1" checkbox.text="Taxable" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=no  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=45 alignment="0" tabsequence=32766 border="0" color="0" x="59" y="80" height="64" width="1993" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=47 alignment="0" tabsequence=32766 border="0" color="0" x="59" y="152" height="120" width="2007" format="[general]" html.valueishtml="0"  name=notes visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=42 alignment="1" tabsequence=32766 border="0" color="0" x="2039" y="16" height="64" width="311" format="#,##0" html.valueishtml="0"  name=po_detail_quantity visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=48 alignment="2" tabsequence=32766 border="0" color="0" x="1669" y="16" height="64" width="347" format="m/d/yy" html.valueishtml="0"  name=po_detail_date_due visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=44 alignment="1" tabsequence=32766 border="0" color="0" x="2560" y="20" height="64" width="384" format="$#,##0.00000;($#,##0.00000)" html.valueishtml="0"  name=pd_price visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="1" expression="pd_price * po_detail_quantity "border="0" color="0" x="2967" y="24" height="64" width="293" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=ext_price visible="1"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=43 alignment="0" tabsequence=32766 border="0" color="0" x="64" y="4" height="64" width="768" format="[general]" html.valueishtml="0"  name=part_number visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-9" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=29 alignment="0" tabsequence=32766 border="0" color="0" x="846" y="4" height="64" width="695" format="[general]" html.valueishtml="0"  name=part_vendor_vendor_part visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-9" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="1" expression="if( taxable = 'Y', (ext_price*.06),  0  )"border="0" color="33554432" x="3365" y="124" height="76" width="5" format="[GENERAL]" html.valueishtml="0"  name=lineitemtax visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+column(band=detail id=46 alignment="2" tabsequence=32766 border="0" color="0" x="2373" y="20" height="64" width="169" format="[general]" html.valueishtml="0"  name=unit_of_measure visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=summary id=26 alignment="0" tabsequence=32766 border="2" color="0" x="27" y="16" height="316" width="3333" format="[general]" html.valueishtml="0"  name=po_header_notes visible="1~tif( page()=pageCount(), 1, 0 )" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-8" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=footer alignment="2" text="text" border="0" color="0" x="2359" y="1388" height="64" width="110" html.valueishtml="0"  name=t_25 visible="1"  font.face="Times New Roman" font.height="-9" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1966" y="1496" height="88" width="773" format="[general]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="1664" y1="3312" x2="1664" y2="1460"  name=l_18 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2537" y1="144" x2="2537" y2="324"  name=l_9 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="3003" y1="144" x2="3003" y2="316"  name=l_10 visible="1" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="*100% on time delivery is required*
+*Material Certification is required with each shipment*
+*21st CPC reserves the right of on site inspection for goods and services provided prior to shipment.*" border="0" color="0" x="14" y="3596" height="192" width="2642" html.valueishtml="0"  name=t_34 visible="1~tif( page()=pageCount(), 1,0 )"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127"  height.autosize=yes)
+line(band=foreground x1="2958" y1="3320" x2="2958" y2="1460"  name=l_14 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2555" y1="3312" x2="2555" y2="1460"  name=l_15 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2363" y1="3312" x2="2363" y2="1460"  name=l_16 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+line(band=foreground x1="2021" y1="3312" x2="2021" y2="1460"  name=l_17 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="*Material Certification of compliance is required with each shipment of raw materials and colorants. In addition, a color chip must accompany each lot of colorant received and must be marked with appropriate production date and lot information.
+" border="0" color="0" x="14" y="3760" height="112" width="3387" html.valueishtml="0"  name=t_35 visible="1~tif( page()=pageCount(), 1,0 )"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127"  height.autosize=yes)
+line(band=foreground x1="46" y1="3316" x2="3415" y2="3316"  name=l_11 visible="1~tif( page()=pageCount(), 1, 0 )" pen.style="0" pen.width="9" pen.color="8421504"  background.mode="2" background.color="8421504" )
+text(band=foreground alignment="2" text="By:" border="0" color="0" x="32" y="3396" height="64" width="160" html.valueishtml="0"  name=t_32 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=foreground x1="201" y1="3508" x2="1993" y2="3508"  name=l_13 visible="1~tif( page()=pageCount(), 1, 0 )" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="2" text="Date :" border="0" color="0" x="1390" y="3440" height="64" width="160" html.valueishtml="0"  name=t_33 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=foreground id=19 alignment="2" tabsequence=32766 border="0" color="33554432" x="1573" y="3428" height="76" width="443" format="mm/dd/yyyy" html.valueishtml="0"  name=po_header_po_date_1 visible="1~tif( page()=pageCount(), 1, 0 )" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+roundrectangle(band=foreground ellipseheight="36" ellipsewidth="41"x="2647" y="3316" height="208" width="777"  name=rr_4 visible="1~tif( page()=pageCount(), 1, 0 )" brush.hatch="7" brush.color="570425344" pen.style="0" pen.width="5" pen.color="33554432"  background.mode="1" background.color="553648127" )
+text(band=foreground alignment="1" text="Sub Total" border="0" color="0" x="2656" y="3328" height="56" width="315" html.valueishtml="0"  name=t_26 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="8421504" )
+text(band=foreground alignment="1" text="Tax" border="0" color="0" x="2656" y="3388" height="56" width="315" html.valueishtml="0"  name=t_29 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="8421504" )
+text(band=foreground alignment="1" text="Total" border="0" color="0" x="2656" y="3452" height="56" width="315" html.valueishtml="0"  name=t_30 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="8421504" )
+compute(band=foreground alignment="1" expression=" totaltax  +  subtotal "border="0" color="33554432" x="2985" y="3460" height="52" width="398" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=compute_7 visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=foreground alignment="1" expression="sum(if( taxable = 'Y', (ext_price*.06), 0  ) for all)"border="0" color="33554432" x="3008" y="3392" height="56" width="370" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=totaltax visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Microsoft Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1073741824" )
+compute(band=foreground alignment="1" expression="sum(pd_price * po_detail_quantity  for all)"border="0" color="0" x="2999" y="3324" height="64" width="379" format="$#,##0.00;($#,##0.00)" html.valueishtml="0"  name=subtotal visible="1~tif( page()=pageCount(), 1, 0 )"  font.face="Times New Roman" font.height="-10" font.weight="400"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127"  height.autosize=yes)
+bitmap(band=foreground filename="\\Servernew\fx\Custom\Bobbi_Bold.bmp" x="197" y="3368" height="120" width="1179" border="0"  name=p_1 visible="1~tif( page()=pageCount(), 1, 0 )" )
+text(band=header alignment="0" text="To:" border="0" color="0" x="119" y="800" height="64" width="91" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=17 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="800" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=6 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="868" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_address_1 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="936" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_address_2 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="1004" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_address_3 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=31 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="1072" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_address_4 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=32 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="1140" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_address_5 visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=52 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="1208" height="64" width="1399" format="[general]" html.valueishtml="0"  name=vendor_phone visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if(  isNull(  po_header_ship_to_destination  ) and  po_header_ship_type <> 'Normal'  ,  parameters_company_name , if(  po_header_ship_to_destination = '' ,  parameters_company_name ,  destination_name  ) )"border="0" color="0" x="1979" y="800" height="64" width="1399" format="[general]" html.valueishtml="0"  name=destination_1 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if(  isNull(  po_header_ship_to_destination  )and  po_header_ship_type <> 'Normal'  ,   parameters_address_1  , if(  po_header_ship_to_destination = '' ,   parameters_address_1  ,   destination_address_1   ) )"border="0" color="0" x="1979" y="868" height="64" width="1399" format="[general]" html.valueishtml="0"  name=destination_2 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if(  isNull(  po_header_ship_to_destination  )and  po_header_ship_type <> 'Normal'  ,    parameters_address_2   , if(  po_header_ship_to_destination = '' ,    parameters_address_2   ,    destination_address_2    ) )"border="0" color="0" x="1979" y="936" height="56" width="1399" format="[general]" html.valueishtml="0"  name=destination_3 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="if(  isNull(  po_header_ship_to_destination  )and  po_header_ship_type <> 'Normal' ,    parameters_address_3   , if(  po_header_ship_to_destination = '' ,    parameters_address_3   ,    destination_address_3    ) )"border="0" color="0" x="1979" y="1000" height="56" width="1399" format="[general]" html.valueishtml="0"  name=destination_4 visible="1"  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=header id=23 alignment="0" tabsequence=32766 border="0" color="0" x="1979" y="1064" height="64" width="690" format="[general]" html.valueishtml="0"  name=po_header_buyer visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Times New Roman" font.height="-10" font.weight="700"  font.family="1" font.pitch="1" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen()
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0  template=(comment="" encoding="UTF-16LE" name="yyy" xml="<?xml version=~"1.0~" encoding=~"UTF-16LE~" standalone=~"no~"?><d_purchase_order><d_purchase_order_row __pbband=~"detail~"><po_header_ship_to_destination>po_header_ship_to_destination</po_header_ship_to_destination><po_header_plant>po_header_plant</po_header_plant><po_header_type>po_header_type</po_header_type><po_header_release_no>po_header_release_no</po_header_release_no><vendor_company>vendor_company</vendor_company><vendor_address_1>vendor_address_1</vendor_address_1><vendor_address_2>vendor_address_2</vendor_address_2><vendor_address_3>vendor_address_3</vendor_address_3><vendor_fax>vendor_fax</vendor_fax><po_header_fob>po_header_fob</po_header_fob><parameters_company_name>parameters_company_name</parameters_company_name><parameters_address_1>parameters_address_1</parameters_address_1><parameters_address_2>parameters_address_2</parameters_address_2><parameters_address_3>parameters_address_3</parameters_address_3><parameters_phone_number>parameters_phone_number</parameters_phone_number><vendor_buyer>vendor_buyer</vendor_buyer><vendor_name>vendor_name</vendor_name><part_cross_ref>part_cross_ref</part_cross_ref><po_header_po_date>po_header_po_date</po_header_po_date><po_header_freight_type>po_header_freight_type</po_header_freight_type><po_header_po_number>po_header_po_number</po_header_po_number><po_header_vendor_code>po_header_vendor_code</po_header_vendor_code><po_header_buyer>po_header_buyer</po_header_buyer><carrier_name>carrier_name</carrier_name><po_header_terms/><po_header_notes>po_header_notes</po_header_notes><part_vendor_receiving_um>part_vendor_receiving_um</part_vendor_receiving_um><part_vendor_vendor>part_vendor_vendor</part_vendor_vendor><part_vendor_vendor_part>part_vendor_vendor_part</part_vendor_vendor_part><part_name>part_name</part_name><vendor_address_4>vendor_address_4</vendor_address_4><vendor_address_5>vendor_address_5</vendor_address_5><vendor_address_6>vendor_address_6</vendor_address_6><destination_name>destination_name</destination_name><destination_address_1>destination_address_1</destination_address_1><destination_address_2>destination_address_2</destination_address_2><destination_address_3>destination_address_3</destination_address_3><destination_address_4>destination_address_4</destination_address_4><destination_address_5>destination_address_5</destination_address_5><destination_address_6>destination_address_6</destination_address_6><vendor_contact>vendor_contact</vendor_contact><po_detail_quantity>po_detail_quantity</po_detail_quantity><part_number>part_number</part_number><pd_price>pd_price</pd_price><description>description</description><unit_of_measure>unit_of_measure</unit_of_measure><notes>notes</notes><po_detail_date_due>po_detail_date_due</po_detail_date_due><taxable>taxable</taxable><po_header_ship_type>po_header_ship_type</po_header_ship_type></d_purchase_order_row></d_purchase_order>"))
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

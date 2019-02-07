@@ -1,0 +1,30 @@
+﻿$PBExportHeader$parts_on_quality_alert_status.srd
+$PBExportComments$Qlty. - Report listing the parts set yes to Quality Alert Status (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=677 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=250 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(25) updatewhereclause=yes name=part dbname="part.part" )
+ column=(type=char(50) updatewhereclause=yes name=name dbname="part.name" )
+ column=(type=char(1) updatewhereclause=yes name=quality_alert dbname="part.quality_alert" )
+ column=(type=char(30) updatewhereclause=yes name=commodity dbname="part.commodity" )
+ column=(type=char(25) updatewhereclause=yes name=group_technology dbname="part.group_technology" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"part~" ) COLUMN(NAME=~"part.part~") COLUMN(NAME=~"part.name~") COLUMN(NAME=~"part.quality_alert~") COLUMN(NAME=~"part.commodity~") COLUMN(NAME=~"part.group_technology~")WHERE(    EXP1 =~"~~~"part~~~".~~~"quality_alert~~~"~"   OP =~"=~"    EXP2 =~"'Y'~" ) ) " )
+text(band=header alignment="0" text="Torca Products, Inc. - Part Currently on Quality Alert Status"border="0" color="33554432" x="83" y="83" height="166" width="3875"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part"border="0" color="33554432" x="83" y="500" height="166" width="270"  name=part_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Name"border="0" color="33554432" x="1260" y="500" height="166" width="385"  name=name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Quality
+Alert"border="0" color="33554432" x="4947" y="333" height="333" width="468"  name=quality_alert_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Commodity"border="0" color="33554432" x="5510" y="500" height="166" width="750"  name=commodity_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Group
+Technology"border="0" color="33554432" x="6916" y="333" height="333" width="770"  name=group_technology_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="83" y="0" height="166" width="1166" format="[general]"  name=part  tag="Part code" edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="1260" y="0" height="166" width="3666" format="[general]"  name=name  tag="Name of the part or desciption of the part" edit.limit=50 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="4958" y="0" height="166" width="166" format="[general]"  name=quality_alert  tag="Activiting the quality alert" edit.limit=1 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="5510" y="0" height="166" width="1260" format="[general]"  name=commodity  tag="What commodity does the product belong to " edit.limit=30 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="6927" y="0" height="166" width="833" format="[general]"  name=group_technology  tag="Group technology of the part" edit.limit=25 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="33554432" x="83" y="73" height="166" width="666" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="33554432" x="5479" y="73" height="166" width="1656" format="[general]"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+ 

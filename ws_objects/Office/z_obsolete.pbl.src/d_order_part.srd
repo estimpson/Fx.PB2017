@@ -1,0 +1,11 @@
+﻿$PBExportHeader$d_order_part.srd
+release 3;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no grid.lines=0 )
+header(height=85 color="536870912")
+summary(height=1 color="536870912")
+footer(height=1 color="536870912")
+detail(height=97 color="536870912")
+table(column=(type=decimal(0) name=order_no dbname="order_detail.order_no" )
+ retrieve="PBSELECT(DISTINCT ()TABLE(NAME=~"order_detail~" ) COLUMN(NAME=~"order_detail.order_no~")) "  sort="order_no A " )
+text(band=header color="0" alignment="2" border="0" x="10" y="8" height="65" width="330" text="Order No" name=order_no_t  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")
+column(band=detail id=1 border="0" alignment="1" color="0" height="77" tabsequence=32766 width="330" x="10" y="8"  name=order_no format="[general]" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400" font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912")

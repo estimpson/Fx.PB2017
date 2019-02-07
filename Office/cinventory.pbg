@@ -1,0 +1,12 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\cinventory.pbl" "";
+@end;
+@begin Objects
+ "office\\cu_tabpg_jobbom.sru" "office\\cinventory.pbl";
+ "office\\cw_packingline.srw" "office\\cinventory.pbl";
+ "office\\cu_tabpg_machinelist.sru" "office\\cinventory.pbl";
+ "office\\cu_tabpg_jobdetails.sru" "office\\cinventory.pbl";
+ "office\\cu_tabpg_jobobjects.sru" "office\\cinventory.pbl";
+ "office\\cu_tabpg_machinestate.sru" "office\\cinventory.pbl";
+@end;

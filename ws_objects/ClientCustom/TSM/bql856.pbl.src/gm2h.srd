@@ -1,0 +1,122 @@
+﻿$PBExportHeader$gm2h.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=12 color="-1" )
+summary(height=0 color="-1" )
+footer(height=0 color="-1" )
+detail(height=2200 color="-1" )
+table(column=(type=char(1) updatewhereclause=yes name=partial_complete dbname="partial_complete" )
+ column=(type=char(1) updatewhereclause=yes name=purpose_code dbname="purpose_code" )
+ column=(type=char(35) updatewhereclause=yes name=bill_of_lading_scac_pickup dbname="bill_of_lading.scac_pickup" )
+ column=(type=long update=yes updatewhereclause=yes name=id dbname="shipper.id" )
+ column=(type=char(15) updatewhereclause=yes name=ship_dock dbname="shipper.shipping_dock" )
+ column=(type=datetime update=yes updatewhereclause=yes name=date_shipped dbname="shipper.date_shipped" )
+ column=(type=decimal(6) update=yes updatewhereclause=yes name=gross_weight dbname="shipper.gross_weight" initial="0" )
+ column=(type=decimal(6) updatewhereclause=yes name=net_weight dbname="shipper.net_weight" )
+ column=(type=long updatewhereclause=yes name=staged_objs dbname="shipper.staged_objs" )
+ column=(type=long updatewhereclause=yes name=cbill_of_lading_number dbname="shipper.bill_of_lading_number" )
+ column=(type=char(2) updatewhereclause=yes name=trans_stage_qualifier dbname="trans_stage_qualifier" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=ship_via dbname="shipper.ship_via" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=trans_mode dbname="shipper.trans_mode" )
+ column=(type=char(3) updatewhereclause=yes name=ship_via_responsible dbname="ship_via_responsible" )
+ column=(type=char(20) updatewhereclause=yes name=aetc_number dbname="shipper.aetc_number" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=truck_number dbname="shipper.truck_number" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=destination dbname="shipper.destination" )
+ column=(type=char(20) updatewhereclause=yes name=trading_partner_code dbname="edi_setups.trading_partner_code" )
+ column=(type=char(10) updatewhereclause=yes name=id_type dbname="edi_setups.id_code_type" )
+ column=(type=char(20) updatewhereclause=yes name=equip_type dbname="edi_setups.equipment_description" )
+ column=(type=char(25) updatewhereclause=yes name=material_issuer dbname="edi_setups.material_issuer" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=supplier_code dbname="edi_setups.supplier_code" )
+ retrieve="select
+    '' partial_complete
+,   '9' purpose_code
+,   bill_of_lading.scac_pickup
+,   shipper.id
+,   shipper.shipping_dock
+,   shipper.date_shipped
+,   shipper.gross_weight
+,   shipper.net_weight
+,   shipper.staged_objs
+,   shipper.bill_of_lading_number
+,   '12' trans_stage_qualifier
+,   shipper.ship_via
+,   shipper.trans_mode
+,   '182' ship_via_responsible
+,   shipper.aetc_number
+,   shipper.truck_number
+,   shipper.destination
+,   edi_setups.trading_partner_code
+,   edi_setups.id_code_type
+,   edi_setups.equipment_description
+,   edi_setups.material_issuer
+,   edi_setups.supplier_code
+from
+	shipper
+	left join bill_of_lading on bill_of_lading.bol_number = shipper.bill_of_lading_number
+	join edi_setups on edi_setups.destination = shipper.destination
+where
+    shipper.id = :ishipper
+" arguments=(("iShipper", number)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="184" height="68" width="1010" format="[general]" html.valueishtml="0"  name=purpose_code visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="purpose_code" border="0" color="0" x="1042" y="184" height="68" width="901" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="264" height="68" width="1010" format="" html.valueishtml="0"  name=partial_complete visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="partail_complete" border="0" color="0" x="1042" y="264" height="68" width="901" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="String ( id )"border="0" color="0" x="18" y="344" height="68" width="1010" format="[GENERAL]" html.valueishtml="0"  name=shipper visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="shipper" border="0" color="0" x="1042" y="344" height="68" width="901" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="String ( Today ( ), 'yyyymmddhhmm' )"border="0" color="0" x="18" y="424" height="68" width="1010" format="[GENERAL]" html.valueishtml="0"  name=asn_datetime visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="asn_DateTime" border="0" color="0" x="1042" y="420" height="72" width="901" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="String ( date_shipped, 'yyyymmddhhmm' )"border="0" color="0" x="14" y="496" height="72" width="1010" format="[GENERAL]" html.valueishtml="0"  name=ship_daytime visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="ship_DayTime" border="0" color="0" x="1038" y="500" height="72" width="896" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="String ( Truncate ( gross_weight , 0 ) )"border="0" color="0" x="9" y="580" height="72" width="1006" format="[GENERAL]" html.valueishtml="0"  name=gr_wght visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="gr_wght" border="0" color="0" x="1033" y="580" height="72" width="896" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="string(truncate( net_weight,0) )"border="0" color="0" x="9" y="660" height="72" width="1006" format="[GENERAL]" html.valueishtml="0"  name=net_wght visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="net_wght" border="0" color="0" x="1033" y="660" height="72" width="896" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="string( staged_objs )"border="0" color="0" x="9" y="740" height="72" width="1006" format="[GENERAL]" html.valueishtml="0"  name=lading_qty visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="lading_qty" border="0" color="0" x="1033" y="740" height="72" width="896" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="if (isNull( cbill_of_lading_number),string (id), string (cbill_of_lading_number))"border="0" color="0" x="5" y="808" height="72" width="1001" format="[GENERAL]" html.valueishtml="0"  name=master_bol visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="master_bol" border="0" color="0" x="1029" y="808" height="72" width="919" html.valueishtml="0"  name=t_9 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="1989" y="888" height="72" width="1010" format="[general]" html.valueishtml="0"  name=id_type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="str_id_type" border="0" color="0" x="1038" y="888" height="72" width="919" html.valueishtml="0"  name=t_10 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="968" height="72" width="1006" format="[general]" html.valueishtml="0"  name=material_issuer visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="material_issuer" border="0" color="0" x="1038" y="968" height="72" width="896" html.valueishtml="0"  name=t_11 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=17 alignment="0" tabsequence=130 border="0" color="0" x="14" y="1048" height="72" width="1010" format="[general]" html.valueishtml="0"  name=destination  tag="Destination " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="destination" border="0" color="0" x="1038" y="1048" height="72" width="896" html.valueishtml="0"  name=t_12 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="108" height="68" width="1010" format="[general]" html.valueishtml="0"  name=trading_partner_code visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="trading_partner_code" border="0" color="0" x="1038" y="108" height="68" width="901" html.valueishtml="0"  name=t_13 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="if( destination = '14006' or  destination = '14602' or  destination = '14972' or  destination = '14976', 'CA', if( destination = '23005', 'MX', 'US' ) )"border="0" color="0" x="14" y="1120" height="72" width="1015" format="[GENERAL]" html.valueishtml="0"  name=country2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="destination_country" border="0" color="0" x="1042" y="1124" height="72" width="891" html.valueishtml="0"  name=t_14 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=22 alignment="0" tabsequence=150 border="0" color="0" x="18" y="1280" height="72" width="1010" format="[general]" html.valueishtml="0"  name=supplier_code visible="1" height.autosize=yes edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="14" y="1204" height="60" width="1006" format="[general]" html.valueishtml="0"  name=ship_dock visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="ship_dock" border="0" color="0" x="1038" y="1192" height="72" width="905" html.valueishtml="0"  name=t_15 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="supplier_code" border="0" color="0" x="1038" y="1276" height="68" width="901" html.valueishtml="0"  name=t_16 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768"  height.autosize=yes)
+text(band=detail alignment="0" text="trans_stage_qualifier" border="0" color="0" x="1038" y="1368" height="72" width="905" html.valueishtml="0"  name=t_17 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="32" y="1368" height="68" width="997" format="[general]" html.valueishtml="0"  name=trans_stage_qualifier visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=80 border="0" color="0" x="23" y="1452" height="68" width="1006" format="[general]" html.valueishtml="0"  name=trans_mode  tag="Transportation mode " visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="trans_mode" border="0" color="0" x="1047" y="1452" height="68" width="896" html.valueishtml="0"  name=t_18 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="ship_via" border="0" color="0" x="1056" y="1536" height="72" width="896" html.valueishtml="0"  name=t_19 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=12 alignment="0" tabsequence=70 border="0" color="0" x="23" y="1540" height="72" width="1006" format="[general]" html.valueishtml="0"  name=ship_via  tag="Ship via " visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="23" y="1624" height="68" width="1015" format="[general]" html.valueishtml="0"  name=ship_via_responsible visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="ship_via_responsible_for_code_list" border="0" color="0" x="1056" y="1624" height="68" width="901" html.valueishtml="0"  name=t_20 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="left( aetc_number ,1 )"border="0" color="0" x="32" y="1708" height="68" width="1006" format="[GENERAL]" html.valueishtml="0"  name=excess_trans_reason visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="mid( aetc_number , 2, 1 )"border="0" color="0" x="37" y="1784" height="68" width="1010" format="[GENERAL]" html.valueishtml="0"  name=excess_trans_responsiblity visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="mid( aetc_number , 3, 4 )"border="0" color="0" x="32" y="1868" height="68" width="983" format="[GENERAL]" html.valueishtml="0"  name=trans_auth_number visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="excess_trans_responsibility" border="0" color="0" x="1061" y="1788" height="68" width="905" html.valueishtml="0"  name=t_21 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="trans_auth_number" border="0" color="0" x="1056" y="1876" height="72" width="914" html.valueishtml="0"  name=t_22 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="excess_trans_reason" border="0" color="0" x="1056" y="1708" height="68" width="901" html.valueishtml="0"  name=t_23 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=16 alignment="0" tabsequence=110 border="0" color="0" x="23" y="2048" height="72" width="1006" format="[general]" html.valueishtml="0"  name=truck_number  tag="truck number " visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="truck_number" border="0" color="0" x="1038" y="2040" height="72" width="901" html.valueishtml="0"  name=t_24 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="23" y="1956" height="72" width="1006" format="[general]" html.valueishtml="0"  name=equip_type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="equip_type" border="0" color="0" x="1047" y="1960" height="68" width="901" html.valueishtml="0"  name=t_25 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="/* if(mid( shipping_dock, 4,3) > '', mid( shipping_dock, 4,3), string(0) ) */"border="0" color="0" x="1998" y="1036" height="72" width="1001" format="[GENERAL]" html.valueishtml="0"  name=ship_dock1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="string( id_type  )"border="0" color="0" x="5" y="888" height="56" width="1010" format="[GENERAL]" html.valueishtml="0"  name=str_id_type visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

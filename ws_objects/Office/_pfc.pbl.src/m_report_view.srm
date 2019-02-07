@@ -1,0 +1,412 @@
+﻿$PBExportHeader$m_report_view.srm
+forward
+global type m_report_view from m_ancestor
+end type
+end forward
+
+global type m_report_view from m_ancestor
+end type
+global m_report_view m_report_view
+
+on m_report_view.create
+m_report_view=this
+call m_ancestor::create
+end on
+
+on m_report_view.destroy
+call m_ancestor::destroy
+end on
+
+on m_file.create
+call m_ancestor`m_file::create
+this.MergeOption=Exclude!
+end on
+
+on m_new.create
+call m_ancestor`m_new::create
+this.Visible=false
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy1.create
+call m_ancestor`m_filedummy1::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy2.create
+call m_ancestor`m_filedummy2::create
+this.MergeOption=Exclude!
+end on
+
+on m_open.create
+call m_ancestor`m_open::create
+this.Visible=false
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy3.create
+call m_ancestor`m_filedummy3::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy4.create
+call m_ancestor`m_filedummy4::create
+this.MergeOption=Exclude!
+end on
+
+on m_close.create
+call m_ancestor`m_close::create
+this.Visible=false
+this.MergeOption=Exclude!
+end on
+
+on m__1.create
+call m_ancestor`m__1::create
+this.MergeOption=Exclude!
+end on
+
+on m_save.create
+call m_ancestor`m_save::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy5.create
+call m_ancestor`m_filedummy5::create
+this.MergeOption=Exclude!
+end on
+
+on m_saveas.create
+call m_ancestor`m_saveas::create
+this.MergeOption=Exclude!
+end on
+
+on m_saverowsas.create
+call m_ancestor`m_saverowsas::create
+this.MergeOption=Exclude!
+end on
+
+on m__2.create
+call m_ancestor`m__2::create
+this.MergeOption=Exclude!
+end on
+
+on m_print.create
+call m_ancestor`m_print::create
+this.MergeOption=Exclude!
+end on
+
+on m_printpreview.create
+call m_ancestor`m_printpreview::create
+this.MergeOption=Exclude!
+end on
+
+on m_previewzoom.create
+call m_ancestor`m_previewzoom::create
+this.MergeOption=Exclude!
+end on
+
+on m_printsetup.create
+call m_ancestor`m_printsetup::create
+this.MergeOption=Exclude!
+end on
+
+on m__3.create
+call m_ancestor`m__3::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy9.create
+call m_ancestor`m_filedummy9::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy10.create
+call m_ancestor`m_filedummy10::create
+this.MergeOption=Exclude!
+end on
+
+on m__4.create
+call m_ancestor`m__4::create
+this.MergeOption=Exclude!
+end on
+
+on m_exit.create
+call m_ancestor`m_exit::create
+this.MergeOption=Exclude!
+end on
+
+on m__5.create
+call m_ancestor`m__5::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy11.create
+call m_ancestor`m_filedummy11::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy12.create
+call m_ancestor`m_filedummy12::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy13.create
+call m_ancestor`m_filedummy13::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy14.create
+call m_ancestor`m_filedummy14::create
+this.MergeOption=Exclude!
+end on
+
+on m_filedummy15.create
+call m_ancestor`m_filedummy15::create
+this.MergeOption=Exclude!
+end on
+
+on m_design.create
+call m_ancestor`m_design::create
+this.MergeOption=Exclude!
+end on
+
+on m_designmode.create
+call m_ancestor`m_designmode::create
+this.MergeOption=Exclude!
+end on
+
+on m__6.create
+call m_ancestor`m__6::create
+this.MergeOption=Exclude!
+end on
+
+on m_zoom.create
+call m_ancestor`m_zoom::create
+this.MergeOption=Exclude!
+end on
+
+on m_rows.create
+call m_ancestor`m_rows::create
+this.MergeOption=Exclude!
+end on
+
+on m_insert.create
+call m_ancestor`m_insert::create
+this.MergeOption=Exclude!
+end on
+
+on m_delete.create
+call m_ancestor`m_delete::create
+this.MergeOption=Exclude!
+end on
+
+on m_update.create
+call m_ancestor`m_update::create
+this.MergeOption=Exclude!
+end on
+
+on m__7.create
+call m_ancestor`m__7::create
+this.MergeOption=Exclude!
+end on
+
+on m_import.create
+call m_ancestor`m_import::create
+this.MergeOption=Exclude!
+end on
+
+on m_retrieve.create
+call m_ancestor`m_retrieve::create
+this.MergeOption=Exclude!
+end on
+
+on m__81.create
+call m_ancestor`m__81::create
+this.MergeOption=Exclude!
+end on
+
+on m_describe.create
+call m_ancestor`m_describe::create
+this.MergeOption=Exclude!
+end on
+
+on m_filter.create
+call m_ancestor`m_filter::create
+this.MergeOption=Exclude!
+end on
+
+on m_sort.create
+call m_ancestor`m_sort::create
+this.MergeOption=Exclude!
+end on
+
+on m_-2.create
+call m_ancestor`m_-2::create
+this.MergeOption=Exclude!
+end on
+
+on m_firstpage.create
+call m_ancestor`m_firstpage::create
+this.MergeOption=Exclude!
+end on
+
+on m_priorpage.create
+call m_ancestor`m_priorpage::create
+this.MergeOption=Exclude!
+end on
+
+on m_nextpage.create
+call m_ancestor`m_nextpage::create
+this.MergeOption=Exclude!
+end on
+
+on m_lastpage.create
+call m_ancestor`m_lastpage::create
+this.MergeOption=Exclude!
+end on
+
+on m_window.create
+call m_ancestor`m_window::create
+this.MergeOption=Exclude!
+end on
+
+on m_tile.create
+call m_ancestor`m_tile::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy1.create
+call m_ancestor`m_windowdummy1::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy2.create
+call m_ancestor`m_windowdummy2::create
+this.MergeOption=Exclude!
+end on
+
+on m_layer.create
+call m_ancestor`m_layer::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy3.create
+call m_ancestor`m_windowdummy3::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy4.create
+call m_ancestor`m_windowdummy4::create
+this.MergeOption=Exclude!
+end on
+
+on m_cascade.create
+call m_ancestor`m_cascade::create
+this.MergeOption=Exclude!
+end on
+
+on m__8.create
+call m_ancestor`m__8::create
+this.MergeOption=Exclude!
+end on
+
+on m_arrangeicons.create
+call m_ancestor`m_arrangeicons::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy5.create
+call m_ancestor`m_windowdummy5::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy6.create
+call m_ancestor`m_windowdummy6::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy7.create
+call m_ancestor`m_windowdummy7::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy8.create
+call m_ancestor`m_windowdummy8::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy9.create
+call m_ancestor`m_windowdummy9::create
+this.MergeOption=Exclude!
+end on
+
+on m_windowdummy10.create
+call m_ancestor`m_windowdummy10::create
+this.MergeOption=Exclude!
+end on
+
+on m_help.create
+call m_ancestor`m_help::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy1.create
+call m_ancestor`m_helpdummy1::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy2.create
+call m_ancestor`m_helpdummy2::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy3.create
+call m_ancestor`m_helpdummy3::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy4.create
+call m_ancestor`m_helpdummy4::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy5.create
+call m_ancestor`m_helpdummy5::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy6.create
+call m_ancestor`m_helpdummy6::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy7.create
+call m_ancestor`m_helpdummy7::create
+this.MergeOption=Exclude!
+end on
+
+on m__9.create
+call m_ancestor`m__9::create
+this.MergeOption=Exclude!
+end on
+
+on m_about.create
+call m_ancestor`m_about::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy8.create
+call m_ancestor`m_helpdummy8::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy9.create
+call m_ancestor`m_helpdummy9::create
+this.MergeOption=Exclude!
+end on
+
+on m_helpdummy10.create
+call m_ancestor`m_helpdummy10::create
+this.MergeOption=Exclude!
+end on
+

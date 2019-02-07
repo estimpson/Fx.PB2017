@@ -1,0 +1,313 @@
+﻿$PBExportHeader$m_plant_monitor.srm
+$PBExportComments$Menu for plant monitor
+forward
+global type m_plant_monitor from menu
+end type
+type m_file from menu within m_plant_monitor
+end type
+type m_viewdate from menu within m_file
+end type
+type m_recalctime from menu within m_file
+end type
+type m_flashscreen from menu within m_file
+end type
+type m_freshscreen from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_plant_monitor
+m_viewdate m_viewdate
+m_recalctime m_recalctime
+m_flashscreen m_flashscreen
+m_freshscreen m_freshscreen
+m_exit m_exit
+end type
+type m_edit from menu within m_plant_monitor
+end type
+type m_createshift from menu within m_edit
+end type
+type m_edit from menu within m_plant_monitor
+m_createshift m_createshift
+end type
+type m_window from menu within m_plant_monitor
+end type
+type m_tile from menu within m_window
+end type
+type m_layered from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m__ from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_window from menu within m_plant_monitor
+m_tile m_tile
+m_layered m_layered
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+type m_help from menu within m_plant_monitor
+end type
+type m_help from menu within m_plant_monitor
+end type
+end forward
+
+global type m_plant_monitor from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_plant_monitor m_plant_monitor
+
+forward prototypes
+public subroutine mf_unflash ()
+end prototypes
+
+public subroutine mf_unflash ();w_plant_monitor.bFlash	= FALSE
+m_plant_monitor.m_file.m_flashscreen.ToolBarItemText	= "FlashScn"
+m_plant_monitor.m_file.m_flashscreen.MicroHelp			= "Flash jobs with material shortage / order orgin."
+
+
+
+end subroutine
+
+on m_plant_monitor.create
+m_plant_monitor=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_plant_monitor.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_plant_monitor
+m_viewdate m_viewdate
+m_recalctime m_recalctime
+m_flashscreen m_flashscreen
+m_freshscreen m_freshscreen
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_viewdate=create m_viewdate
+this.m_recalctime=create m_recalctime
+this.m_flashscreen=create m_flashscreen
+this.m_freshscreen=create m_freshscreen
+this.m_exit=create m_exit
+this.Item[]={this.m_viewdate, &
+this.m_recalctime, &
+this.m_flashscreen, &
+this.m_freshscreen, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_viewdate)
+destroy(this.m_recalctime)
+destroy(this.m_flashscreen)
+destroy(this.m_freshscreen)
+destroy(this.m_exit)
+end on
+
+type m_viewdate from menu within m_file
+end type
+
+on clicked;w_plant_monitor.PostEvent("ue_change_view_date")
+end on
+
+on m_viewdate.create
+this.Text="&View Date"
+this.Microhelp="Change view date"
+this.ToolBarItemName="Custom023!"
+this.ToolBarItemText="ViewDate"
+this.ToolBarItemOrder=10
+end on
+
+type m_recalctime from menu within m_file
+end type
+
+on clicked;w_plant_monitor.PostEvent("ue_recalc_time")
+end on
+
+on m_recalctime.create
+this.Text="&Recalc Time"
+this.Microhelp="Recalculate the start/end time for jobs"
+this.ToolBarItemName="Cascade!"
+this.ToolBarItemText="CalcTime"
+this.ToolBarItemOrder=20
+end on
+
+type m_flashscreen from menu within m_file
+end type
+
+on clicked;w_plant_monitor.bFlash	= Not (w_plant_monitor.bFlash)
+If Not w_plant_monitor.bFlash then
+	this.ToolBarItemText	= "FlashScn"
+	this.MicroHelp			= "Flash jobs with material shortage and order origin."
+Else
+	this.ToolBarItemText	= "Unflash"
+	this.MicroHelp			= "Stop the job flashing"
+End If
+
+w_plant_monitor.PostEvent("ue_flash_selection")
+end on
+
+on m_flashscreen.create
+this.Text="&Flash Screen"
+this.Microhelp="Flash jobs with material shortage and order origin."
+this.ToolBarItemName="Search!"
+this.ToolBarItemText="FlashScn"
+this.ToolBarItemOrder=40
+end on
+
+type m_freshscreen from menu within m_file
+end type
+
+on clicked;w_plant_monitor.i_b_FreshScreen	= Not (w_plant_monitor.i_b_FreshScreen)
+If Not w_plant_monitor.i_b_FreshScreen then
+	this.ToolBarItemtext	= "FreshScn"
+Else
+	this.ToolBarItemtext	= "Unfresh"
+End If
+
+w_plant_monitor.PostEvent("ue_fresh_screen")
+end on
+
+on m_freshscreen.create
+this.Text="Fresh S&creen"
+this.Microhelp="Dynamically refresh screen by timer"
+this.ToolBarItemName="Continue!"
+this.ToolBarItemText="FreshScn"
+this.ToolBarItemOrder=50
+end on
+
+type m_exit from menu within m_file
+end type
+
+on clicked;Close(w_plant_monitor)
+end on
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit the plant monitor"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+end on
+
+type m_edit from menu within m_plant_monitor
+m_createshift m_createshift
+end type
+
+on m_edit.create
+this.Text="&Edit"
+this.m_createshift=create m_createshift
+this.Item[]={this.m_createshift}
+end on
+
+on m_edit.destroy
+destroy(this.m_createshift)
+end on
+
+type m_createshift from menu within m_edit
+end type
+
+on clicked;Open ( w_create_new_shift_wizard )
+end on
+
+on m_createshift.create
+this.Text="&Create Shift"
+this.Microhelp="Create New Shift Wizard"
+this.ToolBarItemName="clock.bmp"
+this.ToolBarItemText="New Shift"
+this.ToolBarItemOrder=660
+end on
+
+type m_window from menu within m_plant_monitor
+m_tile m_tile
+m_layered m_layered
+m_cascade m_cascade
+m__ m__
+m_arrangeicons m_arrangeicons
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layered=create m_layered
+this.m_cascade=create m_cascade
+this.m__=create m__
+this.m_arrangeicons=create m_arrangeicons
+this.Item[]={this.m_tile, &
+this.m_layered, &
+this.m_cascade, &
+this.m__, &
+this.m_arrangeicons}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layered)
+destroy(this.m_cascade)
+destroy(this.m__)
+destroy(this.m_arrangeicons)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on m_tile.create
+this.Text="&Tile"
+end on
+
+type m_layered from menu within m_window
+end type
+
+on m_layered.create
+this.Text="&Layered"
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on m_cascade.create
+this.Text="&Cascade"
+end on
+
+type m__ from menu within m_window
+end type
+
+on m__.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on m_arrangeicons.create
+this.Text="Arrange &Icons"
+end on
+
+type m_help from menu within m_plant_monitor
+end type
+
+on m_help.create
+this.Text="&Help"
+end on
+
+on m_help.destroy
+end on
+

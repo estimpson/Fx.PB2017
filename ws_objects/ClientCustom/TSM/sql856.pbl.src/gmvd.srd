@@ -1,0 +1,52 @@
+﻿$PBExportHeader$gmvd.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="-1" )
+footer(height=4 color="-1" )
+detail(height=588 color="536870912" )
+table(column=(type=char(2) updatewhereclause=yes name=part_indicator dbname="compute_0001" )
+ column=(type=char(35) updatewhereclause=yes name=part dbname="order_header.customer_part" )
+ column=(type=char(4) updatewhereclause=yes name=model_year dbname="order_header.model_year" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_packed dbname="shipper_detail.qty_packed" )
+ column=(type=decimal(6) updatewhereclause=yes name=accum_shipped dbname="shipper_detail.accum_shipped" )
+ column=(type=char(20) updatewhereclause=yes name=po dbname="order_header.customer_po" )
+ column=(type=char(10) updatewhereclause=yes name=dock dbname="order_header.dock_code" )
+ retrieve="select
+    'BP'
+,   order_header.customer_part
+,   order_header.model_year
+,   shipper_detail.qty_packed
+,   shipper_detail.accum_shipped
+,   order_header.customer_po
+,   order_header.dock_code
+from
+    shipper_detail
+	left join order_header on order_header.order_no = shipper_detail.order_no
+where
+    shipper_detail.shipper = :ishipper" arguments=(("iShipper", number)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="20" height="64" width="969" format="[general]" html.valueishtml="0"  name=part_indicator visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="100" height="64" width="969" format="[general]" html.valueishtml="0"  name=part visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="String ( Truncate ( qty_packed, 0 ) )"border="0" color="0" x="18" y="180" height="64" width="969" format="[GENERAL]" html.valueishtml="0"  name=quantity_packed visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="String ( accum_shipped )"border="0" color="0" x="18" y="260" height="64" width="969" format="[GENERAL]" html.valueishtml="0"  name=accum visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="340" height="64" width="969" format="[general]" html.valueishtml="0"  name=model_year visible="1" edit.limit=4 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="18" y="420" height="64" width="969" format="[general]" html.valueishtml="0"  name=po visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1691" y="500" height="64" width="974" format="[general]" html.valueishtml="0"  name=dock visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="part_indicator" border="0" color="0" x="1001" y="20" height="64" width="663" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="part" border="0" color="0" x="1001" y="100" height="64" width="663" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="quantity_packed" border="0" color="0" x="1001" y="180" height="64" width="663" html.valueishtml="0"  name=t_3 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="accum" border="0" color="0" x="1001" y="260" height="64" width="663" html.valueishtml="0"  name=t_4 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="model_year" border="0" color="0" x="1001" y="340" height="64" width="663" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="po" border="0" color="0" x="1001" y="420" height="64" width="663" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+text(band=detail alignment="0" text="dock" border="0" color="0" x="1001" y="500" height="64" width="663" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+compute(band=detail alignment="0" expression="mid(  dock ,4, 3)"border="0" color="0" x="18" y="504" height="68" width="983" format="[GENERAL]" html.valueishtml="0"  name=dockcode visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

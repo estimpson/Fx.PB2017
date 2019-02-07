@@ -1,0 +1,37 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\Inventory.pbl" "";
+@end;
+@begin Objects
+ "office\\d_cyclecount_plantlist.srd" "office\\inventory.pbl";
+ "office\\d_cyclecount_partlist.srd" "office\\inventory.pbl";
+ "office\\w_inventory_cyclecount_recoverserial_pu.srw" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_cyclecount.sru" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_quality.sru" "office\\Inventory.pbl";
+ "office\\n_cst_inventorytrans_quality.sru" "office\\Inventory.pbl";
+ "office\\u_tabpg_inventory_quality_details.sru" "office\\Inventory.pbl";
+ "office\\u_tabpg_inventory_quality_headers.sru" "office\\Inventory.pbl";
+ "office\\d_quality_inventorylist.srd" "office\\Inventory.pbl";
+ "office\\d_quality_newheader.srd" "office\\Inventory.pbl";
+ "office\\u_tabpg_inventory_cyclecount_newheader.sru" "office\\inventory.pbl";
+ "office\\d_quality_objectlist.srd" "office\\Inventory.pbl";
+ "office\\d_dbo_inventorycontrol_qcbatchheaders.srd" "office\\Inventory.pbl";
+ "office\\d_dbo_inventorycontrol_qcbatchobjects.srd" "office\\Inventory.pbl";
+ "office\\d_inventorylist.srd" "office\\inventory.pbl";
+ "office\\d_inventory_userdefinedstatuslist.srd" "office\\Inventory.pbl";
+ "office\\n_cst_inventory_quality_controller.sru" "office\\Inventory.pbl";
+ "office\\d_cyclecount_locationlist.srd" "office\\inventory.pbl";
+ "office\\w_inventory_cyclecount.srw" "office\\inventory.pbl";
+ "office\\d_cyclecount_newheader.srd" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_cyclecount_details.sru" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_cyclecount_headers.sru" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_cyclecount_recover.sru" "office\\inventory.pbl";
+ "office\\d_dbo_inventorycontrol_cyclecountheaders.srd" "office\\inventory.pbl";
+ "office\\d_dbo_inventorycontrol_cyclecountobjects.srd" "office\\inventory.pbl";
+ "office\\n_cst_inventory_cyclecount_controller.sru" "office\\inventory.pbl";
+ "office\\d_quality_vendorshipmentlist.srd" "office\\Inventory.pbl";
+ "office\\w_inventory_qualitycontrol.srw" "office\\Inventory.pbl";
+ "office\\d_cyclecount_recoverserial.srd" "office\\inventory.pbl";
+ "office\\n_cst_inventorytrans_cyclecount.sru" "office\\inventory.pbl";
+ "office\\u_tabpg_inventory_quality_newheader.sru" "office\\Inventory.pbl";
+@end;

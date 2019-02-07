@@ -1,0 +1,28 @@
+﻿$PBExportHeader$vendor_list.srd
+$PBExportComments$TSM Matl. Mngmt. - Monitor Vendor List (Report) - Ok to be used with SQL Server DB
+release 5;
+datawindow(units=2 timer_interval=0 color=1090519039 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 250 print.margin.right = 250 print.margin.top = 250 print.margin.bottom = 250 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=437 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=229 color="536870912" )
+detail(height=208 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=code dbname="vendor.code" )
+ column=(type=char(35) updatewhereclause=yes name=name dbname="vendor.name" )
+ column=(type=char(35) updatewhereclause=yes name=contact dbname="vendor.contact" )
+ column=(type=char(14) updatewhereclause=yes name=phone dbname="vendor.phone" )
+ column=(type=char(14) updatewhereclause=yes name=fax dbname="vendor.fax" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"dbo.vendor~" ) COLUMN(NAME=~"dbo.vendor.code~") COLUMN(NAME=~"dbo.vendor.name~") COLUMN(NAME=~"dbo.vendor.contact~") COLUMN(NAME=~"dbo.vendor.phone~") COLUMN(NAME=~"dbo.vendor.fax~")) " )
+text(band=header alignment="0" text="TSM - Monitor Vendor List"border="0" color="0" x="93" y="20" height="208" width="2052"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Code"border="0" color="33554432" x="83" y="260" height="166" width="343"  name=code_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Name"border="0" color="33554432" x="989" y="250" height="166" width="385"  name=name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Contact"border="0" color="33554432" x="3958" y="250" height="166" width="500"  name=contact_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Phone"border="0" color="33554432" x="5552" y="250" height="166" width="427"  name=phone_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Fax"border="0" color="33554432" x="6625" y="250" height="166" width="250"  name=fax_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="83" y="0" height="197" width="895" format="[general]"  name=code edit.limit=10 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="989" y="0" height="197" width="2895" format="[general]"  name=name edit.limit=35 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="3958" y="0" height="197" width="1593" format="[general]"  name=contact edit.limit=35 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="5552" y="0" height="197" width="1052" format="[general]"  name=phone edit.limit=14 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="6625" y="0" height="197" width="937" format="[general]"  name=fax edit.limit=14 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="today()"border="0" color="0" x="83" y="21" height="208" width="833" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="5250" y="21" height="208" width="1947" format="[general]"  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+ 

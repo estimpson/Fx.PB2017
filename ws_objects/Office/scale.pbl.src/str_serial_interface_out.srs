@@ -1,0 +1,11 @@
+﻿$PBExportHeader$str_serial_interface_out.srs
+global type str_serial_interface_out from structure
+	decimal {6}	quantity
+	decimal {6}	weight
+	string		new_part
+	boolean		auto_complete
+	integer		return_code
+	string		serial_type
+	decimal {6}	total_count
+end type
+

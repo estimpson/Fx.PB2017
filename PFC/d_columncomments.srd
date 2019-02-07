@@ -1,0 +1,77 @@
+HA$PBExportHeader$d_columncomments.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=360 color="536870912"  height.autosize=yes)
+table(column=(type=char(39) updatewhereclause=yes name=datarowguid dbname="ColumnComments.DataRowGUID" )
+ column=(type=char(128) updatewhereclause=no name=schemaname dbname="ColumnComments.SchemaName" )
+ column=(type=char(128) updatewhereclause=no name=tablename dbname="ColumnComments.TableName" )
+ column=(type=char(128) updatewhereclause=no name=columnname dbname="ColumnComments.ColumnName" )
+ column=(type=char(40) updatewhereclause=yes name=author dbname="Author" )
+ column=(type=char(32766) updatewhereclause=no name=comment dbname="ColumnComments.Comment" )
+ column=(type=long updatewhereclause=yes name=rowid dbname="ColumnComments.RowID" )
+ column=(type=datetime updatewhereclause=yes name=commentcreatedt dbname="CommentCreateDT" )
+ column=(type=datetime updatewhereclause=yes name=commentmodifieddt dbname="CommentModifiedDT" )
+ column=(type=char(1000) updatewhereclause=yes name=changed dbname="Changed" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="select
+	cc.DataRowGUID
+,	cc.SchemaName
+,	cc.TableName
+,	cc.ColumnName
+,	Author = e.name
+,	cc.Comment
+,	cc.RowID
+,	CommentCreateDT = cc.RowCreateDT
+,	CommentModifiedDT = cc.RowModifiedDT
+,	Changed = convert(char(1000), '')
+,	IsSelected = 0
+from
+	Fx.ColumnComments cc
+		left join FT.Users u
+			join dbo.employee e
+				on e.operator_code = u.OperatorCode
+			on u.UserID = cc.Author
+where
+	cc.DataRowGUID = :DataRowGUID
+	and cc.ColumnName = :ColumnName
+	and cc.Status >= 0
+union all
+select
+	DataRowGUID = :DataRowGUID
+,	SchemaName = null
+,	TableName = null
+,	ColumnName = :ColumnName
+,	Author = null
+,	Comment = null
+,	RowID = null
+,	CommentCreateDT = getdate()
+,	CommentModifiedDT = getdate()
+,	Changed = convert(char(1000), '')
+,	IsSelected = 0
+order by
+	CommentCreateDT
+" arguments=(("DataRowGUID", string),("ColumnName", string)) )
+button(band=detail text="" filename="New.bmp" enabled=yes action="0" border="0" color="33554432" x="731" y="36" height="72" width="82" vtextalign="0" htextalign="0"  name=b_new  tag="New comment..." visible="1~tif (IsNull(rowid), 1, 0)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="37" y="260" height="64" width="768" format="[general];<New Comment>" html.valueishtml="0"  name=comment visible="1" height.autosize=yes edit.limit=32000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes edit.autovscroll=yes edit.hscrollbar=yes edit.vscrollbar=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="15793151" )
+line(band=detail x1="37" y1="356" x2="795" y2="356"  name=l_1 visible="1"  slideup=allabove pen.style="0" pen.width="5" pen.color="268435456"  background.mode="2" background.color="1073741824" )
+button(band=detail text="" filename="Delete.bmp" enabled=yes action="0" border="0" color="33554432" x="731" y="36" height="72" width="82" vtextalign="0" htextalign="0"  name=b_delete  tag="Remove comment..." visible="1~tif (IsNull(rowid), 0, 1)"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="" filename="Autofill.bmp" enabled=yes action="0" border="0" color="33554432" x="731" y="132" height="72" width="82" vtextalign="0" htextalign="0"  name=b_edit  tag="Edit comment..." visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="134217745" x="293" y="36" height="40" width="329" format="[general];<Anonymous>" html.valueishtml="0"  name=author visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="134217745" x="293" y="100" height="40" width="329" format="[shortdate] [time]" html.valueishtml="0"  name=commentcreatedt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="134217745" x="293" y="164" height="40" width="329" format="[shortdate] [time]" html.valueishtml="0"  name=commentmodifieddt visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Create DT:" border="0" color="134217745" x="37" y="100" height="40" width="219" html.valueishtml="0"  name=commentcreatedt_t visible="1"  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Modified DT:" border="0" color="134217745" x="37" y="164" height="40" width="219" html.valueishtml="0"  name=commentmodifieddt_t visible="1"  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Author:" border="0" color="134217745" x="37" y="36" height="40" width="219" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-6" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,31 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "ClientCustom\\TSM\\tsm-forms.pbl" "";
+@end;
+@begin Objects
+ "ClientCustom\\TSM\\d_shipper_tsm_new.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_shipper_tsm_old.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_tsm_outsideprocess_shipper.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_sd_customs_laser.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_release_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_release_tsm2.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_po_blanket_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_invoice_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\w_drk_indrktbs0.srw" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_shipper_mon.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_shipper_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_mon_std_opshpr.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\default.sra" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_tsm_master_billoflading.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_sd_picklist_std.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_nest_shipper_pack_new.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_invoice_tsm-good.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_invoice_tsm-old.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_nest_shipper_pack.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_outside_stampings.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_sd_customs_laser-old.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_return_vendor_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_sales_work_order.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_sd_customs_laser-test.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+ "ClientCustom\\TSM\\d_rtn_to_vndr_tsm.srd" "ClientCustom\\TSM\\tsm-forms.pbl";
+@end;

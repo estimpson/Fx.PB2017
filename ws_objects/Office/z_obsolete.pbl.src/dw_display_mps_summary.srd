@@ -1,0 +1,61 @@
+﻿$PBExportHeader$dw_display_mps_summary.srd
+release 6;
+datawindow(units=0 timer_interval=60000 color=78682240 processing=1 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=68 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=datetime updatewhereclause=yes name=due dbname="master_prod_sched.due" )
+ column=(type=decimal(6) updatewhereclause=yes name=qnty dbname="master_prod_sched.qnty" )
+ column=(type=decimal(6) updatewhereclause=yes name=qty_assigned dbname="master_prod_sched.qty_assigned" )
+ column=(type=long updatewhereclause=yes name=source dbname="master_prod_sched.source" )
+ column=(type=decimal(0) updatewhereclause=yes name=origin dbname="master_prod_sched.origin" )
+ column=(type=char(15) updatewhereclause=yes name=plant dbname="master_prod_sched.plant" )
+ column=(type=char(10) updatewhereclause=yes name=machine dbname="master_prod_sched.machine" )
+ column=(type=datetime updatewhereclause=yes name=dead_start dbname="master_prod_sched.dead_start" )
+ column=(type=decimal(6) updatewhereclause=yes name=run_time dbname="master_prod_sched.run_time" )
+ column=(type=char(25) updatewhereclause=yes name=order_detail_part_number dbname="order_detail.part_number" )
+ retrieve="  SELECT ~"master_prod_sched~".~"due~",   
+         ~"master_prod_sched~".~"qnty~",   
+         ~"master_prod_sched~".~"qty_assigned~",   
+         ~"master_prod_sched~".~"source~",   
+         ~"master_prod_sched~".~"origin~",   
+         ~"master_prod_sched~".~"plant~",   
+         ~"master_prod_sched~".~"machine~",   
+         ~"master_prod_sched~".~"dead_start~",   
+         ~"master_prod_sched~".~"run_time~",   
+         ~"order_detail~".~"part_number~"  
+    FROM ~"master_prod_sched~",   
+         ~"order_detail~"  
+   WHERE ( ~"master_prod_sched~".~"origin~" = ~"order_detail~".~"order_no~" ) and  
+         ( ~"master_prod_sched~".~"source~" = ~"order_detail~".~"row_id~" ) and  
+         ( part = :szPart ) AND  
+         ( master_prod_sched.type = :szType )    
+order by due" arguments=(("szPart", string),("szType", string)) )
+text(band=header alignment="2" text="Order No."border="6" color="0" x="9" y="8" height="52" width="242"  name=origin_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Due"border="6" color="0" x="261" y="8" height="52" width="224"  name=due_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Machine"border="6" color="0" x="494" y="8" height="52" width="210"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Run Time"border="6" color="0" x="713" y="8" height="52" width="219"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Qty Required"border="6" color="0" x="942" y="8" height="52" width="343"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="0" text="Dead Start"border="6" color="0" x="1294" y="8" height="52" width="274"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Plant"border="6" color="0" x="1577" y="8" height="52" width="283"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Row Id"border="6" color="0" x="1870" y="8" height="52" width="215"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Quantity"border="6" color="0" x="2094" y="8" height="52" width="270"  name=qnty_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+text(band=header alignment="2" text="Qty Assign"border="6" color="0" x="2373" y="8" height="52" width="283"  name=qty_assigned_t  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Top Part"border="6" color="0" x="2665" y="8" height="52" width="567"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=5 alignment="0" tabsequence=10 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="9" y="4" height="60" width="242" format="[general]"  name=origin  tag="This will keep the sales order / purchase order number from which the explosion taken place" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=1 alignment="0" tabsequence=20 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="261" y="4" height="60" width="224" format="[general]"  name=due edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="494" y="4" height="60" width="210" format="[general]"  name=machine edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="713" y="4" height="60" width="219" format="#,##0.00"  name=run_time edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=detail alignment="1" expression=" qnty - qty_assigned "border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="942" y="4" height="60" width="343" format="#,##0.00"  name=balance  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="1294" y="4" height="60" width="274" format="[shortdate] [time]"  name=dead_start edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="1577" y="4" height="60" width="283" format="[general]"  name=plant edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="1870" y="4" height="60" width="215" format="[general]"  name=source edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=2 alignment="1" tabsequence=50 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="2094" y="4" height="60" width="270" format="#,##0.00"  name=qnty edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=3 alignment="1" tabsequence=60 border="5" color="0~tif (  due < today(), rgb ( 255, 0 ,0 ), rgb ( 0, 0, 0 ) )" x="2373" y="4" height="60" width="283" format="#,##0.00"  name=qty_assigned edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="5" color="0" x="2665" y="4" height="60" width="567" format="[general]"  name=order_detail_part_number edit.limit=0 edit.case=any edit.autoselect=yes  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=summary alignment="1" text="Total:"border="0" color="0" x="713" y="4" height="52" width="219"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=summary alignment="1" expression="sum ( balance )"border="0" color="0" x="942" y="4" height="60" width="343" format="#,##0.00"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=summary alignment="1" expression="sum(qnty for all)"border="0" color="0" x="2094" y="4" height="60" width="270" format="#,##0.00"  name=total_quantity visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+compute(band=summary alignment="1" expression="sum(qty_assigned for all)"border="0" color="0" x="2373" y="4" height="60" width="283" format="#,##0.00"  name=total_assigned visible="1~t0"  font.face="MS Sans Serif" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="78682240" )
+htmltable(border="1" cellpadding="0" cellspacing="0" generatecss="no" nowrap="yes")

@@ -1,0 +1,16 @@
+﻿$PBExportHeader$sa2d.srd
+release 4;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=10 color="-1" )
+summary(height=-2 color="-1" )
+footer(height=1 color="-1" )
+detail(height=477 color="-1" )
+table(column=(type=char(50) name=custom5 dbname="custom5" )
+ column=(type=number name=serial dbname="serial" )
+ retrieve="SELECT audit_trail.custom5,			audit_trail.serial FROM shipper, shipper_detail,			audit_trail WHERE ( shipper_detail.part_original = audit_trail.part ) and			( CONVERT( varchar(20), shipper_detail.shipper ) = audit_trail.shipper ) and 			( audit_trail.type = 'S' ) and			( shipper_detail.shipper = shipper.id ) and			( shipper.id = :ishipper )" arguments=(("ishipper", number)) )
+compute(band=detail alignment="0" expression="string ( custom5 )"border="0" color="0" x="65" y="115" height="52" width="836" format="[GENERAL]"  name=kanban  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="KANBAN number"border="0" color="0" x="946" y="109" height="52" width="701"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="1682" y="109" height="52" width="861" format="[general]"  name=custom5 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="string ( serial )"border="0" color="0" x="65" y="199" height="52" width="836" format="[GENERAL]"  name=serial_no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Box Serial Number"border="0" color="0" x="946" y="189" height="55" width="701"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="32768" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1682" y="189" height="55" width="857" format="[general]"  name=serial edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )

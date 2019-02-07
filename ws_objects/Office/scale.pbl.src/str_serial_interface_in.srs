@@ -1,0 +1,23 @@
+﻿$PBExportHeader$str_serial_interface_in.srs
+global type str_serial_interface_in from structure
+	window		parent_window
+	string		machine
+	string		part
+	string		package_type
+	decimal {6}	quantity
+	string		label_format
+	decimal {6}	threshold_lower
+	decimal {6}	threshold_upper
+	string		steady_char
+	boolean		show_buttons
+	integer		inactivity_time
+	decimal {6}	inactivity_amount
+	string		round_to_whole_number
+	datawindow		dw_pallet_array
+	string		part_array[]
+	long		pallet_array[]
+	string		serial_type
+	string		manual_tare
+	string		original_part
+end type
+

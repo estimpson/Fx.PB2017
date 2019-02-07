@@ -1,0 +1,109 @@
+HA$PBExportHeader$d_dbo_shipping_partpackaging_setup.srd
+release 10;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=92 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912~tif(IsSelected=1,rgb(192,192,255),536870912)" )
+table(column=(type=long updatewhereclause=yes name=type dbname="Shipping_PartPackaging_Setup.Type" )
+ column=(type=char(61) updatewhereclause=no name=id dbname="Shipping_PartPackaging_Setup.ID" )
+ column=(type=long updatewhereclause=yes name=shipperid dbname="Shipping_PartPackaging_Setup.ShipperID" )
+ column=(type=char(35) updatewhereclause=yes name=shipperpart dbname="Shipping_PartPackaging_Setup.ShipperPart" )
+ column=(type=char(25) updatewhereclause=no name=partcode dbname="Shipping_PartPackaging_Setup.PartCode" )
+ column=(type=char(100) updatewhereclause=yes name=partname dbname="Shipping_PartPackaging_Setup.PartName" )
+ column=(type=char(20) updatewhereclause=no name=packagingcode dbname="Shipping_PartPackaging_Setup.PackagingCode" )
+ column=(type=char(25) updatewhereclause=yes name=packagename dbname="Shipping_PartPackaging_Setup.PackageName" )
+ column=(type=char(171) updatewhereclause=no name=code dbname="Shipping_PartPackaging_Setup.Code" )
+ column=(type=char(295) updatewhereclause=no name=description dbname="Shipping_PartPackaging_Setup.Description" )
+ column=(type=decimal(0) updatewhereclause=yes name=orderno dbname="Shipping_PartPackaging_Setup.OrderNo" )
+ column=(type=char(20) updatewhereclause=yes name=shipto dbname="Shipping_PartPackaging_Setup.ShipTo" )
+ column=(type=char(50) updatewhereclause=yes name=shiptoname dbname="Shipping_PartPackaging_Setup.ShipToName" )
+ column=(type=char(25) updatewhereclause=yes name=billto dbname="Shipping_PartPackaging_Setup.BillTo" )
+ column=(type=char(50) updatewhereclause=yes name=billtoname dbname="Shipping_PartPackaging_Setup.BillToName" )
+ column=(type=long updatewhereclause=yes name=packdisabled dbname="Shipping_PartPackaging_Setup.PackDisabled" )
+ column=(type=long updatewhereclause=yes name=packenabled dbname="Shipping_PartPackaging_Setup.PackEnabled" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=packdefault dbname="Shipping_PartPackaging_Setup.PackDefault" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=packwarn dbname="Shipping_PartPackaging_Setup.PackWarn" values="	1/	0" )
+ column=(type=long updatewhereclause=yes name=defaultpackdisabled dbname="Shipping_PartPackaging_Setup.DefaultPackDisabled" )
+ column=(type=long updatewhereclause=yes name=defaultpackenabled dbname="Shipping_PartPackaging_Setup.DefaultPackEnabled" )
+ column=(type=long updatewhereclause=yes name=defaultpackdefault dbname="Shipping_PartPackaging_Setup.DefaultPackDefault" )
+ column=(type=long updatewhereclause=yes name=defaultpackwarn dbname="Shipping_PartPackaging_Setup.DefaultPackWarn" )
+ column=(type=char(1000) updatewhereclause=no name=change dbname="Change" )
+ column=(type=long updatewhereclause=yes name=isselected dbname="IsSelected" )
+ retrieve="
+select
+	spps.Type
+,   spps.ID
+,   spps.ShipperID
+,   spps.ShipperPart
+,   spps.PartCode
+,   spps.PartName
+,   spps.PackagingCode
+,   spps.PackageName
+,   spps.Code
+,   spps.Description
+,   spps.OrderNo
+,   spps.ShipTo
+,   spps.ShipToName
+,   spps.BillTo
+,   spps.BillToName
+,   spps.PackDisabled
+,   spps.PackEnabled
+,   spps.PackDefault
+,   spps.PackWarn
+,   spps.DefaultPackDisabled
+,   spps.DefaultPackEnabled
+,   spps.DefaultPackDefault
+,   spps.DefaultPackWarn
+,	Change = convert(varchar(1000), '')
+,	IsSelected = 0
+from
+	dbo.Shipping_PartPackaging_Setup spps
+order by
+	spps.Type
+,	spps.ID
+,	spps.PartCode
+,	spps.PackagingCode
+" )
+text(band=header alignment="0" text="Shipper ID" border="6" color="33554432" x="9" y="8" height="72" width="329" html.valueishtml="0"  name=shipperid_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Description" border="6" color="33554432" x="7159" y="8" height="72" width="4379" html.valueishtml="0"  name=description_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Shipper part" border="6" color="33554432" x="347" y="8" height="72" width="439" html.valueishtml="0"  name=shipperpart_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part code" border="6" color="33554432" x="795" y="8" height="72" width="361" html.valueishtml="0"  name=partcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Part name" border="6" color="33554432" x="1166" y="8" height="72" width="873" html.valueishtml="0"  name=partname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Packaging code" border="6" color="33554432" x="2048" y="8" height="72" width="503" html.valueishtml="0"  name=packagingcode_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Package name" border="6" color="33554432" x="2560" y="8" height="72" width="709" html.valueishtml="0"  name=packagename_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Enabled ?" border="6" color="33554432" x="3278" y="8" height="72" width="302" html.valueishtml="0"  name=packenabled_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Default ?" border="6" color="33554432" x="3589" y="8" height="72" width="265" html.valueishtml="0"  name=packdefault_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Warn ?" border="6" color="33554432" x="3863" y="8" height="72" width="261" html.valueishtml="0"  name=packwarn_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Order no." border="6" color="33554432" x="4133" y="8" height="72" width="302" html.valueishtml="0"  name=orderno_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to" border="6" color="33554432" x="4443" y="8" height="72" width="361" html.valueishtml="0"  name=shipto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Ship to name" border="6" color="33554432" x="4814" y="8" height="72" width="1047" html.valueishtml="0"  name=shiptoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bill to" border="6" color="33554432" x="5870" y="8" height="72" width="256" html.valueishtml="0"  name=billto_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Bill to name" border="6" color="33554432" x="6135" y="8" height="72" width="1015" html.valueishtml="0"  name=billtoname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="329" format="[general]  " html.valueishtml="0"  name=shipperid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="347" y="8" height="76" width="439" format="[general]" html.valueishtml="0"  name=shipperpart visible="1" edit.limit=35 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="795" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=partcode visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="1166" y="8" height="76" width="873" format="[general]" html.valueishtml="0"  name=partname visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="2048" y="8" height="76" width="503" format="[general]" html.valueishtml="0"  name=packagingcode visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2560" y="8" height="76" width="709" format="[general]" html.valueishtml="0"  name=packagename visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="7159" y="8" height="76" width="4379" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=295 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="0" color="33554432" x="4133" y="8" height="76" width="302" format="[general]  " html.valueishtml="0"  name=orderno visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="33554432" x="4443" y="8" height="76" width="361" format="[general]" html.valueishtml="0"  name=shipto visible="1" edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="33554432" x="4814" y="8" height="76" width="1047" format="[general]" html.valueishtml="0"  name=shiptoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="33554432" x="5870" y="8" height="76" width="256" format="[general]" html.valueishtml="0"  name=billto visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="33554432" x="6135" y="8" height="76" width="1015" format="[general]" html.valueishtml="0"  name=billtoname visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="2" tabsequence=32766 border="0" color="33554432" x="3278" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=packenabled visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="2" tabsequence=32766 border="0" color="33554432" x="3589" y="8" height="76" width="265" format="[general]" html.valueishtml="0"  name=packdefault visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="2" tabsequence=32766 border="0" color="33554432" x="3863" y="8" height="76" width="261" format="[general]" html.valueishtml="0"  name=packwarn visible="1" checkbox.text="" checkbox.on="1" checkbox.off="0" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+
+sparse(names="shipperid	shipperpart	partcode	partname	orderno	shipto	shiptoname	billto	billtoname")htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

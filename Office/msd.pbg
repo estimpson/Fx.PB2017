@@ -1,0 +1,8 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "office\\msd.pbl" "";
+@end;
+@begin Objects
+ "office\\n_cst_shippingtrans_qrcl.sru" "office\\msd.pbl";
+ "office\\n_cst_shippingtrans_options.sru" "office\\msd.pbl";
+@end;
